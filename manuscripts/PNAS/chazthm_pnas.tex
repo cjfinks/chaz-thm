@@ -130,7 +130,7 @@ In the next section, we give precise statements of our main results, which inclu
 
 \section{Results}
 
-Before stating our main results, we explain how the spark condition \eqref{SparkCondition} relates to the \emph{lower bound} \cite{Grcar10} of $\mathbf{A}$, written $L(\mathbf{A})$, which is the largest number $\alpha$ such that \mbox{$\|\mathbf{A}\mathbf{x}\|_2 \geq \alpha\|\mathbf{x}\|_2$} for all $\mathbf{x} \in \mathbb{R}^m$. By compactness, every injective linear map has a nonzero lower bound; hence, if $\mathbf{A}$ satisfies \eqref{SparkCondition}, then every submatrix formed from $2k$ of its columns or less has a nonzero lower bound. We therefore define the following domain-restricted lower bound of $\mathbf{A}$:
+Before stating our main results, we explain how the spark condition \eqref{SparkCondition} relates to the \emph{lower bound} \cite{Grcar10} of $\mathbf{A}$, which is the largest number $\alpha$ such that \mbox{$\|\mathbf{A}\mathbf{x}\|_2 \geq \alpha\|\mathbf{x}\|_2$} for all $\mathbf{x} \in \mathbb{R}^m$. By compactness, every injective linear map has a nonzero lower bound; hence, if $\mathbf{A}$ satisfies \eqref{SparkCondition}, then every submatrix formed from $2k$ of its columns or less has a nonzero lower bound. We therefore define the following domain-restricted lower bound of $\mathbf{A}$:
 \begin{align*}
 L_k(\mathbf{A}) := \frac{1}{\sqrt{k}}\max \{ \alpha : \|\mathbf{A}\mathbf{x}\|_2 \geq \alpha\|\mathbf{x}\|_2 \text{ for all $k$-sparse } \mathbf{x}\}.
 \end{align*} 
@@ -149,6 +149,7 @@ Consider, for instance, the set of consecutive intervals of length $k$ in some c
 
 The following result gives an elaborated answer to our question from the introduction. Recall that a set of $k$-sparse vectors is in \emph{general linear position} when any $k$ of them are linearly independent.
 
+[State this without reference to special set $E$]
 \begin{theorem}\label{DeterministicUniquenessTheorem}
 Fix integers $n$ and $k < m$. Suppose $\mathbf{A}~\in~\mathbb{R}^{n \times m}$ satisfies \eqref{SparkCondition} and that \mbox{$\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$} include at least \mbox{$(k-1){m \choose k}+1$} vectors in general linear position supported on each set in some regular $E \subseteq {[m] \choose k}$ satisfying the singleton intersection property. Then there exists a constant $C_1 > 0$ for which the following holds for all $\varepsilon < L_2(\mathbf{A}) / C_1$. %\frac{L_2(\mathbf{A})}{\sqrt{2}}C_1^{-1}$: 
 
@@ -160,7 +161,7 @@ Every matrix $\mathbf{B} \in \mathbb{R}^{n \times m}$ for which for some $k$-spa
 for some permutation matrix $\mathbf{P}$ and invertible diagonal matrix $\mathbf{D}$.\footnote{We note that the condition $\varepsilon < L_2(\mathbf{A})$ above is necessary. When \mbox{$\mathbf{A}$ = $I$} and $\mathbf{x}_i = \mathbf{e}_i$, it turns out that $C_1 = 1$ and there is a $\mathbf{B}$ and $1$-sparse $\mathbf{\hat x}_i$ with $\|\mathbf{A}\mathbf{x}_i - \mathbf{B}\mathbf{\hat x}_i\|_2 \leq \varepsilon$ violating \eqref{Cstable}.}
 Furthermore if $\varepsilon < L_{2k}(\mathbf{A}) / C_1$ then $\mathbf{B}$ also satisfies \eqref{SparkCondition} with $L_{2k}(\mathbf{B}\mathbf{PD}) \geq L_{2k}(\mathbf{A}) - C_1 \varepsilon$ and we in fact have:
 \begin{align}\label{b-PDa}
-\|\mathbf{x}_i - \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\hat x}_i\|_1 &\leq \frac{\varepsilon}{\sqrt{2k}} \left( \frac{ 1+C_1 \|\mathbf{x}_i\|_1 }{ L_{2k}(\mathbf{A}) -  C_1\varepsilon } \right).
+\|\mathbf{x}_i - \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\hat x}_i\|_1 &\leq  \left( \frac{ 1+C_1 \|\mathbf{x}_i\|_1 }{ L_{2k}(\mathbf{A}) -  C_1\varepsilon } \right) \varepsilon,
  \ \ \text{for all $i \in [N]$}.
 \end{align}
 \end{theorem}
@@ -178,9 +179,10 @@ Note also that Thm~\ref{DeterminsiticUniquenessTheorem} gives conditions for whe
 Given $n, m$, $k < m$ and a regular set system $E \subseteq 2^{[m]}$ of rank $k$ satisfying the singleton intersection property, there are $N =  |E| \left[ (k-1){m \choose k}+1 \right]$ vectors \mbox{$\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$} such that every matrix $\mathbf{A} \in \mathbb{R}^{n \times m}$ satisfying \eqref{SparkCondition} generates a set $Y = \{\mathbf{A}\mathbf{x}_1, \ldots, \mathbf{A}\mathbf{x}_N\}$ with a stable $k$-sparse representation in $m$ dimensions.
 \end{corollary}
 
-\begin{proposition}
-If $E$ is an $\ell$-regular set system of rank $k$ satisfying the singleton intersection property then $|E| \geq \ell m/k$. 
-\end{proposition}
+%\begin{proposition}
+%If $E$ is an $\ell$-regular set system of rank $k$ satisfying the singleton intersection property then $|E| \geq \ell m/k$. 
+%\end{proposition}
+Note that if $E$ is an $\ell$-regular set system of rank $k$ satisfying the singleton intersection property then $|E| \geq \ell m/k$.
 This is easy to see by noting that $|E|k \geq \sum_{S \in E}|S| = \sum_{i \in [m]} \deg(i) = \ell m$. In certain cases there exist simple constructions achieving this minimum; for example, when $k = \sqrt{m}$ one can take $E$ to be the rows and columns formed by arranging the elements of $[m]$ in a square grid.
 
 It is straightforward to provide a probabilistic extension of Thm.~\ref{DeterministicUniquenessTheorem} using the following fact in random matrix theory.  The matrix $\mathbf{A} \in \mathbb{R}^{n \times m}$ satisfies \eqref{SparkCondition} with probability one (or with ``high probability" for discrete variables) 
@@ -198,7 +200,7 @@ f(\mathbf{A}) = \prod_{S \in {[m] \choose k}} \sum_{S' \in {[n] \choose k}} (\de
 %
 where for any $S' \in {[n] \choose k}$ and $S \in {[m] \choose k}$, the symbol $\mathbf{A}_{S',S}$ denotes the submatrix of entries $A_{ij}$ with $(i,j) \in S' \times S$. 
 
-Since $f$ is a real analytic function, it is enough to show that at least \emph{one} substitution of real numbers satisfies $f(\mathbf{A}) \neq 0$ to conclude that its zeroes form a set with measure zero. Hence, \emph{every} $n \times m$ matrix $\mathbf{A}$ outside a set of measure zero satisfies \eqref{SparkCondition} provided \eqref{CScondition} holds for a value of $\gamma$ for \emph{some} distribution. We remark that the precise relationship between $m$, $n$, and $k$ guaranteeing that $f$ is not identically zero is still an open problem in real algebraic geometry [**TODO** cite recent work?]. In any case, we set $\gamma_0$ to be the smallest known such $\gamma$.
+Since $f$ is a real analytic function, it is enough to show that at least \emph{one} substitution of real numbers satisfies $f(\mathbf{A}) \neq 0$ to conclude that its zeroes form a set with measure zero. Hence, \emph{every} $n \times m$ matrix $\mathbf{A}$ outside such a set satisfies \eqref{SparkCondition} provided \eqref{CScondition} holds for a value of $\gamma$ for \emph{some} distribution. We remark that the precise relationship between $m$, $n$, and $k$ guaranteeing that $f$ is not identically zero is still an open problem in real algebraic geometry [**TODO** cite recent work?]. In any case, we set $\gamma_0$ to be the smallest known such $\gamma$.
 
 It so happens that a similar statement applies to sets of vectors with a stable sparse representation. As in \cite[Sec.~IV]{Hillar15}, consider the ``symbolic" dataset $Y = \{\mathbf{A}\mathbf{x}_1,\ldots,\mathbf{A} \mathbf{x}_N\}$ generated by indeterminate $\mathbf{A}$ and $k$-sparse $\mathbf{x}_1, \ldots, \mathbf{x}_N$. 
 
@@ -218,7 +220,7 @@ Fix $n, m$, and $k$ satisfying \eqref{CScondition} for $\gamma = \gamma_0$, and 
 Next, we address the case when only an upper bound $m'$ on the latent dimension $m$ is known (assuming that $\mathbf{B}$ satisfies \eqref{SparkCondition}).
 
 \begin{theorem}\label{DeterministicUniquenessTheorem2}
-Fix integers $n$ and $k < m \leq m'$ and matrices $\mathbf{A}~\in~\mathbb{R}^{n \times m}$ and $\mathbf{B} \in \mathbb{R}^{n \times m'}$ both satisfying \eqref{SparkCondition}. Suppose \mbox{$\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$} include at least \mbox{$(k-1){m' \choose k}+1$} vectors in general linear position supported on each set in some $k$-uniform $E \subseteq 2^{[m]}$ satisfying the singleton intersection property. Then there exists a constant $C_3 > 0$ for which the following holds.
+Fix integers $n$ and $k < m \leq m'$ and matrices $\mathbf{A}~\in~\mathbb{R}^{n \times m}$ and $\mathbf{B} \in \mathbb{R}^{n \times m'}$ both satisfying \eqref{SparkCondition}. Suppose \mbox{$\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$} include at least \mbox{$(k-1){m' \choose k}+1$} $k$-sparse vectors in general linear position supported on each set in some $k$-uniform $E \subseteq 2^{[m]}$ satisfying the singleton intersection property. Then there exists a constant $C_3 > 0$ for which the following holds.
 
 If for some $k$-sparse $\mathbf{\hat x}_1, \ldots, \mathbf{\hat x}_N \in \mathbb{R}^{m'}$ and $\varepsilon < L_2(\mathbf{A}) / C_3$ we have \mbox{$\|\mathbf{A}\mathbf{x}_i - \mathbf{B}\mathbf{\hat x}_i\|_2 \leq \varepsilon$} for all $i$, then:
 \begin{align}\label{Cstablem'}
@@ -233,34 +235,33 @@ In other words, the columns of $B$ contain (up to noise, after appropriate scali
 \section{Proof of Theorem~\ref{DeterministicUniquenessTheorem}}\label{DUT}
 
 % ======== b - PDa =========
+First note that $\|\mathbf{x}\|_1 \leq \sqrt{k} \|\mathbf{x}\|_2$ for $k$-sparse $\mathbf{x} \in \mathbb{R}^m$, which by definition of $L_k(A)$ implies the following often used inequality:
+\begin{align}\label{delrho}
+L_k(\mathbf{A}) \leq \frac{\|\mathbf{A}\mathbf{x}\|_2}{\sqrt{k} \|\mathbf{x}\|_2} %\leq \frac{\|\mathbf{x}\|_1}{\sqrt{k} \|\mathbf{x}\|_2} \max_{i \in [m]}\|\mathbf{A}_i\|_2 
+\leq  \max_{i \in [m]}\|\mathbf{A}_i\|_2.
+\end{align}
 
-We demonstrate first of all how \eqref{Cstable} in fact already implies the recovery result \eqref{b-PDa} when $\varepsilon < L_{2k}(\mathbf{A}) / C_1$. For all $2k$-sparse $\mathbf{x} \in \mathbb{R}^m$, the triangle inequality gives \mbox{$\|(\mathbf{A}-\mathbf{BPD})\mathbf{x}\|_2  \leq C_1\varepsilon \|\mathbf{x}\|_1 \leq C_1 \varepsilon \sqrt{2k}  \|\mathbf{x}\|_2$}. Thus, 
+Our first step is to demonstrate how \eqref{Cstable} already implies the recovery result \eqref{b-PDa} when $\varepsilon < L_{2k}(\mathbf{A}) / C_1$. For all $2k$-sparse $\mathbf{x} \in \mathbb{R}^m$, the triangle inequality gives \mbox{$\|(\mathbf{A}-\mathbf{BPD})\mathbf{x}\|_2  \leq C_1\varepsilon \|\mathbf{x}\|_1 \leq C_1 \varepsilon \sqrt{2k}  \|\mathbf{x}\|_2$}. Thus, 
 \begin{align*}
 \|\mathbf{BPD}\mathbf{x}\|_2 
 &\geq | \|\mathbf{A}\mathbf{x}\|_2 - \|(\mathbf{A}-\mathbf{BPD})\mathbf{x}\|_2 | \\
 &\geq \sqrt{2k} (L_{2k}(\mathbf{A}) -  C_1\varepsilon) \|\mathbf{x}\|_2,
 \end{align*}
 %
-where we may drop the absolute value due to the upper bound on $\varepsilon$. Hence, $L_{2k}(\mathbf{BPD}) \geq L_{2k}(\mathbf{A}) - C_1\varepsilon  > 0$ and \eqref{b-PDa} then follows from:
+where we drop the absolute value due to the upper bound on $\varepsilon$. Hence, $L_{2k}(\mathbf{BPD}) \geq L_{2k}(\mathbf{A}) - C_1\varepsilon  > 0$ and \eqref{b-PDa} then follows from:
 \begin{align*}
 \|\mathbf{x}_i - \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\hat x}_i \|_1
 %&\leq \sqrt{2k} |\mathbf{x}_i - D^{-1}P^{\top}\mathbf{\hat x}_i\|_2 \\
-&\leq \frac{\|\mathbf{BPD}(\mathbf{x}_i - \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\hat x}_i)\|_2}{\sqrt{2k}L_{2k}(\mathbf{BPD})} \\
-&\leq \frac{\|\mathbf{B}\mathbf{\hat x}_i - \mathbf{A}\mathbf{x}_i\|_2 + \|(\mathbf{A} - \mathbf{BPD})\mathbf{x}_i\|_2}{\sqrt{2k}L_{2k}(\mathbf{BPD})} \\
-&\leq \frac{\varepsilon (1+C_1 \|\mathbf{x}_i\|_1)}{\sqrt{2k}L_{2k}(\mathbf{BPD})}.
+&\leq \frac{\|\mathbf{BPD}(\mathbf{x}_i - \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\hat x}_i)\|_2}{L_{2k}(\mathbf{BPD})} \\
+&\leq \frac{\|\mathbf{B}\mathbf{\hat x}_i - \mathbf{A}\mathbf{x}_i\|_2 + \|(\mathbf{A} - \mathbf{BPD})\mathbf{x}_i\|_2}{L_{2k}(\mathbf{BPD})} \\
+&\leq \frac{\varepsilon (1+C_1 \|\mathbf{x}_i\|_1)}{L_{2k}(\mathbf{BPD})}.
 %&\leq \frac{\varepsilon}{\sqrt{2k}} \left( \frac{ 1+C_1 \|\mathbf{x}_i\|_1 }{ L_{2k}(\mathbf{A}) -  C_1\varepsilon } \right).
 %\leq \frac{\varepsilon }{\varepsilon_0 - \varepsilon} \left( C_1^{-1}+|\mathbf{x}_i\|_1 \right).
 \end{align*}
 
-We establish \eqref{Cstable} in the first place by arguments that flow loosely as follows. Pigeonholing the data into its set of possible supports with respect to the matrix $\mathbf{B}$, one sees that the column space of every $\mathbf{A}_S$ with $S \in E$ must be proximal (in a sense yet to be defined; see Def.~\ref{dDef}) to the column space of some $n \times k$ submatrix of $\mathbf{B}$. \eqref{Cstable} is then immediately implied by our result in combinatorial matrix analysis (Lem.~\ref{MainLemma}), which we derive by the following arguments (see the Supplemental for the full proof). First, we show that the aforementioned proximity between $k$-dimensional subspaces implies a proximity between smaller subspaces spanned by columns of $\mathbf{A}$ indexed by the intersections of sets in $E$ and those spanned by as many or fewer columns of $\mathbf{B}$. Another pigeonholing argument here combined with our assumptions on $E$ (e.g., the singleton intersection property) reveals that, in fact, each column of $\mathbf{A}$ spans a subspace proximal to that spanned by some column of $\mathbf{B}$. \eqref{Cstable} is a simple consequence of this last fact, which actually constitutes the proof of the theorem for the case $k=1$. We present this special case now before restating the above arguments in greater detail.
+We establish \eqref{Cstable} in the first place by arguments that flow loosely as follows. Pigeonholing the data into its set of possible supports with respect to the matrix $\mathbf{B}$, one sees that the column space of every $\mathbf{A}_S$ with $S \in E$ must be nearby (in a sense yet to be defined; see Def.~\ref{dDef}) the column space of some $n \times k$ submatrix of $\mathbf{B}$. \eqref{Cstable} is then immediately implied by our result in combinatorial matrix analysis (Lem.~\ref{MainLemma}), which we derive by the following arguments (see the Supplemental for the full proof). First, we show that the aforementioned proximity between $k$-dimensional subspaces implies a proximity between smaller subspaces spanned by columns of $\mathbf{A}$ indexed by the intersections of sets in $E$ and those spanned by as many or fewer columns of $\mathbf{B}$. Another pigeonholing argument here combined with our assumptions on $E$ (e.g., the singleton intersection property) reveals that, in fact, each column of $\mathbf{A}$ spans a subspace proximal to that spanned by some column of $\mathbf{B}$. \eqref{Cstable} is a simple consequence of this last fact, which actually constitutes the proof of the theorem for the case $k=1$. We present this special case now before restating the above arguments in greater detail.
 
 In fact, in the case $k=1$ we can relax our assumptions even further and assume that the matrix $\mathbf{B}$ has only at least as many columns as $\mathbf{A}$; as we will see, the conclusions of Thm.~\ref{DeterministicUniquenessTheorem} then hold for some $n \times m$ submatrix of $\mathbf{B}$.
-
-We note first that $\|\mathbf{x}\|_1 \leq \sqrt{k} \|\mathbf{x}\|_2$ for $k$-sparse $\mathbf{x} \in \mathbb{R}^m$, which implies by definition of $L_k(A)$ the following inequality which we often use:
-\begin{align}\label{delrho}
-L_k(\mathbf{A}) \leq \frac{\|\mathbf{A}\mathbf{x}\|_2}{\sqrt{k} \|\mathbf{x}\|_2} %\leq \frac{\|\mathbf{x}\|_1}{\sqrt{k} \|\mathbf{x}\|_2} \max_{i \in [m]}\|\mathbf{A}_i\|_2 
-\leq  \max_{i \in [m]}\|\mathbf{A}_i\|_2.
-\end{align}
 
 \begin{proof}[Proof ($k=1$)]
 Note that the only 1-uniform set system satisfying the singleton intersection property is $[m]$; hence, we have $\mathbf{x}_i = c_i \mathbf{e}_i$ for $c_i \in \mathbb{R} \setminus \{\mathbf{0}\}$, $i \in [m]$. In this case we may take $C_1$ to be any value satisfying $C_1^{-1} \leq \min_{j \in [m]} |c_{j}|$. 
@@ -351,7 +352,7 @@ r(\{V_i\}_{i=1}^\ell) := 1 - \left(1 -  \max \prod_{i=1}^{\ell-1} \sin^2  \theta
 %
 where the maximum is taken over all possible orderings\footnote{We modify the quantity in \cite{Deutsch12} in this way since the subspace ordering is irrelevant to our purpose.} of the $V_i$ and where the angle $\theta \in (0,\frac{\pi}{2}]$ is defined in terms of its cosine as \cite[Def.~9.4]{Deutsch12}:
 \begin{align*}
-\cos{\theta(U,W)} := \max\left\{ |\langle \mathbf{u}, \mathbf{w} \rangle|: \substack{ \mathbf{u} \in U \cap (U \cap W)^\perp, \|\mathbf{u}\|_2 \leq 1 \\ \mathbf{w} \in W \cap (U \cap W)^\perp, \|\mathbf{w}\|_2 \leq 1 } \right\}.
+\cos{\theta(U,W)} := \max\left\{ |\langle \mathbf{u}, \mathbf{w} \rangle|: \substack{ \mathbf{u} \in U \cap (U \cap W)^\perp, \ \|\mathbf{u}\|_2 \leq 1 \\ \mathbf{w} \in W \cap (U \cap W)^\perp, \  \|\mathbf{w}\|_2 \leq 1 } \right\}.
 \end{align*}
 \end{definition}
 Note that since $\theta \in (0,\frac{\pi}{2}]$, we always have $0 < r \leq 1$. (We acknowledge the somewhat counter-intuitive property that $\theta =  \pi/2$ when $U = V$ and when $U \perp V$.)  %\textbf{Note:} we can also define $\theta$ by \cite[Lem.~9.5]{Deutsch12}:
@@ -384,7 +385,7 @@ Let $\mathbf{X}$ and $\mathbf{X}'$ be the $m \times N$ matrices with columns $\m
 where the last equality is by definition of the domain-restricted matrix lower bound $L_k$. It follows that for all $S \in E$,
 \begin{align}\label{rhs222}
 d(\text{Span}\{\mathbf{A}_S\}, \text{Span}\{\mathbf{B}_{S'}\}) 
-\leq \frac{\varepsilon}{ \min_{S \in E} L_k(\mathbf{AX}_{I(S)}) } 
+\leq \frac{\varepsilon}{ \min_{S \in E} L_k(\mathbf{AX}_{I(S)}) }.
 %\leq \frac{\varepsilon}{L(\mathbf{AX}_{J(S)})}.
 %&< \left( \frac{ L_2(\mathbf{A}) }{ 2^{|E|} \max_{j \in [m]} \|\mathbf{A}_j\|_2 } \right) \frac{ \min_{S \in E} L_k(\mathbf{AX}_{I(S)}) } { L(\mathbf{AX}_{J(S)}) } \min_{\substack{F \subseteq E}} r( \{ \text{Span}\{\mathbf{A}_{S}\} \}_{S \in F}) \\
 \end{align}
@@ -398,7 +399,7 @@ The result then follows by  Lem.~\ref{MainLemma}, with the map $\pi: E \to {[m] 
  
 \section{Discussion}\label{Discussion}
 
-In this note, we generalize the approach of \cite{Hillar15} to the uniqueness of solutions to Problem~\ref{InverseProblem} to the case of noisy measurements while also reducing the number of required samples.
+In this note, we generalize the approach of \cite{Hillar15} to the uniqueness of solutions to Problem~\ref{InverseProblem} for noisy measurements while also reducing the number of required samples.
 % from $N=k{m \choose k}^2$ to $N = m(k-1){m \choose k}+m$. 
 % CUT OK? Surprisingly, almost all $n \times m$ dictionaries satisfying the standard assumption \eqref{CScondition} from compressed sensing (CS) are identifiable from enough generic noisy $k$-sparse linear combinations of their elements, up to an error linear in the noise. Moreover, if solutions are constrained to satisfy \eqref{SparkCondition}, then only an upper bound on the number of dictionary elements need be taken as given. 
 We remark that our result in the deterministic case (Thm.~\ref{DeterministicUniquenessTheorem}) accounts for \emph{worst-case} noise, whereas the ``effective'' noise might be much smaller when it is sampled from a given distribution; in such cases, the constants $C_1, C_3$ in Thms.~\ref{DeterministicUniquenessTheorem},~\ref{DeterministicUniquenessTheorem2} will be much smaller with high probability.
