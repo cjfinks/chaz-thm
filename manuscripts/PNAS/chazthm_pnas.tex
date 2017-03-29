@@ -4,7 +4,6 @@
 % may affect the guide line number alignment. 
 
 %%% CHAZ TODO %%%
-% replace dictionary learning with 'sparse linear coding'
 
 %%% CHRIS TODO %%
 % steamroll
@@ -551,15 +550,16 @@ Plugging this into \eqref{f} and rearranging yields \eqref{DTILeq} after substit
 \end{proof}
 
 \begin{lemma}\label{NonEmptyLemma} 
-Suppose $E \subseteq 2^{[m]}$ is $\ell$-regular and satisfies the singleton intersection property. If there exists a map $\pi: E \to 2^{[m]}$ such that $\sum_{S \in E} |S| = \sum_{S \in E} |\pi(S)|$ and:
+Fix integers $\ell$ and $m \leq \hat m$. Suppose $E \subseteq 2^{[m]}$ is $\ell$-regular and satisfies the singleton intersection property. If there exists a map $\pi: E \to 2^{[\hat m]}$ such that $\sum_{S \in E} |S| = \sum_{S \in E} |\pi(S)|$ and:
 \begin{align}\label{cond}
 |\cap_{S \in F} \pi(S)| \leq |\cap_{S \in F} S | \ \ \text{for all } F \subseteq E,
 \end{align}
 %
-then $\pi(E)$ is $\ell$-regular and satisfies the singleton intersection property. In particular, $|\cap_{S \in F} S| = 1$ if and only if $|\cap_{S \in F} \pi(S)| = 1$. 
+then the association $i \mapsto \cap \pi(F(i))$ defines an injective map from $[J]$ to $[\hat m]$ for some $J \subseteq [m]$ of size $\hat m - \ell(\hat m - m)$. In particular, if $\hat m = m$ then the map $\pi$ is induced by a permutation.
+%$\pi(E)$ is $\ell$-regular and satisfies the singleton intersection property. In particular, $|\cap_{S \in F} S| = 1$ if and only if $|\cap_{S \in F} \pi(S)| = 1$. 
 \end{lemma}
 \begin{proof}
-Fix $T = \{(j, S): j \in \pi(S), S \in E\}$. We have $|T| = \sum_{S \in E} |\pi(S)| = \sum_{S \in E} |S| = \sum_{i \in [m]} \deg(i) = \ell m$ by regularity of $E$. Note that by \eqref{cond} there can be no more than $\ell$ elements of $T$ with a given first index, since $E$ is $\ell$-regular. Pigeonholing the elements of $T$ with respect to the set of possible first indices, we see then that for each $j$ there must be exactly $\ell$ elements of $T$ with $j$ as a first index; hence, $\pi(E)$ is $\ell$-regular. 
+[* TODO * Chris rewrite for $\hat m$] Fix $T = \{(j, S): j \in \pi(S), S \in E\}$. We have $|T| = \sum_{S \in E} |\pi(S)| = \sum_{S \in E} |S| = \sum_{i \in [m]} \deg(i) = \ell m$ by regularity of $E$. Note that by \eqref{cond} there can be no more than $\ell$ elements of $T$ with a given first index, since $E$ is $\ell$-regular. Pigeonholing the elements of $T$ with respect to the set of possible first indices, we see then that for each $j$ there must be exactly $\ell$ elements of $T$ with $j$ as a first index; hence, $\pi(E)$ is $\ell$-regular. 
 
 Fix $j$ and let $F(j) = \{S \in E: j \in \pi(S)\}$ be the preimage of the star in $\pi(E)$ centered at $j$, which is of size $\ell$ by the above arguments. It follows from \eqref{cond} that $\cap_{S \in F(j)} S$ is nonempty. In fact, we must have $|\cap _{S \in F(j)} S| = 1$, since $E$ is $\ell$-regular and satisfies the singleton intersection property. It follows by \eqref{cond} that $\cap_{S \in F(j)} \pi(S) = \{j\}$. Thus $\pi(E)$ satisfies the singleton intersection property as well, and the preimage of every one of the $m$ stars in $\pi(E)$ is a star in $E$.
 
