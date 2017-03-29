@@ -177,10 +177,10 @@ Clearly, $L_k(\mathbf{A}) \geq L_{k'}(\mathbf{A})$ whenever $k < k'$, and for an
 
 % an important contribution of our work is to
 Next, we identify the combinatorial criteria on support sets of generating codes allowing for stable sparse 
-representations.  Let $[m]$ denote the set $\{1, \ldots, m\}$, its power set by $2^{[m]}$, and ${[m] \choose k}$ the set of subsets of $[m]$ of size $k$. Let $\text{\rm Span}\{\mathbf{v}_1, \ldots, \mathbf{v}_\ell\}$ be the $\mathbb{R}$-linear span of vectors $\mathbf{v}_1, \ldots, \mathbf{v}_\ell$. A vector $\mathbf{x}$ is said to be \emph{supported} on $S \subseteq [m]$, written supp$(\mathbf{x}) = S$, when $\mathbf{x} \in \text{\rm Span} \{\mathbf{e}_j\}_{j\in S}$, where $\mathbf{e}_j$ are the standard basis elements in $\mathbb R^m$.  We denote by $\mathbf{M}_j$ the $j$th column of a matrix $\mathbf{M}$ and similarly by $\mathbf{M}_S$ the sub-matrix formed by the columns of $\mathbf{M}$ indexed by $S$ ($\text{\rm Span}\{\mathbf{M}_\emptyset\} := \{\textbf{0}\}$).  We say a hypergraph $E \subseteq 2^{[m]}$ is of \textit{rank} $k$ when every $S \in E$ has cardinality $|S| \leq k$ (and \textit{$k$-uniform} when equality holds). We say $E$ is \emph{regular} when every element of $[m]$ is contained in exactly $\ell$ elements of $E$ for some $\ell > 0$ (for given $\ell$, we say $E$ is $\ell$-regular).
+representations.  Let $[m]$ denote the set $\{1, \ldots, m\}$, its power set $2^{[m]}$, and ${[m] \choose k}$ the set of subsets of $[m]$ of size $k$. Let $\text{\rm Span}\{\mathbf{v}_1, \ldots, \mathbf{v}_\ell\}$ be the $\mathbb{R}$-linear span of vectors $\mathbf{v}_1, \ldots, \mathbf{v}_\ell$. A vector $\mathbf{x}$ is said to be \emph{supported} on $S \subseteq [m]$, written supp$(\mathbf{x}) = S$, when $\mathbf{x} \in \text{\rm Span} \{\mathbf{e}_j\}_{j\in S}$, where $\mathbf{e}_j$ are the standard basis elements in $\mathbb R^m$.  Let $\mathbf{M}_j$ be the $j$th column of a matrix $\mathbf{M}$ and similarly let $\mathbf{M}_S$ be the submatrix formed by the columns of $\mathbf{M}$ indexed by $S$ (we set $\text{\rm Span}\{\mathbf{M}_\emptyset\} := \{\textbf{0}\}$).  We say a hypergraph $E \subseteq 2^{[m]}$ has \textit{rank} $k$ when every $S \in E$ has cardinality $|S| \leq k$ (and \textit{$k$-uniform} when equality holds). We also say $E$ is \emph{regular} when every element of $[m]$ is contained in exactly $\ell$ elements of $E$ for some $\ell > 0$ (for given $\ell$, we say $E$ is $\ell$-regular).
 
 \begin{definition}
-Given a hypergraph $E \subseteq 2^{[m]}$, the \textbf{star} $F(i)$ centered at $i$ is the set of $S \in E$ containing $i$. We say $E$ satisfies the \textbf{singleton intersection property} (SIP) when $\cap_{S \in F(i)} S = \{i\}$ for all $i \in [m]$. 
+Given a hypergraph $E \subseteq 2^{[m]}$, the \textbf{star} $F(i)$ centered at $i$ is the collection of $S \in E$ containing $i$. We say $E$ satisfies the \textbf{singleton intersection property} (\textbf{SIP}) when $\cap_{S \in F(i)} S = \{i\}$ for all $i \in [m]$. 
 \end{definition}
 
 \begin{proposition}
@@ -193,7 +193,7 @@ The following is the technical statement of our main result.
 
 \begin{theorem}\label{DeterministicUniquenessTheorem}
 % Fix positive integers $k, \ell, m, m', n, p$ satisfying $k < m$ and $p \leq m \leq m' \leq (\ell m - p) / (\ell - 1)$. 
-Fix integers $n, \ell$ and $k < m \leq \hat m$. Suppose $\mathbf{A}~\in~\mathbb{R}^{n \times m}$ satisfies the spark condition \eqref{SparkCondition} and that $k$-sparse \mbox{$\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$} contain at least \mbox{$(k-1){\hat m \choose k}+1$} vectors supported in general linear position on each set in some $\ell$-regular $E \subseteq {[m] \choose k}$ satisfying the SIP.  There exists a constant $C_1 > 0$ for which the following holds for all $\varepsilon < L_2(\mathbf{A}) / C_1$.
+Fix integers $n, \ell$, and $k < m \leq \hat m$. Suppose $\mathbf{A}~\in~\mathbb{R}^{n \times m}$ satisfies the spark condition \eqref{SparkCondition} and that $k$-sparse \mbox{$\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$} contain at least \mbox{$(k-1){\hat m \choose k}+1$} vectors supported in general linear position on each set in some $\ell$-regular $E \subseteq {[m] \choose k}$ satisfying the SIP.  There exists a constant $C_1 > 0$ for which the following holds for all $\varepsilon < L_2(\mathbf{A}) / C_1$.
 
 Every matrix $\mathbf{B} \in \mathbb{R}^{n \times \hat m}$ and $k$-sparse $\mathbf{\hat x}_1, \ldots, \mathbf{\hat x}_N \in \mathbb{R}^{\hat m}$ with  \mbox{$\|\mathbf{A}\mathbf{x}_i - \mathbf{B}\mathbf{\hat x}_i\|_2 \leq \varepsilon$} for all $i$ necessarily satisfies:
 \begin{align}\label{Cstable}
@@ -210,7 +210,7 @@ Furthermore, if $\varepsilon < L_{2k}(\mathbf{A}) / C_1$, then $\mathbf{B}_J$ al
 \end{align}
 \end{theorem}
 
-In other words, the smaller the difference $\hat m - m$, the more columns and coefficients of the original $n \times m$ dictionary $\mathbf{A}$ and $m$-dimensional codes $\mathbf{x}_i$ contained (up to noise) in the appropriately scaled $n \times \hat m$ dictionary $\mathbf{B}$ and $\hat m$-dimensional codes $\mathbf{\hat x}_i$. In particular, when $\hat m = m$ all columns of $\mathbf{A}$ and coefficients of each $\mathbf{x}_i$ recoverable, as per Def.~\ref{maindef}. For expositional clarity, we delay defining the (explicit) constant $C_1 = C_1(\mathbf{A}, \{\mathbf{x}_i\}_{i=1}^N, E)$ until Section \ref{DUT} (\eqref{Cdef}), since it requires additional definitions not critical to the statement of our results.
+In other words, the smaller the difference $\hat m - m$, the more columns and coefficients of the original $n \times m$ dictionary $\mathbf{A}$ and $m$-dimensional codes $\mathbf{x}_i$ contained (up to noise) in the appropriately scaled $n \times \hat m$ dictionary $\mathbf{B}$ and $\hat m$-dimensional codes $\mathbf{\hat x}_i$. In particular, when $\hat m = m$ all columns of $\mathbf{A}$ and coefficients of each $\mathbf{x}_i$ recoverable, as per Def.~\ref{maindef}. For expositional clarity, we delay defining the (explicit) constant $C_1 = C_1(\mathbf{A}, \{\mathbf{x}_i\}_{i=1}^N, E)$ until Section \ref{DUT} (\eqref{Cdef}).  % , since it requires additional definitions not critical to the statement of our results.
 
 An important consequence of Thm.~\ref{DeterministicUniquenessTheorem} is that \eqref{def1} is guaranteed provided $\varepsilon$ does not exceed: [*** TODO: verify this is still correct ***]
 \begin{align}\label{epsdel}
@@ -220,7 +220,7 @@ An important consequence of Thm.~\ref{DeterministicUniquenessTheorem} is that \e
 % Note also that Thm~\ref{DeterminsiticUniquenessTheorem} gives conditions for when a single solution to Problem~\ref{InverseProblem} in fact represents \emph{all} possible solutions, related by transformations of the form $PD$.
 
 \begin{corollary}\label{DeterministicUniquenessCorollary}
-Given $n, m$, $k < m$, and a regular hypergraph $E \subseteq 2^{[m]}$ of rank $k$ satisfying the singleton intersection property, there are $N =  |E| \left[ (k-1){m \choose k}+1 \right]$ vectors \mbox{$\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$} such that every matrix $\mathbf{A} \in \mathbb{R}^{n \times m}$ satisfying \eqref{SparkCondition} generates a dataset $Y = \{\mathbf{A}\mathbf{x}_1, \ldots, \mathbf{A}\mathbf{x}_N\}$ with a stable $k$-sparse representation in $m$ dimensions.
+Given $n, m$, $k < m$, and a regular hypergraph $E \subseteq {[m] \choose k}$ of rank $k$ with the SIP, there are $N =  |E| \left[ (k-1){m \choose k}+1 \right]$ vectors \mbox{$\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$} such that every matrix $\mathbf{A} \in \mathbb{R}^{n \times m}$ satisfying \eqref{SparkCondition} generates a dataset $Y = \{\mathbf{A}\mathbf{x}_1, \ldots, \mathbf{A}\mathbf{x}_N\}$ with a stable $k$-sparse representation in $m$ dimensions.
 \end{corollary}
 \begin{proof}
 Something quick here.
@@ -238,16 +238,16 @@ provided:
 n \geq \gamma k\log\left(\frac{m}{k}\right),
 \end{align}
 %
-where $\gamma$ is a positive constant that depends on the particular distribution from which the entries of $\mathbf{A}$ are sampled i.i.d. (many ensembles suffice, e.g. \cite[Sec.~4]{Baraniuk08}). 
+in which $\gamma$ is a positive constant that depends on the particular distribution from which the entries of $\mathbf{A}$ are sampled i.i.d. (many ensembles suffice, e.g. \cite[Sec.~4]{Baraniuk08}). 
 
-In fact, the spark condition can be made explicit.  Let $\mathbf{A}$  be the $n \times m$ matrix of $nm$ indeterminates $A_{ij}$. When real numbers are substituted for $A_{ij}$, the resulting matrix satisfies \eqref{SparkCondition} if and only if the following polynomial is nonzero:
+We motivate our next theorem by the following observation:  the spark condition can be made explicit.  Let $\mathbf{A}$  be the $n \times m$ matrix of $nm$ indeterminates $A_{ij}$. When real numbers are substituted for $A_{ij}$, the resulting matrix satisfies \eqref{SparkCondition} if and only if the following polynomial is nonzero:
 \begin{align*}
 f(\mathbf{A}) := \prod_{S \in {[m] \choose k}} \sum_{S' \in {[n] \choose k}} (\det \mathbf{A}_{S',S})^2,
 \end{align*}
 %
 where for any $S' \in {[n] \choose k}$ and $S \in {[m] \choose k}$, the symbol $\mathbf{A}_{S',S}$ denotes the submatrix of entries $A_{ij}$ with $(i,j) \in S' \times S$.   We note that the large number of terms in this product is likely necessary due to the NP-hardness of deciding whether a given matrix $A$ satisfies the spark condition \cite{tillmann2014computational}.
 
-Since $f$ is a real analytic function, one substitution of real numbers with $f(\mathbf{A}) \neq 0$ implies that its zeroes form a set with measure zero. Hence, almost every $n \times m$ real matrix $\mathbf{A}$ satisfies \eqref{SparkCondition} provided \eqref{CScondition} holds for a value of $\gamma$ for some distribution. We remark that the precise relationship between $m$, $n$, and $k$ guaranteeing that $f$ is not identically zero is a challenging problem in real algebraic geometry. In any case, we set $\gamma_0$ to be the smallest known such $\gamma$.
+Since $f$ is a real analytic function, one substitution of real numbers with $f(\mathbf{A}) \neq 0$ implies that its zeroes form a set of (Borel) measure zero. Hence, almost every $n \times m$ real matrix $\mathbf{A}$ satisfies \eqref{SparkCondition} provided \eqref{CScondition} holds for a value of $\gamma$ for some distribution. We remark that the precise relationship between $m$, $n$, and $k$ guaranteeing that $f$ is not identically zero is a challenging problem in real algebraic geometry. In any case, we set $\gamma_0$ to be the smallest known such $\gamma$.
 
 % It so happens that a similar statement applies to sets of vectors with a stable sparse representation. As in \cite[Sec.~IV]{Hillar15}, consider the ``symbolic'' dataset $Y = \{\mathbf{A}\mathbf{x}_1,\ldots,\mathbf{A} \mathbf{x}_N\}$ generated by indeterminate $\mathbf{A}$ and $k$-sparse $\mathbf{x}_1, \ldots, \mathbf{x}_N$. 
 
