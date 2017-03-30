@@ -86,7 +86,7 @@ In particular, it has been shown that response properties of simple-cell neurons
 Motivated by these discoveries and earlier work in the theory of neural communication \cite{Coulter10, Isely10}, we address when dictionaries and sparse representations are uniquely determined by data.  Answers to this question also have other real-world implications.  For example, a sparse coding analysis of local painting style can be used for forgery detection \cite{hughes2010, Olshausen10}, but only if sparse components of the artwork are independent of implementation idiosyncrasies. Fortunately, algorithms with proven recovery of generating dictionaries under certain 
 conditions have recently been proposed (see \cite[Sec.~I-E]{Sun16} for a summary of the state-of-the-art).  However, there are few universal theorems explaining the general phenomenon of uniqueness.  
 
-Here, we prove very generally that uniqueness in sparse linear coding is an expected property of the model.  In other words, whenever enough sparsely represented data generated from a dictionary (satisfying a spark condition) are observed, the original codes and dictionary are uniquely determined up to an error that is commensurate with the measurement noise.  Applications of this result include:  (1) a sufficient diversity of sparse codes sent through a random linear compressive channel are unique, (2) the sparse linear coding problem is well-posed in the sense of Hadamard \cite{Hadamard1902}, and (3) an explanation for universal representation of natural signals in neuroscience. 
+Here, we prove very generally that uniqueness in sparse linear coding is an expected property of the model.  In other words, whenever enough sparsely represented data generated from a dictionary (satisfying a spark condition) are observed, the original codes and dictionary are uniquely determined up to an error that is commensurate with the measurement noise.  Applications of this result include:  1) a sufficient diversity of sparse codes sent through a random linear compressive channel are unique, 2) the sparse linear coding problem is well-posed in the sense of Hadamard \cite{Hadamard1902}, and 3) an explanation for universal representation of natural signals in neuroscience. 
 
 % It has remained unknown, however, when the dictionary learning problem is well-posed (as per Hadamard \cite{Hadamard1902}) in general -- that is, independent of all methodological idiosyncracies.
 %[**TODO** make sure the claim here is right...or would it be punchier to talk about the fact that everyone always gets Gabors on natural images?]
@@ -238,21 +238,21 @@ An important consequence of Thm.~\ref{DeterministicUniquenessTheorem} is that \e
 Given $n, m$, $k < m$, and a regular hypergraph $E \subseteq {[m] \choose k}$ with the SIP, there are $N =  |E| \left[ 1 + (k-1){m \choose k} \right]$ vectors \mbox{$\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$} such that every matrix $\mathbf{A} \in \mathbb{R}^{n \times m}$ satisfying \eqref{SparkCondition} generates a dataset $Y = \{\mathbf{A}\mathbf{x}_1, \ldots, \mathbf{A}\mathbf{x}_N\}$ with a stable $k$-sparse representation in $m$ dimensions.
 \end{corollary}
 \begin{proof}
-Something quick here.
+Given Thm.\ref{DeterministicUniquenessTheorem}, one needs only to produce sparse codes in general linear position.  However, this is straightforward (e.g., with a ``Vandermonde'' construction \cite{Hillar15}).
 \end{proof}
 
 %\begin{proposition}
 %If $E$ is an $\ell$-regular hypergraph of rank $k$ satisfying the singleton intersection property then $|E| \geq \ell m/k$. 
 %\end{proposition}
-Note that if $E$ is an $\ell$-regular hypergraph of rank $k$ satisfying the singleton intersection property, then $|E| \geq \ell m/k$.
-This is easy to see from $|E|k \geq \sum_{S \in E}|S| = \sum_{i \in [m]} \deg(i) = \ell m$. In certain cases, there exist simple constructions achieving this minimum; for example, when $k = \sqrt{m}$ one can take $E$ to be the rows and columns formed by arranging the elements of $[m]$ in a square grid.  In light of Cor.~\ref{DeterministicUniquenessCorollary}, it would be  interesting problem to determine minimal such $E$.
+As mentioned above, it is easy to construct such $E$ with $|E| = m$, implying the lower bound for sample size $N$ from the introduction.
+Note that if $E$ is an $\ell$-regular hypergraph of rank $k$ satisfying the SIP, then $|E| \geq \ell m/k$: \[|E|k \geq \sum_{S \in E}|S| = \sum_{i \in [m]} \deg(i) = \ell m.\] In certain cases, there are simple constructions achieving this minimum; for example, when $k = \sqrt{m}$ one can take $E$ to be the rows and columns formed by arranging $[m]$ in a square grid.  In light of Cor.~\ref{DeterministicUniquenessCorollary}, it would be interesting to determine other minimal such $E$.
 
-There are other less direct consequences of Thm.~\ref{DeterministicUniquenessTheorem} to stability in sparse linear coding.  The following implication relates the result to more common optimization formulations of the problem.
+There are other less direct consequences of Thm.~\ref{DeterministicUniquenessTheorem} to stability in sparse linear coding.  The following implication relates the result to more common optimization formulations.
 
 \begin{theorem}
-Fix integers $n, \ell$ and $k < m$. Suppose $\mathbf{A}~\in~\mathbb{R}^{n \times m}$ satisfies the spark condition and that $k$-sparse \mbox{$\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$} contain at least \mbox{$(k+1)\left[ 1 + (k-1){ m \choose k} \right]$} vectors supported in general linear position on each set in some $\ell$-regular $E \subseteq {[m] \choose k}$ satisfying the SIP. There exists a constant $C_1 > 0$ for which the following holds for all $\varepsilon < L_2(\mathbf{A}) / C_1$.
+Fix integers $n, \ell$, and $k < m$. Suppose $\mathbf{A}~\in~\mathbb{R}^{n \times m}$ satisfies the spark condition \eqref{SparkCondition} and that $k$-sparse \mbox{$\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$} contain at least \mbox{$(k+1)\left[ 1 + (k-1){ m \choose k} \right]$} vectors supported in general linear position on each set in some $\ell$-regular $E \subseteq {[m] \choose k}$ satisfying the SIP. There exists a constant $C_1 > 0$ for which the following holds for all $\varepsilon < L_2(\mathbf{A}) / C_1$.
 
-Every solution to the constrained $\ell_0$ optimization problem:
+Every solution $B$ to the constrained $\ell_0$ optimization:
 \begin{align}\label{minsum}
 \arg \min_{ \substack{ \mathbf{B} \in \mathbb{R}^{n \times m} \\ \mathbf{\hat x}_i, \ldots, \mathbf{\hat x}_N \in \mathbb{R}^{m} } } \sum_{i = 1}^N \|\mathbf{\hat x}_i\|_0 \ \ \text{s.t.} \ \ \|\mathbf{A}\mathbf{x}_i - \mathbf{B}\mathbf{\hat x}_i\|_2 \leq \varepsilon, \ \ \text{$i \in [N]$},
 \end{align}
@@ -260,8 +260,9 @@ necessarily satisfies \eqref{Cstable}.
 \end{theorem}
 
 \begin{proof}
+We argue for a lower bound on the number of $k$-sparse vectors $\mathbf{\hat x}_i$ and then apply Thm.~\ref{DeterministicUniquenessCorollary}. 
 [*** Incomplete ***]
-We argue for a lower bound on the number of $k$-sparse vectors $\mathbf{\hat x}_i$ and then apply Thm.~\ref{DeterministicUniquenessCorollary}. Let $n_p$ be the number of vectors $\mathbf{\hat x}_i$ satisfying $\|\mathbf{\hat x}_i\|_0 = p$, so that $\sum_{p = 1}^{\hat m} n_p = N$. Since the $\mathbf{x}_i$ are all $k$-sparse, by \eqref{minsum} we have:
+Let $n_p$ be the number of vectors $\mathbf{\hat x}_i$ satisfying $\|\mathbf{\hat x}_i\|_0 = p$, so that $\sum_{p = 1}^{\hat m} n_p = N$. Since the $\mathbf{x}_i$ are all $k$-sparse, by \eqref{minsum} we have:
 \begin{align}
 k \sum_{p = 1}^{m} n_p = kN \geq \sum_{i=1}^N \|\mathbf{x}_i\|_0 \geq \sum_{i=1}^N \|\mathbf{\hat x}_i\|_0 = \sum_{p=1}^{m} p n_p 
 \end{align}
@@ -275,7 +276,7 @@ k \sum_{p \leq k} n_p \geq \sum_{p \leq k} (k-p)n_p \geq \sum_{p > k} (p-k) n_p 
 That is, at least $N / (k+1)$ of the vectors $\mathbf{\hat x}_i$ are $k$-sparse. Therefore, there is some $N' \subseteq [N]$ for which for each $S \in E$ there are $(k-1){m \choose k}+1$ of the vectors $\mathbf{x}_i$ with $i \in [N']$ supported on $S$ and for which $\mathbf{\hat x}_i$ is $k$-sparse for all $i \in [N']$. By Thm.~\ref{DeterministicUniquenessCorollary}, \eqref{Cstable} follows.
 \end{proof}
 
-Another straightforward application of Thm.~\ref{DeterministicUniquenessTheorem} is a probabilistic extension that uses the following fact in random matrix theory.  A random matrix $\mathbf{A} \in \mathbb{R}^{n \times m}$ satisfies \eqref{SparkCondition} with probability one (or with ``high probability'' for discrete variables) 
+Another straightforward application of Thm.~\ref{DeterministicUniquenessTheorem} is a probabilistic extension that uses the following often used application of random matrix theory to compressed sensing.  A random matrix $\mathbf{A} \in \mathbb{R}^{n \times m}$ satisfies \eqref{SparkCondition} with probability one (or with ``high probability'' for discrete variables) 
 provided:
 \begin{align}\label{CScondition}
 n \geq \gamma k\log\left(\frac{m}{k}\right),
@@ -306,7 +307,7 @@ Fix $n, m$, and $k < m$. There is a polynomial in the entries of $\mathbf{A}$ an
 Fix $n, m$, and $k$ satisfying \eqref{CScondition} for $\gamma = \gamma_0$, and let the entries of $\mathbf{A} \in \mathbb{R}^{n \times m}$ and $k$-sparse $\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$ be drawn independently from probability measures absolutely continuous with respect to the standard Borel measure $\mu$. If at least $(k-1){m \choose k} + 1$ of the vectors $\mathbf{x}_i$ are supported on each $S \in E$ for a regular $E \subseteq {[m] \choose k}$ with the SIP, then $Y$ has a stable $k$-sparse representation in $\mathbb{R}^m$ with probability one.
 \end{corollary}
 
-[ ** TODO ** elaborate a little on these? ]
+% [ ** TODO ** elaborate a little on these? ]
 
 %Next, we address the case when only an upper bound $m'$ on the latent dimension $m$ is known (assuming that $\mathbf{B}$ satisfies \eqref{SparkCondition}).
 
@@ -357,23 +358,23 @@ The heart of the matter is therefore \eqref{Cstable}, which we now establish usi
 \begin{proof}[Proof of Thm.~\ref{DeterministicUniquenessCorollary} for $k=1$]
 The only 1-uniform hypergraph with the SIP is $[m]$; hence, we have $\mathbf{x}_i = c_i \mathbf{e}_i$ for $c_i \in \mathbb{R} \setminus \{\mathbf{0}\}$, $i \in [m]$. In this case, we may take $C_1 = 1/ \min_{\ell \in [m]} |c_{\ell}|$. 
 
-Fix $\mathbf{A} \in \mathbb{R}^{n \times m}$ satisfying \eqref{SparkCondition} and suppose that for some $\mathbf{B} \in \mathbb{R}^{n \times \hat m}$ ($\hat m \geq m$) and $1$-sparse $\mathbf{\hat x}_i \in \mathbb{R}^{\hat m}$ we have  $\|\mathbf{A}\mathbf{x}_i - \mathbf{B}\mathbf{\hat x}_i\|_2 \leq \varepsilon < L_2(\mathbf{A}) / C_1$ for all $i$. Then there are $c'_1, \ldots, c'_m \in \mathbb{R}$ and $\pi: [m] \to [\hat m]$ with:
+Fix $\mathbf{A} \in \mathbb{R}^{n \times m}$ satisfying \eqref{SparkCondition} and suppose that for some $\mathbf{B} \in \mathbb{R}^{n \times \hat m}$ ($\hat m \geq m$) and $1$-sparse $\mathbf{\hat x}_i \in \mathbb{R}^{\hat m}$ we have  $\|\mathbf{A}\mathbf{x}_i - \mathbf{B}\mathbf{\hat x}_i\|_2 \leq \varepsilon < L_2(\mathbf{A}) / C_1$ for all $i$. Then there are $\hat{c}_1, \ldots, \hat{c}_m \in \mathbb{R}$ and $\pi: [m] \to [\hat m]$ with:
 \begin{align}\label{1D}
-\|c_j\mathbf{A}_j - c'_j\mathbf{B}_{\pi(j)}\|_2 \leq \varepsilon,\ \ \   \text{for all $j$}.
+\|c_j\mathbf{A}_j - \hat{c}_j\mathbf{B}_{\pi(j)}\|_2 \leq \varepsilon,\ \ \   \text{for all $j$}.
 \end{align} 
-Note that $c'_j \neq 0$ for all $j$ since otherwise by \eqref{delrho} and definition of $C_1$ we would have $\|c_j\mathbf{A}_j\|_2 < \min_{\ell \in [m]}\|c_{\ell}\mathbf{A}_{\ell}\|_2$. 
+Note that $\hat{c}_j \neq 0$ for all $j$ since otherwise by \eqref{delrho} and definition of $C_1$ we would have $\|c_j\mathbf{A}_j\|_2 < \min_{\ell \in [m]}\|c_{\ell}\mathbf{A}_{\ell}\|_2$. 
 
-We  now show that $\pi$ is injective (and thus is a permutation if $\hat m = m$). Suppose that $\pi(i) = \pi(j) = \ell$ for some $i \neq j$ and $\ell$. Then, $\|c_{j}\mathbf{A}_{j} - c'_{j}\mathbf{B}_{\ell}\|_2 \leq \varepsilon$ and $\|c_{i}\mathbf{A}_{i} - c'_{i} \mathbf{B}_{\ell}\|_2  \leq \varepsilon$. Scaling and summing these inequalities by $|c'_{i}|$ and $|c'_{j}|$, respectively, and applying the triangle inequality, we obtain:
+We  now show that $\pi$ is injective (and thus is a permutation if $\hat m = m$). Suppose that $\pi(i) = \pi(j) = \ell$ for some $i \neq j$ and $\ell$. Then, $\|c_{j}\mathbf{A}_{j} - \hat{c}_{j}\mathbf{B}_{\ell}\|_2 \leq \varepsilon$ and $\|c_{i}\mathbf{A}_{i} - \hat{c}_{i} \mathbf{B}_{\ell}\|_2  \leq \varepsilon$. Scaling and summing these inequalities by $|\hat{c}_{i}|$ and $|\hat{c}_{j}|$, respectively, and applying the triangle inequality, we obtain:
 \begin{align*}%\label{contra}
-(|c'_{i}| + |c'_{j}|) \varepsilon
-&\geq\|\mathbf{A}(c'_{i}c_{j} \mathbf{e}_{j} - c'_{j}c_{i}\mathbf{e}_{i})\|_2 \nonumber \\ 
-&\geq  \left( |c'_{i}| + |c'_{j}| \right) L_2(\mathbf{A}) \min_{\ell \in [m]} |c_\ell |,
+(|\hat{c}_{i}| + |\hat{c}_{j}|) \varepsilon
+&\geq\|\mathbf{A}(\hat{c}_{i}c_{j} \mathbf{e}_{j} - \hat{c}_{j}c_{i}\mathbf{e}_{i})\|_2 \nonumber \\ 
+&\geq  \left( |\hat{c}_{i}| + |\hat{c}_{j}| \right) L_2(\mathbf{A}) \min_{\ell \in [m]} |c_\ell |,
 \end{align*}
 %
 which contradicts the bound $\varepsilon < L_2(\mathbf{A})/C_1$. Hence, the map $\pi$ is injective. Setting $J = \pi([m])$ and letting $P = \left( \mathbf{e}_{\pi(1)} \cdots \mathbf{e}_{\pi(m)}\right)$ and $D = \text{diag}(\frac{\hat{c}_1}{c_1},\ldots,\frac{\hat{c}_m}{c_m})$, we see that \eqref{1D} becomes, for all $j \in [m]$:
 \begin{align*}%\label{k=1result}
 \|\mathbf{A}_j - (\mathbf{B}_J\mathbf{PD})_j\|_2 
-= \|\mathbf{A}_j - \frac{c'_j}{c_j}\mathbf{B}_{\pi(j)}\|_2 
+= \|\mathbf{A}_j - \frac{\hat{c}_j}{c_j}\mathbf{B}_{\pi(j)}\|_2 
 \leq \frac{\varepsilon}{|c_j|} 
 \leq C_1\varepsilon.
 \end{align*}
@@ -414,7 +415,9 @@ and \cite[Lem.~3.2]{Morris10}:
 %\cite[Lem.~3.2]{Morris10} If $\dim(U) = \dim(V)$ then $d(U,V) = d(V,U)$. 
 %\end{lemma}
 
-Our result in combinatorial matrix analysis is the following, which we derive by the following arguments (see the Supplemental for the full proof). First, we show that the aforementioned proximity between $k$-dimensional subspaces implies a proximity between smaller subspaces spanned by columns of $\mathbf{A}$ indexed by the intersections of sets in $E$ and those spanned by as many or fewer columns of $\mathbf{B}$. Another pigeonholing argument here combined with our assumptions on $E$ (e.g., the singleton intersection property) reveals that, in fact, each column of $\mathbf{A}$ spans a subspace proximal to that spanned by some column of $\mathbf{B}$. \eqref{Cstable} is a simple consequence of this last fact, which actually constitutes the proof of the theorem for the case $k=1$. % We present this special case now before restating the above arguments in greater detail.
+Our result in combinatorial matrix analysis is the following.
+
+%, which we derive by the following arguments (see the Supplemental for the full proof). First, we show that the aforementioned proximity between $k$-dimensional subspaces implies a proximity between smaller subspaces spanned by columns of $\mathbf{A}$ indexed by the intersections of sets in $E$ and those spanned by as many or fewer columns of $\mathbf{B}$. Another pigeonholing argument here combined with our assumptions on $E$ (e.g., the singleton intersection property) reveals that, in fact, each column of $\mathbf{A}$ spans a subspace proximal to that spanned by some column of $\mathbf{B}$. \eqref{Cstable} is a simple consequence of this last fact, which actually constitutes the proof of the theorem for the case $k=1$. % We present this special case now before restating the above arguments in greater detail.
 
 \begin{lemma}\label{MainLemma}
 Fix integers $n$ and $k < m$, and suppose $\mathbf{A} \in \mathbb{R}^{n \times m}$ satisfies the spark condition \eqref{SparkCondition}. There exists a constant $C_2 > 0$ for which the following holds for all $\varepsilon < L_2(\mathbf{A}) / C_2$. If for some  $\mathbf{B} \in \mathbb{R}^{n \times m}$ and regular $E \subseteq2^{[m]}$ satisfying the singleton intersection property there exists a size-preserving map $\pi: E \mapsto 2^{[m]}$ satisfying:
@@ -422,7 +425,7 @@ Fix integers $n$ and $k < m$, and suppose $\mathbf{A} \in \mathbb{R}^{n \times m
 d(\text{\rm Span}\{\mathbf{A}_{S}\}, \text{\rm Span}\{\mathbf{B}_{\pi(S)}\}) \leq \varepsilon,\ \ \   \text{for all $S \in E$},
 \end{align}
 %
-then there exists some permutation matrix $\mathbf{P}$ and invertible diagonal matrix $\mathbf{D}$ such that:
+then there exists a permutation matrix $\mathbf{P}$ and invertible diagonal matrix $\mathbf{D}$ with:
 \begin{align}\label{MainLemmaBPD}
 \|\mathbf{A}_j - (\mathbf{BPD})_j\|_2 \leq C_2 \varepsilon, \ \ \  \text{for } j \in [m].
 \end{align}
@@ -463,12 +466,12 @@ C_2(\mathbf{A}, E) := \frac{ 2^{|E|} \max_{i \in [m]} \|\mathbf{A}_i\|_2}{ \min_
 %We begin by showing that for every $S \in E$ there is some $S' \in {[m] \choose k}$ for which the distance $d(\text{\rm Span}\{\mathbf{A}_S\}, \text{\rm Span}\{\mathbf{B}_S'\})$ is controlled by $\varepsilon$. Fix $S \in E$. Since there are $(k-1){m \choose k}+1$ vectors $\mathbf{x}_i$ supported on $S$, the pigeon-hole principle implies that there exists some $S' \in {[m] \choose k}$ and some set of $k$ indices $J(S)$ such that the supports of all $\mathbf{x}_i$ and $\mathbf{\hat x}_i$ with $i \in J(S)$ are contained in $S$ and $S'$, respectively.
 
 %%% No |S| = k assumption %%%
-We begin by showing that for every $S \in E$ there is some $S' \subseteq [m]$, $|S'| \leq k$ for which the distance $d(\text{\rm Span}\{\mathbf{A}_S\}, \text{\rm Span}\{\mathbf{B}_S'\})$ is controlled by $\varepsilon$. Fix $S \in E$. Since there are $(k-1){m \choose k}+1$ vectors $\mathbf{x}_i$ supported on $S$, the pigeon-hole principle implies that there exists some $S' \in {[m] \choose k}$ and some set of $k$ indices $J(S)$ such that the supports of all $\mathbf{x}_i$ and $\mathbf{\hat x}_i$ with $i \in J(S)$ are contained in $S$ and $S'$, respectively.
+We begin by showing that for every $S \in E$ there is some $S' \subseteq [m]$, $|S'| \leq k$ for which the distance $d(\text{\rm Span}\{\mathbf{A}_S\}, \text{\rm Span}\{\mathbf{B}_S'\})$ is controlled by $\varepsilon$. Fix $S \in E$. Since there are $(k-1){m \choose k}+1$ vectors $\mathbf{x}_i$ supported on $S$, the pigeon-hole principle implies that there exists some $S' \in {[m] \choose k}$ and some set of $k$ indices $I(S)$ such that the supports of all $\mathbf{x}_i$ and $\mathbf{\hat x}_i$ with $i \in I(S)$ are contained in $S$ and $S'$, respectively.
 
-Let $\mathbf{X}$ and $\mathbf{X}'$ be the $m \times N$ matrices with columns $\mathbf{x}_i$ and $\mathbf{\hat x}_i$, respectively. It follows from the general linear position of the $\mathbf{x}_i$ and the linear independence of every $k$ columns of $\mathbf{A}$ that $L_k(\mathbf{AX}_{J(S)}) > 0$; that is, the columns of the $n \times k$ matrix $\mathbf{AX}_{J(S)}$ are linearly independent and thus form a basis for $\text{\rm Span}\{\mathbf{A}_{S}\}$. Fixing $\mathbf{y} \in \text{\rm Span}\{\mathbf{A}_{S}\}$, there then exists a unique $\mathbf{c} = (c_1, \ldots, c_k) \in \mathbb{R}^k$ such that $\mathbf{y} = \mathbf{AX}_{J(S)}\mathbf{c}$. Letting \mbox{$\mathbf{y'} = \mathbf{BX}'_{J(S)}\mathbf{c}$}, which is in $\text{\rm Span}\{\mathbf{B}_{S'}\}$, we have:
+Let $\mathbf{X}$ and $\mathbf{\hat{X}}$ be the $m \times N$ matrices with columns $\mathbf{x}_i$ and $\mathbf{\hat x}_i$, respectively. It follows from the general linear position of the $\mathbf{x}_i$ and the linear independence of every $k$ columns of $\mathbf{A}$ that $L_k(\mathbf{AX}_{J(S)}) > 0$; that is, the columns of the $n \times k$ matrix $\mathbf{AX}_{J(S)}$ are linearly independent and thus form a basis for $\text{\rm Span}\{\mathbf{A}_{S}\}$. Fixing $\mathbf{y} \in \text{\rm Span}\{\mathbf{A}_{S}\}$, there then exists a unique $\mathbf{c} = (c_1, \ldots, c_k) \in \mathbb{R}^k$ such that $\mathbf{y} = \mathbf{AX}_{J(S)}\mathbf{c}$. Letting \mbox{$\mathbf{\hat{y}} = \mathbf{B\hat{X}}_{J(S)}\mathbf{c}$}, which is in $\text{\rm Span}\{\mathbf{B}_{S'}\}$, we have:
 \begin{align*}
-\|\mathbf{y} - \mathbf{y'}\|_2 
-&= \|\sum_{i=1}^k c_i(\mathbf{AX}_{J(S)} - \mathbf{BX}'_{J(S)})_i\|_2
+\|\mathbf{y} - \mathbf{\hat{y}}\|_2 
+&= \|\sum_{i=1}^k c_i(\mathbf{AX}_{J(S)} - \mathbf{B\hat{X}}_{J(S)})_i\|_2
 \leq \varepsilon \sum_{i=1}^k |c_i| \\
 &\leq \varepsilon \sqrt{k}  \|\mathbf{c}\|_2 
 %\leq \frac{\varepsilon \sqrt{k}}{L(\mathbf{A}X_{J(S)})} \|\mathbf{A}X_{J(S)}\mathbf{c}\|_2 
@@ -491,12 +494,11 @@ The result then follows by  Lem.~\ref{MainLemma}, with the map $\pi: E \to {[m] 
  
 \section{Discussion}\label{Discussion}
 
- In this note, we generalize the approach of \cite{Hillar15} to the uniqueness of solutions to Prob.~\ref{InverseProblem} for noisy measurements while also reducing the number of required samples.
+In this note, we generalize the approach of \cite{Hillar15} for showing uniqueness in Prob.~\ref{InverseProblem} to the case of noisy measurements while also reducing the sufficient number of samples.
 % from $N=k{m \choose k}^2$ to $N = m(k-1){m \choose k}+m$. 
 % CUT OK? Surprisingly, almost all $n \times m$ dictionaries satisfying the standard assumption \eqref{CScondition} from compressed sensing (CS) are identifiable from enough generic noisy $k$-sparse linear combinations of their elements, up to an error linear in the noise. Moreover, if solutions are constrained to satisfy \eqref{SparkCondition}, then only an upper bound on the number of dictionary elements need be taken as given. 
 We remark that our result in the deterministic case (Thm.~\ref{DeterministicUniquenessTheorem}) accounts for \emph{worst-case} noise, whereas the ``effective'' noise might be much smaller when it is sampled from a given distribution; in such cases, the constants $C_1, C_3$ in our theorems %Thms.~\ref{DeterministicUniquenessTheorem},~\ref{DeterministicUniquenessTheorem2} 
-will be much smaller with high probability.
-We note also that these results extend trivially to cases where point-wise injective nonlinearities are applied to the data. 
+will be smaller. %We note also that these results extend trivially to cases where point-wise injective nonlinearities are applied to the data. 
 We close with several application areas.
 
 % FRITZ: Inverse problems instead of Data Analysis. Don't assume that everyone is assuming they are recovering ground truth. Cite results again and state implications! Focus on them (probabilistic ones too).
@@ -516,6 +518,7 @@ Sparse dictionary learning and related methods have recovered characteristic com
 \textbf{Engineering}.
 Several groups utilize compressed sensing for signal processing tasks: MRI analysis \cite{lustig2008compressed},  image compression \cite{Duarte08}, and, more recently, the design of an ultrafast camera \cite{Gao14}. Given such effective uses of compressed sensing, it is only a matter of time before these systems incorporate sparse dictionary learning to encode and process data. Guarantees such as those offered by our theorems allow any such device to be equivalent to any other (having different initial parameters and data samples) as long as enough data originate from a statistically identical system.
 
+As a final remark, we hope that researchers in sparse linear coding continue to improve on the bounds and constants here.
 
 \acknow{We thank Friedrich Sommer for introducing us to sparse dictionary learning, Darren Rhea for sharing early explorations, and Ian Morris for posting \eqref{eqdim} online.}
 
