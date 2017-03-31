@@ -245,7 +245,9 @@ Given Thm.\ref{DeterministicUniquenessTheorem}, one needs only to produce sparse
 %If $E$ is an $\ell$-regular hypergraph of rank $k$ satisfying the singleton intersection property then $|E| \geq \ell m/k$. 
 %\end{proposition}
 As mentioned above, it is easy to construct such $E$ with $|E| = m$, implying the lower bound for sample size $N$ from the introduction.
-Note that if $E$ is an $\ell$-regular hypergraph of rank $k$ satisfying the SIP, then $|E| \geq \ell m/k$: \[|E|k \geq \sum_{S \in E}|S| = \sum_{i \in [m]} \deg(i) = \ell m.\] In certain cases, there are simple constructions achieving this minimum; for example, when $k = \sqrt{m}$ one can take $E$ to be the rows and columns formed by arranging $[m]$ in a square grid.  In light of Cor.~\ref{DeterministicUniquenessCorollary}, it would be interesting to determine other minimal such $E$.
+A straightforward calculation verifies that if $E$ is an $\ell$-regular hypergraph of rank $k$ satisfying the SIP, then $|E| \geq \ell m/k$.
+%Note that if $E$ is an $\ell$-regular hypergraph of rank $k$ satisfying the SIP, then $|E| \geq \ell m/k$: \[|E|k \geq \sum_{S \in E}|S| = \sum_{i \in [m]} \deg(i) = \ell m.\] 
+In certain cases, there are simple constructions achieving this minimum; for example, when $k = \sqrt{m}$ one can take $E$ to be the rows and columns formed by arranging $[m]$ in a square grid.  In light of Cor.~\ref{DeterministicUniquenessCorollary}, it would be interesting to determine other minimal such $E$.
 
 There are other less direct consequences of Thm.~\ref{DeterministicUniquenessTheorem} to stability in sparse linear coding.  The following implication relates the result to more common optimization formulations.
 
@@ -497,8 +499,9 @@ The result then follows by  Lem.~\ref{MainLemma}, with the map $\pi: E \to {[m] 
 In this note, we generalize the approach of \cite{Hillar15} for showing uniqueness in Prob.~\ref{InverseProblem} to the case of noisy measurements while also reducing the sufficient number of samples.
 % from $N=k{m \choose k}^2$ to $N = m(k-1){m \choose k}+m$. 
 % CUT OK? Surprisingly, almost all $n \times m$ dictionaries satisfying the standard assumption \eqref{CScondition} from compressed sensing (CS) are identifiable from enough generic noisy $k$-sparse linear combinations of their elements, up to an error linear in the noise. Moreover, if solutions are constrained to satisfy \eqref{SparkCondition}, then only an upper bound on the number of dictionary elements need be taken as given. 
-We remark that our result in the deterministic case (Thm.~\ref{DeterministicUniquenessTheorem}) accounts for \emph{worst-case} noise, whereas the ``effective'' noise might be much smaller when it is sampled from a given distribution; in such cases, the constants $C_1, C_3$ in our theorems %Thms.~\ref{DeterministicUniquenessTheorem},~\ref{DeterministicUniquenessTheorem2} 
-will be smaller. %We note also that these results extend trivially to cases where point-wise injective nonlinearities are applied to the data. 
+One interesting aspect of our contribution is a combinatorial criteria (regular hypergraphs satisfying the singular intersection property) for choosing support sets for original sparse codes; fully understanding those combinatorial designs allowing for stable representations of datasets is the subject of future work.
+We also remark that our main uniqueness result (Thm.~\ref{DeterministicUniquenessTheorem}) accounts for deterministic ``worst-case'' noise, whereas the ``effective'' noise might be much smaller when it is sampled from a given distribution; in such cases, the constants in our theorems %Thms.~\ref{DeterministicUniquenessTheorem},~\ref{DeterministicUniquenessTheorem2} 
+will be different. %We note also that these results extend trivially to cases where point-wise injective nonlinearities are applied to the data. 
 We close with several application areas.
 
 % FRITZ: Inverse problems instead of Data Analysis. Don't assume that everyone is assuming they are recovering ground truth. Cite results again and state implications! Focus on them (probabilistic ones too).
