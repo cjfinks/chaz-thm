@@ -46,7 +46,7 @@
 % Please add here a significance statement to explain the relevance of your work
 %\significancestatement{Authors must submit a 120-word maximum statement about the significance of their research paper written at a level understandable to an undergraduate educated scientist outside their field of speciality. The primary goal of the Significance Statement is to explain the relevance of the work in broad context to a broad readership. The Significance Statement appears in the paper itself and is required for all research papers.}
 
-\significancestatement{[*** REDO ***] Many naturally occurring signals (e.g. patches of visual scenery, speech audio, electrocardiograms) have been usefully characterized as parsimonious combinations of building blocks drawn from a large `dictionary' of elementary waveforms. Absent analytic descriptions of these signal classes, it usually falls to machine learning algorithms to infer a suitable dictionary given a large set of examples from the class. We give conditions guaranteeing when the optimal dictionary of a given size is uniquely and consistently determined by data, regardless of the algorithm used to compute it. Our results provide theoretical grounding for the application of dictionary learning algorithms to the problem of recovering sparse signals from unknown noisy compressive measurements.}
+\significancestatement{Many naturally occurring signals (visual scenery, speech, electrocardiograms, etc.) can be characterized as parsimonious combinations of elementary waveforms drawn from a large dictionary. Absent analytic descriptions of these signal classes, it falls on algorithms from machine learning to extract such structures given many examples from a class. We give conditions guaranteeing when the dictionary of a given size is uniquely and stably determined by data, regardless of the algorithm used to compute it. These results provide theoretical grounding for  the application of dictionary learning to recover sparse signals from unknown noisy compressive measurements.}
 
 % Please include corresponding author, author contribution and author declaration information
 \authordeclaration{The authors declare no conflict of interest.}
@@ -167,19 +167,16 @@ Finally, we present several applications in Discussion Sec.~\ref{Discussion}.
 
 \section{Results}
 
-To prepare for the statements of our main results, we first describe a quantitative version of the spark condition.  % We first explain how the spark condition \eqref{SparkCondition} relates to t
-The \emph{lower bound} \cite{Grcar10} of a matrix $\mathbf{A} \in \mathbb R^{n \times m}$ is the largest number $\alpha$ such that \mbox{$\|\mathbf{A}\mathbf{x}\|_2 \geq \alpha\|\mathbf{x}\|_2$} for all $\mathbf{x} \in \mathbb{R}^m$. By compactness of the unit sphere, every injective linear map has a nonzero lower bound; hence, if $\mathbf{A}$ satisfies \eqref{SparkCondition}, then each submatrix formed from $2k$ of its columns or less has a nonzero lower bound. We therefore define the following domain-restricted lower bound of $\mathbf{A}$:
-\begin{align*}
-L_k(\mathbf{A}) := \frac{1}{\sqrt{k}}\max \{ \alpha : \|\mathbf{A}\mathbf{x}\|_2 \geq \alpha\|\mathbf{x}\|_2 \text{ for all $k$-sparse } \mathbf{x}\}.
-\end{align*} 
-Clearly, $L_k(\mathbf{A}) \geq L_{k'}(\mathbf{A})$ whenever $k < k'$, and for any $\mathbf{A}$ satisfying the spark condition, we have $L_{k'}(\mathbf{A}) > 0$ for all $k' \leq 2k$. Note that the quantity $1 - \sqrt{k} L_k(\mathbf{A})$ [*** TODO: check is this correct ***] is known in the CS literature as the (asymmetric) lower restricted isometry constant \cite{Blanchard2011, Foucart2009}.
+In preparation for stating our main results, we first identify the combinatorial criteria on support sets of generating codes allowing for stable sparse 
+representations.  Let $\{1, \ldots, m\}$ be denoted $[m]$, its power set $2^{[m]}$, and ${[m] \choose k}$ the set of subsets of $[m]$ of size $k$. 
+% Let $\text{\rm Span}\{\mathbf{v}_1, \ldots, \mathbf{v}_\ell\}$ be the $\mathbb{R}$-linear span of vectors $\mathbf{v}_1, \ldots, \mathbf{v}_\ell$. 
+A vector $\mathbf{x}$ is said to be \emph{supported} on $S \subseteq [m]$ %, written supp$(\mathbf{x}) = S$, 
+when $\mathbf{x} \in \text{\rm Span} \{\mathbf{e}_j\}_{j\in S}$, where $\mathbf{e}_j$ are the standard basis in $\mathbb R^m$.  Let $\mathbf{M}_j$ be the $j$th column of a matrix $\mathbf{M}$ and similarly let $\mathbf{M}_S$ be the submatrix formed by the columns of $\mathbf{M}$ indexed by $S$ (we set $\text{\rm Span}\{\mathbf{M}_\emptyset\} := \{\textbf{0}\}$).  
 
-% an important contribution of our work is to
-Next, we identify the combinatorial criteria on support sets of generating codes allowing for stable sparse 
-representations.  Let $[m]$ denote the set $\{1, \ldots, m\}$, its power set $2^{[m]}$, and ${[m] \choose k}$ the set of subsets of $[m]$ of size $k$. Let $\text{\rm Span}\{\mathbf{v}_1, \ldots, \mathbf{v}_\ell\}$ be the $\mathbb{R}$-linear span of vectors $\mathbf{v}_1, \ldots, \mathbf{v}_\ell$. A vector $\mathbf{x}$ is said to be \emph{supported} on $S \subseteq [m]$, written supp$(\mathbf{x}) = S$, when $\mathbf{x} \in \text{\rm Span} \{\mathbf{e}_j\}_{j\in S}$, where $\mathbf{e}_j$ are the standard basis elements in $\mathbb R^m$.  Let $\mathbf{M}_j$ be the $j$th column of a matrix $\mathbf{M}$ and similarly let $\mathbf{M}_S$ be the submatrix formed by the columns of $\mathbf{M}$ indexed by $S$ (we set $\text{\rm Span}\{\mathbf{M}_\emptyset\} := \{\textbf{0}\}$).  [ ** TODO ** the hypergraph is the pair $([m],E)$, not just $E$ ] We say a hypergraph $E \subseteq 2^{[m]}$ is \textit{$k$-uniform} when every $S \in E$ has cardinality $k$. We also say $E$ is \emph{regular} when every element of $[m]$ is contained in exactly $\ell$ elements of $E$ for some $\ell > 0$ (for given $\ell$, we say $E$ is $\ell$-regular).
+We say a hypergraph $E \subseteq 2^{[m]}$ on vertices $[m]$ is \textit{$k$-uniform} when every $S \in E$ has cardinality $k$. We also say $E$ is \emph{regular} when every element of $[m]$ is contained in exactly $\ell$ elements of $E$ for some $\ell > 0$ (for given $\ell$, we say $E$ is \textit{$\ell$-regular}).
 
 \begin{definition}
-Given a hypergraph $E \subseteq 2^{[m]}$, the \textbf{star} $F(i)$ centered at $i$ is the collection of $S \in E$ containing $i$. We say $E$ satisfies the \textbf{singleton intersection property} (\textbf{SIP}) when $\cap_{S \in F(i)} S = \{i\}$ for all $i \in [m]$. 
+Given $E \subseteq 2^{[m]}$, the \textbf{star} $F(i)$ at $i$ are those $S \in E$ with $i \in S$. We say $E$ has the \textbf{singleton intersection property} (\textbf{SIP}) when $\cap_{S \in F(i)} S = \{i\}$ for all $i \in [m]$. 
 \end{definition}
 
 It is easy to verify that for every $k < m$, there is a regular $k$-uniform hypergraph that satisfies the SIP; for instance, consecutive intervals of length $k$ in some cyclic order on $[m]$.
@@ -187,8 +184,16 @@ It is easy to verify that for every $k < m$, there is a regular $k$-uniform hype
 %For every $k < m$, there is a regular $k$-uniform hypergraph that satisfies the singleton intersection property.
 %\end{proposition}
 
+%The second ingredient necessary for the statement of Thm.~\ref{DeterministicUniquenessTheorem} 
+Next, we describe a quantitative version of the spark condition.  % We first explain how the spark condition \eqref{SparkCondition} relates to t
+The \emph{lower bound} \cite{Grcar10} of a matrix $\mathbf{A} \in \mathbb R^{n \times m}$ is the largest number $\alpha$ such that \mbox{$\|\mathbf{A}\mathbf{x}\|_2 \geq \alpha\|\mathbf{x}\|_2$} for all $\mathbf{x} \in \mathbb{R}^m$. By compactness of the unit sphere, every injective linear map has a nonzero lower bound; hence, if $\mathbf{A}$ satisfies \eqref{SparkCondition}, then each submatrix formed from $2k$ of its columns or less has a nonzero lower bound. We therefore define the following domain-restricted lower bound:
+\begin{align*}
+L_k(\mathbf{A}) := \frac{1}{\sqrt{k}}\max \{ \alpha : \|\mathbf{A}\mathbf{x}\|_2 \geq \alpha\|\mathbf{x}\|_2 \text{ for all $k$-sparse } \mathbf{x}\}.
+\end{align*} 
 
-We say that a set of $k$-sparse vectors is in \emph{general linear position} when any $k$ of them are linearly independent.
+Clearly, $L_k(\mathbf{A}) \geq L_{k'}(\mathbf{A})$ whenever $k < k'$, and for any $\mathbf{A}$ satisfying \eqref{SparkCondition}, we have $L_{k'}(\mathbf{A}) > 0$ for  $k' \leq 2k$. The quantity $1 - \sqrt{k} L_k(\mathbf{A})$ is also known in the CS literature as the (asymmetric) lower restricted isometry constant \cite{Blanchard2011, Foucart2009}.
+
+We also say that a set of $k$-sparse vectors is in \emph{general linear position} when any $k$ of them are linearly independent.
 The following is the precise statement of our main result. 
 
 \begin{theorem}\label{DeterministicUniquenessTheorem}
@@ -238,7 +243,7 @@ An important consequence of Thm.~\ref{DeterministicUniquenessTheorem} is that \e
 Given $n, m$, $k < m$, and a regular hypergraph $E \subseteq {[m] \choose k}$ with the SIP, there are $N =  |E| \left[ 1 + (k-1){m \choose k} \right]$ vectors \mbox{$\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$} such that every matrix $\mathbf{A} \in \mathbb{R}^{n \times m}$ satisfying \eqref{SparkCondition} generates a dataset $Y = \{\mathbf{A}\mathbf{x}_1, \ldots, \mathbf{A}\mathbf{x}_N\}$ with a stable $k$-sparse representation in $m$ dimensions.
 \end{corollary}
 \begin{proof}
-Given Thm.\ref{DeterministicUniquenessTheorem}, one needs only to produce sparse codes in general linear position.  However, this is straightforward (e.g., with a ``Vandermonde'' construction \cite{Hillar15}).
+Given Thm.\ref{DeterministicUniquenessTheorem}, one needs only to produce sparse codes in general linear position.  However, this is straightforward with a ``Vandermonde'' matrix construction (e.g., see \cite{Hillar15}).
 \end{proof}
 
 %\begin{proposition}
@@ -250,25 +255,26 @@ Given Thm.\ref{DeterministicUniquenessTheorem}, one needs only to produce sparse
 %%Note that if $E$ is an $\ell$-regular hypergraph of rank $k$ satisfying the SIP, then $|E| \geq \ell m/k$: \[|E|k \geq \sum_{S \in E}|S| = \sum_{i \in [m]} \deg(i) = \ell m.\] 
 %In certain cases, there are simple constructions achieving this minimum; for example, when $k = \sqrt{m}$ one can take $E$ to be the rows and columns formed by arranging $[m]$ in a square grid.  In light of Cor.~\ref{DeterministicUniquenessCorollary}, it would be interesting to determine other minimal such $E$.
 %=======
-Note that every $\ell$-regular hypergraph $E \subseteq {[m] \choose k}$ satisfies: \[|E|k = \sum_{S \in E}|S| = \sum_{i \in [m]} \deg(i) = \ell m.\] As mentioned above, it is easy to construct such an $E$ satisfying the SIP with $|E| = m$, implying the lower bound for sample size $N$ from the introduction. In certain cases, the SIP can be achieved with $|E| < m$; for example, when $k = \sqrt{m}$ one can take $E$ to be the rows and columns formed by arranging $[m]$ in a square grid.  In light of Cor.~\ref{DeterministicUniquenessCorollary}, it would be interesting to determine other minimal such $E$. [ ** TODO ** can we show for every $k, m$ that there is an $E$ satisfying the SIP with $|E| = \ell m/k$ for every $\ell$ such that $\ell m/k$ is an integer? Then lower bound on $N$ comes from the smallest such $\ell$.]
->>>>>>> 3944a59e6740a7138ee040e4263310467ecfbc4e
+%Note that every $\ell$-regular hypergraph $E \subseteq {[m] \choose k}$ satisfies: \[|E|k = \sum_{S \in E}|S| = \sum_{i \in [m]} \deg(i) = \ell m.\] 
+As mentioned above, it is easy to construct a regular hypergraph $E \subseteq {[m] \choose k}$ with the SIP having size $|E| = m$, implying the lower bound for sample size $N$ from the introduction. In certain cases, the SIP can be achieved with $|E| < m$; for example, when $k = \sqrt{m}$ one can take $E$ to be the rows and columns formed by arranging $[m]$ in a square grid.  In light of Cor.~\ref{DeterministicUniquenessCorollary}, it would be interesting to determine other such $E$. %[ ** TODO ** can we show for every $k, m$ that there is an $E$ satisfying the SIP with $|E| = \ell m/k$ for every $\ell$ such that $\ell m/k$ is an integer? Then lower bound on $N$ comes from the smallest such $\ell$.]
 
 There are other less direct consequences of Thm.~\ref{DeterministicUniquenessTheorem} to stability in sparse linear coding.  The following implication relates the result to more common optimization formulations.
 
 \begin{theorem}
-Fix integers $n, \ell$, and $k < m$. Suppose $\mathbf{A}~\in~\mathbb{R}^{n \times m}$ satisfies the spark condition \eqref{SparkCondition} and that $k$-sparse \mbox{$\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$} contain at least \mbox{$k \left[ 1 + (k-1){ m \choose k} \right]$} vectors supported in general linear position on each set in some $\ell$-regular $E \subseteq {[m] \choose k}$ satisfying the SIP. There exists a constant $C_1 > 0$ for which the following holds for all $\varepsilon < L_2(\mathbf{A}) / C_1$.
-
-Every solution $\mathbf{B}, \mathbf{\hat x}_i, \ldots, \mathbf{\hat x}_N$ to the constrained $\ell_0$ optimization:
+Fix $n, \ell$, and $k < m$. Suppose $\mathbf{A}~\in~\mathbb{R}^{n \times m}$ satisfies the spark condition \eqref{SparkCondition} and that $k$-sparse \mbox{$\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$} have at least \mbox{$k \left[ 1 + (k-1){ m \choose k} \right]$} vectors supported in general linear position on each set in an $\ell$-regular $E \subseteq {[m] \choose k}$ with the SIP.  Given any $\delta_1, \delta_2 \geq 0$ and $\varepsilon \leq \varepsilon(\delta_1, \delta_2)$, the following holds.  % (\eqref{epsdel}).
+% $\varepsilon < L_2(\mathbf{A}) / C_1$.
+%There exists a constant $C_1 > 0$ for which the following holds for all $\varepsilon < L_2(\mathbf{A}) / C_1$.
+Every solution $\mathbf{B}, \mathbf{\hat x}_i, \ldots, \mathbf{\hat x}_N$ to the constrained $\ell_0$ optimization problem:
 \begin{align}\label{minsum}
 \arg \min \sum_{i = 1}^N \|\mathbf{\hat x}_i\|_0 \ \ \text{s.t.} \ \ \|\mathbf{A}\mathbf{x}_i - \mathbf{B}\mathbf{\hat x}_i\|_2 \leq \varepsilon, \ \ \text{$i \in [N]$},
 \end{align}
-necessarily satisfies \eqref{Cstable} and \eqref{b-PDa}.
+necessarily satisfies the recovery inequalities in \eqref{def1}. % \eqref{Cstable} and \eqref{b-PDa}.
 \end{theorem}
 
 \begin{proof}
-We argue for a lower bound on the number of $k$-sparse vectors $\mathbf{\hat x}_i$ and then apply Thm.~\ref{DeterministicUniquenessCorollary}. 
-[*** Incomplete ***]
-Let $n_p$ be the number of vectors $\mathbf{\hat x}_i$ satisfying $\|\mathbf{\hat x}_i\|_0 = p$, so that $\sum_{p = 1}^{m} n_p = N$. Since the $\mathbf{x}_i$ are all $k$-sparse, by \eqref{minsum} we have:
+We derive a lower bound on the number of $k$-sparse vectors $\mathbf{\hat x}_i$ and then apply Thm.~\ref{DeterministicUniquenessCorollary}. 
+Let $n_p$ be the number of $\mathbf{\hat x}_i$ with $\|\mathbf{\hat x}_i\|_0 = p$.  %, so that $\sum_{p = 1}^{m} n_p = N$. 
+Since the $\mathbf{x}_i$ are all $k$-sparse, by \eqref{minsum} we have:
 \begin{align}
 k \sum_{p = 1}^{m} n_p = kN \geq \sum_{i=1}^N \|\mathbf{x}_i\|_0 \geq \sum_{i=1}^N \|\mathbf{\hat x}_i\|_0 = \sum_{p=1}^{m} p n_p 
 \end{align}
@@ -279,7 +285,7 @@ Hence,
 \end{align}
 \[ \geq \sum_{p = k+1}^{m} n_p = N - \sum_{p = 1}^k n_p \implies \sum_{p =1}^k n_p \geq N / k.\]
 
-That is, at least $N / k$ of the vectors $\mathbf{\hat x}_i$ are $k$-sparse. Therefore, there is some $N' \subseteq [N]$ for which for each $S \in E$ there are $(k-1){m \choose k}+1$ of the vectors $\mathbf{x}_i$ with $i \in [N']$ supported on $S$ and for which $\mathbf{\hat x}_i$ is $k$-sparse for all $i \in [N']$. By Thm.~\ref{DeterministicUniquenessCorollary}, \eqref{Cstable} and \eqref{b-PDa} follow.
+In particular, at least $N / k$ of the $\mathbf{\hat x}_i$ are $k$-sparse. Therefore, there is some $N' \subseteq [N]$ for which for each $S \in E$ there are $(k-1){m \choose k}+1$ of the vectors $\mathbf{x}_i$ with $i \in [N']$ supported on $S$ and for which $\mathbf{\hat x}_i$ is $k$-sparse for all $i \in [N']$. By Thm.~\ref{DeterministicUniquenessCorollary}, \eqref{Cstable} and \eqref{b-PDa} follow.
 \end{proof}
 
 Another straightforward application of Thm.~\ref{DeterministicUniquenessTheorem} is a probabilistic extension that uses the following often used application of random matrix theory to compressed sensing.  A random matrix $\mathbf{A} \in \mathbb{R}^{n \times m}$ satisfies \eqref{SparkCondition} with probability one (or with ``high probability'' for discrete variables) 
