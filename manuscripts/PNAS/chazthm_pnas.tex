@@ -460,7 +460,7 @@ For subspaces $V_1, \ldots, V_\ell \subseteq \mathbb{R}^m$, set $r := 1$ when $\
 r(\{V_i\}_{i=1}^\ell) := 1 - \left(1 -  \max \prod_{i=1}^{\ell-1} \sin^2  \theta \left(V_i, \cap_{j>i} V_j \right)  \right)^{1/2},
 \end{align*} 
 %
-where the maximum is taken over all possible orderings\footnote{We modify the quantity in \cite{Deutsch12} in this way since the subspace ordering is irrelevant to our purpose.} of the $V_i$ and where the angle $\theta \in (0,\frac{\pi}{2}]$ is defined in terms of its cosine as \cite[Def.~9.4]{Deutsch12}:
+where the maximum is taken over all orderings\footnote{We modify the quantity in \cite{Deutsch12} in this way since the subspace ordering is irrelevant to our purpose.} of the $V_i$ and the angle $\theta \in (0,\frac{\pi}{2}]$ is defined implicitly as \cite[Def.~9.4]{Deutsch12}:
 \begin{align*}
 \cos{\theta(U,W)} := \max\left\{ |\langle \mathbf{u}, \mathbf{w} \rangle|: \substack{ \mathbf{u} \in U \cap (U \cap W)^\perp, \ \|\mathbf{u}\|_2 \leq 1 \\ \mathbf{w} \in W \cap (U \cap W)^\perp, \  \|\mathbf{w}\|_2 \leq 1 } \right\}.
 \end{align*}
@@ -480,16 +480,16 @@ C_2(\mathbf{A}, E) := \frac{ 2^{|E|} \max_{i \in [m]} \|\mathbf{A}_i\|_2}{ \min_
 %We begin by showing that for every $S \in E$ there is some $S' \in {[m] \choose k}$ for which the distance $d(\text{\rm Span}\{\mathbf{A}_S\}, \text{\rm Span}\{\mathbf{B}_S'\})$ is controlled by $\varepsilon$. Fix $S \in E$. Since there are $(k-1){m \choose k}+1$ vectors $\mathbf{x}_i$ supported on $S$, the pigeon-hole principle implies that there exists some $S' \in {[m] \choose k}$ and some set of $k$ indices $J(S)$ such that the supports of all $\mathbf{x}_i$ and $\mathbf{\hat x}_i$ with $i \in J(S)$ are contained in $S$ and $S'$, respectively.
 
 %%% No |S| = k assumption %%%
-We begin by showing that for every $S \in E$ there is some $S' \subseteq [m]$, $|S'| \leq k$ for which the distance $d(\text{\rm Span}\{\mathbf{A}_S\}, \text{\rm Span}\{\mathbf{B}_S'\})$ is controlled by $\varepsilon$. Fix $S \in E$. Since there are $(k-1){m \choose k}+1$ vectors $\mathbf{x}_i$ supported on $S$, the pigeon-hole principle implies that there exists some $S' \in {[m] \choose k}$ and some set of $k$ indices $I(S)$ such that the supports of all $\mathbf{x}_i$ and $\mathbf{\hat x}_i$ with $i \in I(S)$ are contained in $S$ and $S'$, respectively.
+We begin by showing that for every $S \in E$ there is some $S' \subseteq [m]$, $|S'| \leq k$, for which the distance $d(\text{\rm Span}\{\mathbf{A}_S\}, \text{\rm Span}\{\mathbf{B}_{S'}\})$ is controlled by $\varepsilon$. Fix $S \in E$. Since there are $(k-1){m \choose k}+1$ vectors $\mathbf{x}_i$ supported on $S$, the pigeon-hole principle implies that there exists some $S' \in {[m] \choose k}$ and some set of $k$ indices $I(S)$ such that the supports of all $\mathbf{x}_i$ and $\mathbf{\hat x}_i$ with $i \in I(S)$ are contained in $S$ and $S'$, respectively.
 
 Let $\mathbf{X}$ and $\mathbf{\hat{X}}$ be the $m \times N$ matrices with columns $\mathbf{x}_i$ and $\mathbf{\hat x}_i$, respectively. It follows from the general linear position of the $\mathbf{x}_i$ and the linear independence of every $k$ columns of $\mathbf{A}$ that $L_k(\mathbf{AX}_{J(S)}) > 0$; that is, the columns of the $n \times k$ matrix $\mathbf{AX}_{J(S)}$ are linearly independent and thus form a basis for $\text{\rm Span}\{\mathbf{A}_{S}\}$. Fixing $\mathbf{y} \in \text{\rm Span}\{\mathbf{A}_{S}\}$, there then exists a unique $\mathbf{c} = (c_1, \ldots, c_k) \in \mathbb{R}^k$ such that $\mathbf{y} = \mathbf{AX}_{J(S)}\mathbf{c}$. Letting \mbox{$\mathbf{\hat{y}} = \mathbf{B\hat{X}}_{J(S)}\mathbf{c}$}, which is in $\text{\rm Span}\{\mathbf{B}_{S'}\}$, we have:
 \begin{align*}
 \|\mathbf{y} - \mathbf{\hat{y}}\|_2 
-&= \|\sum_{i=1}^k c_i(\mathbf{AX}_{J(S)} - \mathbf{B\hat{X}}_{J(S)})_i\|_2
+&= \|\sum_{i=1}^k c_i(\mathbf{AX}_{I(S)} - \mathbf{B\hat{X}}_{I(S)})_i\|_2
 \leq \varepsilon \sum_{i=1}^k |c_i| \\
 &\leq \varepsilon \sqrt{k}  \|\mathbf{c}\|_2 
 %\leq \frac{\varepsilon \sqrt{k}}{L(\mathbf{A}X_{J(S)})} \|\mathbf{A}X_{J(S)}\mathbf{c}\|_2 
-= \frac{\varepsilon}{L_k(\mathbf{AX}_{J(S)})} \|\mathbf{y}\|_2,
+= \frac{\varepsilon}{L_k(\mathbf{AX}_{I(S)})} \|\mathbf{y}\|_2,
 \end{align*}
 where the last equality is by definition of $L_k$. It follows that for all $S \in E$,
 \begin{align}\label{rhs222}
@@ -601,7 +601,7 @@ for \mbox{$z^2= 1 - \prod_{\ell =1}^{k-1}(1-z_{\ell}^2)$} and \mbox{$z_{\ell} = 
 &\leq z\|\mathbf{x} - \Pi_V\mathbf{x}\|_2.
 \end{align*}
 
-Plugging this into \eqref{f} and rearranging yields \eqref{DTILeq} after substituting $r(\{V_i\}_{i=1}^k)$ for $1 - z$ (as $z$ may depend on the arbitrary ordering of the $V_i$).
+Substituting this into \eqref{f} and rearranging yields \eqref{DTILeq} after substituting $r(\{V_i\}_{i=1}^k)$ for $1 - z$ (as $z$ may depend on the arbitrary ordering of the $V_i$).
 \end{proof}
 
 \begin{lemma}\label{NonEmptyLemma} 
