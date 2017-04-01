@@ -191,7 +191,7 @@ The \emph{lower bound} \cite{Grcar10} of a matrix $\mathbf{A} \in \mathbb R^{n \
 L_k(\mathbf{A}) := \frac{1}{\sqrt{k}}\max \{ \alpha : \|\mathbf{A}\mathbf{x}\|_2 \geq \alpha\|\mathbf{x}\|_2 \text{ for all $k$-sparse } \mathbf{x}\}.
 \end{align*} 
 
-Clearly, $L_k(\mathbf{A}) \geq L_{k'}(\mathbf{A})$ whenever $k < k'$, and for any $\mathbf{A}$ satisfying \eqref{SparkCondition}, we have $L_{k'}(\mathbf{A}) > 0$ for  $k' \leq 2k$. The quantity $1 - \sqrt{k} L_k(\mathbf{A})$ is also known in the CS literature as the (asymmetric) lower restricted isometry constant \cite{Blanchard2011, Foucart2009}.
+Clearly, $\sqrt{k} L_k(\mathbf{A}) \geq \sqrt{k'}L_{k'}(\mathbf{A})$ whenever $k < k'$, and for any $\mathbf{A}$ satisfying \eqref{SparkCondition}, we have $L_{k'}(\mathbf{A}) > 0$ for  $k' \leq 2k$. The quantity $1 - \sqrt{k} L_k(\mathbf{A})$ is also known in the CS literature as the (asymmetric) lower restricted isometry constant \cite{Blanchard2011, Foucart2009}.
 
 We also say that a set of $k$-sparse vectors is in \emph{general linear position} when any $k$ of them are linearly independent.
 The following is the precise statement of our main result. 
@@ -376,7 +376,10 @@ Fix $\mathbf{A} \in \mathbb{R}^{n \times m}$ satisfying \eqref{SparkCondition} a
 \begin{align}\label{1D}
 \|c_j\mathbf{A}_j - \hat{c}_j\mathbf{B}_{\pi(j)}\|_2 \leq \varepsilon,\ \ \   \text{for all $j$}.
 \end{align} 
-Note that $\hat{c}_j \neq 0$ since otherwise by \eqref{delrho} and definition of $C_1$ we would have $\|c_j\mathbf{A}_j\|_2 < \min_{\ell \in [m]}\|c_{\ell}\mathbf{A}_{\ell}\|_2$.  [*** TODO:  This doesn't seem correct ***]
+Note that $\hat{c}_j \neq 0$, since otherwise (by definition of $L_2(\mathbf{A})$) we reach the contradiction $|c_j| < \min_{\ell \in [m]} | c_\ell |$. %by \eqref{delrho} and definition of $C_1$ we would have $\|c_j\mathbf{A}_j\|_2 < \min_{\ell \in [m]}\|c_{\ell}\mathbf{A}_{\ell}\|_2$.  [*** TODO:  This doesn't seem correct ***]
+%\begin{align*}
+%|c_j| \sqrt{2} L_2(\mathbf{A}) \leq \|\mathbf{A}(c_j\mathbf{e}_j)\|_2 \leq \varepsilon < L_2(\mathbf{A}) \min_{\ell \in [m]} | c_\ell |.
+%\end{align*}
 
 We  now show that $\pi$ is injective (and thus is a permutation if $\hat m = m$). Suppose that $\pi(i) = \pi(j) = \ell$ for some $i \neq j$ and $\ell$. Then, $\|c_{j}\mathbf{A}_{j} - \hat{c}_{j}\mathbf{B}_{\ell}\|_2 \leq \varepsilon$ and $\|c_{i}\mathbf{A}_{i} - \hat{c}_{i} \mathbf{B}_{\ell}\|_2  \leq \varepsilon$. Scaling and summing these inequalities by $|\hat{c}_{i}|$ and $|\hat{c}_{j}|$, respectively, and applying the triangle inequality, we obtain:
 \begin{align*}%\label{contra}
@@ -489,9 +492,9 @@ Let $\mathbf{X}$ and $\mathbf{\hat{X}}$ be the $m \times N$ matrices with column
 \leq \varepsilon \sum_{i=1}^k |c_i| \\
 &\leq \varepsilon \sqrt{k}  \|\mathbf{c}\|_2 
 %\leq \frac{\varepsilon \sqrt{k}}{L(\mathbf{A}X_{J(S)})} \|\mathbf{A}X_{J(S)}\mathbf{c}\|_2 
-= \frac{\varepsilon}{L_k(\mathbf{AX}_{I(S)})} \|\mathbf{y}\|_2,
+\leq \frac{\varepsilon}{L_k(\mathbf{AX}_{I(S)})} \|\mathbf{y}\|_2,
 \end{align*}
-where the last equality is by definition of $L_k$. It follows that for all $S \in E$,
+where the last inequality is by definition of $L_k$. It follows that for all $S \in E$,
 \begin{align}\label{rhs222}
 d(\text{\rm Span}\{\mathbf{A}_S\}, \text{\rm Span}\{\mathbf{B}_{S'}\}) 
 \leq \frac{\varepsilon}{ \min_{S \in E} L_k(\mathbf{AX}_{I(S)}) }.
