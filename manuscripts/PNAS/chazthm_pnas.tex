@@ -59,7 +59,7 @@
 \begin{abstract}
 Dictionary learning for sparse linear coding has exposed underlying structure in many natural signals.
 However, there are few universal theorems guaranteeing uniqueness of model estimation independent of implementation.
-Here, we prove that for all diverse enough datasets generated from the sparse coding model, latent dictionaries and codes are uniquely determined up to measurement error.  Applications are given to data analysis, neuroscience, and engineering. 
+Here, we prove that for all diverse enough datasets generated from the sparse coding model, latent dictionaries and codes are uniquely determined up to measurement error.  Applications are given to data analysis, engineering, and neuroscience. 
 \end{abstract}
 
 % \dates{This manuscript was compiled on \today}
@@ -201,13 +201,13 @@ Fix integers $n, \ell$, and $k < m$. Suppose $\mathbf{A}~\in~\mathbb{R}^{n \time
 
 Every matrix $\mathbf{B} \in \mathbb{R}^{n \times m}$ and $k$-sparse $\mathbf{\hat x}_1, \ldots, \mathbf{\hat x}_N \in \mathbb{R}^{m}$ with  \mbox{$\|\mathbf{A}\mathbf{x}_i - \mathbf{B}\mathbf{\hat x}_i\|_2 \leq \varepsilon$} for all $i$ necessarily satisfies:
 \begin{align}\label{Cstable}
-\|\mathbf{A}_j - (\mathbf{B}\mathbf{PD})_j\|_2 \leq C_1 \varepsilon,\ \ \   \text{for all $j \in [m]$},
+\|\mathbf{A}_j - (\mathbf{B}\mathbf{PD})_j\|_2 \leq C_1 \varepsilon,\ \ \   \text{for  $j \in [m]$},
 \end{align}
 for some permutation matrix $\mathbf{P}$ and invertible diagonal $\mathbf{D}$.
 
 Furthermore, if $\varepsilon < L_{2k}(\mathbf{A}) / C_1$, then $\mathbf{B}$ also satisfies \eqref{SparkCondition} with $L_{2k}(\mathbf{B}\mathbf{PD}) \geq L_{2k}(\mathbf{A}) - C_1 \varepsilon$, and:
 \begin{align}\label{b-PDa}
-\|\mathbf{x}_i - \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\hat x}_i\|_1 &\leq  \left( \frac{ 1+C_1 \|\mathbf{x}_i\|_1 }{ L_{2k}(\mathbf{A}) -  C_1\varepsilon } \right) \varepsilon,\ \ \   \text{for all $i \in [N]$}.
+\|\mathbf{x}_i - \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\hat x}_i\|_1 &\leq  \left( \frac{ 1+C_1 \|\mathbf{x}_i\|_1 }{ L_{2k}(\mathbf{A}) -  C_1\varepsilon } \right) \varepsilon,\ \ \   \text{for $i \in [N]$}.
 \end{align}
 \end{theorem}
 
@@ -230,12 +230,12 @@ Furthermore, if $\varepsilon < L_{2k}(\mathbf{A}) / C_1$, then $\mathbf{B}$ also
 
 %In other words, the smaller the difference $\hat m - m$, the more columns and coefficients of the original $n \times m$ dictionary $\mathbf{A}$ and $m$-dimensional codes $\mathbf{x}_i$ contained (up to noise) in the appropriately scaled $n \times \hat m$ dictionary $\mathbf{B}$ and $\hat m$-dimensional codes $\mathbf{\hat x}_i$. In particular, when $\hat m = m$ all columns of $\mathbf{A}$ and coefficients of each $\mathbf{x}_i$ recoverable, as per Def.~\ref{maindef}. 
 
-For expositional clarity, we delay defining the (explicit) constant $C_1 = C_1(\mathbf{A}, \{\mathbf{x}_i\}_{i=1}^N, E)$ until Section \ref{DUT} (\eqref{Cdef1}).  % , since it requires additional definitions not critical to the statement of our results.
-
-An important consequence of Thm.~\ref{DeterministicUniquenessTheorem} is that \eqref{def1} is guaranteed provided $\varepsilon$ does not exceed: % [*** TODO: verify this is still correct ***]
+An important consequence of Thm.~\ref{DeterministicUniquenessTheorem} is that \eqref{def1} is guaranteed provided $\varepsilon$ in Def.~\ref{maindef} does not exceed: % [*** TODO: verify this is still correct ***]
 \begin{align}\label{epsdel}
 \varepsilon(\delta_1, \delta_2) := \min \left\{ \frac{\delta_1}{ C_1 }, \frac{ \delta_2 (L_{2k}(\mathbf{A}) -  C_1\varepsilon)}{ 1 + C_1 \left( \max_{i \in [N]} \|\mathbf{x}_i\|_1  + \delta_2 \right) } \right\}.
 \end{align}
+For expositional clarity, we delay defining the (explicit) constant $C_1 = C_1(\mathbf{A}, \{\mathbf{x}_i\}_{i=1}^N, E)$ until Section \ref{DUT} (\eqref{Cdef1}).  % , since it requires additional definitions not critical to the statement of our results.
+
 
 % Note also that Thm~\ref{DeterminsiticUniquenessTheorem} gives conditions for when a single solution to Problem~\ref{InverseProblem} in fact represents \emph{all} possible solutions, related by transformations of the form $PD$.
 
@@ -255,10 +255,10 @@ As mentioned above, it is easy to construct a regular hypergraph $E \subseteq {[
 There are other less direct consequences of Thm.~\ref{DeterministicUniquenessTheorem} to stability in sparse linear coding.  The following implication relates the result to more common optimization formulations.
 
 \begin{corollary}
-Fix $n, \ell$, and $k < m$. Suppose $\mathbf{A}~\in~\mathbb{R}^{n \times m}$ satisfies the spark condition \eqref{SparkCondition} and that $k$-sparse \mbox{$\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$} have at least \mbox{$\left[ (k-1){ m \choose k} + 1 \right] + (k-1)^2{m \choose k-1}$} vectors supported in general linear position on each set in an $\ell$-regular $E \subseteq {[m] \choose k}$ with the SIP. Given any $\delta_1, \delta_2 \geq 0$ and $\varepsilon \leq \varepsilon(\delta_1, \delta_2)$, the following holds.  % (\eqref{epsdel}).
+Fix $n, \ell$, and $k < m$. Let $\mathbf{A}~\in~\mathbb{R}^{n \times m}$ satisfy the spark condition \eqref{SparkCondition} and $k$-sparse \mbox{$\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$} have at least \mbox{$\left[ (k-1){ m \choose k} + 1 \right] + (k-1)^2{m \choose k-1}$} vectors supported in general linear position on each set in an $\ell$-regular $E \subseteq {[m] \choose k}$ with the SIP. Given any $\delta_1, \delta_2 \geq 0$ and $\varepsilon \leq \varepsilon(\delta_1, \delta_2)$,  % (\eqref{epsdel}).
 % $\varepsilon < L_2(\mathbf{A}) / C_1$.
 %There exists a constant $C_1 > 0$ for which the following holds for all $\varepsilon < L_2(\mathbf{A}) / C_1$.
-Every solution $\mathbf{B}, \mathbf{\hat x}_i, \ldots, \mathbf{\hat x}_N$ to the constrained $\ell_0$ optimization problem:
+every solution $\mathbf{B}, \mathbf{\hat x}_i, \ldots, \mathbf{\hat x}_N$ to the $\ell_0$ optimization problem:
 \begin{align}\label{minsum}
 \arg \min \sum_{i = 1}^N \|\mathbf{\hat x}_i\|_0 \ \ \text{s.t.} \ \ \mathbf{B}\mathbf{\hat x}_i = \mathbf{A}\mathbf{x}_i, \ \ \text{$i \in [N]$}, %\|\mathbf{A}\mathbf{x}_i - \mathbf{B}\mathbf{\hat x}_i\|_2 \leq \varepsilon, \ \ \text{$i \in [N]$},
 \end{align}
@@ -270,14 +270,15 @@ We derive a lower bound on the number of $k$-sparse $\mathbf{\hat x}_i$ and then
 First, note that $\|\mathbf{\hat x}_i\|_0 \neq 0$ for all $i$, since otherwise we would have $\mathbf{A}\mathbf{x}_i = \mathbf{B}\mathbf{\hat x}_i = \mathbf{0} \implies \mathbf{x}_i = \mathbf{0}$ by the spark condition, contradicting the general linear position of the $\mathbf{x}_i$. Let $n_p$ be the number of $\mathbf{\hat x}_i$ with $\|\mathbf{\hat x}_i\|_0 = p$.  %, so that $\sum_{p = 1}^{m} n_p = N$. 
 Since the $\mathbf{x}_i$ are all $k$-sparse, by \eqref{minsum} we have:
 \begin{align}
-k \sum_{p = 1}^{m} n_p = kN \geq \sum_{i=1}^N \|\mathbf{x}_i\|_0 \geq \sum_{i=1}^N \|\mathbf{\hat x}_i\|_0 = \sum_{p=1}^{m} p n_p 
+k \sum_{p = 1}^{m} n_p = kN \geq \sum_{i=1}^N \|\mathbf{x}_i\|_0 \geq \sum_{i=1}^N \|\mathbf{\hat x}_i\|_0 = \sum_{p=1}^{m} p n_p.
 \end{align}
-\[\implies \sum_{p = 1}^k (k-p)n_p \geq \sum_{p = k+1}^{m} (p-k) n_p.\]
+%\[\implies \sum_{p = 1}^k (k-p)n_p \geq \sum_{p = k+1}^{m} (p-k) n_p.\]
 Hence,
 \begin{align}
 \sum_{p = k+1}^m n_p \leq \sum_{p = k+1}^m (p-k) n_p \leq \sum_{p = 1}^k (k-p)n_p \leq (k-1) \sum_{p = 1}^{k-1} n_p.
 \end{align}
 %\[ \implies \sum_{p = k+1}^m n_p \leq (k-1)^2 {\hat m \choose k-1} \]
+
 By the spark condition and general linear position of the $\mathbf{x}_i$, every $k$ vectors $\mathbf{Ax}_i$ span a $k$-dimensional space; hence, at most $k-1$ vectors $\mathbf{\hat x}_i$ can share a support of size $k-1$ or less, and the number of $(k-1)$-sparse vectors $\mathbf{\hat x}_i$ is then bounded from above by $(k-1) { m \choose k-1}$. It follows that at least $N - (k-1)^2 {m \choose k-1}$ of the vectors $\mathbf{\hat  x}_i$ are $k$-sparse, and that there must then be some $N' \subseteq [N]$ for which for each $S \in E$ there are $(k-1){m \choose k}+1$ of the vectors $\mathbf{x}_i$ with $i \in [N']$ supported on $S$ and for which $\mathbf{\hat x}_i$ is $k$-sparse for all $i \in [N']$.  The result now follows directly from Thm.~\ref{DeterministicUniquenessCorollary}. % \eqref{Cstable} and \eqref{b-PDa} follow.
 \end{proof}
 
@@ -474,7 +475,7 @@ C_2(\mathbf{A}, E) := \frac{ 2^{|E|} \max_{j \in [m]} \|\mathbf{A}_j\|_2}{ \min_
 \begin{proof}[Proof of Thm.~\ref{DeterministicUniquenessCorollary} for $k < m$] 
 %We begin by showing that for every $S \in E$ there is some $S' \in {[m] \choose k}$ for which the distance $d(\text{\rm Span}\{\mathbf{A}_S\}, \text{\rm Span}\{\mathbf{B}_S'\})$ is controlled by $\varepsilon$. Fix $S \in E$. Since there are $(k-1){m \choose k}+1$ vectors $\mathbf{x}_i$ supported on $S$, the pigeon-hole principle implies that there exists some $S' \in {[m] \choose k}$ and some set of $k$ indices $J(S)$ such that the supports of all $\mathbf{x}_i$ and $\mathbf{\hat x}_i$ with $i \in J(S)$ are contained in $S$ and $S'$, respectively.
 %%% No |S| = k assumption %%%
-We shall show that for every $S \in E$ there is some $S' \subseteq [m]$, $|S'| \leq k$, for which the distance $d(\text{\rm Span}\{\mathbf{A}_S\}, \text{\rm Span}\{\mathbf{B}_{S'}\})$ is controlled by $\varepsilon$. Since there are $(k-1){m \choose k}+1$ vectors $\mathbf{x}_i$ supported on $S$, the pigeon-hole principle implies that there exists some $S' \in {[m] \choose k}$ and some set of $k$ indices $I(S)$ such that the supports of all $\mathbf{x}_i$ and $\mathbf{\hat x}_i$ with $i \in I(S)$ are contained in $S$ and $S'$, respectively.
+We shall show that for every $S \in E$ there is some $S' \in {[m] \choose k}$, for which the distance $d(\text{\rm Span}\{\mathbf{A}_S\}, \text{\rm Span}\{\mathbf{B}_{S'}\})$ is controlled by $\varepsilon$. Applying Lem.~\ref{MainLemma} with the map $\pi$ defined by $S \mapsto S'$ then completes the proof.  Since there are $(k-1){m \choose k}+1$ vectors $\mathbf{x}_i$ supported on $S$, the pigeon-hole principle implies that there exists some $S' \in {[m] \choose k}$ and some set of $k$ indices $I(S)$ such that the supports of all $\mathbf{x}_i$ and $\mathbf{\hat x}_i$ with $i \in I(S)$ are contained in $S$ and $S'$, respectively.
 
 Let $\mathbf{X}$ and $\mathbf{\hat{X}}$ be the $m \times N$ matrices with columns $\mathbf{x}_i$ and $\mathbf{\hat x}_i$, respectively. It follows from the general linear position of the $\mathbf{x}_i$ and the linear independence of every $k$ columns of $\mathbf{A}$ that $L_k(\mathbf{AX}_{I(S)}) > 0$; that is, the columns of the $n \times k$ matrix $\mathbf{AX}_{I(S)}$ form a basis for $\text{\rm Span}\{\mathbf{A}_{S}\}$. Fixing $\mathbf{y} \in \text{\rm Span}\{\mathbf{A}_{S}\}$, there exists a unique $\mathbf{c} = (c_1, \ldots, c_k) \in \mathbb{R}^k$ such that $\mathbf{y} = \mathbf{AX}_{I(S)}\mathbf{c}$. Setting \mbox{$\mathbf{\hat{y}} = \mathbf{B\hat{X}}_{I(S)}\mathbf{c} \in \text{\rm Span}\{\mathbf{B}_{S'}\}$}, we have:
 \begin{align*}
@@ -485,14 +486,13 @@ Let $\mathbf{X}$ and $\mathbf{\hat{X}}$ be the $m \times N$ matrices with column
 %\leq \frac{\varepsilon \sqrt{k}}{L(\mathbf{A}X_{J(S)})} \|\mathbf{A}X_{J(S)}\mathbf{c}\|_2 
 \leq \frac{\varepsilon}{L_k(\mathbf{AX}_{I(S)})} \|\mathbf{y}\|_2,
 \end{align*}
-where the last inequality is by definition of $L_k$. Also, from Def.~\ref{dDef}, it follows that for all $S \in E$,
+where the last inequality is by definition of $L_k$. Finally, from Def.~\ref{dDef}, it follows that for all $S \in E$,
 \begin{align}\label{rhs222}
 d(\text{\rm Span}\{\mathbf{A}_S\}, \text{\rm Span}\{\mathbf{B}_{S'}\}) 
 \leq \frac{\varepsilon}{ \min_{S \in E} L_k(\mathbf{AX}_{I(S)}) }.
 %\leq \frac{\varepsilon}{L(\mathbf{AX}_{J(S)})}.
 %&< \left( \frac{ L_2(\mathbf{A}) }{ 2^{|E|} \max_{j \in [m]} \|\mathbf{A}_j\|_2 } \right) \frac{ \min_{S \in E} L_k(\mathbf{AX}_{I(S)}) } { L(\mathbf{AX}_{J(S)}) } \min_{\substack{F \subseteq E}} r( \{ \text{\rm Span}\{\mathbf{A}_{S}\} \}_{S \in F}) \\
 \end{align}
-Finally, applying Lem.~\ref{MainLemma} with the map $\pi: E \to {[m] \choose k}$ defined by $S \mapsto S'$ above completes the proof.
 %\begin{align}
 %\delta= \frac{\varepsilon}{ \min_{S \in E} L_k(\mathbf{AX}_{I(S)}) } = \frac{ C \varepsilon }{ \tilde C } < \frac{L_2(\mathbf{A})}{\tilde C}
 %\end{align}
@@ -513,23 +513,23 @@ The main motivation for this work, however, was to understand how seemingly univ
 % CUT OK? Surprisingly, almost all $n \times m$ dictionaries satisfying the standard assumption \eqref{CScondition} from compressed sensing (CS) are identifiable from enough generic noisy $k$-sparse linear combinations of their elements, up to an error linear in the noise. Moreover, if solutions are constrained to satisfy \eqref{SparkCondition}, then only an upper bound on the number of dictionary elements need be taken as given. 
 
 What we have shown here is that as an inverse problem to be approximated by a numerical algorithm, the sparse linear coding model  generally produces \textit{well-posed} optimizations.  This early concept of Hadamard \cite{Hadamard1902} can be paraphrased as the idea that good parameterized models should pose optimization problems with solutions that are stable; that is, continuous in the data.  In other words, perturbing a dataset by a small amount should only slightly influence the identifiability or uniqueness of parameters in the model, rather than discontinuously affect the character of optimization involved.  In this regard, we demonstrate a linear relationship between noise in the data and the unique solution in  sparse linear coding, with explicit constants expressed in terms of original latent parameters. 
-Nonetheless, it would be of practical utility to determine the best possible dependence of $\varepsilon$ on $\delta_1, \delta_2$ in \eqref{epsdel} as well as the minimal requirements on the number and diversity of generating codes, and we hope that other researchers continue to improve and extend our results.
+Nonetheless, it would be of practical utility to determine the best possible dependence of $\varepsilon$ on $\delta_1, \delta_2$ in Def.\ref{maindef} as well as the minimal requirements on the number and diversity of generating codes, and we hope that other researchers continue to improve and extend our results.
 % , although they are too computationally expensive to be of practical value.  We hope .
 
 One notable component of our contribution is a combinatorial criteria (regular hypergraphs satisfying the singular intersection property, Def.~\ref{sip}) for choosing support sets for original sparse codes. Fully understanding those combinatorial designs allowing for stable representations of datasets is an interesting research area for the future.
 We also remark that our main uniqueness result (Thm.~\ref{DeterministicUniquenessTheorem}) accounts for deterministic ``worst-case'' noise, whereas the ``effective'' noise might be much smaller when it is sampled from a given distribution; in such cases, the constants in our results %Thms.~\ref{DeterministicUniquenessTheorem},~\ref{DeterministicUniquenessTheorem2} 
 will improve. %We note also that these results extend trivially to cases where point-wise injective nonlinearities are applied to the data. 
 
-A technical difficulty in our main theorem is the absence of a spark condition assumption on alternate data factorizations.
-Although mathematically interesting that no such requirement is necessary, there are other reasons to desire such a theoretical guarantee. For instance, it is difficult to ensure an algorithm maintain a dictionary satisfying \eqref{SparkCondition} at each learning stage; indeed, even certifying that a dictionary has this property is probably intractable given its NP-hardness \cite{tillmann2014computational}.
+A technical difficulty in our main theorem is the absence of a spark condition assumption on alternate sparse data factorizations.
+Although mathematically interesting that no such requirement is necessary, there are other reasons to seek out such a theoretical guarantee. For instance, it is difficult to ensure an algorithm maintain a dictionary satisfying \eqref{SparkCondition} at each learning stage; indeed, even certifying  a dictionary has this property is likely intractable given its NP-hardness \cite{tillmann2014computational}.
 
-In fact, though, uniqueness guarantees with minimal assumptions apply to all areas of data science and engineering that utilize learned sparse representations.  For example, several groups have utilized compressed sensing for signal processing tasks: MRI analysis \cite{lustig2008compressed},  image compression \cite{Duarte08}, and, more recently, the design of an ultrafast camera \cite{Gao14}. Given such effective uses of CS, it is only a matter of time before these systems incorporate sparse representational learning to encode and process data (e.g., in a device that learns structure from motion \cite{kong2016prior}).  In these cases, guarantees such as those offered by our theorems allow any device to be equivalent to any other (having different initial parameters, data samples, and perhaps algorithms) as long as enough data originate from a statistically identical system.
+In fact, though, uniqueness guarantees with minimal assumptions apply to all areas of data science and engineering that utilize learned sparse representations.  For example, several groups have utilized compressed sensing for signal processing tasks: MRI analysis \cite{lustig2008compressed},  image compression \cite{Duarte08}, and, more recently, the design of an ultrafast camera \cite{Gao14}. Given such effective uses of CS, it is only a matter of time before these systems incorporate sparse representational learning to encode and process data (e.g., in a device that learns structure from motion \cite{kong2016prior}).  In these cases, assurances such as those offered by our theorems ensure that different devices (with different initialization, samples, etc.) are equivalent as soon as enough data originate from a statistically identical system.
 %Data science:
 %  
 %in a common application of compressed sensing in engineering 
 
 %\textbf{Theoretical Neuroscience}.
-Additionally, in the field of theoretical neuroscience, sparse dictionary learning and related methods have recovered characteristic components of natural images \cite{Olshausen96, hurri1996image, bell1997independent, van1998independent} and sounds \cite{bellsejnowski1996, smithlewicki2006, Carlson12}, reproducing response properties of cortical neurons. Our theorems suggest that this correspondence could be due to  sparse representations being ``universal'' in natural data, an early mathematical idea in neural theory \cite{pitts1947}. Furthermore, our guarantees justify the hypothesis of \cite{Coulter10, Isely10} that sparse codes passed through a communication bottleneck in the brain can be recovered from random projections via (unsupervised) biologically plausible sparse dictionary learning (e.g., \cite{rehnsommer2007, rozell2007neurally, hu2014hebbian}).  
+Additionally, in the field of theoretical neuroscience, sparse dictionary learning and related methods have recovered characteristic components of natural images \cite{Olshausen96, hurri1996image, bell1997independent, van1998independent} and sounds \cite{bellsejnowski1996, smithlewicki2006, Carlson12}, reproducing response properties of cortical neurons. Our results suggest that this correspondence could be due to  sparse representations being ``universal'' in natural data, an early mathematical idea in neural theory \cite{pitts1947}. Furthermore, our guarantees justify the hypothesis of \cite{Coulter10, Isely10} that sparse codes passed through a communication bottleneck in the brain can be recovered from random projections via (unsupervised) biologically plausible sparse dictionary learning (e.g., \cite{rehnsommer2007, rozell2007neurally, hu2014hebbian}).  
 
 %In fact, the concept of ``universal'' objects in the brain is . 
 
