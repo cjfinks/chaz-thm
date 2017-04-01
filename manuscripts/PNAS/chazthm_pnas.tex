@@ -175,7 +175,7 @@ when $\mathbf{x} \in \text{\rm Span} \{\mathbf{e}_j\}_{j\in S}$, where $\mathbf{
 
 We say a hypergraph $E \subseteq 2^{[m]}$ on vertices $[m]$ is \textit{$k$-uniform} when every $S \in E$ has cardinality $k$. We also say $E$ is \emph{regular} when every element of $[m]$ is contained in exactly $\ell$ elements of $E$ for some $\ell > 0$ (for given $\ell$, we say $E$ is \textit{$\ell$-regular}).
 
-\begin{definition}
+\begin{definition}\label{sip}
 Given $E \subseteq 2^{[m]}$, the \textbf{star} $F(i)$ at $i$ are those $S \in E$ with $i \in S$. We say $E$ has the \textbf{singleton intersection property} (\textbf{SIP}) when $\cap_{S \in F(i)} S = \{i\}$ for all $i \in [m]$. 
 \end{definition}
 
@@ -510,31 +510,33 @@ Finally, applying Lem.~\ref{MainLemma} with the map $\pi: E \to {[m] \choose k}$
  
 \section{Discussion}\label{Discussion}
 
+
 In this note, we generalize the approach of \cite{Hillar15} for showing uniqueness in Prob.~\ref{InverseProblem} to the case of noisy measurements while also reducing the sufficient number of samples.
+% FRITZ: Inverse problems instead of Data Analysis. Don't assume that everyone is assuming they are recovering ground truth. Cite results again and state implications! Focus on them (probabilistic ones too).
+Our results provide theoretical grounding for the use of sparse linear coding in blind source separation, wherein the goal is to infer the generating dictionary and sparse codes from noisy measurements generated as in \eqref{LinearModel}.  Such results are motivated by the seemingly universal representations discovered by training a sparse linear coding model with natural data, independently of specific algorithmic implementation.  We also collect a set of useful mathematical tools and basic results for future research.  % We close with several application areas.
+
+%\textbf{Inverse Problems}.  
 % from $N=k{m \choose k}^2$ to $N = m(k-1){m \choose k}+m$. 
 % CUT OK? Surprisingly, almost all $n \times m$ dictionaries satisfying the standard assumption \eqref{CScondition} from compressed sensing (CS) are identifiable from enough generic noisy $k$-sparse linear combinations of their elements, up to an error linear in the noise. Moreover, if solutions are constrained to satisfy \eqref{SparkCondition}, then only an upper bound on the number of dictionary elements need be taken as given. 
-One interesting aspect of our contribution is a combinatorial criteria (regular hypergraphs satisfying the singular intersection property) for choosing support sets for original sparse codes; fully understanding those combinatorial designs allowing for stable representations of datasets is the subject of future work.
+One interesting aspect of our contribution is a combinatorial criteria (regular hypergraphs satisfying the singular intersection property, Def.~\ref{sip}) for choosing support sets for original sparse codes. Fully understanding those combinatorial designs allowing for stable representations of datasets is an interesting research area for the future.
 We also remark that our main uniqueness result (Thm.~\ref{DeterministicUniquenessTheorem}) accounts for deterministic ``worst-case'' noise, whereas the ``effective'' noise might be much smaller when it is sampled from a given distribution; in such cases, the constants in our theorems %Thms.~\ref{DeterministicUniquenessTheorem},~\ref{DeterministicUniquenessTheorem2} 
-will be different. %We note also that these results extend trivially to cases where point-wise injective nonlinearities are applied to the data. 
-We close with several application areas.
+should be better. %We note also that these results extend trivially to cases where point-wise injective nonlinearities are applied to the data. 
 
-% FRITZ: Inverse problems instead of Data Analysis. Don't assume that everyone is assuming they are recovering ground truth. Cite results again and state implications! Focus on them (probabilistic ones too).
-\textbf{Inverse Problems}.  
-Our results provide theoretical grounding for the use of sparse linear coding in blind source separation, wherein the goal is to infer the generating dictionary and sparse codes from noisy measurements generated as in \eqref{LinearModel} (e.g., recovering a rat's position on a linear track from local field potentials in Hippocampus \cite{Agarwal14}). It would be of practical utility therefore to determine the best possible dependence of $\varepsilon$ on $\delta_1, \delta_2$ (see \eqref{epsdel}) as well as the minimal requirements on the number and diversity of generating codes. %We encourage researchers to extend our results and tighten these parameters.
-Phrased in the language of Hadamard \cite{Hadamard1902}),  Mention sparse matrix factorization. [Effective computation of stable datasets, at least in principle.]
-[maybe smooth analysis something here]
-We hope that researchers in sparse linear coding continue to improve on the bounds and constants here.
+As an inverse problem to be approximated by a (typically) numerical algorithm, what we have shown here is that the sparse linear coding model  generally produces \textit{well-posed} optimizations.  This early concept of Hadamard \cite{Hadamard1902}) can be paraphrased as the idea that algorithms inverting a parameterized model of data should have unique solutions that are continuous in the data.  In other words, perturbing slightly a dataset should only slightly influence the uniqueness of parameters in the model, rather than discontinuously affect the character of optimization involved.  In this regard, we provide explicit constants in terms of original latent parameters, although they are too expensive to compute for any practical utility.    % We hope that researchers in sparse linear coding continue to improve on the bounds and constants here.
 
-\textbf{Theoretical Neuroscience}.
-Sparse dictionary learning and related methods have recovered characteristic components of natural images and sounds \cite{bellsejnowski1996, smithlewicki2006, Carlson12}, reproducing response properties of cortical neurons. Our theorems suggest that this correspondence could be due to the uniqueness of sparse representations. Furthermore, our guarantees justify the hypothesis of \cite{Coulter10, Isely10} that sparse codes passed through a communication bottleneck in the brain can be recovered from random projections via (unsupervised) biologically plausible sparse dictionary learning (e.g., \cite{rehnsommer2007, rozell2007neurally, hu2014hebbian}).    Invariance: \cite{pitts1947}.
+One of the technical difficulties in our main theorem is the absence of a spark condition assumption on alternate dictionaries; in fact, several results here are much simpler to prove when such an assumption is made.  However, in general, it cannot necessarily be assumed that a learned dictionary have satisfy the spark condition.  In addition, guaranteeing that a dictionary has this property is probably intractable given its NP-hardness \cite{tillmann2014computational}.  It would be of practical utility to determine the best possible dependence of $\varepsilon$ on $\delta_1, \delta_2$ (see \eqref{epsdel}) as well as the minimal requirements on the number and diversity of generating codes. %We encourage researchers to extend our results and tighten these parameters.
+
+%\textbf{Theoretical Neuroscience}.
+In the field of theoretical neuroscience, sparse dictionary learning and related methods have recovered characteristic components of natural images and sounds \cite{bellsejnowski1996, smithlewicki2006, Carlson12}, reproducing response properties of cortical neurons. Our theorems suggest that this correspondence could be due to the uniqueness of sparse representations. Furthermore, our guarantees justify the hypothesis of \cite{Coulter10, Isely10} that sparse codes passed through a communication bottleneck in the brain can be recovered from random projections via (unsupervised) biologically plausible sparse dictionary learning (e.g., \cite{rehnsommer2007, rozell2007neurally, hu2014hebbian}).  In fact, the concept of ``universal'' objects in the brain is an early idea in neuroscience theory \cite{pitts1947}. But this is also in data science applications.  For instance, when recovering a rat's position on a linear track from learning a sparse linear model on  local field potentials in Hippocampus \cite{Agarwal14}.
+
 %TODO: add reproduction of response propeties in olfactory cortex?
 
 % Reiterate probabilistic result in the smooth analysis part?
 %\textbf{Smoothed Analysis}.
 %The main concept in smoothed analysis \cite{Spielman04} is that certain algorithms having exponential worst-case behavior are, nonetheless, efficient if certain (typically, measure zero in the continuous case and with ``low probability" in the discrete case) pathological input sets are avoided. Our results imply that if there is an efficient ``smoothed" algorithm for solving Prob.~\ref{InverseProblem} given enough samples, then for generic inputs this algorithm determines the unique original solution. We note that avoiding certain pathological sets of inputs is often a necessary technicality for dictionary learning \cite{Razaviyayn15, Tillmann15}.
 
-\textbf{Engineering}.
-Several groups utilize compressed sensing for signal processing tasks: MRI analysis \cite{lustig2008compressed},  image compression \cite{Duarte08}, and, more recently, the design of an ultrafast camera \cite{Gao14}. Given such effective uses of CS, it is only a matter of time before these systems incorporate sparse dictionary learning to encode and process data. Guarantees such as those offered by our theorems allow any such device to be equivalent to any other (having different initial parameters and data samples) as long as enough data originate from a statistically identical system.
+%\textbf{Engineering}.
+In engineering, several groups have utilized compressed sensing for signal processing tasks: MRI analysis \cite{lustig2008compressed},  image compression \cite{Duarte08}, and, more recently, the design of an ultrafast camera \cite{Gao14}. Given such effective uses of CS, it is only a matter of time before these systems incorporate sparse dictionary learning to encode and process data. Guarantees such as those offered by our theorems allow any such device to be equivalent to any other (having different initial parameters and data samples) as long as enough data originate from a statistically identical system.
 
 
 \acknow{We thank Friedrich Sommer for introducing us to sparse dictionary learning, Darren Rhea for sharing early explorations, and Ian Morris for posting \eqref{eqdim} online.}
