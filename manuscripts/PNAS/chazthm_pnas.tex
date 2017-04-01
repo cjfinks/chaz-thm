@@ -249,32 +249,25 @@ Given Thm.\ref{DeterministicUniquenessTheorem}, one needs only to produce sparse
 %\begin{proposition}
 %If $E$ is an $\ell$-regular hypergraph of rank $k$ satisfying the singleton intersection property then $|E| \geq \ell m/k$. 
 %\end{proposition}
-%<<<<<<< HEAD
-%As mentioned above, it is easy to construct such $E$ with $|E| = m$, implying the lower bound for sample size $N$ from the introduction.
-%A straightforward calculation verifies that if $E$ is an $\ell$-regular hypergraph of rank $k$ satisfying the SIP, then $|E| \geq \ell m/k$.
-%%Note that if $E$ is an $\ell$-regular hypergraph of rank $k$ satisfying the SIP, then $|E| \geq \ell m/k$: \[|E|k \geq \sum_{S \in E}|S| = \sum_{i \in [m]} \deg(i) = \ell m.\] 
-%In certain cases, there are simple constructions achieving this minimum; for example, when $k = \sqrt{m}$ one can take $E$ to be the rows and columns formed by arranging $[m]$ in a square grid.  In light of Cor.~\ref{DeterministicUniquenessCorollary}, it would be interesting to determine other minimal such $E$.
-%=======
 %Note that every $\ell$-regular hypergraph $E \subseteq {[m] \choose k}$ satisfies: \[|E|k = \sum_{S \in E}|S| = \sum_{i \in [m]} \deg(i) = \ell m.\] 
 As mentioned above, it is easy to construct a regular hypergraph $E \subseteq {[m] \choose k}$ with the SIP having size $|E| = m$, implying the lower bound for sample size $N$ from the introduction. In certain cases, the SIP can be achieved with $|E| < m$; for example, when $k = \sqrt{m}$ one can take $E$ to be the rows and columns formed by arranging $[m]$ in a square grid.  In light of Cor.~\ref{DeterministicUniquenessCorollary}, it would be interesting to determine other such $E$. %[ ** TODO ** can we show for every $k, m$ that there is an $E$ satisfying the SIP with $|E| = \ell m/k$ for every $\ell$ such that $\ell m/k$ is an integer? Then lower bound on $N$ comes from the smallest such $\ell$.]
 
 There are other less direct consequences of Thm.~\ref{DeterministicUniquenessTheorem} to stability in sparse linear coding.  The following implication relates the result to more common optimization formulations.
 
-\begin{theorem}
-Fix $n, \ell$, and $k < m$. Suppose $\mathbf{A}~\in~\mathbb{R}^{n \times m}$ satisfies the spark condition \eqref{SparkCondition} and that $k$-sparse \mbox{$\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$} have at least \mbox{$k \left[ (k-1){ m \choose k} + 1 \right]$} vectors supported in general linear position on each set in an $\ell$-regular $E \subseteq {[m] \choose k}$ with the SIP.  Given any $\delta_1, \delta_2 \geq 0$ and $\varepsilon \leq \varepsilon(\delta_1, \delta_2)$, the following holds.  % (\eqref{epsdel}).
+\begin{corollary}
+Fix $n, \ell$, and $k < m$. Suppose $\mathbf{A}~\in~\mathbb{R}^{n \times m}$ satisfies the spark condition \eqref{SparkCondition} and that $k$-sparse \mbox{$\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$} have at least \mbox{$\left[ (k-1){ m \choose k} + 1 \right] + (k-1)^2{m \choose k-1}$} vectors supported in general linear position on each set in an $\ell$-regular $E \subseteq {[m] \choose k}$ with the SIP. Given any $\delta_1, \delta_2 \geq 0$ and $\varepsilon \leq \varepsilon(\delta_1, \delta_2)$, the following holds.  % (\eqref{epsdel}).
 % $\varepsilon < L_2(\mathbf{A}) / C_1$.
 %There exists a constant $C_1 > 0$ for which the following holds for all $\varepsilon < L_2(\mathbf{A}) / C_1$.
 Every solution $\mathbf{B}, \mathbf{\hat x}_i, \ldots, \mathbf{\hat x}_N$ to the constrained $\ell_0$ optimization problem:
 \begin{align}\label{minsum}
-\arg \min \sum_{i = 1}^N \|\mathbf{\hat x}_i\|_0 \ \ \text{s.t.} \ \ \|\mathbf{A}\mathbf{x}_i - \mathbf{B}\mathbf{\hat x}_i\|_2 \leq \varepsilon, \ \ \text{$i \in [N]$},
+\arg \min \sum_{i = 1}^N \|\mathbf{\hat x}_i\|_0 \ \ \text{s.t.} \ \ \mathbf{B}\mathbf{\hat x}_i = \mathbf{A}\mathbf{x}_i, \ \ \text{$i \in [N]$}, %\|\mathbf{A}\mathbf{x}_i - \mathbf{B}\mathbf{\hat x}_i\|_2 \leq \varepsilon, \ \ \text{$i \in [N]$},
 \end{align}
 necessarily satisfies the recovery inequalities in \eqref{def1}. % \eqref{Cstable} and \eqref{b-PDa}.
-\end{theorem}
+\end{corollary}
 
 \begin{proof}
-We derive a lower bound on the number of $k$-sparse  $\mathbf{\hat x}_i$ and then apply Thm.~\ref{DeterministicUniquenessCorollary}. 
-[*** This proof still has a gap ***]
-Let $n_p$ be the number of $\mathbf{\hat x}_i$ with $\|\mathbf{\hat x}_i\|_0 = p$.  %, so that $\sum_{p = 1}^{m} n_p = N$. 
+We derive a lower bound on the number of $k$-sparse $\mathbf{\hat x}_i$ and then apply Thm.~\ref{DeterministicUniquenessCorollary}. 
+First, note that $\|\mathbf{\hat x}_i\|_0 \neq 0$ for all $i$, since otherwise we would have $\mathbf{A}\mathbf{x}_i = \mathbf{B}\mathbf{\hat x}_i = \mathbf{0} \implies \mathbf{x}_i = \mathbf{0}$ by the spark condition, contradicting the general linear position of the $\mathbf{x}_i$. Let $n_p$ be the number of $\mathbf{\hat x}_i$ with $\|\mathbf{\hat x}_i\|_0 = p$.  %, so that $\sum_{p = 1}^{m} n_p = N$. 
 Since the $\mathbf{x}_i$ are all $k$-sparse, by \eqref{minsum} we have:
 \begin{align}
 k \sum_{p = 1}^{m} n_p = kN \geq \sum_{i=1}^N \|\mathbf{x}_i\|_0 \geq \sum_{i=1}^N \|\mathbf{\hat x}_i\|_0 = \sum_{p=1}^{m} p n_p 
@@ -282,11 +275,10 @@ k \sum_{p = 1}^{m} n_p = kN \geq \sum_{i=1}^N \|\mathbf{x}_i\|_0 \geq \sum_{i=1}
 \[\implies \sum_{p = 1}^k (k-p)n_p \geq \sum_{p = k+1}^{m} (p-k) n_p.\]
 Hence,
 \begin{align}
-(k-1) \sum_{p =1}^k n_p \geq \sum_{p = 1}^k (k-p)n_p \geq \sum_{p = k+1}^{m} (p-k) n_p
+\sum_{p = k+1}^m n_p \leq \sum_{p = k+1}^m (p-k) n_p \leq \sum_{p = 1}^k (k-p)n_p \leq (k-1) \sum_{p = 1}^{k-1} n_p.
 \end{align}
-\[ \geq \sum_{p = k+1}^{m} n_p = N - \sum_{p = 1}^k n_p \implies \sum_{p =1}^k n_p \geq N / k.\]
-
-In particular, at least $N / k$ of the $\mathbf{\hat x}_i$ are $k$-sparse. Therefore, there is some $N' \subseteq [N]$ for which for each $S \in E$ there are $(k-1){m \choose k}+1$ of the vectors $\mathbf{x}_i$ with $i \in [N']$ supported on $S$ and for which $\mathbf{\hat x}_i$ is $k$-sparse for all $i \in [N']$.  The result now follows directly from Thm.~\ref{DeterministicUniquenessCorollary}. % \eqref{Cstable} and \eqref{b-PDa} follow.
+%\[ \implies \sum_{p = k+1}^m n_p \leq (k-1)^2 {\hat m \choose k-1} \]
+By the spark condition and general linear position of the $\mathbf{x}_i$, every $k$ vectors $\mathbf{Ax}_i$ span a $k$-dimensional space; hence, at most $k-1$ vectors $\mathbf{\hat x}_i$ can share a support of size $k-1$ or less, and the number of $(k-1)$-sparse vectors $\mathbf{\hat x}_i$ is then bounded from above by $(k-1) { m \choose k-1}$. It follows that at least $N - (k-1)^2 {m \choose k-1}$ of the vectors $\mathbf{\hat  x}_i$ are $k$-sparse, and that there must then be some $N' \subseteq [N]$ for which for each $S \in E$ there are $(k-1){m \choose k}+1$ of the vectors $\mathbf{x}_i$ with $i \in [N']$ supported on $S$ and for which $\mathbf{\hat x}_i$ is $k$-sparse for all $i \in [N']$.  The result now follows directly from Thm.~\ref{DeterministicUniquenessCorollary}. % \eqref{Cstable} and \eqref{b-PDa} follow.
 \end{proof}
 
 Another straightforward application of Thm.~\ref{DeterministicUniquenessTheorem} is a probabilistic extension, which takes advantage of the following well-known application of random matrix theory to compressed sensing.  A random $n \times m$ matrix obeys \eqref{SparkCondition} with probability one (or ``high probability'' for discrete variables) 
@@ -609,16 +601,17 @@ Substituting this into \eqref{f} and rearranging yields \eqref{DTILeq} after rep
 \end{proof}
 
 \begin{lemma}\label{NonEmptyLemma} 
-Fix $\ell$ and $m \leq \hat m$. Suppose $E \subseteq 2^{[m]}$ is $\ell$-regular and satisfies the singleton intersection property. If there is a map $\pi: E \to 2^{[\hat m]}$ with $\sum_{S \in E} |S| = \sum_{S \in E} |\pi(S)|$ and:
+Fix integers $\ell, m$ and $\hat m$. Suppose $E \subseteq 2^{[m]}$ is $\ell$-regular and satisfies the singleton intersection property. If there exists a map $\pi: E \to 2^{[\hat m]}$ such that $\sum_{S \in E} |S| = \sum_{S \in E} |\pi(S)|$ and:
 \begin{align}\label{cond}
 |\bigcap_{S \in F} \pi(S)| \leq |\bigcap_{S \in F} S |,\ \ \   \text{for all } F \subseteq E,
 \end{align}
 %
-then the association $i \mapsto \cap \pi(F(i))$ defines an injective map from $[J]$ to $[\hat m]$ for some $J \subseteq [m]$ of size $\hat m - \ell(\hat m - m)$. In particular, if $\hat m = m$ then the map $\pi$ is induced by a permutation.
+then $\hat m \geq m$ and the association $i \mapsto \cap \pi(F(i))$ defines an injective map from $[J]$ to $[\hat m]$ for some $J \subseteq [m]$ of size $\hat m - \ell(\hat m - m)$. In particular, if $\hat m = m$ then the map $\pi$ is induced by a permutation.
 %$\pi(E)$ is $\ell$-regular and satisfies the singleton intersection property. In particular, $|\cap_{S \in F} S| = 1$ if and only if $|\cap_{S \in F} \pi(S)| = 1$. 
 \end{lemma}
 \begin{proof}
-[* TODO * Chris rewrite for $\hat m$] Fix $T = \{(j, S): j \in \pi(S), S \in E\}$. We have $|T| = \sum_{S \in E} |\pi(S)| = \sum_{S \in E} |S| = \sum_{i \in [m]} \deg(i) = \ell m$ by regularity of $E$. Note that by \eqref{cond} there can be no more than $\ell$ elements of $T$ with a given first index, since $E$ is $\ell$-regular. Pigeonholing the elements of $T$ with respect to the set of possible first indices, we see then that for each $j$ there must be exactly $\ell$ elements of $T$ with $j$ as a first index; hence, $\pi(E)$ is $\ell$-regular. 
+[ ** TODO ** rewrite for $\hat m > m$. ]
+We first show that $\hat m \geq m$. Fix $T = \{(j, S): j \in \pi(S), S \in E\}$. Then $|T| = \sum_{S \in E} |\pi(S)| = \sum_{S \in E} |S| = \sum_{i \in [m]} \deg(i) = \ell m$ by regularity of $E$. If $\hat m < m$ then by pigeonholing the $m \ell \geq \ell (\hat m + 1) \geq [(\ell + 1) - 1] \hat m + 1$ elements of $T$ with respect to the set $[\hat m]$ of possible first indices, we see that there must exist at least $\ell + 1$ elements of $T$ having the same first index. But by \eqref{cond} there can be no more than $\ell$ elements of $T$ with a given first index, since $E$ is $\ell$-regular. Hence $\hat m \geq m$. Again, pigeonholing the elements of $T$ with respect to the set $[\hat m]$ of possible first indices, we see that for each $j$ there must be exactly $\ell$ elements of $T$ with $j$ as a first index; hence, $\pi(E)$ is $\ell$-regular. 
 
 Fix $j$ and let $F(j) = \{S \in E: j \in \pi(S)\}$ be the preimage of the star in $\pi(E)$ centered at $j$, which is of size $\ell$ by the above arguments. It follows from \eqref{cond} that $\cap_{S \in F(j)} S$ is nonempty. In fact, we must have $|\cap _{S \in F(j)} S| = 1$, since $E$ is $\ell$-regular and satisfies the singleton intersection property. It follows by \eqref{cond} that $\cap_{S \in F(j)} \pi(S) = \{j\}$. Thus $\pi(E)$ satisfies the singleton intersection property as well, and the preimage of every one of the $m$ stars in $\pi(E)$ is a star in $E$.
 
@@ -686,7 +679,7 @@ Now, fix $\ell \in [m]$. Since $E$ satisfies the singleton intersection property
 We now determine classes of datasets $Y$ having a stable sparse representation that are cut out by a single polynomial equation.
 
 \begin{proof}[Proof of Thm.~\ref{robustPolythm}]
-We sketch the argument, leaving the details to the reader.
+We sketch the argument, leaving the details to the reader. 
 Let $M$ be the $n \times m$ matrix with columns $\mathbf{A}\mathbf{x}_i$, $i \in [N]$.  Consider the following polynomial \cite[Sec.~IV]{Hillar15} in the entries of $\mathbf{A}$ and the $\mathbf{x}_i$:
 \begin{align*}
 g(\mathbf{A}, \{\mathbf{x}_i\}_{i=1}^N) = \prod_{S \in {[n] \choose k}} \sum_{S' \in {[N] \choose k}} (\det M_{S',S})^2,
