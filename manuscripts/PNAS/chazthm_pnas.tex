@@ -249,24 +249,18 @@ Given Thm.\ref{DeterministicUniquenessTheorem}, one needs only to produce sparse
 %\begin{proposition}
 %If $E$ is an $\ell$-regular hypergraph of rank $k$ satisfying the singleton intersection property then $|E| \geq \ell m/k$. 
 %\end{proposition}
-%<<<<<<< HEAD
-%As mentioned above, it is easy to construct such $E$ with $|E| = m$, implying the lower bound for sample size $N$ from the introduction.
-%A straightforward calculation verifies that if $E$ is an $\ell$-regular hypergraph of rank $k$ satisfying the SIP, then $|E| \geq \ell m/k$.
-%%Note that if $E$ is an $\ell$-regular hypergraph of rank $k$ satisfying the SIP, then $|E| \geq \ell m/k$: \[|E|k \geq \sum_{S \in E}|S| = \sum_{i \in [m]} \deg(i) = \ell m.\] 
-%In certain cases, there are simple constructions achieving this minimum; for example, when $k = \sqrt{m}$ one can take $E$ to be the rows and columns formed by arranging $[m]$ in a square grid.  In light of Cor.~\ref{DeterministicUniquenessCorollary}, it would be interesting to determine other minimal such $E$.
-%=======
 %Note that every $\ell$-regular hypergraph $E \subseteq {[m] \choose k}$ satisfies: \[|E|k = \sum_{S \in E}|S| = \sum_{i \in [m]} \deg(i) = \ell m.\] 
 As mentioned above, it is easy to construct a regular hypergraph $E \subseteq {[m] \choose k}$ with the SIP having size $|E| = m$, implying the lower bound for sample size $N$ from the introduction. In certain cases, the SIP can be achieved with $|E| < m$; for example, when $k = \sqrt{m}$ one can take $E$ to be the rows and columns formed by arranging $[m]$ in a square grid.  In light of Cor.~\ref{DeterministicUniquenessCorollary}, it would be interesting to determine other such $E$. %[ ** TODO ** can we show for every $k, m$ that there is an $E$ satisfying the SIP with $|E| = \ell m/k$ for every $\ell$ such that $\ell m/k$ is an integer? Then lower bound on $N$ comes from the smallest such $\ell$.]
 
 There are other less direct consequences of Thm.~\ref{DeterministicUniquenessTheorem} to stability in sparse linear coding.  The following implication relates the result to more common optimization formulations.
 
 \begin{corollary}
-Fix $n, \ell$, and $k < m$. Suppose $\mathbf{A}~\in~\mathbb{R}^{n \times m}$ satisfies the spark condition \eqref{SparkCondition} and that $k$-sparse \mbox{$\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$} have at least \mbox{$\left[ (k-1){ m \choose k} + 1 \right] + (k-1)^2{m \choose k-1}$} vectors supported in general linear position on each set in an $\ell$-regular $E \subseteq {[m] \choose k}$ with the SIP.  Given any $\delta_1, \delta_2 \geq 0$ and $\varepsilon \leq \varepsilon(\delta_1, \delta_2)$, the following holds.  % (\eqref{epsdel}).
+Fix $n, \ell$, and $k < m$. Suppose $\mathbf{A}~\in~\mathbb{R}^{n \times m}$ satisfies the spark condition \eqref{SparkCondition} and that $k$-sparse \mbox{$\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$} have at least \mbox{$\left[ (k-1){ m \choose k} + 1 \right] + (k-1)^2{m \choose k-1}$} vectors supported in general linear position on each set in an $\ell$-regular $E \subseteq {[m] \choose k}$ with the SIP. Given any $\delta_1, \delta_2 \geq 0$ and $\varepsilon \leq \varepsilon(\delta_1, \delta_2)$, the following holds.  % (\eqref{epsdel}).
 % $\varepsilon < L_2(\mathbf{A}) / C_1$.
 %There exists a constant $C_1 > 0$ for which the following holds for all $\varepsilon < L_2(\mathbf{A}) / C_1$.
 Every solution $\mathbf{B}, \mathbf{\hat x}_i, \ldots, \mathbf{\hat x}_N$ to the constrained $\ell_0$ optimization problem:
 \begin{align}\label{minsum}
-\arg \min \sum_{i = 1}^N \|\mathbf{\hat x}_i\|_0 \ \ \text{s.t.} \ \ \|\mathbf{A}\mathbf{x}_i - \mathbf{B}\mathbf{\hat x}_i\|_2 \leq \varepsilon, \ \ \text{$i \in [N]$},
+\arg \min \sum_{i = 1}^N \|\mathbf{\hat x}_i\|_0 \ \ \text{s.t.} \ \ \mathbf{B}\mathbf{\hat x}_i = \mathbf{A}\mathbf{x}_i, \ \ \text{$i \in [N]$}, %\|\mathbf{A}\mathbf{x}_i - \mathbf{B}\mathbf{\hat x}_i\|_2 \leq \varepsilon, \ \ \text{$i \in [N]$},
 \end{align}
 necessarily satisfies the recovery inequalities in \eqref{def1}. % \eqref{Cstable} and \eqref{b-PDa}.
 \end{corollary}
