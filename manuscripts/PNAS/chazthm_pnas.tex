@@ -197,19 +197,35 @@ We also say that a set of $k$-sparse vectors is in \emph{general linear position
 The following is the precise statement of our main result. 
 
 \begin{theorem}\label{DeterministicUniquenessTheorem}
-Fix integers $n, \ell$, and $k < m$. Suppose $\mathbf{A}~\in~\mathbb{R}^{n \times m}$ satisfies the spark condition \eqref{SparkCondition} and that $k$-sparse \mbox{$\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$} contain at least \mbox{$(k-1){m \choose k}+1$} vectors supported in general linear position on each set in some $\ell$-regular $E \subseteq {[m] \choose k}$ with the SIP.  There exists a constant $C_1 > 0$ for which the following holds for all $\varepsilon < L_2(\mathbf{A}) / C_1$.
+%Fix integers $n, \ell$, and $k < m$. 
+Suppose $\mathbf{A}~\in~\mathbb{R}^{n \times m}$ satisfies the spark condition \eqref{SparkCondition} for some $k < m$ and that $k$-sparse \mbox{$\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$} contain at least \mbox{$(k-1){m \choose k}+1$} vectors supported in general linear position on each set in some $\ell$-regular $E \subseteq {[m] \choose k}$ with the SIP.  Then there exists a constant $C_1 > 0$ for which the following holds for all $\varepsilon < L_2(\mathbf{A}) / C_1$.
 
-Every matrix $\mathbf{B} \in \mathbb{R}^{n \times m}$ and $k$-sparse $\mathbf{\hat x}_1, \ldots, \mathbf{\hat x}_N \in \mathbb{R}^{m}$ with  \mbox{$\|\mathbf{A}\mathbf{x}_i - \mathbf{B}\mathbf{\hat x}_i\|_2 \leq \varepsilon$} for all $i$ necessarily satisfies:
+Every matrix $\mathbf{B} \in \mathbb{R}^{n \times \hat m}$ and $k$-sparse $\mathbf{\hat x}_1, \ldots, \mathbf{\hat x}_N \in \mathbb{R}^{\hat m}$ with  \mbox{$\|\mathbf{A}\mathbf{x}_i - \mathbf{B}\mathbf{\hat x}_i\|_2 \leq \varepsilon$} for all $i$ must have $\hat m \geq m$ and, provided $p = \hat m - \ell(\hat m - m)$ is positive, necessarily satisfy:
 \begin{align}\label{Cstable}
-\|\mathbf{A}_j - (\mathbf{B}\mathbf{PD})_j\|_2 \leq C_1 \varepsilon,\ \ \   \text{for all $j \in [m]$},
+\|(\mathbf{A}_J- \mathbf{B}_{\hat J} \mathbf{PD} )_j\|_2 \leq C_1 \varepsilon \ \  \text{for all $j \in [J]$},
 \end{align}
-for some permutation matrix $\mathbf{P}$ and invertible diagonal $\mathbf{D}$.
+for some $J \in {[m] \choose p}$, $\hat J \in {[\hat m] \choose p}$, permutation matrix $\mathbf{P}$ and invertible diagonal matrix $\mathbf{D}$.
 
-Furthermore, if $\varepsilon < L_{2k}(\mathbf{A}) / C_1$, then $\mathbf{B}$ also satisfies \eqref{SparkCondition} with $L_{2k}(\mathbf{B}\mathbf{PD}) \geq L_{2k}(\mathbf{A}) - C_1 \varepsilon$, and:
+[ ** TODO ** write $\hat m$ version ] Furthermore, if $\varepsilon < L_{2k}(\mathbf{A}) / C_1$, then $\mathbf{B}$ also satisfies \eqref{SparkCondition} with $L_{2k}(\mathbf{B}\mathbf{PD}) \geq L_{2k}(\mathbf{A}) - C_1 \varepsilon$, and:
 \begin{align}\label{b-PDa}
 \|\mathbf{x}_i - \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\hat x}_i\|_1 &\leq  \left( \frac{ 1+C_1 \|\mathbf{x}_i\|_1 }{ L_{2k}(\mathbf{A}) -  C_1\varepsilon } \right) \varepsilon,\ \ \   \text{for all $i \in [N]$}.
 \end{align}
 \end{theorem}
+
+%\begin{theorem}\label{DeterministicUniquenessTheorem}
+%Fix integers $n, \ell$, and $k < m$. Suppose $\mathbf{A}~\in~\mathbb{R}^{n \times m}$ satisfies the spark condition \eqref{SparkCondition} and that $k$-sparse \mbox{$\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$} contain at least \mbox{$(k-1){m \choose k}+1$} vectors supported in general linear position on each set in some $\ell$-regular $E \subseteq {[m] \choose k}$ with the SIP.  There exists a constant $C_1 > 0$ for which the following holds for all $\varepsilon < L_2(\mathbf{A}) / C_1$.
+
+%Every matrix $\mathbf{B} \in \mathbb{R}^{n \times m}$ and $k$-sparse $\mathbf{\hat x}_1, \ldots, \mathbf{\hat x}_N \in \mathbb{R}^{m}$ with  \mbox{$\|\mathbf{A}\mathbf{x}_i - \mathbf{B}\mathbf{\hat x}_i\|_2 \leq \varepsilon$} for all $i$ necessarily satisfies:
+%\begin{align}\label{Cstable}
+%\|\mathbf{A}_j - (\mathbf{B}\mathbf{PD})_j\|_2 \leq C_1 \varepsilon,\ \ \   \text{for all $j \in [m]$},
+%\end{align}
+%for some permutation matrix $\mathbf{P}$ and invertible diagonal $\mathbf{D}$.
+
+%Furthermore, if $\varepsilon < L_{2k}(\mathbf{A}) / C_1$, then $\mathbf{B}$ also satisfies \eqref{SparkCondition} with $L_{2k}(\mathbf{B}\mathbf{PD}) \geq L_{2k}(\mathbf{A}) - C_1 \varepsilon$, and:
+%\begin{align}\label{b-PDa}
+%\|\mathbf{x}_i - \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\hat x}_i\|_1 &\leq  \left( \frac{ 1+C_1 \|\mathbf{x}_i\|_1 }{ L_{2k}(\mathbf{A}) -  C_1\varepsilon } \right) \varepsilon,\ \ \   \text{for all $i \in [N]$}.
+%\end{align}
+%\end{theorem}
 
 %\begin{theorem}\label{DeterministicUniquenessTheorem}
 %Fix integers $n, \ell$, and $k < m \leq \hat m$. Suppose $\mathbf{A}~\in~\mathbb{R}^{n \times m}$ satisfies the spark condition \eqref{SparkCondition} and that $k$-sparse \mbox{$\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$} contain at least \mbox{$(k-1){\hat m \choose k}+1$} vectors supported in general linear position on each set in some $\ell$-regular $E \subseteq {[m] \choose k}$ satisfying the SIP.  There exists a constant $C_1 > 0$ for which the following holds for all $\varepsilon < L_2(\mathbf{A}) / C_1$.
@@ -429,16 +445,32 @@ Our result in combinatorial matrix theory is the following.
 %, which we derive by the following arguments (see the Supplemental for the full proof). First, we show that the aforementioned proximity between $k$-dimensional subspaces implies a proximity between smaller subspaces spanned by columns of $\mathbf{A}$ indexed by the intersections of sets in $E$ and those spanned by as many or fewer columns of $\mathbf{B}$. Another pigeonholing argument here combined with our assumptions on $E$ (e.g., the singleton intersection property) reveals that, in fact, each column of $\mathbf{A}$ spans a subspace proximal to that spanned by some column of $\mathbf{B}$. \eqref{Cstable} is a simple consequence of this last fact, which actually constitutes the proof of the theorem for the case $k=1$. % We present this special case now before restating the above arguments in greater detail.
 
 \begin{lemma}\label{MainLemma}
-Fix integers $n$ and $k < m$, and suppose $\mathbf{A} \in \mathbb{R}^{n \times m}$ satisfies the spark condition \eqref{SparkCondition}. There exists a constant $C_2 > 0$ for which the following holds for all $\varepsilon < L_2(\mathbf{A}) / C_2$. If for some  $\mathbf{B} \in \mathbb{R}^{n \times m}$ and regular $E \subseteq {[m] \choose k}$ with the SIP there exists a map $\pi: E \mapsto {[m] \choose k}$ satisfying:
+%Fix integers $k, \ell, m, \hat m$ and $n$ with $k < m$. 
+Suppose $\mathbf{A} \in \mathbb{R}^{n \times m}$ satisfies the spark condition \eqref{SparkCondition} for some $k < m$ and that $E \subseteq {[m] \choose k}$ is $\ell$-regular and satisfies the SIP. Then there exists a constant $C_2 > 0$ for which the following holds for all $\varepsilon < L_2(\mathbf{A}) / C_2$. 
+
+If for some  $\mathbf{B} \in \mathbb{R}^{n \times \hat m}$ and map $\pi: E \mapsto {[\hat m] \choose k}$ we have:
 \begin{align}\label{GapUpperBound}
-d(\text{\rm Span}\{\mathbf{A}_{S}\}, \text{\rm Span}\{\mathbf{B}_{\pi(S)}\}) \leq \varepsilon,\ \ \   \text{for all $S \in E$},
+d(\text{\rm Span}\{\mathbf{A}_{S}\}, \text{\rm Span}\{\mathbf{B}_{\pi(S)}\}) \leq \varepsilon \ \   \text{for all $S \in E$},
 \end{align}
 %
-then there exists a permutation matrix $\mathbf{P}$ and invertible diagonal matrix $\mathbf{D}$ with:
+then $\hat m \geq m$ and, provided $p = \hat m - \ell(\hat m - m)$ is positive:
 \begin{align}\label{MainLemmaBPD}
-\|\mathbf{A}_j - (\mathbf{BPD})_j\|_2 \leq C_2 \varepsilon, \ \ \  \text{for all } j \in [m].
+\|(\mathbf{A}_J - \mathbf{B}_{\hat J}\mathbf{PD})_j\|_2 \leq C_2 \varepsilon, \indent \text{for } j \in [J].
 \end{align}
+for some $J \in {[m] \choose p}$, $\hat J \in {[\hat m] \choose p}$, permutation matrix $\mathbf{P}$ and invertible diagonal matrix $\mathbf{D}$.
 \end{lemma}
+
+%\begin{lemma}\label{MainLemma}
+%Fix integers $n$ and $k < m$, and suppose $\mathbf{A} \in \mathbb{R}^{n \times m}$ satisfies the spark condition \eqref{SparkCondition}. There exists a constant $C_2 > 0$ for which the following holds for all $\varepsilon < L_2(\mathbf{A}) / C_2$. If for some  $\mathbf{B} \in \mathbb{R}^{n \times m}$ and regular $E \subseteq {[m] \choose k}$ with the SIP there exists a map $\pi: E \mapsto {[m] \choose k}$ satisfying:
+%\begin{align}\label{GapUpperBound}
+%d(\text{\rm Span}\{\mathbf{A}_{S}\}, \text{\rm Span}\{\mathbf{B}_{\pi(S)}\}) \leq \varepsilon,\ \ \   \text{for all $S \in E$},
+%\end{align}
+%
+%then there exists a permutation matrix $\mathbf{P}$ and invertible diagonal matrix $\mathbf{D}$ with:
+%\begin{align}\label{MainLemmaBPD}
+%\|\mathbf{A}_j - (\mathbf{BPD})_j\|_2 \leq C_2 \varepsilon, \ \ \  \text{for all } j \in [m].
+%\end{align}
+%\end{lemma}
 
 The constant $C_1$ in Thm.~\ref{DeterministicUniquenessTheorem} is then given by\footnote{We can be sure $C_1 > 0$ since $L_k(\mathbf{A}), L_k(\mathbf{X}_{I(S)}) > 0$ by the spark condition and general linear position of the $\mathbf{x}_i$; hence $\|\mathbf{A}_j\|_2 > 0$ for all $j$ and for all $S \in E$ we have $\|\mathbf{AX}_{I(S)}\mathbf{c}\|_2 \geq L_k(\mathbf{A})\|\mathbf{X}_{I(S)}\mathbf{c}\|_2 \geq L_k(\mathbf{A}) L_k(\mathbf{X}_{I(S)})\|\mathbf{c}\|_2$ for all $k$-sparse $\mathbf{c}$, and therefore $L_k(\mathbf{AX}_{I(S)}) \geq L_k(\mathbf{A}) L_k(\mathbf{X}_{I(S)}) > 0$.}:
 \begin{align}\label{Cdef1}
