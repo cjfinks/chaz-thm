@@ -43,17 +43,11 @@
 % Please give the surname of the lead author for the running footer
 \leadauthor{Garfinkle} 
 
-% Please add here a significance statement to explain the relevance of your work
-%\significancestatement{Authors must submit a 120-word maximum statement about the significance of their research paper written at a level understandable to an undergraduate educated scientist outside their field of speciality. The primary goal of the Significance Statement is to explain the relevance of the work in broad context to a broad readership. The Significance Statement appears in the paper itself and is required for all research papers.}
-
 \significancestatement{Many naturally occurring signals (visual scenery, speech, electrocardiograms, etc.) can be characterized as parsimonious combinations of elementary waveforms drawn from a large dictionary. Absent analytic descriptions of these signal classes, it falls on algorithms from machine learning to extract such structures given many examples from a class. We give conditions guaranteeing when a dictionary of a given size is uniquely and stably determined by data, regardless of the algorithm used to compute it. These results provide theoretical grounding for  the application of dictionary learning to recovering sparse signals from unknown noisy compressive measurements.}
 
-% Please include corresponding author, author contribution and author declaration information
 \authordeclaration{The authors declare no conflict of interest.}
-%\equalauthors{\textsuperscript{1}C.G. proved Theorem 1 and C.H. proved Theorem 2.}
 \correspondingauthor{\textsuperscript{1}To whom correspondence should be addressed. E-mail: cjg@berkeley.edu, chillar@msri.org}
 
-% Keywords are not mandatory, but authors are strongly encouraged to provide them. If provided, please include two to five keywords, separated by the pipe symbol, e.g:
 \keywords{Sparse linear coding, dictionary learning, uniqueness, compressed sensing} 
 
 \begin{abstract}
@@ -88,67 +82,37 @@ conditions have recently been proposed (see \cite[Sec.~I-E]{Sun16} for a summary
 
 Here, we prove very generally that uniqueness in sparse linear coding is an expected property of the model.  In other words, whenever enough sparsely represented data generated from a dictionary (satisfying a spark condition) are observed, the original codes and dictionary are uniquely determined up to an error that is commensurate with the measurement noise.  Applications of this result include:  1) a sufficient diversity of sparse codes sent through a random linear compressive channel are unique, 2) the sparse linear coding problem is well-posed in the sense of Hadamard \cite{Hadamard1902}, and 3) an explanation for universal representation of natural signals in neuroscience. 
 
-% It has remained unknown, however, when the dictionary learning problem is well-posed (as per Hadamard \cite{Hadamard1902}) in general -- that is, independent of all methodological idiosyncracies.
-%[**TODO** make sure the claim here is right...or would it be punchier to talk about the fact that everyone always gets Gabors on natural images?]
-%- algos with proven recovery of generating dictionary
-%- analyses of when target dictionary is local optimizer of natural recovery criteria
-%- efficient algos that globally solve DR; detailed models differ but all assume each col has bounded sparsity and nonzero coefs have sub-Gaussian magnitudes
-
-
-
 More formally, let $\mathbf{A} \in \mathbb R^{n \times m}$ be a matrix with columns $\mathbf{A}_j$ ($j = 1,\ldots,m$) and let dataset $Z$ consist of measurements:
 \begin{align}\label{LinearModel}
 \mathbf{z}_i = \mathbf{A}\mathbf{x}_i + \mathbf{n}_i,\ \ \  \text{$i=1,\ldots,N$},
 \end{align}
 for $k$-\emph{sparse} $\mathbf{x}_i \in \mathbb{R}^m$ having at most $k$ nonzero entries and \emph{noise} $\mathbf{n}_i \in \mathbb{R}^n$, with bounded norm $\| \mathbf{n}_i \|_2 \leq  \eta$ representing our combined worst-case uncertainty in  measuring $\mathbf{A}\mathbf{x}_i$.
 The precise mathematical problem addressed here is the following.
-% We address the uniqueness properties for the following linear coding question in signal processing.
 
 \begin{problem}[Sparse linear coding]\label{InverseProblem}
-Find a matrix $\mathbf{B}$ and $k$-sparse $\mathbf{\hat x}_1, \ldots, \mathbf{\hat x}_N \in \mathbb{R}^m$ such that $\|\mathbf{z}_i - \mathbf{B}\mathbf{\hat x}_i\|_2 \leq \eta$ for all $i$.
+Find a matrix $\mathbf{B}$ and $k$-sparse $\mathbf{\bar x}_1, \ldots, \mathbf{\bar x}_N \in \mathbb{R}^m$ such that $\|\mathbf{z}_i - \mathbf{B}\mathbf{\bar x}_i\|_2 \leq \eta$ for all $i$.
 \end{problem}
 
-Note that any particular solution $(\mathbf{B}, \mathbf{\hat x}_1 \ldots, \mathbf{\hat x}_N)$ to this problem gives rise to an orbit of other solutions $(\mathbf{BPD}, \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\hat x}_1, \ldots, \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\hat x}_N)$, where $\mathbf{P}$ is any permutation matrix and $\mathbf{D}$ any invertible diagonal.  
+Note that any particular solution $(\mathbf{B}, \mathbf{\bar x}_1 \ldots, \mathbf{\bar x}_N)$ to this problem gives rise to an orbit of other solutions $(\mathbf{BPD}, \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\bar x}_1, \ldots, \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\bar x}_N)$, where $\mathbf{P}$ is any permutation matrix and $\mathbf{D}$ any invertible diagonal.  
 We therefore consider whether solutions to Prob.~\ref{InverseProblem} are unique only up to this ambiguity.  More specifically, 
 we seek conditions for when sparsely coded datasets have a stable unique representation.
 
-
-% More specifically,  we seek sufficient conditions on when sparsely coded datasets have a stable unique representation.
-
-
-% We therefore consider only whether solutions to Problem~\ref{InverseProblem} are unique up to this equivalence \cite{Li15}
-
-
-% Note that by formulating the problem in this way we have introduced the following ambiguity. Any particular solution represents . Alternatively, one may seek a unique solution (in the usual sense) in the quotient space induced by the action of the transformation group of matrices $PD$.
-
-
-%  noiseless case $\eta = 0$ 
- 
- 
-%  We introduce the following terminology to handle $\eta > 0$. 
 \begin{definition}\label{maindef}
 Fix $Y = \{ \mathbf{y}_1, \ldots, \mathbf{y}_N\} \subset \mathbb{R}^n$. We say $Y$ has a \textbf{$k$-sparse linear representation in $m$ dimensions} if there exists a matrix $\mathbf{A}$ and $k$-sparse $\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$ such that $\mathbf{y}_i = \mathbf{A}\mathbf{x}_i$ for all $i$. %Equivalently, $\mathbf{Y} = \mathbf{A}\mathbf{X}$ for $\mathbf{Y}$ and $\mathbf{X}$ having the $\mathbf{y}_i$ and $\mathbf{x}_i$ as their columns, respectively. 
-This representation is \textbf{stable} if for every $\delta_1, \delta_2 \geq 0$, there exists $\varepsilon(\delta_1, \delta_2) \geq 0$ (with $\varepsilon > 0$ when  $\delta_1, \delta_2 > 0$) such that if $\mathbf{B}$ and $k$-sparse $\mathbf{\hat x}_1, \ldots, \mathbf{\hat x}_N \in \mathbb{R}^m$ satisfy:
+This representation is \textbf{stable} if for every $\delta_1, \delta_2 \geq 0$, there exists $\varepsilon(\delta_1, \delta_2) \geq 0$ (with $\varepsilon > 0$ when  $\delta_1, \delta_2 > 0$) such that if $\mathbf{B}$ and $k$-sparse $\mathbf{\bar x}_1, \ldots, \mathbf{\bar x}_N \in \mathbb{R}^m$ satisfy:
 \begin{align*}
-\|\mathbf{A}\mathbf{x}_i - \mathbf{B}\mathbf{\hat x}_i\|_2 \leq \varepsilon,\ \ \   \text{for all $i$},
+\|\mathbf{A}\mathbf{x}_i - \mathbf{B}\mathbf{\bar x}_i\|_2 \leq \varepsilon,\ \ \   \text{for all $i$},
 \end{align*}
 %
 then there is some permutation matrix $\mathbf{P}$ and invertible diagonal matrix $\mathbf{D}$ such that for all $i, j$:
 \begin{align}\label{def1}
-\|\mathbf{A}_j - (\mathbf{BPD})_j\|_2 \leq \delta_1 \ \ \text{and} \ \ \|\mathbf{x}_i - \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\hat x}_i\|_1 \leq \delta_2.
+\|\mathbf{A}_j - (\mathbf{BPD})_j\|_2 \leq \delta_1 \ \ \text{and} \ \ \|\mathbf{x}_i - \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\bar x}_i\|_1 \leq \delta_2.
 \end{align}
 \end{definition}
-% Kato mentions a distance between n-tuples that minimizes the maximum difference over all possible orderings of one of the n-tuples.
-% Make just 'sparse representation in m-dimensions? (i.e. with k unspecified?)
 
 To see how Def. \ref{maindef} directly relates to Prob. \ref{InverseProblem}, suppose that $Y$
 % \mbox{$Y = \{\mathbf{A} \mathbf{x}_1, \ldots, \mathbf{A}\mathbf{x}_N\}$} 
-has a stable $k$-sparse linear representation and fix $\delta_1, \delta_2$ to be the desired recovery accuracy in \eqref{def1}. Consider now any dataset $Z$ generated as in \eqref{LinearModel} with $\eta \leq \frac{1}{2} \varepsilon(\delta_1, \delta_2)$. Then from the triangle inequality, it follows that any matrix $\mathbf{B}$ and $k$-sparse $\mathbf{\hat x}_1, \ldots, \mathbf{\hat x}_N$ solving Prob.~\ref{InverseProblem} are necessarily close to the original dictionary $\mathbf{A}$ and codes $\mathbf{x}_i$. 
-
-%Our results, outlined in Sec.~\ref{Results}, include an explicit form for $\varepsilon(\delta_1, \delta_2)$ in Thm.~\ref{DeterministicUniquenessTheorem}. 
-
-
-% We ask here: \emph{When does $Y$ have a stable $k$-sparse representation?} 
+has a stable $k$-sparse linear representation and fix $\delta_1, \delta_2$ to be the desired recovery accuracy in \eqref{def1}. Consider now any dataset $Z$ generated as in \eqref{LinearModel} with $\eta \leq \frac{1}{2} \varepsilon(\delta_1, \delta_2)$. Then from the triangle inequality, it follows that any matrix $\mathbf{B}$ and $k$-sparse $\mathbf{\bar x}_1, \ldots, \mathbf{\bar x}_N$ solving Prob.~\ref{InverseProblem} are necessarily close to the original dictionary $\mathbf{A}$ and sparse codes $\mathbf{x}_i$. 
 
 Previous theoretical work on Prob.~\ref{InverseProblem} for the noiseless case $\eta =0$ (e.g., \cite{li2004analysis, Georgiev05, Aharon06, Hillar15}) has shown that a solution (when it exists) is indeed unique provided the $\mathbf{x}_i$ are sufficiently diverse and the generating matrix $\mathbf{A}$ satisfies the \textit{spark condition} from compressed sensing (CS):
 \begin{align}\label{SparkCondition}
@@ -158,20 +122,20 @@ Previous theoretical work on Prob.~\ref{InverseProblem} for the noiseless case $
 which would be, in any case, necessary for uniqueness.
 
 Our main technical finding is that a sufficient quantity of measurements generated from any dictionary satisfying the spark condition 
-has a stable sparse representation.  More specifically, such dictionaries are uniquely identifiable from as few as \mbox{$N = m(k-1){m \choose k} + m$} sparse linear combinations of their columns up to an error that is linear in the measurement noise (Thm.~\ref{DeterministicUniquenessTheorem}). In fact, provided $(n, m, k)$ satisfy CS inequality \eqref{CScondition}, in almost all cases the dictionary learning problem is well-posed given enough data (Cor.~\ref{ProbabilisticCor}). Importantly, these guarantees hold without assuming the recovered matrix satisfies the spark condition. Our results  also apply when only an upper bound on the number of dictionary elements is known. The explicit, algorithm-independent criteria we provide should be a useful tool in the theory of sparse dictionary learning.  % (Thm.~\ref{DeterministicUniquenessTheorem2})
+has a stable sparse representation.  More specifically, such dictionaries are uniquely identifiable from as few as \mbox{$N = m(k-1){m \choose k} + m$} sparse linear combinations of their columns up to an error that is linear in the measurement noise (Thm.~\ref{DeterministicUniquenessTheorem}). In fact, provided $(n, m, k)$ satisfy CS inequality \eqref{CScondition}, in almost all cases the dictionary learning problem is well-posed given enough data (Cor.~\ref{ProbabilisticCor}). Importantly, these guarantees hold without assuming the recovered matrix satisfies the spark condition. Our results  also apply when only an upper bound on the number of dictionary elements is known. The explicit, algorithm-independent criteria we provide should be a useful tool in the theory of sparse dictionary learning.  
 
 In the next section, we give precise statements of our main results, which include an explicit form for $\varepsilon(\delta_1, \delta_2)$. We then prove our main theorem (Thm.~\ref{DeterministicUniquenessTheorem}) in Sec.~\ref{DUT} after stating some additional definitions and lemmas required for the proof, including our main tool from combinatorial matrix analysis (Lem.~\ref{MainLemma}). All other proofs are relegated to the Supplemental. 
-%Our approach is a refinement of the one found in \cite{Hillar15} to handle noise and to reduce the sufficient number of samples.
-%for all $k < m$ from $N=k{m \choose k}^2$ to $N = m + m(k-1){m \choose k}$. 
 Finally, we present several applications in Discussion Sec.~\ref{Discussion}.
 
 \section{Results}
 
-In preparation for stating our main results, we first identify the combinatorial criteria on support sets of generating codes allowing for stable sparse 
+Before stating main results, we first identify the combinatorial criteria on support sets of generating codes allowing for stable sparse 
 representations.  Let $\{1, \ldots, m\}$ be denoted $[m]$, its power set $2^{[m]}$, and ${[m] \choose k}$ the set of subsets of $[m]$ of size $k$. 
 % Let $\text{\rm Span}\{\mathbf{v}_1, \ldots, \mathbf{v}_\ell\}$ be the $\mathbb{R}$-linear span of vectors $\mathbf{v}_1, \ldots, \mathbf{v}_\ell$. 
-A vector $\mathbf{x}$ is said to be \emph{supported} on $S \subseteq [m]$ %, written supp$(\mathbf{x}) = S$, 
-when $\mathbf{x} \in \text{\rm Span} \{\mathbf{e}_j\}_{j\in S}$, where $\mathbf{e}_j$ are the standard basis in $\mathbb R^m$.  Let $\mathbf{M}_j$ be the $j$th column of a matrix $\mathbf{M}$ and similarly let $\mathbf{M}_S$ be the submatrix formed by the columns of $\mathbf{M}$ indexed by $S$ (we set $\text{\rm Span}\{\mathbf{M}_\emptyset\} := \{\textbf{0}\}$).  
+A vector $\mathbf{x}$ is said to be \emph{supported} on $S \subseteq [m]$ %,
+when $\mathbf{x} \in \text{\rm Span} \{\mathbf{e}_j\}_{j\in S}$, where $\mathbf{e}_j$ are the standard basis in $\mathbb R^m$.  We also write
+ supp$(\mathbf{x}) = S$ when $S$ indexes the nonzero components of $\mathbf{x}$.
+Let $\mathbf{M}_j$ be the $j$th column of a matrix $\mathbf{M}$ and similarly let $\mathbf{M}_S$ be the submatrix formed by the columns of $\mathbf{M}$ indexed by $S$ (we set $\text{\rm Span}\{\mathbf{M}_\emptyset\} := \{\textbf{0}\}$).  
 
 We say a hypergraph $E \subseteq 2^{[m]}$ on vertices $[m]$ is \textit{$k$-uniform} when every $S \in E$ has cardinality $k$. We also say $E$ is \emph{regular} when every element of $[m]$ is contained in exactly $\ell$ elements of $E$ for some $\ell > 0$ (for given $\ell$, we say $E$ is \textit{$\ell$-regular}).
 
@@ -186,36 +150,36 @@ It is easy to verify that for every $k < m$, there is a regular $k$-uniform hype
 
 %The second ingredient necessary for the statement of Thm.~\ref{DeterministicUniquenessTheorem} 
 Next, we describe a quantitative version of the spark condition.  % We first explain how the spark condition \eqref{SparkCondition} relates to t
-The \emph{lower bound} \cite{Grcar10} of a matrix $\mathbf{A} \in \mathbb R^{n \times m}$ is the largest number $\alpha$ such that \mbox{$\|\mathbf{A}\mathbf{x}\|_2 \geq \alpha\|\mathbf{x}\|_2$} for all $\mathbf{x} \in \mathbb{R}^m$. By compactness of the unit sphere, every injective linear map has a nonzero lower bound; hence, if $\mathbf{A}$ satisfies \eqref{SparkCondition}, then each submatrix formed from $2k$ of its columns or less has a nonzero lower bound. We therefore define the following domain-restricted lower bound:
+The \emph{lower bound} \cite{Grcar10} of a matrix $\mathbf{A} \in \mathbb R^{n \times m}$ is the largest number $\alpha$ such that \mbox{$\|\mathbf{A}\mathbf{x}\|_2 \geq \alpha\|\mathbf{x}\|_2$} for all $\mathbf{x} \in \mathbb{R}^m$. By compactness of the unit sphere, every injective linear map has a nonzero lower bound; hence, if $\mathbf{A}$ satisfies \eqref{SparkCondition}, then each submatrix formed from $2k$ of its columns or less has a nonzero lower bound. This motivates the following definition: % We therefore define the following domain-restricted lower bound:
 \begin{align*}
 L_k(\mathbf{A}) := \frac{1}{\sqrt{k}}\max \{ \alpha : \|\mathbf{A}\mathbf{x}\|_2 \geq \alpha\|\mathbf{x}\|_2 \text{ for all $k$-sparse } \mathbf{x}\}.
 \end{align*} 
 
 Clearly, $\sqrt{k} L_k(\mathbf{A}) \geq \sqrt{k'}L_{k'}(\mathbf{A})$ whenever $k < k'$, and for any $\mathbf{A}$ satisfying \eqref{SparkCondition}, we have $L_{k'}(\mathbf{A}) > 0$ for  $k' \leq 2k$. The quantity $1 - \sqrt{k} L_k(\mathbf{A})$ is also known in the CS literature as the (asymmetric) lower restricted isometry constant \cite{Blanchard2011, Foucart2009}.
 
-We also say that a set of $k$-sparse vectors is in \emph{general linear position} when any $k$ of them are linearly independent.
+We say that a set of $k$-sparse vectors is in \emph{general linear position} when any $k$ of them are linearly independent.
 The following is the precise statement of our main result. 
 
 \begin{theorem}\label{DeterministicUniquenessTheorem}
 %Fix integers $n, \ell$, and $k < m$. 
-Suppose $\mathbf{A}~\in~\mathbb{R}^{n \times m}$ satisfies the spark condition \eqref{SparkCondition} for some $k < m$ and that $k$-sparse \mbox{$\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$} contain at least \mbox{$(k-1){m \choose k}+1$} vectors supported in general linear position on each set in some $\ell$-regular $E \subseteq {[m] \choose k}$ with the SIP.  Then there exists a constant $C_1 > 0$ for which the following holds for all $\varepsilon < L_2(\mathbf{A}) / C_1$.
+Let $\mathbf{A}~\in~\mathbb{R}^{n \times m}$ satisfy \eqref{SparkCondition} for $k < m$, and suppose for some $\bar m$ more than \mbox{$(k-1){\bar m \choose k}$} $k$-sparse \mbox{$\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$} are supported in general linear position on each set in an $\ell$-regular $E \subseteq {[m] \choose k}$ with the SIP.  There is a constant $C_1 > 0$ for which the following hold for $\varepsilon < L_2(\mathbf{A}) / C_1$.
 
-Every matrix $\mathbf{B} \in \mathbb{R}^{n \times \hat m}$ and $k$-sparse $\mathbf{\hat x}_1, \ldots, \mathbf{\hat x}_N \in \mathbb{R}^{\hat m}$ with  \mbox{$\|\mathbf{A}\mathbf{x}_i - \mathbf{B}\mathbf{\hat x}_i\|_2 \leq \varepsilon$} for all $i$ must have $\hat m \geq m$ and, provided $p = \hat m - \ell(\hat m - m)$ is positive, necessarily satisfy:
+1.) Every matrix $\mathbf{B} \in \mathbb{R}^{n \times \bar m}$ and $k$-sparse $\mathbf{\bar x}_1, \ldots, \mathbf{\bar x}_N \in \mathbb{R}^{\bar m}$ with  \mbox{$\|\mathbf{A}\mathbf{x}_i - \mathbf{B}\mathbf{\bar x}_i\|_2 \leq \varepsilon$} for all $i$ must have $\bar m \geq m$ and, provided $p = \bar m - \ell(\bar m - m)$ is positive, necessarily satisfy:
 \begin{align}\label{Cstable}
-\|(\mathbf{A}_J- \mathbf{B}_{\hat J} \mathbf{PD} )_j\|_2 \leq C_1 \varepsilon, \ \  \text{for all $j \in J$},
+\|(\mathbf{A}_J- \mathbf{B}_{\bar J} \mathbf{PD} )_j\|_2 \leq C_1 \varepsilon, \ \  \text{for $j \in J$},
 \end{align}
-for some $J \in {[m] \choose p}$, $\hat J \in {[\hat m] \choose p}$, permutation matrix $\mathbf{P}$, and invertible diagonal matrix $\mathbf{D}$.
+for some $J \in {[m] \choose p}$, $\bar J \in {[\bar m] \choose p}$, permutation matrix $\mathbf{P}$, and invertible diagonal matrix $\mathbf{D}$.
 
-[ ** TODO ** write $\hat m$ version ] Furthermore, if $\varepsilon < L_{2k}(\mathbf{A}) / C_1$, then $\mathbf{B}$ also satisfies \eqref{SparkCondition} with $L_{2k}(\mathbf{B}\mathbf{PD}) \geq L_{2k}(\mathbf{A}) - C_1 \varepsilon$, and:
+2.) Restricting dictionaries and sparse codes to respective $J, \bar{J}$, we furthermore have that if $\varepsilon < L_{2k}(\mathbf{A}) / C_1$, then $\mathbf{B}$ also satisfies \eqref{SparkCondition} with $L_{2k}(\mathbf{B}\mathbf{PD}) \geq L_{2k}(\mathbf{A}) - C_1 \varepsilon$, and:
 \begin{align}\label{b-PDa}
-\|\mathbf{x}_i - \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\hat x}_i\|_1 &\leq  \left( \frac{ 1+C_1 \|\mathbf{x}_i\|_1 }{ L_{2k}(\mathbf{A}) -  C_1\varepsilon } \right) \varepsilon,\ \ \   \text{for $i \in [N]$}.
+\|\mathbf{x}_i - \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\bar x}_i\|_1 &\leq  \left( \frac{ 1+C_1 \|\mathbf{x}_i\|_1 }{ L_{2k}(\mathbf{A}) -  C_1\varepsilon } \right) \varepsilon,\ \ \   \text{for $i \in [N]$}.
 \end{align}
 \end{theorem}
 
 %\begin{theorem}\label{DeterministicUniquenessTheorem}
 %Fix integers $n, \ell$, and $k < m$. Suppose $\mathbf{A}~\in~\mathbb{R}^{n \times m}$ satisfies the spark condition \eqref{SparkCondition} and that $k$-sparse \mbox{$\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$} contain at least \mbox{$(k-1){m \choose k}+1$} vectors supported in general linear position on each set in some $\ell$-regular $E \subseteq {[m] \choose k}$ with the SIP.  There exists a constant $C_1 > 0$ for which the following holds for all $\varepsilon < L_2(\mathbf{A}) / C_1$.
 
-%Every matrix $\mathbf{B} \in \mathbb{R}^{n \times m}$ and $k$-sparse $\mathbf{\hat x}_1, \ldots, \mathbf{\hat x}_N \in \mathbb{R}^{m}$ with  \mbox{$\|\mathbf{A}\mathbf{x}_i - \mathbf{B}\mathbf{\hat x}_i\|_2 \leq \varepsilon$} for all $i$ necessarily satisfies:
+%Every matrix $\mathbf{B} \in \mathbb{R}^{n \times m}$ and $k$-sparse $\mathbf{\bar x}_1, \ldots, \mathbf{\bar x}_N \in \mathbb{R}^{m}$ with  \mbox{$\|\mathbf{A}\mathbf{x}_i - \mathbf{B}\mathbf{\bar x}_i\|_2 \leq \varepsilon$} for all $i$ necessarily satisfies:
 %\begin{align}\label{Cstable}
 %\|\mathbf{A}_j - (\mathbf{B}\mathbf{PD})_j\|_2 \leq C_1 \varepsilon,\ \ \   \text{for all $j \in [m]$},
 %\end{align}
@@ -223,32 +187,32 @@ for some $J \in {[m] \choose p}$, $\hat J \in {[\hat m] \choose p}$, permutation
 
 %Furthermore, if $\varepsilon < L_{2k}(\mathbf{A}) / C_1$, then $\mathbf{B}$ also satisfies \eqref{SparkCondition} with $L_{2k}(\mathbf{B}\mathbf{PD}) \geq L_{2k}(\mathbf{A}) - C_1 \varepsilon$, and:
 %\begin{align}\label{b-PDa}
-%\|\mathbf{x}_i - \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\hat x}_i\|_1 &\leq  \left( \frac{ 1+C_1 \|\mathbf{x}_i\|_1 }{ L_{2k}(\mathbf{A}) -  C_1\varepsilon } \right) \varepsilon,\ \ \   \text{for all $i \in [N]$}.
+%\|\mathbf{x}_i - \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\bar x}_i\|_1 &\leq  \left( \frac{ 1+C_1 \|\mathbf{x}_i\|_1 }{ L_{2k}(\mathbf{A}) -  C_1\varepsilon } \right) \varepsilon,\ \ \   \text{for all $i \in [N]$}.
 %\end{align}
 %\end{theorem}
 
 %\begin{theorem}\label{DeterministicUniquenessTheorem}
-%Fix integers $n, \ell$, and $k < m \leq \hat m$. Suppose $\mathbf{A}~\in~\mathbb{R}^{n \times m}$ satisfies the spark condition \eqref{SparkCondition} and that $k$-sparse \mbox{$\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$} contain at least \mbox{$(k-1){\hat m \choose k}+1$} vectors supported in general linear position on each set in some $\ell$-regular $E \subseteq {[m] \choose k}$ satisfying the SIP.  There exists a constant $C_1 > 0$ for which the following holds for all $\varepsilon < L_2(\mathbf{A}) / C_1$.
+%Fix integers $n, \ell$, and $k < m \leq \bar m$. Suppose $\mathbf{A}~\in~\mathbb{R}^{n \times m}$ satisfies the spark condition \eqref{SparkCondition} and that $k$-sparse \mbox{$\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$} contain at least \mbox{$(k-1){\bar m \choose k}+1$} vectors supported in general linear position on each set in some $\ell$-regular $E \subseteq {[m] \choose k}$ satisfying the SIP.  There exists a constant $C_1 > 0$ for which the following holds for all $\varepsilon < L_2(\mathbf{A}) / C_1$.
 %
-%Every matrix $\mathbf{B} \in \mathbb{R}^{n \times \hat m}$ and $k$-sparse $\mathbf{\hat x}_1, \ldots, \mathbf{\hat x}_N \in \mathbb{R}^{\hat m}$ with  \mbox{$\|\mathbf{A}\mathbf{x}_i - \mathbf{B}\mathbf{\hat x}_i\|_2 \leq \varepsilon$} for all $i$ necessarily satisfies:
+%Every matrix $\mathbf{B} \in \mathbb{R}^{n \times \bar m}$ and $k$-sparse $\mathbf{\bar x}_1, \ldots, \mathbf{\bar x}_N \in \mathbb{R}^{\bar m}$ with  \mbox{$\|\mathbf{A}\mathbf{x}_i - \mathbf{B}\mathbf{\bar x}_i\|_2 \leq \varepsilon$} for all $i$ necessarily satisfies:
 %\begin{align}\label{Cstable}
 %\|\mathbf{A}_{\phi(j)} - (\mathbf{B}_{J}\mathbf{PD})_j\|_2 \leq C_1 \varepsilon,\ \ \   \text{for $j = 1, \ldots, |J|$},
 %\end{align}
 %%
-%for some $J \subseteq [\hat m]$ of size \mbox{$\lfloor \hat m - \ell(\hat m - m) \rfloor$}, injective map $\phi$, permutation matrix $\mathbf{P}$, and invertible diagonal matrix $\mathbf{D}$.
-%%\footnote{We note that the condition $\varepsilon < L_2(\mathbf{A})$ above is necessary. When \mbox{$\mathbf{A}$ = $I$} and $\mathbf{x}_i = \mathbf{e}_i$, it turns out that $C_1 = 1$ and there is a $\mathbf{B}$ and $1$-sparse $\mathbf{\hat x}_i$ with $\|\mathbf{A}\mathbf{x}_i - \mathbf{B}\mathbf{\hat x}_i\|_2 \leq \varepsilon$ violating \eqref{Cstable}.}
+%for some $J \subseteq [\bar m]$ of size \mbox{$\lfloor \bar m - \ell(\bar m - m) \rfloor$}, injective map $\phi$, permutation matrix $\mathbf{P}$, and invertible diagonal matrix $\mathbf{D}$.
+%%\footnote{We note that the condition $\varepsilon < L_2(\mathbf{A})$ above is necessary. When \mbox{$\mathbf{A}$ = $I$} and $\mathbf{x}_i = \mathbf{e}_i$, it turns out that $C_1 = 1$ and there is a $\mathbf{B}$ and $1$-sparse $\mathbf{\bar x}_i$ with $\|\mathbf{A}\mathbf{x}_i - \mathbf{B}\mathbf{\bar x}_i\|_2 \leq \varepsilon$ violating \eqref{Cstable}.}
 %
 %Furthermore, if $\varepsilon < L_{2k}(\mathbf{A}) / C_1$, then $\mathbf{B}_J$ also satisfies \eqref{SparkCondition} with $L_{2k}(\mathbf{B}_J\mathbf{PD}) \geq L_{2k}(\mathbf{A}) - C_1 \varepsilon$, and:
 %\begin{align}\label{b-PDa}
-%\|\mathbf{x}_i - \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\hat x}_i\|_1 &\leq  \left( \frac{ 1+C_1 \|\mathbf{x}_i\|_1 }{ L_{2k}(\mathbf{A}) -  C_1\varepsilon } \right) \varepsilon,\ \ \   \text{for all $i \in [N]$}.
+%\|\mathbf{x}_i - \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\bar x}_i\|_1 &\leq  \left( \frac{ 1+C_1 \|\mathbf{x}_i\|_1 }{ L_{2k}(\mathbf{A}) -  C_1\varepsilon } \right) \varepsilon,\ \ \   \text{for all $i \in [N]$}.
 %\end{align}
 %\end{theorem}
 
-%In other words, the smaller the difference $\hat m - m$, the more columns and coefficients of the original $n \times m$ dictionary $\mathbf{A}$ and $m$-dimensional codes $\mathbf{x}_i$ contained (up to noise) in the appropriately scaled $n \times \hat m$ dictionary $\mathbf{B}$ and $\hat m$-dimensional codes $\mathbf{\hat x}_i$. In particular, when $\hat m = m$ all columns of $\mathbf{A}$ and coefficients of each $\mathbf{x}_i$ recoverable, as per Def.~\ref{maindef}. 
+%In other words, the smaller the difference $\bar m - m$, the more columns and coefficients of the original $n \times m$ dictionary $\mathbf{A}$ and $m$-dimensional codes $\mathbf{x}_i$ contained (up to noise) in the appropriately scaled $n \times \bar m$ dictionary $\mathbf{B}$ and $\bar m$-dimensional codes $\mathbf{\bar x}_i$. In particular, when $\bar m = m$ all columns of $\mathbf{A}$ and coefficients of each $\mathbf{x}_i$ recoverable, as per Def.~\ref{maindef}. 
 
 An important consequence of Thm.~\ref{DeterministicUniquenessTheorem} is that \eqref{def1} is guaranteed provided $\varepsilon$ in Def.~\ref{maindef} does not exceed: % [*** TODO: verify this is still correct ***]
 \begin{align}\label{epsdel}
-\varepsilon(\delta_1, \delta_2) := \min \left\{ \frac{\delta_1}{ C_1 }, \frac{ \delta_2 (L_{2k}(\mathbf{A}) -  C_1\varepsilon)}{ 1 + C_1 \left( \max_{i \in [N]} \|\mathbf{x}_i\|_1  + \delta_2 \right) } \right\}.
+\varepsilon(\delta_1, \delta_2) := \min \left\{ \frac{\delta_1}{ C_1 }, \frac{ \delta_2 L_{2k}(\mathbf{A})}{ 1 + C_1 \left( \max_{i \in [N]} \|\mathbf{x}_i\|_1  + \delta_2 \right) } \right\}.
 \end{align}
 For expositional clarity, we delay defining the (explicit) constant $C_1 = C_1(\mathbf{A}, \{\mathbf{x}_i\}_{i=1}^N, E)$ until Section \ref{DUT} (\eqref{Cdef1}).  % , since it requires additional definitions not critical to the statement of our results.
 
@@ -259,87 +223,59 @@ For expositional clarity, we delay defining the (explicit) constant $C_1 = C_1(\
 Given $n, m$, $k < m$, and a regular hypergraph $E \subseteq {[m] \choose k}$ with the SIP, there are $N =  |E| \left[ (k-1){m \choose k} + 1  \right]$ vectors \mbox{$\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$} such that every matrix $\mathbf{A} \in \mathbb{R}^{n \times m}$ satisfying \eqref{SparkCondition} generates a dataset $Y = \{\mathbf{A}\mathbf{x}_1, \ldots, \mathbf{A}\mathbf{x}_N\}$ with a stable $k$-sparse representation in $m$ dimensions.
 \end{corollary}
 \begin{proof}
-Given Thm.\ref{DeterministicUniquenessTheorem}, one needs only to produce sparse codes in general linear position.  However, this is straightforward with a ``Vandermonde'' matrix construction (e.g., see \cite{Hillar15}).
+The implication of Thm.\ref{DeterministicUniquenessTheorem} in the case $\bar{m} = m$ is precisely that such a $Y$ has a stable sparse representation (Def.~\ref{maindef}).  It remains, therefore, only to produce sparse codes in general linear position.  However, this is straightforward with a ``Vandermonde'' matrix construction (e.g., see \cite{Hillar15}).
 \end{proof}
 
 %\begin{proposition}
 %If $E$ is an $\ell$-regular hypergraph of rank $k$ satisfying the singleton intersection property then $|E| \geq \ell m/k$. 
 %\end{proposition}
 %Note that every $\ell$-regular hypergraph $E \subseteq {[m] \choose k}$ satisfies: \[|E|k = \sum_{S \in E}|S| = \sum_{i \in [m]} \deg(i) = \ell m.\] 
-As mentioned above, it is easy to construct a regular hypergraph $E \subseteq {[m] \choose k}$ with the SIP having size $|E| = m$, implying the lower bound for sample size $N$ from the introduction. In certain cases, the SIP can be achieved with $|E| < m$; for example, when $k = \sqrt{m}$ one can take $E$ to be the rows and columns formed by arranging $[m]$ in a square grid.  In light of Cor.~\ref{DeterministicUniquenessCorollary}, it would be interesting to determine other such $E$. %[ ** TODO ** can we show for every $k, m$ that there is an $E$ satisfying the SIP with $|E| = \ell m/k$ for every $\ell$ such that $\ell m/k$ is an integer? Then lower bound on $N$ comes from the smallest such $\ell$.]
+As mentioned above, it is easy to construct a regular hypergraph $E \subseteq {[m] \choose k}$ with the SIP having cardinality $|E| = m$, implying the lower bound for sample size $N$ from the introduction. In certain cases, the SIP can be achieved with $|E| < m$; for example, when $k = \sqrt{m}$ one can take $E$ to be the rows and columns formed by arranging $[m]$ in a square grid.  
+%In light of Cor.~\ref{DeterministicUniquenessCorollary}, it would be interesting to determine other such $E$. %[ ** TODO ** can we show for every $k, m$ that there is an $E$ satisfying the SIP with $|E| = \ell m/k$ for every $\ell$ such that $\ell m/k$ is an integer? Then lower bound on $N$ comes from the smallest such $\ell$.]
 
 There are other less direct consequences of Thm.~\ref{DeterministicUniquenessTheorem} to stability in sparse linear coding.  The following implication relates the result to more common optimization formulations.
 
 
-\begin{corollary}
-Suppose $\mathbf{A}~\in~\mathbb{R}^{n \times m}$ satisfies the spark condition \eqref{SparkCondition} for some $k < m$ and that $k$-sparse $\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$ contain at least $\left[ (k-1){m \choose k} + 1 \right] + |E|k(k-1){m \choose k-1}$ vectors supported in general linear position on each set in some $\ell$-regular $E \subseteq {[m] \choose k}$ with the SIP.  Then there exists a constant $C_1 > 0$ for which the following holds for all $\varepsilon < L_2(\mathbf{A}) / C_1$.
-
-Every matrix $\mathbf{B} \in \mathbb{R}^{n \times \hat m}$ and set of vectors $\mathbf{\hat x}_1, \ldots, \mathbf{\hat x}_N \in \mathbb{R}^{\hat m}$ that solve:
+\begin{corollary}\label{SLCopt}
+Consider the assumptions as in Thm.\ref{DeterministicUniquenessTheorem} with $1 + (k-1){\bar m \choose k} + |E|k(k-1){\bar m \choose k-1}$ vectors supported on each $S \in E$.
+%Suppose $\mathbf{A}~\in~\mathbb{R}^{n \times m}$ satisfies the spark condition \eqref{SparkCondition} for some $k < m$ and that $k$-sparse $\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$ contain more than $(k-1){m \choose k} + |E|k(k-1){m \choose k-1}$ vectors supported in general linear position on each set in some $\ell$-regular $E \subseteq {[m] \choose k}$ with the SIP.  Then there exists a constant $C_1 > 0$ for which the following holds for all $\varepsilon < L_2(\mathbf{A}) / C_1$.
+All matrices $\mathbf{B} \in \mathbb{R}^{n \times \bar m}$ and $\mathbf{\bar x}_1, \ldots, \mathbf{\bar x}_N \in \mathbb{R}^{\bar m}$ solving:
 \begin{align}\label{minsum}
-\min \sum_{i = 1}^N \|\mathbf{\hat x}_i\|_0 \ \ 
-\text{subject to} \ \ \|\mathbf{A}\mathbf{x}_i - \mathbf{B}\mathbf{\hat x}_i\|_2 \leq \varepsilon, \ \ \text{for all $i$},
+\min \sum_{i = 1}^N \|\mathbf{\bar x}_i\|_0 \ \ 
+\text{subject to} \ \ \|\mathbf{A}\mathbf{x}_i - \mathbf{B}\mathbf{\bar x}_i\|_2 \leq \varepsilon, \ \text{for all $i$},
 \end{align}
 %
-must have $\hat m \geq m$ and, provided $p = \hat m - \ell(\hat m - m)$ is positive, necessarily satisfy:
-\begin{align}\label{Cstable}
-\|(\mathbf{A}_J- \mathbf{B}_{\hat J} \mathbf{PD} )_j\|_2 \leq C_1 \varepsilon \ \  \text{for all $j \in J$},
-\end{align}
-for some $J \in {[m] \choose p}$, $\hat J \in {[\hat m] \choose p}$, permutation matrix $\mathbf{P}$, and invertible diagonal matrix $\mathbf{D}$.
+necessarily satisfy implications 1.) and 2.) from Thm.~\ref{DeterministicUniquenessTheorem}.
+%must have $\bar m \geq m$ and, provided $p = \bar m - \ell(\bar m - m) > 0$, necessarily satisfy \eqref{Cstable}
+%%\begin{align}\label{Cstable}
+%%\|(\mathbf{A}_J- \mathbf{B}_{\bar J} \mathbf{PD} )_j\|_2 \leq C_1 \varepsilon, \ \  \text{for  $j \in J$},
+%%\end{align}
+%for some $J \in {[m] \choose p}$, $\bar J \in {[\bar m] \choose p}$, permutation matrix $\mathbf{P}$, and invertible diagonal matrix $\mathbf{D}$.
 \end{corollary}
-
-\begin{proof}
-We derive a lower bound on the number of $k$-sparse $\mathbf{\hat x}_i$ and then apply Thm.~\ref{DeterministicUniquenessCorollary}. 
-Let $n_p$ be the number of $\mathbf{\hat x}_i$ with $\|\mathbf{\hat x}_i\|_0 = p$.  %, so that $\sum_{p = 1}^{m} n_p = N$. 
-Since the $\mathbf{x}_i$ are all $k$-sparse, by \eqref{minsum} we have:
-\begin{align}
-k \sum_{p = 0}^{m} n_p = kN \geq \sum_{i=0}^N \|\mathbf{x}_i\|_0 \geq \sum_{i=0}^N \|\mathbf{\hat x}_i\|_0 = \sum_{p=0}^{m} p n_p.
-\end{align}
-Hence,
-\begin{align}\label{eqn}
-\sum_{p = k+1}^m n_p \leq \sum_{p = k+1}^m (p-k) n_p \leq \sum_{p = 0}^k (k-p)n_p \leq k \sum_{p = 0}^{k-1} n_p.
-\end{align}
-
-Let $\mathbf{X}$ and $\mathbf{\hat{X}}$ be the $m \times N$ matrices with columns $\mathbf{x}_i$ and $\mathbf{\hat x}_i$, respectively, and let $I(S) = \{i \in [N]: \text{supp}(\mathbf{x}_i) \subseteq S\}$. It follows from the general linear position of the $\mathbf{x}_i$ and the linear independence of every $k$ columns of $\mathbf{A}$ that $L_k(\mathbf{AX}_{I(S)}) > 0$ for all $S \in E$; that is, for every $S \in E$, the columns of every $n \times k$ submatrix of $\mathbf{AX}_{I(S)}$ form a basis for $\text{\rm Span}\{\mathbf{A}_S\}$. Suppose there are $(k-1)|E| + 1$ vectors $\mathbf{x}_i$ for which the corresponding $\mathbf{\hat x}_i$ $(i \in J)$ share a support $\hat S$. By the pigeonhole principle, there must be some $S \in E$ supporting $k$ or more of these vectors $\mathbf{x}_i$; let them be indexed by $J \subseteq I(S)$. Fixing $\mathbf{y} \in \text{\rm Span}\{ \mathbf{A}_S \}$, there exists a unique $\mathbf{c} = (c_1, \ldots, c_k) \in \mathbb{R}^k$ such that $\mathbf{y} = \mathbf{AX}_{J}\mathbf{c}$. Setting \mbox{$\mathbf{\hat{y}} = \mathbf{B\hat{X}}_{J}\mathbf{c} \in \text{\rm Span}\{\mathbf{B}_{\hat S}\}$}, we have:
-\begin{align*}
-\|\mathbf{y} - \mathbf{\hat{y}}\|_2 
-&= \|\sum_{i=1}^k c_i(\mathbf{AX}_J - \mathbf{B\hat{X}}_J)_i\|_2
-\leq \varepsilon \sum_{i=1}^k |c_i| \\
-&\leq \varepsilon \sqrt{k}  \|\mathbf{c}\|_2 
-\leq \frac{\varepsilon}{L_k(\mathbf{AX}_J)} \|\mathbf{y}\|_2,
-\end{align*}
-where the last inequality is by definition of $L_k$. From Def.~\ref{dDef}, it follows that:
-\begin{align}\label{rhs222}
-d(\text{\rm Span}\{\mathbf{A}_S\}, \text{\rm Span}\{\mathbf{B}_{\hat S}\}) 
-\leq \frac{\varepsilon}{ \min_{S \in E}L_k(\mathbf{AX}_{I(S)}) }.
-\end{align}
-
-Since (by our upper bound on $\varepsilon$) the RHS is strictly less than one, we have by \eqref{dimlem} that $k = \dim(\text{Span}(\mathbf{AX}_J)) \leq \dim(\text{Span}\{\mathbf{B}_{\hat S}\}) \leq |\hat S|$. Hence, if $|E|(k-1) + 1$ or more vectors $\mathbf{\hat x}_i$ share the same support, they cannot be $(k-1)$-sparse and the number of $(k-1)$-sparse vectors $\mathbf{\hat x}_i$ must then be bounded from above by $|E|(k-1){ m \choose k-1}$. Taking \eqref{eqn} into account, it follows that at least $N - |E|k(k-1){ m \choose k-1}$ of the vectors $\mathbf{\hat  x}_i$ are $k$-sparse, and there must then be some $N' \subseteq [N]$ for which for each $S \in E$ there are $(k-1){m \choose k}+1$ of the vectors $\mathbf{x}_i$ with $i \in [N']$ supported on $S$ and for which $\mathbf{\hat x}_i$ is $k$-sparse for all $i \in [N']$. The result now follows directly from Thm.~\ref{DeterministicUniquenessCorollary}.
-\end{proof}
-
 
 %\begin{corollary}
 %Fix $n, \ell$, and $k < m$. Let $\mathbf{A}~\in~\mathbb{R}^{n \times m}$ satisfy the spark condition \eqref{SparkCondition} and $k$-sparse \mbox{$\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$} have at least \mbox{$\left[ (k-1){ m \choose k} + 1 \right] + (k-1)^2{m \choose k-1}$} vectors supported in general linear position on each set in an $\ell$-regular $E \subseteq {[m] \choose k}$ with the SIP. Given any $\delta_1, \delta_2 \geq 0$ and $\varepsilon \leq \varepsilon(\delta_1, \delta_2)$,
-%every solution $\mathbf{B}, \mathbf{\hat x}_i, \ldots, \mathbf{\hat x}_N$ to the $\ell_0$ optimization problem:
+%every solution $\mathbf{B}, \mathbf{\bar x}_i, \ldots, \mathbf{\bar x}_N$ to the $\ell_0$ optimization problem:
 %\begin{align}\label{minsum}
-%\arg \min \sum_{i = 1}^N \|\mathbf{\hat x}_i\|_0 \ \ \text{s.t.} \ \ \mathbf{B}\mathbf{\hat x}_i = \mathbf{A}\mathbf{x}_i, \ \ \text{$i \in [N]$}, %\|\mathbf{A}\end{align}
+%\arg \min \sum_{i = 1}^N \|\mathbf{\bar x}_i\|_0 \ \ \text{s.t.} \ \ \mathbf{B}\mathbf{\bar x}_i = \mathbf{A}\mathbf{x}_i, \ \ \text{$i \in [N]$}, %\|\mathbf{A}\end{align}
 %necessarily satisfies the recovery inequalities in \eqref{def1}. % \eqref{Cstable} and \eqref{b-PDa}.
 %\end{corollary}
 %
 %\begin{proof}
-%We derive a lower bound on the number of $k$-sparse $\mathbf{\hat x}_i$ and then apply Thm.~\ref{DeterministicUniquenessCorollary}. 
-%First, note that $\|\mathbf{\hat x}_i\|_0 \neq 0$ for all $i$, since otherwise we would have $\mathbf{A}\mathbf{x}_i = \mathbf{B}\mathbf{\hat x}_i = \mathbf{0} \implies \mathbf{x}_i = \mathbf{0}$ by the spark condition, contradicting the general linear position of the $\mathbf{x}_i$. Let $n_p$ be the number of $\mathbf{\hat x}_i$ with $\|\mathbf{\hat x}_i\|_0 = p$.  %, so that $\sum_{p = 1}^{m} n_p = N$. 
+%We derive a lower bound on the number of $k$-sparse $\mathbf{\bar x}_i$ and then apply Thm.~\ref{DeterministicUniquenessCorollary}. 
+%First, note that $\|\mathbf{\bar x}_i\|_0 \neq 0$ for all $i$, since otherwise we would have $\mathbf{A}\mathbf{x}_i = \mathbf{B}\mathbf{\bar x}_i = \mathbf{0} \implies \mathbf{x}_i = \mathbf{0}$ by the spark condition, contradicting the general linear position of the $\mathbf{x}_i$. Let $n_p$ be the number of $\mathbf{\bar x}_i$ with $\|\mathbf{\bar x}_i\|_0 = p$.  %, so that $\sum_{p = 1}^{m} n_p = N$. 
 %Since the $\mathbf{x}_i$ are all $k$-sparse, by \eqref{minsum} we have:
 %\begin{align}
-%k \sum_{p = 1}^{m} n_p = kN \geq \sum_{i=1}^N \|\mathbf{x}_i\|_0 \geq \sum_{i=1}^N \|\mathbf{\hat x}_i\|_0 = \sum_{p=1}^{m} p n_p.
+%k \sum_{p = 1}^{m} n_p = kN \geq \sum_{i=1}^N \|\mathbf{x}_i\|_0 \geq \sum_{i=1}^N \|\mathbf{\bar x}_i\|_0 = \sum_{p=1}^{m} p n_p.
 %\end{align}
 %%\[\implies \sum_{p = 1}^k (k-p)n_p \geq \sum_{p = k+1}^{m} (p-k) n_p.\]
 %Hence,
 %\begin{align}
 %\sum_{p = k+1}^m n_p \leq \sum_{p = k+1}^m (p-k) n_p \leq \sum_{p = 1}^k (k-p)n_p \leq (k-1) \sum_{p = 1}^{k-1} n_p.
 %\end{align}
-%%\[ \implies \sum_{p = k+1}^m n_p \leq (k-1)^2 {\hat m \choose k-1} \]
+%%\[ \implies \sum_{p = k+1}^m n_p \leq (k-1)^2 {\bar m \choose k-1} \]
 %
-%By the spark condition and general linear position of the $\mathbf{x}_i$, every $k$ vectors $\mathbf{Ax}_i$ span a $k$-dimensional space; hence, at most $k-1$ vectors $\mathbf{\hat x}_i$ can share a support of size $k-1$ or less, and the number of $(k-1)$-sparse vectors $\mathbf{\hat x}_i$ is then bounded from above by $(k-1) { m \choose k-1}$. It follows that at least $N - (k-1)^2 {m \choose k-1}$ of the vectors $\mathbf{\hat  x}_i$ are $k$-sparse, and that there must then be some $N' \subseteq [N]$ for which for each $S \in E$ there are $(k-1){m \choose k}+1$ of the vectors $\mathbf{x}_i$ with $i \in [N']$ supported on $S$ and for which $\mathbf{\hat x}_i$ is $k$-sparse for all $i \in [N']$.  The result now follows directly from Thm.~\ref{DeterministicUniquenessCorollary}. % \eqref{Cstable} and \eqref{b-PDa} follow.
+%By the spark condition and general linear position of the $\mathbf{x}_i$, every $k$ vectors $\mathbf{Ax}_i$ span a $k$-dimensional space; hence, at most $k-1$ vectors $\mathbf{\bar x}_i$ can share a support of size $k-1$ or less, and the number of $(k-1)$-sparse vectors $\mathbf{\bar x}_i$ is then bounded from above by $(k-1) { m \choose k-1}$. It follows that at least $N - (k-1)^2 {m \choose k-1}$ of the vectors $\mathbf{\bar  x}_i$ are $k$-sparse, and that there must then be some $N' \subseteq [N]$ for which for each $S \in E$ there are $(k-1){m \choose k}+1$ of the vectors $\mathbf{x}_i$ with $i \in [N']$ supported on $S$ and for which $\mathbf{\bar x}_i$ is $k$-sparse for all $i \in [N']$.  The result now follows directly from Thm.~\ref{DeterministicUniquenessCorollary}. % \eqref{Cstable} and \eqref{b-PDa} follow.
 %\end{proof}
 
 Another straightforward application of Thm.~\ref{DeterministicUniquenessTheorem} is a probabilistic extension, which takes advantage of the following well-known application of random matrix theory to compressed sensing.  A random $n \times m$ matrix obeys \eqref{SparkCondition} with probability one (or ``high probability'' for discrete variables) 
@@ -360,27 +296,28 @@ where for any $S' \in {[n] \choose k}$ and $S \in {[m] \choose k}$, the symbol $
 
 Since $f$ is a real analytic function, having one substitution of real numbers with $f(\mathbf{A}) \neq 0$ implies that its zeroes form a set of (Borel) measure zero. Hence, almost every $n \times m$ real matrix $\mathbf{A}$ satisfies \eqref{SparkCondition} provided \eqref{CScondition} holds for a value of $\gamma$ for some distribution. We remark that the precise relationship between $m$, $n$, and $k$ guaranteeing that $f$ is not identically zero is a challenging problem in real algebraic geometry. In any case, we set $\gamma_0$ to be the smallest known such $\gamma$.
 
-A similar phenomenon applies to sets of vectors with a stable sparse representation. As in \cite[Sec.~IV]{Hillar15}, consider the ``symbolic'' dataset $Y = \{\mathbf{A}\mathbf{x}_1,\ldots,\mathbf{A} \mathbf{x}_N\}$ generated by indeterminate $\mathbf{A}$ and indeterminate $k$-sparse $\mathbf{x}_1, \ldots, \mathbf{x}_N$.  
+A similar phenomenon applies to datasets of vectors with a stable sparse representation. As in \cite[Sec.~IV]{Hillar15}, consider the ``symbolic'' dataset $Y = \{\mathbf{A}\mathbf{x}_1,\ldots,\mathbf{A} \mathbf{x}_N\}$ generated by indeterminate $\mathbf{A}$ and indeterminate $k$-sparse $\mathbf{x}_1, \ldots, \mathbf{x}_N$.  
 
 \begin{theorem}\label{robustPolythm} %label is fucking up formatting..???
-Fix $n, m$, and $k < m$. There is a polynomial in the entries of $\mathbf{A}$ and the $\mathbf{x}_i$ with the following property:  if the polynomial evaluates to a nonzero number and at least \mbox{$(k-1){m \choose k}+1$} of the resulting vectors $\mathbf{x}_i$ are supported on each $S \in E$ for some regular $E \subseteq {[m] \choose k}$ with the SIP, then $Y$ has a stable $k$-sparse representation in $\mathbb{R}^m$ (Def.~\ref{maindef}). In particular, either no substitutions impart to $Y$ this property or all but a Borel set of measure zero do. 
+%Fix $n, m$, and $k < m$. 
+There is a polynomial in the entries of $\mathbf{A}$ and the $\mathbf{x}_i$ with the following property:  if the polynomial evaluates to a nonzero number and more than \mbox{$(k-1){m \choose k}$} of the resulting vectors $\mathbf{x}_i$ are supported on each $S \in E$ for some regular $E \subseteq {[m] \choose k}$ with the SIP, then $Y$ has a stable $k$-sparse representation in $\mathbb{R}^m$ (Def.~\ref{maindef}). In particular, either no substitutions impart to $Y$ this property or all but a Borel set of measure zero do. 
 \end{theorem}
 
 % this is cool, but let's just save it for later...i can ask around.  -cjh
 %An interesting open question in real algebraic geometry is which collections of $(m,n,k)$ determine this last ``or".
 
 \begin{corollary}\label{ProbabilisticCor}
-Fix $n, m$, and $k$ satisfying \eqref{CScondition} for $\gamma = \gamma_0$, and let the entries of $\mathbf{A} \in \mathbb{R}^{n \times m}$ and $k$-sparse $\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$ be drawn independently from probability measures absolutely continuous with respect to the standard Borel measure $\mu$. If at least $(k-1){m \choose k} + 1$ of the vectors $\mathbf{x}_i$ are supported on each $S \in E$ for a regular $E \subseteq {[m] \choose k}$ with the SIP, then $Y$ has a stable $k$-sparse representation in $\mathbb{R}^m$ with probability one.
+Fix $n, m$, and $k$ satisfying \eqref{CScondition} for $\gamma = \gamma_0$, and let the entries of $\mathbf{A} \in \mathbb{R}^{n \times m}$ and $k$-sparse $\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$ be drawn independently from probability measures absolutely continuous with respect to the standard Borel measure $\mu$. If more than $(k-1){m \choose k} + 1$ of the vectors $\mathbf{x}_i$ are supported on each $S \in E$ for a regular $E \subseteq {[m] \choose k}$ with the SIP, then $Y$ has a stable $k$-sparse representation in $\mathbb{R}^m$ with probability one.
 \end{corollary}
 
-% [ ** TODO ** elaborate a little on these? ]
+Thus, choosing dictionary and sparse codes ``randomly'' generates datasets with stable sparse representations almost certainly, as long as the relevant parameters satisfy \eqref{CScondition}.
 
 %Next, we address the case when only an upper bound $m'$ on the latent dimension $m$ is known (assuming that $\mathbf{B}$ satisfies \eqref{SparkCondition}).
 
 %\begin{theorem}\label{DeterministicUniquenessTheorem2}
 %Fix integers $n$ and $k < m \leq m'$ and matrices $\mathbf{A}~\in~\mathbb{R}^{n \times m}$ and $\mathbf{B} \in \mathbb{R}^{n \times m'}$ both satisfying \eqref{SparkCondition}. Suppose \mbox{$\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$} include at least \mbox{$(k-1){m' \choose k}+1$} $k$-sparse vectors in general linear position supported on each set in some $k$-uniform $E \subseteq 2^{[m]}$ satisfying the singleton intersection property. Then there exists a constant $C_3 > 0$ for which the following holds.
 
-%If for some $k$-sparse $\mathbf{\hat x}_1, \ldots, \mathbf{\hat x}_N \in \mathbb{R}^{m'}$ and $\varepsilon < L_2(\mathbf{A}) / C_3$ we have \mbox{$\|\mathbf{A}\mathbf{x}_i - \mathbf{B}\mathbf{\hat x}_i\|_2 \leq \varepsilon$} for all $i$, then:
+%If for some $k$-sparse $\mathbf{\bar x}_1, \ldots, \mathbf{\bar x}_N \in \mathbb{R}^{m'}$ and $\varepsilon < L_2(\mathbf{A}) / C_3$ we have \mbox{$\|\mathbf{A}\mathbf{x}_i - \mathbf{B}\mathbf{\bar x}_i\|_2 \leq \varepsilon$} for all $i$, then:
 %\begin{align}\label{Cstablem'}
 %\|\mathbf{A}_j-(\mathbf{B}_J\mathbf{PD})_j\|_2 \leq C_3\varepsilon \ \ \text{for all $j \in [m]$}
 %\end{align}
@@ -388,7 +325,7 @@ Fix $n, m$, and $k$ satisfying \eqref{CScondition} for $\gamma = \gamma_0$, and 
 %for some $J \in {[m'] \choose m}$, permutation matrix $\mathbf{P}$, and invertible diagonal matrix $\mathbf{D}$.
 %\end{theorem}
 
-%In other words, the columns of $B$ contain (up to noise, after appropriate scaling) the columns of the original dictionary $\mathbf{A}$. Similarly, one can show by the same arguments at the beginning of Sec.~\ref{DUT} that the $\mathbf{\hat x}_i$ contain the original codes $\mathbf{x}_i$. The constant $C_3$ here is expression (\ref{Cdef2}) from the proof of Thm.~\ref{DeterministicUniquenessTheorem2}. Note that, in contrast to Thm.~\ref{DeterministicUniquenessTheorem}, this constant is dependent on $\mathbf{B}$; hence, \eqref{Cstablem'} holds for \emph{all} matrices $\mathbf{B} \in \mathbb{R}^{n \times m'}$ satisfying the spark condition only in the case $\varepsilon = 0$. 
+%In other words, the columns of $B$ contain (up to noise, after appropriate scaling) the columns of the original dictionary $\mathbf{A}$. Similarly, one can show by the same arguments at the beginning of Sec.~\ref{DUT} that the $\mathbf{\bar x}_i$ contain the original codes $\mathbf{x}_i$. The constant $C_3$ here is expression (\ref{Cdef2}) from the proof of Thm.~\ref{DeterministicUniquenessTheorem2}. Note that, in contrast to Thm.~\ref{DeterministicUniquenessTheorem}, this constant is dependent on $\mathbf{B}$; hence, \eqref{Cstablem'} holds for \emph{all} matrices $\mathbf{B} \in \mathbb{R}^{n \times m'}$ satisfying the spark condition only in the case $\varepsilon = 0$. 
 
 \section{Proof of Theorem~\ref{DeterministicUniquenessTheorem}}\label{DUT}
 
@@ -403,16 +340,16 @@ Our first step is to show how dictionary recovery \eqref{Cstable} already implie
 \begin{align*}
 \|\mathbf{BPD}\mathbf{x}\|_2 
 &\geq | \|\mathbf{A}\mathbf{x}\|_2 - \|(\mathbf{A}-\mathbf{BPD})\mathbf{x}\|_2 | \\
-&\geq \sqrt{2k} (L_{2k}(\mathbf{A}) -  C_1\varepsilon) \|\mathbf{x}\|_2,
+&\geq \sqrt{2k} (L_{2k}(\mathbf{A}) -  C_1\varepsilon) \|\mathbf{x}\|_2.
 \end{align*}
 %
 %where we drop the absolute value due to the upper bound on $\varepsilon$. 
 Hence, $L_{2k}(\mathbf{BPD}) \geq L_{2k}(\mathbf{A}) - C_1\varepsilon  > 0$ and \eqref{b-PDa} then follows from:
 \begin{align*}
-\|\mathbf{x}_i - \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\hat x}_i \|_1
-%&\leq \sqrt{2k} |\mathbf{x}_i - D^{-1}P^{\top}\mathbf{\hat x}_i\|_2 \\
-&\leq \frac{\|\mathbf{BPD}(\mathbf{x}_i - \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\hat x}_i)\|_2}{L_{2k}(\mathbf{BPD})} \\
-&\leq \frac{\|\mathbf{B}\mathbf{\hat x}_i - \mathbf{A}\mathbf{x}_i\|_2 + \|(\mathbf{A} - \mathbf{BPD})\mathbf{x}_i\|_2}{L_{2k}(\mathbf{BPD})} \\
+\|\mathbf{x}_i - \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\bar x}_i \|_1
+%&\leq \sqrt{2k} |\mathbf{x}_i - D^{-1}P^{\top}\mathbf{\bar x}_i\|_2 \\
+&\leq \frac{\|\mathbf{BPD}(\mathbf{x}_i - \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\bar x}_i)\|_2}{L_{2k}(\mathbf{BPD})} \\
+&\leq \frac{\|\mathbf{B}\mathbf{\bar x}_i - \mathbf{A}\mathbf{x}_i\|_2 + \|(\mathbf{A} - \mathbf{BPD})\mathbf{x}_i\|_2}{L_{2k}(\mathbf{BPD})} \\
 &\leq \frac{\varepsilon (1+C_1 \|\mathbf{x}_i\|_1)}{L_{2k}(\mathbf{BPD})}.
 %&\leq \frac{\varepsilon}{\sqrt{2k}} \left( \frac{ 1+C_1 \|\mathbf{x}_i\|_1 }{ L_{2k}(\mathbf{A}) -  C_1\varepsilon } \right).
 %\leq \frac{\varepsilon }{\varepsilon_0 - \varepsilon} \left( C_1^{-1}+|\mathbf{x}_i\|_1 \right).
@@ -425,26 +362,27 @@ The heart of the matter is therefore \eqref{Cstable}, which we now finally estab
 \begin{proof}[Proof of Thm.~\ref{DeterministicUniquenessCorollary} for $k=1$]
 The only 1-uniform hypergraph with the SIP is $[m]$; hence, we have $\mathbf{x}_i = c_i \mathbf{e}_i$ for $c_i \in \mathbb{R} \setminus \{\mathbf{0}\}$, $i \in [m]$. In this case, we may take $C_1 = 1/ \min_{\ell \in [m]} |c_{\ell}|$. 
 
-Fix $\mathbf{A} \in \mathbb{R}^{n \times m}$ satisfying \eqref{SparkCondition} and suppose that for some $\mathbf{B} \in \mathbb{R}^{n \times \hat m}$ ($\hat m \geq m$) and $1$-sparse $\mathbf{\hat x}_i \in \mathbb{R}^{\hat m}$ we have  $\|\mathbf{A}\mathbf{x}_i - \mathbf{B}\mathbf{\hat x}_i\|_2 \leq \varepsilon < L_2(\mathbf{A}) / C_1$ for all $i$. Then, there are $\hat{c}_1, \ldots, \hat{c}_m \in \mathbb{R}$ and a map $\pi: [m] \to [\hat m]$ with:
+Fix $\mathbf{A} \in \mathbb{R}^{n \times m}$ satisfying \eqref{SparkCondition} and suppose that for some $\mathbf{B} \in \mathbb{R}^{n \times \bar m}$ and $1$-sparse $\mathbf{\bar x}_i \in \mathbb{R}^{\bar m}$ we have  $\|\mathbf{A}\mathbf{x}_i - \mathbf{B}\mathbf{\bar x}_i\|_2 \leq \varepsilon < L_2(\mathbf{A}) / C_1$ for all $i$. Then, there are $\bar{c}_1, \ldots, \bar{c}_m \in \mathbb{R}$ and a map $\pi: [m] \to [\bar m]$ with:
 \begin{align}\label{1D}
-\|c_j\mathbf{A}_j - \hat{c}_j\mathbf{B}_{\pi(j)}\|_2 \leq \varepsilon,\ \ \   \text{for all $j$}.
+\|c_j\mathbf{A}_j - \bar{c}_j\mathbf{B}_{\pi(j)}\|_2 \leq \varepsilon,\ \ \text{for $j \in [m]$}.
 \end{align} 
-Note that $\hat{c}_j \neq 0$, since otherwise (by definition of $L_2(\mathbf{A})$) we reach the contradiction $|c_j| < \min_{\ell \in [m]} | c_\ell |$. %by \eqref{delrho} and definition of $C_1$ we would have $\|c_j\mathbf{A}_j\|_2 < \min_{\ell \in [m]}\|c_{\ell}\mathbf{A}_{\ell}\|_2$.  [*** TODO:  This doesn't seem correct ***]
+Note that if $\bar{c}_j = 0$, then $\|c_j\mathbf{A}_j \|_2 \leq \varepsilon$ implies from \eqref{delrho} that $|c_j| < \min_{\ell \in [m]} | c_\ell |$, a contradiction.  Thus, $\bar{c}_j \neq 0$, $j \in [m]$.
+%Note that $\bar{c}_j \neq 0$, since otherwise (by definition of $L_2(\mathbf{A})$) we reach the contradiction $|c_j| < \min_{\ell \in [m]} | c_\ell |$. %by \eqref{delrho} and definition of $C_1$ we would have $\|c_j\mathbf{A}_j\|_2 < \min_{\ell \in [m]}\|c_{\ell}\mathbf{A}_{\ell}\|_2$.  [*** TODO:  This doesn't seem correct ***]
 %\begin{align*}
 %|c_j| \sqrt{2} L_2(\mathbf{A}) \leq \|\mathbf{A}(c_j\mathbf{e}_j)\|_2 \leq \varepsilon < L_2(\mathbf{A}) \min_{\ell \in [m]} | c_\ell |.
 %\end{align*}
 
-We  now show that $\pi$ is injective (and thus is a permutation if $\hat m = m$). Suppose that $\pi(i) = \pi(j) = \ell$ for some $i \neq j$ and $\ell$. Then, $\|c_{j}\mathbf{A}_{j} - \hat{c}_{j}\mathbf{B}_{\ell}\|_2 \leq \varepsilon$ and $\|c_{i}\mathbf{A}_{i} - \hat{c}_{i} \mathbf{B}_{\ell}\|_2  \leq \varepsilon$. Scaling and summing these inequalities by $|\hat{c}_{i}|$ and $|\hat{c}_{j}|$, respectively, and applying the triangle inequality, we obtain:
+We  now show that $\pi$ is injective (and thus is a permutation if $\bar m = m$). Suppose that $\pi(i) = \pi(j) = \ell$ for some $i \neq j$ and $\ell$. Then, $\|c_{j}\mathbf{A}_{j} - \bar{c}_{j}\mathbf{B}_{\ell}\|_2 \leq \varepsilon$ and $\|c_{i}\mathbf{A}_{i} - \bar{c}_{i} \mathbf{B}_{\ell}\|_2  \leq \varepsilon$. Scaling and summing these inequalities by $|\bar{c}_{i}|$ and $|\bar{c}_{j}|$, respectively, and applying the triangle inequality, we obtain:
 \begin{align*}%\label{contra}
-(|\hat{c}_{i}| + |\hat{c}_{j}|) \varepsilon
-&\geq\|\mathbf{A}(\hat{c}_{i}c_{j} \mathbf{e}_{j} - \hat{c}_{j}c_{i}\mathbf{e}_{i})\|_2 \nonumber \\ 
-&\geq  \left( |\hat{c}_{i}| + |\hat{c}_{j}| \right) L_2(\mathbf{A}) \min_{\ell \in [m]} |c_\ell |,
+(|\bar{c}_{i}| + |\bar{c}_{j}|) \varepsilon
+&\geq\|\mathbf{A}(\bar{c}_{i}c_{j} \mathbf{e}_{j} - \bar{c}_{j}c_{i}\mathbf{e}_{i})\|_2 \nonumber \\ 
+&\geq  \left( |\bar{c}_{i}| + |\bar{c}_{j}| \right) L_2(\mathbf{A}) \min_{\ell \in [m]} |c_\ell |,
 \end{align*}
 %
-which contradicts the bound $\varepsilon < L_2(\mathbf{A})/C_1$. Hence, the map $\pi$ is injective. Setting $J = [m]$, $\hat J = \pi([m])$, and letting $P = \left( \mathbf{e}_{\pi(1)} \cdots \mathbf{e}_{\pi(m)}\right)$ and $D = \text{diag}(\frac{\hat{c}_1}{c_1},\ldots,\frac{\hat{c}_m}{c_m})$, we see that \eqref{1D} becomes, for all $j \in [m]$:
+which contradicts the bound $\varepsilon < L_2(\mathbf{A})/C_1$. Hence, the map $\pi$ is injective and $\bar m \geq m$. Setting $J = [m]$, $\bar J = \pi([m])$, and letting $P = \left( \mathbf{e}_{\pi(1)} \cdots \mathbf{e}_{\pi(m)}\right)$ and $D = \text{diag}(\frac{\bar{c}_1}{c_1},\ldots,\frac{\bar{c}_m}{c_m})$, we see that \eqref{1D} becomes, for all $j \in [m]$:
 \begin{align*}%\label{k=1result}
 \|\mathbf{A}_j - (\mathbf{B}_J\mathbf{PD})_j\|_2 
-= \|\mathbf{A}_j - \frac{\hat{c}_j}{c_j}\mathbf{B}_{\pi(j)}\|_2 
+= \|\mathbf{A}_j - \frac{\bar{c}_j}{c_j}\mathbf{B}_{\pi(j)}\|_2 
 \leq \frac{\varepsilon}{|c_j|} 
 \leq C_1\varepsilon.
 \end{align*}
@@ -459,11 +397,12 @@ which contradicts the bound $\varepsilon < L_2(\mathbf{A})/C_1$. Hence, the map 
 We require a few additional tools to extend the proof to the general case $k < m$. These include a general notion of distance (Def.~\ref{dDef}) and angle (Def.~\ref{FriedrichsDefinition}) between subspaces and a stability result in matrix analysis (Lem.~\ref{MainLemma}).
 
 \begin{definition}\label{dDef}
-For $\mathbf{u} \in \mathbb R^m$, let $\text{\rm dist}(\mathbf{u}, V) := \inf \{\| \mathbf{u}-\mathbf{v} \|_2: \mathbf{v} \in V\}$, and for subspaces $U,V \subseteq \mathbb{R}^m$, define\footnote{Although identical, note the reference \cite{Morris10} defines the supremum over the unit ball.}: %[Kato p.197]
+For $\mathbf{u} \in \mathbb R^m$, let $\text{\rm dist}(\mathbf{u}, V) := \inf \{\| \mathbf{u}-\mathbf{v} \|_2: \mathbf{v} \in V\}$, and for vector spaces $U,V \subseteq \mathbb{R}^m$, define:
+%\footnote{Although identical, note the reference \cite{Morris10} defines the supremum over the unit ball.}: %[Kato p.197]
 \begin{align}\label{d}
-d(U,V) := \sup_{\mathbf{u} \in U, \ \|\mathbf{u}\|_2 = 1} \text{\rm dist}(\mathbf{u},V).
+d(U,V) := \sup_{\mathbf{u} \in U, \ \|\mathbf{u}\|_2 \leq 1} \text{\rm dist}(\mathbf{u},V).
 \end{align}
-Note that $d(U,\{\textbf{0}\}) = 1$ for $U \neq \{\mathbf{0}\}$, whereas if $U = \{\textbf{0}\}$ then $d$ has no meaning; in this case, set $d(\{\textbf{0}\},V) = 0$ for any $V$.
+% Note that $d(U,\{\textbf{0}\}) = 1$ for $U \neq \{\mathbf{0}\}$, whereas if $U = \{\textbf{0}\}$ then $d$ has no meaning; in this case, set $d(\{\textbf{0}\},V) = 0$ for any $V$.
 \end{definition}
 %Note that the supremum is always achievable by a point in $U$ when $U, V \subseteq \mathbb{R}^m$.
 
@@ -490,19 +429,19 @@ Our result in combinatorial matrix theory is the following.
 %, which we derive by the following arguments (see the Supplemental for the full proof). First, we show that the aforementioned proximity between $k$-dimensional subspaces implies a proximity between smaller subspaces spanned by columns of $\mathbf{A}$ indexed by the intersections of sets in $E$ and those spanned by as many or fewer columns of $\mathbf{B}$. Another pigeonholing argument here combined with our assumptions on $E$ (e.g., the singleton intersection property) reveals that, in fact, each column of $\mathbf{A}$ spans a subspace proximal to that spanned by some column of $\mathbf{B}$. \eqref{Cstable} is a simple consequence of this last fact, which actually constitutes the proof of the theorem for the case $k=1$. % We present this special case now before restating the above arguments in greater detail.
 
 \begin{lemma}\label{MainLemma}
-%Fix integers $k, \ell, m, \hat m$ and $n$ with $k < m$. 
-Suppose $\mathbf{A} \in \mathbb{R}^{n \times m}$ satisfies the spark condition \eqref{SparkCondition} for some $k < m$ and that $E \subseteq {[m] \choose k}$ is $\ell$-regular and satisfies the SIP. Then there exists a constant $C_2 > 0$ for which the following holds for all $\varepsilon < L_2(\mathbf{A}) / C_2$. 
+%Fix integers $k, \ell, m, \bar m$ and $n$ with $k < m$. 
+Suppose $\mathbf{A} \in \mathbb{R}^{n \times m}$ satisfies the spark condition \eqref{SparkCondition} for some $k < m$ and that $E \subseteq {[m] \choose k}$ is $\ell$-regular and satisfies the SIP. There is a constant $C_2 > 0$ for which the following holds for all $\varepsilon < L_2(\mathbf{A}) / C_2$. 
 
-If for some  $\mathbf{B} \in \mathbb{R}^{n \times \hat m}$ and map $\pi: E \mapsto {[\hat m] \choose k}$ we have:
+If for some  $\mathbf{B} \in \mathbb{R}^{n \times \bar m}$ and map $\pi: E \mapsto {[\bar m] \choose k}$ we have:
 \begin{align}\label{GapUpperBound}
-d(\text{\rm Span}\{\mathbf{A}_{S}\}, \text{\rm Span}\{\mathbf{B}_{\pi(S)}\}) \leq \varepsilon, \ \   \text{for all $S \in E$},
+d(\text{\rm Span}\{\mathbf{A}_{S}\}, \text{\rm Span}\{\mathbf{B}_{\pi(S)}\}) \leq \varepsilon, \ \  \text{for $S \in E$},
 \end{align}
 %
-then $\hat m \geq m$ and, provided $p = \hat m - \ell(\hat m - m)$ is positive:
+then $\bar m \geq m$, and if $p = \bar m - \ell(\bar m - m)$ is positive:
 \begin{align}\label{MainLemmaBPD}
-\|(\mathbf{A}_J - \mathbf{B}_{\hat J}\mathbf{PD})_j\|_2 \leq C_2 \varepsilon, \indent \text{for } j \in J.
+\|(\mathbf{A}_J - \mathbf{B}_{\bar J}\mathbf{PD})_j\|_2 \leq C_2 \varepsilon, \ \  \text{for } j \in J,
 \end{align}
-for some $J \in {[m] \choose p}$, $\hat J \in {[\hat m] \choose p}$, permutation matrix $\mathbf{P}$, and invertible diagonal matrix $\mathbf{D}$.
+for some $J \in {[m] \choose p}$, $\bar J \in {[\bar m] \choose p}$, permutation matrix $\mathbf{P}$, and invertible diagonal matrix $\mathbf{D}$.
 \end{lemma}
 
 %\begin{lemma}\label{MainLemma}
@@ -517,7 +456,7 @@ for some $J \in {[m] \choose p}$, $\hat J \in {[\hat m] \choose p}$, permutation
 %\end{align}
 %\end{lemma}
 
-The constant $C_1$ in Thm.~\ref{DeterministicUniquenessTheorem} is then given by\footnote{We can be sure $C_1 > 0$ since $L_k(\mathbf{A}), L_k(\mathbf{X}_{I(S)}) > 0$ by the spark condition and general linear position of the $\mathbf{x}_i$; hence $\|\mathbf{A}_j\|_2 > 0$ for all $j$ and for all $S \in E$ we have $\|\mathbf{AX}_{I(S)}\mathbf{c}\|_2 \geq L_k(\mathbf{A})\|\mathbf{X}_{I(S)}\mathbf{c}\|_2 \geq L_k(\mathbf{A}) L_k(\mathbf{X}_{I(S)})\|\mathbf{c}\|_2$ for all $k$-sparse $\mathbf{c}$, and therefore $L_k(\mathbf{AX}_{I(S)}) \geq L_k(\mathbf{A}) L_k(\mathbf{X}_{I(S)}) > 0$.}:
+The constant $C_1$ in Thm.~\ref{DeterministicUniquenessTheorem} is then given by\footnote{Note that $\|\mathbf{AX}_{I(S)}\mathbf{c}\|_2 \geq \sqrt{k} L_k(\mathbf{A})\|\mathbf{X}_{I(S)}\mathbf{c}\|_2 \geq k L_k(\mathbf{A}) L_k(\mathbf{X}_{I(S)})\|\mathbf{c}\|_2$ for $S \in E$ and $k$-sparse $\mathbf{c}$. Therefore, $\sqrt{k} L_k(\mathbf{AX}_{I(S)}) \geq k L_k(\mathbf{A}) L_k(\mathbf{X}_{I(S)}) > 0$ since $L_k(\mathbf{A}), L_k(\mathbf{X}_{I(S)}) > 0$ by \eqref{SparkCondition} and general linear position of the $\mathbf{x}_i$.  Thus, $C_1 > 0$.  }:
 \begin{align}\label{Cdef1}
 C_1(\mathbf{A}, \{\mathbf{x}_i\}_{i=1}^N, E) := \frac{ C_2(\mathbf{A}, E) } { \min_{S \in E} L_k(\mathbf{AX}_{I(S)}) },
 \end{align}
@@ -537,11 +476,10 @@ where the maximum is taken over all orderings\footnote{We modify the quantity in
 \cos{\theta(U,W)} := \max\left\{ |\langle \mathbf{u}, \mathbf{w} \rangle|: \substack{ \mathbf{u} \in U \cap (U \cap W)^\perp, \ \|\mathbf{u}\|_2 \leq 1 \\ \mathbf{w} \in W \cap (U \cap W)^\perp, \  \|\mathbf{w}\|_2 \leq 1 } \right\}.
 \end{align*}
 \end{definition}
-Note that $\theta \in (0,\frac{\pi}{2}]$ implies $0 < r \leq 1$. (We acknowledge the somewhat counter-intuitive property that $\theta =  \pi/2$ when $U = V$ and when $U \perp V$.)  %\textbf{Note:} we can also define $\theta$ by \cite[Lem.~9.5]{Deutsch12}:
+Note that $\theta \in (0,\frac{\pi}{2}]$ implies $0 < r \leq 1$.\footnote{We acknowledge the counter-intuitive property that $\theta =  \pi/2$ when $U = V$ and when $U \perp V$.}  %\textbf{Note:} we can also define $\theta$ by \cite[Lem.~9.5]{Deutsch12}:
 %\begin{align*}
 %\cos{\theta(U,W)} := \max\left\{ |\langle \mathbf{u}, \mathbf{w} \rangle|: \mathbf{u} \in U \cap (U \cap W)^\perp, \|\mathbf{u}\|_2 \leq 1, \mathbf{w} \in W \|\mathbf{w}\|_2 \leq 1  \right\}.
 %\end{align*}
-
 The constant $C_2$ in Lem.~\ref{MainLemma} can then be expressed as:  % \footnote{Note that $C_2 > 0$ is well-defined since $r > 0$ by definition.}
 \begin{align}\label{Cdef2}
 C_2(\mathbf{A}, E) := \frac{ 2^{|E|} \max_{j \in [m]} \|\mathbf{A}_j\|_2}{ \min_{F \subseteq E} r( \{ \text{\rm Span}\{\mathbf{A}_{S}\} \}_{S \in F}) }.
@@ -549,14 +487,14 @@ C_2(\mathbf{A}, E) := \frac{ 2^{|E|} \max_{j \in [m]} \|\mathbf{A}_j\|_2}{ \min_
 %Note that when $k=1$ the constant $C_1$ is consistent with the value in our proof of the case $k=1$.
 
 \begin{proof}[Proof of Thm.~\ref{DeterministicUniquenessCorollary} for $k < m$] 
-%We begin by showing that for every $S \in E$ there is some $S' \in {[m] \choose k}$ for which the distance $d(\text{\rm Span}\{\mathbf{A}_S\}, \text{\rm Span}\{\mathbf{B}_S'\})$ is controlled by $\varepsilon$. Fix $S \in E$. Since there are $(k-1){m \choose k}+1$ vectors $\mathbf{x}_i$ supported on $S$, the pigeon-hole principle implies that there exists some $S' \in {[m] \choose k}$ and some set of $k$ indices $J(S)$ such that the supports of all $\mathbf{x}_i$ and $\mathbf{\hat x}_i$ with $i \in J(S)$ are contained in $S$ and $S'$, respectively.
+%We begin by showing that for every $S \in E$ there is some $S' \in {[m] \choose k}$ for which the distance $d(\text{\rm Span}\{\mathbf{A}_S\}, \text{\rm Span}\{\mathbf{B}_S'\})$ is controlled by $\varepsilon$. Fix $S \in E$. Since there are $(k-1){m \choose k}+1$ vectors $\mathbf{x}_i$ supported on $S$, the pigeon-hole principle implies that there exists some $S' \in {[m] \choose k}$ and some set of $k$ indices $J(S)$ such that the supports of all $\mathbf{x}_i$ and $\mathbf{\bar x}_i$ with $i \in J(S)$ are contained in $S$ and $S'$, respectively.
 %%% No |S| = k assumption %%%
-We shall show that for every $S \in E$ there is some $S' \in {[m] \choose k}$, for which the distance $d(\text{\rm Span}\{\mathbf{A}_S\}, \text{\rm Span}\{\mathbf{B}_{S'}\})$ is controlled by $\varepsilon$. Applying Lem.~\ref{MainLemma} with the map $\pi$ defined by $S \mapsto S'$ then completes the proof.  Since there are $(k-1){m \choose k}+1$ vectors $\mathbf{x}_i$ supported on $S$, the pigeon-hole principle implies that there exists some $S' \in {[m] \choose k}$ and some set of $k$ indices $I(S)$ such that the supports of all $\mathbf{x}_i$ and $\mathbf{\hat x}_i$ with $i \in I(S)$ are contained in $S$ and $S'$, respectively.
+We shall show that for every $S \in E$ there is some $\bar S \in {[m] \choose k}$, for which the distance $d(\text{\rm Span}\{\mathbf{A}_S\}, \text{\rm Span}\{\mathbf{B}_{\bar S}\})$ is controlled by $\varepsilon$. Applying Lem.~\ref{MainLemma} with the map $\pi$ defined by $S \mapsto \bar S$ then completes the proof.  Since there are $(k-1){m \choose k}+1$ vectors $\mathbf{x}_i$ supported on $S$, the pigeon-hole principle implies that there exists some $\bar S \in {[m] \choose k}$ and some set of $k$ indices $I(S)$ such that the supports of all $\mathbf{x}_i$ and $\mathbf{\bar x}_i$ with $i \in I(S)$ are contained in $S$ and $\bar S$, respectively.
 
-Let $\mathbf{X}$ and $\mathbf{\hat{X}}$ be the $m \times N$ matrices with columns $\mathbf{x}_i$ and $\mathbf{\hat x}_i$, respectively. It follows from the general linear position of the $\mathbf{x}_i$ and the linear independence of every $k$ columns of $\mathbf{A}$ that $L_k(\mathbf{AX}_{I(S)}) > 0$; that is, the columns of the $n \times k$ matrix $\mathbf{AX}_{I(S)}$ form a basis for $\text{\rm Span}\{\mathbf{A}_{S}\}$. Fixing $\mathbf{y} \in \text{\rm Span}\{\mathbf{A}_{S}\}$, there exists a unique $\mathbf{c} = (c_1, \ldots, c_k) \in \mathbb{R}^k$ such that $\mathbf{y} = \mathbf{AX}_{I(S)}\mathbf{c}$. Setting \mbox{$\mathbf{\hat{y}} = \mathbf{B\hat{X}}_{I(S)}\mathbf{c} \in \text{\rm Span}\{\mathbf{B}_{S'}\}$}, we have:
+Let $\mathbf{X}$ and $\mathbf{\bar{X}}$ be the $m \times N$ matrices with columns $\mathbf{x}_i$ and $\mathbf{\bar x}_i$, respectively. It follows from the general linear position of the $\mathbf{x}_i$ and the linear independence of every $k$ columns of $\mathbf{A}$ that $L_k(\mathbf{AX}_{I(S)}) > 0$; that is, the columns of the $n \times k$ matrix $\mathbf{AX}_{I(S)}$ form a basis for $\text{\rm Span}\{\mathbf{A}_{S}\}$. Fixing $\mathbf{y} \in \text{\rm Span}\{\mathbf{A}_{S}\}$, there exists $\mathbf{c} = (c_1, \ldots, c_k) \in \mathbb{R}^k$ such that $\mathbf{y} = \mathbf{AX}_{I(S)}\mathbf{c}$. Setting \mbox{$\mathbf{\bar{y}} = \mathbf{B\bar{X}}_{I(S)}\mathbf{c} \in \text{\rm Span}\{\mathbf{B}_{\bar S}\}$}, we have:
 \begin{align*}
-\|\mathbf{y} - \mathbf{\hat{y}}\|_2 
-&= \|\sum_{i=1}^k c_i(\mathbf{AX}_{I(S)} - \mathbf{B\hat{X}}_{I(S)})_i\|_2
+\|\mathbf{y} - \mathbf{\bar{y}}\|_2 
+&= \|\sum_{i=1}^k c_i(\mathbf{AX}_{I(S)} - \mathbf{B\bar{X}}_{I(S)})_i\|_2
 \leq \varepsilon \sum_{i=1}^k |c_i| \\
 &\leq \varepsilon \sqrt{k}  \|\mathbf{c}\|_2 
 %\leq \frac{\varepsilon \sqrt{k}}{L(\mathbf{A}X_{J(S)})} \|\mathbf{A}X_{J(S)}\mathbf{c}\|_2 
@@ -564,7 +502,7 @@ Let $\mathbf{X}$ and $\mathbf{\hat{X}}$ be the $m \times N$ matrices with column
 \end{align*}
 where the last inequality is by definition of $L_k$. Finally, from Def.~\ref{dDef}, it follows that for all $S \in E$,
 \begin{align}\label{rhs222}
-d(\text{\rm Span}\{\mathbf{A}_S\}, \text{\rm Span}\{\mathbf{B}_{S'}\}) 
+d(\text{\rm Span}\{\mathbf{A}_S\}, \text{\rm Span}\{\mathbf{B}_{\bar S}\}) 
 \leq \frac{\varepsilon}{ \min_{S \in E} L_k(\mathbf{AX}_{I(S)}) }.
 %\leq \frac{\varepsilon}{L(\mathbf{AX}_{J(S)})}.
 %&< \left( \frac{ L_2(\mathbf{A}) }{ 2^{|E|} \max_{j \in [m]} \|\mathbf{A}_j\|_2 } \right) \frac{ \min_{S \in E} L_k(\mathbf{AX}_{I(S)}) } { L(\mathbf{AX}_{J(S)}) } \min_{\substack{F \subseteq E}} r( \{ \text{\rm Span}\{\mathbf{A}_{S}\} \}_{S \in F}) \\
@@ -575,6 +513,41 @@ d(\text{\rm Span}\{\mathbf{A}_S\}, \text{\rm Span}\{\mathbf{B}_{S'}\})
 \end{proof}
 
 %We then show that the map over subsets of column indices defined by this association is such that the number of common elements shared by sets in its domain bounds the number of elements common to their images under this map. 
+ 
+ \begin{proof}[Proof of Cor.~\ref{SLCopt}]
+We bound the number of $k$-sparse $\mathbf{\bar x}_i$ and then apply Thm.~\ref{DeterministicUniquenessCorollary}. 
+Let $n_p$ be the number of $\mathbf{\bar x}_i$ with $\|\mathbf{\bar x}_i\|_0 = p$.  %, so that $\sum_{p = 1}^{m} n_p = N$. 
+Since the $\mathbf{x}_i$ are all $k$-sparse, by \eqref{minsum} we have:
+%\begin{align}
+\mbox{$k \sum_{p = 0}^{m} n_p \geq \sum_{i=0}^N \|\mathbf{x}_i\|_0 \geq \sum_{i=0}^N \|\mathbf{\bar x}_i\|_0 = \sum_{p=0}^{m} p n_p.$}
+%\end{align}
+Hence,
+\begin{align}\label{eqn}
+\sum_{p = k+1}^m n_p \leq \sum_{p = k+1}^m (p-k) n_p \leq \sum_{p = 0}^k (k-p)n_p \leq k \sum_{p = 0}^{k-1} n_p.
+\end{align}
+
+Let $\mathbf{X}$ and $\mathbf{\bar{X}}$ be the $m \times N$ matrices with columns $\mathbf{x}_i$ and $\mathbf{\bar x}_i$, respectively, and let $I(S) = \{i \in [N]: \text{supp}(\mathbf{x}_i) \subseteq S\}$. From previous arguments, we have for every $S \in E$, the columns of every $n \times k$ submatrix of $\mathbf{AX}_{I(S)}$ form a basis for $\text{\rm Span}\{\mathbf{A}_S\}$.
+% the general linear position of the $\mathbf{x}_i$ and the linear independence of every $k$ columns of $\mathbf{A}$ that $L_k(\mathbf{AX}_{I(S)}) > 0$ for all $S \in E$; that is, for every $S \in E$, the columns of every $n \times k$ submatrix of $\mathbf{AX}_{I(S)}$ form a basis for $\text{\rm Span}\{\mathbf{A}_S\}$. 
+Suppose there are $(k-1)|E| + 1$ vectors $\mathbf{x}_i$ for which the corresponding $\mathbf{\bar x}_i$ $(i \in J)$ share a support $\bar S$. By the pigeonhole principle, there must be some $S \in E$ supporting $k$ or more of these vectors $\mathbf{x}_i$; let them be indexed by $J \subseteq I(S)$.  By the argument as in the proof of Thm.\ref{DeterministicUniquenessTheorem}, we also have \eqref{rhs222}.
+
+%Fixing $\mathbf{y} \in \text{\rm Span}\{ \mathbf{A}_S \}$, there exists $\mathbf{c} = (c_1, \ldots, c_k) \in \mathbb{R}^k$ such that $\mathbf{y} = \mathbf{AX}_{J}\mathbf{c}$. Setting \mbox{$\mathbf{\bar{y}} = \mathbf{B\bar{X}}_{J}\mathbf{c} \in \text{\rm Span}\{\mathbf{B}_{\bar S}\}$}, we have:
+%\begin{align*}
+%\|\mathbf{y} - \mathbf{\bar{y}}\|_2 
+%&= \|\sum_{i=1}^k c_i(\mathbf{AX}_J - \mathbf{B\bar{X}}_J)_i\|_2
+%\leq \varepsilon \sum_{i=1}^k |c_i| \\
+%&\leq \varepsilon \sqrt{k}  \|\mathbf{c}\|_2 
+%\leq \frac{\varepsilon}{L_k(\mathbf{AX}_J)} \|\mathbf{y}\|_2,
+%\end{align*}
+%where the last inequality is by definition of $L_k$. From Def.~\ref{dDef}, it follows that:
+%\begin{align}\label{rhs222}
+%d(\text{\rm Span}\{\mathbf{A}_S\}, \text{\rm Span}\{\mathbf{B}_{\bar S}\}) 
+%\leq \frac{\varepsilon}{ \min_{S \in E}L_k(\mathbf{AX}_{I(S)}) }.
+%\end{align}
+
+Our bound on $\varepsilon$ implies that the right-hand side is less than one, so that by \eqref{dimLem} we have $k = \dim(\text{Span}(\mathbf{AX}_J)) \leq \dim(\text{Span}\{\mathbf{B}_{\bar S}\}) \leq |\bar S|$. Hence, if $|E|(k-1) + 1$ or more vectors $\mathbf{\bar x}_i$ share the same support, they cannot be $(k-1)$-sparse, and the number of $(k-1)$-sparse vectors $\mathbf{\bar x}_i$ must then be bounded from above by $|E|(k-1){ m \choose k-1}$. Taking \eqref{eqn} into account, it follows that at least $N - |E|k(k-1){ m \choose k-1}$ of the vectors $\mathbf{\bar  x}_i$ are $k$-sparse, and there must then be some $N' \subseteq [N]$ for which for each $S \in E$ there are $(k-1){m \choose k}+1$ of the vectors $\mathbf{x}_i$ with $i \in [N']$ supported on $S$ and for which $\mathbf{\bar x}_i$ is $k$-sparse for all $i \in [N']$. The result now follows directly from Thm.~\ref{DeterministicUniquenessCorollary}.
+\end{proof}
+
+
  
 \section{Discussion}\label{Discussion}
 
@@ -592,13 +565,11 @@ What we have shown here is that as an inverse problem to be approximated by a nu
 Nonetheless, it would be of practical utility to determine the best possible dependence of $\varepsilon$ on $\delta_1, \delta_2$ in Def.\ref{maindef} as well as the minimal requirements on the number and diversity of generating codes, and we hope that other researchers continue to improve and extend our results.
 % , although they are too computationally expensive to be of practical value.  We hope .
 
-One notable component of our contribution is a combinatorial criteria (regular hypergraphs satisfying the singular intersection property, Def.~\ref{sip}) for choosing support sets for original sparse codes. Fully understanding those combinatorial designs allowing for stable representations of datasets is an interesting research area for the future.
-We also remark that our main uniqueness result (Thm.~\ref{DeterministicUniquenessTheorem}) accounts for deterministic ``worst-case'' noise, whereas the ``effective'' noise might be much smaller when it is sampled from a given distribution; in such cases, the constants in our results %Thms.~\ref{DeterministicUniquenessTheorem},~\ref{DeterministicUniquenessTheorem2} 
+One notable component of our contribution is a combinatorial criteria (regular hypergraphs satisfying the singular intersection property, Def.~\ref{sip}) for choosing support sets for original sparse codes. Fully understanding those combinatorial designs allowing for stable representations of datasets is an interesting research area for the future.  For instance, whether there is a support set size $N$ that is polynomial in $m,k$ gauanteeing the conclusions of Thm.~\ref{DeterministicUniquenessTheorem} has implications for the computational complexity of Prob.\ref{InverseProblem} and related questions \cite{Tillmann15}.  We also remark that our main uniqueness result accounts for deterministic ``worst-case'' noise, whereas the ``effective'' noise might be much smaller when it is sampled from a given distribution; in such cases, the constants  %Thms.~\ref{DeterministicUniquenessTheorem},~\ref{DeterministicUniquenessTheorem2} 
 will improve. %We note also that these results extend trivially to cases where point-wise injective nonlinearities are applied to the data. 
 
 A technical difficulty in our main theorem is the absence of a spark condition assumption on alternate sparse data factorizations.
 Although mathematically interesting that no such requirement is necessary, there are other reasons to seek out such a theoretical guarantee. For instance, it is difficult to ensure an algorithm maintain a dictionary satisfying \eqref{SparkCondition} at each learning stage; indeed, even certifying  a dictionary has this property is likely intractable given its NP-hardness \cite{tillmann2014computational}.
-[*** TODO:  Mention relationship of $N$ being a polynomial in $(m,k)$ as giving an NP-hardness result using this Tillmann one ***] 
 
 In fact, though, uniqueness guarantees with minimal assumptions apply to all areas of data science and engineering that utilize learned sparse representations.  For example, several groups have utilized compressed sensing for signal processing tasks: MRI analysis \cite{lustig2008compressed},  image compression \cite{Duarte08}, and, more recently, the design of an ultrafast camera \cite{Gao14}. Given such effective uses of CS, it is only a matter of time before these systems incorporate sparse representational learning to encode and process data (e.g., in a device that learns structure from motion \cite{kong2016prior}).  In these cases, assurances such as those offered by our theorems certify that different devices (with different initialization, samples, etc.) are equivalent as soon as enough data originate from a statistically identical system.
 %Data science:
@@ -691,19 +662,19 @@ Substituting this into \eqref{f} and rearranging yields \eqref{DTILeq} after rep
 \end{proof}
 
 \begin{lemma}\label{NonEmptyLemma} 
-Fix integers $\ell, m$ and $\hat m$. Suppose $E \subseteq 2^{[m]}$ is $\ell$-regular and satisfies the singleton intersection property. If there exists a map $\pi: E \to 2^{[\hat m]}$ such that $\sum_{S \in E} |S| = \sum_{S \in E} |\pi(S)|$ and:
+Fix integers $\ell, m$ and $\bar m$. Suppose $E \subseteq 2^{[m]}$ is $\ell$-regular and satisfies the singleton intersection property. If there exists a map $\pi: E \to 2^{[\bar m]}$ such that $\sum_{S \in E} |S| = \sum_{S \in E} |\pi(S)|$ and:
 \begin{align}\label{cond}
-|\bigcap_{S \in F} \pi(S)| \leq |\bigcap_{S \in F} S |,\ \ \   \text{for all } F \subseteq E,
+|\bigcap_{S \in F} \pi(S)| \leq |\bigcap_{S \in F} S |,\ \ \   \text{for } F \subseteq E,
 \end{align}
 %
-then $\hat m \geq m$ and the association $i \mapsto \cap \pi(F(i))$ defines an injective map from $J$ to $[\hat m]$ for some $J \subseteq [m]$ of size $\hat m - \ell(\hat m - m)$. In particular, if $\hat m = m$ then the map $\pi$ is induced by a permutation.
+then $\bar m \geq m$ and the association $i \mapsto \cap \pi(F(i))$ defines an injective map from $J$ to $[\bar m]$ for some $J \subseteq [m]$ of size $\bar m - \ell(\bar m - m)$. In particular, if $\bar m = m$ then the map $\pi$ is induced by a permutation.
 %$\pi(E)$ is $\ell$-regular and satisfies the singleton intersection property. In particular, $|\cap_{S \in F} S| = 1$ if and only if $|\cap_{S \in F} \pi(S)| = 1$. 
 \end{lemma}
 \begin{proof}
-We first show that $\hat m \geq m$. Fix $T = \{(j, S): j \in \pi(S), S \in E\}$. Then $|T| = \sum_{S \in E} |\pi(S)| = \sum_{S \in E} |S| = \sum_{i \in [m]} \deg(i) = \ell m$ by regularity of $E$. If $\hat m < m$ then by pigeonholing the $m \ell \geq \ell (\hat m + 1) \geq [(\ell + 1) - 1] \hat m + 1$ elements of $T$ with respect to the set $[\hat m]$ of possible first indices, we see that there must exist at least $\ell + 1$ elements of $T$ having the same first index. But by \eqref{cond} there can be no more than $\ell$ elements of $T$ with a given first index, since $E$ is $\ell$-regular. Hence $\hat m \geq m$. 
+We first show that $\bar m \geq m$. Fix $T = \{(j, S): j \in \pi(S), S \in E\}$. Then $|T| = \sum_{S \in E} |\pi(S)| = \sum_{S \in E} |S| = \sum_{i \in [m]} \deg(i) = \ell m$ by regularity of $E$. If $\bar m < m$ then by pigeonholing the $m \ell \geq \ell (\bar m + 1) \geq [(\ell + 1) - 1] \bar m + 1$ elements of $T$ with respect to the set $[\bar m]$ of possible first indices, we see that there must exist at least $\ell + 1$ elements of $T$ having the same first index. But by \eqref{cond} there can be no more than $\ell$ elements of $T$ with a given first index, since $E$ is $\ell$-regular. Hence $\bar m \geq m$. 
 
-[ ** TODO ** rewrite for $\hat m > m$. ]
-Again, pigeonholing the elements of $T$ with respect to the set $[\hat m]$ of possible first indices, we see that for each $j$ there must be exactly $\ell$ elements of $T$ with $j$ as a first index; hence, $\pi(E)$ is $\ell$-regular. 
+[ ** TODO ** rewrite for $\bar m > m$. ]
+Again, pigeonholing the elements of $T$ with respect to the set $[\bar m]$ of possible first indices, we see that for each $j$ there must be exactly $\ell$ elements of $T$ with $j$ as a first index; hence, $\pi(E)$ is $\ell$-regular. 
 
 Fix $j$ and let $F(j) = \{S \in E: j \in \pi(S)\}$ be the preimage of the star in $\pi(E)$ centered at $j$, which is of size $\ell$ by the above arguments. It follows from \eqref{cond} that $\cap_{S \in F(j)} S$ is nonempty. In fact, we must have $|\cap _{S \in F(j)} S| = 1$, since $E$ is $\ell$-regular and satisfies the singleton intersection property. It follows by \eqref{cond} that $\cap_{S \in F(j)} \pi(S) = \{j\}$. Thus $\pi(E)$ satisfies the singleton intersection property as well, and the preimage of every one of the $m$ stars in $\pi(E)$ is a star in $E$.
 
@@ -734,18 +705,18 @@ d( \text{\rm Span}&\{\mathbf{B}_{\cap_{S \in F}\pi(S)}\}, \text{\rm Span}\{\math
 %
 Note that since $\varepsilon < L_2(\mathbf{A}) / \tilde C_2$, by \eqref{delrho} the right-hand side in \eqref{randoml} is strictly less than one, so \eqref{dimLem} implies that $\dim(\text{\rm Span}\{\mathbf{B}_{\cap_{S \in F}\pi(S)}\}) \leq \dim(\text{\rm Span}\{\mathbf{A}_{\cap_{S \in F} S}\})$ and \eqref{fact2} follows from the linear independence of the columns of $\mathbf{A}_{S}$ and $\mathbf{B}_{\pi(S)}$ for all $S \in F$.
 
-Now, fix $\ell \in [m]$. Since $E$ satisfies the singleton intersection property, $\{\ell\} = \cap F(\ell)$ for the star $F(\ell) \subseteq E$. By \eqref{cond}, we have that $\cap_{S \in F(\ell)} \pi(S)$ is either empty or it contains a single element. Lem.~\ref{NonEmptyLemma} ensures the latter case is the only possibility. Thus, the association $\ell \mapsto \cap_{S \in F(\ell)} \pi(S)$ defines a map $\hat \pi: [m] \to [m]$ and $\dim(\text{\rm Span}\{\mathbf{B}_{\hat \pi(\ell)}\}) = 1$, since $\mathbf{B}_i \neq \textbf{0}$ for all $i$. By \eqref{eqdim}, it follows from \eqref{randoml} that $d\left( \text{\rm Span}\{\mathbf{A}_\ell\}, \text{\rm Span}\{ \mathbf{B}_{\hat \pi(\ell)} \} \right) \leq C_2 \varepsilon$. Since $\ell$ is arbitrary, fixing $\hat \varepsilon = C_2\delta$ it follows from \eqref{randoml} that for every basis vector $\mathbf{e}_\ell \in \mathbb{R}^m$ there exists some $c'_\ell \in \mathbb{R}$ such that $\|\mathbf{A}\mathbf{e}_\ell - c'_\ell \mathbf{B}\mathbf{e}_{\hat \pi(\ell)}\|_2 \leq \hat \varepsilon < L_2(\mathbf{A})$. This is exactly the supposition in \eqref{1D} (letting $c_i = \|\mathbf{A}_i\|_2^{-1}$ for all $i$) and the result follows from the subsequent arguments for the case $k=1$ in Sec.~\ref{DUT}.
+Now, fix $\ell \in [m]$. Since $E$ satisfies the singleton intersection property, $\{\ell\} = \cap F(\ell)$ for the star $F(\ell) \subseteq E$. By \eqref{cond}, we have that $\cap_{S \in F(\ell)} \pi(S)$ is either empty or it contains a single element. Lem.~\ref{NonEmptyLemma} ensures the latter case is the only possibility. Thus, the association $\ell \mapsto \cap_{S \in F(\ell)} \pi(S)$ defines a map $\bar \pi: [m] \to [m]$ and $\dim(\text{\rm Span}\{\mathbf{B}_{\bar \pi(\ell)}\}) = 1$, since $\mathbf{B}_i \neq \textbf{0}$ for all $i$. By \eqref{eqdim}, it follows from \eqref{randoml} that $d\left( \text{\rm Span}\{\mathbf{A}_\ell\}, \text{\rm Span}\{ \mathbf{B}_{\bar \pi(\ell)} \} \right) \leq C_2 \varepsilon$. Since $\ell$ is arbitrary, fixing $\bar \varepsilon = C_2\delta$ it follows from \eqref{randoml} that for every basis vector $\mathbf{e}_\ell \in \mathbb{R}^m$ there exists some $c'_\ell \in \mathbb{R}$ such that $\|\mathbf{A}\mathbf{e}_\ell - c'_\ell \mathbf{B}\mathbf{e}_{\bar \pi(\ell)}\|_2 \leq \bar \varepsilon < L_2(\mathbf{A})$. This is exactly the supposition in \eqref{1D} (letting $c_i = \|\mathbf{A}_i\|_2^{-1}$ for all $i$) and the result follows from the subsequent arguments for the case $k=1$ in Sec.~\ref{DUT}.
 \end{proof}
 
 %The above arguments can be easily modified to prove the following variation of Lem.~\ref{MainLemma}, key to proving Thm.~\ref{DeterministicUniquenessTheorem2}. 
 
 %\begin{lemma}\label{MainLemma2}
-%Fix integers $n$ and $k < m \leq \hat m$ and suppose $\mathbf{A}~\in~\mathbb{R}^{n \times m}$ and $\mathbf{B} \in \mathbb{R}^{n \times \hat m}$ both satisfiy \eqref{SparkCondition}. There exists a constant $C_4 > 0$ for which for all $\varepsilon < L_2(\mathbf{A}) / C_4$ the following holds. If for some $E \subseteq2^{[m]}$ satisfying the singleton intersection property there exists a size-preserving map $\pi: E \mapsto 2^{[\hat m]}$ satisfying:
+%Fix integers $n$ and $k < m \leq \bar m$ and suppose $\mathbf{A}~\in~\mathbb{R}^{n \times m}$ and $\mathbf{B} \in \mathbb{R}^{n \times \bar m}$ both satisfiy \eqref{SparkCondition}. There exists a constant $C_4 > 0$ for which for all $\varepsilon < L_2(\mathbf{A}) / C_4$ the following holds. If for some $E \subseteq2^{[m]}$ satisfying the singleton intersection property there exists a size-preserving map $\pi: E \mapsto 2^{[\bar m]}$ satisfying:
 %\begin{align}\label{GapUpperBound}
 %d(\text{\rm Span}\{\mathbf{A}_{S}\}, \text{\rm Span}\{\mathbf{B}_{\pi(S)}\}) \leq \varepsilon, \ \ \   \text{for all $S \in E$},
 %\end{align}
 %
-%then for some $J \in {[\hat m] \choose m}$, permutation matrix $\mathbf{P}$ and invertible diagonal matrix $\mathbf{D}$, we have:
+%then for some $J \in {[\bar m] \choose m}$, permutation matrix $\mathbf{P}$ and invertible diagonal matrix $\mathbf{D}$, we have:
 %\begin{align}\label{MainLemmaBPD}
 %\|\mathbf{A}_j - (\mathbf{BPD})_j\|_2 \leq C_4 \varepsilon, \ \ \  \text{for } j \in [m].
 %\end{align}
@@ -754,11 +725,11 @@ Now, fix $\ell \in [m]$. Since $E$ satisfies the singleton intersection property
 %C_4 := \frac{2^{|E|}}{R} \max_{j \in [m]} \|\mathbf{A}_j\|_2
 %\end{align}
 %
-%with $R$ being the lesser of $\min_{\substack{F \subseteq E}} r( \{ \text{\rm Span}\{\mathbf{A}_{S}\} \}_{S \in F})$ and $\min_{\substack{F \subseteq {[\hat m] \choose k}}} r( \{ \text{\rm Span}\{\mathbf{B}_{S}\} \}_{S \in F})$.
+%with $R$ being the lesser of $\min_{\substack{F \subseteq E}} r( \{ \text{\rm Span}\{\mathbf{A}_{S}\} \}_{S \in F})$ and $\min_{\substack{F \subseteq {[\bar m] \choose k}}} r( \{ \text{\rm Span}\{\mathbf{B}_{S}\} \}_{S \in F})$.
 %\end{lemma}
 
 %\begin{proof}
-%The proof is very similar to the case $\hat m = m$, the difference being that now we may not invoke Lem.~\ref{NonEmptyLemma} (which requires $\hat m = m$) to infer from \eqref{fact2} that $| \cap_{S \in F(i)} \pi(S) | = 1$ for all stars $F(i)$. We circumvent this issue by instead assuming the spark condition on $\mathbf{B}$, which allows us to swap the roles of $\mathbf{A}$ and $\mathbf{B}$ in the arguments leading to the derivation of \eqref{fact2} to prove the opposite inequality for every star $F(i)$. Of course, this requires that the constant $C_4$  depend on $\mathbf{B}$. By these arguments we establish that $| \cap_{S \in F(i)} \pi(S) | = 1$ for all stars $F(i)$, yielding an injective map $\hat \pi: [m] \to [\hat m]$. The result then follows from the proof of the case $k=1$. 
+%The proof is very similar to the case $\bar m = m$, the difference being that now we may not invoke Lem.~\ref{NonEmptyLemma} (which requires $\bar m = m$) to infer from \eqref{fact2} that $| \cap_{S \in F(i)} \pi(S) | = 1$ for all stars $F(i)$. We circumvent this issue by instead assuming the spark condition on $\mathbf{B}$, which allows us to swap the roles of $\mathbf{A}$ and $\mathbf{B}$ in the arguments leading to the derivation of \eqref{fact2} to prove the opposite inequality for every star $F(i)$. Of course, this requires that the constant $C_4$  depend on $\mathbf{B}$. By these arguments we establish that $| \cap_{S \in F(i)} \pi(S) | = 1$ for all stars $F(i)$, yielding an injective map $\bar \pi: [m] \to [\bar m]$. The result then follows from the proof of the case $k=1$. 
 %\end{proof}
 
 \section{Proofs of Thm.~\ref{robustPolythm} and Cor.~\ref{ProbabilisticCor}}\label{AppendixB} %Cors.~\ref{DeterministicUniquenessCorollary} \& \ref{ProbabilisticCor}}\label{AppendixB}
@@ -786,14 +757,14 @@ First, note that if a set of measure spaces $\{(X_{\ell}, \Sigma_{\ell}, \nu_{\e
 \end{proof}
 
 %\begin{proof}[Proof of Thm.~\ref{DeterministicUniquenessTheorem2}]
-%The proof is the same as that of the case $\hat m = m$, only now we establish a map $\pi: E \to {[\hat m] \choose k}$ by pigeonholing $(k-1){\hat m \choose k} + 1$ vectors with respect to holes $[\hat m]$ and eventually applying Lem.~\ref{MainLemma2} instead of Lem.~\ref{MainLemma}. 
+%The proof is the same as that of the case $\bar m = m$, only now we establish a map $\pi: E \to {[\bar m] \choose k}$ by pigeonholing $(k-1){\bar m \choose k} + 1$ vectors with respect to holes $[\bar m]$ and eventually applying Lem.~\ref{MainLemma2} instead of Lem.~\ref{MainLemma}. 
 
 %In this case the constant $C_3$ is given by:
 %\begin{align}\label{Cdefm}
 %C_3 := \frac{2^{|E|} \max_{j \in [m]} \|\mathbf{A}_j\|_2}{ R \min_{S \in E} L_k(\mathbf{AX}_{I(S)}) },
 %\end{align}
 %
-%with $R$ being the lesser of $\min_{\substack{F \subseteq E}} r( \{ \text{\rm Span}\{\mathbf{A}_{S}\} \}_{S \in F})$ and $\min_{\substack{F \subseteq {[\hat m] \choose k}}} r( \{ \text{\rm Span}\{\mathbf{B}_{S}\} \}_{S \in F})$.
+%with $R$ being the lesser of $\min_{\substack{F \subseteq E}} r( \{ \text{\rm Span}\{\mathbf{A}_{S}\} \}_{S \in F})$ and $\min_{\substack{F \subseteq {[\bar m] \choose k}}} r( \{ \text{\rm Span}\{\mathbf{B}_{S}\} \}_{S \in F})$.
 %\end{proof}
 
 \end{document}
