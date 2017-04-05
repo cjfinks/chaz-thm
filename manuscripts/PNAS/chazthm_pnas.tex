@@ -604,31 +604,29 @@ Additionally, in the field of theoretical neuroscience, sparse dictionary learni
 
 \section{Proof of Main Lemma}
 
-We require some auxiliary lemmas.
+In this supplemental, we prove Lem.\ref{MainLemma} after stating auxiliary lemmas.
 
 \begin{lemma}\label{SpanIntersectionLemma}
 Let $\mathbf{M} \in \mathbb{R}^{n \times m}$. If every $2k$ columns of $\mathbf{M}$ are linearly independent, then for any $F \subseteq {[m] \choose k}$:
 \begin{align*}
-\text{\rm Span}\{\mathbf{M}_{\cap F}\}  = \cap_{S \in F} \text{\rm Span}\{\mathbf{M}_S\}.
+\text{\rm Span}\{\mathbf{M}_{\cap F}\}  = \bigcap_{S \in F} \text{\rm Span}\{\mathbf{M}_S\}.
 \end{align*}
 \end{lemma}
 \begin{proof}
-By induction, it is enough to prove the lemma when $|F| = 2$. The proof now follows directly from the assumption.
+Using induction on $|F|$, it is enough to prove the lemma when $|F| = 2$; but this case follows directly from the assumption.
 \end{proof}
 
 % This can be made tighter by using Pythagoras' Thm for first projection instead of triangle inequality. 
 \begin{lemma}\label{DistanceToIntersectionLemma}
-Fix $k \geq 2$. Let $V_1, \ldots, V_k$ be subspaces of $\mathbb{R}^m$ and set $V = \cap_{i = 1}^k V_i$. For every $\mathbf{x} \in \mathbb{R}^m$, we have:
+Fix $k \geq 2$. Let $V_1, \ldots, V_k$ be subspaces of $\mathbb{R}^m$ and set $V = \cap_{i = 1}^k V_i$. For  $\mathbf{x} \in \mathbb{R}^m$, we have (where $r$ is given in Def.~\ref{SpecialSupportSet}):
 \begin{align}\label{DTILeq}
-\text{\rm dist}(\mathbf{x}, V) \leq \frac{1}{r(\{V_i\}_{i = 1}^k)} \sum_{i=1}^k \text{\rm dist}(\mathbf{x}, V_i),
+\text{\rm dist}(\mathbf{x}, V) \leq \frac{1}{r(\{V_i\}_{i = 1}^k)} \sum_{i=1}^k \text{\rm dist}(\mathbf{x}, V_i).
 \end{align}
-where $r$ is given in Def.~\ref{SpecialSupportSet}.
 \end{lemma}
 \begin{proof} 
 Recall that orthogonal projection onto a subspace $V \subseteq \mathbb{R}^m$ is the mapping $\Pi_V: \mathbb{R}^m \to V$ that associates with each $\mathbf{x}$ its unique nearest point in $V$; i.e., $\|\mathbf{x} - \Pi_V\mathbf{x}\|_2 = \text{\rm dist}(\mathbf{x}, V)$.
 % Since subspaces of real vector spaces are closed, we can replace inf with min in def. of orthogonal projection
-
-We begin the proof by observing:
+Next, observe:
 %Use Pythagoras' Theorem first?
 \begin{align}\label{f}
 \|\mathbf{x} - \Pi_V\mathbf{x}\|_2 &\leq \|\mathbf{x} - \Pi_{V_k} \mathbf{x}\|_2 + \|\Pi_{V_k}  \mathbf{x} - \Pi_{V_k}\Pi_{V_{k-1}}\mathbf{x}\|_2 \nonumber \\
@@ -638,22 +636,23 @@ We begin the proof by observing:
 %
 using the triangle inequality and that the spectral norm satisfies $\|\Pi_{V_{\ell}}\|_2 \leq 1$ for all $\ell$ (since $\Pi_{V_{\ell}}$ are orthogonal projections).
 
-The desired result \eqref{DTILeq} now follows by bounding the second term on the right-hand side using the following fact \cite[Thm.~9.33]{Deutsch12}:
+The desired result, \eqref{DTILeq}, now follows by bounding the second term on the right-hand side using the following fact \cite[Thm.~9.33]{Deutsch12}:
 \begin{align}
 \|\Pi_{V_k}\Pi_{V_{k-1}}\cdots\Pi_{V_1} \mathbf{x} - \Pi_V\mathbf{x}\|_2 \leq z \|\mathbf{x}\|_2, %  \ \ \  \text{for } \mathbf{x} \in \mathbb{R}^m,
 \end{align}
-for \mbox{$z^2= 1 - \prod_{\ell =1}^{k-1}(1-z_{\ell}^2)$} and \mbox{$z_{\ell} = \cos\theta\left(V_{\ell}, \cap_{s=\ell+1}^k V_s\right)$}. Together with $\Pi_{V_\ell} \Pi_V = \Pi_V$ for all $\ell = 1, \ldots, k$ and $\Pi_V^2 = \Pi_V$, this yields:
+for \mbox{$z^2= 1 - \prod_{\ell =1}^{k-1}(1-z_{\ell}^2)$} and \mbox{$z_{\ell} = \cos\theta\left(V_{\ell}, \cap_{s=\ell+1}^k V_s\right)$}. Together with $\Pi_{V_\ell} \Pi_V = \Pi_V$ for all $\ell \in [k]$ and $\Pi_V^2 = \Pi_V$ yields:
 \begin{align*}
 \|\Pi_{V_k} \cdots \Pi_{V_1}\mathbf{x}  - \Pi_V \mathbf{x} \|_2 
 &= \|\left( \Pi_{V_k} \cdots\Pi_{V_1} - \Pi_V \right) (\mathbf{x} - \Pi_V\mathbf{x})\|_2 \\
 &\leq z\|\mathbf{x} - \Pi_V\mathbf{x}\|_2.
 \end{align*}
 
-Substituting this into \eqref{f} and rearranging yields \eqref{DTILeq} after replacing $1 - z$ with $r(\{V_i\}_{i=1}^k)$ (as $z$ may depend on the arbitrary ordering of the $V_i$).
+Finally, substituting this into \eqref{f} and rearranging produces \eqref{DTILeq} after replacing $1 - z$ with $r(\{V_i\}_{i=1}^k)$.
+% ($z$ may depend on the ordering).
 \end{proof}
 
 \begin{lemma}\label{NonEmptyLemma} 
-Fix integers $\ell, m$ and $\bar m$. Suppose $E \subseteq 2^{[m]}$ is $\ell$-regular and satisfies the singleton intersection property. If there exists a map $\pi: E \to 2^{[\bar m]}$ such that $\sum_{S \in E} |S| = \sum_{S \in E} |\pi(S)|$ and:
+Fix $\ell, m$, and $\bar m$. Suppose $E \subseteq 2^{[m]}$ is $\ell$-regular with the SIP.  If $\pi: E \to 2^{[\bar m]}$ has $\sum_{S \in E} |S| = \sum_{S \in E} |\pi(S)|$ and:
 \begin{align}\label{cond}
 |\bigcap_{S \in F} \pi(S)| \leq |\bigcap_{S \in F} S |,\ \ \   \text{for } F \subseteq E,
 \end{align}
@@ -663,13 +662,8 @@ then $\bar m \geq m$ and the association $i \mapsto \cap \pi(F(i))$ defines an i
 \end{lemma}
 \begin{proof}
 We first show that $\bar m \geq m$. Fix $T = \{(j, S): j \in \pi(S), S \in E\}$. Then $|T| = \sum_{S \in E} |\pi(S)| = \sum_{S \in E} |S| = \sum_{i \in [m]} \deg(i) = \ell m$ by regularity of $E$. If $\bar m < m$ then by pigeonholing the $m \ell \geq \ell (\bar m + 1) \geq [(\ell + 1) - 1] \bar m + 1$ elements of $T$ with respect to the set $[\bar m]$ of possible first indices, we see that there must exist at least $\ell + 1$ elements of $T$ having the same first index. But by \eqref{cond} there can be no more than $\ell$ elements of $T$ with a given first index, since $E$ is $\ell$-regular. Hence $\bar m \geq m$. 
-
-[ ** TODO ** rewrite for $\bar m > m$. ]
 Again, pigeonholing the elements of $T$ with respect to the set $[\bar m]$ of possible first indices, we see that for each $j$ there must be exactly $\ell$ elements of $T$ with $j$ as a first index; hence, $\pi(E)$ is $\ell$-regular. 
-
-Fix $j$ and let $F(j) = \{S \in E: j \in \pi(S)\}$ be the preimage of the star in $\pi(E)$ centered at $j$, which is of size $\ell$ by the above arguments. It follows from \eqref{cond} that $\cap_{S \in F(j)} S$ is nonempty. In fact, we must have $|\cap _{S \in F(j)} S| = 1$, since $E$ is $\ell$-regular and satisfies the singleton intersection property. It follows by \eqref{cond} that $\cap_{S \in F(j)} \pi(S) = \{j\}$. Thus $\pi(E)$ satisfies the singleton intersection property as well, and the preimage of every one of the $m$ stars in $\pi(E)$ is a star in $E$.
-
-It remains to show that every star in $E$ maps through $\pi$ to some star in $\pi(E)$. This follows by pigeonholing the $m$ stars of $\pi(E)$ with respect to their $m$ possible preimages if no two stars in $\pi(E)$ share the same preimage. This indeed must be the case, since $F(i) = F(j)$ implies $\{i\} = \cap_{S \in F(i)} \pi(S) = \cap_{S \in F(j)} \pi(S) = \{j\}$.
+Fix $j$ and let $F(j) = \{S \in E: j \in \pi(S)\}$ be the preimage of the star in $\pi(E)$ centered at $j$, which is of size $\ell$ by the above arguments. It follows from \eqref{cond} that $\cap_{S \in F(j)} S$ is nonempty. In fact, we must have $|\cap _{S \in F(j)} S| = 1$, since $E$ is $\ell$-regular and satisfies the singleton intersection property. It follows by \eqref{cond} that $\cap_{S \in F(j)} \pi(S) = \{j\}$. Thus $\pi(E)$ satisfies the singleton intersection property as well, and the preimage of every one of the $m$ stars in $\pi(E)$ is a star in $E$. It remains to show that every star in $E$ maps through $\pi$ to some star in $\pi(E)$. This follows by pigeonholing the $m$ stars of $\pi(E)$ with respect to their $m$ possible preimages if no two stars in $\pi(E)$ share the same preimage. This indeed must be the case, since $F(i) = F(j)$ implies $\{i\} = \cap_{S \in F(i)} \pi(S) = \cap_{S \in F(j)} \pi(S) = \{j\}$.
 \end{proof}
 
 \begin{proof}[Proof of Main Lemma]
@@ -677,7 +671,7 @@ We first claim $\dim(\text{\rm Span}\{\mathbf{B}_{\pi(S)}\}) = \dim(\text{\rm Sp
 \begin{align}\label{eq2}
 d(\text{\rm Span}\{\mathbf{B}_{\pi(S)}\}, \text{\rm Span}\{\mathbf{A}_S\} ) = d(\text{\rm Span}\{\mathbf{A}_S\}, \text{\rm Span}\{\mathbf{B}_{\pi(S)}\}).
 \end{align}
-We will now show that \eqref{cond} holds.
+%We will now show that \eqref{cond} holds.
 %\begin{align}\label{fact2}
 %|\bigcap_{S \in F} \pi(S)| \leq |\bigcap_{S \in F} S |,\ \ \   \text{for all } \ F \subseteq E.
 %\end{align}
@@ -693,9 +687,7 @@ d( \text{\rm Span}&\{\mathbf{B}_{\cap_{S \in F}\pi(S)}\}, \text{\rm Span}\{\math
 %&< L_2(\mathbf{A}) \frac{|F| }{ 2^{|E|}} \left( \frac{ \min_{\substack{F \subseteq E}} r( \{ \text{\rm Span}\{\mathbf{A}_{S}\}_{S \in F}) }{ r( \{ \text{\rm Span}\{\mathbf{A}_{S}\}_{S \in F}) } \right) \left( \frac{\min_{S \in E} L_k(\mathbf{AX}_{I(S)}) }{ \min_{T \in F} L(\mathbf{AX}_{J(T)}) } \right) \nonumber \\
 \leq C_2 \varepsilon. 
 \end{align}
-%
 Note that since $\varepsilon < L_2(\mathbf{A}) / \tilde C_2$, by \eqref{delrho} the right-hand side in \eqref{randoml} is strictly less than one, so \eqref{dimLem} implies that $\dim(\text{\rm Span}\{\mathbf{B}_{\cap_{S \in F}\pi(S)}\}) \leq \dim(\text{\rm Span}\{\mathbf{A}_{\cap_{S \in F} S}\})$ and \eqref{fact2} follows from the linear independence of the columns of $\mathbf{A}_{S}$ and $\mathbf{B}_{\pi(S)}$ for all $S \in F$.
-
 Now, fix $\ell \in [m]$. Since $E$ satisfies the singleton intersection property, $\{\ell\} = \cap F(\ell)$ for the star $F(\ell) \subseteq E$. By \eqref{cond}, we have that $\cap_{S \in F(\ell)} \pi(S)$ is either empty or it contains a single element. Lem.~\ref{NonEmptyLemma} ensures the latter case is the only possibility. Thus, the association $\ell \mapsto \cap_{S \in F(\ell)} \pi(S)$ defines a map $\bar \pi: [m] \to [m]$ and $\dim(\text{\rm Span}\{\mathbf{B}_{\bar \pi(\ell)}\}) = 1$, since $\mathbf{B}_i \neq \textbf{0}$ for all $i$. By \eqref{eqdim}, it follows from \eqref{randoml} that $d\left( \text{\rm Span}\{\mathbf{A}_\ell\}, \text{\rm Span}\{ \mathbf{B}_{\bar \pi(\ell)} \} \right) \leq C_2 \varepsilon$. Since $\ell$ is arbitrary, fixing $\bar \varepsilon = C_2\delta$ it follows from \eqref{randoml} that for every basis vector $\mathbf{e}_\ell \in \mathbb{R}^m$ there exists some $c'_\ell \in \mathbb{R}$ such that $\|\mathbf{A}\mathbf{e}_\ell - c'_\ell \mathbf{B}\mathbf{e}_{\bar \pi(\ell)}\|_2 \leq \bar \varepsilon < L_2(\mathbf{A})$. This is exactly the supposition in \eqref{1D} (letting $c_i = \|\mathbf{A}_i\|_2^{-1}$ for all $i$) and the result follows from the subsequent arguments for the case $k=1$ in Sec.~\ref{DUT}.
 \end{proof}
 
@@ -730,17 +722,16 @@ Now, fix $\ell \in [m]$. Since $E$ satisfies the singleton intersection property
 %\end{proof}
 % Actually this is even overkill since 
 
-We now determine classes of datasets $Y$ having a stable sparse representation that are cut out by a single polynomial equation.
+%We now determine classes of datasets $Y$ having a stable sparse representation that are cut out by a single polynomial equation.
 
 \begin{proof}[Proof of Thm.~\ref{robustPolythm}]
-We sketch the argument, leaving the details to the reader. 
-Let $M$ be the $n \times m$ matrix with columns $\mathbf{A}\mathbf{x}_i$, $i \in [N]$.  Consider the following polynomial \cite[Sec.~IV]{Hillar15} in the entries of $\mathbf{A}$ and the $\mathbf{x}_i$:
+% We sketch the argument, leaving the details to the reader. 
+Let $M$ be the matrix with columns $\mathbf{A}\mathbf{x}_i$, $i \in [N]$.  Consider the polynomial \cite[Sec.~IV]{Hillar15} in the entries of $\mathbf{A}$ and $\mathbf{x}_i$:
 \begin{align*}
 g(\mathbf{A}, \{\mathbf{x}_i\}_{i=1}^N) = \prod_{S \in {[n] \choose k}} \sum_{S' \in {[N] \choose k}} (\det M_{S',S})^2,
 \end{align*}
 with notation as in Sec.~\ref{Results}.  
-
-It can be checked that when $g$ is nonzero for a substitution of real numbers for the indeterminates, all of the genericity requirements on $\mathbf{A}$ and $\mathbf{x}_i$ in our proofs of stability in Thm.~\ref{DeterministicUniquenessTheorem} are satisfied (in particular, the spark condition on $\mathbf{A}$). The statement of the theorem now follows directly.
+It can be checked that when $g$ is nonzero for a substitution of real numbers for the indeterminates, all of the genericity requirements on $\mathbf{A}$ and $\mathbf{x}_i$ in our proofs of stability in Thm.~\ref{DeterministicUniquenessTheorem} are satisfied (in particular, the spark condition on $\mathbf{A}$). % The statement of the theorem now follows directly.
 \end{proof}
 
 \begin{proof}[Proof of Cor.~\ref{ProbabilisticCor}]
