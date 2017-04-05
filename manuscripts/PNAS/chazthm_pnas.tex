@@ -428,8 +428,9 @@ Our result in combinatorial matrix theory is the following.
 %, which we derive by the following arguments (see the Supplemental for the full proof). First, we show that the aforementioned proximity between $k$-dimensional subspaces implies a proximity between smaller subspaces spanned by columns of $\mathbf{A}$ indexed by the intersections of sets in $E$ and those spanned by as many or fewer columns of $\mathbf{B}$. Another pigeonholing argument here combined with our assumptions on $E$ (e.g., the singleton intersection property) reveals that, in fact, each column of $\mathbf{A}$ spans a subspace proximal to that spanned by some column of $\mathbf{B}$. \eqref{Cstable} is a simple consequence of this last fact, which actually constitutes the proof of the theorem for the case $k=1$. % We present this special case now before restating the above arguments in greater detail.
 
 \begin{lemma}\label{MainLemma}
-%Fix integers $k, \ell, m, \bar m$ and $n$ with $k < m$. 
-Suppose $\mathbf{A} \in \mathbb{R}^{n \times m}$ satisfies the spark condition \eqref{SparkCondition} for some $k < m$ and that $E \subseteq {[m] \choose k}$ is $\ell$-regular and satisfies the SIP. There is a constant $C_2 > 0$ for which the following holds for all $\varepsilon < L_2(\mathbf{A}) / C_2$. 
+%Suppose $\mathbf{A} \in \mathbb{R}^{n \times m}$ satisfies the spark condition \eqref{SparkCondition} for some $k < m$ and that $E \subseteq {[m] \choose k}$ is $\ell$-regular and satisfies the SIP. There is a constant $C_2 > 0$ for which the following holds for all $\varepsilon < L_2(\mathbf{A}) / C_2$. 
+Suppose $\mathbf{A} \in \mathbb{R}^{n \times m}$ satisfies \eqref{SparkCondition} for some $k < m$ and that $E \subseteq {[m] \choose k}$ is $\ell$-regular with the SIP. There exists $C_2 > 0$ for which the following holds for all $\varepsilon < L_2(\mathbf{A}) / C_2$. 
+
 
 If for some  $\mathbf{B} \in \mathbb{R}^{n \times \bar m}$ and map $\pi: E \mapsto {[\bar m] \choose k}$ we have:
 \begin{align}\label{GapUpperBound}
@@ -455,12 +456,12 @@ for some $J \in {[m] \choose p}$, $\bar J \in {[\bar m] \choose p}$, permutation
 %\end{align}
 %\end{lemma}
 
-Given a sequence of vectors $\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$, we let $\mathbf{X}$ be the $m \times N$ matrix with columns $\mathbf{x}_i$ and $I(S) := \{i \in [N]: \text{supp}(\mathbf{x}_i) \subseteq S\}$. The constant $C_1$ in Thm.~\ref{DeterministicUniquenessTheorem} is then given by\footnote{Note that $\|\mathbf{AX}_{I(S)}\mathbf{c}\|_2 \geq \sqrt{k} L_k(\mathbf{A})\|\mathbf{X}_{I(S)}\mathbf{c}\|_2 \geq k L_k(\mathbf{A}) L_k(\mathbf{X}_{I(S)})\|\mathbf{c}\|_2$ for $S \in E$ and $k$-sparse $\mathbf{c}$. Therefore, $\sqrt{k} L_k(\mathbf{AX}_{I(S)}) \geq k L_k(\mathbf{A}) L_k(\mathbf{X}_{I(S)}) > 0$ since $L_k(\mathbf{A}), L_k(\mathbf{X}_{I(S)}) > 0$ by \eqref{SparkCondition} and general linear position of the $\mathbf{x}_i$.  Thus, $C_1 > 0$.  }:
+Given vectors $\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$, we let $\mathbf{X}$ be the $m \times N$ matrix with columns $\mathbf{x}_i$ and $I(S) := \{i \in [N]: \text{supp}(\mathbf{x}_i) \subseteq S\}$. The constant $C_1$ in Thm.~\ref{DeterministicUniquenessTheorem} is then defined by\footnote{Note that $\|\mathbf{AX}_{I(S)}\mathbf{c}\|_2 \geq \sqrt{k} L_k(\mathbf{A})\|\mathbf{X}_{I(S)}\mathbf{c}\|_2 \geq k L_k(\mathbf{A}) L_k(\mathbf{X}_{I(S)})\|\mathbf{c}\|_2$ for $S \in E$ and $k$-sparse $\mathbf{c}$. Therefore, $\sqrt{k} L_k(\mathbf{AX}_{I(S)}) \geq k L_k(\mathbf{A}) L_k(\mathbf{X}_{I(S)}) > 0$ since $L_k(\mathbf{A}), L_k(\mathbf{X}_{I(S)}) > 0$ by \eqref{SparkCondition} and general linear position of the $\mathbf{x}_i$.  Thus, $C_1 > 0$.  }:
 \begin{align}\label{Cdef1}
 C_1(\mathbf{A}, \{\mathbf{x}_i\}_{i=1}^N, E) := \frac{ C_2(\mathbf{A}, E) } { \min_{S \in E} L_k(\mathbf{AX}_{I(S)}) }.
 \end{align}
 
-The constant $C_2 = C_2(\mathbf{A}, E)$ is defined below in terms of one used in \cite{Deutsch12} to analyze the convergence of the alternating projections algorithm.
+The constant $C_2 = C_2(\mathbf{A}, E)$ is given below in terms of one used in \cite{Deutsch12} to analyze the convergence of the alternating projections algorithm.
 % for projecting a point onto the intersection of a set of subspaces. 
 We use it to bound the distance between a point and the intersection of a set of subspaces given an upper bound on its distance from each subspace individually.
 
@@ -475,7 +476,7 @@ where the maximum is taken over all orderings\footnote{We modify the quantity in
 \cos{\theta(U,W)} := \max\left\{ |\langle \mathbf{u}, \mathbf{w} \rangle|: \substack{ \mathbf{u} \in U \cap (U \cap W)^\perp, \ \|\mathbf{u}\|_2 \leq 1 \\ \mathbf{w} \in W \cap (U \cap W)^\perp, \  \|\mathbf{w}\|_2 \leq 1 } \right\}.
 \end{align*}
 \end{definition}
-Note that $\theta \in (0,\frac{\pi}{2}]$ implies $0 < r \leq 1$.\footnote{We acknowledge the counter-intuitive property that $\theta =  \pi/2$ when $U = V$ and when $U \perp V$.}  %\textbf{Note:} we can also define $\theta$ by \cite[Lem.~9.5]{Deutsch12}:
+Note that $\theta \in (0,\frac{\pi}{2}]$ implies $0 < r \leq 1$.\footnote{We acknowledge the counter-intuitive property that $\theta =  \pi/2$ when $U = V$ or $U \perp V$.}  %\textbf{Note:} we can also define $\theta$ by \cite[Lem.~9.5]{Deutsch12}:
 %\begin{align*}
 %\cos{\theta(U,W)} := \max\left\{ |\langle \mathbf{u}, \mathbf{w} \rangle|: \mathbf{u} \in U \cap (U \cap W)^\perp, \|\mathbf{u}\|_2 \leq 1, \mathbf{w} \in W \|\mathbf{w}\|_2 \leq 1  \right\}.
 %\end{align*}
@@ -483,15 +484,15 @@ The constant $C_2$ in Lem.~\ref{MainLemma} can then be expressed as:  % \footnot
 \begin{align}\label{Cdef2}
 C_2(\mathbf{A}, E) := \frac{ 2^{|E|} \max_{j \in [m]} \|\mathbf{A}_j\|_2}{ \min_{F \subseteq E} r( \{ \text{\rm Span}\{\mathbf{A}_{S}\} \}_{S \in F}) }.
 \end{align}
-%Note that when $k=1$ the constant $C_1$ is consistent with the value in our proof of the case $k=1$.
+Note that $k=1$ gives the same $C_1$ as that used to prove $k=1$.
 
 \begin{proof}[Proof of Thm.~\ref{DeterministicUniquenessCorollary} for $k < m$] 
-%We begin by showing that for every $S \in E$ there is some $S' \in {[m] \choose k}$ for which the distance $d(\text{\rm Span}\{\mathbf{A}_S\}, \text{\rm Span}\{\mathbf{B}_S'\})$ is controlled by $\varepsilon$. Fix $S \in E$. Since there are $(k-1){m \choose k}+1$ vectors $\mathbf{x}_i$ supported on $S$, the pigeon-hole principle implies that there exists some $S' \in {[m] \choose k}$ and some set of $k$ indices $J(S)$ such that the supports of all $\mathbf{x}_i$ and $\mathbf{\bar x}_i$ with $i \in J(S)$ are contained in $S$ and $S'$, respectively.
-%%% No |S| = k assumption %%%
-We shall show that for every $S \in E$ there is some $\bar S \in {[m] \choose k}$, for which the distance $d(\text{\rm Span}\{\mathbf{A}_S\}, \text{\rm Span}\{\mathbf{B}_{\bar S}\})$ is controlled by $\varepsilon$. Applying Lem.~\ref{MainLemma} with the map $\pi$ defined by $S \mapsto \bar S$ then completes the proof.  Since there are $(k-1){\bar m \choose k}+1$ vectors $\mathbf{x}_i$ supported on $S$, the pigeon-hole principle implies that there exists some $\bar S \in {[\bar m] \choose k}$ and some set of $k$ indices $K$ such that the supports of all $\mathbf{x}_i$ and $\mathbf{\bar x}_i$ with $i \in K$ are contained in $S$ and $\bar S$, respectively.
+We shall show that for every $S \in E$ there is some $\bar S \in {[\bar m] \choose k}$, for which the distance $d(\text{\rm Span}\{\mathbf{A}_S\}, \text{\rm Span}\{\mathbf{B}_{\bar S}\})$ is controlled by $\varepsilon$. Applying Lem.~\ref{MainLemma} with the map $\pi$ defined by $S \mapsto \bar S$ then completes the proof.  
+
+Since there are $(k-1){\bar m \choose k}+1$ vectors $\mathbf{x}_i$ supported on $S$, the pigeonhole principle implies that there is some $\bar S \in {[\bar m] \choose k}$ and some set of $k$ indices $K$ such that the supports of all $\mathbf{x}_i$ and $\mathbf{\bar x}_i$ with $i \in K$ are contained in $S$ and $\bar S$, respectively.
 
 %Let $\mathbf{X}$ and $\mathbf{\bar{X}}$ be the $m \times N$ matrices with columns $\mathbf{x}_i$ and $\mathbf{\bar x}_i$, respectively. 
-It follows from the general linear position of the $\mathbf{x}_i$ and the linear independence of every $k$ columns of $\mathbf{A}$ that $L_k(\mathbf{AX}_{I(S)}) > 0$; that is, the columns of the $n \times k$ matrix $\mathbf{AX}_K$ form a basis for $\text{\rm Span}\{\mathbf{A}_{S}\}$. Fixing $\mathbf{y} \in \text{\rm Span}\{\mathbf{A}_{S}\}$, there exists $\mathbf{c} = (c_1, \ldots, c_k) \in \mathbb{R}^k$ such that $\mathbf{y} = \mathbf{AX}_K\mathbf{c}$. Setting \mbox{$\mathbf{\bar{y}} = \mathbf{B\bar{X}}_K\mathbf{c} \in \text{\rm Span}\{\mathbf{B}_{\bar S}\}$}, we have:
+It follows from the general linear position of the $\mathbf{x}_i$ and the linear independence of every $k$ columns of $\mathbf{A}$ that $L_k(\mathbf{AX}_{K}) > 0$; that is, the columns of the $n \times k$ matrix $\mathbf{AX}_K$ form a basis for $\text{\rm Span}\{\mathbf{A}_{S}\}$. Fixing $\mathbf{0} \neq \mathbf{y} \in \text{\rm Span}\{\mathbf{A}_{S}\}$, there exists $\mathbf{0} \neq \mathbf{c} = (c_1, \ldots, c_k) \in \mathbb{R}^k$ such that $\mathbf{y} = \mathbf{AX}_K\mathbf{c}$. Setting \mbox{$\mathbf{\bar{y}} = \mathbf{B\bar{X}}_K\mathbf{c} \in \text{\rm Span}\{\mathbf{B}_{\bar S}\}$}, we have:
 \begin{align*}
 \|\mathbf{y} - \mathbf{\bar{y}}\|_2 
 &= \|\sum_{i=1}^k c_i(\mathbf{AX}_K - \mathbf{B\bar{X}}_K)_i\|_2
@@ -500,12 +501,19 @@ It follows from the general linear position of the $\mathbf{x}_i$ and the linear
 %\leq \frac{\varepsilon \sqrt{k}}{L(\mathbf{A}X_{J(S)})} \|\mathbf{A}X_{J(S)}\mathbf{c}\|_2 
 \leq \frac{\varepsilon}{L_k(\mathbf{AX}_K)} \|\mathbf{y}\|_2,
 \end{align*}
-where the last inequality is by definition of $L_k$. Finally, from Def.~\ref{dDef}, it follows that for all $S \in E$,
+where the last inequality follows directly from the definition of $L_k$. Finally, from Def.~\ref{dDef}, it follows that:
 \begin{align}\label{rhs222}
 d(\text{\rm Span}\{\mathbf{A}_S\}, \text{\rm Span}\{\mathbf{B}_{\bar S}\}) 
-\leq \frac{\varepsilon}{ \min_{S \in E} L_k(\mathbf{AX}_{I(S)}) }.
+\leq \frac{\varepsilon}{  L_k(\mathbf{AX}_{K}) }.
 \end{align}
+In particular, with $C_1$ as in \eqref{Cdef1}, the theorem follows.
 \end{proof}
+% for all $S \in E$:
+%\begin{align}\label{rhs222}
+%d(\text{\rm Span}\{\mathbf{A}_S\}, \text{\rm Span}\{\mathbf{B}_{\bar S}\}) 
+%\leq \frac{\varepsilon}{ \min_{S \in E} L_k(\mathbf{AX}_{I(S)}) }.
+%\end{align}
+%\end{proof}
 
 %We then show that the map over subsets of column indices defined by this association is such that the number of common elements shared by sets in its domain bounds the number of elements common to their images under this map. 
  
@@ -521,13 +529,13 @@ Hence,
 \sum_{p = k+1}^m n_p \leq \sum_{p = k+1}^m (p-k) n_p \leq \sum_{p = 0}^k (k-p)n_p \leq k \sum_{p = 0}^{k-1} n_p.
 \end{align}
 
-We will show that no more than $(k-1)|E|$ vectors $\mathbf{\bar x}_i$ can share a support of cardinality less than $k$. 
+We now show that no more than $(k-1)|E|$ of the $\mathbf{\bar x}_i$ share a support of size less than $k$. 
 %Let $\mathbf{X}$ and $\mathbf{\bar{X}}$ be the $m \times N$ and $\bar m \times N$ matrices with columns $\mathbf{x}_i$ and $\mathbf{\bar x}_i$, respectively, and let $I(S) = \{i \in [N]: \text{supp}(\mathbf{x}_i) \subseteq S\}$. 
-From previous arguments, we have for every $S \in E$, the columns of every $n \times k$ submatrix of $\mathbf{AX}_{I(S)}$ form a basis for $\text{\rm Span}\{\mathbf{A}_S\}$.
+From previous arguments, for every $S \in E$, the columns of each $n \times k$ submatrix of $\mathbf{AX}_{I(S)}$ form a basis for $\text{\rm Span}\{\mathbf{A}_S\}$.
 % the general linear position of the $\mathbf{x}_i$ and the linear independence of every $k$ columns of $\mathbf{A}$ that $L_k(\mathbf{AX}_{I(S)}) > 0$ for all $S \in E$; that is, for every $S \in E$, the columns of every $n \times k$ submatrix of $\mathbf{AX}_{I(S)}$ form a basis for $\text{\rm Span}\{\mathbf{A}_S\}$. 
-Suppose there are more than $(k-1)|E|$ vectors $\mathbf{\bar x}_i$ sharing a support $\bar S$ of cardinality less than $k$. By the pigeonhole principle, there must be some $S \in E$ supporting $k$ or more of the corresponding $\mathbf{x}_i$; let them be indexed by $K \subseteq I(S)$.  By the argument as in the proof of Thm.\ref{DeterministicUniquenessTheorem}, we also have \eqref{rhs222}. Since our bound on $\varepsilon$ implies that the right-hand side of \eqref{rhs222} is less than one, by \eqref{dimLem} we have $k = \dim(\text{Span}(\mathbf{A}_S)) \leq \dim(\text{Span}\{\mathbf{B}_{\bar S}\}) \leq |\bar S|$, a contradiction. 
+Suppose that more than $(k-1)|E|$ vectors $\mathbf{\bar x}_i$ share a support $\bar S$ of size $|\bar{S}| < k$. By the pigeonhole principle, there is some $S \in E$ supporting $k$ or more of the corresponding $\mathbf{x}_i$; let them be indexed by $K \subseteq I(S)$.  By the argument as in the proof of Thm.\ref{DeterministicUniquenessTheorem}, we also have \eqref{rhs222}. Since our bound on $\varepsilon$ implies that the right-hand side of \eqref{rhs222} is less than one, by \eqref{dimLem}: \[k = \dim(\text{Span}(\mathbf{A}_S)) \leq \dim(\text{Span}\{\mathbf{B}_{\bar S}\}) \leq |\bar S|,\] a contradiction. 
 
-Hence, the number of $(k-1)$-sparse vectors $\mathbf{\bar x}_i$ is no greater than $|E|(k-1){ m \choose k-1}$. Taking \eqref{eqn} into account, it follows that at least $N - |E|k(k-1){ m \choose k-1}$ of the vectors $\mathbf{\bar  x}_i$ are $k$-sparse. Therefore, more than $(k-1){m \choose k}$ of the vectors $\mathbf{x}_i$ supported on each $S \in E$ have corresponding $\mathbf{\hat x}_i$ that are also $k$-sparse. The result now follows directly from Thm.~\ref{DeterministicUniquenessCorollary}.
+Hence, the number of $(k-1)$-sparse vectors $\mathbf{\bar x}_i$ is no greater than $|E|(k-1){ m \choose k-1}$. Taking \eqref{eqn} into account, it follows that at least $N - |E|k(k-1){ m \choose k-1}$ of the vectors $\mathbf{\bar  x}_i$ are $k$-sparse. Therefore, more than $(k-1){m \choose k}$ of the vectors $\mathbf{x}_i$ supported on each $S \in E$ have corresponding $\mathbf{\bar x}_i$ that are also $k$-sparse. The result now follows directly from Thm.~\ref{DeterministicUniquenessCorollary}.
 \end{proof}
 
 
