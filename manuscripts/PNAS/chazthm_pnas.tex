@@ -122,7 +122,8 @@ Previous theoretical work on Prob.~\ref{InverseProblem} for the noiseless case $
 which would be, in any case, necessary for uniqueness.
 
 Our main technical finding is that a sufficient quantity of measurements generated from any dictionary satisfying the spark condition 
-has a stable sparse representation.  More specifically, such dictionaries are uniquely identifiable from as few as \mbox{$N = m(k-1){m \choose k} + m$} sparse linear combinations of their columns up to an error that is linear in the measurement noise (Thm.~\ref{DeterministicUniquenessTheorem}). In fact, provided $(n, m, k)$ satisfy CS inequality \eqref{CScondition}, in almost all cases the dictionary learning problem is well-posed given enough data (Cor.~\ref{ProbabilisticCor}). Importantly, these guarantees hold without assuming the recovered matrix satisfies the spark condition. Our results  also apply when only an upper bound on the number of dictionary elements is known. The explicit, algorithm-independent criteria we provide should be a useful tool in the theory of sparse dictionary learning.  
+has a stable sparse representation.  More specifically, such dictionaries are uniquely identifiable from as few as \mbox{$N = m(k-1){m \choose k} + m$} sparse linear combinations of their columns up to an error that is linear in the measurement noise (Thm.~\ref{DeterministicUniquenessTheorem}). In fact, provided $n \geq k$, %$(n, m, k)$ satisfy CS inequality \eqref{CScondition}, 
+in almost all cases the dictionary learning problem is well-posed given enough data (Cor.~\ref{ProbabilisticCor}). Importantly, these guarantees hold without assuming the recovered matrix satisfies the spark condition. Our results  also apply when only an upper bound on the number of dictionary elements is known. The explicit, algorithm-independent criteria we provide should be a useful tool in the theory of sparse dictionary learning.  
 
 In the next section, we give precise statements of our main results, which include an explicit form for $\varepsilon(\delta_1, \delta_2)$. We then prove our main theorem (Thm.~\ref{DeterministicUniquenessTheorem}) in Sec.~\ref{DUT} after stating some additional definitions and lemmas required for the proof, including our main tool from combinatorial matrix analysis (Lem.~\ref{MainLemma}). All other proofs are relegated to the Supplemental. 
 Finally, we present several applications in Discussion Sec.~\ref{Discussion}.
@@ -276,36 +277,35 @@ necessarily satisfy implications 1) and 2) from Thm.~\ref{DeterministicUniquenes
 %By the spark condition and general linear position of the $\mathbf{x}_i$, every $k$ vectors $\mathbf{Ax}_i$ span a $k$-dimensional space; hence, at most $k-1$ vectors $\mathbf{\bar x}_i$ can share a support of size $k-1$ or less, and the number of $(k-1)$-sparse vectors $\mathbf{\bar x}_i$ is then bounded from above by $(k-1) { m \choose k-1}$. It follows that at least $N - (k-1)^2 {m \choose k-1}$ of the vectors $\mathbf{\bar  x}_i$ are $k$-sparse, and that there must then be some $N' \subseteq [N]$ for which for each $S \in E$ there are $(k-1){m \choose k}+1$ of the vectors $\mathbf{x}_i$ with $i \in [N']$ supported on $S$ and for which $\mathbf{\bar x}_i$ is $k$-sparse for all $i \in [N']$.  The result now follows directly from Thm.~\ref{DeterministicUniquenessCorollary}. % \eqref{Cstable} and \eqref{b-PDa} follow.
 %\end{proof}
 
-Another straightforward application of Thm.~\ref{DeterministicUniquenessTheorem} is a probabilistic extension, which takes advantage of the following well-known application of random matrix theory to compressed sensing.  A random $n \times m$ matrix obeys \eqref{SparkCondition} with probability one (or ``high probability'' for discrete variables) 
-provided:
-\begin{align}\label{CScondition}
-n \geq \gamma k\log\left(\frac{m}{k}\right),
-\end{align}
-in which $\gamma >0$ is a constant that depends on the particular distribution from which the entries of $\mathbf{A}$ are sampled i.i.d. (many ensembles suffice, e.g. see \cite[Sec.~4]{Baraniuk08}). 
+%Another straightforward application of Thm.~\ref{DeterministicUniquenessTheorem} is a probabilistic extension, which takes advantage of the following well-known application of random matrix theory to compressed sensing.  A random $n \times m$ matrix obeys \eqref{SparkCondition} with probability one (or ``high probability'' for discrete variables) provided:
+%\begin{align}\label{CScondition}
+%n \geq \gamma k\log\left(\frac{m}{k}\right),
+%\end{align}
+%in which $\gamma >0$ is a constant that depends on the particular distribution from which the entries of $\mathbf{A}$ are sampled i.i.d. (many ensembles suffice, e.g. see \cite[Sec.~4]{Baraniuk08}). 
 
-In fact, 
-% We motivate our next theorem by the following observation:  
-the spark condition can be made explicit.  Let $\mathbf{A}$  be the $n \times m$ matrix of $nm$ indeterminates $A_{ij}$. When real numbers are substituted for $A_{ij}$, the resulting matrix satisfies \eqref{SparkCondition} if and only if the following polynomial is nonzero:
+Another straightforward application of Thm.~\ref{DeterministicUniquenessTheorem} is a probabilistic extension made possible by noticing that the spark condition can in fact be made explicit.  Let $\mathbf{A}$  be the $n \times m$ matrix of $nm$ indeterminates $A_{ij}$. When real numbers are substituted for $A_{ij}$, the resulting matrix satisfies \eqref{SparkCondition} if and only if the following polynomial is nonzero:
 \begin{align*}
 f(\mathbf{A}) := \prod_{S \in {[m] \choose k}} \sum_{S' \in {[n] \choose k}} (\det \mathbf{A}_{S',S})^2,
 \end{align*}
 %
 where for any $S' \in {[n] \choose k}$ and $S \in {[m] \choose k}$, the symbol $\mathbf{A}_{S',S}$ denotes the submatrix of entries $A_{ij}$ with $(i,j) \in S' \times S$.   We note that the large number of terms in this product is likely necessary due to the NP-hardness of deciding whether a given matrix $A$ satisfies the spark condition \cite{tillmann2014computational}.
 
-Since $f$ is a real analytic function, having one substitution of real numbers with $f(\mathbf{A}) \neq 0$ implies that its zeroes form a set of (Borel) measure zero. Hence, almost every $n \times m$ real matrix $\mathbf{A}$ satisfies \eqref{SparkCondition} provided \eqref{CScondition} holds with a $\gamma$ for some distribution.  We set $\gamma_0$ to be the smallest known such $\gamma$. % We remark that the precise relationship between $m$, $n$, and $k$ guaranteeing that $f$ is not identically zero is a challenging problem in real algebraic geometry. In any case, we set $\gamma_0$ to be the smallest known such $\gamma$.
+Since $f$ is a real analytic function, having one substitution of real numbers with $f(\mathbf{A}) \neq 0$ implies that its zeroes form a set of (Borel) measure zero. Fortunately, it is easy to construct such a matrix $\mathbf{A}$ by inserting $n-k$ rows of zeros into a $k \times m$ ``Vandermonde" matrix construction. %Let $\gamma_1, \ldots, \gamma_m$ be any distinct numbers. Then the columns of the $k \times m$ matrix $V = (\gamma^{\ell}_i)^{k,m}_{\ell,i=1}$ are in general linear position (since the $\gamma_i$ are distinct, any $k \times k$ ``Vandermonde" sub-determinant is nonzero). Concatenating $n-k$ rows of zeros to the bottom of this matrix yields a $n \times m$ matrix $\mathbf{A}$ satisfying the spark condition, i.e. with $f(\mathbf{A}) = 0$.
+Hence, almost every real matrix $\mathbf{A}$ with at least $k$ rows and columns satisfies \eqref{SparkCondition}. %\eqref{CScondition} holds with a $\gamma$ for some distribution.  We set $\gamma_0$ to be the smallest known such $\gamma$. % We remark that the precise relationship between $m$, $n$, and $k$ guaranteeing that $f$ is not identically zero is a challenging problem in real algebraic geometry. In any case, we set $\gamma_0$ to be the smallest known such $\gamma$.
 
 A similar phenomenon applies to datasets of vectors with a stable sparse representation. As in \cite[Sec.~IV]{Hillar15}, consider the ``symbolic'' dataset $Y = \{\mathbf{A}\mathbf{x}_1,\ldots,\mathbf{A} \mathbf{x}_N\}$ generated by indeterminate $\mathbf{A}$ and indeterminate $k$-sparse $\mathbf{x}_1, \ldots, \mathbf{x}_N$.  
 
 \begin{theorem}\label{robustPolythm} %label is fucking up formatting..???
 %Fix $n, m$, and $k < m$. 
-There is a polynomial in the entries of $\mathbf{A}$ and the $\mathbf{x}_i$ with the following property:  if the polynomial evaluates to a nonzero number and more than \mbox{$(k-1){m \choose k}$} of the resulting vectors $\mathbf{x}_i$ are supported on each $S \in E$ for some regular $E \subseteq {[m] \choose k}$ with the SIP, then $Y$ has a stable $k$-sparse representation in $\mathbb{R}^m$ (Def.~\ref{maindef}). In particular, either no substitutions impart to $Y$ this property or all but a Borel set of measure zero do. 
+There is a polynomial in the entries of $\mathbf{A}$ and the $\mathbf{x}_i$ with the following property:  if the polynomial evaluates to a nonzero number and more than \mbox{$(k-1){m \choose k}$} of the resulting vectors $\mathbf{x}_i$ are supported on each $S \in E$ for some regular $E \subseteq {[m] \choose k}$ with the SIP, then $Y$ has a stable $k$-sparse representation in $m$ dimensions (Def.~\ref{maindef}). In particular, either no substitutions impart to $Y$ this property or all but a Borel set of measure zero do. 
 \end{theorem}
 
 % this is cool, but let's just save it for later...i can ask around.  -cjh
 %An interesting open question in real algebraic geometry is which collections of $(m,n,k)$ determine this last ``or".
 
 \begin{corollary}\label{ProbabilisticCor}
-Fix $n, m$, and $k$ satisfying \eqref{CScondition} for $\gamma = \gamma_0$, and let the entries of $\mathbf{A} \in \mathbb{R}^{n \times m}$ and $k$-sparse $\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$ be drawn independently from probability measures absolutely continuous with respect to the standard Borel measure $\mu$. If more than $(k-1){m \choose k}$ of the vectors $\mathbf{x}_i$ are supported on each $S \in E$ for a regular $E \subseteq {[m] \choose k}$ with the SIP, then $Y$ has a stable $k$-sparse representation in $\mathbb{R}^m$ with probability one.
+Fix $n, m$ and $k$ such that $n \geq k < m$ % satisfying \eqref{CScondition} for $\gamma = \gamma_0$, 
+and let the entries of $\mathbf{A} \in \mathbb{R}^{n \times m}$ and $k$-sparse $\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$ be drawn independently from probability measures absolutely continuous with respect to the standard Borel measure $\mu$. If more than $(k-1){m \choose k}$ of the vectors $\mathbf{x}_i$ are supported on each $S \in E$ for a regular $E \subseteq {[m] \choose k}$ with the SIP, then $Y$ has a stable $k$-sparse representation in $m$ dimensions with probability one.
 \end{corollary}
 
 Thus, choosing dictionary and sparse codes ``randomly'' generate data with stable sparse representations almost certainly.
