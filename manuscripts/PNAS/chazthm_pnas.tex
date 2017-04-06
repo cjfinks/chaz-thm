@@ -128,7 +128,7 @@ in almost all cases the dictionary learning problem is well-posed given enough d
 In the next section, we give precise statements of our main results, which include an explicit form for $\varepsilon(\delta_1, \delta_2)$. We then prove our main theorem (Thm.~\ref{DeterministicUniquenessTheorem}) in Sec.~\ref{DUT} after stating some additional definitions and lemmas required for the proof, including our main tool from combinatorial matrix analysis (Lem.~\ref{MainLemma}). All other proofs are relegated to the Supplemental. 
 Finally, we present several applications in Discussion Sec.~\ref{Discussion}.
 
-\section{Results}\label{results}
+\section{Results}\label{Results}
 
 Before stating main results, we first identify the combinatorial criteria on support sets of generating codes allowing for stable sparse 
 representations.  Let $\{1, \ldots, m\}$ be denoted $[m]$, its power set $2^{[m]}$, and ${[m] \choose k}$ the set of subsets of $[m]$ of size $k$. 
@@ -298,14 +298,14 @@ A similar phenomenon applies to datasets of vectors with a stable sparse represe
 
 \begin{theorem}\label{robustPolythm} %label is fucking up formatting..???
 %Fix $n, m$, and $k < m$. 
-There is a polynomial in the entries of $\mathbf{A}$ and the $\mathbf{x}_i$ with the following property:  if the polynomial evaluates to a nonzero number and more than \mbox{$(k-1){m \choose k}$} of the resulting vectors $\mathbf{x}_i$ are supported on each $S \in E$ for some regular $E \subseteq {[m] \choose k}$ with the SIP, then $Y$ has a stable $k$-sparse representation in $m$ dimensions (Def.~\ref{maindef}). In particular, no substitutions give $Y$ this property or all but a Borel set of measure zero do. 
+There is a polynomial in the entries of $\mathbf{A}$ and the $\mathbf{x}_i$ with the following property:  if the polynomial evaluates to a nonzero number and more than \mbox{$(k-1){m \choose k}$} of the resulting vectors $\mathbf{x}_i$ are supported on each $S \in E$ for some regular $E \subseteq {[m] \choose k}$ with the SIP, then $Y$ has a stable $k$-sparse representation in $m$ dimensions (Def.~\ref{maindef}). In particular, either no substitutions impart to $Y$ this property or all but a Borel set of measure zero do. 
 \end{theorem}
 
 % this is cool, but let's just save it for later...i can ask around.  -cjh
 %An interesting open question in real algebraic geometry is which collections of $(m,n,k)$ determine this last ``or".
 
 \begin{corollary}\label{ProbabilisticCor}
-Fix $n, m$ and $k$ with $n \geq k < m$, % satisfying \eqref{CScondition} for $\gamma = \gamma_0$, 
+Fix $n, m$ and $k$ such that $n \geq k < m$ % satisfying \eqref{CScondition} for $\gamma = \gamma_0$, 
 and let the entries of $\mathbf{A} \in \mathbb{R}^{n \times m}$ and $k$-sparse $\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$ be drawn independently from probability measures absolutely continuous with respect to the standard Borel measure $\mu$. If more than $(k-1){m \choose k}$ of the vectors $\mathbf{x}_i$ are supported on each $S \in E$ for a regular $E \subseteq {[m] \choose k}$ with the SIP, then $Y$ has a stable $k$-sparse representation in $m$ dimensions with probability one.
 \end{corollary}
 
@@ -406,12 +406,12 @@ d(U,V) := \sup_{\mathbf{u} \in U, \ \|\mathbf{u}\|_2 \leq 1} \text{\rm dist}(\ma
 \end{definition}
 %Note that the supremum is always achievable by a point in $U$ when $U, V \subseteq \mathbb{R}^m$.
 
-We note the following facts about $d$. For subspaces $U \subseteq U', V \subseteq \mathbb{R}^m$, we have $d(U,V) \leq d(U',V)$ and \cite[Cor.~2.6]{Kato2013}:
+We note the following facts about $d$. For subspaces $U,V \subseteq \mathbb{R}^m$, we have \cite[Cor.~2.6]{Kato2013}:
 \begin{align}\label{dimLem}
-d(U,V) < 1 \implies \dim(U) \leq \dim(V).
+d(U,V) < 1 \implies \dim(U) \leq \dim(V),
 \end{align}
 %
-Also, from \cite[Lem.~3.2]{Morris10}:
+and \cite[Lem.~3.2]{Morris10}:
 \begin{align}\label{eqdim}
 \dim(U) = \dim(V) \implies d(U,V) = d(V,U).
 \end{align}
@@ -660,25 +660,24 @@ Fix $\ell, m$, and $\bar m$. Suppose $E \subseteq 2^{[m]}$ is $\ell$-regular wit
 %
 then $\bar m \geq m$ and the association $i \mapsto \cap \pi(F(i))$ defines an injective map from $J$ to $[\bar m]$ for some $J \subseteq [m]$ of size $\bar m - \ell(\bar m - m)$. In particular, if $\bar m = m$ then the map $\pi$ is induced by a permutation.
 %$\pi(E)$ is $\ell$-regular and satisfies the singleton intersection property. In particular, $|\cap_{S \in F} S| = 1$ if and only if $|\cap_{S \in F} \pi(S)| = 1$. 
-[*** TODO: Insert the final proof here ***]
 \end{lemma}
 \begin{proof}
-  We first show that $\bar m \geq m$. Fix $T = \{(j, S): j \in \pi(S), S \in E\}$. Then $|T| = \sum_{S \in E} |\pi(S)| = \sum_{S \in E} |S| = \sum_{i \in [m]} \deg(i) = \ell m$ by regularity of $E$. If $\bar m < m$ then by pigeonholing the $m \ell \geq \ell (\bar m + 1) \geq [(\ell + 1) - 1] \bar m + 1$ elements of $T$ with respect to the set $[\bar m]$ of possible first indices, we see that there must exist at least $\ell + 1$ elements of $T$ having the same first index. But by \eqref{cond} there can be no more than $\ell$ elements of $T$ with a given first index, since $E$ is $\ell$-regular. Hence $\bar m \geq m$. 
+We first show that $\bar m \geq m$. Fix $T = \{(j, S): j \in \pi(S), S \in E\}$. Then $|T| = \sum_{S \in E} |\pi(S)| = \sum_{S \in E} |S| = \sum_{i \in [m]} \deg(i) = \ell m$ by regularity of $E$. If $\bar m < m$ then by pigeonholing the $m \ell \geq \ell (\bar m + 1) \geq [(\ell + 1) - 1] \bar m + 1$ elements of $T$ with respect to the set $[\bar m]$ of possible first indices, we see that there must exist at least $\ell + 1$ elements of $T$ having the same first index. But by \eqref{cond} there can be no more than $\ell$ elements of $T$ with a given first index, since $E$ is $\ell$-regular. Hence $\bar m \geq m$. 
 Again, pigeonholing the elements of $T$ with respect to the set $[\bar m]$ of possible first indices, we see that for each $j$ there must be exactly $\ell$ elements of $T$ with $j$ as a first index; hence, $\pi(E)$ is $\ell$-regular. 
 Fix $j$ and let $F(j) = \{S \in E: j \in \pi(S)\}$ be the preimage of the star in $\pi(E)$ centered at $j$, which is of size $\ell$ by the above arguments. It follows from \eqref{cond} that $\cap_{S \in F(j)} S$ is nonempty. In fact, we must have $|\cap _{S \in F(j)} S| = 1$, since $E$ is $\ell$-regular and satisfies the singleton intersection property. It follows by \eqref{cond} that $\cap_{S \in F(j)} \pi(S) = \{j\}$. Thus $\pi(E)$ satisfies the singleton intersection property as well, and the preimage of every one of the $m$ stars in $\pi(E)$ is a star in $E$. It remains to show that every star in $E$ maps through $\pi$ to some star in $\pi(E)$. This follows by pigeonholing the $m$ stars of $\pi(E)$ with respect to their $m$ possible preimages if no two stars in $\pi(E)$ share the same preimage. This indeed must be the case, since $F(i) = F(j)$ implies $\{i\} = \cap_{S \in F(i)} \pi(S) = \cap_{S \in F(j)} \pi(S) = \{j\}$.
 \end{proof}
 
-\begin{proof}[Proof of Lem.\ref{MainLemma}]
-We first claim that $\text{\rm Span}\{\mathbf{B}_{\pi(S)}\}$ and $\text{\rm Span}\{\mathbf{A}_{S}\}$ have the same dimension for all $S \in E$. To see why, note that the right-hand side of \eqref{GapUpperBound} is strictly less than one, since $r \leq 1$ and $L_2(\mathbf{A}) \leq \max_{j \in [m]}\|\mathbf{A}_j\|_2$ by \eqref{delrho}. From \eqref{dimLem}, it then follows that $|\pi(S)| \geq \dim(\text{\rm Span}\{\mathbf{B}_{\pi(S)}\}) \geq \dim(\text{\rm Span}\{\mathbf{A}_{S}\}) = |S|$, with the equality due to $\mathbf{A}$ satisfying \eqref{SparkCondition}; hence, $\dim(\text{\rm Span}\{\mathbf{B}_{\pi(S)}\}) = \dim(\text{\rm Span}\{\mathbf{A}_{S}\})$ (since $|S| = |\pi(S)|$). The columns of $\mathbf{B}_{\pi(S)}$ are thus linearly independent and by \eqref{eqdim}:% and $\mathbf{B}_i \neq \textbf{0}$ for all $i$.
+\begin{proof}[Proof of Main Lemma]
+We first claim $\dim(\text{\rm Span}\{\mathbf{B}_{\pi(S)}\}) = \dim(\text{\rm Span}\{\mathbf{A}_{S}\})$ for all $S \in E$. To see why, note that the right-hand side of \eqref{GapUpperBound} is then strictly less than one, since $r \leq 1$ and $L_2(\mathbf{A}) \leq 1$ by \eqref{delrho}. By \eqref{dimLem}, it then follows that $|\pi(S)| \geq \dim(\text{\rm Span}\{\mathbf{B}_{\pi(S)}\}) \geq \dim(\text{\rm Span}\{\mathbf{A}_{S}\}) = |S|$, with the equality due to $\mathbf{A}$ satisfying \eqref{SparkCondition}; hence, $\dim(\text{\rm Span}\{\mathbf{B}_{\pi(S)}\}) = \dim(\text{\rm Span}\{\mathbf{A}_{S}\})$ (since $|S| = |\pi(S)|$). It follows that the columns of $\mathbf{B}_{\pi(S)}$ are linearly independent and, by \eqref{eqdim}:% and $\mathbf{B}_i \neq \textbf{0}$ for all $i$.
 \begin{align}\label{eq2}
 d(\text{\rm Span}\{\mathbf{B}_{\pi(S)}\}, \text{\rm Span}\{\mathbf{A}_S\} ) = d(\text{\rm Span}\{\mathbf{A}_S\}, \text{\rm Span}\{\mathbf{B}_{\pi(S)}\}).
 \end{align}
-We next verify \eqref{cond} holds.  
+%We will now show that \eqref{cond} holds.
 %\begin{align}\label{fact2}
 %|\bigcap_{S \in F} \pi(S)| \leq |\bigcap_{S \in F} S |,\ \ \   \text{for all } \ F \subseteq E.
 %\end{align}
 
-Fix $F \subseteq E$. Since $\text{\rm Span}\{\mathbf{B}_{\cap_{S \in F}\pi(S)}\} \subseteq \cap_{S \in F} \text{\rm Span}\{\mathbf{B}_{\pi(S)}\}$, if $\cap_{S \in F} \text{\rm Span}\{\mathbf{B}_{\pi(S)}\} = \{\textbf{0}\}$, then $|\cap_{S \in F} \pi(S)| = 0$ (as $\mathbf{B}_i \neq \{\textbf{0}\}$ for all $i$) and \eqref{cond} trivially holds. On the other hand, suppose the intersection is not the zero vector. Using Lem.~\ref{SpanIntersectionLemma} and Lem.~\ref{DistanceToIntersectionLemma}, and incorporating \eqref{eq2} and \eqref{GapUpperBound}, we have:
+Fix $F \subseteq E$. Since $\text{\rm Span}\{\mathbf{B}_{\cap_{S \in F}\pi(S)}\} \subseteq \cap_{S \in F} \text{\rm Span}\{\mathbf{B}_{\pi(S)}\}$, if $\cap_{S \in F} \text{\rm Span}\{\mathbf{B}_{\pi(S)}\} = \textbf{0}$ then we must have $|\cap_{S \in F} \pi(S)| = 0$ (as $\mathbf{B}_i \neq \textbf{0}$ for all $i$) and \eqref{cond} trivially holds. Suppose then that the intersection is not the zero vector. By Lem.~\ref{SpanIntersectionLemma} and Lem.~\ref{DistanceToIntersectionLemma}, and incorporating \eqref{eq2} and \eqref{GapUpperBound}, we have:
 \begin{align}\label{randoml}
 d( \text{\rm Span}&\{\mathbf{B}_{\cap_{S \in F}\pi(S)}\}, \text{\rm Span}\{\mathbf{A}_{\cap_{S \in F} S}\}  ) \nonumber \\
 &\leq d\left( \cap_{S \in F} \text{\rm Span}\{\mathbf{B}_{\pi(S)}\}, \cap_{S \in F} \text{\rm Span}\{\mathbf{A}_{S}\} \right) \nonumber \\
@@ -689,16 +688,9 @@ d( \text{\rm Span}&\{\mathbf{B}_{\cap_{S \in F}\pi(S)}\}, \text{\rm Span}\{\math
 %&< L_2(\mathbf{A}) \frac{|F| }{ 2^{|E|}} \left( \frac{ \min_{\substack{F \subseteq E}} r( \{ \text{\rm Span}\{\mathbf{A}_{S}\}_{S \in F}) }{ r( \{ \text{\rm Span}\{\mathbf{A}_{S}\}_{S \in F}) } \right) \left( \frac{\min_{S \in E} L_k(\mathbf{AX}_{I(S)}) }{ \min_{T \in F} L(\mathbf{AX}_{J(T)}) } \right) \nonumber \\
 \leq C_2 \varepsilon. 
 \end{align}
-The right-hand side in \eqref{randoml} is strictly less than one, so \eqref{dimLem} implies that $\dim(\text{\rm Span}\{\mathbf{B}_{\cap_{S \in F}\pi(S)}\}) \leq \dim(\text{\rm Span}\{\mathbf{A}_{\cap_{S \in F} S}\})$ and \eqref{cond} follows from the linear independence of the columns of $\mathbf{A}_{S}$ and $\mathbf{B}_{\pi(S)}$ for all $S \in F$.
-
-
-[*** TODO: Check this last move here: ***]
-Applying Lem.\ref{NonEmptyLemma}, there is a $J \subseteq [m]$ and injective map $\bar{\pi}: J \to [\bar m]$ with $\|\mathbf{A}\mathbf{e}_j - \bar{c}_j \mathbf{B}\mathbf{e}_{\bar \pi(j)}\|_2 \leq \varepsilon < L_2(\mathbf{A})/C_1$, for some $\bar{c}_j \in \mathbb R$ and all $j \in J$.
-%Now, fix $\ell \in [m]$. Since $E$ satisfies the singleton intersection property, $\{\ell\} = \cap F(\ell)$ for the star $F(\ell) \subseteq E$. By \eqref{cond}, we have that $\cap_{S \in F(\ell)} \pi(S)$ is either empty or it contains a single element. Lem.~\ref{NonEmptyLemma} ensures the latter case is the only possibility. Thus, the association $\ell \mapsto \cap_{S \in F(\ell)} \pi(S)$ defines a map $\bar \pi: [m] \to [m]$ and $\dim(\text{\rm Span}\{\mathbf{B}_{\bar \pi(\ell)}\}) = 1$, since $\mathbf{B}_i \neq \textbf{0}$ for all $i$. By \eqref{eqdim}, it follows from \eqref{randoml} that $d\left( \text{\rm Span}\{\mathbf{A}_\ell\}, \text{\rm Span}\{ \mathbf{B}_{\bar \pi(\ell)} \} \right) \leq C_2 \varepsilon$. Since $\ell$ is arbitrary, fixing $\bar \varepsilon = C_2\delta$ it follows from \eqref{randoml} that for every basis vector $\mathbf{e}_\ell \in \mathbb{R}^m$ there exists some $c'_\ell \in \mathbb{R}$ such that $\|\mathbf{A}\mathbf{e}_\ell - c'_\ell \mathbf{B}\mathbf{e}_{\bar \pi(\ell)}\|_2 \leq \bar \varepsilon < L_2(\mathbf{A})$. This is exactly the supposition in \eqref{1D} (letting $c_i = \|\mathbf{A}_i\|_2^{-1}$ for all $i$) and 
-The result now follows from the $k=1$ case in Sec.~\ref{DUT}.
+Note that since $\varepsilon < L_2(\mathbf{A}) / \tilde C_2$, by \eqref{delrho} the right-hand side in \eqref{randoml} is strictly less than one, so \eqref{dimLem} implies that $\dim(\text{\rm Span}\{\mathbf{B}_{\cap_{S \in F}\pi(S)}\}) \leq \dim(\text{\rm Span}\{\mathbf{A}_{\cap_{S \in F} S}\})$ and \eqref{cond} follows from the linear independence of the columns of $\mathbf{A}_{S}$ and $\mathbf{B}_{\pi(S)}$ for all $S \in F$.
+Now, fix $\ell \in [m]$. Since $E$ satisfies the singleton intersection property, $\{\ell\} = \cap F(\ell)$ for the star $F(\ell) \subseteq E$. By \eqref{cond}, we have that $\cap_{S \in F(\ell)} \pi(S)$ is either empty or it contains a single element. Lem.~\ref{NonEmptyLemma} ensures the latter case is the only possibility. Thus, the association $\ell \mapsto \cap_{S \in F(\ell)} \pi(S)$ defines a map $\bar \pi: [m] \to [m]$ and $\dim(\text{\rm Span}\{\mathbf{B}_{\bar \pi(\ell)}\}) = 1$, since $\mathbf{B}_i \neq \textbf{0}$ for all $i$. By \eqref{eqdim}, it follows from \eqref{randoml} that $d\left( \text{\rm Span}\{\mathbf{A}_\ell\}, \text{\rm Span}\{ \mathbf{B}_{\bar \pi(\ell)} \} \right) \leq C_2 \varepsilon$. Since $\ell$ is arbitrary, fixing $\bar \varepsilon = C_2\delta$ it follows from \eqref{randoml} that for every basis vector $\mathbf{e}_\ell \in \mathbb{R}^m$ there exists some $c'_\ell \in \mathbb{R}$ such that $\|\mathbf{A}\mathbf{e}_\ell - c'_\ell \mathbf{B}\mathbf{e}_{\bar \pi(\ell)}\|_2 \leq \bar \varepsilon < L_2(\mathbf{A})$. This is exactly the supposition in \eqref{1D} (letting $c_i = \|\mathbf{A}_i\|_2^{-1}$ for all $i$) and the result follows from the subsequent arguments for the case $k=1$ in Sec.~\ref{DUT}.
 \end{proof}
-
-%; applying Lem.\ref{NonEmptyLemma} finishes the proof.
 
 %The above arguments can be easily modified to prove the following variation of Lem.~\ref{MainLemma}, key to proving Thm.~\ref{DeterministicUniquenessTheorem2}. 
 
@@ -733,17 +725,18 @@ The result now follows from the $k=1$ case in Sec.~\ref{DUT}.
 
 %We now determine classes of datasets $Y$ having a stable sparse representation that are cut out by a single polynomial equation.
 
-\begin{proof}[Proof (sketch) of Thm.~\ref{robustPolythm}]
-% We sketch the argument, leaving the details to the reader.  %\cite[Sec.~IV]{Hillar15}
-Let $M$ be the matrix with columns $\mathbf{A}\mathbf{x}_i$, $i \in [N]$.  Consider the following polynomial in the entries of $\mathbf{A}$, $\mathbf{x}_i$:
+\begin{proof}[Proof of Thm.~\ref{robustPolythm}]
+% We sketch the argument, leaving the details to the reader. 
+Let $M$ be the matrix with columns $\mathbf{A}\mathbf{x}_i$, $i \in [N]$.  Consider the polynomial \cite[Sec.~IV]{Hillar15} in the entries of $\mathbf{A}$ and $\mathbf{x}_i$:
 \begin{align*}
 g(\mathbf{A}, \{\mathbf{x}_i\}_{i=1}^N) = \prod_{S \in {[n] \choose k}} \sum_{S' \in {[N] \choose k}} (\det M_{S',S})^2,
 \end{align*}
-with notation as in Sec.~\ref{results}.  It can be checked that when $g$ is nonzero for a substitution of real numbers for the indeterminates, all of the genericity requirements on $\mathbf{A}$ and $\mathbf{x}_i$ in our proofs of stability in Thm.~\ref{DeterministicUniquenessTheorem} are satisfied (in particular, the spark condition on $\mathbf{A}$). % The statement of the theorem now follows directly.
+with notation as in Sec.~\ref{Results}.  
+It can be checked that when $g$ is nonzero for a substitution of real numbers for the indeterminates, all of the genericity requirements on $\mathbf{A}$ and $\mathbf{x}_i$ in our proofs of stability in Thm.~\ref{DeterministicUniquenessTheorem} are satisfied (in particular, the spark condition on $\mathbf{A}$). % The statement of the theorem now follows directly.
 \end{proof}
 
-\begin{proof}[Proof (sketch) of Cor.~\ref{ProbabilisticCor}]
-First, note that if a set of measure spaces $\{(X_{\ell}, \Sigma_{\ell}, \nu_{\ell})\}_{\ell=1}^p$ has $\nu_{\ell}$ is absolutely continuous with respect to $\mu$ for all $\ell \in [p]$, where $\mu$ is the standard Borel measure on $\mathbb{R}$, then the product measure $\prod_{\ell=1}^p \nu_{\ell}$ is absolutely continuous with respect to the standard Borel product measure on $\mathbb{R}^p$ (e.g.,  \cite{folland2013real}). By Thm.~\ref{robustPolythm}, there is a polynomial that is nonzero whenever $Y$ has a stable $k$-sparse representation in $\mathbb R^m$; in particular, this property (stability) holds with probability one.
+\begin{proof}[Proof of Cor.~\ref{ProbabilisticCor}]
+First, note that if a set of measure spaces $\{(X_{\ell}, \Sigma_{\ell}, \nu_{\ell})\}_{\ell=1}^p$ is such that $\nu_{\ell}$ is absolutely continuous with respect to $\mu$ for all $\ell = 1, \ldots, p$, where $\mu$ is the standard Borel measure on $\mathbb{R}$, then the product measure $\prod_{\ell=1}^p \nu_{\ell}$ is absolutely continuous with respect to the standard Borel product measure on $\mathbb{R}^p$ (e.g.,  \cite{folland2013real}). By Thm.~\ref{robustPolythm}, there is a polynomial that is nonzero whenever $Y$ has a stable $k$-sparse representation in $\mathbb R^m$; in particular, this property (stability) holds with probability one.
 \end{proof}
 
 %\begin{proof}[Proof of Thm.~\ref{DeterministicUniquenessTheorem2}]
