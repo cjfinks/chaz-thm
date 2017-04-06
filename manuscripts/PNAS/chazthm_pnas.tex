@@ -128,7 +128,7 @@ in almost all cases the dictionary learning problem is well-posed given enough d
 In the next section, we give precise statements of our main results, which include an explicit form for $\varepsilon(\delta_1, \delta_2)$. We then prove our main theorem (Thm.~\ref{DeterministicUniquenessTheorem}) in Sec.~\ref{DUT} after stating some additional definitions and lemmas required for the proof, including our main tool from combinatorial matrix analysis (Lem.~\ref{MainLemma}). All other proofs are relegated to the Supplemental. 
 Finally, we present several applications in Discussion Sec.~\ref{Discussion}.
 
-\section{Results}
+\section{Results}\label{results}
 
 Before stating main results, we first identify the combinatorial criteria on support sets of generating codes allowing for stable sparse 
 representations.  Let $\{1, \ldots, m\}$ be denoted $[m]$, its power set $2^{[m]}$, and ${[m] \choose k}$ the set of subsets of $[m]$ of size $k$. 
@@ -659,7 +659,7 @@ Fix $\ell, m$, and $\bar m$. Suppose $E \subseteq 2^{[m]}$ is $\ell$-regular wit
 %
 then $\bar m \geq m$ and the association $i \mapsto \cap \pi(F(i))$ defines an injective map from $J$ to $[\bar m]$ for some $J \subseteq [m]$ of size $\bar m - \ell(\bar m - m)$. In particular, if $\bar m = m$ then the map $\pi$ is induced by a permutation.
 %$\pi(E)$ is $\ell$-regular and satisfies the singleton intersection property. In particular, $|\cap_{S \in F} S| = 1$ if and only if $|\cap_{S \in F} \pi(S)| = 1$. 
-[*** TODO: Chris to Finish ***]
+[*** TODO: Insert the final proof here ***]
 \end{lemma}
 \begin{proof}
   We first show that $\bar m \geq m$. Fix $T = \{(j, S): j \in \pi(S), S \in E\}$. Then $|T| = \sum_{S \in E} |\pi(S)| = \sum_{S \in E} |S| = \sum_{i \in [m]} \deg(i) = \ell m$ by regularity of $E$. If $\bar m < m$ then by pigeonholing the $m \ell \geq \ell (\bar m + 1) \geq [(\ell + 1) - 1] \bar m + 1$ elements of $T$ with respect to the set $[\bar m]$ of possible first indices, we see that there must exist at least $\ell + 1$ elements of $T$ having the same first index. But by \eqref{cond} there can be no more than $\ell$ elements of $T$ with a given first index, since $E$ is $\ell$-regular. Hence $\bar m \geq m$. 
@@ -723,7 +723,7 @@ The result now follows from the $k=1$ case in Sec.~\ref{DUT}.
 %The proof is very similar to the case $\bar m = m$, the difference being that now we may not invoke Lem.~\ref{NonEmptyLemma} (which requires $\bar m = m$) to infer from \eqref{fact2} that $| \cap_{S \in F(i)} \pi(S) | = 1$ for all stars $F(i)$. We circumvent this issue by instead assuming the spark condition on $\mathbf{B}$, which allows us to swap the roles of $\mathbf{A}$ and $\mathbf{B}$ in the arguments leading to the derivation of \eqref{fact2} to prove the opposite inequality for every star $F(i)$. Of course, this requires that the constant $C_4$  depend on $\mathbf{B}$. By these arguments we establish that $| \cap_{S \in F(i)} \pi(S) | = 1$ for all stars $F(i)$, yielding an injective map $\bar \pi: [m] \to [\bar m]$. The result then follows from the proof of the case $k=1$. 
 %\end{proof}
 
-\section{Proof (sketches) of Thm.~\ref{robustPolythm} and Cor.~\ref{ProbabilisticCor}}\label{AppendixB} %Cors.~\ref{DeterministicUniquenessCorollary} \& \ref{ProbabilisticCor}}\label{AppendixB}
+\section{Proofs of Thm.~\ref{robustPolythm} and Cor.~\ref{ProbabilisticCor}}\label{AppendixB} %Cors.~\ref{DeterministicUniquenessCorollary} \& \ref{ProbabilisticCor}}\label{AppendixB}
 
 %\begin{proof}[Proof of Cor.~\ref{DeterministicUniquenessCorollary}]
 %We need only demonstrate how to produce $N$ vectors $\mathbf{a}_i$ such that for some $E \subseteq {[m] \choose k}$ satisfying the singleton intersection property there are \mbox{$(k-1){m \choose k}+1$} vectors supported on each $S \in E$ in general linear position. Let $\gamma_1, \ldots, \gamma_N$ be any distinct numbers. Then the columns of the $k \times N$ matrix $V = (\gamma^i_j)^{k,N}_{i,j=1}$ are in general linear position (since the $\gamma_j$ are distinct, any $k \times k$ ``Vandermonde" sub-determinant is nonzero). Next, fix some $E \subseteq {[m] \choose k}$ satisfying the singleton intersection property. Finally, form the $k$-sparse vectors $\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$ with supports $S \in E$ (partitioning the $\mathbf{x}_i$ evenly among these supports so that each contains $(k-1){m \choose k}+1$ vectors $\mathbf{x}_i$) by setting the nonzero values $\mathbf{x}_i$ to be those contained in the $i$th column of $V$.
@@ -733,17 +733,16 @@ The result now follows from the $k=1$ case in Sec.~\ref{DUT}.
 %We now determine classes of datasets $Y$ having a stable sparse representation that are cut out by a single polynomial equation.
 
 \begin{proof}[Proof (sketch) of Thm.~\ref{robustPolythm}]
-% We sketch the argument, leaving the details to the reader. 
-Let $M$ be the matrix with columns $\mathbf{A}\mathbf{x}_i$, $i \in [N]$.  Consider the polynomial \cite[Sec.~IV]{Hillar15} in the entries of $\mathbf{A}$ and $\mathbf{x}_i$:
+% We sketch the argument, leaving the details to the reader.  %\cite[Sec.~IV]{Hillar15}
+Let $M$ be the matrix with columns $\mathbf{A}\mathbf{x}_i$, $i \in [N]$.  Consider the following polynomial in the entries of $\mathbf{A}$, $\mathbf{x}_i$:
 \begin{align*}
 g(\mathbf{A}, \{\mathbf{x}_i\}_{i=1}^N) = \prod_{S \in {[n] \choose k}} \sum_{S' \in {[N] \choose k}} (\det M_{S',S})^2,
 \end{align*}
-with notation as in Sec.~\ref{Results}.  
-It can be checked that when $g$ is nonzero for a substitution of real numbers for the indeterminates, all of the genericity requirements on $\mathbf{A}$ and $\mathbf{x}_i$ in our proofs of stability in Thm.~\ref{DeterministicUniquenessTheorem} are satisfied (in particular, the spark condition on $\mathbf{A}$). % The statement of the theorem now follows directly.
+with notation as in Sec.~\ref{results}.  It can be checked that when $g$ is nonzero for a substitution of real numbers for the indeterminates, all of the genericity requirements on $\mathbf{A}$ and $\mathbf{x}_i$ in our proofs of stability in Thm.~\ref{DeterministicUniquenessTheorem} are satisfied (in particular, the spark condition on $\mathbf{A}$). % The statement of the theorem now follows directly.
 \end{proof}
 
-\begin{proof}[Proof of Cor.~\ref{ProbabilisticCor}]
-First, note that if a set of measure spaces $\{(X_{\ell}, \Sigma_{\ell}, \nu_{\ell})\}_{\ell=1}^p$ is such that $\nu_{\ell}$ is absolutely continuous with respect to $\mu$ for all $\ell = 1, \ldots, p$, where $\mu$ is the standard Borel measure on $\mathbb{R}$, then the product measure $\prod_{\ell=1}^p \nu_{\ell}$ is absolutely continuous with respect to the standard Borel product measure on $\mathbb{R}^p$ (e.g.,  \cite{folland2013real}). By Thm.~\ref{robustPolythm}, there is a polynomial that is nonzero whenever $Y$ has a stable $k$-sparse representation in $\mathbb R^m$; in particular, this property (stability) holds with probability one.
+\begin{proof}[Proof (sketch) of Cor.~\ref{ProbabilisticCor}]
+First, note that if a set of measure spaces $\{(X_{\ell}, \Sigma_{\ell}, \nu_{\ell})\}_{\ell=1}^p$ has $\nu_{\ell}$ is absolutely continuous with respect to $\mu$ for all $\ell \in [p]$, where $\mu$ is the standard Borel measure on $\mathbb{R}$, then the product measure $\prod_{\ell=1}^p \nu_{\ell}$ is absolutely continuous with respect to the standard Borel product measure on $\mathbb{R}^p$ (e.g.,  \cite{folland2013real}). By Thm.~\ref{robustPolythm}, there is a polynomial that is nonzero whenever $Y$ has a stable $k$-sparse representation in $\mathbb R^m$; in particular, this property (stability) holds with probability one.
 \end{proof}
 
 %\begin{proof}[Proof of Thm.~\ref{DeterministicUniquenessTheorem2}]
