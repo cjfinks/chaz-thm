@@ -550,7 +550,7 @@ We now show that no more than $(k-1)|E|$ of the $\mathbf{\bar x}_i$ share a supp
 %Let $\mathbf{X}$ and $\mathbf{\bar{X}}$ be the $m \times N$ and $\bar m \times N$ matrices with columns $\mathbf{x}_i$ and $\mathbf{\bar x}_i$, respectively, and let $I(S) = \{i \in [N]: \text{supp}(\mathbf{x}_i) \subseteq S\}$. 
 From previous arguments, for every $S \in E$, the columns of each $n \times k$ submatrix of $\mathbf{AX}_{I(S)}$ form a basis for $\text{\rm Span}\{\mathbf{A}_S\}$.
 % the general linear position of the $\mathbf{x}_i$ and the linear independence of every $k$ columns of $\mathbf{A}$ that $L_k(\mathbf{AX}_{I(S)}) > 0$ for all $S \in E$; that is, for every $S \in E$, the columns of every $n \times k$ submatrix of $\mathbf{AX}_{I(S)}$ form a basis for $\text{\rm Span}\{\mathbf{A}_S\}$. 
-Suppose that more than $(k-1)|E|$ vectors $\mathbf{\bar x}_i$ share a support $\bar S$ of size $|\bar{S}| < k$. By the pigeonhole principle, there is some $S \in E$ supporting $k$ or more of the corresponding $\mathbf{x}_i$; let them be indexed by $K \subseteq I(S)$.  By the argument as in the proof of Thm.\ref{DeterministicUniquenessTheorem}, we also have \eqref{rhs222}. Since our bound on $\varepsilon$ implies that the right-hand side of \eqref{rhs222} is less than one, by \eqref{dimLem}: \[k = \dim(\text{Span}(\mathbf{A}_S)) \leq \dim(\text{Span}\{\mathbf{B}_{\bar S}\}) \leq |\bar S|,\] a contradiction. 
+Suppose that more than $(k-1)|E|$ vectors $\mathbf{\bar x}_i$ share a support $\bar S$ of size $|\bar{S}| < k$. By the pigeonhole principle, there is some $S \in E$ supporting $k$ or more of the corresponding $\mathbf{x}_i$; let them be indexed by $K \subseteq I(S)$.  By the argument as in the proof of Thm.\ref{DeterministicUniquenessTheorem}, we also have \eqref{rhs222}. Since our bound on $\varepsilon$ implies that the right-hand side of \eqref{rhs222} is less than one, by \eqref{dimLem} we have the contradiction: \[k = \dim(\text{Span}(\mathbf{A}_S)) \leq \dim(\text{Span}\{\mathbf{B}_{\bar S}\}) \leq |\bar S|.\]
 
 Hence, the total number of $(k-1)$-sparse vectors $\mathbf{\bar x}_i$ is no greater than $|E|(k-1){ m \choose k-1}$. Taking \eqref{eqn} into account, no more than $|E|k(k-1){ m \choose k-1}$ vectors $\mathbf{\bar x}_i$ are \emph{not} $k$-sparse. Since for every $S \in E$ there are over $(k-1)\left[ {\bar m \choose k} + |E|k{ m \choose k-1} \right]$ vectors $\mathbf{x}_i$ supported there, it follows that more than $(k-1){\bar m \choose k}$ of them must have corresponding $\mathbf{\bar x}_i$ that are also $k$-sparse. The result now follows directly from Thm.~\ref{DeterministicUniquenessCorollary}.
 \end{proof}
@@ -573,7 +573,7 @@ It would be of practical utility to determine the best possible dependence of $\
 
 %We note also that these results extend trivially to cases where point-wise injective nonlinearities are applied to the data. 
 
-One notable component of our contribution is a combinatorial criteria (regular hypergraphs satisfying the singular intersection property, Def.~\ref{sip}) for the support sets of sparse codes key to the identification of the dictionary. Fully understanding those combinatorial designs allowing for stable sparse representations is an interesting research area for the future. For instance, whether there is a support set size $N$ that is polynomial in $m,k$ gauranteeing the conclusions of Thm.~\ref{DeterministicUniquenessTheorem} has implications for the computational complexity of Probs.~\ref{InverseProblem} and \ref{OptimizationProblem} and related questions \cite{Tillmann15}. We also remark that our main uniqueness result accounts for deterministic ``worst-case'' noise, whereas the ``effective'' noise might be much smaller when it is sampled from a given distribution; in such cases, the constants  %Thms.~\ref{DeterministicUniquenessTheorem},~\ref{DeterministicUniquenessTheorem2} 
+One notable component of our contribution is a combinatorial criteria (regular hypergraphs satisfying the singular intersection property, Def.~\ref{sip}) for the support sets of sparse codes key to the identification of the dictionary. Fully understanding those combinatorial designs allowing for stable sparse representations is an interesting research area for the future. For instance, whether there is a support set size $N$ that is polynomial in $m,k$ gauranteeing the conclusions of Thm.~\ref{DeterministicUniquenessTheorem} has implications for the computational complexity of Probs.~\ref{InverseProblem} and \ref{OptimizationProblem} and related questions \cite{Tillmann15}. We also remark that our uniqueness result accounts for deterministic ``worst-case'' noise, whereas the ``effective'' noise might be smaller when sampled from a distribution; in such cases, the constants  %Thms.~\ref{DeterministicUniquenessTheorem},~\ref{DeterministicUniquenessTheorem2} 
 will improve.
 
 A technical difficulty in proving Thm.~\ref{DeterministicUniquenessTheorem} was the absence of a spark condition assumption on solutions to Prob.~\ref{InverseProblem}.
@@ -585,37 +585,15 @@ In fact, though, uniqueness guarantees with minimal assumptions apply to all are
 %in a common application of compressed sensing in engineering 
 
 %\textbf{Theoretical Neuroscience}.
-Additionally, in the field of theoretical neuroscience, sparse dictionary learning and related methods have recovered characteristic components of natural images \cite{Olshausen96, hurri1996image, bell1997independent, van1998independent} and sounds \cite{bellsejnowski1996, smithlewicki2006, Carlson12}, reproducing response properties of cortical neurons. Our results suggest that this correspondence could be due to  sparse representations being ``universal'' in natural data, an early mathematical idea in neural theory \cite{pitts1947}. Furthermore, our guarantees justify the hypothesis of \cite{Coulter10, Isely10} that sparse codes passed through a communication bottleneck in the brain are recovered from random projections via (unsupervised) biologically plausible sparse dictionary learning (e.g., \cite{rehnsommer2007, rozell2007neurally, hu2014hebbian}).  
+Additionally, in the field of theoretical neuroscience, sparse dictionary learning and related methods have recovered characteristic components of natural images \cite{Olshausen96, hurri1996image, bell1997independent, van1998independent} and sounds \cite{bellsejnowski1996, smithlewicki2006, Carlson12}, reproducing response properties of cortical neurons. Our results suggest that this correspondence could be due to  sparse representations being ``universal'' in natural data, an early mathematical idea in neural theory \cite{pitts1947}. Furthermore, our guarantees justify the hypothesis of \cite{Coulter10, Isely10} that sparse codes passed through a communication bottleneck in the brain are recovered from random projections via (unsupervised) biologically plausible sparse coding (e.g., \cite{rehnsommer2007, rozell2007neurally, hu2014hebbian}).
 
-%In fact, the concept of ``universal'' objects in the brain is . 
+% \small{\small{\textbf{ACKNOWLEDGMENTS.}}} We thank Friedrich Sommer and Darren Rhea for early thoughts, and Ian Morris for \eqref{eqdim}.
 
-%But this is also in data science applications.  For instance, when recovering a rat's position on a linear track from learning a sparse linear model on  local field potentials in Hippocampus \cite{Agarwal14}.
+% This breaks:  Proof of Main Lemma 1 somehow appears earlier than it should be....weird
+\acknow{We thank Friedrich Sommer and Darren Rhea for early thoughts, and Ian Morris for posting \eqref{eqdim} online.}
+ \showacknow % Display the acknowledgments section
 
-%TODO: add reproduction of response propeties in olfactory cortex?
-
-% Reiterate probabilistic result in the smooth analysis part?
-%\textbf{Smoothed Analysis}.
-%The main concept in smoothed analysis \cite{Spielman04} is that certain algorithms having exponential worst-case behavior are, nonetheless, efficient if certain (typically, measure zero in the continuous case and with ``low probability" in the discrete case) pathological input sets are avoided. Our results imply that if there is an efficient ``smoothed" algorithm for solving Prob.~\ref{InverseProblem} given enough samples, then for generic inputs this algorithm determines the unique original solution. We note that avoiding certain pathological sets of inputs is often a necessary technicality for dictionary learning \cite{Razaviyayn15, Tillmann15}.
-
-%\textbf{Engineering}.
-
-
-\acknow{We thank Friedrich Sommer for introducing us to sparse dictionary learning, Darren Rhea for sharing early explorations, and Ian Morris for posting \eqref{eqdim} online.}
-
-\showacknow % Display the acknowledgments section
-
-% \pnasbreak % splits and balances the columns before the references.
-% If you see unexpected formatting errors, try commenting out this line
-% as it can run into problems with floats and footnotes on the final page.
-%\pnasbreak %was causing only first two pages to print..??
-
-% Bibliography
 \bibliography{chazthm_pnas}
-
-%% SUPPLEMENTAL INFO? %%%
-%\begin{remark}
-%Actually, $\mathbf{A}$ need not be injective on all $k$-sparse vectors for Theorem \ref{DeterministicUniquenessTheorem} to hold; rather, it need only be injective the set of all vectors with supports in $E$. [** TODO ** we will probably have to redefine $L_2$ since it is over all $k$-sparse vectors -- may have to instead define $L_E$.] Wait, $E$ need not be regular for $B$ sat. spark cond. Also it need not be $k$-regular!
-%\end{remark}
 
 \clearpage
 
@@ -633,7 +611,6 @@ Let $\mathbf{M} \in \mathbb{R}^{n \times m}$. If every $2k$ columns of $\mathbf{
 Using induction on $|F|$, it is enough to prove the lemma when $|F| = 2$; but this case follows directly from the assumption.
 \end{proof}
 
-% This can be made tighter by using Pythagoras' Thm for first projection instead of triangle inequality. 
 \begin{lemma}\label{DistanceToIntersectionLemma}
 Fix $k \geq 2$. Let $V_1, \ldots, V_k$ be subspaces of $\mathbb{R}^m$ and set $V = \cap_{i = 1}^k V_i$. For  $\mathbf{x} \in \mathbb{R}^m$, we have (where $r$ is given in Def.~\ref{SpecialSupportSet}):
 \begin{align}\label{DTILeq}
@@ -642,20 +619,17 @@ Fix $k \geq 2$. Let $V_1, \ldots, V_k$ be subspaces of $\mathbb{R}^m$ and set $V
 \end{lemma}
 \begin{proof} 
 Recall that orthogonal projection onto a subspace $V \subseteq \mathbb{R}^m$ is the mapping $\Pi_V: \mathbb{R}^m \to V$ that associates with each $\mathbf{x}$ its unique nearest point in $V$; i.e., $\|\mathbf{x} - \Pi_V\mathbf{x}\|_2 = \text{\rm dist}(\mathbf{x}, V)$.
-% Since subspaces of real vector spaces are closed, we can replace inf with min in def. of orthogonal projection
 Next, observe:
-%Use Pythagoras' Theorem first?
 \begin{align}\label{f}
 \|\mathbf{x} - \Pi_V\mathbf{x}\|_2 &\leq \|\mathbf{x} - \Pi_{V_k} \mathbf{x}\|_2 + \|\Pi_{V_k}  \mathbf{x} - \Pi_{V_k}\Pi_{V_{k-1}}\mathbf{x}\|_2 \nonumber \\
 &\ \ \ + \cdots + \|\Pi_{V_k} \Pi_{V_{k-1}}\cdots \Pi_{V_1} \mathbf{x} - \Pi_V \mathbf{x}\|_2 \nonumber \\
 &\leq \|\Pi_{V_k}\cdots\Pi_{V_{1}} \mathbf{x} - \Pi_V \mathbf{x}\|_2 + \sum_{\ell=1}^k \|\mathbf{x} - \Pi_{V_{\ell}} \mathbf{x}\|_2,
 \end{align}
-%
 using the triangle inequality and that the spectral norm satisfies $\|\Pi_{V_{\ell}}\|_2 \leq 1$ for all $\ell$ (since $\Pi_{V_{\ell}}$ are orthogonal projections).
 
 The desired result, \eqref{DTILeq}, now follows by bounding the second term on the right-hand side using the following fact \cite[Thm.~9.33]{Deutsch12}:
 \begin{align}
-\|\Pi_{V_k}\Pi_{V_{k-1}}\cdots\Pi_{V_1} \mathbf{x} - \Pi_V\mathbf{x}\|_2 \leq z \|\mathbf{x}\|_2, %  \ \ \  \text{for } \mathbf{x} \in \mathbb{R}^m,
+\|\Pi_{V_k}\Pi_{V_{k-1}}\cdots\Pi_{V_1} \mathbf{x} - \Pi_V\mathbf{x}\|_2 \leq z \|\mathbf{x}\|_2,
 \end{align}
 for \mbox{$z^2= 1 - \prod_{\ell =1}^{k-1}(1-z_{\ell}^2)$} and \mbox{$z_{\ell} = \cos\theta\left(V_{\ell}, \cap_{s=\ell+1}^k V_s\right)$}. Together with $\Pi_{V_\ell} \Pi_V = \Pi_V$ for all $\ell \in [k]$ and $\Pi_V^2 = \Pi_V$ yields:
 \begin{align*}
@@ -665,7 +639,6 @@ for \mbox{$z^2= 1 - \prod_{\ell =1}^{k-1}(1-z_{\ell}^2)$} and \mbox{$z_{\ell} = 
 \end{align*}
 
 Finally, substituting this into \eqref{f} and rearranging produces \eqref{DTILeq} after replacing $1 - z$ with $r(\{V_i\}_{i=1}^k)$.
-% ($z$ may depend on the ordering).
 \end{proof}
 
 \begin{lemma}\label{NonEmptyLemma} 
@@ -673,102 +646,49 @@ Fix $\ell, m$, and $\bar m$. Suppose $E \subseteq 2^{[m]}$ is $\ell$-regular wit
 \begin{align}\label{cond}
 |\bigcap_{S \in F} \pi(S)| \leq |\bigcap_{S \in F} S |,\ \ \   \text{for } F \subseteq E,
 \end{align}
-%
 then $\bar m \geq m$ and the association $i \mapsto \cap \pi(F(i))$ defines an injective map from $J$ to $[\bar m]$ for some $J \subseteq [m]$ of size $\bar m - \ell(\bar m - m)$. In particular, if $\bar m = m$ then the map $\pi$ is induced by a permutation.
-%$\pi(E)$ is $\ell$-regular and satisfies the singleton intersection property. In particular, $|\cap_{S \in F} S| = 1$ if and only if $|\cap_{S \in F} \pi(S)| = 1$. 
 \end{lemma}
-\begin{proof}
-Let $T_1 = \{(i, S): i \in \pi(S), S \in E\}$. Then, $|T_1| = \sum_{S \in E} |\pi(S)| = \sum_{S \in E} |S| = \ell m$ by regularity of $E$. Thus, $|T_1| > \bar m (\ell -1) + (p-1) > \bar m (\ell -1)$. Using the pigeonhole property, it follows that there are at least $\ell$ elements of $T_1$ sharing the same first coordinate. Let $F_1$ be the preimage of this family under $\pi$.  By the assumption \eqref{cond}, the intersection of $F_1$ is nonempty, and in fact must contain exactly $\ell$ elements. Thus, $F_1$ is the star of some element $i_1 \in [m]$.  From the SIP, the intersection of sets in $F_1$ is $\{i_1\}$, which by \eqref{cond} implies that the intersection of $\pi(S)$ with $S \in F_1$ also contains exactly one element.  Set $T_2 = T_1 \setminus \{(i,S) \in T_1: i = i_1\}$, which contains at least $(\bar m - 1)(\ell -1)$ sets. Iterating this argument $p = \bar{m} - \ell(\bar m - m)$ times produces the conclusion in the lemma with $J = \{i_1, \ldots, i_p\}$.
-%We first show that $\bar m \geq m$. Fix $T = \{(j, S): j \in \pi(S), S \in E\}$. Then $|T| = \sum_{S \in E} |\pi(S)| = \sum_{S \in E} |S| = \sum_{i \in [m]} \deg(i) = \ell m$ by regularity of $E$. If $\bar m < m$ then by pigeonholing the $m \ell \geq \ell (\bar m + 1) \geq [(\ell + 1) - 1] \bar m + 1$ elements of $T$ with respect to the set $[\bar m]$ of possible first indices, we see that there must exist at least $\ell + 1$ elements of $T$ having the same first index. But by \eqref{cond} there can be no more than $\ell$ elements of $T$ with a given first index, since $E$ is $\ell$-regular. Hence $\bar m \geq m$. 
-%Again, pigeonholing the elements of $T$ with respect to the set $[\bar m]$ of possible first indices, we see that for each $j$ there must be exactly $\ell$ elements of $T$ with $j$ as a first index; hence, $\pi(E)$ is $\ell$-regular. 
-%Fix $j$ and let $F(j) = \{S \in E: j \in \pi(S)\}$ be the preimage of the star in $\pi(E)$ centered at $j$, which is of size $\ell$ by the above arguments. It follows from \eqref{cond} that $\cap_{S \in F(j)} S$ is nonempty. In fact, we must have $|\cap _{S \in F(j)} S| = 1$, since $E$ is $\ell$-regular and satisfies the singleton intersection property. It follows by \eqref{cond} that $\cap_{S \in F(j)} \pi(S) = \{j\}$. Thus $\pi(E)$ satisfies the singleton intersection property as well, and the preimage of every one of the $m$ stars in $\pi(E)$ is a star in $E$. It remains to show that every star in $E$ maps through $\pi$ to some star in $\pi(E)$. This follows by pigeonholing the $m$ stars of $\pi(E)$ with respect to their $m$ possible preimages if no two stars in $\pi(E)$ share the same preimage. This indeed must be the case, since $F(i) = F(j)$ implies $\{i\} = \cap_{S \in F(i)} \pi(S) = \cap_{S \in F(j)} \pi(S) = \{j\}$.
-\end{proof}
 
+\begin{proof}
+Consider the collection of pairs: \[T_1 = \{(i, S): i \in \pi(S), S \in E\},\] which number $|T_1| = \sum_{S \in E} |\pi(S)| = \sum_{S \in E} |S| = \ell m$ by regularity of $E$.  
+We first show that $\bar m \geq m$. Otherwise, if $\bar m < m$, then by pigeonholing the $m \ell \geq \ell (\bar m + 1) \geq [(\ell + 1) - 1] \bar m + 1$ elements of $T_1$ with respect to the set $[\bar m]$ of possible first indices, we see that there must exist at least $\ell + 1$ elements of $T_1$ having the same first index. But by \eqref{cond} there can be no more than $\ell$ elements of $T_1$ with a given first index, since $E$ is $\ell$-regular. Hence $\bar m \geq m$.
+
+Next, since \[|T_1| > \bar m (\ell -1) + (p-1) > \bar m (\ell -1),\] the pigeonhole principle also implies that there are at least $\ell$ elements of $T_1$ sharing the same first coordinate. Let $F_1$ be the preimage of this family under $\pi$.  By the assumption \eqref{cond}, the intersection of $F_1$ is nonempty, and in fact must contain exactly $\ell$ elements. Thus, $F_1$ is the star of some element $i_1 \in [m]$.  From the SIP, the intersection of sets in $F_1$ is $\{i_1\}$, which by \eqref{cond} implies that the intersection of $\pi(S)$ with $S \in F_1$ also contains exactly one element.  Set $T_2 = T_1 \setminus \{(i,S) \in T_1: i = i_1\}$, which contains at least $(\bar m - 1)(\ell -1)$ sets. Iterating this argument $p = \bar{m} - \ell(\bar m - m)$ times produces the desired $J = \{i_1, \ldots, i_p\} \subseteq [m]$.
+\end{proof}
 \begin{proof}[Proof of Lem.\ref{MainLemma}]
 We begin by showing that: 
 \begin{align}\label{eq2}
 d(\text{\rm Span}\{\mathbf{B}_{\pi(S)}\}, \text{\rm Span}\{\mathbf{A}_S\} ) = d(\text{\rm Span}\{\mathbf{A}_S\}, \text{\rm Span}\{\mathbf{B}_{\pi(S)}\}).
 \end{align}
-%We first claim $\dim(\text{\rm Span}\{\mathbf{B}_{\pi(S)}\}) = \dim(\text{\rm Span}\{\mathbf{A}_{S}\})$ for all $S \in E$. 
 Since the right-hand side of \eqref{GapUpperBound} is strictly less than one (by \eqref{delrho} and $r \leq 1$), it follows by \eqref{dimLem} that $|\pi(S)| \geq \dim(\text{\rm Span}\{\mathbf{B}_{\pi(S)}\}) \geq \dim(\text{\rm Span}\{\mathbf{A}_{S}\}) = |S|$, with the equality due to $\mathbf{A}$ satisfying \eqref{SparkCondition}. Since $|S| = |\pi(S)|$, we therefore have $\dim(\text{\rm Span}\{\mathbf{B}_{\pi(S)}\}) = \dim(\text{\rm Span}\{\mathbf{A}_{S}\})$, and \eqref{eq2} follows by \eqref{eqdim}. Note that the columns of $\mathbf{B}_{\pi(S)}$ are therefore linearly independent, for all $S \in E$.
 
-We next verify \eqref{cond} holds.
-%\begin{align}\label{fact2}
-%|\bigcap_{S \in F} \pi(S)| \leq |\bigcap_{S \in F} S |,\ \ \   \text{for all } \ F \subseteq E.
-%\end{align}
-Fix $F \subseteq E$. Since $\text{\rm Span}\{\mathbf{B}_{\cap_{S \in F}\pi(S)}\} \subseteq \cap_{S \in F} \text{\rm Span}\{\mathbf{B}_{\pi(S)}\}$, if $\cap_{S \in F} \text{\rm Span}\{\mathbf{B}_{\pi(S)}\} = \textbf{0}$ then we must have $|\cap_{S \in F} \pi(S)| = 0$ (as the columns of $\mathbf{B}_{\pi(S)}$ are linearly independent) and \eqref{cond} trivially holds. Suppose then that the intersection is not the zero vector. By Lem.~\ref{SpanIntersectionLemma} and Lem.~\ref{DistanceToIntersectionLemma}, and incorporating \eqref{eq2} and \eqref{GapUpperBound}, we have:
+We next verify \eqref{cond} holds.  Fix $F \subseteq E$. Since $\text{\rm Span}\{\mathbf{B}_{\cap_{S \in F}\pi(S)}\} \subseteq \cap_{S \in F} \text{\rm Span}\{\mathbf{B}_{\pi(S)}\}$, if $\cap_{S \in F} \text{\rm Span}\{\mathbf{B}_{\pi(S)}\} = \textbf{0}$ then we must have $|\cap_{S \in F} \pi(S)| = 0$ (as the columns of $\mathbf{B}_{\pi(S)}$ are linearly independent) and \eqref{cond} trivially holds. Suppose then that the intersection is not the zero vector. By Lem.~\ref{SpanIntersectionLemma} and Lem.~\ref{DistanceToIntersectionLemma}, and incorporating \eqref{eq2} and \eqref{GapUpperBound}, we have:
 \begin{align}\label{randoml}
 d( \text{\rm Span}&\{\mathbf{B}_{\cap_{S \in F}\pi(S)}\}, \text{\rm Span}\{\mathbf{A}_{\cap_{S \in F} S}\}  ) \nonumber \\
 &\leq d\left( \cap_{S \in F} \text{\rm Span}\{\mathbf{B}_{\pi(S)}\}, \cap_{S \in F} \text{\rm Span}\{\mathbf{A}_{S}\} \right) \nonumber \\
 &\leq \sum_{T \in F} \frac{ d\left( \cap_{S \in F} \text{\rm Span}\{\mathbf{B}_{\pi(S)}\},\text{\rm Span}\{\mathbf{A}_{T}\} \right) }{ r( \{ \text{\rm Span}\{\mathbf{A}_{S}\}_{S \in F}) } \nonumber \\
 &\leq \sum_{T \in F} \frac{ d\left( \text{\rm Span}\{\mathbf{B}_{\pi(T)}\},\text{\rm Span}\{\mathbf{A}_{T}\} \right) }{ r( \{ \text{\rm Span}\{\mathbf{A}_{S}\}_{S \in F}) }\nonumber \\
-%&\leq \frac{1}{r( \{ \text{\rm Span}\{\mathbf{A}_{S}\}_{S \in F})} \sum_{S \in F} \frac{ \varepsilon }{ L(\mathbf{AX}_{J(S)}) } \nonumber \\
 &\leq \frac{|F| \varepsilon}{r( \{ \text{\rm Span}\{\mathbf{A}_{S}\} \}_{S \in F})} 
-%&< L_2(\mathbf{A}) \frac{|F| }{ 2^{|E|}} \left( \frac{ \min_{\substack{F \subseteq E}} r( \{ \text{\rm Span}\{\mathbf{A}_{S}\}_{S \in F}) }{ r( \{ \text{\rm Span}\{\mathbf{A}_{S}\}_{S \in F}) } \right) \left( \frac{\min_{S \in E} L_k(\mathbf{AX}_{I(S)}) }{ \min_{T \in F} L(\mathbf{AX}_{J(T)}) } \right) \nonumber \\
 \leq \frac{C_2 \varepsilon}{\max_i\|\mathbf{A}_i\|_2}. 
 \end{align}
 Since $\varepsilon < L_2(\mathbf{A}) / C_2$, by \eqref{delrho} the right-hand side in \eqref{randoml} is strictly less than one. Hence, $\dim(\text{\rm Span}\{\mathbf{B}_{\cap_{S \in F}\pi(S)}\}) \leq \dim(\text{\rm Span}\{\mathbf{A}_{\cap_{S \in F} S}\})$ by \eqref{dimLem}, and \eqref{cond} follows from the linear independence of the columns of $\mathbf{A}_{S}$ and $\mathbf{B}_{\pi(S)}$ for all $S \in F$.
 
-%Now, fix $\ell \in [m]$. Since $E$ satisfies the singleton intersection property, $\{\ell\} = \cap F(\ell)$ for the star $F(\ell) \subseteq E$. By \eqref{cond}, we have that $\cap_{S \in F(\ell)} \pi(S)$ is either empty or it contains a single element. Lem.~\ref{NonEmptyLemma} ensures the latter case is the only possibility. 
-Now, by Lem.~\ref{NonEmptyLemma}, the association $i \mapsto \cap \pi(F(i))$ defines an injective map $\bar \pi: J \to [\bar m]$ for some $J \subseteq [m]$ of size $\bar m - \ell(\bar m - m)$, and we can be sure that $\mathbf{B}_{\bar \pi(i)} \neq \mathbf{0}$ for all $i \in J$ since the columns of $\mathbf{B}_{\pi(S)}$ are linearly independent for all $S \in E$. It then follows from \eqref{eqdim} and \eqref{randoml} that $d\left( \text{\rm Span}\{\mathbf{A}_i\}, \text{\rm Span}\{ \mathbf{B}_{\bar \pi(i)} \} \right) \leq C_2 \varepsilon / \max_i \|\mathbf{A}_i\|_2$ for all $i \in J$. Fixing $\bar \varepsilon = C_2\varepsilon$ and letting $c_i = \|\mathbf{A}_i\|_2^{-1}$, we thus have that for every basis vector $\mathbf{e}_i \in \mathbb{R}^m$ with $i \in J$ there exists some $c'_i \in \mathbb{R}$ such that $\|c_i\mathbf{A}\mathbf{e}_i - c'_i \mathbf{B}\mathbf{e}_{\bar \pi(i)}\|_2 \leq \bar \varepsilon < L_2(\mathbf{A}) \min_{i\in J} c_i$. This is exactly the supposition in \eqref{1D}, and the result follows from the subsequent arguments for the case $k=1$ in Sec.~\ref{DUT} applied to the submatrix $\mathbf{A}_J$.
+Now, by Lem.~\ref{NonEmptyLemma}, the association $i \mapsto \cap \pi(F(i))$ defines an injective map $\bar \pi: J \to [\bar m]$ for some $J \subseteq [m]$ of size $\bar m - \ell(\bar m - m)$, and we can be sure that $\mathbf{B}_{\bar \pi(i)} \neq \mathbf{0}$ for all $i \in J$ since the columns of $\mathbf{B}_{\pi(S)}$ are linearly independent for all $S \in E$. It then follows from \eqref{eqdim} and \eqref{randoml} that $d\left( \text{\rm Span}\{\mathbf{A}_i\}, \text{\rm Span}\{ \mathbf{B}_{\bar \pi(i)} \} \right) \leq C_2 \varepsilon / \max_i \|\mathbf{A}_i\|_2$ for all $i \in J$. Fixing $\bar \varepsilon = C_2\varepsilon$ and letting $c_i = \|\mathbf{A}_i\|_2^{-1}$, we thus have that for every basis vector $\mathbf{e}_i \in \mathbb{R}^m$ with $i \in J$ there exists some $c'_i \in \mathbb{R}$ such that $\|c_i\mathbf{A}\mathbf{e}_i - c'_i \mathbf{B}\mathbf{e}_{\bar \pi(i)}\|_2 \leq \bar \varepsilon < L_2(\mathbf{A}) \min_{i\in J} c_i$. This is exactly the supposition in \eqref{1D}, and the result follows from the case $k=1$ in Sec.~\ref{DUT} applied to the submatrix $\mathbf{A}_J$.
 \end{proof}
 
-%The above arguments can be easily modified to prove the following variation of Lem.~\ref{MainLemma}, key to proving Thm.~\ref{DeterministicUniquenessTheorem2}. 
-
-%\begin{lemma}\label{MainLemma2}
-%Fix integers $n$ and $k < m \leq \bar m$ and suppose $\mathbf{A}~\in~\mathbb{R}^{n \times m}$ and $\mathbf{B} \in \mathbb{R}^{n \times \bar m}$ both satisfiy \eqref{SparkCondition}. There exists a constant $C_4 > 0$ for which for all $\varepsilon < L_2(\mathbf{A}) / C_4$ the following holds. If for some $E \subseteq2^{[m]}$ satisfying the singleton intersection property there exists a size-preserving map $\pi: E \mapsto 2^{[\bar m]}$ satisfying:
-%\begin{align}\label{GapUpperBound}
-%d(\text{\rm Span}\{\mathbf{A}_{S}\}, \text{\rm Span}\{\mathbf{B}_{\pi(S)}\}) \leq \varepsilon, \ \ \   \text{for all $S \in E$},
-%\end{align}
-%
-%then for some $J \in {[\bar m] \choose m}$, permutation matrix $\mathbf{P}$ and invertible diagonal matrix $\mathbf{D}$, we have:
-%\begin{align}\label{MainLemmaBPD}
-%\|\mathbf{A}_j - (\mathbf{BPD})_j\|_2 \leq C_4 \varepsilon, \ \ \  \text{for } j \in [m].
-%\end{align}
-%The constant $C_4$ is given by:
-%\begin{align}\label{Cdefm}
-%C_4 := \frac{2^{|E|}}{R} \max_{j \in [m]} \|\mathbf{A}_j\|_2
-%\end{align}
-%
-%with $R$ being the lesser of $\min_{\substack{F \subseteq E}} r( \{ \text{\rm Span}\{\mathbf{A}_{S}\} \}_{S \in F})$ and $\min_{\substack{F \subseteq {[\bar m] \choose k}}} r( \{ \text{\rm Span}\{\mathbf{B}_{S}\} \}_{S \in F})$.
-%\end{lemma}
-
-%\begin{proof}
-%The proof is very similar to the case $\bar m = m$, the difference being that now we may not invoke Lem.~\ref{NonEmptyLemma} (which requires $\bar m = m$) to infer from \eqref{fact2} that $| \cap_{S \in F(i)} \pi(S) | = 1$ for all stars $F(i)$. We circumvent this issue by instead assuming the spark condition on $\mathbf{B}$, which allows us to swap the roles of $\mathbf{A}$ and $\mathbf{B}$ in the arguments leading to the derivation of \eqref{fact2} to prove the opposite inequality for every star $F(i)$. Of course, this requires that the constant $C_4$  depend on $\mathbf{B}$. By these arguments we establish that $| \cap_{S \in F(i)} \pi(S) | = 1$ for all stars $F(i)$, yielding an injective map $\bar \pi: [m] \to [\bar m]$. The result then follows from the proof of the case $k=1$. 
-%\end{proof}
-
-\section{Proofs of Thm.~\ref{robustPolythm} and Cor.~\ref{ProbabilisticCor}}\label{AppendixB} %Cors.~\ref{DeterministicUniquenessCorollary} \& \ref{ProbabilisticCor}}\label{AppendixB}
-
-%\begin{proof}[Proof of Cor.~\ref{DeterministicUniquenessCorollary}]
-%We need only demonstrate how to produce $N$ vectors $\mathbf{a}_i$ such that for some $E \subseteq {[m] \choose k}$ satisfying the singleton intersection property there are \mbox{$(k-1){m \choose k}+1$} vectors supported on each $S \in E$ in general linear position. Let $\gamma_1, \ldots, \gamma_N$ be any distinct numbers. Then the columns of the $k \times N$ matrix $V = (\gamma^i_j)^{k,N}_{i,j=1}$ are in general linear position (since the $\gamma_j$ are distinct, any $k \times k$ ``Vandermonde" sub-determinant is nonzero). Next, fix some $E \subseteq {[m] \choose k}$ satisfying the singleton intersection property. Finally, form the $k$-sparse vectors $\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$ with supports $S \in E$ (partitioning the $\mathbf{x}_i$ evenly among these supports so that each contains $(k-1){m \choose k}+1$ vectors $\mathbf{x}_i$) by setting the nonzero values $\mathbf{x}_i$ to be those contained in the $i$th column of $V$.
-%\end{proof}
-% Actually this is even overkill since 
-
-%We now determine classes of datasets $Y$ having a stable sparse representation that are cut out by a single polynomial equation.
+\section{Proofs of Thm.~\ref{robustPolythm} and Cor.~\ref{ProbabilisticCor}}
 
 \begin{proof}[Proof (sketch) of Thm.~\ref{robustPolythm}]
-% We sketch the argument, leaving the details to the reader. 
 Let $M$ be the matrix with columns $\mathbf{A}\mathbf{x}_i$, $i \in [N]$.  Consider the polynomial in the entries of $\mathbf{A}$ and $\mathbf{x}_i$:
 \begin{align*}
 g(\mathbf{A}, \{\mathbf{x}_i\}_{i=1}^N) := \prod_{S \in {[n] \choose k}} \sum_{S' \in {[N] \choose k}} (\det M_{S',S})^2,
 \end{align*}
 with notation as in Sec.~\ref{Results}.  
-It can be checked that when $g$ is nonzero for a substitution of real numbers for the indeterminates, all of the genericity requirements on $\mathbf{A}$ and $\mathbf{x}_i$ in our proofs of stability in Thm.~\ref{DeterministicUniquenessTheorem} are satisfied (in particular, the spark condition on $\mathbf{A}$). % The statement of the theorem now follows directly.
+It can be checked that when $g$ is nonzero for a substitution of real numbers for the indeterminates, all of the genericity requirements on $\mathbf{A}$ and $\mathbf{x}_i$ in our proofs of stability in Thm.~\ref{DeterministicUniquenessTheorem} are satisfied (in particular, the spark condition on $\mathbf{A}$).
 \end{proof}
 
 \begin{proof}[Proof (sketch) of Cor.~\ref{ProbabilisticCor}]
 First, note that if a set of measure spaces $\{(X_{\ell}, \Sigma_{\ell}, \nu_{\ell})\}_{\ell=1}^p$ has $\nu_{\ell}$ is absolutely continuous with respect to $\mu$ for all $\ell \in [p]$, where $\mu$ is the standard Borel measure on $\mathbb{R}$, then the product measure $\prod_{\ell=1}^p \nu_{\ell}$ is absolutely continuous with respect to the standard Borel product measure on $\mathbb{R}^p$ (e.g.,  \cite{folland2013real}). By Thm.~\ref{robustPolythm}, there is a polynomial that is nonzero whenever $Y$ has a stable $k$-sparse representation in $\mathbb R^m$; in particular, this property (stability) holds with probability one.
 \end{proof}
-
-%\begin{proof}[Proof of Thm.~\ref{DeterministicUniquenessTheorem2}]
-%The proof is the same as that of the case $\bar m = m$, only now we establish a map $\pi: E \to {[\bar m] \choose k}$ by pigeonholing $(k-1){\bar m \choose k} + 1$ vectors with respect to holes $[\bar m]$ and eventually applying Lem.~\ref{MainLemma2} instead of Lem.~\ref{MainLemma}. 
-
-%In this case the constant $C_3$ is given by:
-%\begin{align}\label{Cdefm}
-%C_3 := \frac{2^{|E|} \max_{j \in [m]} \|\mathbf{A}_j\|_2}{ R \min_{S \in E} L_k(\mathbf{AX}_{I(S)}) },
-%\end{align}
-%
-%with $R$ being the lesser of $\min_{\substack{F \subseteq E}} r( \{ \text{\rm Span}\{\mathbf{A}_{S}\} \}_{S \in F})$ and $\min_{\substack{F \subseteq {[\bar m] \choose k}}} r( \{ \text{\rm Span}\{\mathbf{B}_{S}\} \}_{S \in F})$.
-%\end{proof}
 
 \end{document}
