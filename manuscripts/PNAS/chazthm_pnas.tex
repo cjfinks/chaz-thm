@@ -43,7 +43,7 @@
 % Please give the surname of the lead author for the running footer
 \leadauthor{Garfinkle} 
 
-\significancestatement{Many naturally occurring signals (visual scenery, speech, EEG, etc.) lacking domain-specific formal models can nonetheless be usefully characterized as parsimonious combinations of elementary waveforms drawn from a large `dictionary'. We give general conditions guaranteeing when such dictionaries are uniquely and stably determined by enough data. The result justifies the application of this model to problems in blind source separation, and may help to explain the observed universality of emergent representations in sparse coding models of some natural phenomena.
+\significancestatement{Many naturally occurring signals (visual scenery, speech, EEG, etc.) lacking domain-specific formal models can nonetheless be usefully characterized as combinations of few elementary waveforms drawn from a large `dictionary'. We give general conditions guaranteeing when such dictionaries are uniquely and stably determined by data. The result justifies the application of this model to blind source separation, and may help to explain the observed universality of emergent representations in sparse coding models of some natural phenomena.
 %These results provide theoretical grounding for  the application of dictionary learning to recovering sparse signals from unknown noisy compressive measurements.
 }
 
@@ -142,18 +142,12 @@ Finally, we present several applications in Discussion Sec.~\ref{Discussion}.
 
 \section{Results}\label{Results}
 
-Before stating our main results, we first identify the combinatorial criteria on support sets of generating codes allowing for stable sparse 
-representations.  Let $\{1, \ldots, m\}$ be denoted $[m]$, its power set $2^{[m]}$, and ${[m] \choose k}$ the set of subsets of $[m]$ of size $k$. 
+Before stating our main results, we first identify combinatorial criteria on the support sets of generating codes that demand stable sparse representations.  Letting $\{1, \ldots, m\}$ be denoted $[m]$, its power set $2^{[m]}$, and ${[m] \choose k}$ the set of subsets of $[m]$ of size $k$,
 % Let $\text{\rm Span}\{\mathbf{v}_1, \ldots, \mathbf{v}_\ell\}$ be the $\mathbb{R}$-linear span of vectors $\mathbf{v}_1, \ldots, \mathbf{v}_\ell$. 
-A vector $\mathbf{x}$ is said to be \emph{supported} on $S \subseteq [m]$ %,
-when $\mathbf{x} \in \text{\rm Span} \{\mathbf{e}_j\}_{j\in S}$, where $\mathbf{e}_j$ are the standard basis in $\mathbb R^m$.  We also write
- supp$(\mathbf{x}) = S$ when $S$ indexes the nonzero components of $\mathbf{x}$.
-Let $\mathbf{M}_S$ be the submatrix formed by the columns of $\mathbf{M}$ indexed by $S$, where we set $\text{\rm Span}\{\mathbf{M}_\emptyset\} := \{\textbf{0}\}$.
-
-We say a hypergraph $E \subseteq 2^{[m]}$ on vertices $[m]$ is \textit{$k$-uniform} when every $S \in E$ has cardinality $k$. We also say $E$ is \emph{regular} when every element of $[m]$ is contained in exactly $\ell$ elements of $E$ for some $\ell > 0$ (for given $\ell$, we say $E$ is \textit{$\ell$-regular}).
+we say a hypergraph $E \subseteq 2^{[m]}$ on vertices $[m]$ is \textit{$k$-uniform} when in fact $E \subseteq {[m] \choose k}$. We also say $E$ is \emph{regular} when every element of $[m]$ is contained in exactly $\ell$ elements of $E$ for some $\ell > 0$ (for given $\ell$, we say $E$ is \textit{$\ell$-regular}).
 
 \begin{definition}\label{sip}
-Given $E \subseteq 2^{[m]}$, the \textbf{star} $F(i)$ at $i$ are those $S \in E$ with $i \in S$. We say $E$ has the \textbf{singleton intersection property} (\textbf{SIP}) when $\cap_{S \in F(i)} S = \{i\}$ for all $i \in [m]$. 
+Given $E \subseteq 2^{[m]}$, the \textbf{star} $F(i)$ at $i$ is the set of $S \in E$ with $i \in S$. We say $E$ has the \textbf{singleton intersection property} (\textbf{SIP}) when $\cap F(i) = \{i\}$ for all $i \in [m]$. 
 \end{definition}
 
 It is easy to verify that for every $k < m$, there is a regular $k$-uniform hypergraph that satisfies the SIP; for instance, consecutive intervals of length $k$ in some cyclic order on $[m]$.
@@ -171,22 +165,23 @@ L_k(\mathbf{A}) := \frac{1}{\sqrt{k}}\max \{ \alpha : \|\mathbf{A}\mathbf{x}\|_2
 %Clearly, $\sqrt{k} L_k(\mathbf{A}) \geq \sqrt{k'}L_{k'}(\mathbf{A})$ whenever $k < k'$, and 
 Clearly, for any $\mathbf{A}$ satisfying \eqref{SparkCondition}, we have $L_{k'}(\mathbf{A}) > 0$ for  $k' \leq 2k$. We note that the quantity $1 - \sqrt{k} L_k(\mathbf{A})$ is also known in the CS literature as the (asymmetric) lower restricted isometry constant \cite{Blanchard2011}.%, Foucart2009}.
 
-We say that a set of $k$-sparse vectors is in \emph{general linear position} when any $k$ of them are linearly independent.
-The following is the precise statement of our main result. 
+The following theorem is the precise statement of our main result. 
+A vector $\mathbf{x}$ is said to be \emph{supported} on $S \subseteq [m]$ %,
+when $\mathbf{x} \in \text{\rm Span} \{\mathbf{e}_j\}_{j\in S}$, where $\mathbf{e}_j$ are the standard basis in $\mathbb R^m$. Denote by $\mathbf{M}_S$ the submatrix formed by the columns of $\mathbf{M}$ indexed by $S$, where we set $\text{\rm Span}\{\mathbf{M}_\emptyset\} := \{\textbf{0}\}$, and similarly by $\mathbf{x}^J$ the subvector formed from the entries of $\mathbf{x}$ indexed by $J$. We say that a set of $k$-sparse vectors is in \emph{general linear position} when any $k$ of them are linearly independent.
 
 \begin{theorem}\label{DeterministicUniquenessTheorem}
 %Fix integers $n, \ell$, and $k < m$. 
-Let $\mathbf{A}~\in~\mathbb{R}^{n \times m}$ satisfy \eqref{SparkCondition} for $k < m$, and suppose for some $\bar m$ that more than \mbox{$(k-1){\bar m \choose k}$} $k$-sparse \mbox{$\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$} are supported in general linear position on each set in an $\ell$-regular $E \subseteq {[m] \choose k}$ with the SIP.  There is a constant $C_1 > 0$ for which the following hold for $\varepsilon < L_2(\mathbf{A}) / C_1$.
+Let $\mathbf{A}~\in~\mathbb{R}^{n \times m}$ satisfy \eqref{SparkCondition} for $k < m$, and suppose for some $\bar m$ that more than \mbox{$(k-1){\bar m \choose k}$} $k$-sparse \mbox{$\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$} are supported in general linear position on each set in an $\ell$-regular $E \subseteq {[m] \choose k}$ with the SIP.  There is a constant\footnote{We delay defining the constant $C_1$ until Section \ref{DUT} (\eqref{Cdef1}).} $C_1 > 0$ for which the following holds for $\varepsilon < L_2(\mathbf{A}) / C_1$.
 
-1) Every matrix $\mathbf{B}$ and $k$-sparse $\mathbf{\bar x}_1, \ldots, \mathbf{\bar x}_N \in \mathbb{R}^{\bar m}$ with  \mbox{$\|\mathbf{A}\mathbf{x}_i - \mathbf{B}\mathbf{\bar x}_i\|_2 \leq \varepsilon$} for all $i$ must have $\bar m \geq m$ and, provided $p = \bar m - \ell(\bar m - m)$ is positive, necessarily satisfy:
+Every matrix $\mathbf{B}$ and $k$-sparse $\mathbf{\bar x}_1, \ldots, \mathbf{\bar x}_N \in \mathbb{R}^{\bar m}$ with  \mbox{$\|\mathbf{A}\mathbf{x}_i - \mathbf{B}\mathbf{\bar x}_i\|_2 \leq \varepsilon$} for all $i$ must have $\bar m \geq m$ and, provided $p = \bar m - \ell(\bar m - m)$ is positive, necessarily satisfy:
 \begin{align}\label{Cstable}
 \|(\mathbf{A}_J- \mathbf{B}_{\bar J} \mathbf{PD} )_j\|_2 \leq C_1 \varepsilon, \ \  \text{for $j \in J$},
 \end{align}
 for some $J \in {[m] \choose p}$, $\bar J \in {[\bar m] \choose p}$, permutation matrix $\mathbf{P}$, and invertible diagonal matrix $\mathbf{D}$.
 
-2) Restricting dictionaries and sparse codes to respective $J, \bar{J}$, we furthermore have that if $\varepsilon < L_{2k}(\mathbf{A}) / C_1$, then $\mathbf{B}$ also satisfies \eqref{SparkCondition} with $L_{2k}(\mathbf{B}\mathbf{PD}) \geq L_{2k}(\mathbf{A}) - C_1 \varepsilon$, and:
+Furthermore, if $\varepsilon < L_{2k}(\mathbf{A}) / C_1$, then $\mathbf{B}_{\bar J}$ also satisfies \eqref{SparkCondition} with $L_{2k}(\mathbf{B}_{\bar J}\mathbf{PD}) \geq L_{2k}(\mathbf{A}_J) - C_1 \varepsilon$, and:
 \begin{align}\label{b-PDa}
-\|\mathbf{x}_i - \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\bar x}_i\|_1 &\leq  \left( \frac{ 1+C_1 \|\mathbf{x}_i\|_1 }{ L_{2k}(\mathbf{A}) -  C_1\varepsilon } \right) \varepsilon,\ \ \   \text{for $i \in [N]$}.
+\|\mathbf{x}_i^J - \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\bar x}_i^{\bar J}\|_1 &\leq  \left( \frac{ 1+C_1 \|\mathbf{x}_i^{J}\|_1 }{ L_{2k}(\mathbf{A}_J) -  C_1\varepsilon } \right) \varepsilon,\ \ \   \text{for $i \in [N]$}.
 \end{align}
 \end{theorem}
 
@@ -222,36 +217,34 @@ for some $J \in {[m] \choose p}$, $\bar J \in {[\bar m] \choose p}$, permutation
 %\end{align}
 %\end{theorem}
 
-%In other words, the smaller the difference $\bar m - m$, the more columns and coefficients of the original $n \times m$ dictionary $\mathbf{A}$ and $m$-dimensional codes $\mathbf{x}_i$ contained (up to noise) in the appropriately scaled $n \times \bar m$ dictionary $\mathbf{B}$ and $\bar m$-dimensional codes $\mathbf{\bar x}_i$. 
+In other words, the smaller the difference $\bar m - m$, the more columns and coefficients of the original dictionary $\mathbf{A}$ and codes $\mathbf{x}_i$ contained (up to noise) in the appropriately scaled dictionary $\mathbf{B}$ and codes $\mathbf{\bar x}_i$. 
 %In particular, when $\bar m = m$ all columns of $\mathbf{A}$ and coefficients of each $\mathbf{x}_i$ recoverable, as per Def.~\ref{maindef}. 
-
-An important consequence of Thm.~\ref{DeterministicUniquenessTheorem} is that \eqref{def1} is guaranteed provided $\varepsilon$ in Def.~\ref{maindef} does not exceed: % [*** TODO: verify this is still correct ***]
+The implication in the case $\bar{m} = m$ is precisely that $Y = \{\mathbf{Ax}_1, \ldots, \mathbf{Ax}_N\}$ has a stable $k$-sparse representation in $m$ dimensions, with \eqref{def1} guaranteed provided $\varepsilon$ in Def.~\ref{maindef} does not exceed: 
 \begin{align}\label{epsdel}
 \varepsilon(\delta_1, \delta_2) := \min \left\{ \frac{\delta_1}{ C_1 }, \frac{ \delta_2 L_{2k}(\mathbf{A})}{ 1 + C_1 \left( \max_{i \in [N]} \|\mathbf{x}_i\|_1  + \delta_2 \right) } \right\}.
 \end{align}
-We delay defining the constant $C_1$ until Section \ref{DUT} (\eqref{Cdef1}).  % , since it requires additional definitions not critical to the statement of our results.
+  % , since it requires additional definitions not critical to the statement of our results.
 
 
 % Note also that Thm~\ref{DeterminsiticUniquenessTheorem} gives conditions for when a single solution to Problem~\ref{InverseProblem} in fact represents \emph{all} possible solutions, related by transformations of the form $PD$.
 
+In fact, it is straightforward to produce sparse codes in general linear position with a ``Vandermonde'' matrix construction (e.g., see \cite{Hillar15}). We therefore have:
+
 \begin{corollary}\label{DeterministicUniquenessCorollary}
 Given $n, m$, $k < m$, and a regular hypergraph $E \subseteq {[m] \choose k}$ with the SIP, there are $N =  |E| \left[ (k-1){m \choose k} + 1  \right]$ vectors \mbox{$\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$} such that every matrix $\mathbf{A} \in \mathbb{R}^{n \times m}$ satisfying \eqref{SparkCondition} generates a dataset $Y = \{\mathbf{A}\mathbf{x}_1, \ldots, \mathbf{A}\mathbf{x}_N\}$ with a stable $k$-sparse representation in $m$ dimensions.
 \end{corollary}
-\begin{proof}
-The implication of Thm.\ref{DeterministicUniquenessTheorem} in the case $\bar{m} = m$ is precisely that such a $Y$ has a stable sparse representation (Def.~\ref{maindef}).  It remains, therefore, only to produce sparse codes in general linear position.  However, this is straightforward with a ``Vandermonde'' matrix construction (e.g., see \cite{Hillar15}).
-\end{proof}
 
 %\begin{proposition}
 %If $E$ is an $\ell$-regular hypergraph of rank $k$ satisfying the singleton intersection property then $|E| \geq \ell m/k$. 
 %\end{proposition}
 %Note that every $\ell$-regular hypergraph $E \subseteq {[m] \choose k}$ satisfies: \[|E|k = \sum_{S \in E}|S| = \sum_{i \in [m]} \deg(i) = \ell m.\] 
-As mentioned above, it is easy to construct a regular hypergraph $E \subseteq {[m] \choose k}$ with the SIP having cardinality $|E| = m$, implying the lower bound for sample size $N$ from the introduction. In many cases, the SIP can be achieved with $|E| < m$; for example, when $k = \sqrt{m}$ one can take $E$ to be the rows and columns formed by arranging $[m]$ in a square grid.  
+As mentioned above, it is easy to construct a regular hypergraph $E \subseteq {[m] \choose k}$ with the SIP having cardinality $|E| = m$, implying the lower bound for sample size $N$ from the introduction. In many cases, however, the SIP can be achieved with far fewer supports; for example, when $k = \sqrt{m}$ one can take $E$ to be the $2k$ rows and columns formed by arranging $[m]$ in a square grid.  
 %In light of Cor.~\ref{DeterministicUniquenessCorollary}, it would be interesting to determine other such $E$. %[ ** TODO ** can we show for every $k, m$ that there is an $E$ satisfying the SIP with $|E| = \ell m/k$ for every $\ell$ such that $\ell m/k$ is an integer? Then lower bound on $N$ comes from the smallest such $\ell$.]
 
-There are other less direct consequences of Thm.~\ref{DeterministicUniquenessTheorem} to stability in sparse linear coding. For instance, consider its implications for the optimization problem posed in Prob.~\ref{SLCopt}.
+It turns out that Thm.~\ref{DeterministicUniquenessTheorem} also has implications for the optimization problem posed in Prob.~\ref{SLCopt}:
 
 \begin{corollary}\label{SLCopt}
-If the assumptions of Thm.\ref{DeterministicUniquenessTheorem} hold with more than $(k-1)\left[ {\bar m \choose k} + |E|k{m \choose k-1}\right]$ vectors $\mathbf{x}_i$ supported on each $S \in E$, then all solutions to Prob.~\ref{OptimizationProblem} necessarily satisfy implications 1) and 2) from Thm.~\ref{DeterministicUniquenessTheorem}.
+If all of the assumptions of Thm.\ref{DeterministicUniquenessTheorem} hold with more than $(k-1)\left[ {\bar m \choose k} + |E|k{m \choose k-1}\right]$ vectors $\mathbf{x}_i$ supported on each $S \in E$, then all solutions to Prob.~\ref{OptimizationProblem} necessarily satisfy the implications \eqref{Cstable} and \eqref{b-PDa} of Thm.~\ref{DeterministicUniquenessTheorem}.
 \end{corollary}
 %\begin{corollary}\label{SLCopt}
 %If the assumptions of Thm.\ref{DeterministicUniquenessTheorem} hold with more than $(k-1)\left[ {\bar m \choose k} + |E|k{\bar m \choose k-1}\right]$ vectors $\mathbf{x}_i$ supported on each $S \in E$, then all matrices $\mathbf{B} \in \mathbb{R}^{n \times \bar m}$ and $\mathbf{\bar x}_1, \ldots, \mathbf{\bar x}_N \in \mathbb{R}^{\bar m}$ solving:
@@ -300,7 +293,7 @@ If the assumptions of Thm.\ref{DeterministicUniquenessTheorem} hold with more th
 %\end{align}
 %in which $\gamma >0$ is a constant that depends on the particular distribution from which the entries of $\mathbf{A}$ are sampled i.i.d. (many ensembles suffice, e.g. see \cite[Sec.~4]{Baraniuk08}). 
 
-Another straightforward application of Thm.~\ref{DeterministicUniquenessTheorem} is a probabilistic extension made possible by noticing that the spark condition has an analytic characterization.  Let $\mathbf{A}$  be the $n \times m$ matrix of $nm$ indeterminates $A_{ij}$. When real numbers are substituted for $A_{ij}$, the resulting matrix satisfies \eqref{SparkCondition} if and only if the following polynomial is nonzero:
+Another straightforward extension of Thm.~\ref{DeterministicUniquenessTheorem} applies to probabilistic scenarios and follows from the following analytic characterization of the spark condition.  Let $\mathbf{A}$  be the $n \times m$ matrix of $nm$ indeterminates $A_{ij}$. When real numbers are substituted for $A_{ij}$, the resulting matrix satisfies \eqref{SparkCondition} if and only if the following polynomial is nonzero:
 \begin{align*}
 f(\mathbf{A}) := \prod_{S \in {[m] \choose k}} \sum_{S' \in {[n] \choose k}} (\det \mathbf{A}_{S',S})^2,
 \end{align*}
@@ -315,7 +308,7 @@ Hence, almost every real $n \times m$ matrix $\mathbf{A}$ with $n \geq \max(2k,m
 A similar phenomenon applies to datasets of vectors with a stable sparse representation. As in \cite[Sec.~IV]{Hillar15}, consider the ``symbolic'' dataset $Y = \{\mathbf{A}\mathbf{x}_1,\ldots,\mathbf{A} \mathbf{x}_N\}$ generated by indeterminate $\mathbf{A}$ and indeterminate $k$-sparse $\mathbf{x}_1, \ldots, \mathbf{x}_N$.  
 
 \begin{theorem}\label{robustPolythm}
-There is a polynomial in the entries of $\mathbf{A}$ and $\mathbf{x}_i$ with the following property:  if the polynomial evaluates to a nonzero number and more than \mbox{$(k-1){m \choose k}$} of the resulting $\mathbf{x}_i$ are supported on each $S \in E$ for some regular $E \subseteq {[m] \choose k}$ with the SIP, then $Y$ has a stable $k$-sparse representation in $m$ dimensions (Def.~\ref{maindef}). In particular, no substitutions impart to $Y$ this property or all but a Borel set of measure zero do.
+There is a polynomial $g$ in the entries of $\mathbf{A}$ and $\mathbf{x}_i$ with the following property:  if $g$ evaluates to a nonzero number and more than \mbox{$(k-1){m \choose k}$} of the resulting $\mathbf{x}_i$ are supported on each $S \in E$ for some regular $E \subseteq {[m] \choose k}$ with the SIP, then $Y$ has a stable $k$-sparse representation in $m$ dimensions (Def.~\ref{maindef}). In particular, either no substitutions impart to $Y$ this property or all but a Borel set of measure zero do.
 \end{theorem}
 
 \begin{corollary}\label{ProbabilisticCor}
@@ -323,7 +316,7 @@ Fix $k < m$ and $n \geq \min(2k, m)$ % satisfying \eqref{CScondition} for $\gamm
 and let the entries of $\mathbf{A} \in \mathbb{R}^{n \times m}$ and $k$-sparse $\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$ be drawn independently from probability measures absolutely continuous with respect to the standard Borel measure $\mu$. If more than $(k-1){m \choose k}$ of the vectors $\mathbf{x}_i$ are supported on each $S \in E$ for a regular $E \subseteq {[m] \choose k}$ with the SIP, then $Y$ has a stable $k$-sparse representation in $m$ dimensions with probability one.
 \end{corollary}
 
-Thus, choosing dictionary and sparse codes ``randomly'' generate data with stable sparse representations almost certainly.
+Thus, choosing dictionary and sparse codes ``randomly'' from \emph{any} continuous distribution generates data with stable sparse representations almost certainly.
 % , as long as the relevant parameters satisfy \eqref{CScondition}.
 
 %Next, we address the case when only an upper bound $m'$ on the latent dimension $m$ is known (assuming that $\mathbf{B}$ satisfies \eqref{SparkCondition}).
