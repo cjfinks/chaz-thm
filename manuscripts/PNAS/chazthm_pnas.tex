@@ -43,7 +43,7 @@
 % Please give the surname of the lead author for the running footer
 \leadauthor{Garfinkle} 
 
-\significancestatement{Many naturally occurring signals (visual scenery, speech, EEG, etc.) lacking domain-specific formal models can nonetheless be usefully characterized as combinations of few elementary waveforms drawn from a large `dictionary'. We give general conditions guaranteeing when such dictionaries are uniquely and stably determined by data. The result justifies the application of this model to blind source separation, and may help to explain the observed universality of emergent representations in sparse coding models of some natural phenomena.
+\significancestatement{Many naturally occurring signals (visual scenery, speech, EEG, etc.) lacking domain-specific formal models can nonetheless be usefully characterized as combinations of few elementary waveforms drawn from a large `dictionary'. We give general conditions guaranteeing when such dictionaries are uniquely and stably determined by data, justifying the application of this model as a constraint in blind source separation. We suggest the result may help explain the observed universality of emergent representations in sparse coding models of some natural phenomena.
 %These results provide theoretical grounding for  the application of dictionary learning to recovering sparse signals from unknown noisy compressive measurements.
 }
 
@@ -142,7 +142,7 @@ Finally, we present several applications in Discussion Sec.~\ref{Discussion}.
 
 \section{Results}\label{Results}
 
-Before stating our main results, we first identify combinatorial criteria on the support sets of generating codes that demand stable sparse representations.  Letting $\{1, \ldots, m\}$ be denoted $[m]$, its power set $2^{[m]}$, and ${[m] \choose k}$ the set of subsets of $[m]$ of size $k$,
+Before stating our main results, we first identify combinatorial criteria on the support sets of generating codes that imply stable sparse representations.  Letting $\{1, \ldots, m\}$ be denoted $[m]$, its power set $2^{[m]}$, and ${[m] \choose k}$ the set of subsets of $[m]$ of size $k$,
 % Let $\text{\rm Span}\{\mathbf{v}_1, \ldots, \mathbf{v}_\ell\}$ be the $\mathbb{R}$-linear span of vectors $\mathbf{v}_1, \ldots, \mathbf{v}_\ell$. 
 we say a hypergraph $E \subseteq 2^{[m]}$ on vertices $[m]$ is \textit{$k$-uniform} when in fact $E \subseteq {[m] \choose k}$. We also say $E$ is \emph{regular} when every element of $[m]$ is contained in exactly $\ell$ elements of $E$ for some $\ell > 0$ (for given $\ell$, we say $E$ is \textit{$\ell$-regular}).
 
@@ -164,10 +164,8 @@ L_k(\mathbf{A}) := \frac{1}{\sqrt{k}}\max \{ \alpha : \|\mathbf{A}\mathbf{x}\|_2
 
 %Clearly, $\sqrt{k} L_k(\mathbf{A}) \geq \sqrt{k'}L_{k'}(\mathbf{A})$ whenever $k < k'$, and 
 Clearly, for any $\mathbf{A}$ satisfying \eqref{SparkCondition}, we have $L_{k'}(\mathbf{A}) > 0$ for  $k' \leq 2k$. We note that the quantity $1 - \sqrt{k} L_k(\mathbf{A})$ is also known in the CS literature as the (asymmetric) lower restricted isometry constant \cite{Blanchard2011}.%, Foucart2009}.
-
-The following theorem is the precise statement of our main result. 
-A vector $\mathbf{x}$ is said to be \emph{supported} on $S \subseteq [m]$ %,
-when $\mathbf{x} \in \text{\rm Span} \{\mathbf{e}_j\}_{j\in S}$, where $\mathbf{e}_j$ are the standard basis in $\mathbb R^m$. Denote by $\mathbf{M}_S$ the submatrix formed by the columns of $\mathbf{M}$ indexed by $S$, where we set $\text{\rm Span}\{\mathbf{M}_\emptyset\} := \{\textbf{0}\}$, and similarly by $\mathbf{x}^J$ the subvector formed from the entries of $\mathbf{x}$ indexed by $J$. We say that a set of $k$-sparse vectors is in \emph{general linear position} when any $k$ of them are linearly independent.
+ 
+A vector $\mathbf{x}$ is said to be \emph{supported} on $S \subseteq [m]$ when $\mathbf{x} \in \text{\rm Span} \{\mathbf{e}_j\}_{j\in S}$, where $\mathbf{e}_j$ are the standard basis in $\mathbb R^m$. Denote by $\mathbf{M}_S$ the submatrix formed by the columns of $\mathbf{M}$ indexed by $S$, where we set $\text{\rm Span}\{\mathbf{M}_\emptyset\} := \{\textbf{0}\}$, and similarly by $\mathbf{x}^J$ the subvector formed from the entries of $\mathbf{x}$ indexed by $J$. A set of $k$-sparse vectors is said to be in \emph{general linear position} when any $k$ of them are linearly independent. The following is a precise statement of our main result.
 
 \begin{theorem}\label{DeterministicUniquenessTheorem}
 %Fix integers $n, \ell$, and $k < m$. 
@@ -217,7 +215,7 @@ Furthermore, if $\varepsilon < L_{2k}(\mathbf{A}) / C_1$, then $\mathbf{B}_{\bar
 %\end{align}
 %\end{theorem}
 
-In other words, the smaller the difference $\bar m - m$, the more columns and coefficients of the original dictionary $\mathbf{A}$ and codes $\mathbf{x}_i$ contained (up to noise) in the appropriately scaled dictionary $\mathbf{B}$ and codes $\mathbf{\bar x}_i$. 
+To be clear, Thm.~\ref{DeterministicUniquenessTheorem} says that the smaller the difference $\bar m - m$, the more columns and coefficients of the original dictionary $\mathbf{A}$ and codes $\mathbf{x}_i$ contained (up to noise) in the appropriately scaled dictionary $\mathbf{B}$ and codes $\mathbf{\bar x}_i$. 
 %In particular, when $\bar m = m$ all columns of $\mathbf{A}$ and coefficients of each $\mathbf{x}_i$ recoverable, as per Def.~\ref{maindef}. 
 The implication in the case $\bar{m} = m$ is precisely that $Y = \{\mathbf{Ax}_1, \ldots, \mathbf{Ax}_N\}$ has a stable $k$-sparse representation in $m$ dimensions, with \eqref{def1} guaranteed provided $\varepsilon$ in Def.~\ref{maindef} does not exceed: 
 \begin{align}\label{epsdel}
@@ -228,7 +226,7 @@ The implication in the case $\bar{m} = m$ is precisely that $Y = \{\mathbf{Ax}_1
 
 % Note also that Thm~\ref{DeterminsiticUniquenessTheorem} gives conditions for when a single solution to Problem~\ref{InverseProblem} in fact represents \emph{all} possible solutions, related by transformations of the form $PD$.
 
-In fact, it is straightforward to produce sparse codes in general linear position with a ``Vandermonde'' matrix construction (e.g., see \cite{Hillar15}). We therefore have:
+It so happens that producing sparse codes in general linear position is straightforward with a ``Vandermonde'' matrix construction (e.g., see \cite{Hillar15}). We therefore have:
 
 \begin{corollary}\label{DeterministicUniquenessCorollary}
 Given $n, m$, $k < m$, and a regular hypergraph $E \subseteq {[m] \choose k}$ with the SIP, there are $N =  |E| \left[ (k-1){m \choose k} + 1  \right]$ vectors \mbox{$\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$} such that every matrix $\mathbf{A} \in \mathbb{R}^{n \times m}$ satisfying \eqref{SparkCondition} generates a dataset $Y = \{\mathbf{A}\mathbf{x}_1, \ldots, \mathbf{A}\mathbf{x}_N\}$ with a stable $k$-sparse representation in $m$ dimensions.
@@ -238,10 +236,10 @@ Given $n, m$, $k < m$, and a regular hypergraph $E \subseteq {[m] \choose k}$ wi
 %If $E$ is an $\ell$-regular hypergraph of rank $k$ satisfying the singleton intersection property then $|E| \geq \ell m/k$. 
 %\end{proposition}
 %Note that every $\ell$-regular hypergraph $E \subseteq {[m] \choose k}$ satisfies: \[|E|k = \sum_{S \in E}|S| = \sum_{i \in [m]} \deg(i) = \ell m.\] 
-As mentioned above, it is easy to construct a regular hypergraph $E \subseteq {[m] \choose k}$ with the SIP having cardinality $|E| = m$, implying the lower bound for sample size $N$ from the introduction. In many cases, however, the SIP can be achieved with far fewer supports; for example, when $k = \sqrt{m}$ one can take $E$ to be the $2k$ rows and columns formed by arranging $[m]$ in a square grid.  
+As already mentioned, it is easy to construct a regular hypergraph $E \subseteq {[m] \choose k}$ with the SIP having cardinality $|E| = m$, implying the lower bound for sample size $N$ from the introduction. In many cases, however, the SIP can be achieved with far fewer supports; for example, when $k = \sqrt{m}$ one can take $E$ to be the $2k$ rows and columns formed by arranging $[m]$ in a square grid.  
 %In light of Cor.~\ref{DeterministicUniquenessCorollary}, it would be interesting to determine other such $E$. %[ ** TODO ** can we show for every $k, m$ that there is an $E$ satisfying the SIP with $|E| = \ell m/k$ for every $\ell$ such that $\ell m/k$ is an integer? Then lower bound on $N$ comes from the smallest such $\ell$.]
 
-It turns out that Thm.~\ref{DeterministicUniquenessTheorem} also has implications for the optimization problem posed in Prob.~\ref{SLCopt}:
+There are other less direct consequences of Thm.~\ref{DeterministicUniquenessTheorem}. For instance, it has the following implications for the optimization problem posed in Prob.~\ref{SLCopt}:
 
 \begin{corollary}\label{SLCopt}
 If all of the assumptions of Thm.\ref{DeterministicUniquenessTheorem} hold with more than $(k-1)\left[ {\bar m \choose k} + |E|k{m \choose k-1}\right]$ vectors $\mathbf{x}_i$ supported on each $S \in E$, then all solutions to Prob.~\ref{OptimizationProblem} necessarily satisfy the implications \eqref{Cstable} and \eqref{b-PDa} of Thm.~\ref{DeterministicUniquenessTheorem}.
@@ -293,7 +291,7 @@ If all of the assumptions of Thm.\ref{DeterministicUniquenessTheorem} hold with 
 %\end{align}
 %in which $\gamma >0$ is a constant that depends on the particular distribution from which the entries of $\mathbf{A}$ are sampled i.i.d. (many ensembles suffice, e.g. see \cite[Sec.~4]{Baraniuk08}). 
 
-Another straightforward extension of Thm.~\ref{DeterministicUniquenessTheorem} applies to probabilistic scenarios and follows from the following analytic characterization of the spark condition.  Let $\mathbf{A}$  be the $n \times m$ matrix of $nm$ indeterminates $A_{ij}$. When real numbers are substituted for $A_{ij}$, the resulting matrix satisfies \eqref{SparkCondition} if and only if the following polynomial is nonzero:
+Another extension of Thm.~\ref{DeterministicUniquenessTheorem} follows from the following analytic characterization of the spark condition.  Let $\mathbf{A}$  be the $n \times m$ matrix of $nm$ indeterminates $A_{ij}$. When real numbers are substituted for $A_{ij}$, the resulting matrix satisfies \eqref{SparkCondition} if and only if the following polynomial is nonzero:
 \begin{align*}
 f(\mathbf{A}) := \prod_{S \in {[m] \choose k}} \sum_{S' \in {[n] \choose k}} (\det \mathbf{A}_{S',S})^2,
 \end{align*}
@@ -316,9 +314,8 @@ Fix $k < m$ and $n \geq \min(2k, m)$ % satisfying \eqref{CScondition} for $\gamm
 and let the entries of $\mathbf{A} \in \mathbb{R}^{n \times m}$ and $k$-sparse $\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$ be drawn independently from probability measures absolutely continuous with respect to the standard Borel measure $\mu$. If more than $(k-1){m \choose k}$ of the vectors $\mathbf{x}_i$ are supported on each $S \in E$ for a regular $E \subseteq {[m] \choose k}$ with the SIP, then $Y$ has a stable $k$-sparse representation in $m$ dimensions with probability one.
 \end{corollary}
 
-Thus, choosing dictionary and sparse codes ``randomly'' from \emph{any} continuous distribution generates data with stable sparse representations almost certainly.
+Thus, choosing the dictionary and sparse codes ``randomly'' from \emph{any} continuous distribution generates data with stable sparse representations almost certainly.
 % , as long as the relevant parameters satisfy \eqref{CScondition}.
-
 %Next, we address the case when only an upper bound $m'$ on the latent dimension $m$ is known (assuming that $\mathbf{B}$ satisfies \eqref{SparkCondition}).
 
 %\begin{theorem}\label{DeterministicUniquenessTheorem2}
@@ -337,13 +334,15 @@ Thus, choosing dictionary and sparse codes ``randomly'' from \emph{any} continuo
 \section{Proofs of Theorem~\ref{DeterministicUniquenessTheorem} and Corollary~\ref{SLCopt}}\label{DUT}
 
 % ======== b - PDa =========
-First note that $\|\mathbf{x}\|_1 \leq \sqrt{k} \|\mathbf{x}\|_2$ for $k$-sparse $\mathbf{x} \in \mathbb{R}^m$, which by definition of $L_k(A)$ implies the following often used inequality:
+First, note that $\|\mathbf{x}\|_1 \leq \sqrt{k} \|\mathbf{x}\|_2$ for $k$-sparse $\mathbf{x} \in \mathbb{R}^m$, which by definition of $L_k(A)$ implies the following inequality:
 \begin{align}\label{delrho}
 L_k(\mathbf{A}) \leq \frac{\|\mathbf{A}\mathbf{x}\|_2}{\sqrt{k} \|\mathbf{x}\|_2} %\leq \frac{\|\mathbf{x}\|_1}{\sqrt{k} \|\mathbf{x}\|_2} \max_{i \in [m]}\|\mathbf{A}_i\|_2 
-\leq  \max_{j \in [m]}\|\mathbf{A}_j\|_2.
+\leq  \max_{j \in [m]}\|\mathbf{A}_j\|_2,
 \end{align}
+%
+which we frequently use.
 
-Our first step is to show how dictionary recovery \eqref{Cstable} already implies sparse code recovery \eqref{b-PDa} when \mbox{$\varepsilon < L_{2k}(\mathbf{A}) / C_1$}. For $2k$-sparse $\mathbf{x} \in \mathbb{R}^m$, the triangle inequality gives \mbox{$\|(\mathbf{A}-\mathbf{BPD})\mathbf{x}\|_2  \leq C_1\varepsilon \|\mathbf{x}\|_1 \leq C_1 \varepsilon \sqrt{2k}  \|\mathbf{x}\|_2$}. Thus, 
+We begin by showing how dictionary recovery \eqref{Cstable} already implies sparse code recovery \eqref{b-PDa} when \mbox{$\varepsilon < L_{2k}(\mathbf{A}) / C_1$}, assuming without loss of generality that $\bar m = m$. For $2k$-sparse $\mathbf{x} \in \mathbb{R}^m$, the triangle inequality gives \mbox{$\|(\mathbf{A}-\mathbf{BPD})\mathbf{x}\|_2  \leq C_1\varepsilon \|\mathbf{x}\|_1 \leq C_1 \varepsilon \sqrt{2k}  \|\mathbf{x}\|_2$}. Thus, 
 \begin{align*}
 \|\mathbf{BPD}\mathbf{x}\|_2 
 &\geq | \|\mathbf{A}\mathbf{x}\|_2 - \|(\mathbf{A}-\mathbf{BPD})\mathbf{x}\|_2 | \\
@@ -351,25 +350,25 @@ Our first step is to show how dictionary recovery \eqref{Cstable} already implie
 \end{align*}
 %
 %where we drop the absolute value due to the upper bound on $\varepsilon$. 
-Hence, $L_{2k}(\mathbf{BPD}) \geq L_{2k}(\mathbf{A}) - C_1\varepsilon  > 0$ and \eqref{b-PDa} then follows from:
+Hence, $L_{2k}(\mathbf{BPD}) \geq L_{2k}(\mathbf{A}) - C_1\varepsilon  > 0$. \eqref{b-PDa} then follows from:
 \begin{align*}
 \|\mathbf{x}_i - \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\bar x}_i \|_1
 %&\leq \sqrt{2k} |\mathbf{x}_i - D^{-1}P^{\top}\mathbf{\bar x}_i\|_2 \\
 &\leq \frac{\|\mathbf{BPD}(\mathbf{x}_i - \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\bar x}_i)\|_2}{L_{2k}(\mathbf{BPD})} \\
-&\leq \frac{\|\mathbf{B}\mathbf{\bar x}_i - \mathbf{A}\mathbf{x}_i\|_2 + \|(\mathbf{A} - \mathbf{BPD})\mathbf{x}_i\|_2}{L_{2k}(\mathbf{BPD})} \\
-&\leq \frac{\varepsilon (1+C_1 \|\mathbf{x}_i\|_1)}{L_{2k}(\mathbf{BPD})}.
+&\leq \frac{\|(\mathbf{BPD} - \mathbf{A})\mathbf{x}_i\|_2 + \|\mathbf{A}\mathbf{x}_i - \mathbf{B}\mathbf{\bar x}_i\|_2}{L_{2k}(\mathbf{BPD})} \\
+&\leq \frac{\varepsilon (1 + C_1 \|\mathbf{x}_i\|_1)}{L_{2k}(\mathbf{BPD})}.
 %&\leq \frac{\varepsilon}{\sqrt{2k}} \left( \frac{ 1+C_1 \|\mathbf{x}_i\|_1 }{ L_{2k}(\mathbf{A}) -  C_1\varepsilon } \right).
 %\leq \frac{\varepsilon }{\varepsilon_0 - \varepsilon} \left( C_1^{-1}+|\mathbf{x}_i\|_1 \right).
 \end{align*}
 
-The heart of the matter is therefore \eqref{Cstable}, which we now finally establish, but first in the important special case $k = 1$.
+The heart of the matter is therefore \eqref{Cstable}, which we now finally establish, first in the important special case $k = 1$.
 
 %In fact, in the case $k=1$ we can relax our assumptions even further and assume that the matrix $\mathbf{B}$ has only at least as many columns as $\mathbf{A}$; as we will see, the conclusions of Thm.~\ref{DeterministicUniquenessTheorem} then hold for some $n \times m$ submatrix of $\mathbf{B}$.  [*** ??? ***]
 
 \begin{proof}[Proof of Thm.~\ref{DeterministicUniquenessCorollary} for $k=1$]
-The only 1-uniform hypergraph with the SIP is $[m]$; hence, we have $\mathbf{x}_i = c_i \mathbf{e}_i$ for $c_i \in \mathbb{R} \setminus \{\mathbf{0}\}$, $i \in [m]$. In this case, we may take $C_1 = 1/ \min_{\ell \in [m]} |c_{\ell}|$. 
+Since the only 1-uniform hypergraph with the SIP is $[m]$, we have $\mathbf{x}_i = c_i \mathbf{e}_i$ for $c_i \in \mathbb{R} \setminus \{\mathbf{0}\}$, $i \in [m]$. In this case, we may take any $C_1 \geq 1/ \min_{\ell \in [m]} |c_{\ell}|$. 
 
-Fix $\mathbf{A} \in \mathbb{R}^{n \times m}$ satisfying \eqref{SparkCondition} and suppose that for some $\mathbf{B} \in \mathbb{R}^{n \times \bar m}$ and $1$-sparse $\mathbf{\bar x}_i \in \mathbb{R}^{\bar m}$ we have  $\|\mathbf{A}\mathbf{x}_i - \mathbf{B}\mathbf{\bar x}_i\|_2 \leq \varepsilon < L_2(\mathbf{A}) / C_1$ for all $i$. Then, there are $\bar{c}_1, \ldots, \bar{c}_m \in \mathbb{R}$ and a map $\pi: [m] \to [\bar m]$ with:
+Fix $\mathbf{A} \in \mathbb{R}^{n \times m}$ satisfying \eqref{SparkCondition} and suppose that for some $\mathbf{B}$ and $1$-sparse $\mathbf{\bar x}_i \in \mathbb{R}^{\bar m}$ we have  $\|\mathbf{A}\mathbf{x}_i - \mathbf{B}\mathbf{\bar x}_i\|_2 \leq \varepsilon < L_2(\mathbf{A}) / C_1$ for all $i$. Then, there exist $\bar{c}_1, \ldots, \bar{c}_m \in \mathbb{R}$ and a map $\pi: [m] \to [\bar m]$ such that:
 \begin{align}\label{1D}
 \|c_j\mathbf{A}_j - \bar{c}_j\mathbf{B}_{\pi(j)}\|_2 \leq \varepsilon,\ \ \text{for $j \in [m]$}.
 \end{align} 
@@ -379,14 +378,14 @@ Note that if $\bar{c}_j = 0$, then $\|c_j\mathbf{A}_j \|_2 \leq \varepsilon$ imp
 %|c_j| \sqrt{2} L_2(\mathbf{A}) \leq \|\mathbf{A}(c_j\mathbf{e}_j)\|_2 \leq \varepsilon < L_2(\mathbf{A}) \min_{\ell \in [m]} | c_\ell |.
 %\end{align*}
 
-We  now show that $\pi$ is injective (and thus is a permutation if $\bar m = m$). Suppose that $\pi(i) = \pi(j) = \ell$ for some $i \neq j$ and $\ell$. Then, $\|c_{j}\mathbf{A}_{j} - \bar{c}_{j}\mathbf{B}_{\ell}\|_2 \leq \varepsilon$ and $\|c_{i}\mathbf{A}_{i} - \bar{c}_{i} \mathbf{B}_{\ell}\|_2  \leq \varepsilon$. Scaling and summing these inequalities by $|\bar{c}_{i}|$ and $|\bar{c}_{j}|$, respectively, and applying the triangle inequality, we obtain:
+We  now show that $\pi$ is injective (in particular, a permutation if $\bar m = m$). Suppose that $\pi(i) = \pi(j) = \ell$ for some $i \neq j$ and $\ell$. Then, $\|c_{j}\mathbf{A}_{j} - \bar{c}_{j}\mathbf{B}_{\ell}\|_2 \leq \varepsilon$ and $\|c_{i}\mathbf{A}_{i} - \bar{c}_{i} \mathbf{B}_{\ell}\|_2  \leq \varepsilon$. Scaling and summing these inequalities by $|\bar{c}_{i}|$ and $|\bar{c}_{j}|$, respectively, and applying the triangle inequality, we obtain:
 \begin{align*}%\label{contra}
 (|\bar{c}_{i}| + |\bar{c}_{j}|) \varepsilon
 &\geq\|\mathbf{A}(\bar{c}_{i}c_{j} \mathbf{e}_{j} - \bar{c}_{j}c_{i}\mathbf{e}_{i})\|_2 \nonumber \\ 
 &\geq  \left( |\bar{c}_{i}| + |\bar{c}_{j}| \right) L_2(\mathbf{A}) \min_{\ell \in [m]} |c_\ell |,
 \end{align*}
 %
-which contradicts the bound $\varepsilon < L_2(\mathbf{A})/C_1$. Hence, the map $\pi$ is injective and $\bar m \geq m$. Setting $J = [m]$, $\bar J = \pi([m])$, and letting $P = \left( \mathbf{e}_{\pi(1)} \cdots \mathbf{e}_{\pi(m)}\right)$ and $D = \text{diag}(\frac{\bar{c}_1}{c_1},\ldots,\frac{\bar{c}_m}{c_m})$, we see that \eqref{1D} becomes, for all $j \in [m]$:
+which contradicts the bound $\varepsilon < L_2(\mathbf{A})/C_1$. Hence, the map $\pi$ is injective and therefore $\bar m \geq m$. Setting $J = [m]$, $\bar J = \pi([m])$, and letting $P = \left( \mathbf{e}_{\pi(1)} \cdots \mathbf{e}_{\pi(m)}\right)$ and $D = \text{diag}(\frac{\bar{c}_1}{c_1},\ldots,\frac{\bar{c}_m}{c_m})$, we see that \eqref{1D} becomes, for all $j \in [m]$:
 \begin{align*}%\label{k=1result}
 \|\mathbf{A}_j - (\mathbf{B}_J\mathbf{PD})_j\|_2 
 = \|\mathbf{A}_j - \frac{\bar{c}_j}{c_j}\mathbf{B}_{\pi(j)}\|_2 
@@ -401,10 +400,10 @@ which contradicts the bound $\varepsilon < L_2(\mathbf{A})/C_1$. Hence, the map 
 
 %It is easy to see that when $m < m'$, the above result holds for the submatrix of $B$ composed of columns indexed by the image of $\pi$.
 
-We require a few additional tools to extend the proof to the general case $k < m$. These include a general notion of distance (Def.~\ref{dDef}) and angle (Def.~\ref{FriedrichsDefinition}) between subspaces and a stability result in matrix analysis (Lem.~\ref{MainLemma}).
+We require a few additional tools to extend the proof to the general case $k < m$. These include a general notion of distance (Def.~\ref{dDef}) and angle (Def.~\ref{FriedrichsDefinition}) between subspaces and a stability result in combinatorial matrix analysis (Lem.~\ref{MainLemma}).
 
 \begin{definition}\label{dDef}
-For $\mathbf{u} \in \mathbb R^m$, let $\text{\rm dist}(\mathbf{u}, V) := \inf \{\| \mathbf{u}-\mathbf{v} \|_2: \mathbf{v} \in V\}$, and for vector spaces $U,V \subseteq \mathbb{R}^m$, define:
+For $\mathbf{u} \in \mathbb R^m$ and vector spaces $U,V \subseteq \mathbb{R}^m$, let $\text{\rm dist}(\mathbf{u}, V) := \inf \{\| \mathbf{u}-\mathbf{v} \|_2: \mathbf{v} \in V\}$ and define:
 %\footnote{Although identical, note the reference \cite{Morris10} defines the supremum over the unit ball.}: %[Kato p.197]
 \begin{align}\label{d}
 d(U,V) := \sup_{\mathbf{u} \in U, \ \|\mathbf{u}\|_2 \leq 1} \text{\rm dist}(\mathbf{u},V).
@@ -430,7 +429,7 @@ Also, from \cite[Lem.~3.2]{Morris10}, we have:
 %\cite[Lem.~3.2]{Morris10} If $\dim(U) = \dim(V)$ then $d(U,V) = d(V,U)$. 
 %\end{lemma}
 
-Our result in combinatorial matrix theory is the following.
+Our result in combinatorial matrix analysis is the following.
 
 %, which we derive by the following arguments (see the Supplemental for the full proof). First, we show that the aforementioned proximity between $k$-dimensional subspaces implies a proximity between smaller subspaces spanned by columns of $\mathbf{A}$ indexed by the intersections of sets in $E$ and those spanned by as many or fewer columns of $\mathbf{B}$. Another pigeonholing argument here combined with our assumptions on $E$ (e.g., the singleton intersection property) reveals that, in fact, each column of $\mathbf{A}$ spans a subspace proximal to that spanned by some column of $\mathbf{B}$. \eqref{Cstable} is a simple consequence of this last fact, which actually constitutes the proof of the theorem for the case $k=1$. % We present this special case now before restating the above arguments in greater detail.
 
@@ -463,14 +462,15 @@ for some $J \in {[m] \choose p}$, $\bar J \in {[\bar m] \choose p}$, permutation
 %\end{align}
 %\end{lemma}
 
-Given vectors $\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$, we let $\mathbf{X}$ be the $m \times N$ matrix with columns $\mathbf{x}_i$ and $I(S) := \{i \in [N]: \text{supp}(\mathbf{x}_i) \subseteq S\}$. The constant $C_1$ in Thm.~\ref{DeterministicUniquenessTheorem} is then defined by\footnote{Note that $\|\mathbf{AX}_{I(S)}\mathbf{c}\|_2 \geq \sqrt{k} L_k(\mathbf{A})\|\mathbf{X}_{I(S)}\mathbf{c}\|_2 \geq k L_k(\mathbf{A}) L_k(\mathbf{X}_{I(S)})\|\mathbf{c}\|_2$ for $S \in E$ and $k$-sparse $\mathbf{c}$. Therefore, $\sqrt{k} L_k(\mathbf{AX}_{I(S)}) \geq k L_k(\mathbf{A}) L_k(\mathbf{X}_{I(S)}) > 0$ since $L_k(\mathbf{A}), L_k(\mathbf{X}_{I(S)}) > 0$ by \eqref{SparkCondition} and general linear position of the $\mathbf{x}_i$.  Thus, $C_1 > 0$.  }:
+The constant $C_1$ in Thm.~\ref{DeterministicUniquenessTheorem} is then defined by\footnote{Note that $\|\mathbf{AX}_{I(S)}\mathbf{c}\|_2 \geq \sqrt{k} L_k(\mathbf{A})\|\mathbf{X}_{I(S)}\mathbf{c}\|_2 \geq k L_k(\mathbf{A}) L_k(\mathbf{X}_{I(S)})\|\mathbf{c}\|_2$ for $S \in E$ and $k$-sparse $\mathbf{c}$. Therefore, $\sqrt{k} L_k(\mathbf{AX}_{I(S)}) \geq k L_k(\mathbf{A}) L_k(\mathbf{X}_{I(S)}) > 0$ since $L_k(\mathbf{A}), L_k(\mathbf{X}_{I(S)}) > 0$ by \eqref{SparkCondition} and general linear position of the $\mathbf{x}_i$.  Thus, $C_1 > 0$.}:
 \begin{align}\label{Cdef1}
 C_1(\mathbf{A}, \{\mathbf{x}_i\}_{i=1}^N, E) := \frac{ C_2(\mathbf{A}, E) } { \min_{S \in E} L_k(\mathbf{AX}_{I(S)}) }.
 \end{align}
+%, we let 
+where, given vectors $\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$, we denote by $\mathbf{X}$ the $m \times N$ matrix with columns $\mathbf{x}_i$ and by $I(S)$ the set of indices $i$ for which the support of $\mathbf{x}_i$ is contained in $S$. % := \{i \in [N]: \text{supp}(\mathbf{x}_i) \subseteq S\}$.
 
-The constant $C_2 = C_2(\mathbf{A}, E)$ is given below in terms of one used in \cite{Deutsch12} to analyze the convergence of the alternating projections algorithm.
-% for projecting a point onto the intersection of a set of subspaces. 
-We use it to bound the distance between a point and the intersection of a set of subspaces given an upper bound on its distance from each subspace individually.
+The constant $C_2 = C_2(\mathbf{A}, E)$ is given in turn below, in terms of one used in \cite{Deutsch12} to analyze the convergence of the alternating projections algorithm for projecting a point onto an intersection of subspaces. 
+We use it to bound the distance between a point and the intersection of subspaces given an upper bound on its distance from each individual subspace.
 
 \begin{definition}\label{SpecialSupportSet}\label{FriedrichsDefinition}
 For subspaces $V_1, \ldots, V_\ell \subseteq \mathbb{R}^m$, set $r := 1$ when $\ell = 1$ and define for $\ell \geq 2$:
@@ -489,17 +489,18 @@ Note that $\theta \in (0,\frac{\pi}{2}]$ implies $0 < r \leq 1$.\footnote{We ack
 %\end{align*}
 The constant $C_2$ in Lem.~\ref{MainLemma} can then be expressed as:  % \footnote{Note that $C_2 > 0$ is well-defined since $r > 0$ by definition.}
 \begin{align}\label{Cdef2}
-C_2(\mathbf{A}, E) := \frac{ 2^{|E|} \max_{j \in [m]} \|\mathbf{A}_j\|_2}{ \min_{F \subseteq E} r( \{ \text{\rm Span}\{\mathbf{A}_{S}\} \}_{S \in F}) }.
+C_2(\mathbf{A}, E) := \frac{ 2^{|E|} \max_{j \in [m]} \|\mathbf{A}_j\|_2}{ \min_{F \subseteq E} r( \{ \text{\rm Span}\{\mathbf{A}_{S}\} \}_{S \in F}) },
 \end{align}
-Note that $k=1$ gives the same $C_1$ as that used to prove $k=1$.
+%
+which we remark is consistent with the assumption on $C_1$ in the proof of Thm.~\ref{DeterministicUniquenessTheorem} for the case $k=1$.
 
 \begin{proof}[Proof of Thm.~\ref{DeterministicUniquenessCorollary} for $k < m$] 
-We shall show that for every $S \in E$ there is some $\bar S \in {[\bar m] \choose k}$, for which the distance $d(\text{\rm Span}\{\mathbf{A}_S\}, \text{\rm Span}\{\mathbf{B}_{\bar S}\})$ is controlled by $\varepsilon$. Applying Lem.~\ref{MainLemma} with the map $\pi$ defined by $S \mapsto \bar S$ then completes the proof.  
+We shall show that for every $S \in E$ there is some $\bar S \in {[\bar m] \choose k}$ for which the distance $d(\text{\rm Span}\{\mathbf{A}_S\}, \text{\rm Span}\{\mathbf{B}_{\bar S}\})$ is controlled by $\varepsilon$. Applying Lem.~\ref{MainLemma} with the map $\pi$ defined by $S \mapsto \bar S$ then completes the proof.  
 
-Since there are $(k-1){\bar m \choose k}+1$ vectors $\mathbf{x}_i$ supported on $S$, the pigeonhole principle implies that there is some $\bar S \in {[\bar m] \choose k}$ and some set of $k$ indices $K$ such that the supports of all $\mathbf{x}_i$ and $\mathbf{\bar x}_i$ with $i \in K$ are contained in $S$ and $\bar S$, respectively.
+Since there are more than $(k-1){\bar m \choose k}$ vectors $\mathbf{x}_i$ supported on $S$, by the pigeonhole principle there must be some $\bar S \in {[\bar m] \choose k}$ and set of $k$ indices $K$ such that the supports of all $\mathbf{x}_i$ and $\mathbf{\bar x}_i$ with $i \in K$ are contained in $S$ and $\bar S$, respectively.
 
 %Let $\mathbf{X}$ and $\mathbf{\bar{X}}$ be the $m \times N$ matrices with columns $\mathbf{x}_i$ and $\mathbf{\bar x}_i$, respectively. 
-It follows from the general linear position of the $\mathbf{x}_i$ and the linear independence of every $k$ columns of $\mathbf{A}$ that $L_k(\mathbf{AX}_{K}) > 0$; that is, the columns of the $n \times k$ matrix $\mathbf{AX}_K$ form a basis for $\text{\rm Span}\{\mathbf{A}_{S}\}$. Fixing $\mathbf{0} \neq \mathbf{y} \in \text{\rm Span}\{\mathbf{A}_{S}\}$, there exists $\mathbf{0} \neq \mathbf{c} = (c_1, \ldots, c_k) \in \mathbb{R}^k$ such that $\mathbf{y} = \mathbf{AX}_K\mathbf{c}$. Setting \mbox{$\mathbf{\bar{y}} = \mathbf{B\bar{X}}_K\mathbf{c} \in \text{\rm Span}\{\mathbf{B}_{\bar S}\}$}, we have:
+It follows from the general linear position of the $\mathbf{x}_i$ and the linear independence of every $2k$ columns of $\mathbf{A}$ that $L_k(\mathbf{AX}_{K}) > 0$; that is, the columns of the $n \times k$ matrix $\mathbf{AX}_K$ form a basis for $\text{\rm Span}\{\mathbf{A}_{S}\}$. Fixing $\mathbf{0} \neq \mathbf{y} \in \text{\rm Span}\{\mathbf{A}_{S}\}$, there exists $\mathbf{0} \neq \mathbf{c} = (c_1, \ldots, c_k) \in \mathbb{R}^k$ such that $\mathbf{y} = \mathbf{AX}_K\mathbf{c}$. Setting \mbox{$\mathbf{\bar{y}} = \mathbf{B\bar{X}}_K\mathbf{c} \in \text{\rm Span}\{\mathbf{B}_{\bar S}\}$}, we have:
 \begin{align*}
 \|\mathbf{y} - \mathbf{\bar{y}}\|_2 
 &= \|\sum_{i=1}^k c_i(\mathbf{AX}_K - \mathbf{B\bar{X}}_K)_i\|_2
@@ -508,12 +509,14 @@ It follows from the general linear position of the $\mathbf{x}_i$ and the linear
 %\leq \frac{\varepsilon \sqrt{k}}{L(\mathbf{A}X_{J(S)})} \|\mathbf{A}X_{J(S)}\mathbf{c}\|_2 
 \leq \frac{\varepsilon}{L_k(\mathbf{AX}_K)} \|\mathbf{y}\|_2,
 \end{align*}
-where the last inequality follows directly from the definition of $L_k$. Finally, from Def.~\ref{dDef}, it follows that:
+where the last inequality follows directly from the definition of $L_k$. Finally, from Def.~\ref{dDef} we have:
 \begin{align}\label{rhs222}
 d(\text{\rm Span}\{\mathbf{A}_S\}, \text{\rm Span}\{\mathbf{B}_{\bar S}\}) 
-\leq \frac{\varepsilon}{  L_k(\mathbf{AX}_{K}) }.
+\leq \frac{\varepsilon}{  L_k(\mathbf{AX}_{K}) },
 \end{align}
-In particular, with $C_1$ as in \eqref{Cdef1}, the theorem follows.
+%
+from which the result follows by \eqref{Cdef1} and Lem.~\ref{MainLemma}.
+%With $C_1$ as in 
 \end{proof}
 % for all $S \in E$:
 %\begin{align}\label{rhs222}
@@ -540,9 +543,10 @@ We now show that no more than $(k-1)|E|$ of the $\mathbf{\bar x}_i$ share a supp
 %Let $\mathbf{X}$ and $\mathbf{\bar{X}}$ be the $m \times N$ and $\bar m \times N$ matrices with columns $\mathbf{x}_i$ and $\mathbf{\bar x}_i$, respectively, and let $I(S) = \{i \in [N]: \text{supp}(\mathbf{x}_i) \subseteq S\}$. 
 From previous arguments, for every $S \in E$, the columns of each $n \times k$ submatrix of $\mathbf{AX}_{I(S)}$ form a basis for $\text{\rm Span}\{\mathbf{A}_S\}$.
 % the general linear position of the $\mathbf{x}_i$ and the linear independence of every $k$ columns of $\mathbf{A}$ that $L_k(\mathbf{AX}_{I(S)}) > 0$ for all $S \in E$; that is, for every $S \in E$, the columns of every $n \times k$ submatrix of $\mathbf{AX}_{I(S)}$ form a basis for $\text{\rm Span}\{\mathbf{A}_S\}$. 
-Suppose that more than $(k-1)|E|$ vectors $\mathbf{\bar x}_i$ share a support $\bar S$ of size $|\bar{S}| < k$. By the pigeonhole principle, there is some $S \in E$ supporting $k$ or more of the corresponding $\mathbf{x}_i$; let them be indexed by $K \subseteq I(S)$.  By the argument as in the proof of Thm.\ref{DeterministicUniquenessTheorem}, we also have \eqref{rhs222}. Since our bound on $\varepsilon$ implies that the right-hand side of \eqref{rhs222} is less than one, by \eqref{dimLem} we have the contradiction: \[k = \dim(\text{Span}(\mathbf{A}_S)) \leq \dim(\text{Span}\{\mathbf{B}_{\bar S}\}) \leq |\bar S|.\]
+Suppose that more than $(k-1)|E|$ vectors $\mathbf{\bar x}_i$ share a support $\bar S$ of size $|\bar{S}| < k$. By the pigeonhole principle, there is some $S \in E$ supporting $k$ or more of the corresponding $\mathbf{x}_i$; let them be indexed by $K \subseteq I(S)$.  By the same argument as in the proof of Thm.\ref{DeterministicUniquenessTheorem}, we also have \eqref{rhs222}. Our bound on $\varepsilon$ implies the right-hand side of \eqref{rhs222} is less than one; hence, by \eqref{dimLem} we have the contradiction: 
+\[k = \dim(\text{Span}(\mathbf{A}_S)) \leq \dim(\text{Span}\{\mathbf{B}_{\bar S}\}) \leq |\bar S|.\]
 
-Hence, the total number of $(k-1)$-sparse vectors $\mathbf{\bar x}_i$ is no greater than $|E|(k-1){ m \choose k-1}$. Taking \eqref{eqn} into account, no more than $|E|k(k-1){ m \choose k-1}$ vectors $\mathbf{\bar x}_i$ are \emph{not} $k$-sparse. Since for every $S \in E$ there are over $(k-1)\left[ {\bar m \choose k} + |E|k{ m \choose k-1} \right]$ vectors $\mathbf{x}_i$ supported there, it follows that more than $(k-1){\bar m \choose k}$ of them must have corresponding $\mathbf{\bar x}_i$ that are also $k$-sparse. The result now follows directly from Thm.~\ref{DeterministicUniquenessCorollary}.
+The total number of $(k-1)$-sparse vectors $\mathbf{\bar x}_i$ can thus no greater than $|E|(k-1){ \bar m \choose k-1}$. Taking \eqref{eqn} into account, no more than $|E|k(k-1){ \bar m \choose k-1}$ vectors $\mathbf{\bar x}_i$ are \emph{not} $k$-sparse. Since for every $S \in E$ there are over $(k-1)\left[ {\bar m \choose k} + |E|k{ \bar m \choose k-1} \right]$ vectors $\mathbf{x}_i$ supported there, it follows that more than $(k-1){\bar m \choose k}$ of them must have corresponding $\mathbf{\bar x}_i$ that are also $k$-sparse. The result now follows directly from Thm.~\ref{DeterministicUniquenessCorollary}.
 \end{proof}
 
 
