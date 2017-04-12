@@ -43,8 +43,7 @@
 % Please give the surname of the lead author for the running footer
 \leadauthor{Garfinkle} 
 
-\significancestatement{Many naturally occurring signals (visual scenery, speech, EEG, etc.) lacking domain-specific formal models can nonetheless be usefully characterized as linear combinations of few elementary waveforms drawn from a large `dictionary'. We give general conditions guaranteeing when such dictionaries are uniquely and stably determined by data. %, justifying the application of this model as a constraint in blind source separation. 
-The result may help explain the observed universality of emergent representations in sparse coding models of some natural phenomena.
+\significancestatement{Many naturally occurring signals (visual scenery, speech, EEG, etc.) lacking domain-specific formal models can nonetheless be usefully characterized as linear combinations of few elementary waveforms drawn from a large `dictionary'. We give general conditions guaranteeing when such dictionaries are uniquely and stably determined by data. %, justifying the application of this model as a constraint in blind source separation. The result may help explain the observed universality of emergent representations in sparse coding models of some natural phenomena.
 %These results provide theoretical grounding for  the application of dictionary learning to recovering sparse signals from unknown noisy compressive measurements.
 }
 
@@ -81,7 +80,7 @@ i.e., they are found in learned dictionaries independent of algorithmic implemen
 
 % (e.g., Fourier bases, wavelets, etc.)
 
-Motivated by these discoveries and earlier work in the theory of neural communication \cite{Coulter10, Isely10}, we address when dictionaries and the sparse representations they induce are uniquely determined by data.  Answers to this question also have other real-world implications.  For example, a sparse coding analysis of local painting style can be used for forgery detection \cite{hughes2010, Olshausen10}, but only if the identifying sparse components of the artwork can be consistently estimated. % are independent of implementation idiosyncrasies. 
+Motivated by these discoveries and earlier work in the theory of neural communication \cite{Coulter10, Isely10}, we address when dictionaries and the sparse representations they induce are uniquely determined by data.  Answers to this question also have other real-world implications.  For example, a sparse coding analysis of local painting style can be used for forgery detection \cite{hughes2010, Olshausen10}, but only if all dictionaries consistent with training data do not differ appreciably in their ability to sparsely encode new samples. %the identifying sparse components of the artwork can be consistently estimated. % are independent of implementation idiosyncrasies. 
 Fortunately, algorithms with proven recovery of generating dictionaries under certain 
 conditions have recently been proposed (see \cite[Sec.~I-E]{Sun16} for a summary of the state-of-the-art). Few theorems, however, can be cited to explain this uniqueness phenomenon more generally.
 
@@ -110,7 +109,7 @@ Note that any particular solution $(\mathbf{B}, \mathbf{\bar x}_1 \ldots, \mathb
 which would be, in any case, necessary for uniqueness. Our concern here is the stability of these solutions with respect to noise in the data.
 
 \begin{definition}\label{maindef}
-Fix $Y = \{ \mathbf{y}_1, \ldots, \mathbf{y}_N\} \subset \mathbb{R}^n$. We say $Y$ has a \textbf{$k$-sparse representation in $m$ dimensions} if there exists a matrix $\mathbf{A}$ and $k$-sparse $\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$ such that $\mathbf{y}_i = \mathbf{A}\mathbf{x}_i$ for all $i$. %Equivalently, $\mathbf{Y} = \mathbf{A}\mathbf{X}$ for $\mathbf{Y}$ and $\mathbf{X}$ having the $\mathbf{y}_i$ and $\mathbf{x}_i$ as their columns, respectively. 
+Fix $Y = \{ \mathbf{y}_1, \ldots, \mathbf{y}_N\} \subset \mathbb{R}^n$. We say $Y$ has a \textbf{$k$-sparse representation in $\mathbb{R}^m$} if there exists a matrix $\mathbf{A}$ and $k$-sparse $\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$ such that $\mathbf{y}_i = \mathbf{A}\mathbf{x}_i$ for all $i$. %Equivalently, $\mathbf{Y} = \mathbf{A}\mathbf{X}$ for $\mathbf{Y}$ and $\mathbf{X}$ having the $\mathbf{y}_i$ and $\mathbf{x}_i$ as their columns, respectively. 
 This representation is \textbf{stable} if for every $\delta_1, \delta_2 \geq 0$, there exists $\varepsilon(\delta_1, \delta_2) \geq 0$ (with $\varepsilon > 0$ when  $\delta_1, \delta_2 > 0$) such that if $\mathbf{B}$ and $k$-sparse $\mathbf{\bar x}_1, \ldots, \mathbf{\bar x}_N \in \mathbb{R}^m$ satisfy:
 \begin{align*}
 \|\mathbf{A}\mathbf{x}_i - \mathbf{B}\mathbf{\bar x}_i\|_2 \leq \varepsilon,\ \ \   \text{for all $i$},
@@ -124,7 +123,7 @@ then there is some permutation matrix $\mathbf{P}$ and invertible diagonal matri
 
 To see how Def. \ref{maindef} directly relates to Prob. \ref{InverseProblem}, suppose that $Y$
 % \mbox{$Y = \{\mathbf{A} \mathbf{x}_1, \ldots, \mathbf{A}\mathbf{x}_N\}$} 
-has a stable $k$-sparse representation in $m$ dimensions and fix $\delta_1, \delta_2$ to be the desired recovery accuracy in \eqref{def1}. Consider now any dataset $Z$ generated as in \eqref{LinearModel} with $\eta \leq \frac{1}{2} \varepsilon(\delta_1, \delta_2)$. Then from the triangle inequality, it follows that any matrix $\mathbf{B}$ and $k$-sparse $\mathbf{\bar x}_1, \ldots, \mathbf{\bar x}_N \in \mathbb{R}^m$ solving Prob.~\ref{InverseProblem} are necessarily close to the original dictionary $\mathbf{A}$ and sparse codes $\mathbf{x}_i$. 
+has a stable $k$-sparse representation in $\mathbb{R}^m$ and fix $\delta_1, \delta_2$ to be the desired recovery accuracy in \eqref{def1}. Consider now any dataset $Z$ generated as in \eqref{LinearModel} with $\eta \leq \frac{1}{2} \varepsilon(\delta_1, \delta_2)$. Then from the triangle inequality, it follows that any matrix $\mathbf{B}$ and $k$-sparse $\mathbf{\bar x}_1, \ldots, \mathbf{\bar x}_N \in \mathbb{R}^m$ solving Prob.~\ref{InverseProblem} are necessarily close to the original dictionary $\mathbf{A}$ and sparse codes $\mathbf{x}_i$. 
 
 %Our main technical finding is that a sufficient quantity of measurements generated from any dictionary satisfying the spark condition has a stable sparse representation.  More specifically, such dictionaries are identifiable from as few as \mbox{$N = m(k-1){m \choose k} + m$} sparse linear combinations of their columns up to an error that is linear in the measurement noise (Thm.~\ref{DeterministicUniquenessTheorem}). In fact, provided $n \geq k$, in almost all cases the dictionary learning problem is well-posed (in the sense of Hadamard \cite{Hadamard1902}) given enough data (Cor.~\ref{ProbabilisticCor}). Importantly, these guarantees hold without assuming the recovered matrix satisfies a spark condition. Our results  also apply when only an upper bound on the number of dictionary elements is known. The explicit, algorithm-independent criteria we provide should be a useful tool in the theory of dictionary learning.  
 
@@ -218,7 +217,7 @@ Furthermore, if $\varepsilon < L_{2k}(\mathbf{A}) / C_1$, then $\mathbf{B}_{\bar
 
 To be clear, Thm.~\ref{DeterministicUniquenessTheorem} says that the smaller the difference $\bar m - m$, the more columns and coefficients of the original dictionary $\mathbf{A}$ and codes $\mathbf{x}_i$ contained (up to noise) in the appropriately scaled dictionary $\mathbf{B}$ and codes $\mathbf{\bar x}_i$. 
 %In particular, when $\bar m = m$ all columns of $\mathbf{A}$ and coefficients of each $\mathbf{x}_i$ recoverable, as per Def.~\ref{maindef}. 
-The implication in the case $\bar{m} = m$ is precisely that $Y = \{\mathbf{Ax}_1, \ldots, \mathbf{Ax}_N\}$ has a stable $k$-sparse representation in $m$ dimensions, with \eqref{def1} guaranteed provided $\varepsilon$ in Def.~\ref{maindef} does not exceed: 
+The implication in the case $\bar{m} = m$ is precisely that $Y = \{\mathbf{Ax}_1, \ldots, \mathbf{Ax}_N\}$ has a stable $k$-sparse representation in $\mathbb{R}^m$, with \eqref{def1} guaranteed provided $\varepsilon$ in Def.~\ref{maindef} does not exceed: 
 \begin{align}\label{epsdel}
 \varepsilon(\delta_1, \delta_2) := \min \left\{ \frac{\delta_1}{ C_1 }, \frac{ \delta_2 L_{2k}(\mathbf{A})}{ 1 + C_1 \left( \max_{i \in [N]} \|\mathbf{x}_i\|_1  + \delta_2 \right) } \right\}.
 \end{align}
@@ -230,7 +229,7 @@ The implication in the case $\bar{m} = m$ is precisely that $Y = \{\mathbf{Ax}_1
 It so happens that producing sparse codes in general linear position is straightforward with a ``Vandermonde'' matrix construction (e.g., see \cite{Hillar15}). We therefore have:
 
 \begin{corollary}\label{DeterministicUniquenessCorollary}
-Given $n, m$, $k < m$, and a regular hypergraph $E \subseteq {[m] \choose k}$ with the SIP, there are $N =  |E| \left[ (k-1){m \choose k} + 1  \right]$ vectors \mbox{$\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$} such that every matrix $\mathbf{A} \in \mathbb{R}^{n \times m}$ satisfying \eqref{SparkCondition} generates a dataset $Y = \{\mathbf{A}\mathbf{x}_1, \ldots, \mathbf{A}\mathbf{x}_N\}$ with a stable $k$-sparse representation in $m$ dimensions.
+Given $n, m$, $k < m$, and a regular hypergraph $E \subseteq {[m] \choose k}$ with the SIP, there are $N =  |E| \left[ (k-1){m \choose k} + 1  \right]$ vectors \mbox{$\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$} such that every matrix $\mathbf{A} \in \mathbb{R}^{n \times m}$ satisfying \eqref{SparkCondition} generates a dataset $Y = \{\mathbf{A}\mathbf{x}_1, \ldots, \mathbf{A}\mathbf{x}_N\}$ with a stable $k$-sparse representation in $\mathbb{R}^m$.
 \end{corollary}
 
 %\begin{proposition}
@@ -307,12 +306,12 @@ Hence, almost every real $n \times m$ matrix $\mathbf{A}$ with $n \geq \max(2k,m
 A similar phenomenon applies to datasets of vectors with a stable sparse representation. As in \cite[Sec.~IV]{Hillar15}, consider the ``symbolic'' dataset $Y = \{\mathbf{A}\mathbf{x}_1,\ldots,\mathbf{A} \mathbf{x}_N\}$ generated by indeterminate $\mathbf{A}$ and indeterminate $k$-sparse $\mathbf{x}_1, \ldots, \mathbf{x}_N$.  
 
 \begin{theorem}\label{robustPolythm}
-There is a polynomial $g$ in the entries of $\mathbf{A}$ and $\mathbf{x}_i$ with the following property:  if $g$ evaluates to a nonzero number and more than \mbox{$(k-1){m \choose k}$} of the resulting $\mathbf{x}_i$ are supported on each $S \in E$ for some regular $E \subseteq {[m] \choose k}$ with the SIP, then $Y$ has a stable $k$-sparse representation in $m$ dimensions (Def.~\ref{maindef}). In particular, either no substitutions impart to $Y$ this property or all but a Borel set of measure zero do.
+There is a polynomial $g$ in the entries of $\mathbf{A}$ and $\mathbf{x}_i$ with the following property:  if $g$ evaluates to a nonzero number and more than \mbox{$(k-1){m \choose k}$} of the resulting $\mathbf{x}_i$ are supported on each $S \in E$ for some regular $E \subseteq {[m] \choose k}$ with the SIP, then $Y$ has a stable $k$-sparse representation in $\mathbb{R}^m$ (Def.~\ref{maindef}). In particular, either no substitutions impart to $Y$ this property or all but a Borel set of measure zero do.
 \end{theorem}
 
 \begin{corollary}\label{ProbabilisticCor}
 Fix $k < m$ and $n \geq \min(2k, m)$ % satisfying \eqref{CScondition} for $\gamma = \gamma_0$, 
-and let the entries of $\mathbf{A} \in \mathbb{R}^{n \times m}$ and $k$-sparse $\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$ be drawn independently from probability measures absolutely continuous with respect to the standard Borel measure $\mu$. If more than $(k-1){m \choose k}$ of the vectors $\mathbf{x}_i$ are supported on each $S \in E$ for a regular $E \subseteq {[m] \choose k}$ with the SIP, then $Y$ has a stable $k$-sparse representation in $m$ dimensions with probability one.
+and let the entries of $\mathbf{A} \in \mathbb{R}^{n \times m}$ and $k$-sparse $\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$ be drawn independently from probability measures absolutely continuous with respect to the standard Borel measure $\mu$. If more than $(k-1){m \choose k}$ of the vectors $\mathbf{x}_i$ are supported on each $S \in E$ for a regular $E \subseteq {[m] \choose k}$ with the SIP, then $Y$ has a stable $k$-sparse representation in $\mathbb{R}^m$ with probability one.
 \end{corollary}
 
 Thus, choosing the dictionary and sparse codes ``randomly'' from \emph{any} continuous distribution generates data with stable sparse representations almost certainly.
@@ -613,7 +612,7 @@ Fix $k \geq 2$. Let $V_1, \ldots, V_k$ be subspaces of $\mathbb{R}^m$ and set $V
 \end{align}
 \end{lemma}
 \begin{proof} 
-Recall that orthogonal projection onto a subspace $V \subseteq \mathbb{R}^m$ is the mapping $\Pi_V: \mathbb{R}^m \to V$ that associates with each $\mathbf{x}$ its unique nearest point in $V$; i.e., $\|\mathbf{x} - \Pi_V\mathbf{x}\|_2 = \text{\rm dist}(\mathbf{x}, V)$.
+Recall the orthogonal projection onto a subspace $V \subseteq \mathbb{R}^m$ is the mapping $\Pi_V: \mathbb{R}^m \to V$ that associates with each $\mathbf{x}$ its unique nearest point in $V$; i.e., $\|\mathbf{x} - \Pi_V\mathbf{x}\|_2 = \text{\rm dist}(\mathbf{x}, V)$.
 Next, observe:
 \begin{align}\label{f}
 \|\mathbf{x} - \Pi_V\mathbf{x}\|_2 &\leq \|\mathbf{x} - \Pi_{V_k} \mathbf{x}\|_2 + \|\Pi_{V_k}  \mathbf{x} - \Pi_{V_k}\Pi_{V_{k-1}}\mathbf{x}\|_2 \nonumber \\
@@ -626,7 +625,7 @@ The desired result, \eqref{DTILeq}, now follows by bounding the second term on t
 \begin{align}
 \|\Pi_{V_k}\Pi_{V_{k-1}}\cdots\Pi_{V_1} \mathbf{x} - \Pi_V\mathbf{x}\|_2 \leq z \|\mathbf{x}\|_2,
 \end{align}
-for \mbox{$z^2= 1 - \prod_{\ell =1}^{k-1}(1-z_{\ell}^2)$} and \mbox{$z_{\ell} = \cos\theta\left(V_{\ell}, \cap_{s=\ell+1}^k V_s\right)$}. Together with $\Pi_{V_\ell} \Pi_V = \Pi_V$ for all $\ell \in [k]$ and $\Pi_V^2 = \Pi_V$ yields:
+for \mbox{$z^2= 1 - \prod_{\ell =1}^{k-1}(1-z_{\ell}^2)$} and \mbox{$z_{\ell} = \cos\theta\left(V_{\ell}, \cap_{s=\ell+1}^k V_s\right)$}, recalling $\theta$ from Def.~\ref{FriedrichsDefinition}. Together with $\Pi_{V_\ell} \Pi_V = \Pi_V$ for all $\ell \in [k]$ and $\Pi_V^2 = \Pi_V$, this yields:
 \begin{align*}
 \|\Pi_{V_k} \cdots \Pi_{V_1}\mathbf{x}  - \Pi_V \mathbf{x} \|_2 
 &= \|\left( \Pi_{V_k} \cdots\Pi_{V_1} - \Pi_V \right) (\mathbf{x} - \Pi_V\mathbf{x})\|_2 \\
@@ -646,21 +645,22 @@ Finally, substituting this into \eqref{f} and rearranging produces \eqref{DTILeq
 % i'm placing this on hold since one thing i found was that i needed pi to be injective, but for that i needed the fact that |pi(S)| = |S|
 
 \begin{lemma}\label{NonEmptyLemma} 
-Fix $\ell, m$, and $\bar m$. Suppose $E \subseteq 2^{[m]}$ is $\ell$-regular with the SIP.  If $\pi: E \to 2^{[\bar m]}$ has $|S| = |\pi(S)|$ and:
+Fix $\ell, m$, and $\bar m$ such that $p = \bar m - \ell(\bar m - m)$ is positive. Suppose $E \subseteq 2^{[m]}$ is $\ell$-regular with the SIP. If a map $\pi: E \to 2^{[\bar m]}$ has $|S| = |\pi(S)|$ and:
 \begin{align}\label{cond}
-|\bigcap_{S \in F} \pi(S)| \leq |\bigcap_{S \in F} S |,\ \ \   \text{for } F \subseteq E,
+%|\bigcap_{S \in F} \pi(S)| \leq |\bigcap_{S \in F} S |,\ \ \   \text{for } F \subseteq E,
+|\cap \pi(F)| \leq |\cap F |,\ \ \   \text{for } F \subseteq E,
 \end{align}
-then $\bar m \geq m$ and the association $i \mapsto \cap \pi(F(i))$ defines an injective map from $J$ to $[\bar m]$ for some $J \subseteq [m]$ of size $p = \bar m - \ell(\bar m - m)$. In particular, if $\bar m = m$ then the map $\pi$ is induced by a permutation.
+then $\bar m \geq m$ and the association $i \mapsto \cap \pi(F(i))$ defines an injective map from $J$ to $[\bar m]$ for some $J \in {[m] \choose p}$. In particular, if $\bar m = m$ then $\pi$ is induced by a permutation on $[m]$.
 \end{lemma}
 
 
 \begin{proof}
-First observe that assumption \eqref{cond} already constrains $\pi$ to be injective:  if $S_1 \neq S_2$, then $|\pi(S_1) \cap \pi(S_2)| \leq |S_1 \cap S_2| < \max\{|S_1|, |S_2|\} = \max\{|\pi(S_1)|, |\pi(S_2)|\}$, which implies that $\pi(S_1) \neq \pi(S_2)$.  Next, consider the collection of pairs: \[T_1 := \{(i, S): i \in \pi(S), S \in E\},\] which number $|T_1| = \sum_{S \in E} |\pi(S)| = \sum_{S \in E} |S| = \ell m$ by regularity of $E$.  
-Our second observation is that $\bar m \geq m$. Otherwise, if $\bar m < m$, then by pigeonholing the $m \ell \geq \ell (\bar m + 1) \geq [(\ell + 1) - 1] \bar m + 1$ elements of $T_1$ with respect to the set $[\bar m]$ of possible first indices, there must exist at least $\ell + 1$ elements of $T_1$ having the same first index. But by \eqref{cond} and injectivity of $\pi$, we then have more than $\ell$ edges in $E$ with common element, a contradiction to regularity.
+First, note that assumption \eqref{cond} already constrains $\pi$ to be injective:  if $S_1 \neq S_2$, then $|\pi(S_1) \cap \pi(S_2)| \leq |S_1 \cap S_2| < \max\{|S_1|, |S_2|\} = \max\{|\pi(S_1)|, |\pi(S_2)|\}$, which implies that $\pi(S_1) \neq \pi(S_2)$.  Next, consider the collection of pairs: \[T_1 := \{(i, S): i \in \pi(S), S \in E\},\] which number $|T_1| = \sum_{S \in E} |\pi(S)| = \sum_{S \in E} |S| = \ell m$ by regularity of $E$. We apply the pigeonhole principle to make two observations. 
+The first is that $\bar m \geq m$. Otherwise, pigeonholing $\ell m > \ell \bar m$ elements of $T_1$ with respect to the set $[\bar m]$ of possible first indices would require at least $\ell + 1$ elements of $T_1$ to have the same first index. But by \eqref{cond} and injectivity of $\pi$, we then have more than $\ell$ edges in $E$ with a common element, contradicting regularity. 
 
-Since $|T_1| > \bar m (\ell -1) + (p-1) \geq \bar m (\ell -1)$, the pigeonhole principle also implies that there are at least $\ell$ elements of $T_1$ sharing the same first coordinate. Let $F_1$ be the preimage of this family under $\pi$.  By the assumption \eqref{cond}, the intersection of $F_1$ is nonempty, and in fact must contain exactly $\ell$ elements by regularity. 
+The second observation is that since $\ell m = \bar m (\ell - 1) + p$ and $p > 0$, there must be at least $\ell$ elements of $T_1$ sharing the same first coordinate. Let $F_1$ be the preimage of this family under $\pi$.  By the assumption \eqref{cond}, the intersection of $F_1$ is nonempty, and in fact must contain exactly $\ell$ elements by regularity. 
 %Thus, $F_1$ is the star of some element $i_1 \in [m]$.  
-From the SIP, the intersection of sets in $F_1$ is $\{i_1\}$, which by \eqref{cond} implies that the intersection of $\pi(S)$ with $S \in F_1$ also contains exactly one element.  If $p > 1$, then define $T_2 := T_1 \setminus \{(i,S) \in T_1: i = i_1\}$, which contains more than $(\bar m - 1)(\ell -1)$ sets, and produce by the same argument a (necessarily) different index $i_2$. Iterating $p = \bar{m} - \ell(\bar m - m)$ times this loop yields the desired $J = \{i_1, \ldots, i_p\} \subseteq [m]$.
+From the SIP, the intersection of sets in $F_1$ is $\{i_1\}$, which by \eqref{cond} implies that the intersection of $\pi(S)$ with $S \in F_1$ also contains exactly one element.  If $p = 1$ then we are done. Otherwise, define $T_2 := T_1 \setminus \{(i,S) \in T_1: i = i_1\}$, which contains $(\bar m - 1)(\ell -1) + (p-1)$ elements having $\bar m - 1$ possible first indices, and produce by the same argument a (necessarily) different index $i_2$. Iterating this loop $p$ times yields the desired $J = \{i_1, \ldots, i_p\} \subseteq [m]$.
 \end{proof}
 
 \begin{proof}[Proof of Lem.~\ref{MainLemma}]
@@ -670,7 +670,7 @@ d(\text{\rm Span}\{\mathbf{B}_{\pi(S)}\}, \text{\rm Span}\{\mathbf{A}_S\} ) = d(
 \end{align}
 Since the right-hand side of \eqref{GapUpperBound} is less than one (by \eqref{delrho} and $r \leq 1$), it follows from \eqref{dimLem} that $|\pi(S)| \geq \dim(\text{\rm Span}\{\mathbf{B}_{\pi(S)}\}) \geq \dim(\text{\rm Span}\{\mathbf{A}_{S}\}) = |S|$, with the equality due to $\mathbf{A}$ satisfying \eqref{SparkCondition}. Since $|S| = |\pi(S)|$, we have $\dim(\text{\rm Span}\{\mathbf{B}_{\pi(S)}\}) = \dim(\text{\rm Span}\{\mathbf{A}_{S}\})$, and \eqref{eq2} follows using \eqref{eqdim}. Note that the columns of $\mathbf{B}_{\pi(S)}$ are therefore linearly independent, for all $S \in E$.
 
-We next verify \eqref{cond} holds.  Fix $F \subseteq E$. Since $\text{\rm Span}\{\mathbf{B}_{\cap_{S \in F}\pi(S)}\} \subseteq \cap_{S \in F} \text{\rm Span}\{\mathbf{B}_{\pi(S)}\}$, if $\cap_{S \in F} \text{\rm Span}\{\mathbf{B}_{\pi(S)}\} = \{\textbf{0}\}$, then we must have $|\cap_{S \in F} \pi(S)| = 0$ (as the columns of $\mathbf{B}_{\pi(S)}$ are linearly independent) and \eqref{cond} trivially holds. Suppose then that the intersection is not the zero vector. By Lem.~\ref{SpanIntersectionLemma} and Lem.~\ref{DistanceToIntersectionLemma}, and incorporating \eqref{eq2} and \eqref{GapUpperBound}, we have:
+We next verify that \eqref{cond} holds.  Fix $F \subseteq E$. Since $\text{\rm Span}\{\mathbf{B}_{\cap_{S \in F}\pi(S)}\} \subseteq \cap_{S \in F} \text{\rm Span}\{\mathbf{B}_{\pi(S)}\}$, if $\cap_{S \in F} \text{\rm Span}\{\mathbf{B}_{\pi(S)}\} = \{\textbf{0}\}$, then we must have $|\cap_{S \in F} \pi(S)| = 0$ (as the columns of $\mathbf{B}_{\pi(S)}$ are linearly independent) and \eqref{cond} is trivially true. Suppose then that the intersection is not the zero vector. By Lem.~\ref{SpanIntersectionLemma} and Lem.~\ref{DistanceToIntersectionLemma}, and incorporating \eqref{eq2} and \eqref{GapUpperBound}, we have:
 \begin{align}\label{randoml}
 d( \text{\rm Span}&\{\mathbf{B}_{\cap_{S \in F}\pi(S)}\}, \text{\rm Span}\{\mathbf{A}_{\cap_{S \in F} S}\}  ) \nonumber \\
 &\leq d\left( \cap_{S \in F} \text{\rm Span}\{\mathbf{B}_{\pi(S)}\}, \cap_{S \in F} \text{\rm Span}\{\mathbf{A}_{S}\} \right) \nonumber \\
@@ -689,14 +689,14 @@ Now, by Lem.~\ref{NonEmptyLemma}, the association $i \mapsto \cap \pi(F(i))$ def
 \begin{proof}[Proof (sketch) of Thm.~\ref{robustPolythm}]
 Let $M$ be the matrix with columns $\mathbf{A}\mathbf{x}_i$, $i \in [N]$.  Consider the polynomial in the entries of $\mathbf{A}$ and $\mathbf{x}_i$:
 \begin{align*}
-g(\mathbf{A}, \{\mathbf{x}_i\}_{i=1}^N) := \prod_{S \in {[n] \choose k}} \sum_{S' \in {[N] \choose k}} (\det M_{S',S})^2,
+g(\mathbf{A}, \{\mathbf{x}_i\}_{i=1}^N) := \prod_{S \in {[N] \choose k}} \sum_{S' \in {[n] \choose k}} (\det M_{S',S})^2,
 \end{align*}
 with notation as in Sec.~\ref{Results}.  
 It can be checked that when $g$ is nonzero for a substitution of real numbers for the indeterminates, all of the genericity requirements on $\mathbf{A}$ and $\mathbf{x}_i$ in our proofs of stability in Thm.~\ref{DeterministicUniquenessTheorem} are satisfied (in particular, the spark condition on $\mathbf{A}$).
 \end{proof}
 
 \begin{proof}[Proof (sketch) of Cor.~\ref{ProbabilisticCor}]
-First, note that if a set of measure spaces $\{(X_{\ell}, \Sigma_{\ell}, \nu_{\ell})\}_{\ell=1}^p$ has $\nu_{\ell}$ is absolutely continuous with respect to $\mu$ for all $\ell \in [p]$, where $\mu$ is the standard Borel measure on $\mathbb{R}$, then the product measure $\prod_{\ell=1}^p \nu_{\ell}$ is absolutely continuous with respect to the standard Borel product measure on $\mathbb{R}^p$ (e.g.,  \cite{folland2013real}). By Thm.~\ref{robustPolythm}, there is a polynomial that is nonzero whenever $Y$ has a stable $k$-sparse representation in $\mathbb R^m$; in particular, this property (stability) holds with probability one.
+First, note that if a set of measure spaces $\{(X_{\ell}, \Sigma_{\ell}, \nu_{\ell})\}_{\ell=1}^p$ has that $\nu_{\ell}$ is absolutely continuous with respect to $\mu$ for all $\ell \in [p]$, where $\mu$ is the standard Borel measure on $\mathbb{R}$, then the product measure $\prod_{\ell=1}^p \nu_{\ell}$ is absolutely continuous with respect to the standard Borel product measure on $\mathbb{R}^p$ (e.g.,  \cite{folland2013real}). By Thm.~\ref{robustPolythm}, there is a polynomial that is nonzero whenever $Y$ has a stable $k$-sparse representation in $\mathbb{R}^m$; in particular, this property (stability) holds with probability one.
 \end{proof}
 
 \end{document}
