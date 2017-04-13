@@ -157,19 +157,19 @@ It is easy to verify that for every $k < m$, there is a regular $k$-uniform hype
 
 %The second ingredient necessary for the statement of Thm.~\ref{DeterministicUniquenessTheorem} 
 Next, we describe a quantitative version of the spark condition.  % We first explain how the spark condition \eqref{SparkCondition} relates to t
-The \emph{lower bound} \cite{Grcar10} of a matrix $\mathbf{A} \in \mathbb R^{n \times m}$ is the largest number $\alpha$ such that \mbox{$\|\mathbf{A}\mathbf{x}\|_2 \geq \alpha\|\mathbf{x}\|_2$} for all $\mathbf{x} \in \mathbb{R}^m$. By compactness of the unit sphere, every injective linear map has a nonzero lower bound; hence, if $\mathbf{A}$ satisfies \eqref{SparkCondition}, then each submatrix formed from $2k$ of its columns or less has a nonzero lower bound. This motivates the following definition: % We therefore define the following domain-restricted lower bound:
+The \emph{lower bound} \cite{Grcar10} of a matrix $\mathbf{M} \in \mathbb R^{n \times m}$ is the largest number $\alpha$ such that \mbox{$\|\mathbf{M}\mathbf{x}\|_2 \geq \alpha\|\mathbf{x}\|_2$} for all $\mathbf{x} \in \mathbb{R}^m$. By compactness of the unit sphere, every injective linear map has a nonzero lower bound; hence, if $\mathbf{M}$ satisfies \eqref{SparkCondition}, then each submatrix formed from $2k$ of its columns or less has a nonzero lower bound. This motivates the following definition: % We therefore define the following domain-restricted lower bound:
 \begin{align*}
-L_k(\mathbf{A}) := \frac{1}{\sqrt{k}}\max \{ \alpha : \|\mathbf{A}\mathbf{x}\|_2 \geq \alpha\|\mathbf{x}\|_2 \text{ for all $k$-sparse } \mathbf{x}\}.
+L_k(\mathbf{M}) := \frac{1}{\sqrt{k}}\max \{ \alpha : \|\mathbf{M}\mathbf{x}\|_2 \geq \alpha\|\mathbf{x}\|_2 \text{ for all $k$-sparse } \mathbf{x}\}.
 \end{align*} 
 
 %Clearly, $\sqrt{k} L_k(\mathbf{A}) \geq \sqrt{k'}L_{k'}(\mathbf{A})$ whenever $k < k'$, and 
-Clearly, for any $\mathbf{A}$ satisfying \eqref{SparkCondition}, we have $L_{k'}(\mathbf{A}) > 0$ for  $k' \leq 2k$. We note that the quantity $1 - \sqrt{k} L_k(\mathbf{A})$ is also known in the CS literature as the (asymmetric) lower restricted isometry constant \cite{Blanchard2011}.%, Foucart2009}.
+Clearly, for any $\mathbf{M}$ satisfying \eqref{SparkCondition}, we have $L_{k'}(\mathbf{M}) > 0$ for  $k' \leq 2k$. We note that the quantity $1 - \sqrt{k} L_k(\mathbf{M})$ is also known in the CS literature as the (asymmetric) lower restricted isometry constant \cite{Blanchard2011}.%, Foucart2009}.
  
-A vector $\mathbf{x}$ is said to be \emph{supported} on $S \subseteq [m]$ when $\mathbf{x} \in \text{\rm Span} \{\mathbf{e}_j\}_{j\in S}$, where $\mathbf{e}_j$ are the standard basis in $\mathbb R^m$. Denote by $\mathbf{M}_S$ the submatrix formed by the columns of $\mathbf{M}$ indexed by $S$, where we set $\text{\rm Span}\{\mathbf{M}_\emptyset\} := \{\textbf{0}\}$, and similarly by $\mathbf{x}^J$ the subvector formed from the entries of $\mathbf{x}$ indexed by $J$. A set of $k$-sparse vectors is said to be in \emph{general linear position} when any $k$ of them are linearly independent. The following is a precise statement of our main result.
+A vector $\mathbf{x}$ is said to be \emph{supported} on $S \subseteq [m]$ when $\mathbf{x} \in \text{\rm Span}( \{\mathbf{e}_j\}_{j\in S})$, where $\mathbf{e}_j$ are the standard basis in $\mathbb R^m$. For any index set $J$, denote by by $\mathbf{x}^J$ the subvector formed from the entries of $\mathbf{x}$ indexed by $J$, and similarly by $\mathbf{M}_J$ the submatrix formed by the columns of $\mathbf{M}$ indexed by $J$, where we set $\text{\rm Span}\{\mathbf{M}_\emptyset\} := \{\textbf{0}\}$. A set of $k$-sparse vectors is said to be in \emph{general linear position} when any $k$ of them are linearly independent. The following is a precise statement of our main result.
 
 \begin{theorem}\label{DeterministicUniquenessTheorem}
 %Fix integers $n, \ell$, and $k < m$. 
-Let $\mathbf{A}~\in~\mathbb{R}^{n \times m}$ satisfy \eqref{SparkCondition} for $k < m$, and suppose for some $\bar m$ that more than \mbox{$(k-1){\bar m \choose k}$} $k$-sparse \mbox{$\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$} are supported in general linear position on each set in an $\ell$-regular $E \subseteq {[m] \choose k}$ with the SIP.  There is a constant\footnote{We delay defining the constant $C_1$ until Section \ref{DUT} (\eqref{Cdef1}).} $C_1 > 0$ for which the following holds for $\varepsilon < L_2(\mathbf{A}) / C_1$.
+Let $\mathbf{A}~\in~\mathbb{R}^{n \times m}$ satisfy \eqref{SparkCondition} for $k < m$, and suppose for some $\bar m$ that more than \mbox{$(k-1){\bar m \choose k}$} $k$-sparse \mbox{$\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$} are supported in general linear position on each set in an $\ell$-regular $E \subseteq {[m] \choose k}$ with the SIP.  There is a constant\footnote{We delay defining the constant $C_1$ until Section \ref{DUT} (\eqref{Cdef1}).} $C_1 > 0$ for which the following holds for $\varepsilon < L_2(\mathbf{A}) / C_1$:
 
 Every matrix $\mathbf{B}$ and $k$-sparse $\mathbf{\bar x}_1, \ldots, \mathbf{\bar x}_N \in \mathbb{R}^{\bar m}$ with  \mbox{$\|\mathbf{A}\mathbf{x}_i - \mathbf{B}\mathbf{\bar x}_i\|_2 \leq \varepsilon$} for all $i$ must have $\bar m \geq m$ and, provided $p = \bar m - \ell(\bar m - m)$ is positive, necessarily satisfy:
 \begin{align}\label{Cstable}
@@ -177,7 +177,7 @@ Every matrix $\mathbf{B}$ and $k$-sparse $\mathbf{\bar x}_1, \ldots, \mathbf{\ba
 \end{align}
 for some $J \in {[m] \choose p}$, $\bar J \in {[\bar m] \choose p}$, permutation matrix $\mathbf{P}$, and invertible diagonal matrix $\mathbf{D}$.
 
-Furthermore, if $\varepsilon < L_{2k}(\mathbf{A}) / C_1$, then $\mathbf{B}_{\bar J}$ also satisfies \eqref{SparkCondition} with $L_{2k}(\mathbf{B}_{\bar J}\mathbf{PD}) \geq L_{2k}(\mathbf{A}_J) - C_1 \varepsilon$, and:
+Furthermore, if $\varepsilon < L_{2k}(\mathbf{A}_J) / C_1$, then $\mathbf{B}_{\bar J}$ also satisfies \eqref{SparkCondition} with $L_{2k}(\mathbf{B}_{\bar J}\mathbf{PD}) \geq L_{2k}(\mathbf{A}_J) - C_1 \varepsilon$, and:
 \begin{align}\label{b-PDa}
 \|\mathbf{x}_i^J - \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\bar x}_i^{\bar J}\|_1 &\leq  \left( \frac{ 1+C_1 \|\mathbf{x}_i^{J}\|_1 }{ L_{2k}(\mathbf{A}_J) -  C_1\varepsilon } \right) \varepsilon,\ \ \   \text{for $i \in [N]$}.
 \end{align}
@@ -296,12 +296,12 @@ Another extension of Thm.~\ref{DeterministicUniquenessTheorem} follows from the 
 f(\mathbf{A}) := \prod_{S \in {[m] \choose k}} \sum_{S' \in {[n] \choose k}} (\det \mathbf{A}_{S',S})^2,
 \end{align*}
 %
-where for any $S' \in {[n] \choose k}$ and $S \in {[m] \choose k}$, the symbol $\mathbf{A}_{S',S}$ denotes the submatrix of entries $A_{ij}$ with $(i,j) \in S' \times S$.   We note that the large number of terms in this product is likely necessary due to the NP-hardness of deciding whether a given matrix $A$ satisfies the spark condition \cite{tillmann2014computational}.
+where for any $S' \in {[n] \choose k}$ and $S \in {[m] \choose k}$, the symbol $\mathbf{A}_{S',S}$ denotes the submatrix of entries $A_{ij}$ with $(i,j) \in S' \times S$.   We note that the large number of terms in this product is likely necessary due to the NP-hardness of deciding whether a given matrix $\mathbf{A}$ satisfies the spark condition \cite{tillmann2014computational}.
 
 Since $f$ is an analytic function, having one substitution of real numbers with $f(\mathbf{A}) \neq 0$ implies that its zeroes form a set of measure zero. Fortunately, such a matrix $\mathbf{A}$ is easily constructed by adding rows of zeroes to any $\min(2k,m) \times m$ ``Vandermonde'' matrix $[\gamma_i^j]_{i,j=1}^{k,m}$ with distinct $\gamma_i$ (so that each term in the product above is nonzero).
 %$A_{ij} = \gamma_i (since the $\gamma_i$ are distinct, any $k \times k$ ``Vandermonde'' sub-determinant is nonzero)
 %inserting $n-k$ rows of zeros into a $k \times m$ ``Vandermonde" matrix construction. %Let $\gamma_1, \ldots, \gamma_m$ be any distinct numbers. Then the columns of the $k \times m$ matrix $V = (\gamma^{\ell}_i)^{k,m}_{\ell,i=1}$ are in general linear position (since the $\gamma_i$ are distinct, any $k \times k$ ``Vandermonde" sub-determinant is nonzero). Concatenating $n-k$ rows of zeros to the bottom of this matrix yields a $n \times m$ matrix $\mathbf{A}$ satisfying the spark condition, i.e. with $f(\mathbf{A}) = 0$.
-Hence, almost every real $n \times m$ matrix $\mathbf{A}$ with $n \geq \max(2k,m)$ satisfies \eqref{SparkCondition}.
+Hence, almost every real $n \times m$ matrix $\mathbf{A}$ with $n \geq \min(2k,m)$ satisfies \eqref{SparkCondition}.
 
 A similar phenomenon applies to datasets of vectors with a stable sparse representation. As in \cite[Sec.~IV]{Hillar15}, consider the ``symbolic'' dataset $Y = \{\mathbf{A}\mathbf{x}_1,\ldots,\mathbf{A} \mathbf{x}_N\}$ generated by indeterminate $\mathbf{A}$ and indeterminate $k$-sparse $\mathbf{x}_1, \ldots, \mathbf{x}_N$.  
 
@@ -334,7 +334,7 @@ Thus, choosing the dictionary and sparse codes ``randomly'' from \emph{any} cont
 \section{Proofs of Theorem~\ref{DeterministicUniquenessTheorem} and Corollary~\ref{SLCopt}}\label{DUT}
 
 % ======== b - PDa =========
-First, note that $\|\mathbf{x}\|_1 \leq \sqrt{k} \|\mathbf{x}\|_2$ for $k$-sparse $\mathbf{x} \in \mathbb{R}^m$, which by definition of $L_k(A)$ implies the following inequality:
+First, note that $\|\mathbf{x}\|_1 \leq \sqrt{k} \|\mathbf{x}\|_2$ for $k$-sparse $\mathbf{x} \in \mathbb{R}^m$, which by definition of $L_k$ implies the following inequality:
 \begin{align}\label{delrho}
 L_k(\mathbf{A}) \leq \frac{\|\mathbf{A}\mathbf{x}\|_2}{\sqrt{k} \|\mathbf{x}\|_2} %\leq \frac{\|\mathbf{x}\|_1}{\sqrt{k} \|\mathbf{x}\|_2} \max_{i \in [m]}\|\mathbf{A}_i\|_2 
 \leq  \max_{j \in [m]}\|\mathbf{A}_j\|_2,
@@ -385,9 +385,9 @@ We  now show that $\pi$ is injective (in particular, a permutation if $\bar m = 
 &\geq  \left( |\bar{c}_{i}| + |\bar{c}_{j}| \right) L_2(\mathbf{A}) \min_{\ell \in [m]} |c_\ell |,
 \end{align*}
 %
-which contradicts the bound $\varepsilon < L_2(\mathbf{A})/C_1$. Hence, the map $\pi$ is injective and therefore $\bar m \geq m$. Setting $J = [m]$, $\bar J = \pi([m])$, and letting $P = \left( \mathbf{e}_{\pi(1)} \cdots \mathbf{e}_{\pi(m)}\right)$ and $D = \text{diag}(\frac{\bar{c}_1}{c_1},\ldots,\frac{\bar{c}_m}{c_m})$, we see that \eqref{1D} becomes, for all $j \in [m]$:
+which contradicts the bound $\varepsilon < L_2(\mathbf{A})/C_1$. Hence, the map $\pi$ is injective and therefore $\bar m \geq m$. Setting $\bar J = \pi([m])$ and letting $P = \left( \mathbf{e}_{\pi(1)} \cdots \mathbf{e}_{\pi(m)}\right)$ and $D = \text{diag}(\frac{\bar{c}_1}{c_1},\ldots,\frac{\bar{c}_m}{c_m})$, we see that \eqref{1D} becomes, for all $j \in [m]$:
 \begin{align*}%\label{k=1result}
-\|\mathbf{A}_j - (\mathbf{B}_J\mathbf{PD})_j\|_2 
+\|(\mathbf{A} - \mathbf{B}_{\bar J}\mathbf{PD})_j\|_2 
 = \|\mathbf{A}_j - \frac{\bar{c}_j}{c_j}\mathbf{B}_{\pi(j)}\|_2 
 \leq \frac{\varepsilon}{|c_j|} 
 \leq C_1\varepsilon.
@@ -400,7 +400,7 @@ which contradicts the bound $\varepsilon < L_2(\mathbf{A})/C_1$. Hence, the map 
 
 %It is easy to see that when $m < m'$, the above result holds for the submatrix of $B$ composed of columns indexed by the image of $\pi$.
 
-We require a few additional tools to extend the proof to the general case $k < m$. These include a general notion of distance (Def.~\ref{dDef}) and angle (Def.~\ref{FriedrichsDefinition}) between subspaces and a stability result in combinatorial matrix analysis (Lem.~\ref{MainLemma}).
+We require a few additional tools to extend the proof to the general case $k < m$. These include a generalized notion of distance (Def.~\ref{dDef}) and angle (Def.~\ref{FriedrichsDefinition}) between subspaces and a stability result in combinatorial matrix analysis (Lem.~\ref{MainLemma}).
 
 \begin{definition}\label{dDef}
 For $\mathbf{u} \in \mathbb R^m$ and vector spaces $U,V \subseteq \mathbb{R}^m$, let $\text{\rm dist}(\mathbf{u}, V) := \inf \{\| \mathbf{u}-\mathbf{v} \|_2: \mathbf{v} \in V\}$ and define:
@@ -462,7 +462,7 @@ for some $J \in {[m] \choose p}$, $\bar J \in {[\bar m] \choose p}$, permutation
 %\end{align}
 %\end{lemma}
 
-The constant $C_1$ in Thm.~\ref{DeterministicUniquenessTheorem} is then defined by\footnote{Note that $\|\mathbf{AX}_{I(S)}\mathbf{c}\|_2 \geq \sqrt{k} L_k(\mathbf{A})\|\mathbf{X}_{I(S)}\mathbf{c}\|_2 \geq k L_k(\mathbf{A}) L_k(\mathbf{X}_{I(S)})\|\mathbf{c}\|_2$ for $S \in E$ and $k$-sparse $\mathbf{c}$. Therefore, $\sqrt{k} L_k(\mathbf{AX}_{I(S)}) \geq k L_k(\mathbf{A}) L_k(\mathbf{X}_{I(S)}) > 0$ since $L_k(\mathbf{A}), L_k(\mathbf{X}_{I(S)}) > 0$ by \eqref{SparkCondition} and general linear position of the $\mathbf{x}_i$.  Thus, $C_1 > 0$.}:
+The constant $C_1 > 0$ in Thm.~\ref{DeterministicUniquenessTheorem} is then defined by\footnote{Note that $\|\mathbf{AX}_{I(S)}\mathbf{c}\|_2 \geq \sqrt{k} L_k(\mathbf{A})\|\mathbf{X}_{I(S)}\mathbf{c}\|_2 \geq k L_k(\mathbf{A}) L_k(\mathbf{X}_{I(S)})\|\mathbf{c}\|_2$ for $S \in E$ and $k$-sparse $\mathbf{c}$. Therefore, $\sqrt{k} L_k(\mathbf{AX}_{I(S)}) \geq k L_k(\mathbf{A}) L_k(\mathbf{X}_{I(S)}) > 0$ since $L_k(\mathbf{A}), L_k(\mathbf{X}_{I(S)}) > 0$ by \eqref{SparkCondition} and general linear position of the $\mathbf{x}_i$.  Thus, $C_1 > 0$.}:
 \begin{align}\label{Cdef1}
 C_1(\mathbf{A}, \{\mathbf{x}_i\}_{i=1}^N, E) := \frac{ C_2(\mathbf{A}, E) } { \min_{S \in E} L_k(\mathbf{AX}_{I(S)}) }.
 \end{align}
@@ -492,7 +492,7 @@ The constant $C_2$ in Lem.~\ref{MainLemma} can then be expressed as:  % \footnot
 C_2(\mathbf{A}, E) := \frac{ 2^{|E|} \max_{j \in [m]} \|\mathbf{A}_j\|_2}{ \min_{F \subseteq E} r( \{ \text{\rm Span}\{\mathbf{A}_{S}\} \}_{S \in F}) },
 \end{align}
 %
-which we remark is consistent with the assumption on $C_1$ in the proof of Thm.~\ref{DeterministicUniquenessTheorem} for the case $k=1$.
+which we remark is consistent with the assumption on $C_1$ in the proof of the case $k=1$ at the beginning of this section.
 
 \begin{proof}[Proof of Thm.~\ref{DeterministicUniquenessCorollary} for $k < m$] 
 We shall show that for every $S \in E$ there is some $\bar S \in {[\bar m] \choose k}$ for which the distance $d(\text{\rm Span}\{\mathbf{A}_S\}, \text{\rm Span}\{\mathbf{B}_{\bar S}\})$ is controlled by $\varepsilon$. Applying Lem.~\ref{MainLemma} with the map $\pi$ defined by $S \mapsto \bar S$ then completes the proof.  
@@ -553,10 +553,10 @@ The total number of $(k-1)$-sparse vectors $\mathbf{\bar x}_i$ can thus no great
  
 \section{Discussion}\label{Discussion}
 
-In this note, we generalized the approach of \cite{Hillar15} to prove the stability of unique solutions to Probs.~\ref{InverseProblem} and \ref{OptimizationProblem} and significantly reduce the known sample complexity. 
+In this note, we generalized the approach of \cite{Hillar15} to prove the stability of unique solutions to Probs.~\ref{InverseProblem} and \ref{OptimizationProblem} while significantly reducing the known sample complexity. 
 % FRITZ: Inverse problems instead of Data Analysis. Don't assume that everyone is assuming they are recovering ground truth. Cite results again and state implications! Focus on them (probabilistic ones too).
 Our results justify the application of the sparse linear coding model to blind source separation problems, wherein the goal is to infer the generating dictionary and sparse codes from noisy measurements, \eqref{LinearModel}. We also collect a set of useful mathematical tools and basic facts for future research.
-The main motivation for this work, however, was to understand how seemingly universal representations emerge from sparse coding models fit to natural data by a variety of methodologies. We elaborate more on these applications below after discussing theoretical aspects.  % We close with several application areas.
+The main motivation for this work, however, was to understand how seemingly universal representations emerge from sparse coding models fit to natural data by a variety of methodologies. We elaborate on these applications below after discussing theoretical aspects.  % We close with several application areas.
 
 %\textbf{Inverse Problems}.  
 % from $N=k{m \choose k}^2$ to $N = m(k-1){m \choose k}+m$. 
