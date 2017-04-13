@@ -94,7 +94,7 @@ The precise mathematical problem addressed here is the following.
 Find a matrix $\mathbf{B}$ and $k$-sparse $\mathbf{\bar x}_1, \ldots, \mathbf{\bar x}_N \in \mathbb{R}^m$ such that $\|\mathbf{z}_i - \mathbf{B}\mathbf{\bar x}_i\|_2 \leq \eta$ for all $i$.
 \end{problem}
 
-Note that any particular solution $(\mathbf{B}, \mathbf{\bar x}_1 \ldots, \mathbf{\bar x}_N)$ to this problem gives rise to an orbit of equivalent solutions $(\mathbf{BPD}, \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\bar x}_1, \ldots, \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\bar x}_N)$, where $\mathbf{P}$ is any permutation matrix and $\mathbf{D}$ any invertible diagonal. Previous theoretical work addressing the noiseless case $\eta =0$ (e.g., \cite{li2004analysis, Georgiev05, Aharon06, Hillar15}) has shown that a solution to Prob.~\ref{InverseProblem} (when it exists) is indeed unique up to this inherent ambiguity provided the $\mathbf{x}_i$ are sufficiently diverse and the generating matrix $\mathbf{A}$ satisfies the \textit{spark condition} from compressive sensing (CS):
+Note that any particular solution $(\mathbf{B}, \mathbf{\bar x}_1 \ldots, \mathbf{\bar x}_N)$ to this problem gives rise to an orbit of equivalent solutions $(\mathbf{BPD}, \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\bar x}_1, \ldots, \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\bar x}_N)$, where $\mathbf{P}$ is any permutation matrix and $\mathbf{D}$ any invertible diagonal. Previous theoretical work addressing the noiseless case $\eta =0$ (e.g., \cite{li2004analysis, Georgiev05, Aharon06, Hillar15}) has shown that a solution to Prob.~\ref{InverseProblem} (when it exists) is indeed unique up to this inherent ambiguity provided the $\mathbf{x}_i$ are sufficiently diverse and the generating matrix $\mathbf{A}$ satisfies the \textit{spark condition} from compressive sensing:
 \begin{align}\label{SparkCondition}
 \mathbf{A}\mathbf{x}_1 = \mathbf{A}\mathbf{x}_2 \implies \mathbf{x}_1 = \mathbf{x}_2, \ \ \ \text{for all $k$-sparse } \mathbf{x}_1, \mathbf{x}_2,
 \end{align}
@@ -114,9 +114,7 @@ then there is some permutation matrix $\mathbf{P}$ and invertible diagonal matri
 \end{align}
 \end{definition}
 
-To see how Def. \ref{maindef} directly relates to Prob. \ref{InverseProblem}, suppose that $Y$
-
-has a stable $k$-sparse representation in $\mathbb{R}^m$ and fix $\delta_1, \delta_2$ to be the desired recovery accuracy in \eqref{def1}. Consider now any dataset $Z$ generated as in \eqref{LinearModel} with $\eta \leq \frac{1}{2} \varepsilon(\delta_1, \delta_2)$. Then from the triangle inequality, it follows that any matrix $\mathbf{B}$ and $k$-sparse $\mathbf{\bar x}_1, \ldots, \mathbf{\bar x}_N \in \mathbb{R}^m$ solving Prob.~\ref{InverseProblem} are necessarily close to the original dictionary $\mathbf{A}$ and sparse codes $\mathbf{x}_i$. 
+To see how Def. \ref{maindef} directly relates to Prob. \ref{InverseProblem}, suppose that $Y$ has a stable $k$-sparse representation in $\mathbb{R}^m$ and fix $\delta_1, \delta_2$ to be the desired recovery accuracy in \eqref{def1}. Consider now any dataset $Z$ generated as in \eqref{LinearModel} with $\eta \leq \frac{1}{2} \varepsilon(\delta_1, \delta_2)$. Then from the triangle inequality, it follows that any matrix $\mathbf{B}$ and $k$-sparse $\mathbf{\bar x}_1, \ldots, \mathbf{\bar x}_N \in \mathbb{R}^m$ solving Prob.~\ref{InverseProblem} are necessarily close to the original dictionary $\mathbf{A}$ and sparse codes $\mathbf{x}_i$. 
 
 In the next section, we give precise statements of our main results, which include an explicit form for $\varepsilon(\delta_1, \delta_2)$. We then prove our main theorem (Thm.~\ref{DeterministicUniquenessTheorem}) in Sec.~\ref{DUT} after stating some additional definitions and lemmas required for the proof, including a useful result in combinatorial matrix analysis (Lem.~\ref{MainLemma}). We also give a simple argument extending our guarantees to the following more common optimization formulation of the dictionary learning problem (Cor.~\ref{SLCopt}).
 
@@ -148,7 +146,7 @@ The \emph{lower bound} \cite{Grcar10} of a matrix $\mathbf{M} \in \mathbb R^{n \
 L_k(\mathbf{M}) := \frac{1}{\sqrt{k}}\max \{ \alpha : \|\mathbf{M}\mathbf{x}\|_2 \geq \alpha\|\mathbf{x}\|_2 \text{ for all $k$-sparse } \mathbf{x}\}.
 \end{align*} 
 
-Clearly, for any $\mathbf{M}$ satisfying \eqref{SparkCondition}, we have $L_{k'}(\mathbf{M}) > 0$ for  $k' \leq 2k$. We note that the quantity $1 - \sqrt{k} L_k(\mathbf{M})$ is also known in the CS literature as the (asymmetric) lower restricted isometry constant \cite{Blanchard2011}.
+Clearly, for any $\mathbf{M}$ satisfying \eqref{SparkCondition}, we have $L_{k'}(\mathbf{M}) > 0$ for  $k' \leq 2k$. We note that the quantity $1 - \sqrt{k} L_k(\mathbf{M})$ is also known in the compressive sensing literature as the (asymmetric) lower restricted isometry constant \cite{Blanchard2011}.
  
 A vector $\mathbf{x}$ is said to be \emph{supported} on $S \subseteq [m]$ when $\mathbf{x} \in \text{\rm Span}( \{\mathbf{e}_j\}_{j\in S})$, where $\mathbf{e}_j$ are the standard basis in $\mathbb R^m$. For any index set $J$, denote by by $\mathbf{x}^J$ the subvector formed from the entries of $\mathbf{x}$ indexed by $J$, and similarly by $\mathbf{M}_J$ the submatrix formed by the columns of $\mathbf{M}$ indexed by $J$, where we set $\text{\rm Span}\{\mathbf{M}_\emptyset\} := \{\textbf{0}\}$. A set of $k$-sparse vectors is said to be in \emph{general linear position} when any $k$ of them are linearly independent. The following is a precise statement of our main result.
 
@@ -262,7 +260,7 @@ which contradicts the bound $\varepsilon < L_2(\mathbf{A})/C_1$. Hence, the map 
 \end{align*}
 \end{proof}
 
-We require a few additional tools to extend the proof to the general case $k < m$. These include a generalized notion of distance (Def.~\ref{dDef}) and angle (Def.~\ref{FriedrichsDefinition}) between subspaces and a stability result in combinatorial matrix analysis (Lem.~\ref{MainLemma}).
+We require a few additional tools to extend the proof to the general case $k < m$. These include a generalized notion of distance (Def.~\ref{dDef}) and angle (Def.~\ref{FriedrichsDefinition}) between subspaces as well as a stability result in combinatorial matrix analysis (Lem.~\ref{MainLemma}).
 
 \begin{definition}\label{dDef}
 For $\mathbf{u} \in \mathbb R^m$ and vector spaces $U,V \subseteq \mathbb{R}^m$, let $\text{\rm dist}(\mathbf{u}, V) := \inf \{\| \mathbf{u}-\mathbf{v} \|_2: \mathbf{v} \in V\}$ and define:
