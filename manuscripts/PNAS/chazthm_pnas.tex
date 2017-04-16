@@ -119,7 +119,7 @@ To see how Def. \ref{maindef} directly relates to Prob. \ref{InverseProblem}, su
 In the next section, we give precise statements of our main results, which include an explicit form for $\varepsilon(\delta_1, \delta_2)$. We then prove our main theorem (Thm.~\ref{DeterministicUniquenessTheorem}) in Sec.~\ref{DUT} after stating some additional definitions and lemmas required for the proof, including a useful result in combinatorial matrix analysis (Lem.~\ref{MainLemma}). We also give a simple argument extending our guarantees to the following more common optimization formulation of the dictionary learning problem (Cor.~\ref{SLCopt}).
 
 \begin{problem}\label{OptimizationProblem}
-Find a matrix $\mathbf{B} \in \mathbb{R}^{\bar m}$ and $k$-sparse $\mathbf{\bar x}_1, \ldots, \mathbf{\bar x}_N \in \mathbb{R}^{\bar m}$ that solve:
+Find a matrix $\mathbf{B} \in \mathbb{R}^{\bar m}$ and vectors \mbox{$\mathbf{\bar x}_1, \ldots, \mathbf{\bar x}_N \in \mathbb{R}^{\bar m}$} that solve:
 \begin{align}\label{minsum}
 \min \sum_{i = 1}^N \|\mathbf{\bar x}_i\|_0 \ \ 
 \text{subject to} \ \ \|\mathbf{A}\mathbf{x}_i - \mathbf{B}\mathbf{\bar x}_i\|_2 \leq \varepsilon, \ \text{for all $i$}.
