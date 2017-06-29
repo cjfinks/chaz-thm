@@ -1,4 +1,4 @@
-\documentclass[journal, onecolumn]{IEEEtran}
+\documentclass[journal, twocolumn]{IEEEtran}
 
 % *** MATH PACKAGES ***
 \usepackage{amsmath, amssymb, amsthm} 
@@ -46,15 +46,14 @@ In particular, if $\bar m = m$ and $E$ is regular, then $\pi$ is induced by a pe
 \begin{proof}
 Consider the collection of pairs: $T_1 := \{(i, S): i \in \pi(S), S \in E\}$, which number $|T_1| = \sum_{S \in E} |\pi(S)| = \sum_{S \in E} |S| = \sum_{i \in [m]} d_i$. Note that assumption \eqref{cond} implies $\bar m \geq |T_1| / d_1$, since otherwise pigeonholing the elements of $T_1$ with respect to their set of possible first indices $[\bar m]$ would lead us to conclude that there are more than $d_1$ sets in $E$ sharing a common element. %QUESTION: Do we really need to say this..?
 
-By \eqref{pcond} we have $|T_1| >  \bar m (d_1 - 1)$, which implies, again by the pigeonhole principle, that there must be at least $d_1$ elements of $T_1$ sharing the same first index. By \eqref{cond}, the intersection of the set $F_1$ consisting of their second indices is non-empty. As $d_1 \geq d_i$ for all $i$, and $E$ satisfies the SIP, it must be that the sets in $F_1$ intersect at a singleton. Since $\cap \pi(F_1)$ is non-empty, applying \eqref{cond} again implies $\cap \pi(F_1) = \{i_1\}$ for some $i_1 \in [m]$. 
-
-If $p=1$ then we are done. Otherwise, define $T_2 := T_1 \setminus \{(i_1,S) \in T_1: S \in E\}$, which contains $|T_2| = |T_1| - d_1 = \sum_{i=2}^m d_i$ ordered pairs having $\bar m - 1$ distinct first indices. By \eqref{pcond} we have $|T_2| > (\bar m - 1)(d_2 - 1)$ and reiterating the above arguments produces a (necessarily) distinct index $i_2$. Iterating the arguments $p$ times yields the set of singletons \mbox{$J = \{\cap F_1, \ldots, \cap F_p\} \subseteq [m]$}.
+By \eqref{pcond} we have $|T_1| >  \bar m (d_1 - 1)$, which implies, again by the pigeonhole principle, that there must be at least $d_1$ elements of $T_1$ sharing the same first index. By \eqref{cond}, the intersection of the set $F_1$ consisting of their second indices is non-empty. As $d_1 \geq d_i$ for all $i$, and $E$ satisfies the SIP, it must be that the sets in $F_1$ intersect at a singleton. Since $\cap \pi(F_1)$ is non-empty, applying \eqref{cond} again implies $\cap \pi(F_1) = \{i_1\}$ for some $i_1 \in [m]$. If $p=1$ then we are done. Otherwise, define $T_2 := T_1 \setminus \{(i_1,S) \in T_1: S \in E\}$, which contains $|T_2| = |T_1| - d_1 = \sum_{i=2}^m d_i$ ordered pairs having $\bar m - 1$ distinct first indices. By \eqref{pcond} we have $|T_2| > (\bar m - 1)(d_2 - 1)$ and reiterating the above arguments produces a (necessarily) distinct index $i_2$. Iterating the arguments $p$ times yields the set of singletons \mbox{$J = \{\cap F_1, \ldots, \cap F_p\} \subseteq [m]$}.
 \end{proof}
 
 \begin{remark}[Regular hypergraphs]
 Note that if $E$ is $d$-regular then $\sum_{i=\ell}^m d = (m-\ell+1) d$ and we have $\bar m \geq \sum_i d_i / d_1 \geq m$ while \eqref{pcond} becomes $\ell < \bar m - (\bar m - m) d + 1$ for all $\ell \leq p$. Hence, it suffices to know that $p = \bar m - (\bar m - m) d$ is positive to know that \eqref{pcond} is satisfied, which is true if an only if $\bar m < md / (d+1)$. Hence we must have $m \leq \bar m < md / (d-1)$ for the conclusion of the lemma to hold for some non-empty $J \subseteq [m]$. We therefore have $J = [m]$ when $\bar m = m$ and $E$ is regular. 
-%Hence, the lemma holds for the largest number $p \leq \bar m - (\bar m - m) d$ in the interval $1 \leq p \leq m$, which is guaranteed for $p = \bar m - (\bar m - m) d$ if $m \leq \bar m \leq (md-1) / (d-1)$. We can't have $\bar m < m$ since $\bar m \geq \sum_i d_i / d_1 = m$ by the contradiction discussed in the proof. 
 \end{remark}
+
+NOTE: I think assuming that for some $d$ we have $d_i \in \{d, d+1\}$ for all $i$ may be enough, actually.
 
 \begin{remark}[General hypergraphs]
 For what range of values of $\bar m$ can we guarantee there exists some $p \in \{1, \ldots, m\}$ in general? If $\bar m < \sum_i d_i / (d_1-1)$ then we can peel off at least one index for any hypergraph, i.e. $p \geq 1$. Can we find a lower bound on $\bar m$ in general, though (not just for regular hypergraphs)? The difficulty is we have to make sure \eqref{pcond} holds for \emph{all} values of $\ell \leq p$, which was easy for regular hypergraphs (by the resulting transitivity of \eqref{pcond}). My thought is that in general the lower bound $\bar m \geq \sum_i d_i / d_1$ which *has* to hold given \eqref{cond} might not correspond to what condition \eqref{pcond}, which comes from our crappy pigeonholing, gives us as a constraint on $\bar m$ when we make the substitution $p=m$ (as was the case for regular hypergraphs). Could we have $\bar m < m$ but still recover a positive $p$ number of indices?
