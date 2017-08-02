@@ -1,34 +1,4 @@
-Reviewer Comments: 
-
-Reviewer #1: 
-
-Comments : 
-SUMMARY OF THE PAPER 
-
-The paper finds conditions under which solutions for the sparse linear coding problem are unique. In sparse linear coding, one is given a matrix Y and the problem is to find a dictionary A and sparse coefficient matrix X such that Y=AX, up to a bounded uncertainty. This paper finds conditions under which A and X are unique up to scalings and permutation. Previous works looked at the noise-free case; this work considers the case of "noisy" measurements and proves a stability condition. 
-
-GENERAL COMMENTS 
-
------------------
-Overall, while I think that the manuscript makes a solid contribution, I believe is better suited to a more specialized journal. Unlike many journals, PNAS gives a criterion for significance: that the paper be within the top 10% of publications and should be of interest to a general scientific audience. Without compelling evidence to the contrary from the authors, it seems to me that the submission does not rise to that level. 
------------------
-
-RESPONSE: We agree that the significance of our results and their relevance to the general scientific audience warrant a more compelling exposition in the manuscript. [Summarize high level major points in our cover here.  Also, mention we try to flesh this out in the next comment below.]
-
------------------
-Since the result is an extension of the noise-free result of [Hillar & Sommer (2015)] to a noisy case, the authors should provide better justification for the significance of contributions. 
------------------
-
-RESPONSE: 
-
-Our main result is not simply an extension of the noise-free result of [Hillar & Sommer (2015)] to the noisy case. Furthermore, our solution to Problem 2 is the first of its kind. See below.
-
------------------
-The main result seems to be based on an approach similar to [Hillar & Sommer (2015)], and there is little to no discussion of the computability and tightness of the sufficient condition for stability in the main results. Thus, the submission does not seem to be greatly more valuable than [Hillar & Sommer (2015)] and also not conclusive regarding the central problems of sparse linear coding and dictionary learning. That being said, the paper (with the modifications below) would certainly merit publication in very solid journal like IEEE Transactions on Information Theory, where it would be a median paper, in my opinion.  
------------------
-
-RESPONSE: 
-
+*** NOTES ***
 Mathy:
 
 This is actually a significant applied mathematical result.  and is is not simply a generalization of the noise-free results.
@@ -68,7 +38,34 @@ completes the theory of NIPS ACS making viable actual result in theory of mind -
 applies to thousands of scientific algorithmic theory of sparse linear coding -- removes one step for them to write algorithm papers
 universals in perception -- with noise (as all datasets have noise) lends further understanding to the basic problem of universal coding from sensors to cortex.
 applied optimization theory: Hadamard well-posed, sparse linear coding with learning has a natural consistency, versus Deep Learning non-uniqueness of models. big win for sparse coding as a model: theoretical grounding for what you are doing.
+*** ***
 
+Reviewer Comments: 
+
+Reviewer #1: 
+
+Comments : 
+SUMMARY OF THE PAPER 
+
+The paper finds conditions under which solutions for the sparse linear coding problem are unique. In sparse linear coding, one is given a matrix Y and the problem is to find a dictionary A and sparse coefficient matrix X such that Y=AX, up to a bounded uncertainty. This paper finds conditions under which A and X are unique up to scalings and permutation. Previous works looked at the noise-free case; this work considers the case of "noisy" measurements and proves a stability condition. 
+
+GENERAL COMMENTS 
+
+-----------------
+Overall, while I think that the manuscript makes a solid contribution, I believe is better suited to a more specialized journal. Unlike many journals, PNAS gives a criterion for significance: that the paper be within the top 10% of publications and should be of interest to a general scientific audience. Without compelling evidence to the contrary from the authors, it seems to me that the submission does not rise to that level. 
+-----------------
+
+RESPONSE: We have included in our revised manuscript a more compelling exposition of the significance of our results and their relevance to the general scientific audience, and thank the editor for the opportunity to address this concern shared by both reviewers. [Summarize high level major points in our cover here.  Also, mention we try to flesh this out in the next comment below.]
+
+-----------------	
+Since the result is an extension of the noise-free result of [Hillar & Sommer (2015)] to a noisy case, the authors should provide better justification for the significance of contributions. The main result seems to be based on an approach similar to [Hillar & Sommer (2015)], and there is little to no discussion of the computability and tightness of the sufficient condition for stability in the main results. Thus, the submission does not seem to be greatly more valuable than [Hillar & Sommer (2015)] and also not conclusive regarding the central problems of sparse linear coding and dictionary learning. That being said, the paper (with the modifications below) would certainly merit publication in very solid journal like IEEE Transactions on Information Theory, where it would be a median paper, in my opinion.  
+-----------------
+
+RESPONSE: 
+
+We agree with the reviewer that an extension of the noise-free result of [Hillar & Sommer (2015)] to the noisy case — while a significant, non-incremental advancement in applied mathematics with actual practical implications — would not necessarily merit publication in PNAS on its own. It seems to us, however, that the reviewer may not have noticed that our main result in fact generalizes the noise-free result of [Hillar & Sommer (2015)] far beyond a straight-forward extension to the noisy case in ways which have provided valuable insight into the dictionary learning model, and that a significant deviation in approach was necessary to prove these new facts. Furthermore, our solution (Cor. 2) to the optimization formulation of the dictionary learning problem (Prob. 2) — that of most interest to optimization theorists and practitioners of their methods — is a significant result that is, to our knowledge, the first result of its kind in both the noise-free and noisy domains. We discuss all of these points in our response to the reviewer’s more detailed comments.
+
+As per the reviewer’s request, we have included in the updated manuscript a discussion of the computability of sufficient conditions for recovery (they are, indeed, computable). While we admit the manuscript is not *conclusive* regarding the central problems of sparse linear coding and dictionary learning (i.e. we have not provided tightness conditions, as the reviewer has pointed out), we believe we have uncovered the fundamental underlying combinatorial structure at play, that being the intersection semi-lattice of a hyper-graph and its transformation under the map \pi.
 
 -----------------
 DETAILED COMMENTS 
@@ -78,7 +75,21 @@ DETAILED COMMENTS
 -- I think the biggest potential issue for publication in PNAS is that the significance of the result needs more discussion. Specifically, the authors could address why going from the noise-free case to the noisy case is not incremental. PNAS specifically targets submissions that go beyond what could be published in a more specialized journal. Could the authors, for example, contrast the proof technique between the noisy and noise-free cases? Or, perhaps, the practical implications? 
 -----------------
 
-RESPONSE: (first of all, it's not incremental) measure zero versus full measure hello.  moreover, many other results, including m'>m, ....
+RESPONSE: 
+
+With all due respect to the reviewer, we believe the practical implication of a noisy result over a noiseless result is plainly evident: never has there been an experiment without noise and an unstable model is therefore useless in practice. It seems to us that the reviewer’s fundamental concern is that our proof may amount to too straight-forward of an extension of the approach taken in [Hillar & Sommer (2015)] to satisfy the criterion for publication in PNAS. We believe this concern stems from two misconceptions the reviewer seems to have: that our main result is merely an extension of that in [Hillar & Sommer (2015)] to the noisy case, and that our proof technique is merely an incremental tweak on the approach taken in [Hillar & Sommer (2015)]. 
+
+It is understandable from the presentation of our proof of Thm. 1 that our approach appears on the surface to be a straight-forward extension of the approach taken in [Hillar & Sommer (2015)]. As observed by our second reviewer, however, the extension to noise did indeed require an original combination of several results in the literature. Beyond the modifications required for this extension, our proof of (Thm. 1) differs from the approach taken by [Hillar & Sommer (2015)] in a key way tucked into the proof of our Main Lemma — more specifically, with the addition of Lemma 5. [More detail on what goes down in Lemma 5?] We have updated the manuscript to make the reader aware of this. To be clear, this new combinatorial perspective we take on the problem has so-far yielded the following powerful new conclusions.
+
+1) A significant reduction in sample complexity: To identify the n x m generating dictionary A, [Hillar & Sommer (2015)] require that data be sampled from *every* k-dimensional subspace spanned by the m columns of A (that is, {m \choose k} subspaces in total). We show that the data need only be sampled from m subspaces in total (e.g. those supported by consecutive intervals of length k in some cyclic order on [m]) and in some cases as few as 2\sqrt{m} (e.g. when m = k^2, take the supports to be the rows and columns of [m] arranged in a square grid).
+
+2) An extension to the case where the number of dictionary elements is unknown: The results of [Hillar & Sommer (2015)] only apply to the case where the matrix B has the same number of columns as A. We forgo this assumption and show that B must have at least as many columns as A and contains (up to noise) a subset of the columns of A. The size of this subset depends on a simple relation between the number of columns of B and the regularity of the support-set hypergraph.
+
+3) No spark condition requirement for the generating matrix A: One of the mathematically significant contributions made by [Hillar & Sommer (2015)] was to forgo the constraint that the recovery matrix B also satisfy the spark condition, in contrast to all previously known uniqueness results which (either explicitly or implicitly) made this assumption. Our proof is powerful enough to show that, in fact, even the matrix A need not satisfy the spark condition to be identifiable! Rather, it need only be injective on the union of subspaces with supports that form sets in a hypergraph satisfying the SIP. We had omitted this point in our original submission of the manuscript to keep things simple, but have decided to include this interesting fact in our resubmission given that a recently approved NSF grant _____ makes use of this fact in its description of methods. This also required us to redefine the restricted matrix lower bound L to be in terms of a hypergraph, which is an interesting object for further study in its own right. 
+
+[4) Implications for the computational complexity of the dictionary learning problem. If the size of the support set of reconstructing codes is polynomial in m,k then the pigeonholing argument in the proof of Thm. 1 requires only a polynomial number of samples distributed over a polynomial number of supports; thus N is polynomial in m, k. [Chris?] This point was only hinted at in the Discussion section of our original submission, but we have included it in the updated manuscript to make clear the power of our approach over that taken in [Hillar & Sommer (2015)].
+
+We also wish to reiterate that our solution to Problem 2, that of most interest to practitioners of dictionary learning methods, is the first of its kind in both the noise-free and noisy domains. This seems to not have been clearly communicated in the Discussion section of our submitted manuscript, which begins: “In this note, we generalized the approach of (18) to prove the stability of unique solutions to Probs. 1 and 2 while significantly reducing the known sample complexity.” We have revised our re-submitted manuscript to make it clear that a solution to Problem 2 has never been supplied before in the literature until now [right?]. 
 
 -----------------
 -- A second general problem was that it was difficult for me to understand the theorem conditions and sample complexity. For example, in Theorem 1, I think you meant to say: 
@@ -90,13 +101,13 @@ For every S \in E, there exists a subset of x_1,...,x_N of at least size (k-1)\c
 Is this what you meant? 
 -----------------
 
-RESPONSE: Yes, thank you for helping us to clarify our statements. We have updated the manuscript to reflect this.
+RESPONSE: Yes, though actually for every S \in E there are *more than* (k-1)\choose{\bar{m},k} vectors with support in S (not “at least”). Thank you for helping us to clarify our statements. We have updated the manuscript to make these conditions unambiguous.
 
 -----------------
 -- Related point: Is there a condition on \ell in Theorem 1? 
 -----------------
 
-RESPONSE: Yes, thanks for this question. We have made the statement more clear to reflect the relationship between m' and l.
+RESPONSE: Yes, thanks for this question. The condition on \ell is perhaps best understood as a condition on \bar m not being too large (given \ell) in order to guarantee the recovery of at least one dictionary element. We have updated the manuscript to reflect this, and the condition now reads “provided \bar m < \ell m / (\ell - 1)” where previously it read “provided p = \bar m − \ell( \bar m − m )$ is positive”. 
 
 -----------------
 -- The paper could also compare the sample complexity results on N with those given in the noise-free case. For example, Table I in reference (18) gives a comparison of sample complexity requirements for different conditions in the noise-free case. Where would the results of this paper stand in that table? 
@@ -104,33 +115,58 @@ RESPONSE: Yes, thanks for this question. We have made the statement more clear t
 -- Otherwise, all the math seemed correct. 
 -----------------
 
-RESPONSE: We appreciate this question and have added comparison discussion (all numbers improve in this work). Many thanks for your careful review of the mathematics. We have tried and continue to try to be as clear, concise, and correct as we possibly can to elevate this work into the top echelon of applied mathematical theory papers.
+RESPONSE: We appreciate this question and have added a discussion of this comparison to the manuscript (all sample complexities improve in this work) [DO THIS]. Many thanks for your careful review of the mathematics. We have tried and continue to try to be as clear, concise, and correct as we possibly can to elevate this work into the top echelon of applied mathematical theory papers.
 
 -----------------
+
 Reviewer #2: 
 
 Comments : 
 The paper presents an extension of existing conditions for uniqueness of the existence of a sparsity-inducing dictionary for a given set of data vectors that depends on the sampling of the resulting data subspaces. The extension considers the stability of dictionary learning in terms of the degree of variability present in distinct, feasible sparsity dictionary representations for the data under a constraint on the representation accuracy. A similar condition on the sampling of the underlying subspaces is obtained. 
 
-
-
 The paper's writing and composition is clear (with an exception detailed below), concise, and relevant to the topic. The analytical work appears to be correct to the best of my understanding, and the paper's combined use of several results in the literature to extend an existing dictionary learning uniqueness condition to a new dictionary learning stability condition appears to be original. 
 
+Some questions that remain and may be worth discussing deal with the practical impact of these results. 
 
+-----------------
+When is it possible to determine (numerically) if enough data has been gathered to obtain an accurate estimate of the underlying sparsity dictionary? 
+-----------------
 
-Some questions that remain and may be worth discussing deal with the practical impact of these results. When is it possible to determine (numerically) if enough data has been gathered to obtain an accurate estimate of the underlying sparsity dictionary? Are the conditions and constants/metrics provided in this paper feasible to compute? Is there any new intuition to be had regarding the necessary sampling of the union of subspaces from this analysis (with respect to the intuition obtained from existing uniqueness results)? In these terms, it is also unclear to me if a theoretical extension of the uniqueness results to the stability results merit publication in PNAS given the "top 10%" and "sufficient general interest" requirements for publication. It definitely is deserving of publication in a specialty journal. 
+RESPONSE: What we have discovered is that there exists a procedure by which one may check a proposed solution to determine its uniqueness. [TODO]
 
+-----------------
+Are the conditions and constants/metrics provided in this paper feasible to compute?
+-----------------
 
+RESPONSE: We have determined explicit forms for the constants in Theorem 1. [Are they feasible to compute..?]
+
+-----------------
+Is there any new intuition to be had regarding the necessary sampling of the union of subspaces from this analysis (with respect to the intuition obtained from existing uniqueness results)?
+-----------------
+
+RESPONSE: Yes, there is indeed. While all existing uniqueness results require a sufficient number of samples be drawn from *each* of {m \choose k} possible supports, we have shown that in fact it is enough that a sufficient number of samples be drawn from every support in a subset of drastically smaller size, provided this subset forms a regular hypergraph satisfying the singleton intersection property. As was pointed out in our manuscript, a support set of size m satisfying these criteria can always be constructed for any k < m (e.g. take the consecutive intervals of length k in some cyclic order on [m]), and in certain cases such a set can be constructed from as few as 2\sqrt(m) supports (e.g. when m = k^2, take the supports to be the rows and columns of [m] arranged in a square grid). 
+
+-----------------
+In these terms, it is also unclear to me if a theoretical extension of the uniqueness results to the stability results merit publication in PNAS given the "top 10%" and "sufficient general interest" requirements for publication. It definitely is deserving of publication in a specialty journal. 
 
 The work presented is analytical and does not rely on data validation. 
+-----------------
 
+RESPONSE: See our response to the first reviewer’s identical concern. It seems both reviewers haven’t noticed that our results generalize far beyond a straight-forward extension to the noisy case.
 
-
+-----------------
 In the paragraph "Since f is an analytic function..." (page 3) it is argued that a specific construction of a suitable matrix implies that "almost every real nxm matrix... satisfies Eq. (2)". This appears to overstate the result, in my opinion - can the authors elaborate on why "almost every real matrix" can be obtained from this construction based on a Vandermonde matrix with additional zero rows? 
+-----------------
 
+RESPONSE: The point we make here is not that almost every real matrix satisfying Eq. (2) can be obtained from the construction we provide; rather, the point is that almost every matrix satisfies Eq. (2) because at least one matrix does (e.g. our construction) and therefore, since f is analytic, the set of all those that don’t satisfy the condition has measure zero. 
 
-
+-----------------
 Some typos appear in Eq. (24), closing } missing from the denominators of the second and third inequalities. Additionally, it was not clear to me how B_{pi(S)} change to B_{pi(T)}. 
+-----------------
+
+RESPONSE: Thank you for pointing out this typo in the second and third inequalities of Eq. (24). We have also clarified in our resubmission how it is B_{pi(S)} changes to B_{pi(T)} (it is because d(U, V) \leq d(U’,V) whenever U \subseteq U’).
+
+-----------------
 
 ********************* 
 
