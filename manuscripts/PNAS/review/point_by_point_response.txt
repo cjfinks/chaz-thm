@@ -77,9 +77,9 @@ DETAILED COMMENTS
 
 RESPONSE: 
 
-With all due respect to the reviewer, we believe the practical implication of a noisy result over a noiseless result is plainly evident: never has there been an experiment without noise and an unstable model is therefore useless in practice. It seems to us that the reviewer’s fundamental concern is that our proof may amount to too straight-forward of an extension of the approach taken in [Hillar & Sommer (2015)] to satisfy the criterion for publication in PNAS. We believe this concern stems from two misconceptions the reviewer seems to have: that our main result is merely an extension of that in [Hillar & Sommer (2015)] to the noisy case, and that our proof technique is only an incremental tweak on the approach taken in [Hillar & Sommer (2015)]. 
+With all due respect to the reviewer, we believe the practical implications of a noisy result over a noiseless result are plainly evident: never has there been an experiment without noise and an unstable model is therefore useless in practice. It seems to us that the reviewer’s fundamental concern is more likely that our proof may amount to too straight-forward of an extension of the approach taken in [Hillar & Sommer (2015)] to satisfy the criterion for publication in PNAS. We believe this concern stems from two misconceptions the reviewer seems to us to have: that our main result (Thm. 1) is merely an extension of that in [Hillar & Sommer (2015)] to the noisy case, and that our proof technique is only an incremental tweak on the approach taken in [Hillar & Sommer (2015)]. 
 
-It is understandable from the presentation of our proof of Thm. 1 that our approach appears on the surface to be a straight-forward extension of the approach taken in [Hillar & Sommer (2015)]. As observed by our second reviewer, however, the extension to noise did indeed require an original combination of several results in the literature. Beyond the modifications required for this extension, our proof of (Thm. 1) differs from the approach taken by [Hillar & Sommer (2015)] in a key way tucked into the proof of our Main Lemma — more specifically, with the addition of Lemma 5. [More detail on what goes down in Lemma 5?] We have updated the manuscript to make the reader aware of this. To be clear, this new combinatorial perspective we take on the problem has so-far yielded the following powerful new conclusions.
+It is understandable from the presentation of our proof of our main result (Thm. 1) that our approach appears on the surface to be a straight-forward extension of that taken in [Hillar & Sommer (2015)]. As observed by our second reviewer, however, the extension to the noisy case did indeed require an original combination of several results in the literature. Aside from these required modifications, our proof of (Thm. 1) differs from the approach taken by [Hillar & Sommer (2015)] in a key way that is tucked into the proof of our Main Lemma — more specifically, by the addition of Lemma 5. [More detail on what goes down in Lemma 5?] We have updated the manuscript to make the reader more keenly aware of this. To be clear, this new combinatorial perspective we take on the problem yields the following powerful new conclusions beyond those in [Hillar & Sommer (2015)].
 
 1) A significant reduction in sample complexity: To identify the n x m generating dictionary A, [Hillar & Sommer (2015)] require that data be sampled from *every* k-dimensional subspace spanned by the m columns of A (that is, {m \choose k} subspaces in total). We show that the data need only be sampled from m subspaces in total (e.g. those supported by consecutive intervals of length k in some cyclic order on [m]) and in some cases as few as 2\sqrt{m} (e.g. when m = k^2, take the supports to be the rows and columns of [m] arranged in a square grid).
 
@@ -87,7 +87,7 @@ It is understandable from the presentation of our proof of Thm. 1 that our appro
 
 3) No spark condition requirement for the generating matrix A: One of the mathematically significant contributions made by [Hillar & Sommer (2015)] was to forgo the constraint that the recovery matrix B also satisfy the spark condition, in contrast to all previously known uniqueness results which (either explicitly or implicitly) made this assumption. Our proof is powerful enough to show that, in fact, even the matrix A need not satisfy the spark condition to be identifiable! Rather, it need only be injective on the union of subspaces with supports that form sets in a hypergraph satisfying the SIP. We had omitted this point in our original submission of the manuscript to keep things simple, but have decided to include this interesting fact in our resubmission given that a recently approved NSF grant _____ makes use of this fact in its description of methods. This also required us to redefine the restricted matrix lower bound L to be in terms of a hypergraph, which is an interesting object for further study in its own right. 
 
-[4) Implications for the computational complexity of the dictionary learning problem. If the size of the support set of reconstructing codes is polynomial in m,k then the pigeonholing argument in the proof of Thm. 1 requires only a polynomial number of samples distributed over a polynomial number of supports; thus N is polynomial in m, k. [Chris?] This point was only hinted at in the Discussion section of our original submission, but we have included it in the updated manuscript to make clear the power of our approach over that taken in [Hillar & Sommer (2015)].
+[4) Implications for the computational complexity of the dictionary learning problem. If the size of the support set of reconstructing codes is polynomial in m,k then the pigeonholing argument in the proof of Thm. 1 requires only a polynomial number of samples distributed over a polynomial number of supports; thus N is polynomial in m, k. [Chris? How does this have implications..?] This point was only hinted at in the Discussion section of our original submission, but we have included it in the updated manuscript to make clear the power of our approach over that taken in [Hillar & Sommer (2015)].
 
 We also wish to reiterate that our solution to Problem 2, that of most interest to practitioners of dictionary learning methods, is the first of its kind in both the noise-free and noisy domains. This seems to not have been clearly communicated in the Discussion section of our submitted manuscript, which begins: “In this note, we generalized the approach of (18) to prove the stability of unique solutions to Probs. 1 and 2 while significantly reducing the known sample complexity.” We have revised our re-submitted manuscript to make it clear that a solution to Problem 2 has never been supplied before in the literature until now [right?]. 
 
@@ -101,7 +101,7 @@ For every S \in E, there exists a subset of x_1,...,x_N of at least size (k-1)\c
 Is this what you meant? 
 -----------------
 
-RESPONSE: Yes, though actually for every S \in E there are *more than* (k-1)\choose{\bar{m},k} vectors with support in S (not “at least”). Thank you for helping us to clarify our statements. We have updated the manuscript to make these conditions unambiguous.
+RESPONSE: Yes, though actually for every S \in E there are *more than* (k-1)\choose{\bar{m},k} vectors with support in S (not “at least”). Thank you for helping us to clarify our statements. We have updated the manuscript to disambiguate these conditions.
 
 -----------------
 -- Related point: Is there a condition on \ell in Theorem 1? 
@@ -152,19 +152,19 @@ In these terms, it is also unclear to me if a theoretical extension of the uniqu
 The work presented is analytical and does not rely on data validation. 
 -----------------
 
-RESPONSE: See our response to the first reviewer’s identical concern. It seems both reviewers haven’t noticed that our results generalize far beyond a straight-forward extension to the noisy case.
+RESPONSE: We have addressed this concern in our response to the first reviewer’s identical comment. It seems both reviewers haven’t noticed that our results generalize the results of [Hillar & Sommer (2015)] far beyond a straight-forward extension to the noisy case.
 
 -----------------
 In the paragraph "Since f is an analytic function..." (page 3) it is argued that a specific construction of a suitable matrix implies that "almost every real nxm matrix... satisfies Eq. (2)". This appears to overstate the result, in my opinion - can the authors elaborate on why "almost every real matrix" can be obtained from this construction based on a Vandermonde matrix with additional zero rows? 
 -----------------
 
-RESPONSE: The point we make here is not that almost every real matrix satisfying Eq. (2) can be obtained from the construction we provide; rather, the point is that almost every matrix satisfies Eq. (2) because at least one matrix does (e.g. our construction) and therefore, since f is analytic, the set of all those that don’t satisfy the condition has measure zero. 
+RESPONSE: The point we make here is not that almost every real matrix satisfying Eq. (2) can be obtained from the construction based on a Vandermonde matrix which we provide; rather, the point is that almost every matrix satisfies Eq. (2) because at least one matrix does (e.g. our construction) and therefore, since f is analytic, the set of all those that don’t satisfy the condition has measure zero. We have updated the manuscript to make this argument more clear.
 
 -----------------
 Some typos appear in Eq. (24), closing } missing from the denominators of the second and third inequalities. Additionally, it was not clear to me how B_{pi(S)} change to B_{pi(T)}. 
 -----------------
 
-RESPONSE: Thank you for pointing out this typo in the second and third inequalities of Eq. (24). We have also clarified in our resubmission how it is B_{pi(S)} changes to B_{pi(T)} (it is because d(U, V) \leq d(U’,V) whenever U \subseteq U’).
+RESPONSE: Thank you for pointing out this typo in the second and third inequalities of Eq. (24). We have also clarified in our resubmission how it is that B_{pi(S)} can be replaced with B_{pi(T)} (it is because d(U, V) \leq d(U’,V) whenever U \subseteq U’).
 
 -----------------
 
