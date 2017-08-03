@@ -38,7 +38,7 @@ RESPONSE:
 
 With all due respect to the reviewer, we believe the most compelling practical implication of a noisy result over a noiseless result is plainly evident: never has there been an experiment without noise and an unstable model is therefore useless in practice. We assume the reviewer must instead be concerned with what additional practical “take-away” message our manuscript contains. In brief, it is this: there exists a procedure by which one can determine if one’s proposed solution to Prob. 1 or Prob. 2 is indeed unique. We have updated the manuscript with an explicit statement of this fact.
 
-The reviewer also seems concerned that, regardless of practical implications, our proof may amount to too straight-forward of an extension of the approach taken in [Hillar & Sommer (2015)] to satisfy the criterion for publication in PNAS. We believe this concern stems from two misconceptions of the reviewer: that our main result (Thm. 1) is merely an extension of that in [Hillar & Sommer (2015)] to the noisy case, and that our proof technique is only an incremental tweak on the approach taken in [Hillar & Sommer (2015)]. 
+The reviewer also raises the concern that, regardless of practical implications, our results may amount to an incremental advance over those of [Hillar & Sommer (2015)] requiring only a straight-forward extension of their approach. We disagree with this assessment on both counts: our main result (Thm. 1) goes far beyond a simple extension of that in [Hillar & Sommer (2015)] to the noisy case, and our method of proof includes a significant deviation from their approach. 
 
 It is understandable from the presentation of our proof of our main result (Thm. 1) that our approach appears on the surface to be a straight-forward extension of that taken in [Hillar & Sommer (2015)]. As observed by our second reviewer, however, the extension to the noisy case did indeed require an original combination of several results in the literature. Aside from these required modifications, our proof of (Thm. 1) differs from the approach taken by [Hillar & Sommer (2015)] in a key way that is tucked into the proof of our Main Lemma — more specifically, by the addition of Lemma 5. [More detail on what goes down in Lemma 5?] We have updated the manuscript to make the reader more keenly aware of this. To be clear, the perspective we take on the problem yields the following powerful new conclusions beyond those of a straight-forward extension of the noiseless result of [Hillar & Sommer (2015)] to the noisy case:
 
@@ -50,7 +50,7 @@ It is understandable from the presentation of our proof of our main result (Thm.
 
 [4) Implications for the computational complexity of the dictionary learning problem: If the size of the support set of reconstructing codes is polynomial in m,k then the pigeonholing argument in the proof of Thm. 1 requires only a polynomial number of samples distributed over a polynomial number of supports; thus N is polynomial in m, k. [Chris? How does this have implications..?] This point was only hinted at in the Discussion section of our original submission, but we have included it in the updated manuscript to make clear the power of our approach over that taken in [Hillar & Sommer (2015)].
 
-We also wish to reiterate that our solution to Problem 2, that of most interest to practitioners of dictionary learning methods, is the first of its kind in both the noise-free and noisy domains. We recognize that this was not clearly communicated in the Discussion section of our submitted manuscript, which begins: “In this note, we generalized the approach of (18) to prove the stability of unique solutions to Probs. 1 and 2 while significantly reducing the known sample complexity.” We have revised our re-submitted manuscript to make it clear that a solution to Problem 2 has never been supplied before in the literature until now [right?]. 
+We also wish to reiterate that our solution to Prob. 2, that of most interest to practitioners of dictionary learning methods, is the first of its kind in both the noise-free and noisy domains. We recognize that this was not clearly communicated in the Discussion section of our submitted manuscript, which begins: “In this note, we generalized the approach of (18) to prove the stability of unique solutions to Probs. 1 and 2 while significantly reducing the known sample complexity.” We have revised our re-submitted manuscript to make it clear that a solution to Problem 2 has never been supplied before in the literature until now [right?]. 
 
 -----------------
 -- A second general problem was that it was difficult for me to understand the theorem conditions and sample complexity. For example, in Theorem 1, I think you meant to say: 
@@ -91,7 +91,7 @@ Some questions that remain and may be worth discussing deal with the practical i
 When is it possible to determine (numerically) if enough data has been gathered to obtain an accurate estimate of the underlying sparsity dictionary? 
 -----------------
 
-RESPONSE: What we have discovered is that there exists a procedure by which one may check a proposed solution to determine its uniqueness. [TODO]
+RESPONSE: A statement of this very general nature requires that we calculate the probability that all of the conditions of Thm. 1 are satisfied by random data. We have provided an ‘almost certain’ guarantee of this flavor in Cor 3, wherein the sparse vector supports are constrained to form hypergraph satisfying the SIP. It would be interesting to calculate furthermore the probability that random supports form a hypergraph satisfying the SIP. We think we have cracked open a nice set of interesting combinatorial problems (with practical implications!) to be solved by the community.
 
 -----------------
 Are the conditions and constants/metrics provided in this paper feasible to compute?
@@ -111,13 +111,13 @@ In these terms, it is also unclear to me if a theoretical extension of the uniqu
 The work presented is analytical and does not rely on data validation. 
 -----------------
 
-RESPONSE: We have addressed this concern in our response to the first reviewer’s identical comment. It seems both reviewers haven’t noticed that our results generalize the results of [Hillar & Sommer (2015)] far beyond a straight-forward extension to the noisy case.
+RESPONSE: Both reviewers have raised this concern and we again thank the editor for the opportunity to address it. It seems both reviewers haven’t noticed the several ways in which our results generalize the modern results of [Hillar & Sommer (2015)] beyond a straight-forward extension to the noisy case, not to mention our solution to the optimization Prob. 2, which is the first of its kind and of most interest to practitioners. We have already discussed these points in detail in our response to the first reviewer’s identical comment.
 
 -----------------
 In the paragraph "Since f is an analytic function..." (page 3) it is argued that a specific construction of a suitable matrix implies that "almost every real nxm matrix... satisfies Eq. (2)". This appears to overstate the result, in my opinion - can the authors elaborate on why "almost every real matrix" can be obtained from this construction based on a Vandermonde matrix with additional zero rows? 
 -----------------
 
-RESPONSE: The point we make here is not that almost every real matrix satisfying Eq. (2) can be obtained from the construction based on a Vandermonde matrix which we provide; rather, the point is that almost every matrix satisfies Eq. (2) because at least one matrix does (e.g. our construction) and therefore, since f is analytic, the set of all those that don’t satisfy the condition has measure zero. We have updated the manuscript to make this argument more clear.
+RESPONSE: The point we make here is not that almost every real matrix satisfying Eq. (2) can be obtained from the construction based on a Vandermonde matrix which we provide; rather, the point is that almost every matrix satisfies Eq. (2) because at least one matrix does (e.g. our construction) and therefore, since f is analytic, the set of all those that don’t satisfy the condition has measure zero. We have updated the manuscript to clarify this argument for our readers.
 
 -----------------
 Some typos appear in Eq. (24), closing } missing from the denominators of the second and third inequalities. Additionally, it was not clear to me how B_{pi(S)} change to B_{pi(T)}. 
