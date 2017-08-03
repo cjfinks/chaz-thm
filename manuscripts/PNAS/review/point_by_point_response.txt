@@ -1,45 +1,4 @@
-*** NOTES ***
-Mathy:
-
-This is actually a significant applied mathematical result.  and is is not simply a generalization of the noise-free results.
-we have significant brand new results, including Problem 2, the optimization formulation of the sparse coding problem, which is
-the one of most interest to optimization theorist and practitioners of their methods. in the sense that we do generalize the noise-free
-result, it is a significantly more difficult endeavor with noise, and our results in this regard provide more tools for 
-scientists to understand the theoretical implications of their sparse liner coding setups. 
-Moreover, it is a very clean and usable statement of theorems and results, with minimal possible assumptions.
-
-Theorem 1 is Generalization, but our novel combinatorial proof techniques that give more powerful conclusions: 
-reduction in number samples to determine model
-full spark condition not needed
-m'>m, 
-in certain settings, polynomial amount of data to determine the model
-mathematical domain for sparsity and combinatorics
-we did the hard work of finding right tools for noisy dictionary learning theory, complete self-contained treatment.
-
-computational aspects:
-we add new material on computational complexity considerations, including fully polynomial result in certain cases.
-all our constants are explicit
-we are dealing with NP-hard situation, we should expect difficult -- in fact, the NP-hardness of dictionary learning with noise.
-Tillman: the expert on this says that Problem 1's computational complexity 
-https://arxiv.org/pdf/1405.6664.pdf
-Maybe we can solve Tillman's problem
-
-The remaining very difficult problem is determining the smallest number of samples that determine the model.
-but we think we have made progress on this and brought non-trivial, but elegant, tools to bear on the problem.
-
-Sciency
-
-Occam's razor -- Problem 1, basic move in lots of data science
-"dictionary learning" (278,000), dictionary learning (154,000,000)
-the central (NP-Hard) problem of dictionary learning approximated using L1-optimization.  "all interesting problems are NP-hard".
-in fact, there has never been an experiment with zero noise, so the results of [Hillar Sommer] affect zero scientists.
-new theorem on optimization formulation of the result -- that's how scientists approach their data
-completes the theory of NIPS ACS making viable actual result in theory of mind -- theories have to be resilient to noise or their nothing
-applies to thousands of scientific algorithmic theory of sparse linear coding -- removes one step for them to write algorithm papers
-universals in perception -- with noise (as all datasets have noise) lends further understanding to the basic problem of universal coding from sensors to cortex.
-applied optimization theory: Hadamard well-posed, sparse linear coding with learning has a natural consistency, versus Deep Learning non-uniqueness of models. big win for sparse coding as a model: theoretical grounding for what you are doing.
-*** ***
-
+-----------------
 Reviewer Comments: 
 
 Reviewer #1: 
@@ -51,7 +10,7 @@ The paper finds conditions under which solutions for the sparse linear coding pr
 
 GENERAL COMMENTS 
 
------------------
+
 Overall, while I think that the manuscript makes a solid contribution, I believe is better suited to a more specialized journal. Unlike many journals, PNAS gives a criterion for significance: that the paper be within the top 10% of publications and should be of interest to a general scientific audience. Without compelling evidence to the contrary from the authors, it seems to me that the submission does not rise to that level. 
 -----------------
 
@@ -120,7 +79,6 @@ RESPONSE: Yes, thanks for this question. The condition on \ell is perhaps best u
 RESPONSE: We appreciate this question and have added a discussion of this comparison to the manuscript (all sample complexities improve in this work) [DO THIS]. Many thanks for your careful review of the mathematics. We have tried and continue to try to be as clear, concise, and correct as we possibly can to elevate this work into the top echelon of applied mathematical theory papers.
 
 -----------------
-
 Reviewer #2: 
 
 Comments : 
@@ -130,7 +88,6 @@ The paper's writing and composition is clear (with an exception detailed below),
 
 Some questions that remain and may be worth discussing deal with the practical impact of these results. 
 
------------------
 When is it possible to determine (numerically) if enough data has been gathered to obtain an accurate estimate of the underlying sparsity dictionary? 
 -----------------
 
@@ -167,13 +124,3 @@ Some typos appear in Eq. (24), closing } missing from the denominators of the se
 -----------------
 
 RESPONSE: Thank you for pointing out this typo in the second and third inequalities of Eq. (24). We have also clarified in our resubmission how it is that B_{pi(S)} can be replaced with B_{pi(T)} (it is because d(U, V) \leq d(U’,V) whenever U \subseteq U’).
-
------------------
-
-********************* 
-
-PUBLICATION INFORMATION 
-
-High resolution files are required for figures that will appear in the main text of the article and must be uploaded with the final version of your manuscript. Resolution of at least 1200 dpi is needed for all line art, 600 dpi for images that combine line art with photographs/halftones, and 300 dpi for color or grayscale photographic images. Please review the PNAS digital art guidelines. 
-
-Authors are invited to submit scientifically interesting and visually arresting cover illustrations (see the PNAS cover archive. Cover images must be original, and exclusive rights to publish will convey to PNAS. Cover images may be used in promotional materials, including but not limited to brochures, advertisements, and posters. Cover submissions should include a brief lay-language caption (50-60 words), credit information (e.g., photograph courtesy of...), and the manuscript number, author name, phone, and email. Images should be 21.5 cm wide by 22.5 cm high. Files should be .eps or .tif and in RGB (red, green, blue) color mode. Please submit electronic files with your revised manuscript in the PNAS online submission system or to PNASCovers@nas.edu as soon as possible. If you cannot submit electronic files, or if your files are too large to email, contact the PNAS office. See the Information for Authors for details. Covers are selected from papers that have been assigned to an issue, after authors have returned proofs. 
