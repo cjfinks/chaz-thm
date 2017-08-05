@@ -429,12 +429,10 @@ In fact, uniqueness guarantees with minimal assumptions apply to all areas of da
 
 In the field of theoretical neuroscience in particular, dictionary learning for sparse coding and related methods have recovered characteristic components of natural images \cite{Olshausen96, hurri1996image, bell1997independent, van1998independent} and sounds \cite{bellsejnowski1996, smithlewicki2006, Carlson12} that reproduce response properties of cortical neurons. Our results suggest that this correspondence could be due to the ``universality'' of sparse representations in natural data, an early mathematical idea in neural theory \cite{pitts1947}. Furthermore, they justify the hypothesis of \cite{Coulter10, Isely10} that sparse codes passed through information bottlenecks in the brain are recovered from random projections via (unsupervised) biologically plausible sparse coding (e.g., \cite{rehnsommer2007, rozell2007neurally, ganguli2012compressed, hu2014hebbian}).
 
-\acknow{We thank Friedrich Sommer and Darren Rhea for early thoughts, and Ian Morris for posting \eqref{eqdim} online.}
-\showacknow % Display the acknowledgments section
+%\acknow{We thank Friedrich Sommer and Darren Rhea for early thoughts, and Ian Morris for posting \eqref{eqdim} online.}
+%\showacknow % Display the acknowledgments section
 
-\bibliography{chazthm_pnas}
-
-%\pagebreak
+%\bibliography{chazthm_pnas}
 
 \section{Appendix}\label{proofs}
 
@@ -543,7 +541,50 @@ It can be checked that when $g$ is nonzero for a substitution of real numbers fo
 First, note that if a set of measure spaces $\{(X_{\ell}, \Sigma_{\ell}, \nu_{\ell})\}_{\ell=1}^p$ has that $\nu_{\ell}$ is absolutely continuous with respect to $\mu$ for all $\ell \in [p]$, where $\mu$ is the standard Borel measure on $\mathbb{R}$, then the product measure $\prod_{\ell=1}^p \nu_{\ell}$ is absolutely continuous with respect to the standard Borel product measure on $\mathbb{R}^p$ (e.g.,  \cite{folland2013real}). By Thm.~\ref{robustPolythm}, there is a polynomial that is nonzero whenever $Y$ has a stable $k$-sparse representation in $\mathbb{R}^m$; in particular, this property (stability) holds with probability one.
 \end{proof}
 
-%\pnasbreak
+\clearpage
 
+\section{$\ell_1$-norm Extension}
+
+\begin{problem}\label{OptimizationProblemL1}
+Find a matrix $\mathbf{B} \in \mathbb{R}^m$ and vectors \mbox{$\mathbf{\bar x}_1, \ldots, \mathbf{\bar x}_N \in \mathbb{R}^m$} that solve:
+\begin{align}\label{minsum}
+\min \sum_{i = 1}^N \|\mathbf{\bar x}_i\|_1 \ \ 
+\text{subject to} \ \ \|\mathbf{z}_i - \mathbf{B}\mathbf{\bar x}_i\|_2 \leq \eta, \ \text{for all $i$}.
+\end{align}
+\end{problem}
+
+\begin{corollary}\label{SLCopt}
+Fix $\alpha > 0$ and suppose all of the assumptions of Thm.\ref{DeterministicUniquenessTheorem} hold with the following modifications:
+\begin{enumerate}
+\item The nonzero elements of all $k$-sparse $\mathbf{x}_i$ are bounded above by $\beta$, where $\beta < \frac{\alpha(k+1)}{k}$.
+\item More than $(k-1){\bar m \choose k} + q$ vectors $\mathbf{x}_i$ are supported in each $S \in \mathcal{H}$, where
+\[ q = \left[\frac{\alpha}{\beta}(k+1) - k\right]^{-1}k|\mathcal{H}|(k-1){\bar m \choose k-1}. \]
+\end{enumerate}
+Then all solutions to Prob.~\ref{OptimizationProblemL1} for which the nonzero elements of all $\mathbf{\bar x}_i$ are bounded below by $\alpha$ necessarily satisfy the implications \eqref{Cstable} and \eqref{b-PDa} of Thm.~\ref{DeterministicUniquenessTheorem}.
+\end{corollary}
+
+\begin{proof}[Proof of Cor.~\ref{SLCopt}]
+We bound the number of $k$-sparse $\mathbf{\bar x}_i$ and then apply Thm.~\ref{DeterministicUniquenessCorollary}. First, observe that no more than $(k-1)|\mathcal{H}|$ of the $\mathbf{\bar x}_i$ share a support $\bar S$ of size less than $k$; otherwise, by the pigeonhole principle, at least $k$ of these indices $i$ belong to the same $K \subseteq I(S)$ for some $S \in \mathcal{H}$ and (as argued previously) \eqref{rhs222} follows. Since the right-hand side of \eqref{rhs222} is less than one, by \eqref{dimLem} we have the contradiction $k = \dim(\bm{\mathcal{A}}_S) \leq \dim(\bm{\mathcal{B}}_{\bar S}) \leq |\bar S|.$ The total number of $(k-1)$-sparse vectors $\mathbf{\bar x}_i$ can thus not exceed $|\mathcal{H}|(k-1){ \bar m \choose k-1}$. 
+
+Next, observe that the assumptions of the lemma imply:
+\begin{align*}
+\alpha \sum_i \|\mathbf{\bar x}_i\|_0 \leq \sum_i \|\mathbf{\bar x}_i\|_1 \leq \sum_i \|\mathbf{x}_i\|_1 \leq \beta \sum_i \|\mathbf{\bar x}_i\|_0.
+\end{align*}
+
+We now apply these facts to bound the number of $k$-sparse $\mathbf{\bar x}_i$. Let $n_p$ be the number of $\mathbf{\bar x}_i$ with $\|\mathbf{\bar x}_i\|_0 = p$. Since the $\mathbf{x}_i$ are all $k$-sparse, by \eqref{minsum} we have:
+\begin{align*}
+k \sum_{p = 0}^{\bar m} n_p = k N \geq \sum_{i=0}^N \|\mathbf{x}_i\|_0 \geq \frac{\alpha}{\beta} \sum_{i=0}^N \|\mathbf{\bar x}_i\|_0 = \frac{\alpha}{\beta} \sum_{p=0}^{\bar m} p n_p.
+\end{align*}
+Hence, 
+\begin{align*}
+\left[ \frac{\alpha(k+1)}{\beta} - k\right] \sum_{p = k+1}^{\bar m} n_p 
+&\leq \sum_{p = k+1}^{\bar m} (\frac{\alpha}{\beta} p-k) n_p
+\leq \sum_{p = 0}^k (k - \frac{\alpha}{\beta} p)n_p \\
+&\leq k \sum_{p = 0}^{k-1} n_p 
+\leq k|\mathcal{H}|(k-1){ \bar m \choose k-1}
+\end{align*}
+
+Therefore, no more than $q$ vectors $\mathbf{\bar x}_i$ are \emph{not} $k$-sparse. Since for every $S \in \mathcal{H}$ there are over $(k-1){\bar m \choose k} + q$ vectors $\mathbf{x}_i$ supported there, it follows that more than $(k-1){\bar m \choose k}$ of them have corresponding $\mathbf{\bar x}_i$ that are $k$-sparse. The result now follows directly from Thm.~\ref{DeterministicUniquenessCorollary}.
+\end{proof}
 
 \end{document}
