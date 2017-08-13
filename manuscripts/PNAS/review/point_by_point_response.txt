@@ -132,3 +132,21 @@ Some typos appear in Eq. (24), closing } missing from the denominators of the se
 -----------------
 
 RESPONSE: Thank you for pointing out this typo in the second and third inequalities of Eq. (24). We have also clarified in our resubmission how it is that B_{pi(S)} can be replaced with B_{pi(T)} (it is because d(U, V) \leq d(U’,V) whenever U \subseteq U’).
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Checking algorithm for Problem 1:
+- Learn by any algorithm a dictionary A and codes x_i that solve Problem 1.
+- Check that that A and the x_i satisfy the assumptions of Thm. 1:
+   - List the support sets of the x_i 
+      - Discard those for which there are (k-1){m \choose k} or fewer x_i with that support.
+      - Discard those for which the supported x_i are not in GLP. (This should also exclude any supports less than k in size.)
+   - From the support sets that remain, list all k-uniform hypergraphs with supports drawn from this set that satisfy the SIP
+   - List the k-uniform hypergraphs over which A is injective.
+   - Discard those for which there aren’t more than (k-1){m \choose k} x_i in general linear position on each support of the hyper graph.
+   - For each of the hyper graphs, determine from A, the x_i 
+   - If A satisfies spark condition, check that the x_i in some hypergraph satisfying the SIP have enough samples each, calculate the constants, check that you encode below the constants.
