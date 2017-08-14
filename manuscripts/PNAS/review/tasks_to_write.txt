@@ -1,3 +1,13 @@
+TO DO:
+
+-add Ganguli paper 
+-add "Deep Learning" non-uniqueness statements
+
+-(in response:) add comment that we are aware of only one work treating combinatorial hypergraph designs in the setting of dictionary learning, "An incidence geometry approach to dictionary learning" (arxiv, non-published paper)
+
+-remark: more general statement
+
+-----------------------------
 
 1) Computability of constants.
 

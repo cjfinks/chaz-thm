@@ -51,10 +51,10 @@
 % Please give the surname of the lead author for the running footer
 \leadauthor{Garfinkle} 
 
-\significancestatement{Many natural signals (visual scenery, speech, EEG, etc.) lacking domain-specific formal models can nonetheless be usefully characterized as linear combinations of few elementary waveforms drawn from a large `dictionary'. We give general conditions guaranteeing when such dictionaries are uniquely and stably determined by data. The result justifies the use of this model as a constraint for blind source separation, and helps explain the observed universality of emergent representations in sparse models of certain natural phenomena.
+\significancestatement{Many natural signals (visual scenery, speech, EEG, etc.) lacking domain-specific formal models can nonetheless be usefully characterized as linear combinations of few elementary waveforms drawn from a large ``dictionary". We give general conditions guaranteeing when such dictionaries are uniquely and stably determined by data. The result justifies the use of this model as a constraint for blind source separation, and helps explain the observed universality of emergent representations in sparse models of certain natural phenomena.
 }
 
-\authordeclaration{The authors declare no conflict of interest.}
+% \authordeclaration{The authors declare no conflict of interest.}
 \correspondingauthor{\textsuperscript{1}To whom correspondence should be addressed. E-mail: chaz@berkeley.edu, chillar@msri.org}
 
 \keywords{Sparse coding, dictionary learning, matrix factorization, compressive sensing, inverse problems} 
@@ -136,6 +136,9 @@ Find a matrix $\mathbf{B}$ and vectors \mbox{$\mathbf{\bar x}_1, \ldots, \mathbf
 \end{align}
 \end{problem}
 
+We comment that quite often theorists in algorithm development solve the related $\ell_1$ problem, which can be shown to be applicable to 
+solving $\ell_0$ problems in certain cases.  [*** IMPROVE ON THIS ***]
+
 All other proofs are relegated to the Section \ref{proofs}. 
 Finally, we present several applications in Discussion Sec.~\ref{Discussion}. 
 
@@ -166,6 +169,8 @@ L_\mathcal{H}(\mathbf{M}) := \frac{1}{\sqrt{k}} \inf \left\{ \frac{\|\mathbf{M}_
 \end{align} 
 %
 where we write $L_{k}$ when $\mathcal{H} = {[m] \choose k}$.\footnote{We note that the quantity $1 - \sqrt{k} L_k(\mathbf{M})$ is also known in the compressive sensing literature as the (asymmetric) lower restricted isometry constant \cite{Blanchard2011}.} Clearly, for any $\mathbf{M}$ satisfying \eqref{SparkCondition}, we have $L_{k'}(\mathbf{M}) > 0$ for  $k' \leq 2k$. Note that if $\mathcal{H}$ covers $[m]$ then $L_2 \geq L_{\mathcal{H}+\mathcal{H}}$.
+
+[*** Make notation $L_{2\mathcal{H}}$ ***]
  
 A vector $\mathbf{x}$ is said to be \emph{supported} in $S \subseteq [m]$ when $\mathbf{x} \in \text{\rm span}\{\mathbf{e}_j: j\in S\}$, where $\mathbf{e}_j$ are the standard basis in $\mathbb R^m$. Denote by $\mathbf{x}^J$ the subvector formed from the entries of $\mathbf{x}$ indexed by $J$. A set of $k$-sparse vectors is said to be in \emph{general linear position} when any $k$ of them are linearly independent. The following is a precise statement of our main result.
 
@@ -186,6 +191,8 @@ Moreover, if in fact $\varepsilon < L_{2k}(\mathbf{A}) / C_1$ (provided $L_{2k}(
 \end{theorem}
 % You can recover matrices that don't satisfy the spark condition, but to uniquely recover k-sparse codes (since no limitation on their supports!) you need to have the spark condition. i guess...? Or can we use our knowledge of the particular permutation P to get rid of spark condition?
 
+[*** TODO: remove $J$ from this ***]
+
 %To be clear, the implication of Thm.~\ref{DeterministicUniquenessTheorem} is that $Y = \{\mathbf{Ax}_1, \ldots, \mathbf{Ax}_N\}$ has a stable $k$-sparse representation in $\mathbb{R}^m$, with \eqref{def1} guaranteed provided $\varepsilon$ in Def.~\ref{maindef} does not exceed: 
 To be clear, Thm.~\ref{DeterministicUniquenessTheorem} says that the smaller the difference $\bar m - m$, the more columns and coefficients of the original dictionary $\mathbf{A}$ and codes $\mathbf{x}_i$ contained (up to noise) in the appropriately scaled dictionary $\mathbf{B}$ and codes $\mathbf{\bar x}_i$. The implication for $\bar m = m$ is that $Y = \{\mathbf{Ax}_1, \ldots, \mathbf{Ax}_N\}$ has a stable $k$-sparse representation in $\mathbb{R}^m$, with \eqref{def1} guaranteed provided $\varepsilon$ in Def.~\ref{maindef} does not exceed: 
 \begin{align}\label{epsdel}
@@ -195,6 +202,8 @@ To be clear, Thm.~\ref{DeterministicUniquenessTheorem} says that the smaller the
 %In fact, a more general result (stated clearly in the next section) can be gleaned from our method of proving Thm.~\ref{DeterministicUniquenessTheorem}. Briefly, in cases where $\mathbf{B}$ has $\bar m \neq m$ columns, or $\mathcal{H}$ is not regular or only partially satisfying the SIP, a relation between $\bar m$ and the degree sequence of nodes in $\mathcal{H}$ gives indices $J \subseteq [m]$ defining a submatrix $\mathbf{A}_J$ and subvectors $\mathbf{x}_i^J$ that are recoverable in the sense of \eqref{Cstable} and \eqref{b-PDa}. For example, if $\mathcal{H}$ is $\ell$-regular with the SIP but $m \leq \bar m < m\ell/(\ell - 1)$ then we have nonzero $|J| = \bar m - \ell(\bar m - m)$. The implication here is that the smaller the difference $\bar m - m$, the more columns and code entries of the original $n \times m$ dictionary $\mathbf{A}$ and codes $\mathbf{x}_i$ contained (up to noise) in the appropriately scaled $n \times \bar m$ dictionary $\mathbf{B}$ and codes $\mathbf{\bar x}_i$. When $\bar m = m$, we recover Thm.~\ref{DeterministicUniquenessTheorem}.
 Regarding the assumptions of Thm.~\ref{DeterministicUniquenessTheorem}, it is easy to verify that for every $k < m$, there is a regular $k$-uniform hypergraph that satisfies the SIP; for instance, take the consecutive intervals of length $k$ in some cyclic order on $[m]$.
 In fact, even if $\mathcal{H}$ is not regular or only partially satisfies the SIP, a relation between $\bar m$ and the degree sequence of nodes in $\mathcal{H}$ may give the indices $J \subseteq [m]$. For sake of brevity, we delay to the next section a clear statement of this more general result.
+
+[*** Explain Weaker than spark condition example ***]
 
 It also happens that producing sparse codes $\mathbf{x}_i$ in general linear position is straightforward with a ``Vandermonde'' matrix construction (e.g., see \cite{Hillar15}). We therefore have:
 
@@ -233,13 +242,30 @@ Fix $k < m$ and $n \geq \min(2k, m)$ and let the entries of $\mathbf{A} \in \mat
 
 Thus, choosing the dictionary and sparse codes ``randomly'' almost certainly generates data with a stable sparse representation.
 
+[*** We remark about algorithms ***]
+
+We remark that there is a strong application to theoretical neuroscience.
+
+\begin{corollary}
+Unsupervised neurally plausible sparse feature learning through a wiring bottleneck recovers original sensory representations and neural activities.
+\end{corollary}
+
+[*** Make clearer / motivate better ***]
+
+[*** Also discuss uniquness of sparse sensory representations more generally, like Gabors ***]
+
 \section{Proofs of Theorem~\ref{DeterministicUniquenessTheorem} and Corollary~\ref{SLCopt}}\label{DUT}
 
-As mentioned in the previous section, Thm.~\ref{DeterministicUniquenessTheorem} is a particular case of a more general result that forgoes the assumption that $\mathcal{H} \subseteq {[m] \choose k}$ is regular and satisfies the SIP. If instead we require only that the stars $\cap h(i)$ intersect at singletons for all $i \leq q$ (assuming that the nodes of $\mathcal{H}$ are labeled in some order of non-increasing degree), we have that $\bar m \geq k|\mathcal{H}| / \deg(1)$ and, provided $\bar m < k|\mathcal{H}| / (\deg(1) - 1)$, the non-empty submatrix $J$ is of size equal to the largest number $p$ satisfying:
-\begin{align}\label{pcond}
-\sum_{i=\ell}^{m} \deg(i) > (\bar m + 1 - \ell) (\deg(\ell) - 1) \ \ \text{for all } \ell \leq p \leq q.
-\end{align}
-Specifically, $J$ contains all nodes of degree exceeding $\deg(p)$ and some subset of those with degreee equal to $\deg(p)$. For the benefit of the reader, we do not prove explicitly this more general result below; it can be discerned from how exactly Lemma \ref{NonEmptyLemma} is incorporated into the proof of Lem.~\ref{MainLemma}.
+%%%%%%%%%%%%%%
+% need to cut maybe: 
+%As mentioned in the previous section, Thm.~\ref{DeterministicUniquenessTheorem} is a particular case of a more general result that forgoes the assumption that $\mathcal{H} \subseteq {[m] \choose k}$ is regular and satisfies the SIP. If instead we require only that the stars $\cap h(i)$ intersect at singletons for all $i \leq q$ (assuming that the nodes of $\mathcal{H}$ are labeled in some order of non-increasing degree), we have that $\bar m \geq k|\mathcal{H}| / \deg(1)$ and, provided $\bar m < k|\mathcal{H}| / (\deg(1) - 1)$, the non-empty submatrix $J$ is of size equal to the largest number $p$ satisfying:
+%\begin{align}\label{pcond}
+%\sum_{i=\ell}^{m} \deg(i) > (\bar m + 1 - \ell) (\deg(\ell) - 1) \ \ \text{for all } \ell \leq p \leq q.
+%\end{align}
+%Specifically, $J$ contains all nodes of degree exceeding $\deg(p)$ and some subset of those with degreee equal to $\deg(p)$. For the benefit of the reader, we do not prove explicitly this more general result below; it can be discerned from how exactly Lemma \ref{NonEmptyLemma} is incorporated into the proof of Lem.~\ref{MainLemma}.
+%%%%%%%%%%%%%%%%
+
+
 %As mentioned in the previous section, Thm.~\ref{DeterministicUniquenessTheorem} is a particular case of a more general result, which requires a looser set of constraints on the hypergraph $\mathcal{H}$ and which applies to $n \times \bar m$ matrices $\mathbf{B}$ (and $\bar m$-dimensional codes $\mathbf{\bar x}_i$) with $\bar m \neq m$:
 
 %Fix $\bar m$ and suppose the assumptions of Thm.~\ref{DeterministicUniquenessTheorem} hold, only now with the constraints on $\mathcal{H} \subseteq {[m] \choose k}$ being just that $|\cap H(i)| = 1$ for all $i \leq q$ (assuming w.l.o.g. that the nodes of $\mathcal{H}$ are labeled in some order of non-increasing degree), and with more than $(k-1){\bar m \choose k}$ vectors $\mathbf{x}_i$ supported in g.l.p. on each $S \in \mathcal{H}$. Then we must have $\bar m \geq k|\mathcal{H}| / \deg(1)$ and, provided $\bar m < k|\mathcal{H}| / (\deg(1) - 1)$, the guarantee \eqref{Cstable} holds for a submatrix $\mathbf{A}_J$, where $J \subseteq[m]$ is nonempty and of a size equal to the largest number $p$ satisfying:
@@ -416,7 +442,9 @@ Therefore, no more than $|\mathcal{H}|k(k-1){ \bar m \choose k-1}$ vectors $\mat
 
 % A significant implication is that the constant $C_1$ of Thm.~\ref{DeterministicUniquenessTheorem} can be computed efficiently if we restrict the class of possible supports for the $\mathbf{\bar x}_i$. 
 
-In this note, we generalized the approach of \cite{Hillar15} to prove the stability of unique solutions to Probs.~\ref{InverseProblem} and \ref{OptimizationProblem} while significantly reducing the known sample complexity. Our results justify the application of the sparse linear coding model to blind source separation problems, wherein the goal is to infer the generating dictionary and sparse codes from noisy measurements, \eqref{LinearModel}. We also collect a set of useful mathematical tools and basic facts for future research. The main motivation for this work, however, was to understand how seemingly universal representations emerge from sparse coding models fit to natural data by a variety of methodologies. We elaborate on these applications below after discussing theoretical aspects. 
+[*** ADD:  Ganguli, Deep Learning, constants, tightness, ***]
+
+In this note, we prove the stability of unique solutions to Probs.~\ref{InverseProblem} and \ref{OptimizationProblem} while significantly reducing the known sample complexity. Our results justify the application of the sparse linear coding model to blind source separation problems, wherein the goal is to infer the generating dictionary and sparse codes from noisy measurements, \eqref{LinearModel}. We also collect a set of useful mathematical tools and basic facts for future research. The main motivation for this work, however, was to understand how seemingly universal representations emerge from sparse coding models fit to natural data by a variety of methodologies. We elaborate on these applications below after discussing theoretical aspects. 
 
 What we have shown here is that the sparse linear coding model generally produces a \textit{well-posed} inverse problem to be approximately solved by a numerical algorithm. This early concept of Hadamard \cite{Hadamard1902} can be paraphrased as the idea that inferences from observations should be robust to the inevitable uncertainty in measurement. In other words, a small perturbation of the data should result in only slightly different inferred parameters. In this regard, for the sparse linear coding model we demonstrate a linear relationship, \eqref{epsdel}, between measurement noise and the deviation of any solution from the true parameters, with explicit constants expressed in terms of these parameters. Moreover, we show that even if the meta-parameter for the number of dictionary elements is overestimated, a subset of parameters may still be identifiable up to noise. It would therefore be of practical utility to determine the best possible dependence of $\varepsilon$ on $\delta_1, \delta_2$ in Def.\ref{maindef} as well as the minimal requirements on the number and diversity of generating codes, and we hope that other researchers continue to improve and extend our results. We remark that our constants have been derived for deterministic ``worst-case'' noise, whereas the ``effective'' noise might be smaller when sampled from a distribution; in such cases, the constants will improve as well.
 
@@ -433,6 +461,9 @@ Deep learning noise issues: \cite{szegedy2013intriguing, goodfellow2014explainin
 
 \acknow{We thank Friedrich Sommer and Darren Rhea for early thoughts, and Ian Morris for posting \eqref{eqdim} online.}
 \showacknow % Display the acknowledgments section
+
+
+[*** TODO: make journals abbreviated references ***]
 
 \bibliography{chazthm_pnas}
 
@@ -540,20 +571,21 @@ It can be checked that when $g$ is nonzero for a substitution of real numbers fo
 \end{proof}
 
 \begin{proof}[Proof (sketch) of Cor.~\ref{ProbabilisticCor}]
-First, note that if a set of measure spaces $\{(X_{\ell}, \Sigma_{\ell}, \nu_{\ell})\}_{\ell=1}^p$ has that $\nu_{\ell}$ is absolutely continuous with respect to $\mu$ for all $\ell \in [p]$, where $\mu$ is the standard Borel measure on $\mathbb{R}$, then the product measure $\prod_{\ell=1}^p \nu_{\ell}$ is absolutely continuous with respect to the standard Borel product measure on $\mathbb{R}^p$ (e.g.,  \cite{folland2013real}). By Thm.~\ref{robustPolythm}, there is a polynomial that is nonzero whenever $Y$ has a stable $k$-sparse representation in $\mathbb{R}^m$; in particular, this property (stability) holds with probability one.
+First, note that if a set of measure spaces $\{(X_{\ell}, \Sigma_{\ell}, \nu_{\ell})\}_{\ell=1}^p$ has that $\nu_{\ell}$ is absolutely continuous with respect to $\mu$ for all $\ell \in [p]$, where $\mu$ is the standard Borel measure on $\mathbb{R}$, then the product measure $\prod_{\ell=1}^p \nu_{\ell}$ is absolutely continuous with respect to the standard Borel product measure on $\mathbb{R}^p$. % for space:  (e.g.,  \cite{folland2013real}). 
+By Thm.~\ref{robustPolythm}, there is a polynomial that is nonzero whenever $Y$ has a stable $k$-sparse representation in $\mathbb{R}^m$; in particular, this property (stability) holds with probability one.
 \end{proof}
 
-\clearpage
+%\clearpage
 
-\section{$\ell_1$-norm Extension}
-
-\begin{problem}\label{OptimizationProblemL1}
-Find a matrix $\mathbf{B}$ and vectors \mbox{$\mathbf{\bar x}_1, \ldots, \mathbf{\bar x}_N \in \mathbb{R}^m$} that solve:
-\begin{align}\label{minsum}
-\min \sum_{i = 1}^N \|\mathbf{\bar x}_i\|_1 \ \ 
-\text{subject to} \ \ \|\mathbf{z}_i - \mathbf{B}\mathbf{\bar x}_i\|_2 \leq \eta, \ \text{for all $i$}.
-\end{align}
-\end{problem}
+%\section{$\ell_1$-norm Extension}
+%
+%\begin{problem}\label{OptimizationProblemL1}
+%Find a matrix $\mathbf{B}$ and vectors \mbox{$\mathbf{\bar x}_1, \ldots, \mathbf{\bar x}_N \in \mathbb{R}^m$} that solve:
+%\begin{align}\label{minsum}
+%\min \sum_{i = 1}^N \|\mathbf{\bar x}_i\|_1 \ \ 
+%\text{subject to} \ \ \|\mathbf{z}_i - \mathbf{B}\mathbf{\bar x}_i\|_2 \leq \eta, \ \text{for all $i$}.
+%\end{align}
+%\end{problem}
 
 %\begin{corollary}\label{SLCopt}
 %Fix $\alpha > 0$ and suppose all of the assumptions of Thm.\ref{DeterministicUniquenessTheorem} hold with the following modifications:
