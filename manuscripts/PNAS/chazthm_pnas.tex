@@ -515,12 +515,8 @@ The desired result, \eqref{DTILeq}, now follows by bounding the second term on t
 \begin{align}
 \|\Pi_{V_k}\Pi_{V_{k-1}}\cdots\Pi_{V_1} \mathbf{x} - \Pi_V\mathbf{x}\|_2 \leq z \|\mathbf{x}\|_2,
 \end{align}
-for \mbox{$z^2= 1 - \prod_{\ell =1}^{k-1}(1-z_{\ell}^2)$} and \mbox{$z_{\ell} = \cos\theta\left(V_{\ell}, \cap_{s=\ell+1}^k V_s\right)$}, recalling $\theta$ from Def.~\ref{FriedrichsDefinition}. Together with $\Pi_{V_\ell} \Pi_V = \Pi_V$ for all $\ell \in [k]$ and $\Pi_V^2 = \Pi_V$, this yields:
-\begin{align*}
-\|\Pi_{V_k} \cdots \Pi_{V_1}\mathbf{x}  - \Pi_V \mathbf{x} \|_2 
-&= \|\left( \Pi_{V_k} \cdots\Pi_{V_1} - \Pi_V \right) (\mathbf{x} - \Pi_V\mathbf{x})\|_2 \\
-&\leq z\|\mathbf{x} - \Pi_V\mathbf{x}\|_2.
-\end{align*}
+for \mbox{$z^2= 1 - \prod_{\ell =1}^{k-1}(1-z_{\ell}^2)$} and \mbox{$z_{\ell} = \cos\theta\left(V_{\ell}, \cap_{s=\ell+1}^k V_s\right)$}, recalling $\theta$ from Def.~\ref{FriedrichsDefinition}. Together with $\Pi_{V_\ell} \Pi_V = \Pi_V$ for all $\ell \in [k]$ and $\Pi_V^2 = \Pi_V$, this implies that $\|\Pi_{V_k} \cdots \Pi_{V_1}\mathbf{x}  - \Pi_V \mathbf{x} \|_2$ satisfies:
+\[\| ( \Pi_{V_k} \cdots\Pi_{V_1} - \Pi_V ) (\mathbf{x} - \Pi_V\mathbf{x})\|_2 \leq z\|\mathbf{x} - \Pi_V\mathbf{x}\|_2.\]
 
 Finally, substituting this into \eqref{f} and rearranging produces \eqref{DTILeq} after replacing $1 - z$ with $r(\{V_i\}_{i=1}^k)$.
 \end{proof}
@@ -539,7 +535,7 @@ then $\bar m \geq\sum_i \deg(i) / \deg(1)$, and if $\bar m < \sum_i \deg(i) / (\
 \end{lemma}
 
 \begin{proof}
-Consider the collection of pairs: $T_1 := \{(i, S): i \in \pi(S), S \in \mathcal{H}\}$, which number $|T_1| = \sum_{S \in \mathcal{H}} |\pi(S)| \geq \sum_{S \in \mathcal{H}} |S| = \sum_{i \in [m]} \deg(i)$. Note that assumption \eqref{cond} implies $\bar m \geq |T_1| / \deg(1)$, since otherwise pigeonholing the elements of $T_1$ with respect to their set of possible first indices $[\bar m]$ would lead us to conclude that there are more than $\deg(1)$ sets in $\mathcal{H}$ sharing a common element. %QUESTION: Do we really need to say this..?
+Consider the collection of pairs: $T_1 := \{(i, S): i \in \pi(S), S \in \mathcal{H}\}$, which number $|T_1| = \sum_{S \in \mathcal{H}} |\pi(S)| \geq \sum_{S \in \mathcal{H}} |S| = \sum_{i \in [m]} \deg(i)$. Note that assumption \eqref{cond} implies $\bar m \geq |T_1| / \deg(1)$, since otherwise pigeonholing the elements of $T_1$ with respect to their set of possible first indices $[\bar m]$ would contradict that there are more than $\deg(1)$ sets in $\mathcal{H}$ sharing a common element. %QUESTION: Do we really need to say this..?
 
 By \eqref{pcond} and the upper bound on $\bar m$ we have $|T_1| >  \bar m (\deg(1) - 1)$, which implies, again by the pigeonhole principle, that there must be at least $\deg(1)$ elements of $T_1$ sharing the same first index. By \eqref{cond}, the intersection of the set $\mathcal{G}_1$ consisting of their second indices is nonempty. As $p \leq q$ and $\deg(1) \geq \deg(i)$ for all $i$, it must be that $|\cap \mathcal{G}_1| = 1$. Since $\cap \pi(\mathcal{G}_1)$ is nonempty, applying \eqref{cond} again implies $\cap \pi(\mathcal{G}_1) = \{i_1\}$ for some $i_1 \in [m]$. If $p=1$ then we are done. Otherwise, define $T_2 := T_1 \setminus \{(i,S) \in T_1: i = i_1\}$, which contains $|T_2| = |T_1| - \deg(1) = \sum_{i=2}^m \deg(i)$ ordered pairs having $\bar m - 1$ distinct first indices. By \eqref{pcond} we have $|T_2| > (\bar m - 1)(\deg(2) - 1)$ and reiterating the above arguments produces a (necessarily) distinct index $i_2$. Iterating the arguments $p$ times yields the set of singletons \mbox{$J = \{\cap \mathcal{G}_1, \ldots, \cap \mathcal{G}_p\} \subseteq [m]$}.
 %TODO: Let T_1 be the set of all pairs $T_1 := \{(R, S): R \subseteq \pi(S), S \in \mathcal{H}\}$ 
@@ -578,7 +574,7 @@ It can be checked that when $g$ is nonzero for a substitution of real numbers fo
 
 \begin{proof}[Proof (sketch) of Cor.~\ref{ProbabilisticCor}]
 First, note that if a set of measure spaces $\{(X_{\ell}, \Sigma_{\ell}, \nu_{\ell})\}_{\ell=1}^p$ has that $\nu_{\ell}$ is absolutely continuous with respect to $\mu$ for all $\ell \in [p]$, where $\mu$ is the standard Borel measure on $\mathbb{R}$, then the product measure $\prod_{\ell=1}^p \nu_{\ell}$ is absolutely continuous with respect to the standard Borel product measure on $\mathbb{R}^p$. % for space:  (e.g.,  \cite{folland2013real}). 
-By Thm.~\ref{robustPolythm}, there is a polynomial that is nonzero whenever $Y$ has a stable $k$-sparse representation in $\mathbb{R}^m$; in particular, this property (stability) holds with probability one.
+By Thm.~\ref{robustPolythm}, there is a polynomial that is nonzero when $Y$ has a stable $k$-sparse representation in $\mathbb{R}^m$; in particular, stability holds with probability one.
 \end{proof}
 
 %\clearpage
