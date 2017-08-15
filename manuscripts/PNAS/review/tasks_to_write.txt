@@ -1,11 +1,19 @@
 TO DO:
 
--add Ganguli paper 
 -add "Deep Learning" non-uniqueness statements
 
--(in response:) add comment that we are aware of only one work treating combinatorial hypergraph designs in the setting of dictionary learning, "An incidence geometry approach to dictionary learning" (arxiv, non-published paper)
+TO “ADD TO MANUSCRIPT”:
+- A compelling exposition of the significance of our results and their relevance to the general scientific audience
+- A discussion of the computability of sufficient conditions
+- A sample complexity polynomial in (m, k) by limiting the size of the support set of the \tilde x_i
+- Some discussion of where the results can be tightened (e.g. Lem. 4)
 
--remark: more general statement
+DONE - The outline of a procedure which can affirm if one’s proposed solution to Prob. 1 or 2 is indeed unique.
+DONE - That A need only be injective on the union of subspaces with supports in a SIP hypergraph to recoverable (give example)
+DONE - Disambiguate conditions on x_i in Thm 1
+DONE - The relation between \ell and \bar m
+DONE - Clarify the f(A) argument
+DONE - Typo and clarify B_pi(S)
 
 -----------------------------
 
@@ -19,10 +27,23 @@ One natural question that arises is the mathematical "tightness" of result state
 
 3) We provide an algorithm for deciding whether dictionary A and sparse codes x determine a dataset Y with a unique sparse coding.
 
+Algorithm for Problem 1:
+- Learn by any algorithm a dictionary A and codes x_i that solve Problem 1.
+- Check that that A and the x_i satisfy the assumptions of Thm. 1:
+   - List the support sets of the x_i 
+      - Discard those for which there are (k-1){m \choose k} or fewer x_i with that support.
+      - Discard those for which the supported x_i are not in GLP. (This should also exclude any supports less than k in size.)
+   - From the support sets that remain, list all SIP-satisfying hypergraphs that are subsets of this set
+   - Discard those for which L_{2H}(A) = 0.
+   - For each of the remaining hypergraphs, determine the constant C_1 from A and the x_i (or every subset of the x_i of size (k-1){m \choose k})
+   - Check that the derived upper bound on \varepsilon accommodates that of the original problem.
+
 4) We reduce the theoretical overhead of algorithmic sparse linear coding by providing clean sufficient conditions under which solving Problem 1 determines model parameters (up to symmetries) -- without regard to the idiosyncrasies of any particular dictionary learning method.
 
 5) Proof differences
-[Chaz]
+
+* DONE *
 
 6) New concepts introduced
-[Chaz]
+
+* DONE *
