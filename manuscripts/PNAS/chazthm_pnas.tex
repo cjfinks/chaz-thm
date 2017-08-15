@@ -51,7 +51,7 @@
 % Please give the surname of the lead author for the running footer
 \leadauthor{Garfinkle} 
 
-\significancestatement{Many natural signals (visual scenery, speech, EEG, etc.) lacking domain-specific formal models can nonetheless be usefully characterized as linear combinations of few elementary waveforms drawn from a large ``dictionary". We give general conditions guaranteeing when such dictionaries are uniquely and stably determined by data. The result justifies the use of this model as a constraint for blind source separation, and helps explain the observed universality of emergent representations in sparse models of certain natural phenomena.
+\significancestatement{Many natural signals (visual scenery, speech, EEG, etc.) lacking domain-specific formal models can nonetheless be usefully characterized as linear combinations of few elementary waveforms drawn from a large ``dictionary". We give general conditions guaranteeing when such dictionaries are uniquely and stably determined by data. The result justifies the use of this model as a constraint for blind source separation and helps explain the observed universality of emergent representations in sparse models of certain natural phenomena.
 }
 
 % \authordeclaration{The authors declare no conflict of interest.}
@@ -80,16 +80,16 @@ Here, we prove that for all diverse enough datasets generated from the sparse co
 
 % If your first paragraph (i.e. with the \dropcap) contains a list environment (quote, quotation, theorem, definition, enumerate, itemize...), the line after the list may have some extra indentation. If this is the case, add \parshape=0 to the end of the list environment.
 \dropcap{B}lind source separation is a classical problem in signal processing \cite{sato1975method}.
-A common modern assumption is that each of $N$ observed $n$-dimensional signals is a (noisy) linear combination of at most $k$ elementary waveforms drawn from some unknown ``dictionary'' of size $m$, typically with $k < m \ll N$ (see \cite{Zhang15} for a comprehensive review of this and related models).
+In one common modern formulation, each of $N$ observed $n$-dimensional signals is a (noisy) linear combination of at most $k$ elementary waveforms drawn from some unknown ``dictionary'' of size $m$, typically with $k < m \ll N$ (see \cite{Zhang15} for a comprehensive review of this and related models).
 Approximating solutions to this sparsity-constrained inverse problem have provided insight into the structure of many signal classes lacking domain-specific formal models (e.g., in vision \cite{wang2015sparse}).  In particular, it has been shown that response properties of simple-cell neurons in mammalian visual cortex emerge from optimizing a dictionary to represent small patches of natural images \cite{Olshausen96, hurri1996image, bell1997independent, van1998independent}, a major advance in computational neuroscience. A curious aspect of this finding is that the latent waveforms (e.g. `Gabor' wavelets) estimated from data appear to be canonical \cite{donoho2001can};
 i.e., they are found in learned dictionaries independent of algorithm or natural image training set.
 
 Motivated by these discoveries and earlier work in the theory of neural communication \cite{Isely10}, we address when dictionaries and the sparse representations they induce are uniquely determined by data.  Answers to this question also have other real-world implications.  For example, a sparse coding analysis of local painting style can be used for forgery detection \cite{hughes2010, Olshausen10}, but only if all dictionaries consistent with training data do not differ appreciably in their ability to sparsely encode new samples. 
 Fortunately, algorithms with proven recovery of generating dictionaries under certain 
-conditions have recently been proposed (see \cite[Sec.~I-E]{Sun16} for a summary of the state-of-the-art). Few theorems, however, can be cited to explain this uniqueness phenomenon more generally.
+conditions have recently been proposed (see \cite[Sec.~I-E]{Sun16} for a summary of the state-of-the-art). Few theorems, however, can be cited to explain this uniqueness phenomenon more broadly.
 
 Here, we prove very generally that uniqueness and stability in sparse linear coding is an expected property of the model. 
-More specifically, dictionaries that preserve sparse codes (e.g., satisfy a `spark condition') are identifiable from as few as \mbox{$N = m(k-1){m \choose k} + m$} noisy sparse linear combinations of their columns up to an error linear in the noise (Thm.~\ref{DeterministicUniquenessTheorem}). In fact, provided $n \geq \min(2k,m)$, in almost all cases the dictionary learning problem is well-posed (as per Hadamard \cite{Hadamard1902}) given enough data (Cor.~\ref{ProbabilisticCor}). Moreover, these guarantees hold without assuming the recovered matrix satisfies a spark condition, even when the number $m$ of dictionary elements is unknown. The explicit, algorithm-independent criteria we provide should be a useful theoretical tool.  %  in the theory of sparse representations.
+More specifically, dictionaries that preserve sparse codes (e.g., satisfy a ``spark condition'') are identifiable from as few as \mbox{$N = m(k-1){m \choose k} + m$} noisy sparse linear combinations of their columns up to an error that is linear in the noise (Thm.~\ref{DeterministicUniquenessTheorem}). In fact, provided $n \geq \min(2k,m)$, in almost all cases the dictionary learning problem is well-posed (as per Hadamard \cite{Hadamard1902}) given enough data (Cor.~\ref{ProbabilisticCor}). Moreover, these explicit, algorithm-independent guarantees hold without assuming the recovered matrix satisfies a spark condition, and even when the number $m$ of dictionary elements is unknown.
 
 More formally, let $\mathbf{A} \in \mathbb R^{n \times m}$ be a matrix with columns $\mathbf{A}_j$ ($j = 1,\ldots,m$) and let dataset $Z$ consist of measurements:
 \begin{align}\label{LinearModel}
@@ -115,32 +115,24 @@ This representation is \textbf{stable} if for every $\delta_1, \delta_2 \geq 0$,
 \begin{align*}
 \|\mathbf{A}\mathbf{x}_i - \mathbf{B}\mathbf{\bar x}_i\|_2 \leq \varepsilon,\ \ \   \text{for all $i$},
 \end{align*}
-
 then there is some permutation matrix $\mathbf{P}$ and invertible diagonal matrix $\mathbf{D}$ such that for all $i, j$:
 \begin{align}\label{def1}
 \|\mathbf{A}_j - \mathbf{BPD}_j\|_2 \leq \delta_1 \ \ \text{and} \ \ \|\mathbf{x}_i - \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\bar x}_i\|_1 \leq \delta_2.
 \end{align}
 \end{definition}
 
-%\pagebreak
+To see how Def. \ref{maindef} directly relates to Prob. \ref{InverseProblem}, suppose that $Y$ has a stable $k$-sparse representation in $\mathbb{R}^m$ and fix $\delta_1, \delta_2$ to be the desired recovery accuracy in \eqref{def1}. Consider now any dataset $Z$ generated as in \eqref{LinearModel} with $\eta \leq \frac{1}{2} \varepsilon(\delta_1, \delta_2)$. Then from the triangle inequality, it follows that any matrix $\mathbf{B}$ and $k$-sparse $\mathbf{\bar x}_1, \ldots, \mathbf{\bar x}_N \in \mathbb{R}^m$ solving Prob.~\ref{InverseProblem} are necessarily within $\delta_1, \delta_2$ of the original dictionary $\mathbf{A}$ and sparse codes $\mathbf{x}_i$. 
 
-To see how Def. \ref{maindef} directly relates to Prob. \ref{InverseProblem}, suppose that $Y$ has a stable $k$-sparse representation in $\mathbb{R}^m$ and fix $\delta_1, \delta_2$ to be the desired recovery accuracy in \eqref{def1}. Consider now any dataset $Z$ generated as in \eqref{LinearModel} with $\eta \leq \frac{1}{2} \varepsilon(\delta_1, \delta_2)$. Then from the triangle inequality, it follows that any matrix $\mathbf{B}$ and $k$-sparse $\mathbf{\bar x}_1, \ldots, \mathbf{\bar x}_N \in \mathbb{R}^m$ solving Prob.~\ref{InverseProblem} are necessarily close to the original dictionary $\mathbf{A}$ and sparse codes $\mathbf{x}_i$. 
-
-In the next section, we give precise statements of our main results, which include an explicit form for $\varepsilon(\delta_1, \delta_2)$. We then prove our main theorem (Thm.~\ref{DeterministicUniquenessTheorem}) in Sec.~\ref{DUT} after stating some additional definitions and lemmas required for the proof, including a useful result in combinatorial matrix analysis (Lem.~\ref{MainLemma}). We also give a simple argument that extends our guarantees to the following more common optimization formulation of the dictionary learning problem (Cor.~\ref{SLCopt}).
+In the next section, we give precise statements of our main results, which include an explicit form for $\varepsilon(\delta_1, \delta_2)$. We then prove our main theorem (Thm.~\ref{DeterministicUniquenessTheorem}) in Sec.~\ref{DUT} after stating some additional definitions and lemmas required for the proof, including a useful result in combinatorial matrix analysis (Lem.~\ref{MainLemma}). We also provide an argument that extends our guarantees to the following more common optimization formulation of the dictionary learning problem (Cor.~\ref{SLCopt}).
 
 \begin{problem}\label{OptimizationProblem}
-Find a matrix $\mathbf{B}$ and vectors \mbox{$\mathbf{\bar x}_1, \ldots, \mathbf{\bar x}_N \in \mathbb{R}^m$} that solve:
+Find $\mathbf{B}$ and \mbox{$\mathbf{\bar x}_1, \ldots, \mathbf{\bar x}_N \in \mathbb{R}^m$} that solve:
 \begin{align}\label{minsum}
 \min \sum_{i = 1}^N \|\mathbf{\bar x}_i\|_0 \ \ 
 \text{subject to} \ \ \|\mathbf{z}_i - \mathbf{B}\mathbf{\bar x}_i\|_2 \leq \eta, \ \text{for all $i$}.
 \end{align}
 \end{problem}
-
-We comment that quite often theorists in algorithm development solve the related $\ell_1$ problem, which can be shown to be applicable to 
-solving $\ell_0$ problems in certain cases.  [*** IMPROVE ON THIS ***]
-
-All other proofs are relegated to the Section \ref{proofs}. 
-Finally, we present several applications in Discussion Sec.~\ref{Discussion}. 
+Finally, in Sec.~\ref{Discussion}, we explain how our results fit into the literature and present several applications of our findings.
 
 \section{Results}\label{Results}
 
