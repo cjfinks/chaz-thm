@@ -84,13 +84,13 @@ Here, we prove that for all diverse enough datasets generated from the sparse co
 
 % If your first paragraph (i.e. with the \dropcap) contains a list environment (quote, quotation, theorem, definition, enumerate, itemize...), the line after the list may have some extra indentation. If this is the case, add \parshape=0 to the end of the list environment.
 \dropcap{B}lind source separation is a classical problem in signal processing \cite{sato1975method}.
-In one common modern formulation, each of $N$ observed $n$-dimensional signals is a (noisy) linear combination of at most $k$ elementary waveforms drawn from some unknown ``dictionary'' of size $m$, typically with $k < m \ll N$ (see \cite{Zhang15} for a comprehensive review of this and related models).
+In one common modern formulation, each of $N$ observed $n$-dimensional signals is a (noisy) linear combination of at most $k$ elementary waveforms drawn from some unknown ``dictionary'' of size $m$, typically with $m \ll N$ (see \cite{Zhang15} for a comprehensive review of this and related models).
 Approximating solutions to this sparsity-constrained inverse problem have provided insight into the structure of many signal classes lacking domain-specific formal models (e.g., in vision \cite{wang2015sparse}).  In particular, it has been shown that response properties of simple-cell neurons in mammalian visual cortex emerge from optimizing a dictionary to represent small patches of natural images \cite{Olshausen96, hurri1996image, bell1997independent, van1998independent}, a major advance in computational neuroscience. A curious aspect of this finding is that the latent waveforms (e.g. `Gabor' wavelets) estimated from data appear to be canonical \cite{donoho2001can};
 i.e., they are found in learned dictionaries independent of algorithm or natural image training set.
 
 Motivated by these discoveries and earlier work in the theory of neural communication \cite{Isely10}, we address when dictionaries and the sparse representations they induce are uniquely determined by data.  Answers to this question also have other real-world implications.  For example, a sparse coding analysis of local painting style can be used for forgery detection \cite{hughes2010, Olshausen10}, but only if all dictionaries consistent with training data do not differ appreciably in their ability to sparsely encode new samples. 
 Fortunately, algorithms with proven recovery of generating dictionaries under certain 
-conditions have recently been proposed (see \cite[Sec.~I-E]{Sun16} for a summary of the state-of-the-art). Few theorems, however, can be cited to explain this uniqueness phenomenon more broadly.
+conditions have recently been proposed (see \cite[Sec.~I-E]{Sun16} for a summary of the state-of-the-art). Few theorems, however, can be cited to explain this uniqueness phenomenon more broadly; in particular, a universal guarantee in the context of noise has yet to emerge.
 
 Here, we prove very generally that uniqueness and stability in sparse linear coding is an expected property of the model. 
 More specifically, dictionaries that preserve sparse codes (e.g., satisfy a ``spark condition'') are identifiable from as few as \mbox{$N = m(k-1){m \choose k} + m$} noisy sparse linear combinations of their columns up to an error that is linear in the noise (Thm.~\ref{DeterministicUniquenessTheorem}). In fact, provided $n \geq \min(2k,m)$, in almost all cases the dictionary learning problem is well-posed (as per Hadamard \cite{Hadamard1902}) given enough data (Cor.~\ref{ProbabilisticCor}). Moreover, these explicit, algorithm-independent guarantees hold without assuming the recovered matrix satisfies a spark condition, and even when the number $m$ of dictionary elements is unknown.
@@ -124,6 +124,8 @@ then there is some permutation matrix $\mathbf{P}$ and invertible diagonal matri
 \|\mathbf{A}_j - \mathbf{BPD}_j\|_2 \leq \delta_1 \ \ \text{and} \ \ \|\mathbf{x}_i - \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\bar x}_i\|_1 \leq \delta_2.
 \end{align}
 \end{definition}
+
+\pagebreak
 
 To see how Def. \ref{maindef} directly relates to Prob. \ref{InverseProblem}, suppose that $Y$ has a stable $k$-sparse representation in $\mathbb{R}^m$ and fix $\delta_1, \delta_2$ to be the desired recovery accuracy in \eqref{def1}. Consider now any dataset $Z$ generated as in \eqref{LinearModel} with $\eta \leq \frac{1}{2} \varepsilon(\delta_1, \delta_2)$. Then from the triangle inequality, it follows that any matrix $\mathbf{B}$ and $k$-sparse $\mathbf{\bar x}_1, \ldots, \mathbf{\bar x}_N \in \mathbb{R}^m$ solving Prob.~\ref{InverseProblem} are necessarily within $\delta_1, \delta_2$ of the original dictionary $\mathbf{A}$ and sparse codes $\mathbf{x}_i$. 
 
@@ -169,9 +171,16 @@ where we write $L_{k}$ when $\mathcal{H} = {[m] \choose k}$.\footnote{We note th
 A vector $\mathbf{x}$ is said to be \emph{supported} in $S \subseteq [m]$ when $\mathbf{x} \in \text{\rm span}\{\mathbf{e}_j: j\in S\}$, where $\mathbf{e}_j$ are the standard basis in $\mathbb R^m$. 
 %Denote by $\mathbf{x}^J$ the subvector formed from the entries of $\mathbf{x}$ indexed by $J$. 
 A set of $k$-sparse vectors is said to be in \emph{general linear position} when any $k$ of them are linearly independent. The following is a precise statement of our main result.  Only the quantity $C_1 = C_1(\mathbf{A}, \{\mathbf{x}_i\}_{i=1}^N, \mathcal{H})$ is undefined (until Sec.~\ref{DUT}, Eq.~\eqref{Cdef1}).
+%=======
+%where we write $L_{k}$ when $\mathcal{H} = {[m] \choose k}$.\footnote{We note that $1 - \sqrt{k} L_k(\mathbf{M})$ is known as the asymmetric lower restricted isometry constant \cite{Blanchard2011}.} Clearly, for any $\mathbf{M}$ satisfying \eqref{SparkCondition}, we have $L_{k'}(\mathbf{M}) > 0$ for  $k' \leq 2k$. Note that if $\mathcal{H}$ covers $[m]$ (i.e., $\cup \mathcal{H} = [m]$), then $L_2 \geq L_{2\mathcal{H}}$.
+% 
+%A vector $\mathbf{x}$ is said to be \emph{supported} in $S \subseteq [m]$ when $\mathbf{x} \in \text{\rm span}\{\mathbf{e}_j: j\in S\}$, where $\mathbf{e}_j$ are the standard basis in $\mathbb R^m$. 
+%%Denote by $\mathbf{x}^J$ the subvector formed from the entries of $\mathbf{x}$ indexed by $J$. 
+%A set of $k$-sparse vectors is said to be in \emph{general linear position} when any $k$ of them are linearly independent. The following is a precise statement of our main result.  Only the quantity $C_1$ is left undefined until later (in Sec.~\ref{DUT}, Eq.~\eqref{Cdef1}).
+%>>>>>>> d1407a275dc391dabad7bb62d3e659f9a4ac4624
 
 \begin{theorem}\label{DeterministicUniquenessTheorem}
-Fix an $n \times m$ matrix $\mathbf{A}$ with $L_{2\mathcal{H}}(\mathbf{A}) > 0$ for an $r$-regular $\mathcal{H} \subseteq {[m] \choose k}$ with the SIP. If \mbox{$\{\mathbf{x}_1, \ldots, \mathbf{x}_N\} \subset \mathbb{R}^m$} contains, for each $S \in \mathcal{H}$, more than $(k-1){m \choose k}$ $k$-sparse vectors in general linear position supported in $S$, then there is $C_1 > 0$ with the following holding for all\footnote{The condition $\varepsilon < L_2(\mathbf{A}) /C_1$ is necessary; otherwise,  with \mbox{$\mathbf{A}$ = $\mathbf{I}$} and $\mathbf{x}_i = \mathbf{e}_i$, there is $\mathbf{\bar{x}}$ and $1$-sparse $\mathbf{b}_i$ with $|\mathbf{A}\mathbf{x}_i - \mathbf{B}\mathbf{\bar{x}}_i|_2 \leq \varepsilon$, violating \eqref{Cstable}.} $\varepsilon < L_{2}(\mathbf{A}) / C_1$:
+Fix an $n \times m$ matrix $\mathbf{A}$ with $L_{2\mathcal{H}}(\mathbf{A}) > 0$ for an $r$-regular $\mathcal{H} \subseteq {[m] \choose k}$ with the SIP. If \mbox{$\{\mathbf{x}_1, \ldots, \mathbf{x}_N\} \subset \mathbb{R}^m$} contains, for each $S \in \mathcal{H}$, more than $(k-1){m \choose k}$ $k$-sparse vectors in general linear position supported in $S$, then there is $C_1 > 0$ with the following holding for all\footnote{The condition $\varepsilon < L_2(\mathbf{A}) /C_1$ is necessary; otherwise,  with \mbox{$\mathbf{A}$ = $\mathbf{I}$} and $\mathbf{x}_i = \mathbf{e}_i$, there is a matrix $\mathbf{B}$ and $1$-sparse $\mathbf{\bar{x}}_i$ with $\|\mathbf{A}\mathbf{x}_i - \mathbf{B}\mathbf{\bar{x}}_i \|_2 \leq \varepsilon$, but nonetheless violating \eqref{Cstable}.} $\varepsilon < L_{2}(\mathbf{A}) / C_1$:
 
 Every $n \times \bar m$ matrix $\mathbf{B}$ for which there exist $k$-sparse $\mathbf{\bar x}_1, \ldots, \mathbf{\bar x}_N$ satisfying \mbox{$\|\mathbf{A}\mathbf{x}_i - \mathbf{B}\mathbf{\bar x}_i\|_2 \leq \varepsilon$} for all $i$ has $\bar m \geq m$ and, provided $\bar m < mr/(r-1)$,
 \begin{align}\label{Cstable}
@@ -180,7 +189,7 @@ Every $n \times \bar m$ matrix $\mathbf{B}$ for which there exist $k$-sparse $\m
 %
 for some nonempty $J \subseteq [m]$ and $\bar J \subseteq [m]$ of size $\bar m - r(\bar m - m)$, permutation matrix $\mathbf{P}$, and and invertible diagonal matrix $\mathbf{D}$. 
 
-Moreover, if in addition $\varepsilon < L_{2k}(\mathbf{A}) / C_1$ (provided $L_{2k}(\mathbf{A}) > 0$), then $L_{2k}(\mathbf{B}\mathbf{PD}) \geq L_{2k}(\mathbf{A}) - C_1 \varepsilon$ and:
+Moreover, if $L_{2k}(\mathbf{A}) > 0$ and $\varepsilon < L_{2k}(\mathbf{A}) / C_1$, then $L_{2k}(\mathbf{B}\mathbf{PD}) \geq L_{2k}(\mathbf{A}) - C_1 \varepsilon$ and:
 \begin{align}\label{b-PDa}
 %\|\mathbf{x}^J_i - \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\bar x}^{\bar J}_i\|_1 &\leq  \left( \frac{ 1+C_1 \|\mathbf{x}^{J}_i\|_1 }{ L_{2k}(\mathbf{A}) -  C_1\varepsilon } \right) \varepsilon \ \  \text{for $i \in [N]$}.
 \|\mathbf{x}_i - \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\bar x}_i\|_1 &\leq  \left( \frac{ 1+C_1 \|\mathbf{x}_i\|_1 }{ L_{2k}(\mathbf{A}) -  C_1\varepsilon } \right) \varepsilon, \ \  \text{for $i \in [N]$},
@@ -197,6 +206,15 @@ In words, Thm.~\ref{DeterministicUniquenessTheorem} says that the smaller the di
 \end{align}
 
 Note that sparse codes $\mathbf{x}_i$ with a shared support that are in general linear position are straightforward to produce using a ``Vandermonde'' matrix construction (i.e., use the columns of the matrix $[\gamma_{i}^j]_{i,j=1}^{k,N}$, for distinct nonzero $\gamma_i$).  Thus, the assumptions of Thm.~\ref{DeterministicUniquenessTheorem} are easily met, leading to the following direct application to uniqueness in dictionary learning, Prob.~\ref{InverseProblem}.
+%=======
+%An immediate practical implication of this result is that there exists a practical procedure to affirm if one's proposed solution $(\mathbf{B}, \mathbf{\bar x}_1, \ldots, \mathbf{x}_N)$ to Prob.~\ref{InverseProblem} is indeed unique (up to noise and inherent ambiguities): simply check that $\mathbf{B}$ and the $\mathbf{\bar x}_i$ satisfy the assumptions on $\mathbf{A}$ and the $\mathbf{x}_i$ in Thm.~\ref{DeterministicUniquenessTheorem}.
+%
+%%In fact, a more general result (stated clearly in the next section) can be gleaned from our method of proving Thm.~\ref{DeterministicUniquenessTheorem}. Briefly, in cases where $\mathbf{B}$ has $\bar m \neq m$ columns, or $\mathcal{H}$ is not regular or only partially satisfying the SIP, a relation between $\bar m$ and the degree sequence of nodes in $\mathcal{H}$ gives indices $J \subseteq [m]$ defining a submatrix $\mathbf{A}_J$ and subvectors $\mathbf{x}_i^J$ that are recoverable in the sense of \eqref{Cstable} and \eqref{b-PDa}. For example, if $\mathcal{H}$ is $\ell$-regular with the SIP but $m \leq \bar m < m\ell/(\ell - 1)$ then we have nonzero $|J| = \bar m - \ell(\bar m - m)$. The implication here is that the smaller the difference $\bar m - m$, the more columns and code entries of the original $n \times m$ dictionary $\mathbf{A}$ and codes $\mathbf{x}_i$ contained (up to noise) in the appropriately scaled $n \times \bar m$ dictionary $\mathbf{B}$ and codes $\mathbf{\bar x}_i$. When $\bar m = m$, we recover Thm.~\ref{DeterministicUniquenessTheorem}.
+%
+%%In fact, even if $\mathcal{H}$ is not regular or only partially satisfies the SIP, a relation between $\bar m$ and the degree sequence of nodes in $\mathcal{H}$ may give the indices $J \subseteq [m]$. For sake of brevity, we delay to the next section a clear statement of this more general result.
+%
+%Regarding the assumptions of Thm.~\ref{DeterministicUniquenessTheorem}, it so happens that sparse codes $\mathbf{x}_i$ in general linear position are straightforward to produce with a ``Vandermonde'' matrix construction \cite{Hillar15}, leading to the following.
+%>>>>>>> d1407a275dc391dabad7bb62d3e659f9a4ac4624
 
 \begin{corollary}\label{DeterministicUniquenessCorollary}
 Given a regular hypergraph $\mathcal{H} \subseteq {[m] \choose k}$ with the SIP, there are $N =  |\mathcal{H}| \left[ (k-1){m \choose k} + 1  \right]$ vectors \mbox{$\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$} such that every matrix $\mathbf{A}$ with $L_{2\mathcal{H}}(\mathbf{A}) > 0$ generates a dataset $Y = \{\mathbf{A}\mathbf{x}_1, \ldots, \mathbf{A}\mathbf{x}_N\}$ with a stable $k$-sparse representation in $\mathbb{R}^m$.
@@ -210,10 +228,13 @@ Another practical implication of this result is the following: there is an effec
 
 %In fact, even if $\mathcal{H}$ is not regular or only partially satisfies the SIP, a relation between $\bar m$ and the degree sequence of nodes in $\mathcal{H}$ may give the indices $J \subseteq [m]$. For sake of brevity, we delay to the next section a clear statement of this more general result.
 
+%=======
+%One can also verify that for every $k < m$, there is a regular $k$-uniform hypergraph that satisfies the SIP; for instance, take $\mathcal{H}$ to be the consecutive intervals of length $k$ in some cyclic order on $[m]$, for which Cor.~\ref{DeterministicUniquenessCorollary} implies the lower bound for sample size $N$ from the introduction. In many cases, however, the SIP is achievable with far fewer supports; for example, when $k = \sqrt{m}$, take $\mathcal{H}$ to be the $2k$ rows and columns formed by arranging $[m]$ in a square grid. 
+%>>>>>>> d1407a275dc391dabad7bb62d3e659f9a4ac4624
 
 %As mentioned above, there exist $k$-uniform regular hypergraphs $\mathcal{H}$ with the SIP having cardinality $|\mathcal{H}| = m$, 
 
-We furthermore note that unlike the requirements of previous works \cite{li2004analysis, Georgiev05, Aharon06, Hillar15}, matrix $\mathbf{A}$ need not satisfy the spark condition to be recoverable from data. As a simple example for $k=2$, let $\mathbf{A} = [ \mathbf{e}_1, \ldots, \mathbf{e}_5, \mathbf{v}]$ where $\mathbf{v} = \mathbf{e}_1 + \mathbf{e}_3 + \mathbf{e}_5$, and take $\mathcal{H}$ to be the set of all consecutive pairs of $[m]$ arranged in cyclic order. Then, $\mathbf{A}$ satisfies the assumptions of Thm.~\ref{DeterministicUniquenessTheorem} but not the spark condition. %(since $\{ \mathbf{A}_1, \mathbf{A}_3, \mathbf{A}_5, \mathbf{A}_6\}$ is not a linearly independent set).
+We furthermore note that unlike the requirements of previous works \cite{li2004analysis, Georgiev05, Aharon06, Hillar15}, the matrix $\mathbf{A}$ need not satisfy the spark condition to be recoverable from data. As a simple example for $k=2$, let $\mathbf{A} = [ \mathbf{e}_1, \ldots, \mathbf{e}_5, \mathbf{v}]$ where $\mathbf{v} = \mathbf{e}_1 + \mathbf{e}_3 + \mathbf{e}_5$, and take $\mathcal{H}$ to be the set of all consecutive pairs of $[m]$ arranged in cyclic order. Then, $\mathbf{A}$ satisfies the assumptions of Thm.~\ref{DeterministicUniquenessTheorem} but not the spark condition. %(since $\{ \mathbf{A}_1, \mathbf{A}_3, \mathbf{A}_5, \mathbf{A}_6\}$ is not a linearly independent set).
 
 There are other less direct consequences of Thm.~\ref{DeterministicUniquenessTheorem}.  For instance, we use it to prove uniqueness for the optimization formulation of dictionary learning, Prob.~\ref{SLCopt}, the main object of interest for those applying dictionary learning to data.
 
