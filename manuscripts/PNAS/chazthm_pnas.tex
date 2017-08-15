@@ -241,14 +241,12 @@ Fix $k < m$, $n \geq \min(2k, m)$, and let the entries of $\mathbf{A} \in \mathb
 
 Thus, choosing the dictionary and sparse codes ``randomly'' almost certainly generates data with a stable sparse representation.
 
-
 We remark that these results have a strong application to theoretical neuroscience, mathematically justifying one of the few hypothesized theories of compressive communication between sparsely active neural populations \cite{Isely10, ganguli2012compressed}. 
 
-\begin{corollary}
-Random noisy (linear) compression of sparse neural activities is decodable by any neurally-plausible unsupervised sparse (linear) feature learning algorithm.
-\end{corollary}
-
-[*** Also discuss uniquness of sparse sensory representations more generally, like Gabors ***]
+\begin{proposition}
+Random noisy (linear) compression of sparse neural activities is decodable by any neurally-plausible unsupervised sparse (linear) feature learning algorithm that solves Prob.~\ref{DeterministicUniquenessTheorem} or \ref{SLCopt} (e.g. \cite{rehnsommer2007, rozell2007neurally}).
+\end{proposition}
+%\cite{rehnsommer2007, rozell2007neurally, ganguli2012compressed, hu2014hebbian}
 
 \section{Proofs of Theorem~\ref{DeterministicUniquenessTheorem} and Corollary~\ref{SLCopt}}\label{DUT}
 
@@ -455,7 +453,7 @@ A technical difficulty in proving Thm.~\ref{DeterministicUniquenessTheorem} was 
 
 In fact, uniqueness guarantees with minimal assumptions apply to all areas of data science and engineering that utilize learned sparse representations. For example, several groups have applied compressed sensing to signal processing tasks: MRI analysis \cite{lustig2008compressed}, image compression \cite{Duarte08}, and, more recently, the design of an ultrafast camera \cite{Gao14}. Given such effective uses of compressed sensing, it is only a matter of time before these systems incorporate dictionary learning to encode and process data (e.g., in a device that learns structure from motion \cite{kong2016prior}). In these cases, assurances such as those offered by our theorems certify that different devices (with different initialization, samples, etc.) will learn equivalent representations given enough data from statistically identical systems.
 
-In the field of theoretical neuroscience in particular, dictionary learning for sparse coding and related methods have recovered characteristic components of natural images \cite{Olshausen96, hurri1996image, bell1997independent, van1998independent} and sounds \cite{bellsejnowski1996, smithlewicki2006, Carlson12} that reproduce response properties of cortical neurons. Our results suggest that this correspondence could be due to the ``universality'' of sparse representations in natural data, an early mathematical idea in neural theory \cite{pitts1947}. Furthermore, they justify the hypothesis of \cite{Isely10} that sparse codes passed through information bottlenecks in the brain are recovered from random projections via (unsupervised) biologically plausible sparse coding (e.g., \cite{rehnsommer2007, rozell2007neurally, ganguli2012compressed, hu2014hebbian}).
+In the field of theoretical neuroscience in particular, dictionary learning for sparse coding and related methods have recovered characteristic components of natural images \cite{Olshausen96, hurri1996image, bell1997independent, van1998independent} and sounds \cite{bellsejnowski1996, smithlewicki2006, Carlson12} that reproduce response properties of cortical neurons. Our results suggest that this correspondence could be due to the ``universality'' of sparse representations in natural data, an early mathematical idea in neural theory \cite{pitts1947}. %Furthermore, they justify the hypothesis of \cite{Isely10} that sparse codes passed through information bottlenecks in the brain are recovered from random projections via (unsupervised) biologically plausible sparse coding (e.g., \cite{rehnsommer2007, rozell2007neurally, ganguli2012compressed, hu2014hebbian}).
 
 Deep learning noise issues: \cite{goodfellow2014explaining}.
 
