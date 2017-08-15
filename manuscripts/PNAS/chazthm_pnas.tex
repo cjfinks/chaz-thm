@@ -27,6 +27,10 @@
 \newtheorem{remark}{Remark}
 \newtheorem{example}{Example}
 
+
+\renewcommand{\eqref}[1]{\textnormal{[\ref{#1}]}}
+
+
 %\usepackage[pdftex]{graphicx}
 
 % *** ALIGNMENT PACKAGES ***
@@ -160,11 +164,11 @@ We generalize the  lower bound to a domain-restricted \emph{union of subspaces} 
 L_\mathcal{H}(\mathbf{M}) := \frac{1}{\sqrt{k}} \inf \left\{ \frac{\|\mathbf{M}_S\mathbf{x}\|_2}{ \|\mathbf{x}\|_2} : S \in \mathcal{H}, \ \ \mathbf{x} \in \mathbb{R}^{|S|} \right\},
 \end{align} 
 %
-where we write $L_{k}$ when $\mathcal{H} = {[m] \choose k}$.\footnote{We note that $1 - \sqrt{k} L_k(\mathbf{M})$ is known as the asymmetric lower restricted isometry constant \cite{Blanchard2011}.} Clearly, for any $\mathbf{M}$ satisfying \eqref{SparkCondition}, we have $L_{k'}(\mathbf{M}) > 0$ for  $k' \leq 2k$. Note that if $\mathcal{H}$ covers $[m]$ then $L_2 \geq L_{2\mathcal{H}}$.
+where we write $L_{k}$ when $\mathcal{H} = {[m] \choose k}$.\footnote{We note that $1 - \sqrt{k} L_k(\mathbf{M})$ is known as the asymmetric lower restricted isometry constant \cite{Blanchard2011}.} Clearly, for any $\mathbf{M}$ satisfying \eqref{SparkCondition}, we have $L_{k'}(\mathbf{M}) > 0$ for  $k' \leq 2k$. Note that if $\mathcal{H}$ covers $[m]$ t(i.e., $\cup \mathcal{H} = [m]$), then $L_2 \geq L_{2\mathcal{H}}$.
  
 A vector $\mathbf{x}$ is said to be \emph{supported} in $S \subseteq [m]$ when $\mathbf{x} \in \text{\rm span}\{\mathbf{e}_j: j\in S\}$, where $\mathbf{e}_j$ are the standard basis in $\mathbb R^m$. 
 %Denote by $\mathbf{x}^J$ the subvector formed from the entries of $\mathbf{x}$ indexed by $J$. 
-A set of $k$-sparse vectors is said to be in \emph{general linear position} when any $k$ of them are linearly independent. The following is a precise statement of our main result.
+A set of $k$-sparse vectors is said to be in \emph{general linear position} when any $k$ of them are linearly independent. The following is a precise statement of our main result.  Only the quantity $C_1$ is undefined until later (in Sec.~\ref{DUT}, Eq.~\eqref{Cdef1}).
 
 \begin{theorem}\label{DeterministicUniquenessTheorem}
 Fix an $n \times m$ matrix $\mathbf{A}$ with $L_{2\mathcal{H}}(\mathbf{A}) > 0$ for an $r$-regular $\mathcal{H} \subseteq {[m] \choose k}$ with the SIP. If \mbox{$\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$} contains, for each $S \in \mathcal{H}$, more than $(k-1){m \choose k}$ $k$-sparse vectors in general linear position supported in $S$, then there is a constant $C_1 > 0$ with the following holding for all\footnote{The condition $\varepsilon < L_2(\mathbf{A}) /C_1$ is necessary; otherwise,  with \mbox{$\mathbf{A}$ = $\mathbf{I}$} and $\mathbf{a}_i = \mathbf{e}_i$, there is a $\mathbf{B}$ and $1$-sparse $\mathbf{b}_i$ with $|\mathbf{A}\mathbf{a}_i - \mathbf{B}\mathbf{b}_i|_2 \leq \varepsilon$ violating \eqref{Cstable}.} $\varepsilon < L_{2}(\mathbf{A}) / C_1$:
@@ -185,9 +189,9 @@ Moreover, if in addition $\varepsilon < L_{2k}(\mathbf{A}) / C_1$ (provided $L_{
 where $\mathbf{x}_i$ and $\mathbf{\bar x}_i$ here represent subvectors formed from restricting to entries indexed by $J$ and $\bar J$, respectively. 
 \end{theorem}
 
-We delay defining the explicit constant $C_1$ until Section \ref{DUT} (\eqref{Cdef1}).
+%We delay defining the explicit constant $C_1$ until Section \ref{DUT} (\eqref{Cdef1}).
 %To be clear, the implication of Thm.~\ref{DeterministicUniquenessTheorem} is that $Y = \{\mathbf{Ax}_1, \ldots, \mathbf{Ax}_N\}$ has a stable $k$-sparse representation in $\mathbb{R}^m$, with \eqref{def1} guaranteed provided $\varepsilon$ in Def.~\ref{maindef} does not exceed: 
-To be clear, Thm.~\ref{DeterministicUniquenessTheorem} says that the smaller the difference $\bar m - m$, the more columns and coefficients of the original dictionary $\mathbf{A}$ and codes $\mathbf{x}_i$ are contained (up to noise) in the appropriately scaled dictionary $\mathbf{B}$ and codes $\mathbf{\bar x}_i$. When $\bar m = m$, the theorem implies that  $Y = \{\mathbf{Ax}_1, \ldots, \mathbf{Ax}_N\}$ has a stable $k$-sparse representation in $\mathbb{R}^m$, with \eqref{def1} guaranteed provided $\varepsilon$ in Def.~\ref{maindef} does not exceed: 
+To be clear, Thm.~\ref{DeterministicUniquenessTheorem} says that the smaller the difference $\bar m - m$, the more columns and coefficients of the original dictionary $\mathbf{A}$ and codes $\mathbf{x}_i$ are contained (up to noise) in the appropriately scaled dictionary $\mathbf{B}$ and codes $\mathbf{\bar x}_i$. When $\bar m = m$, the theorem implies that  $Y = \{\mathbf{Ax}_1, \ldots, \mathbf{Ax}_N\}$ has a stable $k$-sparse representation in $\mathbb{R}^m$, with inequality \eqref{def1} guaranteed provided $\varepsilon$ in Def.~\ref{maindef} does not exceed: 
 \begin{align}\label{epsdel}
 \varepsilon(\delta_1, \delta_2) := \min \left\{ \frac{\delta_1}{ C_1 }, \frac{ \delta_2 L_{2k}(\mathbf{A})}{ 1 + C_1 \left( \max_{i \in [N]} \|\mathbf{x}_i\|_1  + \delta_2 \right) } \right\}.
 \end{align}
