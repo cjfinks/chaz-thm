@@ -221,7 +221,7 @@ Given a regular hypergraph $\mathcal{H} \subseteq {[m] \choose k}$ with the SIP,
 
 One can also easily verify that for every $k < m$, there is a regular $k$-uniform hypergraph with the SIP; for instance, take $\mathcal{H}$ to be the consecutive intervals of length $k$ in some cyclic order on $[m]$.  In this case, a direct consequence of Cor.~\ref{DeterministicUniquenessCorollary} is rigorous verification of the lower bound \mbox{$N = m(k-1){m \choose k} + m$} for sufficient sample size from the introduction. In many cases, however, the SIP is achievable with far fewer supports.  For example, when $k = \sqrt{m}$, simply take $\mathcal{H}$ to be the $2k$ rows and columns formed by arranging $[m]$ in a square grid.
 
-Another practical implication of this result is the following: there is an effective procedure by which one can affirm if one's proposed solution $(\mathbf{B}, \mathbf{\bar x}_1, \ldots, \mathbf{x}_N)$ to Prob.~\ref{InverseProblem} is indeed unique (up to noise and inherent ambiguities). One simply checks that $\mathbf{B}$ and the $\mathbf{\bar x}_i$ satisfy the respective assumptions of Thm.~\ref{DeterministicUniquenessTheorem}.  
+Another practical implication of Thm.\ref{DeterministicUniquenessTheorem} is the following: there is an effective procedure sufficient to affirm if a proposed solution $(\mathbf{B}, \mathbf{\bar x}_1, \ldots, \mathbf{x}_N)$ to Prob.~\ref{InverseProblem} is indeed unique (up to noise and inherent ambiguities). One simply checks that $\mathbf{B}$ and the $\mathbf{\bar x}_i$ satisfy the respective assumptions of Thm.~\ref{DeterministicUniquenessTheorem}.  
 %. on $\mathbf{A}$ and the $\mathbf{x}_i$, respectively.
 
 %In fact, a more general result (stated clearly in the next section) can be gleaned from our method of proving Thm.~\ref{DeterministicUniquenessTheorem}. Briefly, in cases where $\mathbf{B}$ has $\bar m \neq m$ columns, or $\mathcal{H}$ is not regular or only partially satisfying the SIP, a relation between $\bar m$ and the degree sequence of nodes in $\mathcal{H}$ gives indices $J \subseteq [m]$ defining a submatrix $\mathbf{A}_J$ and subvectors $\mathbf{x}_i^J$ that are recoverable in the sense of \eqref{Cstable} and \eqref{b-PDa}. For example, if $\mathcal{H}$ is $\ell$-regular with the SIP but $m \leq \bar m < m\ell/(\ell - 1)$ then we have nonzero $|J| = \bar m - \ell(\bar m - m)$. The implication here is that the smaller the difference $\bar m - m$, the more columns and code entries of the original $n \times m$ dictionary $\mathbf{A}$ and codes $\mathbf{x}_i$ contained (up to noise) in the appropriately scaled $n \times \bar m$ dictionary $\mathbf{B}$ and codes $\mathbf{\bar x}_i$. When $\bar m = m$, we recover Thm.~\ref{DeterministicUniquenessTheorem}.
@@ -235,12 +235,12 @@ Another practical implication of this result is the following: there is an effec
 %As mentioned above, there exist $k$-uniform regular hypergraphs $\mathcal{H}$ with the SIP having cardinality $|\mathcal{H}| = m$, 
 
 We furthermore note that unlike the requirements of previous works \cite{li2004analysis, Georgiev05, Aharon06, Hillar15}, the matrix $\mathbf{A}$ need not satisfy the spark condition to be recoverable from data. As a simple example for $k=2$, let $\mathbf{A} = [ \mathbf{e}_1, \ldots, \mathbf{e}_5, \mathbf{v}]$ where $\mathbf{v} = \mathbf{e}_1 + \mathbf{e}_3 + \mathbf{e}_5$, and take $\mathcal{H}$ to be all consecutive pairs of $[m]$ arranged in cyclic order. Then, $\mathbf{A}$ satisfies the assumptions of Thm.~\ref{DeterministicUniquenessTheorem} but not \eqref{SparkCondition}. %(since $\{ \mathbf{A}_1, \mathbf{A}_3, \mathbf{A}_5, \mathbf{A}_6\}$ is not a linearly independent set).
-This weakening of condition \eqref{SparkCondition} allows for a practical amount of data (polynomial-time for fixed sparsity $k$) for guaranteeing stable sparse representation. 
+This weakening allows for a practical amount of data (polynomial-time for fixed sparsity $k$)  guaranteeing stable dictionaries.
 
-There are other less direct consequences of Thm.~\ref{DeterministicUniquenessTheorem}.  For instance, we use it to prove uniqueness for the optimization formulation of dictionary learning, Prob.~\ref{SLCopt}, the main object of interest for those applying dictionary learning to data.
+There are other less direct consequences of Thm.~\ref{DeterministicUniquenessTheorem}.  For instance, we use it to prove uniqueness for the optimization formulation of dictionary learning, Prob.~\ref{SLCopt}, the main object of interest for those applying dictionary learning to their data.
 
 \begin{theorem}\label{SLCopt}
-If the assumptions of Thm.\ref{DeterministicUniquenessTheorem} hold, only now with more than $(k-1)\left[ {\bar m \choose k} + |\mathcal{H}|k{\bar m \choose k-1}\right]$ vectors $\mathbf{x}_i$ supported in each $S \in \mathcal{H}$, then all solutions to Prob.~\ref{OptimizationProblem} necessarily satisfy implications \eqref{Cstable} and \eqref{b-PDa} of Thm.~\ref{DeterministicUniquenessTheorem}.
+If the assumptions of Thm.\ref{DeterministicUniquenessTheorem} hold, only now with more than $(k-1)\left[ {\bar m \choose k} + |\mathcal{H}|k{\bar m \choose k-1}\right]$ vectors $\mathbf{x}_i$ supported in each $S \in \mathcal{H}$, then all solutions to Prob.~\ref{OptimizationProblem} necessarily satisfy recovery inequalities \eqref{Cstable} and \eqref{b-PDa} of Thm.~\ref{DeterministicUniquenessTheorem}.
 \end{theorem}
 
 Another extension of Thm.~\ref{DeterministicUniquenessTheorem} arises from the following analytic characterization of the spark condition.  Let $\mathbf{A}$  be the $n \times m$ matrix of $nm$ indeterminates $A_{ij}$. When real numbers are substituted for $A_{ij}$, the resulting matrix satisfies \eqref{SparkCondition} if and only if the following polynomial is nonzero:
@@ -250,7 +250,7 @@ f(\mathbf{A}) := \prod_{S \in {[m] \choose k}} \sum_{S' \in {[n] \choose k}} (\d
 %
 where for any $S' \in {[n] \choose k}$ and $S \in {[m] \choose k}$, the symbol $\mathbf{A}_{S',S}$ denotes the submatrix of entries $A_{ij}$ with $(i,j) \in S' \times S$.   We note that the large number of terms in this product is likely necessary due to the NP-hardness of deciding whether a given matrix $\mathbf{A}$ satisfies the spark condition \cite{tillmann2014computational}.
 
-Since $f$ is analytic, having a single substitution of a real matrix $\mathbf{A}$ with $f(\mathbf{A}) \neq 0$ necessarily implies that the zeroes of $f$, in fact, form a set of measure zero. Fortunately, such a matrix $\mathbf{A}$ is easily constructed by adding rows of zeroes to any $\min(2k,m) \times m$ Vandermonde matrix as described above (so that each term in the product above for $f$ is nonzero). Hence, almost every $n \times m$ matrix with $n \geq \min(2k,m)$ satisfies \eqref{SparkCondition}.
+Since $f$ is analytic, having a single substitution of a real matrix $\mathbf{A}$ with $f(\mathbf{A}) \neq 0$ necessarily implies that the zeroes of $f$ form a set of measure zero. Fortunately, such a matrix $\mathbf{A}$ is easily constructed by adding rows of zeroes to any $\min(2k,m) \times m$ Vandermonde matrix as described above (so that each term in the product above for $f$ is nonzero). Hence, almost every $n \times m$ matrix with $n \geq \min(2k,m)$ satisfies \eqref{SparkCondition}.
 
 A similar phenomenon applies to datasets of vectors with a stable sparse representation. As in \cite[Sec.~IV]{Hillar15}, consider the ``symbolic'' dataset $Y = \{\mathbf{A}\mathbf{x}_1,\ldots,\mathbf{A} \mathbf{x}_N\}$ generated by indeterminate $\mathbf{A}$ and indeterminate $k$-sparse $\mathbf{x}_1, \ldots, \mathbf{x}_N$.  
 
@@ -264,7 +264,7 @@ Fix $k < m$, $n \geq \min(2k, m)$, and let the entries of $\mathbf{A} \in \mathb
 
 Thus, choosing the dictionary and codes ``randomly'' almost certainly generates data with a stable sparse representation.
 
-We remark that these results have a strong application to theoretical neuroscience, mathematically justifying one of the few hypothesized theories of compressive communication between sparsely active neural populations \cite{Isely10, ganguli2012compressed}. 
+We remark that these results have a surprising application to theoretical neuroscience by mathematically justifying one of the few hypothesized theories of compressive communication between sparsely active neural populations \cite{Isely10}. 
 
 \begin{proposition}
 Random noisy (linear) compression of sparse neural activities is decodable by any neurally-plausible unsupervised sparse (linear) feature learning algorithm that solves Prob.~\ref{DeterministicUniquenessTheorem} or \ref{SLCopt} (e.g. \cite{rehnsommer2007, rozell2007neurally}).
@@ -315,7 +315,7 @@ since $\varepsilon < L_{2k}(\mathbf{A}) / C_1$. Hence, $L_{2k}(\mathbf{BPD}) \ge
 &\leq \frac{\varepsilon (1 + C_1 \|\mathbf{x}_i\|_1)}{L_{2k}(\mathbf{BPD})}.
 \end{align*}
 
-The heart of the matter is therefore \eqref{Cstable}, which we now finally establish, first in the important special case $k = 1$
+The heart of the matter is therefore \eqref{Cstable}, which we now establish, first in the important special case $k = 1$
 
 \begin{proof}[Proof of Thm.~\ref{DeterministicUniquenessCorollary} for $k=1$]
 Since the only 1-uniform hypergraph with the SIP is $[m]$, we have $\mathbf{x}_i = c_i \mathbf{e}_i$ for $c_i \in \mathbb{R} \setminus \{\mathbf{0}\}$, $i \in [m]$. In this case, we may take any $C_1 \geq 1/ \min_{\ell \in [m]} |c_{\ell}|$. 
@@ -431,7 +431,7 @@ It follows from $L_{2\mathcal{H}}(\mathbf{A}) > 0$ and the general linear positi
 &\leq \varepsilon \sqrt{k}  \|\mathbf{c}\|_2 
 \leq \frac{\varepsilon}{L(\mathbf{AX}_K)} \|\mathbf{y}\|_2,
 \end{align*}
-where the last inequality follows directly from \eqref{Ldef}. From Def.~\ref{dDef} we have:
+where the last inequality follows directly from \eqref{Ldef}. From Def.~\ref{dDef}:
 \begin{align}\label{rhs222}
 d(\bm{\mathcal{A}}_S, \bm{\mathcal{B}}_{\bar S}) 
 \leq \frac{\varepsilon}{  L(\mathbf{AX}_{K}) } \leq \varepsilon \frac{C_1}{C_2},
@@ -462,8 +462,6 @@ The total number of $(k-1)$-sparse vectors $\mathbf{\bar x}_i$ can thus not exce
 %[mention dictionary size independence]
 
 % A significant implication is that the constant $C_1$ of Thm.~\ref{DeterministicUniquenessTheorem} can be computed efficiently if we restrict the class of possible supports for the $\mathbf{\bar x}_i$. 
-
-[*** ADD:  Ganguli, Deep Learning, constants, tightness, ***]
 
 In this note, we prove the stability of unique solutions to Probs.~\ref{InverseProblem} and \ref{OptimizationProblem} while significantly reducing the known sample complexity. Our results justify the application of the sparse linear coding model to blind source separation problems, wherein the goal is to infer the generating dictionary and sparse codes from noisy measurements, \eqref{LinearModel}. We also collect a set of useful mathematical tools and basic facts for future research. The main motivation for this work, however, was to understand how seemingly universal representations emerge from sparse coding models fit to natural data by a variety of methodologies. We elaborate on these applications below.
 
@@ -538,7 +536,6 @@ Fix a hypergraph $\mathcal{H} \subseteq 2^{[m]}$ with nodes labeled in order of 
 \begin{align}\label{pcond}
 \sum_{i=\ell}^{m} \deg(i) > (\bar m + 1 - \ell) (\deg(\ell) - 1) \ \ \text{for all } \ell \leq p.
 \end{align}
-
 If the map $\pi: E \to 2^{[\bar m]}$ has $\sum_{S \in \mathcal{H}} (|\pi(S)| -|S|) \geq 0$ and:
 \begin{align}\label{cond}
 |\cap \pi(\mathcal{G})| \leq |\cap \mathcal{G} | \text{ for all } \mathcal{G} \subseteq \mathcal{H},
@@ -558,7 +555,7 @@ We will show that the bound \eqref{GapUpperBound} trickles through the intersect
 
 We begin by showing that $\dim(\bm{\mathcal{B}}_{\pi(S)}) = \dim(\bm{\mathcal{A}}_S)$ for all $S \in \mathcal{H}$. Since the right-hand side of \eqref{GapUpperBound} is less than one (by \eqref{delrho} and $r \leq 1$), it follows from \eqref{dimLem} that $|\pi(S)| \geq \dim(\bm{\mathcal{B}}_{\pi(S)}) \geq \dim(\bm{\mathcal{A}}_S) = |S|$, with the equality by injectivity of $\mathbf{A}$. Since $|S| = |\pi(S)|$, the required fact follows. Note that the columns of $\mathbf{B}_{\pi(S)}$ are therefore linearly independent, for all $S \in \mathcal{H}$.
 
-We next show that \eqref{cond} holds.  Fix $\mathcal{G} \subseteq \mathcal{H}$. Since $\bm{\mathcal{B}}_{\cap \pi(\mathcal{G})} \subseteq \cap_{S \in \mathcal{G}} \bm{\mathcal{B}}_{\pi(S)}$, if $\cap_{S \in \mathcal{G}} \bm{\mathcal{B}}_{\pi(S)} = \{\textbf{0}\}$, then we must have $|\cap_{S \in \mathcal{G}} \pi(S)| = 0$ (as the columns of $\mathbf{B}_{\pi(S)}$ are linearly independent) and \eqref{cond} is trivially true. Suppose then that the intersection is not the zero vector. Keeping in mind that $d(U,V) \leq d(U',V)$ whenever $U \subseteq U'$ and applying (in order) Lem.~\ref{spanIntersectionLemma}, Lem.~\ref{DistanceToIntersectionLemma}, \eqref{eqdim}, \eqref{GapUpperBound} and finally \eqref{Cdef2} gives:
+We next show that \eqref{cond} holds.  Fix $\mathcal{G} \subseteq \mathcal{H}$. Since $\bm{\mathcal{B}}_{\cap \pi(\mathcal{G})} \subseteq \cap_{S \in \mathcal{G}} \bm{\mathcal{B}}_{\pi(S)}$, if $\cap_{S \in \mathcal{G}} \bm{\mathcal{B}}_{\pi(S)} = \{\textbf{0}\}$, then we must have $|\cap_{S \in \mathcal{G}} \pi(S)| = 0$ (as the columns of $\mathbf{B}_{\pi(S)}$ are linearly independent) and \eqref{cond} is trivially true. Suppose then that the intersection is not the zero vector. Keeping in mind that $d(U,V) \leq d(U',V)$ whenever $U \subseteq U'$ and applying (in order) Lem.~\ref{spanIntersectionLemma}, Lem.~\ref{DistanceToIntersectionLemma}, \eqref{eqdim}, \eqref{GapUpperBound}, and \eqref{Cdef2} gives:
 \begin{align}\label{randoml}
 d(\bm{\mathcal{B}}_{\cap \pi(\mathcal{G})}&, \bm{\mathcal{A}}_{\cap \mathcal{G}}  ) 
 \leq d\left( \cap_{S \in \mathcal{G}} \bm{\mathcal{B}}_{\pi(S)}, \cap_{S \in \mathcal{G}} \bm{\mathcal{A}}_S \right) \nonumber \\
@@ -568,7 +565,7 @@ d(\bm{\mathcal{B}}_{\cap \pi(\mathcal{G})}&, \bm{\mathcal{A}}_{\cap \mathcal{G}}
 \leq \frac{C_2 \varepsilon}{\max_i\|\mathbf{A}_i\|_2}. 
 \end{align}
 
-Since $\varepsilon < L_2(\mathbf{A}) / C_2$, by \eqref{delrho} the right-hand side in \eqref{randoml} is strictly less than one. Hence, $\dim(\bm{\mathcal{B}}_{\cap \pi(\mathcal{G})}) \leq \dim(\bm{\mathcal{A}}_{\cap \mathcal{G}})$ by \eqref{dimLem}, and \eqref{cond} follows from the linear independence of the columns of $\mathbf{A}_{S}$ and $\mathbf{B}_{\pi(S)}$ for all $S \in \mathcal{G}$.
+Since $\varepsilon < L_2(\mathbf{A}) / C_2$, by \eqref{delrho} the right-hand side in \eqref{randoml} is less than one. Hence, $\dim(\bm{\mathcal{B}}_{\cap \pi(\mathcal{G})}) \leq \dim(\bm{\mathcal{A}}_{\cap \mathcal{G}})$ by \eqref{dimLem}, and \eqref{cond} follows from the linear independence of the columns of $\mathbf{A}_{S}$ and $\mathbf{B}_{\pi(S)}$ for all $S \in \mathcal{G}$.
 
 Now, by Lem.~\ref{NonEmptyLemma}, the association $i \mapsto \cap \pi(h(i))$ defines an injective map $\bar \pi: J \to [\bar m]$ for some $J \in {[m] \choose p}$ with $p$ given by \eqref{pcond}, and we can be sure that $\mathbf{B}_{\bar \pi(i)} \neq \mathbf{0}$ for all $i \in J$ since the columns of $\mathbf{B}_{\pi(S)}$ are linearly independent for all $S \in \mathcal{H}$. It then follows from \eqref{eqdim} and \eqref{randoml} that $d\left( \bm{\mathcal{A}}_i, \bm{\mathcal{B}}_{\bar \pi(i)} \right) \leq C_2 \varepsilon / \max_i \|\mathbf{A}_i\|_2$ for all $i \in J$. Fixing $\bar \varepsilon = C_2\varepsilon$ and letting $c_i = \|\mathbf{A}_i\|_2^{-1}$, we thus have that for every basis vector $\mathbf{e}_i \in \mathbb{R}^m$ with $i \in J$ there exists some $\bar{c}_i \in \mathbb{R}$ such that $\|c_i\mathbf{A}\mathbf{e}_i - \bar{c}_i \mathbf{B}\mathbf{e}_{\bar \pi(i)}\|_2 \leq \bar \varepsilon < L_2(\mathbf{A}) \min_{i\in J} |c_i|$.  But this is exactly the supposition in \eqref{1D}, and the result follows from the case $k=1$ in Sec.~\ref{DUT} applied to the submatrix $\mathbf{A}_J$.
 \end{proof}
@@ -586,7 +583,7 @@ It can be checked that when $g$ is nonzero for a substitution of real numbers fo
 
 \begin{proof}[Proof (sketch) of Cor.~\ref{ProbabilisticCor}]
 First, note that if a set of measure spaces $\{(X_{\ell}, \Sigma_{\ell}, \nu_{\ell})\}_{\ell=1}^p$ has that $\nu_{\ell}$ is absolutely continuous with respect to $\mu$ for all $\ell \in [p]$, where $\mu$ is the standard Borel measure on $\mathbb{R}$, then the product measure $\prod_{\ell=1}^p \nu_{\ell}$ is absolutely continuous with respect to the standard Borel product measure on $\mathbb{R}^p$. % for space:  (e.g.,  \cite{folland2013real}). 
-By Thm.~\ref{robustPolythm}, there is a polynomial that is nonzero when $Y$ has a stable $k$-sparse representation in $\mathbb{R}^m$; in particular, stability holds with probability one.
+By Thm.~\ref{robustPolythm}, there is a polynomial that is nonzero when $Y$ has a stable $k$-sparse representation in $\mathbb{R}^m$; in particular, stability is almost sure.
 \end{proof}
 
 %\clearpage
