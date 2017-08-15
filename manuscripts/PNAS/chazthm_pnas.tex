@@ -111,7 +111,7 @@ Note that any particular solution $(\mathbf{B}, \mathbf{\bar x}_1 \ldots, \mathb
 \mathbf{A}\mathbf{x}_1 = \mathbf{A}\mathbf{x}_2 \implies \mathbf{x}_1 = \mathbf{x}_2, \ \ \ \text{for all $k$-sparse } \mathbf{x}_1, \mathbf{x}_2,
 \end{align}
 %
-which would be, in any case, necessary for uniqueness of the $\mathbf{x}_i$. Our concern here is solution stability in the practical setting of noise.
+which would be, in any case, necessary for uniqueness of the $\mathbf{x}_i$. Here, we study stability in the practical setting of noise.
 
 \begin{definition}\label{maindef}
 Fix $Y = \{ \mathbf{y}_1, \ldots, \mathbf{y}_N\} \subset \mathbb{R}^n$. We say $Y$ has a \textbf{$k$-sparse representation in $\mathbb{R}^m$} if there exists a matrix $\mathbf{A}$ and $k$-sparse $\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$ such that $\mathbf{y}_i = \mathbf{A}\mathbf{x}_i$ for all $i$. 
@@ -127,7 +127,7 @@ then there is some permutation matrix $\mathbf{P}$ and invertible diagonal matri
 
 To see how Def. \ref{maindef} directly relates to Prob. \ref{InverseProblem}, suppose that $Y$ has a stable $k$-sparse representation in $\mathbb{R}^m$ and fix $\delta_1, \delta_2$ to be the desired recovery accuracy in \eqref{def1}. Consider now any dataset $Z$ generated as in \eqref{LinearModel} with $\eta \leq \frac{1}{2} \varepsilon(\delta_1, \delta_2)$. Then from the triangle inequality, it follows that any matrix $\mathbf{B}$ and $k$-sparse $\mathbf{\bar x}_1, \ldots, \mathbf{\bar x}_N \in \mathbb{R}^m$ solving Prob.~\ref{InverseProblem} are necessarily within $\delta_1, \delta_2$ of the original dictionary $\mathbf{A}$ and sparse codes $\mathbf{x}_i$. 
 
-In the next section, we give precise statements of our main results, which include an explicit form for $\varepsilon(\delta_1, \delta_2)$. We then prove our main theorem (Thm.~\ref{DeterministicUniquenessTheorem}) in Sec.~\ref{DUT} after stating some additional definitions and lemmas required for the proof, including a useful result in combinatorial matrix analysis (Lem.~\ref{MainLemma}). We also provide an argument that extends our guarantees to the following more common optimization formulation of the dictionary learning problem (Cor.~\ref{SLCopt}).
+In the next section, we give precise statements of our main results, which include an explicit form for $\varepsilon(\delta_1, \delta_2)$. We then prove our main theorem (Thm.~\ref{DeterministicUniquenessTheorem}) in Sec.~\ref{DUT} after stating some additional definitions and lemmas required for the proof, including a useful result in combinatorial matrix analysis (Lem.~\ref{MainLemma}). We also provide an argument that extends our guarantees to the following more common optimization formulation of the dictionary learning problem (Thm.~\ref{SLCopt}).
 
 \begin{problem}\label{OptimizationProblem}
 Find $\mathbf{B}$ and \mbox{$\mathbf{\bar x}_1, \ldots, \mathbf{\bar x}_N \in \mathbb{R}^m$} that solve:
@@ -136,7 +136,7 @@ Find $\mathbf{B}$ and \mbox{$\mathbf{\bar x}_1, \ldots, \mathbf{\bar x}_N \in \m
 \text{subject to} \ \ \|\mathbf{z}_i - \mathbf{B}\mathbf{\bar x}_i\|_2 \leq \eta, \ \text{for all $i$}.
 \end{align}
 \end{problem}
-Finally, in Sec.~\ref{Discussion}, we present several applications of our findings.
+Finally, in Sec.~\ref{Discussion}, we discuss both theoretical and practical applications of our main mathematical findings.
 
 \section{Results}\label{Results}
 
@@ -164,14 +164,14 @@ We generalize the  lower bound to a domain-restricted \emph{union of subspaces} 
 L_\mathcal{H}(\mathbf{M}) := \frac{1}{\sqrt{k}} \inf \left\{ \frac{\|\mathbf{M}_S\mathbf{x}\|_2}{ \|\mathbf{x}\|_2} : S \in \mathcal{H}, \ \ \mathbf{x} \in \mathbb{R}^{|S|} \right\},
 \end{align} 
 %
-where we write $L_{k}$ when $\mathcal{H} = {[m] \choose k}$.\footnote{We note that $1 - \sqrt{k} L_k(\mathbf{M})$ is known as the asymmetric lower restricted isometry constant \cite{Blanchard2011}.} Clearly, for any $\mathbf{M}$ satisfying \eqref{SparkCondition}, we have $L_{k'}(\mathbf{M}) > 0$ for  $k' \leq 2k$. Note that if $\mathcal{H}$ covers $[m]$ t(i.e., $\cup \mathcal{H} = [m]$), then $L_2 \geq L_{2\mathcal{H}}$.
+where we write $L_{k}$ when $\mathcal{H} = {[m] \choose k}$.\footnote{We note that $1 - \sqrt{k} L_k(\mathbf{M})$ is known as the asymmetric lower restricted isometry constant \cite{Blanchard2011}.} Clearly, for any $\mathbf{M}$ satisfying \eqref{SparkCondition}, we have $L_{k'}(\mathbf{M}) > 0$ for  $k' \leq 2k$. Note that if $\mathcal{H}$ \textit{covers} $[m]$ (i.e., $\cup \mathcal{H} = [m]$), then $L_2 \geq L_{2\mathcal{H}}$.
  
 A vector $\mathbf{x}$ is said to be \emph{supported} in $S \subseteq [m]$ when $\mathbf{x} \in \text{\rm span}\{\mathbf{e}_j: j\in S\}$, where $\mathbf{e}_j$ are the standard basis in $\mathbb R^m$. 
 %Denote by $\mathbf{x}^J$ the subvector formed from the entries of $\mathbf{x}$ indexed by $J$. 
-A set of $k$-sparse vectors is said to be in \emph{general linear position} when any $k$ of them are linearly independent. The following is a precise statement of our main result.  Only the quantity $C_1$ is undefined until later (in Sec.~\ref{DUT}, Eq.~\eqref{Cdef1}).
+A set of $k$-sparse vectors is said to be in \emph{general linear position} when any $k$ of them are linearly independent. The following is a precise statement of our main result.  Only the quantity $C_1 = C_1(\mathbf{A}, \{\mathbf{x}_i\}_{i=1}^N, \mathcal{H})$ is undefined (until Sec.~\ref{DUT}, Eq.~\eqref{Cdef1}).
 
 \begin{theorem}\label{DeterministicUniquenessTheorem}
-Fix an $n \times m$ matrix $\mathbf{A}$ with $L_{2\mathcal{H}}(\mathbf{A}) > 0$ for an $r$-regular $\mathcal{H} \subseteq {[m] \choose k}$ with the SIP. If \mbox{$\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$} contains, for each $S \in \mathcal{H}$, more than $(k-1){m \choose k}$ $k$-sparse vectors in general linear position supported in $S$, then there is a constant $C_1 > 0$ with the following holding for all\footnote{The condition $\varepsilon < L_2(\mathbf{A}) /C_1$ is necessary; otherwise,  with \mbox{$\mathbf{A}$ = $\mathbf{I}$} and $\mathbf{a}_i = \mathbf{e}_i$, there is a $\mathbf{B}$ and $1$-sparse $\mathbf{b}_i$ with $|\mathbf{A}\mathbf{a}_i - \mathbf{B}\mathbf{b}_i|_2 \leq \varepsilon$ violating \eqref{Cstable}.} $\varepsilon < L_{2}(\mathbf{A}) / C_1$:
+Fix an $n \times m$ matrix $\mathbf{A}$ with $L_{2\mathcal{H}}(\mathbf{A}) > 0$ for an $r$-regular $\mathcal{H} \subseteq {[m] \choose k}$ with the SIP. If \mbox{$\{\mathbf{x}_1, \ldots, \mathbf{x}_N\} \subset \mathbb{R}^m$} contains, for each $S \in \mathcal{H}$, more than $(k-1){m \choose k}$ $k$-sparse vectors in general linear position supported in $S$, then there is $C_1 > 0$ with the following holding for all\footnote{The condition $\varepsilon < L_2(\mathbf{A}) /C_1$ is necessary; otherwise,  with \mbox{$\mathbf{A}$ = $\mathbf{I}$} and $\mathbf{x}_i = \mathbf{e}_i$, there is $\mathbf{\bar{x}}$ and $1$-sparse $\mathbf{b}_i$ with $|\mathbf{A}\mathbf{x}_i - \mathbf{B}\mathbf{\bar{x}}_i|_2 \leq \varepsilon$, violating \eqref{Cstable}.} $\varepsilon < L_{2}(\mathbf{A}) / C_1$:
 
 Every $n \times \bar m$ matrix $\mathbf{B}$ for which there exist $k$-sparse $\mathbf{\bar x}_1, \ldots, \mathbf{\bar x}_N$ satisfying \mbox{$\|\mathbf{A}\mathbf{x}_i - \mathbf{B}\mathbf{\bar x}_i\|_2 \leq \varepsilon$} for all $i$ has $\bar m \geq m$ and, provided $\bar m < mr/(r-1)$,
 \begin{align}\label{Cstable}
@@ -191,34 +191,35 @@ where $\mathbf{x}_i$ and $\mathbf{\bar x}_i$ here represent subvectors formed fr
 
 %We delay defining the explicit constant $C_1$ until Section \ref{DUT} (\eqref{Cdef1}).
 %To be clear, the implication of Thm.~\ref{DeterministicUniquenessTheorem} is that $Y = \{\mathbf{Ax}_1, \ldots, \mathbf{Ax}_N\}$ has a stable $k$-sparse representation in $\mathbb{R}^m$, with \eqref{def1} guaranteed provided $\varepsilon$ in Def.~\ref{maindef} does not exceed: 
-To be clear, Thm.~\ref{DeterministicUniquenessTheorem} says that the smaller the difference $\bar m - m$, the more columns and coefficients of the original dictionary $\mathbf{A}$ and codes $\mathbf{x}_i$ are contained (up to noise) in the appropriately scaled dictionary $\mathbf{B}$ and codes $\mathbf{\bar x}_i$. When $\bar m = m$, the theorem implies that  $Y = \{\mathbf{Ax}_1, \ldots, \mathbf{Ax}_N\}$ has a stable $k$-sparse representation in $\mathbb{R}^m$, with inequality \eqref{def1} guaranteed provided $\varepsilon$ in Def.~\ref{maindef} does not exceed: 
+In words, Thm.~\ref{DeterministicUniquenessTheorem} says that the smaller the difference $\bar m - m$ between recovery and original latent dictionary sizes, the more columns and coefficients of the original dictionary $\mathbf{A}$ and codes $\mathbf{x}_i$ are contained (up to noise) in the appropriately scaled dictionary $\mathbf{B}$ and codes $\mathbf{\bar x}_i$.  In the particular case when $\bar m = m$, the theorem directly implies that  $Y = \{\mathbf{Ax}_1, \ldots, \mathbf{Ax}_N\}$ has a stable $k$-sparse representation in $\mathbb{R}^m$, with inequalities \eqref{def1} guaranteed provided $\varepsilon$ in Def.~\ref{maindef} does not exceed: 
 \begin{align}\label{epsdel}
-\varepsilon(\delta_1, \delta_2) := \min \left\{ \frac{\delta_1}{ C_1 }, \frac{ \delta_2 L_{2k}(\mathbf{A})}{ 1 + C_1 \left( \max_{i \in [N]} \|\mathbf{x}_i\|_1  + \delta_2 \right) } \right\}.
+\varepsilon(\delta_1, \delta_2) := \min \left\{ \frac{\delta_1}{ C_1 }, \frac{ \delta_2 L_{2k}(\mathbf{A})}{ 1 + C_1 \left( \delta_2 + \max_{i \in [N]} \|\mathbf{x}_i\|_1  \right) } \right\}.
 \end{align}
 
-A strong practical implication of this result is the following: there is an effective procedure by which one can affirm if one's proposed solution $(\mathbf{B}, \mathbf{\bar x}_1, \ldots, \mathbf{x}_N)$ to Prob.~\ref{InverseProblem} is indeed unique (up to noise and inherent ambiguities). One simply need check that $\mathbf{B}$ and the $\mathbf{\bar x}_i$ satisfy the assumptions of Thm.~\ref{DeterministicUniquenessTheorem} on $\mathbf{A}$ and the $\mathbf{x}_i$, respectively.
-
-%In fact, a more general result (stated clearly in the next section) can be gleaned from our method of proving Thm.~\ref{DeterministicUniquenessTheorem}. Briefly, in cases where $\mathbf{B}$ has $\bar m \neq m$ columns, or $\mathcal{H}$ is not regular or only partially satisfying the SIP, a relation between $\bar m$ and the degree sequence of nodes in $\mathcal{H}$ gives indices $J \subseteq [m]$ defining a submatrix $\mathbf{A}_J$ and subvectors $\mathbf{x}_i^J$ that are recoverable in the sense of \eqref{Cstable} and \eqref{b-PDa}. For example, if $\mathcal{H}$ is $\ell$-regular with the SIP but $m \leq \bar m < m\ell/(\ell - 1)$ then we have nonzero $|J| = \bar m - \ell(\bar m - m)$. The implication here is that the smaller the difference $\bar m - m$, the more columns and code entries of the original $n \times m$ dictionary $\mathbf{A}$ and codes $\mathbf{x}_i$ contained (up to noise) in the appropriately scaled $n \times \bar m$ dictionary $\mathbf{B}$ and codes $\mathbf{\bar x}_i$. When $\bar m = m$, we recover Thm.~\ref{DeterministicUniquenessTheorem}.
-
-%In fact, even if $\mathcal{H}$ is not regular or only partially satisfies the SIP, a relation between $\bar m$ and the degree sequence of nodes in $\mathcal{H}$ may give the indices $J \subseteq [m]$. For sake of brevity, we delay to the next section a clear statement of this more general result.
-
-Regarding the assumptions of Thm.~\ref{DeterministicUniquenessTheorem}, it so happens that sparse codes $\mathbf{x}_i$ in general linear position are straightforward to produce with a ``Vandermonde'' matrix construction \cite{Hillar15}, leading to the following.
+Note that sparse codes $\mathbf{x}_i$ with a shared support that are in general linear position are straightforward to produce using a ``Vandermonde'' matrix construction (i.e., use the columns of the matrix $[\gamma_{i}^j]_{i,j=1}^{k,N}$, for distinct nonzero $\gamma_i$).  Thus, the assumptions of Thm.~\ref{DeterministicUniquenessTheorem} are easily met, leading to the following direct application to uniqueness in dictionary learning, Prob.~\ref{InverseProblem}.
 
 \begin{corollary}\label{DeterministicUniquenessCorollary}
 Given a regular hypergraph $\mathcal{H} \subseteq {[m] \choose k}$ with the SIP, there are $N =  |\mathcal{H}| \left[ (k-1){m \choose k} + 1  \right]$ vectors \mbox{$\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$} such that every matrix $\mathbf{A}$ with $L_{2\mathcal{H}}(\mathbf{A}) > 0$ generates a dataset $Y = \{\mathbf{A}\mathbf{x}_1, \ldots, \mathbf{A}\mathbf{x}_N\}$ with a stable $k$-sparse representation in $\mathbb{R}^m$.
 \end{corollary}
 
-One can also easily verify that for every $k < m$, there is a regular $k$-uniform hypergraph that satisfies the SIP; for instance, take $\mathcal{H}$ to be the consecutive intervals of length $k$ in some cyclic order on $[m]$, for which Cor.~\ref{DeterministicUniquenessCorollary} implies the lower bound for sample size $N$ from the introduction. In many cases, however, the SIP is achievable with far fewer supports; for example, when $k = \sqrt{m}$, take $\mathcal{H}$ to be the $2k$ rows and columns formed by arranging $[m]$ in a square grid. 
+One can also easily verify that for every $k < m$, there is a regular $k$-uniform hypergraph with the SIP; for instance, take $\mathcal{H}$ to be the consecutive intervals of length $k$ in some cyclic order on $[m]$.  In this case, a direct consequence of Cor.~\ref{DeterministicUniquenessCorollary} is rigorous verification of the lower bound \mbox{$N = m(k-1){m \choose k} + m$} for sufficient sample size from the introduction. In many cases, however, the SIP is achievable with far fewer supports.  For example, when $k = \sqrt{m}$, simply take $\mathcal{H}$ to be the $2k$ rows and columns formed by arranging $[m]$ in a square grid.
+
+Another practical implication of this result is the following: there is an effective procedure by which one can affirm if one's proposed solution $(\mathbf{B}, \mathbf{\bar x}_1, \ldots, \mathbf{x}_N)$ to Prob.~\ref{InverseProblem} is indeed unique (up to noise and inherent ambiguities). One simply checks that $\mathbf{B}$ and the $\mathbf{\bar x}_i$ satisfy the respective assumptions of Thm.~\ref{DeterministicUniquenessTheorem}.  %. on $\mathbf{A}$ and the $\mathbf{x}_i$, respectively.
+
+%In fact, a more general result (stated clearly in the next section) can be gleaned from our method of proving Thm.~\ref{DeterministicUniquenessTheorem}. Briefly, in cases where $\mathbf{B}$ has $\bar m \neq m$ columns, or $\mathcal{H}$ is not regular or only partially satisfying the SIP, a relation between $\bar m$ and the degree sequence of nodes in $\mathcal{H}$ gives indices $J \subseteq [m]$ defining a submatrix $\mathbf{A}_J$ and subvectors $\mathbf{x}_i^J$ that are recoverable in the sense of \eqref{Cstable} and \eqref{b-PDa}. For example, if $\mathcal{H}$ is $\ell$-regular with the SIP but $m \leq \bar m < m\ell/(\ell - 1)$ then we have nonzero $|J| = \bar m - \ell(\bar m - m)$. The implication here is that the smaller the difference $\bar m - m$, the more columns and code entries of the original $n \times m$ dictionary $\mathbf{A}$ and codes $\mathbf{x}_i$ contained (up to noise) in the appropriately scaled $n \times \bar m$ dictionary $\mathbf{B}$ and codes $\mathbf{\bar x}_i$. When $\bar m = m$, we recover Thm.~\ref{DeterministicUniquenessTheorem}.
+
+%In fact, even if $\mathcal{H}$ is not regular or only partially satisfies the SIP, a relation between $\bar m$ and the degree sequence of nodes in $\mathcal{H}$ may give the indices $J \subseteq [m]$. For sake of brevity, we delay to the next section a clear statement of this more general result.
+
 
 %As mentioned above, there exist $k$-uniform regular hypergraphs $\mathcal{H}$ with the SIP having cardinality $|\mathcal{H}| = m$, 
 
 We furthermore note that unlike the requirements of previous works \cite{li2004analysis, Georgiev05, Aharon06, Hillar15}, matrix $\mathbf{A}$ need not satisfy the spark condition to be recoverable from data. As a simple example for $k=2$, let $\mathbf{A} = [ \mathbf{e}_1, \ldots, \mathbf{e}_5, \mathbf{v}]$ where $\mathbf{v} = \mathbf{e}_1 + \mathbf{e}_3 + \mathbf{e}_5$, and take $\mathcal{H}$ to be the set of all consecutive pairs of $[m]$ arranged in cyclic order. Then, $\mathbf{A}$ satisfies the assumptions of Thm.~\ref{DeterministicUniquenessTheorem} but not the spark condition. %(since $\{ \mathbf{A}_1, \mathbf{A}_3, \mathbf{A}_5, \mathbf{A}_6\}$ is not a linearly independent set).
 
-There are other less direct consequences of Thm.~\ref{DeterministicUniquenessTheorem}, such as the following implication for optimization Prob.~\ref{SLCopt}.
+There are other less direct consequences of Thm.~\ref{DeterministicUniquenessTheorem}.  For instance, we use it to prove uniqueness for the optimization formulation of dictionary learning, Prob.~\ref{SLCopt}, the main object of interest for those applying dictionary learning to data.
 
-\begin{corollary}\label{SLCopt}
+\begin{theorem}\label{SLCopt}
 If the assumptions of Thm.\ref{DeterministicUniquenessTheorem} hold, only now with more than $(k-1)\left[ {\bar m \choose k} + |\mathcal{H}|k{\bar m \choose k-1}\right]$ vectors $\mathbf{x}_i$ supported in each $S \in \mathcal{H}$, then all solutions to Prob.~\ref{OptimizationProblem} necessarily satisfy implications \eqref{Cstable} and \eqref{b-PDa} of Thm.~\ref{DeterministicUniquenessTheorem}.
-\end{corollary}
+\end{theorem}
 
 Another extension of Thm.~\ref{DeterministicUniquenessTheorem} arises from the following analytic characterization of the spark condition.  Let $\mathbf{A}$  be the $n \times m$ matrix of $nm$ indeterminates $A_{ij}$. When real numbers are substituted for $A_{ij}$, the resulting matrix satisfies \eqref{SparkCondition} if and only if the following polynomial is nonzero:
 \begin{align*}
@@ -248,7 +249,7 @@ Random noisy (linear) compression of sparse neural activities is decodable by an
 \end{proposition}
 %\cite{rehnsommer2007, rozell2007neurally, ganguli2012compressed, hu2014hebbian}
 
-\section{Proofs of Theorem~\ref{DeterministicUniquenessTheorem} and Corollary~\ref{SLCopt}}\label{DUT}
+\section{Proofs of Theorems~\ref{DeterministicUniquenessTheorem} and ~\ref{SLCopt}}\label{DUT}
 
 %%%%%%%%%%%%%%
 % need to cut maybe: 
@@ -417,7 +418,7 @@ d(\bm{\mathcal{A}}_S, \bm{\mathcal{B}}_{\bar S})
 where the second inequality is due to $L(\mathbf{AX}_{K}) \geq L_k(\mathbf{AX}_{I(S)})$ and \eqref{Cdef1}. Finally, apply Lem.~\ref{MainLemma} with $\varepsilon < L_2(\mathbf{A})/C_1$.
 \end{proof}
 
-\begin{proof}[Proof of Cor.~\ref{SLCopt}]
+\begin{proof}[Proof of Thm.~\ref{SLCopt}]
 We bound the number of $k$-sparse $\mathbf{\bar x}_i$ and then apply Thm.~\ref{DeterministicUniquenessCorollary}. 
 %We now apply this fact to bound the number of $k$-sparse $\mathbf{\bar x}_i$. 
 Let $n_p$ be the number of $\mathbf{\bar x}_i$ with $\|\mathbf{\bar x}_i\|_0 = p$.
