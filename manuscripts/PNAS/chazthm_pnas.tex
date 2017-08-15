@@ -216,12 +216,14 @@ Note that sparse codes $\mathbf{x}_i$ with a shared support that are in general 
 %>>>>>>> d1407a275dc391dabad7bb62d3e659f9a4ac4624
 
 \begin{corollary}\label{DeterministicUniquenessCorollary}
-Given a regular hypergraph $\mathcal{H} \subseteq {[m] \choose k}$ with the SIP, there are $N =  |\mathcal{H}| \left[ (k-1){m \choose k} + 1  \right]$ vectors \mbox{$\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$} such that every matrix $\mathbf{A}$ with $L_{2\mathcal{H}}(\mathbf{A}) > 0$ generates a dataset $Y = \{\mathbf{A}\mathbf{x}_1, \ldots, \mathbf{A}\mathbf{x}_N\}$ with a stable $k$-sparse representation in $\mathbb{R}^m$.
+Given a regular hypergraph $\mathcal{H} \subseteq {[m] \choose k}$ with the SIP, there are $N =  |\mathcal{H}| \left[ (k-1){m \choose k} + 1  \right]$ vectors \mbox{$\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$} such that every matrix $\mathbf{A}$ with $L_{2k}(\mathbf{A}) > 0$ generates a dataset $Y = \{\mathbf{A}\mathbf{x}_1, \ldots, \mathbf{A}\mathbf{x}_N\}$ with a stable $k$-sparse representation in $\mathbb{R}^m$.
 \end{corollary}
+% Needs to be L_{2k}(A) > 0 to guarantee sparse vector recovery	
 
 One can also easily verify that for every $k < m$, there is a regular $k$-uniform hypergraph with the SIP; for instance, take $\mathcal{H}$ to be the consecutive intervals of length $k$ in some cyclic order on $[m]$.  In this case, a direct consequence of Cor.~\ref{DeterministicUniquenessCorollary} is rigorous verification of the lower bound \mbox{$N = m(k-1){m \choose k} + m$} for sufficient sample size from the introduction. In many cases, however, the SIP is achievable with far fewer supports.  For example, when $k = \sqrt{m}$, simply take $\mathcal{H}$ to be the $2k$ rows and columns formed by arranging $[m]$ in a square grid.
 
-Another practical implication of Thm.\ref{DeterministicUniquenessTheorem} is the following: there is an effective procedure sufficient to affirm if a proposed solution $(\mathbf{B}, \mathbf{\bar x}_1, \ldots, \mathbf{x}_N)$ to Prob.~\ref{InverseProblem} is indeed unique (up to noise and inherent ambiguities). One simply checks that $\mathbf{B}$ and the $\mathbf{\bar x}_i$ satisfy the respective assumptions of Thm.~\ref{DeterministicUniquenessTheorem}.  
+Another practical implication of Thm.\ref{DeterministicUniquenessTheorem} is the following: there is an effective procedure sufficient to affirm if a proposed solution to Prob.~\ref{InverseProblem} is indeed unique (up to noise and inherent ambiguities). One simply checks that the matrix and sparse codes satisfy the respective assumptions of Thm.~\ref{DeterministicUniquenessTheorem} on $\mathbf{A}$ and the $\mathbf{x}_i$.  
+%Another practical implication of Thm.\ref{DeterministicUniquenessTheorem} is the following: there is an effective procedure sufficient to affirm if a proposed solution $(\mathbf{B}, \mathbf{\bar x}_1, \ldots, \mathbf{x}_N)$ to Prob.~\ref{InverseProblem} is indeed unique (up to noise and inherent ambiguities). One simply checks that $\mathbf{B}$ and the $\mathbf{\bar x}_i$ satisfy the respective assumptions of Thm.~\ref{DeterministicUniquenessTheorem}.  
 %. on $\mathbf{A}$ and the $\mathbf{x}_i$, respectively.
 
 %In fact, a more general result (stated clearly in the next section) can be gleaned from our method of proving Thm.~\ref{DeterministicUniquenessTheorem}. Briefly, in cases where $\mathbf{B}$ has $\bar m \neq m$ columns, or $\mathcal{H}$ is not regular or only partially satisfying the SIP, a relation between $\bar m$ and the degree sequence of nodes in $\mathcal{H}$ gives indices $J \subseteq [m]$ defining a submatrix $\mathbf{A}_J$ and subvectors $\mathbf{x}_i^J$ that are recoverable in the sense of \eqref{Cstable} and \eqref{b-PDa}. For example, if $\mathcal{H}$ is $\ell$-regular with the SIP but $m \leq \bar m < m\ell/(\ell - 1)$ then we have nonzero $|J| = \bar m - \ell(\bar m - m)$. The implication here is that the smaller the difference $\bar m - m$, the more columns and code entries of the original $n \times m$ dictionary $\mathbf{A}$ and codes $\mathbf{x}_i$ contained (up to noise) in the appropriately scaled $n \times \bar m$ dictionary $\mathbf{B}$ and codes $\mathbf{\bar x}_i$. When $\bar m = m$, we recover Thm.~\ref{DeterministicUniquenessTheorem}.
@@ -408,7 +410,9 @@ For subspaces $V_1, \ldots, V_\ell \subseteq \mathbb{R}^m$, set $r := 1$ when $\
 r(\{V_i\}_{i=1}^\ell) := 1 - \left(1 -  \max \prod_{i=1}^{\ell-1} \sin^2  \theta \left(V_i, \cap_{j>i} V_j \right)  \right)^{1/2},
 \end{align*} 
 %
-where the maximum is taken over all orderings\footnote{We modify the quantity in \cite{Deutsch12} in this way since the subspace ordering is irrelevant to our purpose.} of the $V_i$ and the angle $\theta \in (0,\frac{\pi}{2}]$ is defined implicitly as \cite[Def.~9.4]{Deutsch12}:
+where the maximum is taken over all orderings 
+%\footnote{We modify the quantity in \cite{Deutsch12} in this way since the subspace ordering is irrelevant to our purpose.} 
+of the $V_i$ and the angle $\theta \in (0,\frac{\pi}{2}]$ is defined implicitly as \cite[Def.~9.4]{Deutsch12}:
 \begin{align*}
 \cos{\theta(U,W)} := \max\left\{ |\langle \mathbf{u}, \mathbf{w} \rangle|: \substack{ \mathbf{u} \in U \cap (U \cap W)^\perp, \ \|\mathbf{u}\|_2 \leq 1 \\ \mathbf{w} \in W \cap (U \cap W)^\perp, \  \|\mathbf{w}\|_2 \leq 1 } \right\}.
 \end{align*}
