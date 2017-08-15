@@ -111,7 +111,7 @@ Note that any particular solution $(\mathbf{B}, \mathbf{\bar x}_1 \ldots, \mathb
 \mathbf{A}\mathbf{x}_1 = \mathbf{A}\mathbf{x}_2 \implies \mathbf{x}_1 = \mathbf{x}_2, \ \ \ \text{for all $k$-sparse } \mathbf{x}_1, \mathbf{x}_2,
 \end{align}
 %
-which would be, in any case, necessary for uniqueness of the $\mathbf{x}_i$. Our concern here is solution stability in the practical setting of noise.
+which would be, in any case, necessary for uniqueness of the $\mathbf{x}_i$. Our concern is stability in the practical setting of noise.
 
 \begin{definition}\label{maindef}
 Fix $Y = \{ \mathbf{y}_1, \ldots, \mathbf{y}_N\} \subset \mathbb{R}^n$. We say $Y$ has a \textbf{$k$-sparse representation in $\mathbb{R}^m$} if there exists a matrix $\mathbf{A}$ and $k$-sparse $\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$ such that $\mathbf{y}_i = \mathbf{A}\mathbf{x}_i$ for all $i$. 
@@ -124,6 +124,8 @@ then there is some permutation matrix $\mathbf{P}$ and invertible diagonal matri
 \|\mathbf{A}_j - \mathbf{BPD}_j\|_2 \leq \delta_1 \ \ \text{and} \ \ \|\mathbf{x}_i - \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\bar x}_i\|_1 \leq \delta_2.
 \end{align}
 \end{definition}
+
+\pagebreak
 
 To see how Def. \ref{maindef} directly relates to Prob. \ref{InverseProblem}, suppose that $Y$ has a stable $k$-sparse representation in $\mathbb{R}^m$ and fix $\delta_1, \delta_2$ to be the desired recovery accuracy in \eqref{def1}. Consider now any dataset $Z$ generated as in \eqref{LinearModel} with $\eta \leq \frac{1}{2} \varepsilon(\delta_1, \delta_2)$. Then from the triangle inequality, it follows that any matrix $\mathbf{B}$ and $k$-sparse $\mathbf{\bar x}_1, \ldots, \mathbf{\bar x}_N \in \mathbb{R}^m$ solving Prob.~\ref{InverseProblem} are necessarily within $\delta_1, \delta_2$ of the original dictionary $\mathbf{A}$ and sparse codes $\mathbf{x}_i$. 
 
