@@ -144,7 +144,7 @@ Finally, we present several applications in Discussion Sec.~\ref{Discussion}.
 
 \section{Results}\label{Results}
 
-Before stating our main result, we identify combinatorial criteria on the support sets of the generating codes $\mathbf{x}_i$ that imply stable sparse representations. Letting $\{1, \ldots, m\}$ be denoted $[m]$, its power set $2^{[m]}$, and ${[m] \choose k}$ the set of subsets of $[m]$ of size $k$, we say a hypergraph $\mathcal{H} \subseteq 2^{[m]}$ on vertices $[m]$ is \textit{$k$-uniform} when in fact $\mathcal{H} \subseteq {[m] \choose k}$. The \emph{degree} $\deg(i)$ of a node $i \in [m]$ is the number of sets in $\mathcal{H}$ that contain $i$, and we say $\mathcal{H}$ is \emph{regular} when for some $r$ we have $\deg(i) = r$ for all $i$ (for given $r$, we say $\mathcal{H}$ is \textit{$r$-regular}). We also write $\mathcal{H} + \mathcal{H} := \{ S \cup S': S, S' \in \mathcal{H}\}$.
+Before stating our main result, we identify combinatorial criteria on the support sets of the generating codes $\mathbf{x}_i$ that imply stable sparse representations. Letting $\{1, \ldots, m\}$ be denoted $[m]$, its power set $2^{[m]}$, and ${[m] \choose k}$ the set of subsets of $[m]$ of size $k$, we say a hypergraph $\mathcal{H} \subseteq 2^{[m]}$ on vertices $[m]$ is \textit{$k$-uniform} when in fact $\mathcal{H} \subseteq {[m] \choose k}$. The \emph{degree} $\deg(i)$ of a node $i \in [m]$ is the number of sets in $\mathcal{H}$ that contain $i$, and we say $\mathcal{H}$ is \emph{regular} when for some $r$ we have $\deg(i) = r$ for all $i$ (for given $r$, we say $\mathcal{H}$ is \textit{$r$-regular}). We also write $2\mathcal{H} := \{ S \cup S': S, S' \in \mathcal{H}\}$.
 
 \begin{definition}\label{sip}
 Given $\mathcal{H} \subseteq 2^{[m]}$, the \textbf{star} $h(i)$ is the collection of sets in $\mathcal{H}$ containing $i$. We say $\mathcal{H}$ has the \textbf{singleton intersection property} (\textbf{SIP}) when $\cap h(i) = \{i\}$ for all $i \in [m]$.
@@ -199,22 +199,24 @@ To be clear, Thm.~\ref{DeterministicUniquenessTheorem} says that the smaller the
 \begin{align}\label{epsdel}
 \varepsilon(\delta_1, \delta_2) := \min \left\{ \frac{\delta_1}{ C_1 }, \frac{ \delta_2 L_{2k}(\mathbf{A})}{ 1 + C_1 \left( \max_{i \in [N]} \|\mathbf{x}_i\|_1  + \delta_2 \right) } \right\}.
 \end{align}
+
+A strong practical implication of this result is the following: there is an effective procedure by which one can affirm if one's proposed solution $(\mathbf{B}, \mathbf{\bar x}_1, \ldots, \mathbf{x}_N)$ to Prob.~\ref{InverseProblem} is indeed unique (up to noise and inherent ambiguities). One simply need check that $\mathbf{B}$ and the $\mathbf{\bar x}_i$ satisfy the assumptions of Thm.~\ref{DeterministicUniquenessTheorem} on $\mathbf{A}$ and the $\mathbf{x}_i$, respectively.
+
 %In fact, a more general result (stated clearly in the next section) can be gleaned from our method of proving Thm.~\ref{DeterministicUniquenessTheorem}. Briefly, in cases where $\mathbf{B}$ has $\bar m \neq m$ columns, or $\mathcal{H}$ is not regular or only partially satisfying the SIP, a relation between $\bar m$ and the degree sequence of nodes in $\mathcal{H}$ gives indices $J \subseteq [m]$ defining a submatrix $\mathbf{A}_J$ and subvectors $\mathbf{x}_i^J$ that are recoverable in the sense of \eqref{Cstable} and \eqref{b-PDa}. For example, if $\mathcal{H}$ is $\ell$-regular with the SIP but $m \leq \bar m < m\ell/(\ell - 1)$ then we have nonzero $|J| = \bar m - \ell(\bar m - m)$. The implication here is that the smaller the difference $\bar m - m$, the more columns and code entries of the original $n \times m$ dictionary $\mathbf{A}$ and codes $\mathbf{x}_i$ contained (up to noise) in the appropriately scaled $n \times \bar m$ dictionary $\mathbf{B}$ and codes $\mathbf{\bar x}_i$. When $\bar m = m$, we recover Thm.~\ref{DeterministicUniquenessTheorem}.
 
 %In fact, even if $\mathcal{H}$ is not regular or only partially satisfies the SIP, a relation between $\bar m$ and the degree sequence of nodes in $\mathcal{H}$ may give the indices $J \subseteq [m]$. For sake of brevity, we delay to the next section a clear statement of this more general result.
 
-%Regarding the assumptions of Thm.~\ref{DeterministicUniquenessTheorem}, 
-It so happens that producing sparse codes $\mathbf{x}_i$ in general linear position is straightforward with a ``Vandermonde'' matrix construction (e.g., see \cite{Hillar15}).
+Regarding the assumptions of Thm.~\ref{DeterministicUniquenessTheorem}, it so happens that sparse codes $\mathbf{x}_i$ in general linear position are straightforward to produce with a ``Vandermonde'' matrix construction \cite{Hillar15}.
 
 \begin{corollary}\label{DeterministicUniquenessCorollary}
 Given a regular hypergraph $\mathcal{H} \subseteq {[m] \choose k}$ with the SIP, there are $N =  |\mathcal{H}| \left[ (k-1){m \choose k} + 1  \right]$ vectors \mbox{$\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$} such that every matrix $\mathbf{A}$ with $L_{2\mathcal{H}}(\mathbf{A}) > 0$ generates a dataset $Y = \{\mathbf{A}\mathbf{x}_1, \ldots, \mathbf{A}\mathbf{x}_N\}$ with a stable $k$-sparse representation in $\mathbb{R}^m$.
 \end{corollary}
 
-One can easily verify that for every $k < m$, there is a regular $k$-uniform hypergraph that satisfies the SIP; for instance, take $\mathcal{H}$ to be the consecutive intervals of length $k$ in some cyclic order on $[m]$, for which Cor.~\ref{DeterministicUniquenessCorollary} implies the lower bound for sample size $N$ from the introduction. In many cases, however, the SIP is achievable with far fewer supports; for example, when $k = \sqrt{m}$, take $\mathcal{H}$ to be the $2k$ rows and columns formed by arranging $[m]$ in a square grid. 
+One can also easily verify that for every $k < m$, there is a regular $k$-uniform hypergraph that satisfies the SIP; for instance, take $\mathcal{H}$ to be the consecutive intervals of length $k$ in some cyclic order on $[m]$, for which Cor.~\ref{DeterministicUniquenessCorollary} implies the lower bound for sample size $N$ from the introduction. In many cases, however, the SIP is achievable with far fewer supports; for example, when $k = \sqrt{m}$, take $\mathcal{H}$ to be the $2k$ rows and columns formed by arranging $[m]$ in a square grid. 
 
 %As mentioned above, there exist $k$-uniform regular hypergraphs $\mathcal{H}$ with the SIP having cardinality $|\mathcal{H}| = m$, 
 
-We note that unlike what previous works have required, $\mathbf{A}$ need not satisfy the spark condition to be recoverable from data. As an example for $k=2$, let $\mathbf{A} = [ \mathbf{e}_1, \ldots, \mathbf{e}_5, \mathbf{v}]$ where $\mathbf{v} = \mathbf{e}_1 + \mathbf{e}_3 + \mathbf{e}_5$. and take $\mathcal{H}$ to be the set of all consecutive pairs of $[m]$ arranged in cyclic order. Then $\mathbf{A}$ satisfies the assumptions of Thm.~\ref{DeterministicUniquenessTheorem} without satisfying the spark condition. %(since $\{ \mathbf{A}_1, \mathbf{A}_3, \mathbf{A}_5, \mathbf{A}_6\}$ is not a linearly independent set).
+We furthermore note that unlike what previous works \cite{li2004analysis, Georgiev05, Aharon06, Hillar15} have required, $\mathbf{A}$ need not satisfy the spark condition to be recoverable from data. As an example for $k=2$, let $\mathbf{A} = [ \mathbf{e}_1, \ldots, \mathbf{e}_5, \mathbf{v}]$ where $\mathbf{v} = \mathbf{e}_1 + \mathbf{e}_3 + \mathbf{e}_5$. and take $\mathcal{H}$ to be the set of all consecutive pairs of $[m]$ arranged in cyclic order. Then $\mathbf{A}$ satisfies the assumptions of Thm.~\ref{DeterministicUniquenessTheorem} without satisfying the spark condition. %(since $\{ \mathbf{A}_1, \mathbf{A}_3, \mathbf{A}_5, \mathbf{A}_6\}$ is not a linearly independent set).
 
 There are other less direct consequences of Thm.~\ref{DeterministicUniquenessTheorem}. For instance, it has the following implications for the optimization problem posed in Prob.~\ref{SLCopt}:
 
@@ -247,15 +249,12 @@ Fix $k < m$ and $n \geq \min(2k, m)$ and let the entries of $\mathbf{A} \in \mat
 
 Thus, choosing the dictionary and sparse codes ``randomly'' almost certainly generates data with a stable sparse representation.
 
-[*** We remark about algorithms ***]
 
-We remark that there is a strong application to theoretical neuroscience.
+We remark that these results have a strong application to theoretical neuroscience, justifying what may be the first hypothesized theory of compressive communication between sparsely active neural populations \cite{Isely10, ganguli2012compressed}. 
 
 \begin{corollary}
-Unsupervised neurally plausible sparse feature learning through a wiring bottleneck recovers neural activities representing original sensory stimuli.
+Random noisy (linear) compression of sparse neural activities $\mathbf{x}_i$ is decompressible by any neurally plausible unsupervised sparse feature learning algorithm.
 \end{corollary}
-
-[*** Make clearer / motivate better ***]
 
 [*** Also discuss uniquness of sparse sensory representations more generally, like Gabors ***]
 
