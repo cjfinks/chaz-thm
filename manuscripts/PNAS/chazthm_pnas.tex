@@ -141,7 +141,7 @@ Finally, in Sec.~\ref{Discussion}, we discuss both theoretical and practical app
 
 \section{Results}\label{Results}
 
-Before stating our results precisely, we identify criteria on the support sets of the generating codes $\mathbf{x}_i$ that imply stable sparse representations. Letting $\{1, \ldots, m\}$ be denoted $[m]$, its power set $2^{[m]}$, and ${[m] \choose k}$ the set of subsets of $[m]$ of size $k$, we say a hypergraph $\mathcal{H} \subseteq 2^{[m]}$ on vertices $[m]$ is \textit{$k$-uniform} when $\mathcal{H} \subseteq {[m] \choose k}$. The \emph{degree} $\deg(i)$ of a node $i \in [m]$ is the number of sets in $\mathcal{H}$ that contain $i$, and we say $\mathcal{H}$ is \emph{regular} when for some $r$ we have $\deg(i) = r$ for all $i$ (given such an $r$, we say $\mathcal{H}$ is \textit{$r$-regular}). We also write $2\mathcal{H} := \{ S \cup S': S, S' \in \mathcal{H}\}$.
+Before stating our results precisely, we identify criteria on the support sets of the generating codes $\mathbf{x}_i$ that imply stable sparse representations. Letting $\{1, \ldots, m\}$ be denoted $[m]$, its power set $2^{[m]}$, and ${[m] \choose k}$ the set of subsets of $[m]$ of size $k$, we say a hypergraph $\mathcal{H} \subseteq 2^{[m]}$ on vertices $[m]$ is \textit{$k$-uniform} when $\mathcal{H} \subseteq {[m] \choose k}$. The \emph{degree} $\deg_\mathcal{H}(i)$ of a node $i \in [m]$ is the number of sets in $\mathcal{H}$ that contain $i$, and we say $\mathcal{H}$ is \emph{regular} when for some $r$ we have $\deg_\mathcal{H}(i) = r$ for all $i$ (given such an $r$, we say $\mathcal{H}$ is \textit{$r$-regular}). We also write $2\mathcal{H} := \{ S \cup S': S, S' \in \mathcal{H}\}$.
 
 \begin{definition}\label{sip}
 Given $\mathcal{H} \subseteq 2^{[m]}$, the \textbf{star} $\sigma(i)$ is the collection of sets in $\mathcal{H}$ containing $i$. We say $\mathcal{H}$ has the \textbf{singleton intersection property} (\textbf{SIP}) when $\cap \sigma(i) = \{i\}$ for all $i \in [m]$.
@@ -539,23 +539,19 @@ for \mbox{$z^2= 1 - \prod_{\ell =1}^{k-1}(1-z_{\ell}^2)$} and \mbox{$z_{\ell} = 
 Finally, substituting this into \eqref{f} and rearranging produces \eqref{DTILeq} after replacing $1 - z$ with $r(\{V_i\}_{i=1}^k)$.
 \end{proof}
 
-\begin{lemma}\label{NonEmptyLemma}
-Fix a hypergraph $\mathcal{H} \subseteq 2^{[m]}$ with nodes labeled in order of non-increasing degree and for which $|\cap h(i)| = 1$ for all $i \leq q$. Fix $\bar m$ and let $p \leq q$ be the largest number satisfying:
-\begin{align}\label{pcond}
-\sum_{i=\ell}^{m} \deg(i) > (\bar m + 1 - \ell) (\deg(\ell) - 1) \ \ \text{for all } \ell \leq p.
-\end{align}
-If the map $\pi: E \to 2^{[\bar m]}$ has $\sum_{S \in \mathcal{H}} (|\pi(S)| -|S|) \geq 0$ and:
+\begin{lemma}\label{NonEmptyLemma} 
+Fix an $r$-regular hypergraph $\mathcal{H} \subseteq 2^{[m]}$ satisfying the SIP. If the map $\pi: \mathcal{H} \to 2^{[\bar m]}$ has $\sum_{S \in \mathcal{H}} |\pi(S)| \geq \sum_{S \in \mathcal{H}} |S|$ and:
 \begin{align}\label{cond}
-|\cap \pi(\mathcal{G})| \leq |\cap \mathcal{G} | \text{ for all } \mathcal{G} \subseteq \mathcal{H},
+|\cap \pi(\mathcal{G})| \leq |\cap \mathcal{G} |,\ \ \   \text{for } \mathcal{G} \subseteq \mathcal{H},
 \end{align}
-then $\bar m \geq\sum_i \deg(i) / \deg(1)$, and if $\bar m < \sum_i \deg(i) / (\deg(1) - 1)$ then the association $i \mapsto \cap \pi(h(i))$ defines an injective map to $[\bar m]$ from some nonempty $J \subseteq [m]$ of size $p$ consisting of the union of the set of all nodes of degree exceeding $\deg(p)$ and some set of nodes all having degree equal to $\deg(p)$. In particular, if $\mathcal{H}$ is $r$-regular then $|J| = \bar m - r(\bar m - m)$. 
+%
+then $\bar m \geq m$, and if $\bar m < mr / (r-1)$ then the association $i \mapsto \cap \pi(\sigma(i))$ defines an injective map from $J$ to $[\bar m]$ for some $J \in {[m] \choose p}$. In particular, if $\bar m = m$ then $\pi$ is induced by a permutation on $[m]$.
 \end{lemma}
 
 \begin{proof}
-Consider the collection of pairs: $T_1 := \{(i, S): i \in \pi(S), S \in \mathcal{H}\}$, which number $|T_1| = \sum_{S \in \mathcal{H}} |\pi(S)| \geq \sum_{S \in \mathcal{H}} |S| = \sum_{i \in [m]} \deg(i)$. Note that assumption \eqref{cond} implies $\bar m \geq |T_1| / \deg(1)$, since otherwise pigeonholing the elements of $T_1$ with respect to their set of possible first indices $[\bar m]$ would contradict that there are more than $\deg(1)$ sets in $\mathcal{H}$ sharing a common element. %QUESTION: Do we really need to say this..?
+Consider the collection of pairs: $T_1 := \{(i, S): i \in \pi(S), S \in \mathcal{H}\}$, which number $|T_1| = \sum_{S \in \mathcal{H}} |\pi(S)| \geq \sum_{S \in \mathcal{H}} |S| = \sum_{i \in [m]} \deg_\mathcal{H}(i) = mr$. Note that \eqref{cond} implies $\bar m \geq |T_1| / r = m$, since otherwise pigeonholing the elements of $T_1$ with respect to their possible first indices $[\bar m]$ would imply $\deg_\mathcal{H}(i) > r$ for some $i \in [m]$.
 
-By \eqref{pcond} and the upper bound on $\bar m$ we have $|T_1| >  \bar m (\deg(1) - 1)$, which implies, again by the pigeonhole principle, that there must be at least $\deg(1)$ elements of $T_1$ sharing the same first index. By \eqref{cond}, the intersection of the set $\mathcal{G}_1$ consisting of their second indices is nonempty. As $p \leq q$ and $\deg(1) \geq \deg(i)$ for all $i$, it must be that $|\cap \mathcal{G}_1| = 1$. Since $\cap \pi(\mathcal{G}_1)$ is nonempty, applying \eqref{cond} again implies $\cap \pi(\mathcal{G}_1) = \{i_1\}$ for some $i_1 \in [m]$. If $p=1$ then we are done. Otherwise, define $T_2 := T_1 \setminus \{(i,S) \in T_1: i = i_1\}$, which contains $|T_2| = |T_1| - \deg(1) = \sum_{i=2}^m \deg(i)$ ordered pairs having $\bar m - 1$ distinct first indices. By \eqref{pcond} we have $|T_2| > (\bar m - 1)(\deg(2) - 1)$ and reiterating the above arguments produces a (necessarily) distinct index $i_2$. Iterating the arguments $p$ times yields the set of singletons \mbox{$J = \{\cap \mathcal{G}_1, \ldots, \cap \mathcal{G}_p\} \subseteq [m]$}.
-%TODO: Let T_1 be the set of all pairs $T_1 := \{(R, S): R \subseteq \pi(S), S \in \mathcal{H}\}$ 
+If $\bar m < mr / (r-1)$ then, letting $p := \bar m - r( \bar m - m)$, we have $|T_1| = \bar m (r - 1) + p$ for positive $p$. By the pigeonhole principle, there must then be at least $r$ elements of $T_1$ sharing the same first index. By \eqref{cond}, the intersection of the set $\mathcal{G}_1$ consisting of their second indices is nonempty; hence $|\cap \mathcal{G}_1| = 1$ by $r$-regularity and the SIP. Since $\cap \pi(\mathcal{G}_1)$ is nonempty, applying \eqref{cond} again implies $\cap \pi(\mathcal{G}_1) = \{i_1\}$ for some $i_1 \in [m]$. If $p=1$ then we are done. Otherwise, define $T_2 := T_1 \setminus \{(i,S) \in T_1: i = i_1\}$, which contains $|T_2| = |T_1| - r = (\bar m - 1)(r-1) + (p-1)$ ordered pairs having $\bar m - 1$ distinct first indices. Reiterating the above arguments produces a (necessarily) distinct index $i_2$. Iterating the arguments $p$ times yields the set of singletons \mbox{$J = \{i_1, \ldots, i_p\} \subseteq [m]$}.
 \end{proof}
 
 \begin{proof}[Proof of Lem.~\ref{MainLemma}]
