@@ -407,7 +407,7 @@ We use it to bound the distance between a point and the intersection of subspace
 \begin{definition}\label{SpecialSupportSet}\label{FriedrichsDefinition}
 For subspaces $V_1, \ldots, V_\ell \subseteq \mathbb{R}^m$, set $r := 1$ when $\ell = 1$ and define for $\ell \geq 2$:
 \begin{align*}
-r(\{V_i\}_{i=1}^\ell) := 1 - \left(1 -  \max \prod_{i=1}^{\ell-1} \sin^2  \theta \left(V_i, \cap_{j>i} V_j \right)  \right)^{1/2},
+\xi(\{V_i\}_{i=1}^\ell) := 1 - \left(1 -  \max \prod_{i=1}^{\ell-1} \sin^2  \theta \left(V_i, \cap_{j>i} V_j \right)  \right)^{1/2},
 \end{align*} 
 %
 where the maximum is taken over all orderings 
@@ -420,7 +420,7 @@ of the $V_i$ and the angle $\theta \in (0,\frac{\pi}{2}]$ is defined implicitly 
 Note that $\theta \in (0,\frac{\pi}{2}]$ implies $0 < r \leq 1$.\footnote{We acknowledge the counter-intuitive property that $\theta =  \pi/2$ when $U = V$ or $U \perp V$.}  
 The constant $C_2$ in Lem.~\ref{MainLemma} can then be expressed as:  
 \begin{align}\label{Cdef2}
-C_2(\mathbf{A}, \mathcal{H}) := \frac{ 2^{|\mathcal{H}|} \max_{j \in [m]} \|\mathbf{A}_j\|_2}{ \min_{\mathcal{G} \subseteq \mathcal{H}} r( \{ \bm{\mathcal{A}}_S \}_{S \in \mathcal{G}}) },
+C_2(\mathbf{A}, \mathcal{H}) := \frac{ 2^{|\mathcal{H}|} \max_{j \in [m]} \|\mathbf{A}_j\|_2}{ \min_{\mathcal{G} \subseteq \mathcal{H}} \xi( \{ \bm{\mathcal{A}}_S \}_{S \in \mathcal{G}}) },
 \end{align}
 %
 which we remark is consistent with the assumption on $C_1$ in the proof of the case $k=1$ at the beginning of this section.
@@ -516,7 +516,7 @@ By induction it is enough to prove the case $|n| = 2$, but this case follows dir
 \begin{lemma}\label{DistanceToIntersectionLemma}
 Fix $k \geq 2$. Let $V_1, \ldots, V_k$ be subspaces of $\mathbb{R}^m$ and set $V = \cap_{i = 1}^k V_i$. For  $\mathbf{x} \in \mathbb{R}^m$, we have (where $r$ is given in Def.~\ref{SpecialSupportSet}):
 \begin{align}\label{DTILeq}
-\text{\rm dist}(\mathbf{x}, V) \leq \frac{1}{r(\{V_i\}_{i = 1}^k)} \sum_{i=1}^k \text{\rm dist}(\mathbf{x}, V_i).
+\text{\rm dist}(\mathbf{x}, V) \leq \frac{1}{\xi(\{V_i\}_{i = 1}^k)} \sum_{i=1}^k \text{\rm dist}(\mathbf{x}, V_i).
 \end{align}
 \end{lemma}
 \begin{proof} 
@@ -536,7 +536,7 @@ The desired result, \eqref{DTILeq}, now follows by bounding the second term on t
 for \mbox{$z^2= 1 - \prod_{\ell =1}^{k-1}(1-z_{\ell}^2)$} and \mbox{$z_{\ell} = \cos\theta\left(V_{\ell}, \cap_{s=\ell+1}^k V_s\right)$}, recalling $\theta$ from Def.~\ref{FriedrichsDefinition}. Together with $\Pi_{V_\ell} \Pi_V = \Pi_V$ for all $\ell \in [k]$ and $\Pi_V^2 = \Pi_V$, this implies that $\|\Pi_{V_k} \cdots \Pi_{V_1}\mathbf{x}  - \Pi_V \mathbf{x} \|_2$ satisfies:
 \[\| ( \Pi_{V_k} \cdots\Pi_{V_1} - \Pi_V ) (\mathbf{x} - \Pi_V\mathbf{x})\|_2 \leq z\|\mathbf{x} - \Pi_V\mathbf{x}\|_2.\]
 
-Finally, substituting this into \eqref{f} and rearranging produces \eqref{DTILeq} after replacing $1 - z$ with $r(\{V_i\}_{i=1}^k)$.
+Finally, substituting this into \eqref{f} and rearranging produces \eqref{DTILeq} after replacing $1 - z$ with $\xi(\{V_i\}_{i=1}^k)$.
 \end{proof}
 
 \begin{lemma}\label{NonEmptyLemma} 
@@ -545,7 +545,7 @@ Fix an $r$-regular hypergraph $\mathcal{H} \subseteq 2^{[m]}$ satisfying the SIP
 |\cap \pi(\mathcal{G})| \leq |\cap \mathcal{G} |,\ \ \   \text{for } \mathcal{G} \subseteq \mathcal{H},
 \end{align}
 %
-then $\bar m \geq m$, and if $\bar m < mr / (r-1)$ then the association $i \mapsto \cap \pi(\sigma(i))$ defines an injective map from $J$ to $[\bar m]$ for some $J \in {[m] \choose p}$. In particular, if $\bar m = m$ then $\pi$ is induced by a permutation on $[m]$.
+then $\bar m \geq m$, and if $\bar m < mr / (r-1)$ then the association $i \mapsto \cap \pi(\sigma(i))$ defines an injective map to $[\bar m]$ from some $J \subseteq [m]$ of size $\bar m - r(\bar m - m)$. In particular, if $\bar m = m$ then $\pi$ is induced by a permutation on $[m]$.
 \end{lemma}
 
 \begin{proof}
@@ -563,15 +563,15 @@ We next show that \eqref{cond} holds.  Fix $\mathcal{G} \subseteq \mathcal{H}$. 
 \begin{align}\label{randoml}
 d(\bm{\mathcal{B}}_{\cap \pi(\mathcal{G})}&, \bm{\mathcal{A}}_{\cap \mathcal{G}}  ) 
 \leq d\left( \cap_{S \in \mathcal{G}} \bm{\mathcal{B}}_{\pi(S)}, \cap_{S \in \mathcal{G}} \bm{\mathcal{A}}_S \right) \nonumber \\
-&\leq \sum_{T \in \mathcal{G}} \frac{ d\left( \cap_{S \in \mathcal{G}} \bm{\mathcal{B}}_{\pi(S)},\bm{\mathcal{A}_{T}} \right) }{ r(  \{\bm{\mathcal{A}}_S\}_{S \in \mathcal{G}}) }
-\leq \sum_{T \in \mathcal{G}} \frac{ d\left( \bm{\mathcal{B}}_{\pi(T)},\bm{\mathbf{A}}_{T} \right) }{ r( \{\bm{\mathcal{A}}_S\}_{S \in \mathcal{G}}) }\nonumber \\
-&\leq \frac{|\mathcal{G}| \varepsilon}{r( \{\bm{\mathcal{A}}_S\}_{S \in \mathcal{G}})} 
+&\leq \sum_{T \in \mathcal{G}} \frac{ d\left( \cap_{S \in \mathcal{G}} \bm{\mathcal{B}}_{\pi(S)},\bm{\mathcal{A}_{T}} \right) }{ \xi(  \{\bm{\mathcal{A}}_S\}_{S \in \mathcal{G}}) }
+\leq \sum_{T \in \mathcal{G}} \frac{ d\left( \bm{\mathcal{B}}_{\pi(T)},\bm{\mathbf{A}}_{T} \right) }{ \xi( \{\bm{\mathcal{A}}_S\}_{S \in \mathcal{G}}) }\nonumber \\
+&\leq \frac{|\mathcal{G}| \varepsilon}{\xi( \{\bm{\mathcal{A}}_S\}_{S \in \mathcal{G}})} 
 \leq \frac{C_2 \varepsilon}{\max_i\|\mathbf{A}_i\|_2}. 
 \end{align}
 
 Since $\varepsilon < L_2(\mathbf{A}) / C_2$, by \eqref{delrho} the right-hand side in \eqref{randoml} is less than one. Hence, $\dim(\bm{\mathcal{B}}_{\cap \pi(\mathcal{G})}) \leq \dim(\bm{\mathcal{A}}_{\cap \mathcal{G}})$ by \eqref{dimLem}, and \eqref{cond} follows from the linear independence of the columns of $\mathbf{A}_{S}$ and $\mathbf{B}_{\pi(S)}$ for all $S \in \mathcal{G}$.
 
-Now, by Lem.~\ref{NonEmptyLemma}, the association $i \mapsto \cap \pi(h(i))$ defines an injective map $\bar \pi: J \to [\bar m]$ for some $J \in {[m] \choose p}$ with $p$ given by \eqref{pcond}, and we can be sure that $\mathbf{B}_{\bar \pi(i)} \neq \mathbf{0}$ for all $i \in J$ since the columns of $\mathbf{B}_{\pi(S)}$ are linearly independent for all $S \in \mathcal{H}$. It then follows from \eqref{eqdim} and \eqref{randoml} that $d\left( \bm{\mathcal{A}}_i, \bm{\mathcal{B}}_{\bar \pi(i)} \right) \leq C_2 \varepsilon / \max_i \|\mathbf{A}_i\|_2$ for all $i \in J$. Fixing $\bar \varepsilon = C_2\varepsilon$ and letting $c_i = \|\mathbf{A}_i\|_2^{-1}$, we thus have that for every basis vector $\mathbf{e}_i \in \mathbb{R}^m$ with $i \in J$ there exists some $\bar{c}_i \in \mathbb{R}$ such that $\|c_i\mathbf{A}\mathbf{e}_i - \bar{c}_i \mathbf{B}\mathbf{e}_{\bar \pi(i)}\|_2 \leq \bar \varepsilon < L_2(\mathbf{A}) \min_{i\in J} |c_i|$.  But this is exactly the supposition in \eqref{1D}, and the result follows from the case $k=1$ in Sec.~\ref{DUT} applied to the submatrix $\mathbf{A}_J$.
+Now, by Lem.~\ref{NonEmptyLemma}, the association $i \mapsto \cap \pi(h(i))$ defines an injective map $\bar \pi: J \to [\bar m]$ for some $J \subseteq [m]$ of size $\bar m - r(\bar m - m)$, and we can be sure that $\mathbf{B}_{\bar \pi(i)} \neq \mathbf{0}$ for all $i \in J$ since the columns of $\mathbf{B}_{\pi(S)}$ are linearly independent for all $S \in \mathcal{H}$. It then follows from \eqref{eqdim} and \eqref{randoml} that $d\left( \bm{\mathcal{A}}_i, \bm{\mathcal{B}}_{\bar \pi(i)} \right) \leq C_2 \varepsilon / \max_i \|\mathbf{A}_i\|_2$ for all $i \in J$. Fixing $\bar \varepsilon = C_2\varepsilon$ and letting $c_i = \|\mathbf{A}_i\|_2^{-1}$, we thus have that for every basis vector $\mathbf{e}_i \in \mathbb{R}^m$ with $i \in J$ there exists some $\bar{c}_i \in \mathbb{R}$ such that $\|c_i\mathbf{A}\mathbf{e}_i - \bar{c}_i \mathbf{B}\mathbf{e}_{\bar \pi(i)}\|_2 \leq \bar \varepsilon < L_2(\mathbf{A}) \min_{i\in J} |c_i|$.  But this is exactly the supposition in \eqref{1D}, and the result follows from the case $k=1$ in Sec.~\ref{DUT} applied to the submatrix $\mathbf{A}_J$.
 \end{proof}
 
 %\section{Proofs of Thm.~\ref{robustPolythm} and Cor.~\ref{ProbabilisticCor}}
