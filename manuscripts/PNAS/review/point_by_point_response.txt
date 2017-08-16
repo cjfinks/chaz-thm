@@ -1,5 +1,3 @@
-TODO:
-
 References for Cover Letter and Point-by-point Response:
 
 [IHS10] Isely, Hillar, Sommer, Advances in neural information processing systems (NIPS), 2010.
