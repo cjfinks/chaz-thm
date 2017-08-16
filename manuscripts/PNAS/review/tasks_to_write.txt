@@ -1,6 +1,7 @@
 TO DO:
 
 - Should Problem 1 really have the name “Sparse Linear Coding” when Problem 2 has no name..?
+- change r to squiggle
 - LIL’ LEMMA for disjoint star cores
 
 TO “ADD TO MANUSCRIPT”:
