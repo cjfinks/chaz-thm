@@ -1,6 +1,7 @@
 TO DO:
 
--add "Deep Learning" non-uniqueness statements
+- Should Problem 1 really have the name “Sparse Linear Coding” when Problem 2 has no name..?
+- LIL’ LEMMA for disjoint star cores
 
 TO “ADD TO MANUSCRIPT”:
 - A compelling exposition of the significance of our results and their relevance to the general scientific audience
@@ -47,3 +48,4 @@ Algorithm for Problem 1:
 6) New concepts introduced
 
 * DONE *
+
