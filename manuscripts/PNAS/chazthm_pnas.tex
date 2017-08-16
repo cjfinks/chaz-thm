@@ -588,7 +588,7 @@ Now, by Lem.~\ref{NonEmptyLemma}, the association $i \mapsto \cap \pi(h(i))$ def
 \begin{proof}[Proof (sketch) of Thm.~\ref{robustPolythm}]
 Let $\textbf{M}$ be the matrix with columns $\mathbf{A}\mathbf{x}_i$, $i \in [N]$.  Consider the polynomial in the entries of $\mathbf{A}$ and $\mathbf{x}_i$:
 \begin{align*}
-g(\mathbf{A}, \{\mathbf{x}_i\}_{i=1}^N) := \prod_{S \in {[N] \choose k}} \sum_{S' \in {[n] \choose k}} (\det \textbf{M}_{S',S})^2,
+g(\mathbf{A}, \{\mathbf{x}_i\}_{i=1}^N) := \prod_{S \in {[N] \choose 2k}} \sum_{S' \in {[n] \choose 2k}} (\det \textbf{M}_{S',S})^2,
 \end{align*}
 with notation as in Sec.~\ref{Results}.  
 It can be checked that when $g$ is nonzero for a substitution of real numbers for the indeterminates, all of the genericity requirements on $\mathbf{A}$ and $\mathbf{x}_i$ in our proofs of stability in Thm.~\ref{DeterministicUniquenessTheorem} are satisfied (in particular, the spark condition on $\mathbf{A}$).
