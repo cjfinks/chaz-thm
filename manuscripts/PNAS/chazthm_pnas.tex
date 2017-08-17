@@ -283,6 +283,8 @@ Sparse neural population activity is recoverable from noisy random linear compre
 %\cite{rehnsommer2007, rozell2007neurally, ganguli2012compressed, hu2014hebbian}
 
 Before moving on to our proofs, we discuss briefly the computability and tightness of our results. [* DO THIS *]
+
+We remark that if $k$ is held fixed, or if the size of the support set of reconstructing codes is known to be polynomial in $\bar m$ and $k$, then a practical (polynomial) amount of data is enough to determine the model.\footnote{In the latter case, a re-examination of the pigeonholing argument in the proof of Thm.~\ref{DeterministicUniquenessTheorem} shows that only a polynomial number of samples distributed over a polynomial number of supports.}
 %\pagebreak
 
 \section{Proofs of Theorems~\ref{DeterministicUniquenessTheorem} and ~\ref{SLCopt}}\label{DUT}
@@ -460,8 +462,6 @@ d(\bm{\mathcal{A}}_S, \bm{\mathcal{B}}_{\bar S})
 %
 where the second inequality is due to $L(\mathbf{AX}_{K}) \geq L_k(\mathbf{AX}_{I(S)})$ and \eqref{Cdef1}. Finally, apply Lem.~\ref{MainLemma} with $\varepsilon < L_2(\mathbf{A})/C_1$.
 \end{proof}
-
-We remark that if $k$ is held fixed, or if the size of the support set of reconstructing codes is known to be polynomial in $m$ and $k$, then a practical (polynomial) amount of data is enough to determine the model.\footnote{In the latter case, the pigeonholing argument in the proof of Thm.~\ref{DeterministicUniquenessTheorem} requires only a polynomial number of samples distributed over a polynomial number of supports.}
 
 \begin{proof}[Proof of Thm.~\ref{SLCopt}]
 We bound the number of $k$-sparse $\mathbf{\bar x}_i$ and then apply Thm.~\ref{DeterministicUniquenessCorollary}. 
