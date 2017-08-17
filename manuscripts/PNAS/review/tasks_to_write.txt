@@ -1,11 +1,11 @@
 TO DO:
 
 - Should Problem 1 really have the name “Sparse Linear Coding” when Problem 2 has no name..?
-- change r to squiggle
+- In pt by pt we say we will clearly communicate that Thm. 2 is first of its kind…
 - LIL’ LEMMA for disjoint star cores
 
 TO “ADD TO MANUSCRIPT”:
-- A compelling exposition of the significance of our results and their relevance to the general scientific audience
+DONE (DISCUSSION) - A compelling exposition of the significance of our results and their relevance to the general scientific audience
 - A discussion of the computability of sufficient conditions
 - A sample complexity polynomial in (m, k) by limiting the size of the support set of the \tilde x_i
 - Some discussion of where the results can be tightened (e.g. Lem. 4)
