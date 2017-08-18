@@ -232,7 +232,7 @@ Another practical implication of Thm.\ref{DeterministicUniquenessTheorem} is the
 
 %As mentioned above, there exist $k$-uniform regular hypergraphs $\mathcal{H}$ with the SIP having cardinality $|\mathcal{H}| = m$, 
 
-We furthermore note that unlike in previous works \cite{li2004analysis, Georgiev05, Aharon06, Hillar15}, the matrix $\mathbf{A}$ need not satisfy the spark condition to be recoverable from data. As a simple example for $k=2$, let $\mathbf{A} = [ \mathbf{e}_1, \ldots, \mathbf{e}_5, \mathbf{v}]$ where $\mathbf{v} = \mathbf{e}_1 + \mathbf{e}_3 + \mathbf{e}_5$, and take $\mathcal{H}$ to be all consecutive pairs of $[m]$ arranged in cyclic order. Then, $\mathbf{A}$ satisfies the assumptions of Thm.~\ref{DeterministicUniquenessTheorem} but not \eqref{SparkCondition}. %(since $\{ \mathbf{A}_1, \mathbf{A}_3, \mathbf{A}_5, \mathbf{A}_6\}$ is not a linearly independent set).
+We furthermore note that unlike in previous works \cite{li2004analysis, Georgiev05, Aharon06, Hillar15}, the matrix $\mathbf{A}$ need not satisfy the spark condition to be recoverable from data. As a simple example for $k=2$, let $\mathbf{A} = [ \mathbf{e}_1, \ldots, \mathbf{e}_5, \mathbf{v}]$ where $\mathbf{v} = \mathbf{e}_1 + \mathbf{e}_3 + \mathbf{e}_5$, and take $\mathcal{H}$ to be all consecutive pairs of $[m]$ arranged in cyclic order. Then, dictionary $\mathbf{A}$ satisfies the assumptions of Thm.~\ref{DeterministicUniquenessTheorem} but not \eqref{SparkCondition}. %(since $\{ \mathbf{A}_1, \mathbf{A}_3, \mathbf{A}_5, \mathbf{A}_6\}$ is not a linearly independent set).
 %This weakening allows for a practical (polynomial) amount of data to still guarantee a stable dictionary in the case where the set of sparse supports for the $\mathbf{\bar x}_i$ is known to have a size that grows polynomially in $m$ and $k$.
 
 There are other less direct consequences of Thm.~\ref{DeterministicUniquenessTheorem}.  For instance, we use it to prove uniqueness for the optimization formulation of sparse linear coding, Prob.~\ref{SLCopt}, the main object of interest for those applying dictionary learning to their data.
@@ -274,11 +274,11 @@ Thus, choosing the dictionary and codes ``randomly'' almost certainly generates 
 We remark that these results have an important application to theoretical neuroscience by mathematically justifying one of the few hypothesized theories of bottleneck communication between sparsely active neural populations \cite{Isely10}. 
 
 \begin{proposition}\label{neuroprop}
-Sparse neural population activity is recoverable from noisy random linear compression by any method that solves Prob.~\ref{DeterministicUniquenessTheorem} or \ref{SLCopt}; in particular, via biophysically plausible unsupervised sparse linear coding (e.g. \cite{rehnsommer2007, rozell2007neurally, ganguli2012compressed}).
+Sparse neural population activity is recoverable from noisy random linear compression by any method that solves Prob.~\ref{DeterministicUniquenessTheorem} or \ref{SLCopt}; in particular, via biophysically plausible unsupervised sparse linear coding (e.g. \cite{rehnsommer2007, rozell2007neurally}).
 \end{proposition}
 %\cite{rehnsommer2007, rozell2007neurally, ganguli2012compressed, hu2014hebbian}
 
-We close this section with a comment on sample complexity. A basic open problem remains: how many samples are necessary to determine the sparse linear coding model? If $k$ is held fixed or if the size of the support set of reconstructing codes is known to be polynomial in $\bar m$ and $k$, then a practical (polynomial) amount of data suffices.\footnote{In the latter case, a reexamination of the pigeonholing argument in the proof of Thm.~\ref{DeterministicUniquenessTheorem} requires a polynomial number of samples distributed over a polynomial number of supports.} Reasons to be skeptical that this holds in general, however, can be found in \cite{tillmann2014computational, tillmann2015computational}.
+We close this section with a comment on sample complexity. A basic open problem remains: how many samples are necessary to determine the sparse linear coding model? If $k$ is held fixed or if the size of the support set of reconstructing codes is known to be polynomial in $\bar m$ and $k$, then a practical (polynomial) amount of data suffices.\footnote{In the latter case, a reexamination of the pigeonholing argument in the proof of Thm.~\ref{DeterministicUniquenessTheorem} requires a polynomial number of samples distributed over a polynomial number of supports.} Reasons to be skeptical that this holds in general, however, can be found in \cite{tillmann2014computational, Tillmann15}.
 
 \section{Proofs}\label{DUT} % of Theorems~\ref{DeterministicUniquenessTheorem} and ~\ref{SLCopt}}\label{DUT}
 
@@ -527,7 +527,7 @@ In fact, uniqueness guarantees with minimal assumptions apply to all areas of da
 
 \section{Appendix}\label{proofs}
 
-In this section, we prove Lem.~\ref{MainLemma} after stating auxiliary lemmas.% and then sketch the proofs of Thm.~\ref{robustPolythm} and Cor.~\ref{ProbabilisticCor}.
+In this section, we prove Lem.~\ref{MainLemma} after stating and proving some auxiliary lemmas.% and then sketch the proofs of Thm.~\ref{robustPolythm} and Cor.~\ref{ProbabilisticCor}.
 
 %\begin{lemma}\label{spanIntersectionLemma}
 %Let $\mathbf{M} \in \mathbb{R}^{n \times m}$. If every $2k$ columns of $\mathbf{M}$ are linearly independent, then for any $F \subseteq {[m] \choose k}$:
