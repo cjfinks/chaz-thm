@@ -165,7 +165,7 @@ We generalize the  lower bound to a domain-restricted \emph{union of subspaces} 
 L_\mathcal{H}(\mathbf{M}) := \frac{1}{\sqrt{k}} \inf \left\{ \frac{\|\mathbf{M}_S\mathbf{x}\|_2}{ \|\mathbf{x}\|_2} : S \in \mathcal{H}, \ \ \mathbf{x} \in \mathbb{R}^{|S|} \right\},
 \end{align} 
 %
-where we write $L_{k}$ when $\mathcal{H} = {[m] \choose k}$.\footnote{We note that $1 - \sqrt{k} L_k(\mathbf{M})$ is known as the asymmetric lower restricted isometry constant for matrices $\mathbf{M}$ with unit $\ell_2$-norm columns \cite{Blanchard2011}.} Clearly, $L_{k'}(\mathbf{M}) \geq L_k(\mathbf{M})$ whenever $k' \leq k$ and $L_{2k}(\mathbf{M}) > 0$ for $\mathbf{M}$ satisfying \eqref{SparkCondition}.% Note that if $\mathcal{H} \subseteq {[m] \choose k}$ has $\cup \mathcal{H} = [m]$, then $L_2 \geq L_{2\mathcal{H}} \geq L_{2k}$.
+where we write $L_{k}$ when $\mathcal{H} = {[m] \choose k}$.\footnote{We note that $1 - \sqrt{k} L_k(\mathbf{M})$ is known as the asymmetric lower restricted isometry constant for matrices $\mathbf{M}$ with unit $\ell_2$-norm columns \cite{Blanchard2011}.} Clearly, $L_{k'}(\mathbf{M}) \geq L_k(\mathbf{M})$ whenever $k' \leq k$ and $L_{2k}(\mathbf{M}) > 0$ for $\mathbf{M}$ satisfying \eqref{SparkCondition}. Note also that $L_2 \geq L_{2\mathcal{H}} \geq L_{2k}$ if $\mathcal{H} \subseteq {[m] \choose k}$ has $\cup \mathcal{H} = [m]$.
  
 A vector $\mathbf{x}$ is said to be \emph{supported} in $S \subseteq [m]$ when $\mathbf{x} \in \text{\rm span}\{\mathbf{e}_j: j\in S\}$, where $\mathbf{e}_j$ are the standard column basis in $\mathbb R^m$. 
 %Denote by $\mathbf{x}^J$ the subvector formed from the entries of $\mathbf{x}$ indexed by $J$. 
@@ -449,7 +449,7 @@ d(\bm{\mathcal{A}}_S, \bm{\mathcal{B}}_{\bar S})
 \leq \frac{\varepsilon}{  L(\mathbf{AX}_{K}) } \leq \varepsilon \frac{C_1}{C_2},
 \end{align}
 %
-where the second inequality is due to $L(\mathbf{AX}_{K}) \geq L_k(\mathbf{AX}_{I(S)})$ and \eqref{Cdef1}. Finally, apply Lem.~\ref{MainLemma} with $\varepsilon < L_2(\mathbf{A})/C_1$.
+where the second inequality is due to $L(\mathbf{AX}_{K}) \geq L_k(\mathbf{AX}_{I(S)})$ and \eqref{Cdef1}. Finally, apply Lem.~\ref{MainLemma} with $\varepsilon < L_2(\mathbf{A})/C_1$. % L_2(A) > 0 by def of L, since L_2H(A) > 0 and H covers [m]
 \end{proof}
 
 \begin{proof}[Proof of Thm.~\ref{SLCopt}]
