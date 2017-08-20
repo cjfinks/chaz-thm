@@ -165,7 +165,7 @@ We generalize the  lower bound to a domain-restricted \emph{union of subspaces} 
 L_\mathcal{H}(\mathbf{M}) := \frac{1}{\sqrt{k}} \inf \left\{ \frac{\|\mathbf{M}_S\mathbf{x}\|_2}{ \|\mathbf{x}\|_2} : S \in \mathcal{H}, \ \ \mathbf{x} \in \mathbb{R}^{|S|} \right\},
 \end{align} 
 %
-where we write $L_{k}$ when $\mathcal{H} = {[m] \choose k}$.\footnote{We note that $1 - \sqrt{k} L_k(\mathbf{M})$ is known as the asymmetric lower restricted isometry constant for matrices $\mathbf{M}$ with unit $\ell_2$-norm columns \cite{Blanchard2011}.} Clearly, for any $\mathbf{M}$ satisfying \eqref{SparkCondition}, we have $L_{k'}(\mathbf{M}) > 0$ for  $k' \leq 2k$. Note that if $\mathcal{H} \subseteq {[m] \choose k}$ has $\cup \mathcal{H} = [m]$, then $L_2 \geq L_{2\mathcal{H}} \geq L_{2k}$.
+where we write $L_{k}$ when $\mathcal{H} = {[m] \choose k}$.\footnote{We note that $1 - \sqrt{k} L_k(\mathbf{M})$ is known as the asymmetric lower restricted isometry constant for matrices $\mathbf{M}$ with unit $\ell_2$-norm columns \cite{Blanchard2011}.} Clearly, $L_{k'}(\mathbf{M}) \geq L_k(\mathbf{M})$ whenever $k' \leq k$ and $L_{2k}(\mathbf{M}) > 0$ for $\mathbf{M}$ satisfying \eqref{SparkCondition}.% Note that if $\mathcal{H} \subseteq {[m] \choose k}$ has $\cup \mathcal{H} = [m]$, then $L_2 \geq L_{2\mathcal{H}} \geq L_{2k}$.
  
 A vector $\mathbf{x}$ is said to be \emph{supported} in $S \subseteq [m]$ when $\mathbf{x} \in \text{\rm span}\{\mathbf{e}_j: j\in S\}$, where $\mathbf{e}_j$ are the standard column basis in $\mathbb R^m$. 
 %Denote by $\mathbf{x}^J$ the subvector formed from the entries of $\mathbf{x}$ indexed by $J$. 
@@ -304,11 +304,7 @@ We close this section with a comment on sample complexity. A basic open problem 
 
 % ======== b - PDa =========
 
-We now begin our proof of Thm.~\ref{DeterministicUniquenessTheorem} by showing how dictionary recovery \eqref{Cstable} already implies sparse code recovery \eqref{b-PDa} when \mbox{$\varepsilon < L_{2k}(\mathbf{A}) / C_1$} (provided $L_{2k}(\mathbf{A}) > 0$), temporarily assuming (without loss of generality) that $\bar m = m$. First, note that since $\|\mathbf{A}\mathbf{x}\|_2 \leq \max_j\|\mathbf{A}_j\|_2\|\mathbf{x}\|_1$ and $\|\mathbf{x}\|_1 \leq \sqrt{k} \|\mathbf{x}\|_2$ for $k$-sparse $\mathbf{x}$, by \eqref{Ldef} we have the following frequently applied inequality:
-\begin{align}\label{delrho}
-L_2(\mathbf{A}) %\leq \frac{\|\mathbf{A}\mathbf{x}\|_2}{\sqrt{2k} \|\mathbf{x}\|_2} 
-\leq  \max_j\|\mathbf{A}_j\|_2.
-\end{align}
+We now begin our proof of Thm.~\ref{DeterministicUniquenessTheorem} by showing how dictionary recovery \eqref{Cstable} already implies sparse code recovery \eqref{b-PDa} when \mbox{$\varepsilon < L_{2k}(\mathbf{A}) / C_1$} (provided $\mathbf{A}$ satisfies \eqref{SparkCondition}), temporarily assuming (without loss of generality) that $\bar m = m$. 
 For $2k$-sparse $\mathbf{x} \in \mathbb{R}^m$, the triangle inequality gives \mbox{$\|(\mathbf{A}-\mathbf{BPD})\mathbf{x}\|_2  \leq C_1\varepsilon \|\mathbf{x}\|_1 \leq C_1 \varepsilon \sqrt{2k}  \|\mathbf{x}\|_2$}. Thus:
 \begin{align*}
 \|\mathbf{BPD}\mathbf{x}\|_2 
@@ -324,7 +320,7 @@ since $\varepsilon < L_{2k}(\mathbf{A}) / C_1$. Hence, $L_{2k}(\mathbf{BPD}) \ge
 &\leq \frac{\varepsilon (1 + C_1 \|\mathbf{x}_i\|_1)}{L_{2k}(\mathbf{BPD})}.
 \end{align*}
 
-The heart of the matter is therefore \eqref{Cstable}, which we now establish, first in the important special case of $k = 1$.
+The heart of the matter is therefore \eqref{Cstable}, which we now establish, first in the important special case of $k = 1$. 
 
 \begin{proof}[Proof of Thm.~\ref{DeterministicUniquenessCorollary} for $k=1$]
 Since the only 1-uniform hypergraph with the SIP is $[m]$, we have $\mathbf{x}_i = c_i \mathbf{e}_i$ for $c_i \in \mathbb{R} \setminus \{\mathbf{0}\}$, $i \in [m]$. In this case, we may take any $C_1 \geq 1/ \min_{\ell \in [m]} |c_{\ell}|$. 
@@ -333,7 +329,7 @@ Fix $\mathbf{A} \in \mathbb{R}^{n \times m}$ satisfying \eqref{SparkCondition} a
 \begin{align}\label{1D}
 \|c_j\mathbf{A}_j - \bar{c}_j\mathbf{B}_{\pi(j)}\|_2 \leq \varepsilon,\ \ \text{for $j \in [m]$}.
 \end{align} 
-Note that if $\bar{c}_j = 0$, then $\|c_j\mathbf{A}_j \|_2 \leq \varepsilon$ implies from \eqref{delrho} that $|c_j| < \min_{\ell \in [m]} | c_\ell |$, a contradiction.  Thus, $\bar{c}_j \neq 0$.
+Note that $\bar{c}_j \neq 0$, since otherwise we have the contradiction $\|\mathbf{A}_j \|_2 \leq C_1 |c_j| \|\mathbf{A}_j \|_2  < L_2(\mathbf{A}) \leq L_1(\mathbf{A}) = \min_{i \in [m]} \|\mathbf{A}_i\|_2$. %implies by \eqref{delrho} the contradiction $|c_j| < \min_{\ell \in [m]} | c_\ell |$.
 
 We  now show that $\pi$ is injective (in particular, a permutation if $\bar m = m$). Suppose that $\pi(i) = \pi(j) = \ell$ for some $i \neq j$ and $\ell$. Then, $\|c_{j}\mathbf{A}_{j} - \bar{c}_{j}\mathbf{B}_{\ell}\|_2 \leq \varepsilon$ and $\|c_{i}\mathbf{A}_{i} - \bar{c}_{i} \mathbf{B}_{\ell}\|_2  \leq \varepsilon$. Scaling and summing these inequalities by $|\bar{c}_{i}|$ and $|\bar{c}_{j}|$, respectively, and applying the triangle inequality, we obtain:
 \begin{align*}
@@ -527,7 +523,13 @@ In fact, uniqueness guarantees with minimal assumptions apply to all areas of da
 
 \section{Appendix}\label{proofs}
 
-In this section, we prove Lem.~\ref{MainLemma} after stating and proving some auxiliary lemmas.% and then sketch the proofs of Thm.~\ref{robustPolythm} and Cor.~\ref{ProbabilisticCor}.
+In this section, we prove Lem.~\ref{MainLemma} after stating and proving some auxiliary lemmas. 
+%First, note that since $\|\mathbf{A}\mathbf{x}\|_2 \leq \max_j\|\mathbf{A}_j\|_2\|\mathbf{x}\|_1$ and $\|\mathbf{x}\|_1 \leq \sqrt{k} \|\mathbf{x}\|_2$ for $k$-sparse $\mathbf{x}$, by \eqref{Ldef} we have the following frequently applied inequality:
+%\begin{align}\label{delrho}
+%L_{k'}(\mathbf{A}) \leq  \max_j\|\mathbf{A}_j\|_2 \ \ \text{for all $k' \leq 2k$}.
+%\end{align}
+
+% and then sketch the proofs of Thm.~\ref{robustPolythm} and Cor.~\ref{ProbabilisticCor}.
 
 %\begin{lemma}\label{spanIntersectionLemma}
 %Let $\mathbf{M} \in \mathbb{R}^{n \times m}$. If every $2k$ columns of $\mathbf{M}$ are linearly independent, then for any $F \subseteq {[m] \choose k}$:
@@ -591,7 +593,7 @@ If $\bar m < mr / (r-1)$ then, letting $p := \bar m - r( \bar m - m)$, we have $
 \begin{proof}[Proof of Lem.~\ref{MainLemma}]
 %We will show that the bound \eqref{GapUpperBound} trickles through the intersection semi-lattices of $\{\bm{\mathcal{A}}_S\}_{S \in \mathcal{H}}$ and $\{\bm{\mathcal{B}}_{\bar S}\}_{\bar S \in \pi(\mathcal{H})}$ to yield \eqref{MainLemmaBPD} by virtue of the SIP.  
 
-We begin by showing that $\dim(\bm{\mathcal{B}}_{\pi(S)}) = \dim(\bm{\mathcal{A}}_S)$ for all $S \in \mathcal{H}$. Since the right-hand side of \eqref{GapUpperBound} is less than one (by \eqref{delrho} and $r \leq 1$), it follows from \eqref{dimLem} that $|\pi(S)| \geq \dim(\bm{\mathcal{B}}_{\pi(S)}) \geq \dim(\bm{\mathcal{A}}_S) = |S|$, with the equality by injectivity of $\mathbf{A}$. Since $|S| = |\pi(S)|$, the required fact follows. Note that $\mathbf{B}_{\pi(S)}$ therefore has full column-rank for all $S \in \mathcal{H}$.
+We begin by showing that $\dim(\bm{\mathcal{B}}_{\pi(S)}) = \dim(\bm{\mathcal{A}}_S)$ for all $S \in \mathcal{H}$. Note that since $\|\mathbf{A}\mathbf{x}\|_2 \leq \max_j\|\mathbf{A}_j\|_2\|\mathbf{x}\|_1$ and $\|\mathbf{x}\|_1 \leq \sqrt{2} \|\mathbf{x}\|_2$ for all $2$-sparse $\mathbf{x}$, by \eqref{Ldef} we have $L_2(\mathbf{A}) \leq \max_j\|\mathbf{A}_j\|_2$ and therefore (as $\xi \leq 1$), the right-hand side of \eqref{GapUpperBound} is less than one. It follows from \eqref{dimLem} that $|\pi(S)| \geq \dim(\bm{\mathcal{B}}_{\pi(S)}) \geq \dim(\bm{\mathcal{A}}_S) = |S|$, with the equality by injectivity of $\mathbf{A}$. Since $|S| = |\pi(S)|$, the required fact follows. Note that $\mathbf{B}_{\pi(S)}$ therefore has full column-rank for all $S \in \mathcal{H}$.
 
 We next show that \eqref{cond} holds.  Fix $\mathcal{G} \subseteq \mathcal{H}$. Since $\bm{\mathcal{B}}_{\cap \pi(\mathcal{G})} \subseteq \cap_{S \in \mathcal{G}} \bm{\mathcal{B}}_{\pi(S)}$, if $\cap_{S \in \mathcal{G}} \bm{\mathcal{B}}_{\pi(S)} = \{\textbf{0}\}$, then we must have $|\cap_{S \in \mathcal{G}} \pi(S)| = 0$ (as the columns of $\mathbf{B}_{\pi(S)}$ are linearly independent) and \eqref{cond} is trivially true. Suppose then that the intersection is not the zero vector. Keeping in mind that $d(U,V) \leq d(U',V)$ whenever $U \subseteq U'$ and applying (in order) Lem.~\ref{spanIntersectionLemma}, Lem.~\ref{DistanceToIntersectionLemma}, \eqref{eqdim}, \eqref{GapUpperBound}, and \eqref{Cdef2} gives:
 \begin{align}\label{randoml}
@@ -600,10 +602,10 @@ d(\bm{\mathcal{B}}_{\cap \pi(\mathcal{G})}&, \bm{\mathcal{A}}_{\cap \mathcal{G}}
 &\leq \sum_{T \in \mathcal{G}} \frac{ d\left( \cap_{S \in \mathcal{G}} \bm{\mathcal{B}}_{\pi(S)},\bm{\mathcal{A}_{T}} \right) }{ \xi(  \{\bm{\mathcal{A}}_S\}_{S \in \mathcal{G}}) }
 \leq \sum_{T \in \mathcal{G}} \frac{ d\left( \bm{\mathcal{B}}_{\pi(T)},\bm{\mathbf{A}}_{T} \right) }{ \xi( \{\bm{\mathcal{A}}_S\}_{S \in \mathcal{G}}) }\nonumber \\
 &\leq \frac{|\mathcal{G}| \varepsilon}{\xi( \{\bm{\mathcal{A}}_S\}_{S \in \mathcal{G}})} 
-\leq \frac{C_2 \varepsilon}{\max_i\|\mathbf{A}_i\|_2}. 
+\leq \frac{C_2 \varepsilon}{\max_j\|\mathbf{A}_j\|_2}. 
 \end{align}
 
-Since $\varepsilon < L_2(\mathbf{A}) / C_2$, by \eqref{delrho} the upper bound in \eqref{randoml} is less than one; hence, $\dim(\bm{\mathcal{B}}_{\cap \pi(\mathcal{G})}) \leq \dim(\bm{\mathcal{A}}_{\cap \mathcal{G}})$ by \eqref{dimLem}, and \eqref{cond} follows from the full column-rank of $\mathbf{A}_{S}$ and $\mathbf{B}_{\pi(S)}$ for all $S \in \mathcal{G}$.
+Since $C_2 \varepsilon < L_2(\mathbf{A}) \leq \max_j\|\mathbf{A}_j\|_2$, we have by \eqref{dimLem} that $\dim(\bm{\mathcal{B}}_{\cap \pi(\mathcal{G})}) \leq \dim(\bm{\mathcal{A}}_{\cap \mathcal{G}})$, and \eqref{cond} follows from the full column-rank of $\mathbf{A}_{S}$ and $\mathbf{B}_{\pi(S)}$ for all $S \in \mathcal{G}$.
 
 Now, by Lem.~\ref{NonEmptyLemma}, the association $i \mapsto \cap \pi(h(i))$ defines an injective map $\bar \pi: J \to [\bar m]$ for some $J \subseteq [m]$ of size $\bar m - r(\bar m - m)$, and we can be sure that $\mathbf{B}_{\bar \pi(i)} \neq \mathbf{0}$ for all $i \in J$ since the columns of $\mathbf{B}_{\pi(S)}$ are linearly independent for all $S \in \mathcal{H}$. It then follows from \eqref{eqdim} and \eqref{randoml} that $d\left( \bm{\mathcal{A}}_i, \bm{\mathcal{B}}_{\bar \pi(i)} \right) \leq C_2 \varepsilon / \max_i \|\mathbf{A}_i\|_2$ for all $i \in J$. Fixing $\bar \varepsilon = C_2\varepsilon$ and letting $c_i = \|\mathbf{A}_i\|_2^{-1}$, we thus have that for every basis vector $\mathbf{e}_i \in \mathbb{R}^m$ with $i \in J$ there exists some $\bar{c}_i \in \mathbb{R}$ such that $\|c_i\mathbf{A}\mathbf{e}_i - \bar{c}_i \mathbf{B}\mathbf{e}_{\bar \pi(i)}\|_2 \leq \bar \varepsilon < L_2(\mathbf{A}) \min_{i\in J} |c_i|$.  But this is exactly the supposition in \eqref{1D}, and the result follows from the case $k=1$ in Sec.~\ref{DUT} applied to the submatrix $\mathbf{A}_J$.
 \end{proof}
