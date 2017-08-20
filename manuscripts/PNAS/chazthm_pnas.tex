@@ -218,7 +218,7 @@ Given a regular hypergraph $\mathcal{H} \subseteq {[m] \choose k}$ with the SIP,
 
 One can also easily verify that for every $k < m$, there is a regular $k$-uniform hypergraph with the SIP; for instance, take $\mathcal{H}$ to be the consecutive intervals of length $k$ in some cyclic order on $[m]$.  In this case, a direct consequence of Cor.~\ref{DeterministicUniquenessCorollary} is rigorous verification of the lower bound \mbox{$N = m(k-1){m \choose k} + m$} for sufficient sample size from the introduction. In many cases, however, the SIP is achievable with far fewer supports.  For example, when $k = \sqrt{m}$, simply take $\mathcal{H}$ to be the $2k$ rows and columns formed by arranging $[m]$ in a square grid.
 
-Another practical implication of Thm.\ref{DeterministicUniquenessTheorem} is the following: there is an effective procedure sufficient to affirm if a proposed solution to Prob.~\ref{InverseProblem} is indeed unique (up to noise and inherent ambiguities). One simply checks that the matrix and codes satisfy the respective (computable) assumptions of Thm.~\ref{DeterministicUniquenessTheorem} on $\mathbf{A}$ and the $\mathbf{x}_i$.  
+Another practical implication of Thm.\ref{DeterministicUniquenessTheorem} is the following: there is an effective procedure sufficient to affirm if a proposed solution to Prob.~\ref{InverseProblem} is indeed unique (up to noise and inherent ambiguities). Simply check that the matrix and codes satisfy the (computable) assumptions of Thm.~\ref{DeterministicUniquenessTheorem} on $\mathbf{A}$ and the $\mathbf{x}_i$.  
 %Another practical implication of Thm.\ref{DeterministicUniquenessTheorem} is the following: there is an effective procedure sufficient to affirm if a proposed solution $(\mathbf{B}, \mathbf{\bar x}_1, \ldots, \mathbf{x}_N)$ to Prob.~\ref{InverseProblem} is indeed unique (up to noise and inherent ambiguities). One simply checks that $\mathbf{B}$ and the $\mathbf{\bar x}_i$ satisfy the respective assumptions of Thm.~\ref{DeterministicUniquenessTheorem}.  
 %. on $\mathbf{A}$ and the $\mathbf{x}_i$, respectively.
 
@@ -362,7 +362,7 @@ d(U,V) := \sup_{\mathbf{u} \in U, \ \|\mathbf{u}\|_2 \leq 1} \text{\rm dist}(\ma
 \end{align}
 \end{definition}
 
-We note the following facts about $d$. For subspaces $U \subseteq U', V \subseteq \mathbb{R}^m$, we have $d(U,V) \leq d(U',V)$ and \cite[Ch.~4 Cor.~2.6]{Kato2013}: %Kato p.223
+We note the following facts. For subspaces $U \subseteq U', V \subseteq \mathbb{R}^m$, we have $d(U,V) \leq d(U',V)$ and \cite[Ch.~4 Cor.~2.6]{Kato2013}: %Kato p.223
 \begin{align}\label{dimLem}
 d(U,V) < 1 \implies \dim(U) \leq \dim(V).
 \end{align}
