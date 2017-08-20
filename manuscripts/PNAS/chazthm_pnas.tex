@@ -165,7 +165,7 @@ We generalize the  lower bound to a domain-restricted \emph{union of subspaces} 
 L_\mathcal{H}(\mathbf{M}) := \frac{1}{\sqrt{k}} \inf \left\{ \frac{\|\mathbf{M}_S\mathbf{x}\|_2}{ \|\mathbf{x}\|_2} : S \in \mathcal{H}, \ \ \mathbf{x} \in \mathbb{R}^{|S|} \right\},
 \end{align} 
 %
-where we write $L_{k}$ when $\mathcal{H} = {[m] \choose k}$.\footnote{We note that $1 - \sqrt{k} L_k(\mathbf{M})$ is known as the asymmetric lower restricted isometry constant \cite{Blanchard2011}.} Clearly, for any $\mathbf{M}$ satisfying \eqref{SparkCondition}, we have $L_{k'}(\mathbf{M}) > 0$ for  $k' \leq 2k$. Note that if $\mathcal{H}$ \textit{covers} $[m]$ (i.e., $\cup \mathcal{H} = [m]$), then $L_2 \geq L_{2\mathcal{H}}$.
+where we write $L_{k}$ when $\mathcal{H} = {[m] \choose k}$.\footnote{We note that $1 - \sqrt{k} L_k(\mathbf{M})$ is known as the asymmetric lower restricted isometry constant for matrices $\mathbf{M}$ with unit $\ell_2$-norm columns \cite{Blanchard2011}.} Clearly, for any $\mathbf{M}$ satisfying \eqref{SparkCondition}, we have $L_{k'}(\mathbf{M}) > 0$ for  $k' \leq 2k$. Note that if $\mathcal{H} \subseteq {[m] \choose k}$ has $\cup \mathcal{H} = [m]$, then $L_2 \geq L_{2\mathcal{H}} \geq L_{2k}$.
  
 A vector $\mathbf{x}$ is said to be \emph{supported} in $S \subseteq [m]$ when $\mathbf{x} \in \text{\rm span}\{\mathbf{e}_j: j\in S\}$, where $\mathbf{e}_j$ are the standard basis in $\mathbb R^m$. 
 %Denote by $\mathbf{x}^J$ the subvector formed from the entries of $\mathbf{x}$ indexed by $J$. 
@@ -306,7 +306,7 @@ We close this section with a comment on sample complexity. A basic open problem 
 
 We now begin our proof of Thm.~\ref{DeterministicUniquenessTheorem} by showing how dictionary recovery \eqref{Cstable} already implies sparse code recovery \eqref{b-PDa} when \mbox{$\varepsilon < L_{2k}(\mathbf{A}) / C_1$} (provided $L_{2k}(\mathbf{A}) > 0$), temporarily assuming (without loss of generality) that $\bar m = m$. First, note that since $\|\mathbf{A}\mathbf{x}\|_2 \leq \max_j\|\mathbf{A}_j\|_2\|\mathbf{x}\|_1$ and $\|\mathbf{x}\|_1 \leq \sqrt{k} \|\mathbf{x}\|_2$ for $k$-sparse $\mathbf{x}$, by \eqref{Ldef} we have the following frequently applied inequality:
 \begin{align}\label{delrho}
-L_{2\mathcal{H}}(\mathbf{A}) %\leq \frac{\|\mathbf{A}\mathbf{x}\|_2}{\sqrt{2k} \|\mathbf{x}\|_2} 
+L_2(\mathbf{A}) %\leq \frac{\|\mathbf{A}\mathbf{x}\|_2}{\sqrt{2k} \|\mathbf{x}\|_2} 
 \leq  \max_j\|\mathbf{A}_j\|_2.
 \end{align}
 For $2k$-sparse $\mathbf{x} \in \mathbb{R}^m$, the triangle inequality gives \mbox{$\|(\mathbf{A}-\mathbf{BPD})\mathbf{x}\|_2  \leq C_1\varepsilon \|\mathbf{x}\|_1 \leq C_1 \varepsilon \sqrt{2k}  \|\mathbf{x}\|_2$}. Thus:
