@@ -151,7 +151,7 @@ Given $\mathcal{H} \subseteq 2^{[m]}$, the \textbf{star} $\sigma(i)$ is the coll
 
 Next, we describe a quantitative version of the spark condition. The \emph{lower bound} $L$ of a matrix $\mathbf{M} \in \mathbb R^{n \times m}$ is the largest $\alpha$ such that \mbox{$\|\mathbf{M}\mathbf{x}\|_2 \geq \alpha\|\mathbf{x}\|_2$} for all $\mathbf{x} \in \mathbb{R}^m$ \cite{Grcar10}. By compactness of the unit sphere, every injective linear map has nonzero lower bound; hence, if $\mathbf{M}$ satisfies \eqref{SparkCondition}, then each submatrix formed from $2k$ of its columns or less has $L > 0$. 
 
-We generalize the  lower bound to a domain-restricted \emph{union of subspaces} model \cite{vidal2005generalized} derived from a hypergraph $\mathcal{H}$. Letting $\mathbf{M}_J$ denote the submatrix formed by the columns of $\mathbf{M}$ indexed by $J \subseteq [m]$ (with $\mathbf{M}_\emptyset := \mathbf{0}$), we define: 
+We generalize the  lower bound to a domain-restricted \emph{union of subspaces} model \cite{vidal2005generalized} derived from a hypergraph $\mathcal{H} \subseteq {[m] \choose k}$. Letting $\mathbf{M}_J$ denote the submatrix formed by the columns of $\mathbf{M}$ indexed by $J \subseteq [m]$ (with $\mathbf{M}_\emptyset := \mathbf{0}$), we define: 
 %\begin{align*} 
 %L_\mathcal{H}(\mathbf{M}) := \inf \left\{ \frac{ \|\mathbf{M}(\mathbf{x}_1-\mathbf{x}_2)\|_2 }{ \sqrt{2k} \|\mathbf{x}_1-\mathbf{x}_2\|_2} : \mathbf{x}_1, \mathbf{x}_2 \in \cup_{S \in \mathcal{H}} \bm{\mathcal{M}}_S \right\},
 %\end{align*} 
@@ -219,9 +219,9 @@ Given a regular hypergraph $\mathcal{H} \subseteq {[m] \choose k}$ with the SIP,
 \end{corollary}
 % Needs to be L_{2k}(A) > 0 to guarantee sparse vector recovery	
 
-One can also easily verify that for every $k < m$, there is a regular $k$-uniform hypergraph with the SIP; for instance, take $\mathcal{H}$ to be the consecutive intervals of length $k$ in some cyclic order on $[m]$.  In this case, a direct consequence of Cor.~\ref{DeterministicUniquenessCorollary} is rigorous verification of the lower bound \mbox{$N = m(k-1){m \choose k} + m$} for sufficient sample size from the introduction. In many cases, however, the SIP is achievable with far fewer supports.  For example, when $k = \sqrt{m}$, simply take $\mathcal{H}$ to be the $2k$ rows and columns formed by arranging $[m]$ in a square grid.
+One can also easily verify that for every $k < m$, there are regular $k$-uniform hypergraphs with the SIP besides the obvious $\mathcal{H} = {[m] \choose k}$; for instance, take $\mathcal{H}$ to be the consecutive intervals of length $k$ in some cyclic order on $[m]$. In this case, a direct consequence of Cor.~\ref{DeterministicUniquenessCorollary} is rigorous verification of the lower bound \mbox{$N = m(k-1){m \choose k} + m$} for sufficient sample size from the introduction. In many cases, however, the SIP is achievable with far fewer supports. For example, when $k = \sqrt{m}$, simply take $\mathcal{H}$ to be the $2k$ rows and columns formed by arranging $[m]$ in a square grid.
 
-Another practical implication of Thm.\ref{DeterministicUniquenessTheorem} is the following: there is an effective procedure sufficient to affirm if a proposed solution to Prob.~\ref{InverseProblem} is indeed unique (up to noise and inherent ambiguities). Simply check that the matrix and codes satisfy the (computable) assumptions of Thm.~\ref{DeterministicUniquenessTheorem} on $\mathbf{A}$ and the $\mathbf{x}_i$.  
+Another practical implication of Thm.~\ref{DeterministicUniquenessTheorem} is the following: there is an effective procedure sufficient to affirm if a proposed solution to Prob.~\ref{InverseProblem} is indeed unique (up to noise and inherent ambiguities). Simply check that the matrix and codes satisfy the (computable) assumptions of Thm.~\ref{DeterministicUniquenessTheorem} on $\mathbf{A}$ and the $\mathbf{x}_i$.  
 %Another practical implication of Thm.\ref{DeterministicUniquenessTheorem} is the following: there is an effective procedure sufficient to affirm if a proposed solution $(\mathbf{B}, \mathbf{\bar x}_1, \ldots, \mathbf{x}_N)$ to Prob.~\ref{InverseProblem} is indeed unique (up to noise and inherent ambiguities). One simply checks that $\mathbf{B}$ and the $\mathbf{\bar x}_i$ satisfy the respective assumptions of Thm.~\ref{DeterministicUniquenessTheorem}.  
 %. on $\mathbf{A}$ and the $\mathbf{x}_i$, respectively.
 
@@ -235,16 +235,16 @@ Another practical implication of Thm.\ref{DeterministicUniquenessTheorem} is the
 
 %As mentioned above, there exist $k$-uniform regular hypergraphs $\mathcal{H}$ with the SIP having cardinality $|\mathcal{H}| = m$, 
 
-We furthermore note that unlike in previous works \cite{li2004analysis, Georgiev05, Aharon06, Hillar15}, the matrix $\mathbf{A}$ need not satisfy the spark condition to be recoverable from data. As a simple example for $k=2$, let $\mathbf{A} = [ \mathbf{e}_1, \ldots, \mathbf{e}_5, \mathbf{v}]$ where $\mathbf{v} = \mathbf{e}_1 + \mathbf{e}_3 + \mathbf{e}_5$, and take $\mathcal{H}$ to be all consecutive pairs of $[m]$ arranged in cyclic order. Then, dictionary $\mathbf{A}$ satisfies the assumptions of Thm.~\ref{DeterministicUniquenessTheorem} but not \eqref{SparkCondition}. %(since $\{ \mathbf{A}_1, \mathbf{A}_3, \mathbf{A}_5, \mathbf{A}_6\}$ is not a linearly independent set).
+We furthermore note that unlike in previous works \cite{li2004analysis, Georgiev05, Aharon06, Hillar15}, the matrix $\mathbf{A}$ need not satisfy the spark condition to be recoverable from data. As a simple example for $k=2$, let $\mathbf{A} = [ \mathbf{e}_1, \ldots, \mathbf{e}_5, \mathbf{v}]$ where $\mathbf{v} = \mathbf{e}_1 + \mathbf{e}_3 + \mathbf{e}_5$, and take $\mathcal{H}$ to be all consecutive pairs of $[m]$ arranged in cyclic order. Then, dictionary $\mathbf{A}$ satisfies the assumptions of Thm.~\ref{DeterministicUniquenessTheorem} underlying \eqref{Cstable} without satisfying \eqref{SparkCondition}. %(since $\{ \mathbf{A}_1, \mathbf{A}_3, \mathbf{A}_5, \mathbf{A}_6\}$ is not a linearly independent set).
 %This weakening allows for a practical (polynomial) amount of data to still guarantee a stable dictionary in the case where the set of sparse supports for the $\mathbf{\bar x}_i$ is known to have a size that grows polynomially in $m$ and $k$.
 
 There are other less direct consequences of Thm.~\ref{DeterministicUniquenessTheorem}.  For instance, we use it to prove uniqueness for the optimization formulation of sparse linear coding, Prob.~\ref{SLCopt}, the main object of interest for those applying dictionary learning to their data.
 
 \begin{theorem}\label{SLCopt}
-If the assumptions of Thm.\ref{DeterministicUniquenessTheorem} hold, only now with more than $(k-1)\left[ {\bar m \choose k} + |\mathcal{H}|k{\bar m \choose k-1}\right]$ vectors $\mathbf{x}_i$ supported in each $S \in \mathcal{H}$, then all solutions to Prob.~\ref{OptimizationProblem} with $\eta \leq \varepsilon / 2$ necessarily satisfy recovery inequalities \eqref{Cstable} and \eqref{b-PDa} of Thm.~\ref{DeterministicUniquenessTheorem}.
+If the assumptions of Thm.~\ref{DeterministicUniquenessTheorem} hold, only now with more than $(k-1)\left[ {\bar m \choose k} + |\mathcal{H}|k{\bar m \choose k-1}\right]$ vectors $\mathbf{x}_i$ supported in each $S \in \mathcal{H}$, then all solutions to Prob.~\ref{OptimizationProblem} with $\eta \leq \varepsilon / 2$ necessarily satisfy recovery inequalities \eqref{Cstable} and \eqref{b-PDa} of Thm.~\ref{DeterministicUniquenessTheorem}.
 \end{theorem}
 
-Another extension of Thm.~\ref{DeterministicUniquenessTheorem} arises from the following analytic characterization of the spark condition.  Let $\mathbf{A}$  be the $n \times m$ matrix of $nm$ indeterminates $A_{ij}$. When real numbers are substituted for $A_{ij}$, the resulting matrix satisfies condition \eqref{SparkCondition} if and only if the following polynomial is nonzero:
+Another extension of Thm.~\ref{DeterministicUniquenessTheorem} arises from the following analytic characterization of the spark condition.  Let $\mathbf{A}$  be the $n \times m$ matrix of $nm$ indeterminates $A_{ij}$. When real numbers are substituted for $A_{ij}$, the resulting matrix satisfies \eqref{SparkCondition} if and only if the following polynomial is nonzero:
 \begin{align*}
 f(\mathbf{A}) := \prod_{S \in {[m] \choose 2k}} \sum_{S' \in {[n] \choose 2k}} (\det \mathbf{A}_{S',S})^2,
 \end{align*}
@@ -373,7 +373,7 @@ Our result in combinatorial matrix analysis is the following. Let $\bm{\mathcal{
 \begin{lemma}\label{MainLemma}
 Suppose $\mathbf{A} \in \mathbb{R}^{n \times m}$ has $L_{2\mathcal{H}}(\mathbf{A}) > 0$ for some $r$-regular $\mathcal{H} \subseteq {[m] \choose k}$ with the SIP. There exists $C_2 > 0$ for which the following holds for all $\varepsilon < L_2(\mathbf{A}) / C_2$:
 
-If for some  $\mathbf{B} \in \mathbb{R}^{n \times \bar m}$ and map $\pi: E \mapsto {[\bar m] \choose k}$, we have:
+If for some  $\mathbf{B} \in \mathbb{R}^{n \times \bar m}$ and map $\pi: \mathcal{H} \mapsto {[\bar m] \choose k}$, we have:
 \begin{align}\label{GapUpperBound}
 d(\bm{\mathcal{A}}_S, \bm{\mathcal{B}}_{\pi(S)}) \leq \varepsilon, \ \  \text{for $S \in \mathcal{H}$};
 \end{align}
@@ -381,7 +381,7 @@ then $\bar m \geq m$, and, provided $\bar m < mr /(r-1)$, there is a permutation
 \begin{align}\label{MainLemmaBPD}
 \|\mathbf{A}_j - \mathbf{B}_{\bar J} \mathbf{PD}_j\|_2 \leq C_2 \varepsilon, \ \  \text{for } j \in J,
 \end{align}
-for some nonempty $J \subseteq [m], \bar J \subseteq[\bar{m}]$ of size $\bar m - r(\bar m - m)$.
+for some nonempty $J \subseteq [m]$ and $\bar J \subseteq[\bar{m}]$ of size $\bar m - r(\bar m - m)$.
 \end{lemma}
 
 %\begin{lemma}\label{MainLemma}
