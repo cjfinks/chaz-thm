@@ -93,7 +93,7 @@ For every S \in E, there exists a subset of x_1,..,x_N of at least size (k-1)\ch
 Is this what you meant?
 -----------------
 
-RESPONSE: Yes, though actually for every S \in E there are "more than" (k-1)\choose{\bar{m},k} vectors with support in S (not "at least"). Thank you for helping us to clarify our statements. We have updated the manuscript to disambiguate these conditions.
+RESPONSE: Yes, though actually for every S \in E (now \mathcal{H} in the revised manuscript) there are "more than" (k-1)\choose{\bar{m},k} vectors with support in S (not "at least"). Thank you for helping us to clarify our statements. We have updated the manuscript to disambiguate these conditions.
 
 -----------------
 -- Related point: Is there a condition on \ell in Theorem 1?
