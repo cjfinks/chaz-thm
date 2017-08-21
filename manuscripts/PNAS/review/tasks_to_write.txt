@@ -1,15 +1,11 @@
 TO DO:
 
-- If dictionary is unique given the data, then solving the DL problem also solves the sparse approximation problem, which is NP-hard (with the same assumptions on the x_i?) — therefore DL is NP-hard, no? Otherwise we could solve NP-hard sparse approximation problem by solving non-NP-hard DL problem.
 - Should Problem 1 really have the name “Sparse Linear Coding” when Problem 2 has no name..?
 - In pt by pt we say we will clearly communicate that Thm. 2 is first of its kind…
-- LIL’ LEMMA for disjoint star cores
 
 TO “ADD TO MANUSCRIPT”:
 DONE (DISCUSSION) - A compelling exposition of the significance of our results and their relevance to the general scientific audience
 - A discussion of the computability of sufficient conditions
-- A sample complexity polynomial in (m, k) by limiting the size of the support set of the \tilde x_i
-- Some discussion of where the results can be tightened (e.g. Lem. 4)
 
 DONE - The outline of a procedure which can affirm if one’s proposed solution to Prob. 1 or 2 is indeed unique.
 DONE - That A need only be injective on the union of subspaces with supports in a SIP hypergraph to recoverable (give example)
