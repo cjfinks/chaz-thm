@@ -62,7 +62,7 @@
 \authordeclaration{The authors declare no conflict of interest.}
 \correspondingauthor{\textsuperscript{1}To whom correspondence should be addressed. E-mail: chaz@berkeley.edu, chillar@msri.org}
 
-\keywords{Sparse linear coding, dictionary learning, matrix factorization, compressed sensing, inverse problems, blind source separation} 
+\keywords{Sparse coding, dictionary learning, matrix factorization, compressed sensing, inverse problems, blind source separation} 
 
 \begin{abstract}
 Dictionary learning for sparse linear coding has exposed characteristic properties of natural signals.
@@ -427,7 +427,7 @@ C_2(\mathbf{A}, \mathcal{H}) := \frac{ 2^{|\mathcal{H}|} \max_{j \in [m]} \|\mat
 %
 which we remark is consistent with the assumption on $C_1$ in the proof of the case $k=1$ at the beginning of this section.  
 
-The pragmatic reader should note that the explicit constants $C_1$ and $C_2$ are effectively computable: the quantity $L_k$, may be computed as the smallest singular value of a certain matrix, while the quantity $\xi$ involves computing ``canonical angles'' between subspaces, which reduce again to an efficient singular value decomposition. There is no efficient computation of $L_k$ in general, however, since even $L_{k} > 0$ is NP-hard \cite{tillmann2014computational}; although, fixing $k$, yields polynomial complexity. Moreover, calculating $C_2$ requires an exponential number of queries to $\xi$; thus, as presented, $C_1$ and $C_2$ are not efficiently computable.
+The pragmatic reader should note that the explicit constants $C_1$ and $C_2$ are effectively computable: the quantity $L_k$ may be calculated as the smallest singular value of a certain matrix, while the quantity $\xi$ involves computing ``canonical angles'' between subspaces, which reduce again to an efficient singular value decomposition. There is no known fast computation of $L_k$ in general, however, since even $L_{k} > 0$ is NP-hard \cite{tillmann2014computational}; although fixing $k$ yields polynomial complexity. Moreover, calculating $C_2$ requires an exponential number of queries to $\xi$.  Thus, as presented, $C_1$ and $C_2$ are not efficiently computable.
 
 \begin{proof}[Proof of Thm.~\ref{DeterministicUniquenessCorollary} for $k < m$] 
 We demonstrate the existence of a map $\pi: \mathcal{H} \to 2^{[\bar m]}$ for which the distance $d(\bm{\mathcal{A}}_S, \bm{\mathcal{B}}_{\pi(S)})$ is controlled by $\varepsilon$. Applying Lem.~\ref{MainLemma} then completes the proof. 
@@ -468,7 +468,7 @@ demonstrating that the number vectors $\mathbf{\bar x}_i$ that are \emph{not} $k
 
 Next, observe that no more than $(k-1)|\mathcal{H}|$ of the $\mathbf{\bar x}_i$ share a support $\bar S$ of size less than $k$; otherwise, by the pigeonhole principle, at least $k$ of these indices $i$ belong to the same $K \subseteq I(S)$ for some $S \in \mathcal{H}$ and (as argued previously) \eqref{rhs222} follows. Since the right-hand side of \eqref{rhs222} is less than one, by \eqref{dimLem} we have the contradiction $k = \dim(\bm{\mathcal{A}}_S) \leq \dim(\bm{\mathcal{B}}_{\bar S}) \leq |\bar S|.$ 
 
-The total number of $(k-1)$-sparse vectors $\mathbf{\bar x}_i$ can thus not exceed $|\mathcal{H}|(k-1){ \bar m \choose k-1}$. By \eqref{eqn}, no more than $|\mathcal{H}|k(k-1){ \bar m \choose k-1}$ vectors $\mathbf{\bar x}_i$ are not $k$-sparse. Since for every $S \in \mathcal{H}$ there are over $(k-1)\left[ {\bar m \choose k} + |\mathcal{H}|k{ \bar m \choose k-1} \right]$ vectors $\mathbf{x}_i$ supported there, it must be that more than $(k-1){\bar m \choose k}$ of them have corresponding $\mathbf{\bar x}_i$ that are $k$-sparse. The result now follows from Thm.~\ref{DeterministicUniquenessCorollary}.
+The total number of $(k-1)$-sparse vectors $\mathbf{\bar x}_i$ thus can not exceed $|\mathcal{H}|(k-1){ \bar m \choose k-1}$. By \eqref{eqn}, no more than $|\mathcal{H}|k(k-1){ \bar m \choose k-1}$ vectors $\mathbf{\bar x}_i$ are not $k$-sparse. Since for every $S \in \mathcal{H}$ there are over $(k-1)\left[ {\bar m \choose k} + |\mathcal{H}|k{ \bar m \choose k-1} \right]$ vectors $\mathbf{x}_i$ supported there, it must be that more than $(k-1){\bar m \choose k}$ of them have corresponding $\mathbf{\bar x}_i$ that are $k$-sparse. The result now follows from Thm.~\ref{DeterministicUniquenessCorollary}.
 \end{proof}
 
 \begin{proof}[Proof (sketch) of Thm.~\ref{robustPolythm}]
@@ -545,7 +545,7 @@ In this section, we prove Lem.~\ref{MainLemma} and some auxiliary lemmas.  % sta
 %\end{proof}
 
 \begin{lemma}\label{spanIntersectionLemma}
-If $f: U \to V$ is an injective function then $f\left(\cap_{i=1}^\ell U_i \right) =  \cap_{i=1}^\ell f\left(U_i\right)$ for any $U_1, \ldots, U_\ell \subseteq U$.
+If $f: U \to V$ is an injective function, then $f\left(\cap_{i=1}^\ell U_i \right) =  \cap_{i=1}^\ell f\left(U_i\right)$ for any $U_1, \ldots, U_\ell \subseteq U$.
 %In particular, if for some $E \in 2^{[m]}$ the map $M \in \mathbb{R}^{n \times m}$ is injective on $\cup_{S \in \mathcal{H}} \text{span}\{e_i\}_{i \in S}$ then $\text{span}\{ M_{\cap_{S \in \mathcal{H}} S} \} = \cap_{S \in \mathcal{H}} \text{span}\{M_S\}$.
 \end{lemma}
 \begin{proof}
@@ -592,7 +592,7 @@ then $\bar m \geq m$; and if $\bar m < mr / (r-1)$, the association $i \mapsto \
 \begin{proof}
 Consider the collection of pairs: $T_1 := \{(i, S): i \in \pi(S), S \in \mathcal{H}\}$, which number $|T_1| = \sum_{S \in \mathcal{H}} |\pi(S)| \geq \sum_{S \in \mathcal{H}} |S| = \sum_{i \in [m]} \deg_\mathcal{H}(i) = mr$. Note that \eqref{cond} implies $\bar m \geq |T_1| / r = m$, since otherwise pigeonholing the elements of $T_1$ with respect to their possible first indices $[\bar m]$ would imply $\deg_\mathcal{H}(i) > r$ for some $i \in [m]$.
 
-If $\bar m < mr / (r-1)$ then, letting $p := \bar m - r( \bar m - m)$, we have $|T_1| = \bar m (r - 1) + p$ for positive $p$. By the pigeonhole principle again, there must then be at least $r$ elements of $T_1$ sharing the same first index. By \eqref{cond}, the intersection of the set $\mathcal{G}_1$ consisting of their second indices is nonempty; hence, $|\cap \mathcal{G}_1| = 1$ by $r$-regularity and the SIP. Since $\cap \pi(\mathcal{G}_1)$ is nonempty, applying \eqref{cond} again gives $\cap \pi(\mathcal{G}_1) = \{i_1\}$ for some $i_1 \in [\bar m]$. If $p=1$, then we are done. Otherwise, define $T_2 := T_1 \setminus \{(i,S) \in T_1: i = i_1\}$, which contains $|T_2| = |T_1| - r = (\bar m - 1)(r-1) + (p-1)$ ordered pairs having $\bar m - 1$ distinct first indices. Repeating the above arguments produces a (necessarily, by $r$-regularity and the SIP) distinct $\mathcal{G}_2 \subseteq \mathcal{H}$ and corresponding $i_2 \in [\bar m]$. Iterating the arguments $p$ times yields the set of singletons \mbox{$J = \{\cap \mathcal{G}_1, \ldots, \cap \mathcal{G}_p\} \subseteq [m]$}.
+If $\bar m < mr / (r-1)$ then, letting $p := \bar m - r( \bar m - m)$, we have $|T_1| = \bar m (r - 1) + p$ for positive $p$. By the pigeonhole principle again, there must then be at least $r$ elements of $T_1$ sharing the same first index. By \eqref{cond}, the intersection of the set $\mathcal{G}_1$ consisting of their second indices is nonempty; hence, $|\cap \mathcal{G}_1| = 1$ by $r$-regularity and the SIP. Since $\cap \pi(\mathcal{G}_1)$ is nonempty, applying \eqref{cond} again gives $\cap \pi(\mathcal{G}_1) = \{i_1\}$ for some $i_1 \in [\bar m]$. If $p=1$, then we are done. Otherwise, define $T_2 := T_1 \setminus \{(i,S) \in T_1: i = i_1\}$, which contains $|T_2| = |T_1| - r = (\bar m - 1)(r-1) + (p-1)$ ordered pairs having $\bar m - 1$ distinct first indices. Repeating the above arguments produces a (necessarily, by $r$-regularity and the SIP) distinct $\mathcal{G}_2 \subseteq \mathcal{H}$ and corresponding $i_2 \in [\bar m]$. Finally, iterating this $p$ times in total yields the set of singletons \mbox{$J = \{\cap \mathcal{G}_1, \ldots, \cap \mathcal{G}_p\} \subseteq [m]$}.
 \end{proof}
 
 \begin{proof}[Proof of Lem.~\ref{MainLemma}]
