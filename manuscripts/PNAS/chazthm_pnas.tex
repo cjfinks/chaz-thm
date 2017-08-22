@@ -85,13 +85,13 @@ Here, we prove that for all diverse enough datasets generated from the sparse co
 
 % If your first paragraph (i.e. with the \dropcap) contains a list environment (quote, quotation, theorem, definition, enumerate, itemize...), the line after the list may have some extra indentation. If this is the case, add \parshape=0 to the end of the list environment.
 \dropcap{B}lind source separation is a classical problem in signal processing \cite{sato1975method}.
-In one common modern formulation, each of $N$ observed $n$-dimensional signals is a (noisy) linear combination of at most $k$ elementary waveforms drawn from some unknown ``dictionary'' of size $m$, typically with $m \ll N$ (see \cite{Zhang15} for a comprehensive review of this and related models).
+In one common modern formulation, each of $N$ observed $n$-dimensional signals is a (noisy) linear combination of at most $k$ elementary waveforms drawn from some unknown dictionary of size $m$, typically with $m \ll N$ (see \cite{Zhang15} for a comprehensive review of this and related models).
 Approximating solutions to this sparsity-constrained inverse problem have provided insight into the structure of many signal classes lacking domain-specific formal models (e.g., in vision \cite{wang2015sparse}).  In particular, it has been shown that response properties of simple-cell neurons in mammalian visual cortex emerge from optimizing a dictionary to represent small patches of natural images \cite{Olshausen96, hurri1996image, bell1997independent, van1998independent}, a major advance in computational neuroscience. A curious aspect of this finding is that the latent waveforms (e.g., ``Gabor'' wavelets) estimated from data appear to be canonical \cite{donoho2001can};
-i.e., they are found in learned dictionaries independent of algorithm or natural image training set.
+i.e., they are found in learned dictionaries independent of algorithm or image training set.
 
 Motivated by these discoveries and earlier work in the theory of neural communication \cite{Isely10}, we address when dictionaries and the sparse representations they induce are uniquely determined by data.  Answers to this question also have other real-world implications.  For example, a sparse coding analysis of local painting style can be used for forgery detection \cite{hughes2010, Olshausen10}, but only if all dictionaries consistent with training data do not differ appreciably in their ability to sparsely encode new samples. 
 Fortunately, algorithms with proven recovery of generating dictionaries under certain 
-conditions have recently been proposed (see \cite[Sec.~I-E]{Sun16} for a summary of the state-of-the-art). Few theorems, however, can be cited to explain this uniqueness phenomenon more broadly; in particular, a universal guarantee in the context of noise has yet to emerge.
+conditions have recently been proposed (see \cite[Sec.~I-E]{Sun16} for a summary of the state-of-the-art). Few theorems, however, can be cited to explain this uniqueness more broadly; in particular, a universal guarantee in the context of noise has yet to emerge.
 
 Here, we prove very generally that uniqueness and stability in sparse linear coding is an expected property of the model. 
 More specifically, dictionaries that preserve sparse codes (e.g., satisfy a ``spark condition'') are identifiable from as few as \mbox{$N = m(k-1){m \choose k} + m$} noisy sparse linear combinations of their columns up to an error that is linear in the noise (Thm.~\ref{DeterministicUniquenessTheorem}). In fact, provided $n \geq \min(2k,m)$, in almost all cases the dictionary learning problem is well-posed (as per Hadamard \cite{Hadamard1902}) given enough data (Cor.~\ref{ProbabilisticCor}). Moreover, these explicit, algorithm-independent guarantees hold without assuming the recovered matrix satisfies a spark condition, and even when the number $m$ of dictionary elements is unknown.
@@ -104,7 +104,7 @@ for $k$-\emph{sparse} $\mathbf{x}_i \in \mathbb{R}^m$ having at most $k$ nonzero
 The first mathematical problem we address is the following.
 
 \begin{problem}[Sparse linear coding]\label{InverseProblem}
-Find a matrix $\mathbf{B}$ and $k$-sparse $\mathbf{\bar x}_1, \ldots, \mathbf{\bar x}_N \in \mathbb{R}^m$ such that $\|\mathbf{z}_i - \mathbf{B}\mathbf{\bar x}_i\|_2 \leq \eta$ for all $i$.
+Find a matrix $\mathbf{B}$ and $k$-sparse $\mathbf{\bar x}_1, \ldots, \mathbf{\bar x}_N \in \mathbb{R}^m$ so that $\|\mathbf{z}_i - \mathbf{B}\mathbf{\bar x}_i\|_2 \leq \eta$ for all $i$.
 \end{problem}
 
 Note that any particular solution $(\mathbf{B}, \mathbf{\bar x}_1 \ldots, \mathbf{\bar x}_N)$ to this problem gives rise to an orbit of equivalent solutions $(\mathbf{BPD}, \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\bar x}_1, \ldots, \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\bar x}_N)$, where $\mathbf{P}$ is any permutation matrix and $\mathbf{D}$ any invertible diagonal. Previous theoretical work addressing the noiseless case $\eta =0$ (e.g., \cite{li2004analysis, Georgiev05, Aharon06, Hillar15}) has shown that a solution to Prob.~\ref{InverseProblem} (when it exists) is indeed unique up to this inherent ambiguity provided the $\mathbf{x}_i$ are sufficiently diverse and the generating matrix $\mathbf{A}$ satisfies the \textit{spark condition} from compressed sensing:
@@ -125,8 +125,6 @@ then there is some permutation matrix $\mathbf{P}$ and invertible diagonal matri
 \|\mathbf{A}_j - \mathbf{BPD}_j\|_2 \leq \delta_1 \ \ \text{and} \ \ \|\mathbf{x}_i - \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\bar x}_i\|_1 \leq \delta_2.
 \end{align}
 \end{definition}
-
-\pagebreak
 
 To see how Def. \ref{maindef} directly relates to Prob. \ref{InverseProblem}, suppose that $Y$ has a stable $k$-sparse representation in $\mathbb{R}^m$ and fix $\delta_1, \delta_2$ to be the desired recovery accuracy in \eqref{def1}. Consider now any dataset $Z$ generated as in \eqref{LinearModel} with $\eta \leq \frac{1}{2} \varepsilon(\delta_1, \delta_2)$. Then from the triangle inequality, it follows that any matrix $\mathbf{B}$ and $k$-sparse $\mathbf{\bar x}_1, \ldots, \mathbf{\bar x}_N \in \mathbb{R}^m$ solving Prob.~\ref{InverseProblem} are necessarily within $\delta_1, \delta_2$ of the original dictionary $\mathbf{A}$ and codes $\mathbf{x}_i$, respectively.
 
@@ -522,7 +520,7 @@ In fact, uniqueness guarantees with minimal assumptions apply to all areas of da
 
 \bibliography{chazthm_pnas}
 
-\vspace{-.15 cm}
+%\vspace{-.15 cm}
 
 \section{Appendix}\label{proofs}
 
@@ -554,7 +552,7 @@ By induction it is enough to prove the case $|n| = 2$, but this case follows dir
 %\vspace{-.2 cm}
 \begin{lemma}\label{DistanceToIntersectionLemma}
 Fix $k \geq 2$. Let $V_1, \ldots, V_k$ be subspaces of $\mathbb{R}^m$ and set $V = \cap_{i = 1}^k V_i$. For  $\mathbf{x} \in \mathbb{R}^m$, we have (where $\xi$ is given in Def.~\ref{SpecialSupportSet}):
-\vspace{-.2 cm}
+%\vspace{-.2 cm}
 \begin{align}\label{DTILeq}
 \text{\rm dist}(\mathbf{x}, V) \leq \frac{1}{\xi(\{V_i\}_{i = 1}^k)} \sum_{i=1}^k \text{\rm dist}(\mathbf{x}, V_i).
 \end{align}
