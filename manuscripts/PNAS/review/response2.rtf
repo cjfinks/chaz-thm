@@ -1,0 +1,145 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf830
+{\fonttbl\f0\fmodern\fcharset0 Courier;}
+{\colortbl;\red255\green255\blue255;\red78\green78\blue78;\red255\green255\blue255;}
+{\*\expandedcolortbl;;\cssrgb\c38039\c38039\c38039;\cssrgb\c100000\c100000\c100000;}
+\margl1440\margr1440\vieww13940\viewh19480\viewkind0
+\deftab720
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs28 \cf2 \cb3 \expnd0\expndtw0\kerning0
+Editor Comments:\
+\
+I actually don't want a revision at the moment, just a response.\
+\
+My job as editor is certainly to not get suckered.\
+\
+I think the claims are undeniably important, but I'm not clear on exactly\
+how we get there.\
+\
+Both of the referees are somewhat skeptical of the extent of the\
+contribution being made. They both say you're overselling. Your cover\
+letter goes into detail covering contributions, and some of what you say is\
+convincing. But parts are simply lawyerly.\
+\
+Here are some things I'm thinking in the back of my mind.\
+\
+(a) This is at best about local stability, rather than stability. The size\
+of the neighborhood where you're getting stability is presumably almost\
+infinitesimal in general. While I agree that the paper is written in a\
+quantitative way and has as you say constants which can be quantitative, it\
+is I would say after a few readings, more\
+seemingly-quantitative-but-actually-purely-qualitative.\
+If it could be shown to be surprisingly effective in some specific case, I\
+might withdraw from this position.\
+\
+RESPONSE:\
+\
+We understand your concern to be that the noise bound in the bilinear model (1) with respect to which our guarantees apply is either:\
+i) so small it is \'91practically\'92 infinitesimal, i.e. requires an unrealistically large signal-to-noise ratio\
+ii) truly infinitesimal in some limit\
+\
+Actually, the expected bound is quite reasonable for the generic matrices and data typically assumed in the related literature (e.g. cite papers). \
+\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\
+(b) Point (a) is important because when you say these results somehow\
+validate various neuroscience ideas, I am saying in the back of my mind\
+that you're bravely talking yourself on a ledge. Namely, nothing in\
+neuroscience can really depend on infinitesimal stability. Trying to make a\
+claim like this seems to undermine your credibility with me. It seems the\
+referees had the same problem.\
+\
+RESPONSE:\
+\
+Our response to point (a) aside, we actually share your skepticism about the application of this model to neuroscience. It is not our credibility the editor must question in this case, however. We have simply validated the well-posedness of the problem which specialists in the field have suggested neural circuits may be solving (see e.g. Ganguli paper, Sommer paper, NIPS paper). \
+\
+If you are at odds with propagating this neuroscientific hypothesis, we have no qualms downplaying it in the manuscript and perhaps instead discussing the relevance of our results to recent work applying dictionary learning and related methods to other inverse problems in science (e.g. PNAS Bin Yu paper, Nature paper)\
+\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\
+(c) It's not clear why exact uniqueness should be so important for\
+neuroscience. It seems more likely that mere similarity is what's maybe\
+important. In the same sense it's not clear why formal Lipschitz stability\
+in the mathematical sense should be so important for neuroscience. It seems\
+more important that some sort of qualitative similarity should persist\
+under perturbations.\
+\
+RESPONSE:\
+\
+Look, man, we didn\'92t invent this stuff. We\'92re just cleaning it up. We interpret the hypothesis to be that the relevant qualitative property to be transmitted is encoded in the sparse activity of neurons in the sending region, which must be reproduced to be read out by the neurons at the receiving end. It is entirely possible, and in our opinion almost certain, that the encoding and decoding procedures utilized by actual nervous networks are unfathomably more sophisticated. The science is just not there yet.\
+\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\
+(d) An editor who doesn't want to get suckered is always looking at papers\
+to find a very specific 'gadget' or 'gadgets' that mark the distinction\
+between the submitted work and 'obvious', 'trivial' work.\
+\
+I can't really tell if the hypergraph construct is such a gadget. It's\
+really only handled in passing and only two examples are mentioned.\
+\
+RESPONSE:\
+\
+In our previous response, we described in detail how the new perspective we take on the problem yields the following powerful conclusions beyond those of what may otherwise constitute an \'92obvious\'92 extension of (HS15) to the noisy case:\
+\
+1) An extension to the case where the number of dictionary elements is unknown; in fact, B must have at least as many columns as A and contains (up to noise) a subset of the columns of A dependent on a simple relation between the number of columns of B and the regularity of the support-set hypergraph.\
+\
+2) A significant reduction in sample complexity; in fact, it is polynomial in \\bar m, k if the size of the support set of reconstructing codes is known to be polynomial in m and k.\
+\
+3) No spark condition requirement for the generating matrix A; in fact, A need only be injective on the union of subspaces with supports that form sets in a hypergraph satisfying the singleton intersection property (SIP)\
+\
+All of these improvements are consequences of the hypergraph construct. Given this fact, we think the term \'91gadget\'92 strongly downplays the insight it offers into the problem, similar to how it would downplay the role a gear-shift plays in a car. It is certainly not only treated in passing, as it appears in every theorem statement. We have provided only a few obvious constructions because the point here is that there even *is* a theory of hypergraphs underlying this problem. Our examples demonstrate clearly the power of this observation, and we think that is enough.\
+\
+We must also again reiterate here that our solution to Prob. 2, that of most interest to practitioners of dictionary learning methods, is to our knowledge the first of its kind in both the noise-free and noisy domains; certainly it is non-trivial. Is this a gadget, too?\
+\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\
+I can't really tell if your cardinality bound on the number of samples\
+needed for a stable representation is one such gadget. I am unable on my\
+own to conjure up an example where I might have thought an exponential\
+number of samples would be required but you show me very explicitly that\
+no, a dramatically smaller number is required.\
+\
+RESPONSE:\
+\
+???\
+\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\
+\
+So I'm at a standstill. I would need to be convinced that you have actual\
+gadgets that go beyond what I would have come up with and that the\
+identifiability problem is dramatically different than what an 'obvious' or\
+'easy-to-guess' solution might say, by showing me something very concrete\
+that I can understand. The lack of any explicit implementation on a\
+computer on a specific example doesn't help.\
+\
+RESPONSE:\
+\
+We wish to caution the editor against assessing an insight as \'91trivial\'92 after-the-fact, when one\'92s intuition has now informed by the work in question. Keep in mind that this problem has been studied for over a decade, and no one has pointed out the existence of these trivial \'91gadgets\'92. In our opinion, discoveries that seem obvious in hindsight are even desirable, as intuition itself can then play its role in lending credence to the truth. \
+\
+Reviewer #2\
+Suitable Quality? Yes\
+Sufficient General Interest? No\
+Conclusions Justified? Yes\
+Clearly Written? No\
+Procedures Described? Not Applicable\
+Willingness to Re-review? Yes\
+\
+\
+Comments\
+In my opinion, while the extension from exact to noisy stability of\
+dictionary learning (DL) is significant, the fact that the analysis relies\
+on metrics of the data that are not feasible to compute limits its impact\
+to the scientific community beyond computer science and applied\
+mathematics. While the authors state in their response that their results\
+validate the extensive successful use of DL in practice, there seems to be\
+little impact to this given that the methodology is already in widespread\
+use; instead, practical criteria that allows practitioners to establish\
+whether the data model obtained from DL is optimal or not would have very\
+high impact. My questions in the review were probing whether any\
+contribution of this type was present, and the responses appear to point\
+toward a negative answer.\
+\
+RESPONSE:\
+\
+What sets our work apart from the vast majority of results in the field is their deterministic nature, e.g. they do not depend on any kind of assumption about the particular random distribution from which the sparse supports, coefficients, or dictionary entries are drawn. We have forged a path for the high-impact results that derive from our guarantees the relevant statistical criteria.}
