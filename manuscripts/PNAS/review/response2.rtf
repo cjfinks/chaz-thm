@@ -76,7 +76,7 @@ Suppose some quantities of interest are encoded in the sparse activity of neuron
 \
 The hypothesis is that the brain, up-to date on the latest fad, solves this problem by applying an information-preserving \'91random\'92 projection into the lower-dimensional space spanned by these axons. The neurons in the receiving region are then tasked with decoding the quantities of interest from this compressed signal. Suppose, however, that they cannot read out this information directly from the compressed signal, but only from the original sparse activity pattern (perhaps this representation has the same advantages in the receiving region as in the sending region).\
 \
-The receiving region must therefore reproduce this sparse activity before it can manipulate the quantities of interest encoded therein. And yet \'97 this is central to the hypothesis \'97 it must accomplish this feat without knowledge of the random projection applied by the sender, i.e. via dictionary learning. Dictionary learning in artificial neural networks is an active area of research (e.g. cite papers). We have proven that any such procedure will indeed yield the original sparse representation, at least up to an inherent relabelling ambiguity. Of course, physical systems requires stability with respect to noise, and here we have our continuity criterion. It need not have been Lipschitz continuous, but it is (and we are willing to edit Definition 1 to make this distinction, if you prefer).\
+The receiving region must therefore reproduce this sparse activity before it can manipulate the quantities of interest encoded therein. And yet \'97 this is central to the hypothesis \'97 it must accomplish this feat without knowledge of the random projection applied by the sender, i.e. via dictionary learning. Dictionary learning in artificial neural networks is an active area of research (e.g. cite papers). We have proven that any such procedure will indeed yield the original sparse representation, at least up to an inherent relabelling ambiguity. Of course, physical systems require stability with respect to noise, and here we have our continuity criterion. It need not have been Lipschitz continuous, but it just so happens to be (and we are willing to edit Definition 1 to make this distinction, if you prefer).\
 \
 It is entirely possible, and in our opinion very likely, that the encoding and decoding procedures utilized by actual nervous networks are far more sophisticated. The science is just not there yet. At the very least, we have proven that the only published hypothesis regarding how this could be done is well-founded, mathematically.\
 \
@@ -127,9 +127,7 @@ computer on a specific example doesn't help.\
 \
 RESPONSE:\
 \
-We wish to caution the editor against assessing an insight as \'91trivial\'92 after-the-fact, when one\'92s intuition has now informed by the work in question. Keep in mind that Problems 1 and 2 have been studied for two decades now, and no one has pointed out the relation between them, nor the existence of the underlying hypergraph structure. In our opinion, there is something to be said about discoveries that seem obvious in hindsight, for in such cases intuition may then lend credence to the truth. \
-\
-As for specific computed examples, may we direct your attention to the empirical results in [cite papers]. \
+We wish to caution the editor against assessing an insight as \'91trivial\'92 after-the-fact, when one\'92s intuition has now informed by the work in question. Keep in mind that Problems 1 and 2 have been studied for two decades now, and no one has pointed out the relation between them, nor the existence of the underlying hypergraph structure. In our opinion, there is something to be said about discoveries that seem obvious in hindsight, for in such cases intuition may then play its role in lending credence to the truth. \
 \
 Reviewer #2\
 Suitable Quality? Yes\
@@ -156,4 +154,4 @@ toward a negative answer.\
 \
 RESPONSE:\
 \
-What sets our work apart from the vast majority of results in the field is their deterministic nature, e.g. they do not depend on any kind of assumption about the particular random distribution from which the sparse supports, coefficients, or dictionary entries are drawn. We have forged a path for the high-impact results that derive from our guarantees the relevant statistical criteria.}
+What sets our work apart from the vast majority of results in the field is their deterministic nature, e.g. they do not depend on any kind of assumption about the particular random distribution from which the sparse supports, coefficients, or dictionary entries are drawn. On the statistical side, we have forged a path for the high-impact results that derive from our deterministic guarantees the statistical criteria which underlie their inferences. On the computational side, we halve the work it takes to prove the consistency of any dictionary learning algorithm. Much like in the game of hockey, we think an assist deserves as much acknowledgement as the goal \'97 and we expect this work will make many assists. }
