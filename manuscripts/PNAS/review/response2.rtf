@@ -35,7 +35,9 @@ might withdraw from this position.\
 RESPONSE:\
 \
 We understand your concern to be that the noise bound in the bilinear model (1) with respect to which our guarantees apply is either:\
+\
 i) so small it is \'91practically\'92 infinitesimal, i.e. requires an unrealistically large signal-to-noise ratio\
+\
 ii) truly infinitesimal in some limit\
 \
 Actually, the expected bound is quite reasonable for the generic matrices and data typically assumed in the related literature (e.g. cite papers). \
@@ -53,9 +55,9 @@ referees had the same problem.\
 \
 RESPONSE:\
 \
-Our response to point (a) aside, we actually share your skepticism about the application of this model to neuroscience. It is not our credibility the editor must question in this case, however. We have simply validated the well-posedness of the problem which specialists in the field have suggested neural circuits may be solving (see e.g. Ganguli paper, Sommer paper, NIPS paper). \
+Our response to point (a) aside, we actually share your skepticism about the application of this model to neuroscience. It is not our credibility you should question in this case, however. We have simply confirmed the well-posedness of the problem which specialists in the field have suggested neural circuits may be required to solve (see e.g. Ganguli paper, Sommer paper, NIPS paper). \
 \
-If you are at odds with propagating this neuroscientific hypothesis, we have no qualms downplaying it in the manuscript and perhaps instead discussing the relevance of our results to recent work applying dictionary learning and related methods to other inverse problems in science (e.g. PNAS Bin Yu paper, Nature paper)\
+If you are at odds becoming complicit in the propagation of this neuroscientific hypothesis, we have no qualms downplaying it in the manuscript. Instead, we could discuss the relevance of our results to recent work applying dictionary learning and related methods to solve inverse problems in other areas of science. For example, [Bin You result] (PNAS Bin Yu paper). \
 \
 \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
 \
@@ -68,7 +70,15 @@ under perturbations.\
 \
 RESPONSE:\
 \
-Look, man, we didn\'92t invent this stuff. We\'92re just cleaning it up. We interpret the hypothesis to be that the relevant qualitative property to be transmitted is encoded in the sparse activity of neurons in the sending region, which must be reproduced to be read out by the neurons at the receiving end. It is entirely possible, and in our opinion very plausible, that the encoding and decoding procedures utilized by actual nervous networks are far more sophisticated, perhaps unfathomably so. The science is just not there yet.\
+Look, man, we didn\'92t invent this stuff. We just cleaned it up. Here\'92s how we rationalize it all:\
+\
+Suppose some quantities of interest are encoded in the sparse activity of neurons in the sending region, sparse for whatever reason [e.g. machine learning papers on representations/sparsity, note that sparse activity has been observed in brains]. These quantities are to be transmitted to some distant region through as few wires (axons) as possible, e.g. due to space constraints.\
+\
+The hypothesis is that the brain, up-to date on the latest fad, solves this problem by applying an information-preserving \'91random\'92 projection into the lower-dimensional space spanned by these axons. The neurons in the receiving region are then tasked with decoding the quantities of interest from this compressed signal. Suppose, however, that they cannot read out this information directly from the compressed signal, but only from the original sparse activity pattern (perhaps this representation has the same advantages in the receiving region as in the sending region).\
+\
+The receiving region must therefore reproduce this sparse activity before it can manipulate the quantities of interest encoded therein. And yet \'97 this is central to the hypothesis \'97 it must accomplish this feat without knowledge of the random projection applied by the sender, i.e. via dictionary learning. Dictionary learning in artificial neural networks is an active area of research (e.g. cite papers). We have proven that any such procedure will indeed yield the original sparse representation, at least up to an inherent relabelling ambiguity. Of course, physical systems requires stability with respect to noise, and here we have our continuity criterion. It need not have been Lipschitz continuous, but it is (and we are willing to edit Definition 1 to make this distinction, if you prefer).\
+\
+It is entirely possible, and in our opinion very likely, that the encoding and decoding procedures utilized by actual nervous networks are far more sophisticated. The science is just not there yet. At the very least, we have proven that the only published hypothesis regarding how this could be done is well-founded, mathematically.\
 \
 \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
 \
@@ -81,15 +91,15 @@ really only handled in passing and only two examples are mentioned.\
 \
 RESPONSE:\
 \
-In our previous response, we described in detail how the new perspective we take on the problem yields the following powerful conclusions beyond those of what may otherwise constitute an \'92obvious\'92 extension of (HS15) to the noisy case:\
+In our previous response, we described in detail how the perspective we take on the problem yields the following powerful conclusions beyond those of what may otherwise constitute an \'92obvious\'92 extension of (HS15) to the noisy case:\
 \
 1) An extension to the case where the number of dictionary elements is unknown; in fact, B must have at least as many columns as A and contains (up to noise) a subset of the columns of A dependent on a simple relation between the number of columns of B and the regularity of the support-set hypergraph.\
 \
 2) A significant reduction in sample complexity; in fact, it is polynomial in \\bar m, k if the size of the support set of reconstructing codes is known to be polynomial in m and k.\
 \
-3) No spark condition requirement for the generating matrix A; in fact, A need only be injective on the union of subspaces with supports that form sets in a hypergraph satisfying the singleton intersection property (SIP)\
+3) No spark condition requirement for the generating matrix A; in fact, A need only be injective on the union of subspaces with supports that form sets in a hypergraph satisfying the singleton intersection property (SIP).\
 \
-All of these improvements are consequences of the hypergraph construct. Given this fact, we think the term \'91gadget\'92 strongly downplays the insight it offers into the problem, similar to how it would downplay the role a gear-shift plays in a car. It is certainly not only treated in passing, as it appears in every theorem statement. We have provided only a few obvious constructions because the point here is that there even *is* a theory of hypergraphs underlying this problem. Our examples demonstrate clearly the power of this observation, and we think that is sufficient, given the space constraints.\
+All of these generalizations are consequences of the hypergraph construct. Given this fact, we think the term \'91gadget\'92 strongly downplays the insight it offers into the problem, similar to how it would downplay the role a gear-shift plays in a car. It is certainly not only treated in passing, as it is baked into every theorem statement. We have provided only a few obvious hypergraph constructions because the point is that there even *is* a theory of hypergraphs underlying this problem. Our examples briefly demonstrate the gains to be made from this discovery, so as to entice the community into fully exploring its ramifications.\
 \
 We must also again reiterate here that our solution to Prob. 2, that of most interest to practitioners of dictionary learning methods, is to our knowledge the first of its kind in both the noise-free and noisy domains; certainly it is non-trivial. Is this a gadget, too?\
 \
@@ -117,7 +127,9 @@ computer on a specific example doesn't help.\
 \
 RESPONSE:\
 \
-We wish to caution the editor against assessing an insight as \'91trivial\'92 after-the-fact, when one\'92s intuition has now informed by the work in question. Keep in mind that this problem has been studied for two decades now, and no one has pointed out the existence of these trivial \'91gadgets\'92. In our opinion, discoveries that seem obvious in hindsight are even desirable, as intuition itself can then play its role in lending credence to the truth. \
+We wish to caution the editor against assessing an insight as \'91trivial\'92 after-the-fact, when one\'92s intuition has now informed by the work in question. Keep in mind that Problems 1 and 2 have been studied for two decades now, and no one has pointed out the relation between them, nor the existence of the underlying hypergraph structure. In our opinion, there is something to be said about discoveries that seem obvious in hindsight, for in such cases intuition may then lend credence to the truth. \
+\
+As for specific computed examples, may we direct your attention to the empirical results in [cite papers]. \
 \
 Reviewer #2\
 Suitable Quality? Yes\
