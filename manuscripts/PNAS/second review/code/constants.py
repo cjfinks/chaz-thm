@@ -57,6 +57,7 @@ def C_2(A, H, r):
 
 if __name__ == '__main__':
     #np.random.seed(0)
+    """
     H = [ # cyclic order
         [0,1,2],
         [1,2,3],
@@ -64,28 +65,35 @@ if __name__ == '__main__':
         [3,0,1]
         ]
     r = 3
-    """    ]
+    """
     H = [ # rows and cols of square array
-        [0,1,2],
-        [3,4,5],
-        [6,7,8],
-        [0,3,6],
-        [1,4,7],
-        [2,5,8]
+        [0,1,2,3],
+        [4,5,6,7],
+        [8,9,10,11],
+        [12,13,14,15],
+        [0,4,8,12],
+        [1,5,9,13],
+        [2,6,10,14],
+        [3,7,11,15]
         ]
     r = 2
-    """
     c2s = []
-    for i in range(1000):
+    pcntiles = []
+    for i in range(10000):
         #A = np.eye(9,9)\
-        A = np.random.randn(4,9)
+        A = np.random.randn(16,16)
         A = np.dot( A, np.diag(1./np.linalg.norm(A,axis=0)) ) # normalize
         c2 = C_2(A, H, r)
         #print('%1.3f' % c2)
         c2s.append(c2)
+        if (i > 1000) & (i % 100 == 0):
+            print(i)
+            pcntiles.append( np.percentile(c2s,95) )
 
     import matplotlib.pyplot as pp
     pp.ion()
     c2s = np.array(c2s)
     pp.hist(c2s[c2s<1000], bins=40)
     pp.show()
+    pp.figure();
+    pp.plot(pcntiles)
