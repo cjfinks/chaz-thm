@@ -1,5 +1,6 @@
 from decomp_svd import subspace_angles
 import numpy as np
+import itertools
 
 def friedrichs(U,V):
     """
@@ -75,7 +76,7 @@ if __name__ == '__main__':
     r = 2
     """
     c2s = []
-    for i in range(1):
+    for i in range(1000):
         #A = np.eye(9,9)\
         A = np.random.randn(4,9)
         A = np.dot( A, np.diag(1./np.linalg.norm(A,axis=0)) ) # normalize
