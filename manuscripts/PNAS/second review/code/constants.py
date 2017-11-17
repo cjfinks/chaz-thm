@@ -71,7 +71,7 @@ def C1_denom(A, X, H, k, num_rand_ksets=10 ** 2):
     k: sparsity k of support sets
     """
     m = A.shape[1]
-    minC1 = 0
+    minC1 = np.inf
     num_supp = (k - 1) * choose(m, k)
     for c, S in enumerate(H):
         AX = np.dot(A, X[:, c * num_supp:(c + 1) * num_supp])
@@ -104,11 +104,12 @@ if __name__ == '__main__':
         ]
     r = 2; k = 4; m = 16; n = 16
     num_supp = (k - 1) * choose(m, k); N = len(H) * num_supp
-    num_trials = 1000
+    num_trials = 3
     Cs = np.zeros((num_trials, 2))  # 0:C1, 1:C2
     pcntiles = np.zeros((num_trials, 2))  # 0:C1, 1:C2
     for i in range(num_trials):
         #A = np.eye(9,9)\
+        print("Trial %d" % i)
         A = np.random.randn(n, m)
         A = np.dot( A, np.diag(1./np.linalg.norm(A,axis=0)) ) # normalize
 
@@ -134,7 +135,7 @@ if __name__ == '__main__':
 
     plt.figure()
     C1s = Cs[:, 0]
-    pp.hist(C1s, bins=40)
+    pp.hist(C1s, bins=100)
     pp.show()
     pp.title('C1s')
 
