@@ -1,6 +1,7 @@
 from decomp_svd import subspace_angles
 import numpy as np
 import itertools
+import operator as op
 
 def friedrichs(U,V):
     """
@@ -55,6 +56,31 @@ def C_2(A, H, r):
     max_A = np.max( np.linalg.norm(A, axis=0) )
     return len(H) * max_A / min(xi_Gs)
 
+def C1_denom(A, X, H, k, num_rand_ksets=10 ** 2):
+    """
+    Ouputs the denominator in the def of constant C1
+
+    ************
+    ASSUMES: first (k-1)(m choose k) are supported on H[0], etc
+             [so that N = |H|(k-1)(m choose k)]
+    ************
+
+    A: n x m dictionary matrix (2d numpy array)
+    X: m x N matrix of N k-sparse codes
+    H: hypergraph (list of lists in range(m))
+    k: sparsity k of support sets
+    """
+    m = A.shape[1]
+    minC1 = 0
+    num_supp = (k - 1) * choose(m, k)
+    for c, S in enumerate(H):
+        AX = np.dot(A, X[:, c * num_supp:(c + 1) * num_supp])
+        for trial in range(num_rand_ksets):
+            K = np.random.choice(num_supp, k)
+            u, s, v = np.linalg.svd(AX[:, K])
+            minC1 = min(minC1, s[-1])
+    return minC1
+
 if __name__ == '__main__':
     #np.random.seed(0)
     """
@@ -76,24 +102,42 @@ if __name__ == '__main__':
         [2,6,10,14],
         [3,7,11,15]
         ]
-    r = 2
-    c2s = []
-    pcntiles = []
-    for i in range(10000):
+    r = 2; k = 4; m = 16; n = 16
+    num_supp = (k - 1) * choose(m, k); N = len(H) * num_supp
+    num_trials = 1000
+    Cs = np.zeros((num_trials, 2))  # 0:C1, 1:C2
+    pcntiles = np.zeros((num_trials, 2))  # 0:C1, 1:C2
+    for i in range(num_trials):
         #A = np.eye(9,9)\
-        A = np.random.randn(16,16)
+        A = np.random.randn(n, m)
         A = np.dot( A, np.diag(1./np.linalg.norm(A,axis=0)) ) # normalize
-        c2 = C_2(A, H, r)
+
+        X = np.zeros((m, N))
+        for c, G in enumerate(H):
+            spots = np.random.permutation(m)[:k]
+            X[spots, c * num_supp:(c + 1) * num_supp] = np.random.randn(k, num_supp)
+        X = np.dot(X, np.diag(1. / np.linalg.norm(X, axis=0)))
+        Cs[i, 1] = C_2(A, H, r)
+        Cs[i, 0] = C1_denom(A, X, H, k)
         #print('%1.3f' % c2)
-        c2s.append(c2)
-        if (i > 1000) & (i % 100 == 0):
-            print(i)
-            pcntiles.append( np.percentile(c2s,95) )
+       # if (i > 1000) & (i % 100 == 0):
+       #     print(i)
+       #     pcntiles[i, 1] = np.percentile(Cs[:i, 1], 95)
 
     import matplotlib.pyplot as pp
     pp.ion()
-    c2s = np.array(c2s)
-    pp.hist(c2s[c2s<1000], bins=40)
+    plt.figure()
+    C2s = Cs[:, 1]
+    pp.hist(C2s[C2s<1000], bins=40)
     pp.show()
-    pp.figure();
-    pp.plot(pcntiles)
+    pp.title('C2s')
+
+    plt.figure()
+    C1s = Cs[:, 0]
+    pp.hist(C1s, bins=40)
+    pp.show()
+    pp.title('C1s')
+
+    # pp.figure();
+    # pp.plot(pcntiles[:, 1])
+    # pp.title('C2s 95 Percentiles over trials')  # looks funny for some reason
