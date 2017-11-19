@@ -2,11 +2,14 @@
 {\fonttbl\f0\fmodern\fcharset0 Courier;}
 {\colortbl;\red255\green255\blue255;\red78\green78\blue78;\red255\green255\blue255;}
 {\*\expandedcolortbl;;\cssrgb\c38039\c38039\c38039;\cssrgb\c100000\c100000\c100000;}
-\margl1440\margr1440\vieww13940\viewh19480\viewkind0
+\margl1440\margr1440\vieww14060\viewh19480\viewkind0
 \deftab720
 \pard\pardeftab720\partightenfactor0
 
 \f0\fs28 \cf2 \cb3 \expnd0\expndtw0\kerning0
+TO MENTION?\
+Probabilistic pigeon-holing (e.g. birthday paradox) for polynomial number of samples and C1 denom.\
+\
 BIBLIOGRAPHY:\
 \pard\pardeftab720\qj\partightenfactor0
 \cf2 Quantification of artistic style through sparse coding analysis in the drawings of Pieter Bruegel the Elder, PNAS\
@@ -40,9 +43,9 @@ might withdraw from this position.\
 \
 RESPONSE:\
 \
-We are somewhat confused by this statement as we understand even the tightest possible noise bound to be necessarily \'91local\'92 and approaching zero as the domain-restricted matrix lower-bound vanishes, e.g. as the number of dictionary elements grows infinite. One need only consider the case k=1, where every dictionary element spans a ray through the origin, and each identifiable datum generated from the model (1) lies within a cylinder of radius \\eta around one (and only one) of these rays. Clearly, for bounded data in a finite dimensional space, this radius is cannot remain finite in the limit of infinitely many distinct rays.\
+We are somewhat confused by this statement as we understand even the tightest possible noise bound to be necessarily \'91local\'92 and approaching zero as the domain-restricted matrix lower-bound vanishes, e.g. as the number of dictionary elements grows infinite. One need only consider the case k=1, where every dictionary element spans a ray through the origin, and each identifiable datum generated from the model (1) lies within a cylinder of radius \\eta around one (and only one) of these rays. Clearly, for bounded data in a finite dimensional space, this radius cannot remain finite in the limit of infinitely many distinct rays.\
 \
-It seems instead your concern is that the bound is in general so small it is \'91practically\'92 infinitesimal. Indeed, our guarantees apply to the deterministic \'93worst-case\'94 scenario where noise is isotropic and \'91what can go wrong, will go wrong\'92. Calculations specific to the data at hand would consider the probability that confounding noise actually occurs and yield more forgiving probabilistic guarantees.\
+It seems instead your concern is that the bound is in general so small it is \'91practically\'92 infinitesimal. Indeed, our guarantees apply to the deterministic \'93worst-case\'94 scenario where noise is isotropic and \'91what can go wrong, will go wrong\'92. Calculations specific to the data at hand would consider the probability that confounding noise (e.g. noise which points in a \'91bad direction\'92) actually occurs and potentially yield more forgiving probabilistic guarantees.\
 \
 We have simulated the distribution of noise that can be tolerated in the deterministic worst-case for some generic matrices and sparse data supported on our two example hypergraphs from the introduction.  \
 \
@@ -59,9 +62,9 @@ referees had the same problem.\
 \
 RESPONSE:\
 \
-Our response to point (a) aside, and though we are not inclined to assume that neural circuits are incapable of extreme precision [citations?], we actually share your skepticism here. However, we simply confirm the well-posedness of the problem which specialists in the field have suggested neural circuits may be solving (see e.g. Ganguli paper, Sommer paper, NIPS paper) and feel it is their credibility, if anyone\'92s, that should be questioned and not ours. \
+Our response to point (a) aside, and though we are not inclined to assume that neural circuits are incapable of extreme precision when necessary, we actually share your skepticism here regarding the application of this theory to neurosocience. However, we simply confirm the well-posedness of the problem which specialists in the field have suggested neural circuits may be solving (see e.g. Ganguli paper, Sommer paper, NIPS paper) and feel it is their credibility, if anyone\'92s, that should be questioned and not ours. \
 \
-If you are nevertheless reluctant to become complicit in propagating this neuroscientific hypothesis, we have no qualms downplaying it in the manuscript. Instead, we could discuss the relevance of our results to recent work applying dictionary learning and related methods to solve inverse problems in other areas of science. For example, TODO (PNAS Bin Yu paper, PNAS Forgery). \
+If you are nevertheless reluctant to become complicit in propagating this neuroscientific hypothesis, we have no qualms downplaying it in the manuscript. Perhaps instead we could discuss the relevance of our results to recent work applying dictionary learning and related methods to solve inverse problems in other areas of science. For example, TODO (PNAS Bin Yu paper, PNAS Forgery). \
 \
 \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
 \
@@ -74,9 +77,9 @@ under perturbations.\
 \
 RESPONSE:\
 \
-Look, man, we didn\'92t invent this stuff; we\'92re just here cleaning it up. Here\'92s how we rationalize the hypothesis:\
+Look, man (or ma\'92am), we didn\'92t invent this stuff; we\'92re just here cleaning it up. Here\'92s how we rationalize the hypothesis:\
 \
-Suppose some quantities of interest are encoded in the sparse activity of neurons in the sending region, sparse for whatever reason [e.g. machine learning papers on representations/sparsity, note that sparse activity has been observed in brains]. These quantities are to be transmitted to some distant region through as few wires (axons) as possible, e.g. due to space constraints inside the skull.\
+Suppose some quantities of interest are encoded in the sparse activity of neurons in the sending region, sparse for whatever reason [e.g. machine learning papers on representations/sparsity, note that sparse activity has been observed in brains]. These quantities are to be transmitted to some other region through as few wires (axons) as possible, e.g. due to space constraints inside the skull.\
 \
 The hypothesis is that the brain, up-to date on the latest fad, solves this problem by applying a (noisy) \'91random\'92 projection into the lower-dimensional space spanned by these axons. The neurons in the receiving region are then tasked with decoding the quantities of interest from this compressed signal. Suppose, however, that they cannot read out this information directly from the compressed signal. Rather, the neurons in the receiving region must first reproduce the original sparse pattern of activity before they can decode from it the quantities of interest (perhaps this sparse representation has the same advantages in the receiving region as in the sending region). Moreover \'97 and this is central to the hypothesis \'97 they must accomplish this feat without knowledge of the random projection applied by the sender, i.e. via dictionary learning. \
 \
@@ -101,7 +104,7 @@ In our previous response, we described in detail how the perspective we take on 
 2) data require only a polynomial number of distinct sparse supports,\
 3) the spark condition is not a necessary property of recoverable dictionaries.\
 \
-All of these generalizations are direct consequences of defining a new matrix lower bound induced by a hypergraph. We therefore believe the term \'91gadget\'92 strongly downplays the insight this construct offers into the problem, similar to how it would downplay the role a gear-shift plays in a car. It is certainly not only treated in passing, as it is baked into every one of our theorems. We have provided only a few obvious hypergraph constructions because the point is that there even *is* a theory of hypergraphs underlying this problem. Our examples briefly demonstrate the gains to be made from this discovery, so as to entice the community into fully exploring its ramifications in practice. \
+All of these generalizations are direct consequences of defining a new matrix lower bound induced by a hypergraph. We therefore believe the term \'91gadget\'92 strongly downplays the insight the hypergraph construct offers into the problem. Certainly, we don\'92t see it as being only treated in passing, as it is baked into every one of our theorems. We have provided only a few obvious hypergraph constructions because the point is that there even *is* a theory of hypergraphs underlying this problem. Our examples briefly demonstrate the gains to be made from this discovery, so as to entice the community into fully exploring its ramifications in practice. \
 \
 [Cite the hypergraph arxiv paper from Dalhousie? Or will this make us seem less special?]\
 \
@@ -115,7 +118,11 @@ no, a dramatically smaller number is required.\
 \
 RESPONSE:\
 \
-If there is any one \'91gadget\'92 to which we may credit our results, it is the pigeon-hole principle. While we have not managed to exorcise exponentiality from the number of required samples in general (which may very well be impossible), we have applied the pigeon-hole principle in a novel way (Lem. 5) to prove that only a polynomial number of sparse supports are necessary in general for stable identification of the generating dictionary. In our view, this lends much more legitimacy to the use of this model in practice, where data in general are unlikely to exhibit the exponentially many possible k-wise combinations of dictionary elements (as all previous results have required).\
+If there is any one \'91gadget\'92 to which we may credit our results, it is the pigeon-hole principle. While we have not managed to exorcise exponentiality from the number of required samples in general (which may very well be impossible in the deterministic or almost-certain case), we have applied the pigeon-hole principle in a way (see Lem. 5) that demonstrates that only a polynomial number of sparse supports are necessary in general for stable identification of the generating dictionary. In our view, this lends much more legitimacy to the use of this model in practice, where data in general are unlikely to exhibit the exponentially many possible k-wise combinations of dictionary elements (as all previous results have required).\
+\
+We should note here also that guarantees holding with some probability can be derived for *any* number of samples (e.g. polynomially many) by refactoring the proof to use a \'91probabilistic pigeonholing\'92, as in the birthday \'93paradox\'94 which demonstrates the unintuitive fact that the probability of two people having the same birthday in a room of twenty-three is greater than 50%. \
+\
+[Should we compute this? Probability that we have k-k matchups for every S in H]\
 \
 \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
 \
@@ -128,9 +135,9 @@ computer on a specific example doesn't help.\
 \
 RESPONSE:\
 \
-Frankly, we feel at a loss here. It seems to us that assessing a solution as \'91obvious\'92 after-the-fact, when it has already informed one\'92s intuition, is fundamentally unfair. It\'92s always easy to guess, easier to guess wrong, and hardest to prove. Still, we offer a nice surprise for everyone who reads our paper and realizes how absurd it is that they have never come across Def. 1 anywhere in the literature on dictionary learning before.\
+Frankly, we feel at a loss here. It seems to us that assessing a solution as \'91obvious\'92 after-the-fact, when it has already informed one\'92s intuition, is fundamentally unfair. It\'92s always easy to guess, easier to guess wrong, and hardest to prove. Still, if unintuitive results are what sell these days, we offer a nice surprise for everyone who reads our paper and realizes how strange it is that they have never come across a definition of the problem akin to Def. 1 anywhere in the literature on dictionary learning before.\
 \
-Problems 1 and 2 have been studied for two decades now, and no one has pointed out the relation between them, nor the existence of the underlying hypergraph structure and its numerous ramifications. Our solution to Prob. 2, that of most interest to practitioners of dictionary learning methods, is the first of its kind in both the noise-free and noisy domains. If these solutions are the \'91easy-to-guess\'92, \'91obvious\'92 solutions, then so be it; we cannot change geometry. Actually, we prefer results for which intuition can play its role in lending credence to the truth. Would you have even believed us if we claimed polynomial sample complexity?\
+Problems 1 and 2 have been studied for two decades now, and no one has pointed out the relation between them, nor the existence of the underlying hypergraph structure and its numerous ramifications. Our solution to Prob. 2, that of most interest to practitioners of dictionary learning methods, is the first of its kind in both the noise-free and noisy domains. If these solutions are the \'91easy-to-guess\'92, \'91obvious\'92 solutions, then so be it; we cannot change geometry. Actually, we prefer results for which intuition can play its role in lending credence to the truth. Would you have even believed us if we claimed polynomial sample complexity with so few assumptions on A and the x_i?\
 \
 Reviewer #2\
 Suitable Quality? Yes\
@@ -157,4 +164,6 @@ toward a negative answer.\
 \
 RESPONSE:\
 \
-What sets our work apart from the vast majority of results in the field is that they do not depend on any kind of assumption about the particular random distribution from which the sparse supports, coefficients, or dictionary entries are drawn. As a result, our paper only directly justifies \'91in principle\'92 the inferences of those who apply DL methods to inverse problems in their research. Our \'91target\'92 practitioner, however, is not the scientist who seeks a black box yielding the probability of their inferences; rather, it is the statistician or computer scientist who builds these black boxes on a case-by-case basis. On the statistical side, we have forged a path for high-impact results that derive from our deterministic guarantees the statistical criteria underlying the inferences in more domain-specific probabilistic models. On the computational side, we halve the work it takes to prove the consistency of any dictionary learning algorithm. We expect our work will make many such assists in the coming seasons, and just as in the game of hockey, we think this deserves as much acknowledgement as the goal.}
+What sets our work apart from the vast majority of results in the field is that they are deterministic, and do not depend on any kind of assumption about the particular random distribution from which the sparse supports, coefficients, or dictionary entries are drawn. Consequently, our paper directly justifies only \'91in principle\'92 the inferences of those who apply DL methods to inverse problems in their research. But this is unavoidably the case for NP-hard problems.\
+\
+We have spelled-out the problem (i.e. estimate C1) for statisticians, who will derive from our deterministic guarantees the statistical criteria for inference in more domain-specific probabilistic models, and we have cut in half the work it takes a computer scientist to prove the consistency of any dictionary learning algorithm (i.e. prove that the algorithm converges to any solution encoding the data to within the epsilon in Eq. 8). Our work is the assist to these many impactful results to come, and (just as in hockey) we feel this deserves as much acknowledgement as the goal.}
