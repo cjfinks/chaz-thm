@@ -47,9 +47,11 @@ def C2(A, H, r):
     A: n x m dictionary matrix (2d numpy array)
     H: hypergraph (list of lists in range(m))
     r: regularity of H
+
+    Loops over subsets of H of size r+1
     """
     xi_Gs = [] # xi is in (0,1]
-    for G in itertools.combinations(H, r): # loop over subsets of H of size r
+    for G in itertools.combinations(H, r + 1): # loop over subsets of H of size r
         xi_Gs.append( xi(A, G) )
     max_A = np.max( np.linalg.norm(A, axis=0) )
     return len(H) * max_A / min(xi_Gs)
@@ -90,6 +92,15 @@ def C1_denom(A, Xs, H, num_rand_ksets = None):
         min_val = min(min_val, lk)
     return min_val
 
+def cyclic_hypergraph(m, k):
+    H = []
+    for i in range(m - k + 1):
+        H.append(list(range(i, i + k)))
+    for i in range(1, k):
+        j = k - i
+        H.append(list(range(m - j, m)) + list(range(0, k - j)))
+    return H
+
 if __name__ == '__main__':
     #np.random.seed(0)
     """
@@ -102,44 +113,83 @@ if __name__ == '__main__':
     r = 3
     """
     """ rows and cols of square grid """
+
+    # SQUARE GRID
     r = 2
-    k = 4;
-    m = k**2
-    n = m;
-    square_grid = np.reshape(range(m),(k,k))
-    H = [row.tolist() for row in square_grid] + [col.tolist() for col in square_grid.T]
-    N_per_support = int((k - 1) * choose(m, k))
-    N = len(H) * N_per_support
-    num_trials = 100
-    Cs = np.zeros((num_trials, 2))  # 0:C1, 1:C2
-    #pcntiles = np.zeros((num_trials, 2))  # 0:C1, 1:C2
-    for i in range(num_trials):
-        print("Trial %d" % i)
-        A = np.random.randn(n, m)
-        A = np.dot( A, np.diag(1./np.linalg.norm(A, axis=0)) ) # normalize
-        Xs = [np.random.randn(k, N_per_support) for S in H]
-        Xs = [np.dot(X, np.diag(1. / np.linalg.norm(X, axis=0))) for X in Xs] # normalize
-        Cs[i, 1] = C2(A, H, r)
-        Cs[i, 0] = Cs[i,1] / C1_denom(A, Xs, H, num_rand_ksets = 10)
-        #Cs[i,0] = Cs[i,1] / L_k( np.dot(A[:,H[0]], Xs[0]), k, n_samples = 10 )
-       # print('%1.3f' % c2)
-       # if (i > 1000) & (i % 100 == 0):
-       #     print(i)
-       #     pcntiles[i, 1] = np.percentile(Cs[:i, 1], 95)
+    Ks = [4, 8, 16, 32]
+    for k in Ks:
+        m = k**2
+        n = m;
+        square_grid = np.reshape(range(m),(k,k))
+        H = [row.tolist() for row in square_grid] + [col.tolist() for col in square_grid.T]
+        N_per_support = int((k - 1) * choose(m, k))
+        N = len(H) * N_per_support
+        num_trials = 100
+        Cs = np.zeros((num_trials, 2))  # 0:C1, 1:C2
+        #pcntiles = np.zeros((num_trials, 2))  # 0:C1, 1:C2
+        for i in range(num_trials):
+            print("Trial %d" % i)
+            A = np.random.randn(n, m)
+            A = np.dot( A, np.diag(1./np.linalg.norm(A, axis=0)) ) # normalize
+            # Xs = [np.random.randn(k, N_per_support) for S in H]
+            # Xs = [np.dot(X, np.diag(1. / np.linalg.norm(X, axis=0))) for X in Xs] # normalize
+            Cs[i, 1] = C2(A, H, r)
+            # Cs[i, 0] = Cs[i,1] / C1_denom(A, Xs, H, num_rand_ksets = 10)
+            #Cs[i,0] = Cs[i,1] / L_k( np.dot(A[:,H[0]], Xs[0]), k, n_samples = 10 )
+           # print('%1.3f' % c2)
+           # if (i > 1000) & (i % 100 == 0):
+           #     print(i)
+           #     pcntiles[i, 1] = np.percentile(Cs[:i, 1], 95)
 
-    import matplotlib.pyplot as pp
-    pp.ion()
-    pp.figure()
-    C2s = Cs[:, 1]
-    pp.hist(C2s, bins=40)
-    pp.show()
-    pp.title('C2s')
+        import matplotlib.pyplot as pp
+        pp.ion()
+        pp.figure()
+        C2s = Cs[:, 1]
+        pp.hist(C2s, bins=40)
+        pp.show()
+        pp.title('Grid C2s (m=%d)' % m)
+        plt.savefig('Grid_C2_m%d.pdf' % m)
 
-    pp.figure()
-    C1s = Cs[:, 0]
-    pp.hist(C1s, bins=100)
-    pp.show()
-    pp.title('C1s')
+    # CYLIC
+    Ks = [4, 8] # , 16, 32]
+    for k in Ks:
+        r = k
+        m = k ** 2
+        n = m
+        H = cyclic_hypergraph(m, k)
+        N_per_support = int((k - 1) * choose(m, k))
+        N = len(H) * N_per_support
+        num_trials = 5
+        Cs = np.zeros((num_trials, 2))  # 0:C1, 1:C2
+        #pcntiles = np.zeros((num_trials, 2))  # 0:C1, 1:C2
+        for i in range(num_trials):
+            print("Trial %d" % i)
+            A = np.random.randn(n, m)
+            A = np.dot( A, np.diag(1./np.linalg.norm(A, axis=0)) ) # normalize
+            # Xs = [np.random.randn(k, N_per_support) for S in H]
+            # Xs = [np.dot(X, np.diag(1. / np.linalg.norm(X, axis=0))) for X in Xs] # normalize
+            Cs[i, 1] = C2(A, H, r)
+            # Cs[i, 0] = Cs[i,1] / C1_denom(A, Xs, H, num_rand_ksets = 10)
+            #Cs[i,0] = Cs[i,1] / L_k( np.dot(A[:,H[0]], Xs[0]), k, n_samples = 10 )
+           # print('%1.3f' % c2)
+           # if (i > 1000) & (i % 100 == 0):
+           #     print(i)
+           #     pcntiles[i, 1] = np.percentile(Cs[:i, 1], 95)
+
+        import matplotlib.pyplot as pp
+        pp.ion()
+        pp.figure()
+        C2s = Cs[:, 1]
+        pp.hist(C2s, bins=40)
+        pp.show()
+        pp.title('Cyclic C2s (m=%d)' % m)
+        plt.savefig('Cyclic_C2_m%d.pdf' % m)
+
+    # pp.figure()
+    # C1s = Cs[:, 0]
+    # pp.hist(C1s, bins=100)
+    # pp.show()
+    # pp.title('C1s')
 
     # pp.figure();
     # pp.plot(pcntiles[:, 1])
