@@ -88,13 +88,13 @@ really only handled in passing and only two examples are mentioned.
 
 RESPONSE:
 
-In our previous response, we described in detail how the perspective we take on the problem enables the following insights beyond extension of previous work to the noisy case and a solution to Prob. 2:
+In our previous response, we described in detail how the definition of a new matrix lower bound induced by a hypergraph enables the following advancements:
 
 1) a subset of dictionary elements is recoverable even if dictionary size is overestimated,
 2) data require only a polynomial number of distinct sparse supports,
 3) the spark condition is not a necessary property of recoverable dictionaries.
 
-Each of these generalizations is contingent on the definition of a new matrix lower bound induced by a hypergraph. We therefore believe the term "gadget" strongly downplays the insight the hypergraph construct offers into the problem. Certainly, we don't see it as being only treated in passing, as it is baked into every one of our theorems. We have provided a few obvious hypergraph constructions merely to point out that there is likely a nice theory of hypergraphs underlying this problem. Our examples briefly demonstrate the gains to be made from this discovery, so as to entice the community into fully exploring its ramifications in practice.
+We therefore believe the term "gadget" strongly downplays the insight this construct offers into the problem. Certainly, we don't see it as being only treated in passing, as it is incorporated into every one of our theorems. We have provided a few obvious hypergraph constructions merely to point out that there is likely a nice theory of hypergraphs underlying this problem. Our examples briefly demonstrate the gains to be made from this discovery, so as to entice the community into fully exploring its ramifications in practice.
 
 -------------------------------------
 
@@ -108,9 +108,9 @@ no, a dramatically smaller number is required.
 
 RESPONSE:
 
-If there is any one "gadget" to which we may credit our results, it is the pigeon-hole principle. While we have not managed to exorcise exponentiality from the number of required samples in general (which may very well be impossible in the deterministic or almost-certain case), we have applied the pigeon-hole principle in a way (see Lem. 4) that demonstrates that only a polynomial number of sparse supports are necessary in general for stable identification of the generating dictionary. In our view, this lends much more legitimacy to the use of this model in practice, where data in general are unlikely (if ever) to exhibit the exponentially many possible k-wise combinations of dictionary elements (as all previous results have required).
+If there is any one "gadget" to which we may credit our results, it is the pigeon-hole principle. While we have not managed to exorcise exponentiality from the number of required samples in general (which may very well be impossible in the deterministic or almost-certain case), we have applied the pigeon-hole principle in a way (see Lem. 4) that demonstrates that only a polynomial number of sparse supports are necessary in general for stable identification of the generating dictionary. In our view, this lends much more legitimacy to the use of this model in practice, where data in general are unlikely (if ever) to exhibit the exponentially many possible k-wise combinations of dictionary elements, as all previous results have required.
 
-To briefly revisit concerns over exponential sample complexity, we should note here that guarantees holding with some probability can be derived for any number of samples (e.g. polynomially many) by refactoring the proof to use "probabilistic pigeonholing", as in the birthday "paradox" which demonstrates the counterintuitive fact that the probability of two people having the same birthday in a room of twenty-three is in fact greater than 50%.
+Revisiting concerns over sample complexity, we note here that guarantees holding with some probability can be derived for any number of samples less than that the exponential number required for our proof of Thm. 1. One need simply apply a probabilistic pigeonholing instead of a deterministic one to demonstrate that for every S in H, there exist k vectors x_i supported on S such that the corresponding \bar x_i also all have the same support. (A famous example of this reasoning is the birthday "paradox" which demonstrates the counterintuitive fact that the probability of two people having the same birthday in a room of twenty-three is in fact greater than 50%.) We have computed the number of required samples that yield guarantees with probability 99.9% for fixed k as m increases, and their ratio with respect to the number of samples required for a deterministic 100% guarantee. 
 
 -------------------------------------
 
