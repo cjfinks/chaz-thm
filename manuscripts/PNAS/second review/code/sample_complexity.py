@@ -1,9 +1,14 @@
 """ 
 Compute the probability that for every S in H, there are at least k vectors x_i supported there which share a support in B 
 """
+# TODO: Try alternative formula for bounded pigeonhole
 
 import numpy as np
 from scipy.misc import comb
+
+def pigeonhole_bounded_alt(num_balls, num_bins, max_balls_per_bin):
+    # TODO: supposed to work better for large N
+    pass
 
 def pigeonhole_bounded(num_balls, num_bins, max_balls_per_bin):
     """ 
@@ -38,7 +43,7 @@ def prob_atleast_k(num_balls, num_bins, k):
 """
 There are N_supp vectors supported on each S in H. These are the balls.
 There are mCk k-sparse supports wrt. the n x m matrix B. These are the bins.
-What is the probability that for every S in H, at least k out of N_supp vectors supported there have the same support wrt. B? 
+For what N_supp does the proof hold with a given probability?
 
 We plot this as a function of m for fixed k.
 Assume H is the set of contiguous length-k intervals of [m] arranged in cyclic order, so that |H| = m.
@@ -68,3 +73,18 @@ fix, axes = pp.subplots(1,2)
 axes[0].plot(range(m_min,m_max+1), N_probabilistic)
 axes[0].plot(range(m_min,m_max+1), N_deterministic)
 axes[1].plot(range(m_min,m_max+1), [Np / Nd for Np, Nd in zip(N_probabilistic, N_deterministic)])
+
+"""
+What is the probability that for every S in H, at least k out of N_supp vectors supported there have the same support wrt. B? 
+"""
+m = 16
+k = 2
+N_supp_min = 0
+N_supp_max = int((k-1) * comb(m,k)) # with N_supp_max + 1 per support or more, probability is 1
+probs = []
+for N_supp in range(N_supp_min, N_supp_max+1):
+    prob_supp = prob_atleast_k(num_balls = N_supp, num_bins = comb(m,k), k = k)
+    probs.append( prob_supp ** m )
+
+Ns = range(N_supp_min*m, m * (N_supp_max+1), m) # N_supp per support in H, and there are m supports in H
+pp.figure(); pp.plot(Ns, probs)
