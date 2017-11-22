@@ -116,7 +116,7 @@ if __name__ == '__main__':
 
     # SQUARE GRID
     r = 2
-    Ks = [4, 8, 16, 32]
+    Ks = [4, 8, 16]
     for k in Ks:
         m = k**2
         n = m;
@@ -147,8 +147,8 @@ if __name__ == '__main__':
         C2s = Cs[:, 1]
         pp.hist(C2s, bins=40)
         pp.show()
-        pp.title('Grid C2s (m=%d)' % m)
-        plt.savefig('Grid_C2_m%d.pdf' % m)
+        pp.title('Grid C2s (m=%d, trials=%d)' % (m, num_trials))
+        plt.savefig('Grid_C2_m%d_nt%d.pdf' % (m, num_trials))
 
     # CYLIC
     Ks = [4, 8] # , 16, 32]
