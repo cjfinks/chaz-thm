@@ -403,13 +403,13 @@ C_1(\mathbf{A}, \{\mathbf{x}_i\}_{i=1}^N, \mathcal{H}) := \frac{ C_2(\mathbf{A},
 where, given vectors $\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$, we denote by $\mathbf{X}$ the $m \times N$ matrix with columns $\mathbf{x}_i$ and by $I(S)$ the set of indices $i$ for which $\mathbf{x}_i$ is supported in $S$.
 
 The constant $C_2 = C_2(\mathbf{A}, \mathcal{H})$, in turn, will be presented relative to a quantity from \cite{Deutsch12} used to analyze the convergence of the alternating projections algorithm. 
-More specifically, in Lem.~\ref{DistanceToIntersectionLemma} below, the following definition is used to bound the distance between a point and the intersection of subspaces given an upper bound on its distance from each individual subspace.
+Specifically, in Lem.~\ref{DistanceToIntersectionLemma} below, the following definition is used to bound the distance between a point and the intersection of subspaces given an upper bound on its distance from each individual subspace.
 
 \begin{definition}\label{SpecialSupportSet}\label{FriedrichsDefinition}
-For a collection of real subspaces $\mathcal{V} = \{V_i\}_{i=1}^\ell$, define $\xi := 1$ when $|\mathcal{V}| = 1$ and otherwise:
-\begin{align*}
-\xi(\mathcal{V}) := 1 - \left(1 -  \max \prod_{i=1}^{\ell-1} \sin^2  \theta \left(V_i, \cap_{j>i} V_j \right)  \right)^{1/2},
-\end{align*} 
+For a collection of real subspaces $\mathcal{V} = \{V_i\}_{i=1}^\ell$, define $\xi^2 := 1$ when $|\mathcal{V}| = 1$, and otherwise:
+\begin{align}\label{xi}
+\xi^2(\mathcal{V}) := 1 -  \max \prod_{i=1}^{\ell-1} \sin^2  \theta \left(V_i, \cap_{j>i} V_j \right) ,
+\end{align} 
 %
 where the maximum is taken over all orderings 
 %\footnote{We modify the quantity in \cite{Deutsch12} in this way since the subspace ordering is irrelevant to our purpose.} 
@@ -418,10 +418,10 @@ of the $V_i$ and the angle $\theta \in (0,\frac{\pi}{2}]$ is defined implicitly 
 \cos{\theta(U,W)} := \max\left\{ |\langle \mathbf{u}, \mathbf{w} \rangle|: \substack{ \mathbf{u} \in U \cap (U \cap W)^\perp, \ \|\mathbf{u}\|_2 \leq 1 \\ \mathbf{w} \in W \cap (U \cap W)^\perp, \  \|\mathbf{w}\|_2 \leq 1 } \right\}.
 \end{align*}
 \end{definition}
-Note that $\theta \in (0,\frac{\pi}{2}]$ implies $0 < \xi \leq 1$, and that $\xi(\mathcal{V}') \geq \xi(\mathcal{V})$ when $\mathcal{V}' \subseteq \mathcal{V}$.\footnote{We acknowledge the counter-intuitive property that $\theta =  \pi/2$ when $U \subseteq W$.}  
-The constant $C_2$ in Lem.~\ref{MainLemma} can then be expressed as:  
+Note that $\theta \in (0,\frac{\pi}{2}]$ implies $0 < \xi \leq 1$, and that $\xi(\mathcal{V}') \leq \xi(\mathcal{V})$ when $\mathcal{V}' \subseteq \mathcal{V}$.\footnote{We acknowledge the counter-intuitive property that $\theta =  \pi/2$ when $U \subseteq W$.}  
+The constant $C_2$ in Lem.~\ref{MainLemma} is then:  
 \begin{align}\label{Cdef2}
-	C_2(\mathbf{A}, \mathcal{H}) := \frac{ (r+1) \max_{j \in [m]} \|\mathbf{A}_j\|_2}{ \min_{\mathcal{G} \in {\mathcal{H} \choose r+1}} \xi( \bm{\mathcal{A}}_\mathcal{G} ) },
+	C_2(\mathbf{A}, \mathcal{H}) := \frac{ (r+1) \max_{j \in [m]} \|\mathbf{A}_j\|_2}{ 1- \max_{\mathcal{G} \in {\mathcal{H} \choose r+1}} \xi( \bm{\mathcal{A}}_\mathcal{G} ) },
 \end{align}
 % C_2(\mathbf{A}, \mathcal{H}) := \frac{ (r+1) \max_{j \in [m]} \|\mathbf{A}_j\|_2}{ \min_{\mathcal{G} \in {\mathcal{H} \choose r} \cup {\mathcal{H} \choose r+1}} \xi( \{ \bm{\mathcal{A}}_S \}
 which we remark is consistent with the assumption on $C_1$ in the proof of the case $k=1$ at the beginning of this section.  
@@ -435,21 +435,21 @@ We demonstrate the existence of a map $\pi: \mathcal{H} \to 2^{[\overline m]}$ f
 
 Since there are more than $(k-1){\overline m \choose k}$ vectors $\mathbf{x}_i$ supported in $S$, the pigeonhole principle gives $\overline S \in {[\overline m] \choose k}$ and a set of $k$ indices $K \subseteq I(S)$ with all $\mathbf{\overline x}_i$, $i \in K$, supported in $\overline S$.
 
-It follows from $L_{2\mathcal{H}}(\mathbf{A}) > 0$ and the general linear position of the $\mathbf{x}_i$ that $L(\mathbf{AX}_{K}) > 0$; that is, the columns of the $n \times k$ matrix $\mathbf{AX}_K$ form a basis for $\bm{\mathcal{A}}_S$. Fixing $\mathbf{0} \neq \mathbf{y} \in \bm{\mathcal{A}}_S$, there then exists $\mathbf{0} \neq \mathbf{c} = (c_1, \ldots, c_k) \in \mathbb{R}^k$ such that $\mathbf{y} = \mathbf{AX}_K\mathbf{c}$. Setting \mbox{$\mathbf{\overline{y}} = \mathbf{B\overline{X}}_K\mathbf{c} \in \bm{\mathcal{B}}_{\overline S}$}, we have:
+It follows from $L_{2\mathcal{H}}(\mathbf{A}) > 0$ and the general linear position of the $\mathbf{x}_i$ that $L_k(\mathbf{AX}_{K}) > 0$; that is, the columns of the $n \times k$ matrix $\mathbf{AX}_K$ form a basis for $\bm{\mathcal{A}}_S$. Fixing $\mathbf{0} \neq \mathbf{y} \in \bm{\mathcal{A}}_S$, there then exists $\mathbf{0} \neq \mathbf{c} = (c_1, \ldots, c_k) \in \mathbb{R}^k$ such that $\mathbf{y} = \mathbf{AX}_K\mathbf{c}$. Setting \mbox{$\mathbf{\overline{y}} = \mathbf{B\overline{X}}_K\mathbf{c} \in \bm{\mathcal{B}}_{\overline S}$}, we have:
 \begin{align*}
 \|\mathbf{y} - \mathbf{\overline{y}}\|_2 
 &= \|\sum_{i=1}^k c_i(\mathbf{AX}_K - \mathbf{B\overline{X}}_K)_i\|_2
 \leq \varepsilon \sum_{i=1}^k |c_i| \\
 &\leq \varepsilon \sqrt{k}  \|\mathbf{c}\|_2 
-\leq \frac{\varepsilon}{L(\mathbf{AX}_K)} \|\mathbf{y}\|_2,
+\leq \frac{\varepsilon}{L_k(\mathbf{AX}_K)} \|\mathbf{y}\|_2,
 \end{align*}
 where the last inequality follows directly from \eqref{Ldef}. From Def.~\ref{dDef}:
 \begin{align}\label{rhs222}
 d(\bm{\mathcal{A}}_S, \bm{\mathcal{B}}_{\overline S}) 
-\leq \frac{\varepsilon}{  L(\mathbf{AX}_{K}) } \leq \varepsilon \frac{C_1}{C_2},
+\leq \frac{\varepsilon}{  L_k(\mathbf{AX}_{K}) } \leq \varepsilon \frac{C_1}{C_2},
 \end{align}
 %
-where the second inequality is due to $L(\mathbf{AX}_{K}) \geq L_k(\mathbf{AX}_{I(S)})$ and \eqref{Cdef1}. Finally, apply Lem.~\ref{MainLemma} with $\varepsilon < L_2(\mathbf{A})/C_1$. % L_2(A) > 0 by def of L, since L_2H(A) > 0 and H covers [m]
+where the second inequality is due to $L_k(\mathbf{AX}_{K}) \geq L_k(\mathbf{AX}_{I(S)})$ and \eqref{Cdef1}. Finally, apply Lem.~\ref{MainLemma} with $\varepsilon < L_2(\mathbf{A})/C_1$. % L_2(A) > 0 by def of L, since L_2H(A) > 0 and H covers [m]
 \end{proof}
 
 \begin{proof}[Proof of Thm.~\ref{SLCopt}]
@@ -552,9 +552,9 @@ By induction, it is enough to prove the trivial case $\ell = 2$. %Clearly, for a
 % \vspace{-.4 cm}
 
 \begin{lemma}\label{DistanceToIntersectionLemma}
-Fix $k \geq 2$. Let $\mathcal{V} = \{V_i\}_{i=1}^k$ be a collection of subspaces of $\mathbb{R}^m$ and set $V = \cap_{i = 1}^k V_i$. For  $\mathbf{x} \in \mathbb{R}^m$, we have (where $\xi$ is given in Def.~\ref{SpecialSupportSet}):
+Fix $k \geq 2$. Let $\mathcal{V} = \{V_i\}_{i=1}^k$ be a collection of subspaces of $\mathbb{R}^m$ and set $V = \cap_{i = 1}^k V_i$. For  $\mathbf{x} \in \mathbb{R}^m$, we have (recalling \eqref{xi}):
 \begin{align}\label{DTILeq}
-\text{\rm dist}(\mathbf{x}, V) \leq \frac{1}{\xi(\mathcal{V})} \sum_{i=1}^k \text{\rm dist}(\mathbf{x}, V_i).
+\text{\rm dist}(\mathbf{x}, V) \leq \frac{1}{1 - \xi(\mathcal{V})} \sum_{i=1}^k \text{\rm dist}(\mathbf{x}, V_i).
 \end{align}
 \end{lemma}
 \vspace{-.3 cm}
@@ -575,7 +575,7 @@ The desired result, \eqref{DTILeq}, now follows by bounding the second term on t
 for \mbox{$z^2= 1 - \prod_{\ell =1}^{k-1}(1-z_{\ell}^2)$} and \mbox{$z_{\ell} = \cos\theta\left(V_{\ell}, \cap_{s=\ell+1}^k V_s\right)$}, recalling $\theta$ from Def.~\ref{FriedrichsDefinition}. Together with $\Pi_{V_\ell} \Pi_V = \Pi_V$ for all $\ell \in [k]$ and $\Pi_V^2 = \Pi_V$, this implies that $\|\Pi_{V_k} \cdots \Pi_{V_1}\mathbf{x}  - \Pi_V \mathbf{x} \|_2$ satisfies:
 $\| ( \Pi_{V_k} \cdots\Pi_{V_1} - \Pi_V ) (\mathbf{x} - \Pi_V\mathbf{x})\|_2 \leq z\|\mathbf{x} - \Pi_V\mathbf{x}\|_2$.
 
-Finally, substituting this into \eqref{f} and rearranging produces \eqref{DTILeq} after replacing $1 - z$ with $\xi(\mathcal{V})$.
+Finally, substituting this into \eqref{f} and rearranging produces \eqref{DTILeq} after substituting $\xi(\mathcal{V})$ for $z$.
 \end{proof}
 \begin{lemma}\label{NonEmptyLemma} 
 Fix an $r$-regular hypergraph $\mathcal{H} \subseteq 2^{[m]}$ satisfying the SIP. If the map $\pi: \mathcal{H} \to 2^{[\overline m]}$ has $\sum_{S \in \mathcal{H}} |\pi(S)| \geq \sum_{S \in \mathcal{H}} |S|$ and:
@@ -597,11 +597,11 @@ We begin by showing that $\dim(\bm{\mathcal{B}}_{\pi(S)}) = \dim(\bm{\mathcal{A}
 
 We next show that \eqref{cond} holds.  Fix $\mathcal{G} \subseteq {\mathcal{H} \choose r} \cup {\mathcal{H} \choose r+1}$. Since $\bm{\mathcal{B}}_{\cap \pi(\mathcal{G})} \subseteq \cap_{S \in \mathcal{G}} \bm{\mathcal{B}}_{\pi(S)}$, if $\cap_{S \in \mathcal{G}} \bm{\mathcal{B}}_{\pi(S)} = \{\textbf{0}\}$, then we must have $|\cap \pi(\mathcal{G})| = 0$ (as the columns of $\mathbf{B}_{\pi(S)}$ are linearly independent) and \eqref{cond} is trivially true. Suppose then that the intersection is not zero. Keeping in mind that $d(U',V) \leq d(U,V)$ whenever $U' \subseteq U$ and applying (in order) Lem.~\ref{spanIntersectionLemma}, Lem.~\ref{DistanceToIntersectionLemma}, \eqref{eqdim}, \eqref{GapUpperBound}, and \eqref{Cdef2} gives:
 \begin{align}\label{randoml}
-d(\bm{\mathcal{B}}_{\cap \pi(\mathcal{G})}&, \bm{\mathcal{A}}_{\cap \mathcal{G}}  ) 
+d(&\bm{\mathcal{B}}_{\cap \pi(\mathcal{G})}, \bm{\mathcal{A}}_{\cap \mathcal{G}}  ) 
 \leq d\left( \cap \bm{\mathcal{B}}_{\pi(\mathcal{G})}, \cap \bm{\mathcal{A}}_\mathcal{G} \right)
-\leq \sum_{T \in \mathcal{G}} \frac{ d\left( \cap \bm{\mathcal{B}}_{\pi(\mathcal{G})},\bm{\mathcal{A}_{T}} \right) }{ \xi( \bm{\mathcal{A}}_\mathcal{G} ) } \nonumber \\
-&\leq \sum_{T \in \mathcal{G}} \frac{ d\left( \bm{\mathcal{B}}_{\pi(T)},\bm{\mathbf{A}}_{T} \right) }{ \xi( \bm{\mathcal{A}}_\mathcal{G} ) }
-\leq \frac{|\mathcal{G}| \varepsilon}{\xi( \bm{\mathcal{A}}_\mathcal{G} )} 
+\leq \sum_{T \in \mathcal{G}} \frac{ d\left( \cap \bm{\mathcal{B}}_{\pi(\mathcal{G})},\bm{\mathcal{A}_{T}} \right) }{ 1 - \xi( \bm{\mathcal{A}}_\mathcal{G} ) } \nonumber \\
+&\leq \sum_{T \in \mathcal{G}} \frac{ d\left( \bm{\mathcal{B}}_{\pi(T)},\bm{\mathbf{A}}_{T} \right) }{ 1 - \xi( \bm{\mathcal{A}}_\mathcal{G} ) }
+\leq \frac{|\mathcal{G}| \varepsilon}{1 - \xi( \bm{\mathcal{A}}_\mathcal{G} )} 
 \leq \frac{C_2 \varepsilon}{\max_j\|\mathbf{A}_j\|_2}. 
 \end{align}
 
