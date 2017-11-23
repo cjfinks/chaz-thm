@@ -132,7 +132,7 @@ To see how Def. \ref{maindef} directly relates to Prob. \ref{InverseProblem}, su
 In the next section, we give precise statements of our main results, which include an explicit form for $\varepsilon(\delta_1, \delta_2)$. We then prove our main theorem (Thm.~\ref{DeterministicUniquenessTheorem}) in Sec.~\ref{DUT} after stating some additional definitions and lemmas required for the proof, including a useful result in combinatorial matrix analysis (Lem.~\ref{MainLemma}, proven in Appendix). We also provide an argument that extends our guarantees to the following more common optimization formulation of the dictionary learning problem (Thm.~\ref{SLCopt}).
 
 \begin{problem}\label{OptimizationProblem}
-Find $\mathbf{B}$ and \mbox{$\mathbf{\overline x}_1, \ldots, \mathbf{\overline x}_N \in \mathbb{R}^m$} that solve:
+Find $\mathbf{B}$ and \mbox{$\mathbf{\overline x}_1, \ldots, \mathbf{\overline x}_N \in \mathbb{R}^{\overline m}$} that solve:
 \begin{align}\label{minsum}
 \min \sum_{i = 1}^N \|\mathbf{\overline x}_i\|_0 \ \ 
 \text{subject to} \ \ \|\mathbf{z}_i - \mathbf{B}\mathbf{\overline x}_i\|_2 \leq \eta, \ \text{for all $i$}.
@@ -150,7 +150,7 @@ Given $\mathcal{H} \subseteq 2^{[m]}$, the \textbf{star} $\sigma(i)$ is the coll
 
 Next, we describe a quantitative version of the spark condition. The \emph{lower bound} of a matrix $\mathbf{M} \in \mathbb R^{n \times m}$ is the largest $\alpha$ such that \mbox{$\|\mathbf{M}\mathbf{x}\|_2 \geq \alpha\|\mathbf{x}\|_2$} for all $\mathbf{x} \in \mathbb{R}^m$ \cite{Grcar10}. By compactness of the unit sphere, every injective linear map has nonzero lower bound; hence, if $\mathbf{M}$ satisfies \eqref{SparkCondition}, then each submatrix formed from $2k$ of its columns or less has a strictly positive lower bound. 
 
-We generalize the  lower bound to a domain-restricted \emph{union of subspaces} model \cite{vidal2005generalized} derived from a hypergraph $\mathcal{H} \subseteq {[m] \choose k}$. Letting $\mathbf{M}_J$ denote the submatrix formed by the columns of $\mathbf{M}$ indexed by $J \subseteq [m]$ (with $\mathbf{M}_\emptyset := \mathbf{0}$), we define: 
+We generalize the  lower bound to a domain-restricted \emph{union of subspaces} model \cite{vidal2005generalized} derived from a hypergraph $\mathcal{H} \subseteq {[m] \choose k}$. Letting $\mathbf{M}_S$ denote the submatrix formed by the columns of $\mathbf{M}$ indexed by $S \subseteq [m]$ (with $\mathbf{M}_\emptyset := \mathbf{0}$), we define: 
 %\begin{align*} 
 %L_\mathcal{H}(\mathbf{M}) := \inf \left\{ \frac{ \|\mathbf{M}(\mathbf{x}_1-\mathbf{x}_2)\|_2 }{ \sqrt{2k} \|\mathbf{x}_1-\mathbf{x}_2\|_2} : \mathbf{x}_1, \mathbf{x}_2 \in \cup_{S \in \mathcal{H}} \bm{\mathcal{M}}_S \right\},
 %\end{align*} 
@@ -166,7 +166,7 @@ We generalize the  lower bound to a domain-restricted \emph{union of subspaces} 
 L_\mathcal{H}(\mathbf{M}) := \frac{1}{\sqrt{k}} \min \left\{ \frac{\|\mathbf{M}_S\mathbf{x}\|_2}{ \|\mathbf{x}\|_2} : S \in \mathcal{H}, \ \ \mathbf{x} \in \mathbb{R}^{|S|} \right\},
 \end{align} 
 %
-where we write $L_{k}$ when $\mathcal{H} = {[m] \choose k}$.\footnote{We note that $1 - \sqrt{k} L_k(\mathbf{M})$ is known as the asymmetric lower restricted isometry constant for matrices $\mathbf{M}$ with unit $\ell_2$-norm columns \cite{Blanchard2011}.} Clearly, $L_{2k}(\mathbf{M}) > 0$ for $\mathbf{M}$ satisfying \eqref{SparkCondition} and $L_{k'}(\mathbf{M}) \geq L_k(\mathbf{M})$ whenever $k' \leq k$. Note also that $L_2 \geq L_{2\mathcal{H}} \geq L_{2k}$ if $\mathcal{H} \subseteq {[m] \choose k}$ has $\cup \mathcal{H} = [m]$.
+where we write $L_{k}$ when $\mathcal{H} = {[m] \choose k}$.\footnote{We note that $1 - \sqrt{k} L_k(\mathbf{M})$ is known as the asymmetric lower restricted isometry constant for matrices $\mathbf{M}$ with unit $\ell_2$-norm columns \cite{Blanchard2011}.} Clearly, $L_{2k}(\mathbf{M}) > 0$ for $\mathbf{M}$ satisfying \eqref{SparkCondition} and $L_{k'}(\mathbf{M}) \geq L_k(\mathbf{M})$ whenever $k' \leq k$. Note also that $L_2 \geq L_{2\mathcal{H}} \geq L_{2k}$ if $\mathcal{H} \subseteq {[m] \choose k}$ has $\cup \mathcal{H} = [m]$. In the sections that follow, we will write $\bm{\mathcal{M}}_S$ to denote the column-span of a submatrix $\mathbf{M}_S$, and $\bm{\mathcal{M}}_\mathcal{G}$ to denote $\{\bm{\mathcal{M}}_S\}_{S \in \mathcal{G}}$.
  
 A vector $\mathbf{x}$ is said to be \emph{supported} in $S \subseteq [m]$ when $\mathbf{x} \in \text{\rm span}\{\mathbf{e}_j: j\in S\}$, where $\mathbf{e}_j$ form the standard column basis in $\mathbb R^m$. 
 %Denote by $\mathbf{x}^J$ the subvector formed from the entries of $\mathbf{x}$ indexed by $J$. 
@@ -367,7 +367,7 @@ Also, from \cite[Lem.~3.2]{Morris10}, we have:
 \dim(U) = \dim(V) \implies d(U,V) = d(V,U).
 \end{align}
 
-Our result in combinatorial matrix analysis is the following. Let $\bm{\mathcal{M}}_S$ denote the column-span of a submatrix $\mathbf{M}_S$.
+Our result in combinatorial matrix analysis is the following. 
 
 \begin{lemma}\label{MainLemma}
 Suppose the $n \times m$ matrix $\mathbf{A}$ has $L_{2\mathcal{H}}(\mathbf{A}) > 0$ for some $r$-regular $\mathcal{H} \subseteq {[m] \choose k}$ with the SIP. There exists $C_2 > 0$ for which the following holds for all $\varepsilon < L_2(\mathbf{A}) / C_2$:
@@ -406,9 +406,9 @@ The constant $C_2 = C_2(\mathbf{A}, \mathcal{H})$, in turn, will be presented re
 More specifically, in Lem.~\ref{DistanceToIntersectionLemma} below, the following definition is used to bound the distance between a point and the intersection of subspaces given an upper bound on its distance from each individual subspace.
 
 \begin{definition}\label{SpecialSupportSet}\label{FriedrichsDefinition}
-For subspaces $V_1, \ldots, V_\ell \subseteq \mathbb{R}^m$, set $\xi := 1$ when $\ell = 1$ and define for $\ell \geq 2$:
+For a collection of real subspaces $\mathcal{V} = \{V_i\}_{i=1}^\ell$, define $\xi := 1$ when $|\mathcal{V}| = 1$ and otherwise:
 \begin{align*}
-\xi(\{V_i\}_{i=1}^\ell) := 1 - \left(1 -  \max \prod_{i=1}^{\ell-1} \sin^2  \theta \left(V_i, \cap_{j>i} V_j \right)  \right)^{1/2},
+\xi(\mathcal{V}) := 1 - \left(1 -  \max \prod_{i=1}^{\ell-1} \sin^2  \theta \left(V_i, \cap_{j>i} V_j \right)  \right)^{1/2},
 \end{align*} 
 %
 where the maximum is taken over all orderings 
@@ -418,10 +418,10 @@ of the $V_i$ and the angle $\theta \in (0,\frac{\pi}{2}]$ is defined implicitly 
 \cos{\theta(U,W)} := \max\left\{ |\langle \mathbf{u}, \mathbf{w} \rangle|: \substack{ \mathbf{u} \in U \cap (U \cap W)^\perp, \ \|\mathbf{u}\|_2 \leq 1 \\ \mathbf{w} \in W \cap (U \cap W)^\perp, \  \|\mathbf{w}\|_2 \leq 1 } \right\}.
 \end{align*}
 \end{definition}
-Note that $\theta \in (0,\frac{\pi}{2}]$ implies $0 < \xi \leq 1$.\footnote{We acknowledge the counter-intuitive property that $\theta =  \pi/2$ when $U \subseteq W$.}  
+Note that $\theta \in (0,\frac{\pi}{2}]$ implies $0 < \xi \leq 1$, and that $\xi(\mathcal{V}') \geq \xi(\mathcal{V})$ when $\mathcal{V}' \subseteq \mathcal{V}$.\footnote{We acknowledge the counter-intuitive property that $\theta =  \pi/2$ when $U \subseteq W$.}  
 The constant $C_2$ in Lem.~\ref{MainLemma} can then be expressed as:  
 \begin{align}\label{Cdef2}
-	C_2(\mathbf{A}, \mathcal{H}) := \frac{ (r+1) \max_{j \in [m]} \|\mathbf{A}_j\|_2}{ \min_{\mathcal{G} \in {\mathcal{H} \choose r+1}} \xi( \{ \bm{\mathcal{A}}_S \}_{S \in \mathcal{G}}) },
+	C_2(\mathbf{A}, \mathcal{H}) := \frac{ (r+1) \max_{j \in [m]} \|\mathbf{A}_j\|_2}{ \min_{\mathcal{G} \in {\mathcal{H} \choose r+1}} \xi( \bm{\mathcal{A}}_\mathcal{G} ) },
 \end{align}
 % C_2(\mathbf{A}, \mathcal{H}) := \frac{ (r+1) \max_{j \in [m]} \|\mathbf{A}_j\|_2}{ \min_{\mathcal{G} \in {\mathcal{H} \choose r} \cup {\mathcal{H} \choose r+1}} \xi( \{ \bm{\mathcal{A}}_S \}
 which we remark is consistent with the assumption on $C_1$ in the proof of the case $k=1$ at the beginning of this section.  
@@ -552,9 +552,9 @@ By induction, it is enough to prove the trivial case $\ell = 2$. %Clearly, for a
 % \vspace{-.4 cm}
 
 \begin{lemma}\label{DistanceToIntersectionLemma}
-Fix $k \geq 2$. Let $V_1, \ldots, V_k$ be subspaces of $\mathbb{R}^m$ and set $V = \cap_{i = 1}^k V_i$. For  $\mathbf{x} \in \mathbb{R}^m$, we have (where $\xi$ is given in Def.~\ref{SpecialSupportSet}):
+Fix $k \geq 2$. Let $\mathcal{V} = \{V_i\}_{i=1}^k$ be a collection of subspaces of $\mathbb{R}^m$ and set $V = \cap_{i = 1}^k V_i$. For  $\mathbf{x} \in \mathbb{R}^m$, we have (where $\xi$ is given in Def.~\ref{SpecialSupportSet}):
 \begin{align}\label{DTILeq}
-\text{\rm dist}(\mathbf{x}, V) \leq \frac{1}{\xi(\{V_i\}_{i = 1}^k)} \sum_{i=1}^k \text{\rm dist}(\mathbf{x}, V_i).
+\text{\rm dist}(\mathbf{x}, V) \leq \frac{1}{\xi(\mathcal{V})} \sum_{i=1}^k \text{\rm dist}(\mathbf{x}, V_i).
 \end{align}
 \end{lemma}
 \vspace{-.3 cm}
@@ -575,7 +575,7 @@ The desired result, \eqref{DTILeq}, now follows by bounding the second term on t
 for \mbox{$z^2= 1 - \prod_{\ell =1}^{k-1}(1-z_{\ell}^2)$} and \mbox{$z_{\ell} = \cos\theta\left(V_{\ell}, \cap_{s=\ell+1}^k V_s\right)$}, recalling $\theta$ from Def.~\ref{FriedrichsDefinition}. Together with $\Pi_{V_\ell} \Pi_V = \Pi_V$ for all $\ell \in [k]$ and $\Pi_V^2 = \Pi_V$, this implies that $\|\Pi_{V_k} \cdots \Pi_{V_1}\mathbf{x}  - \Pi_V \mathbf{x} \|_2$ satisfies:
 $\| ( \Pi_{V_k} \cdots\Pi_{V_1} - \Pi_V ) (\mathbf{x} - \Pi_V\mathbf{x})\|_2 \leq z\|\mathbf{x} - \Pi_V\mathbf{x}\|_2$.
 
-Finally, substituting this into \eqref{f} and rearranging produces \eqref{DTILeq} after replacing $1 - z$ with $\xi(\{V_i\}_{i=1}^k)$.
+Finally, substituting this into \eqref{f} and rearranging produces \eqref{DTILeq} after replacing $1 - z$ with $\xi(\mathcal{V})$.
 \end{proof}
 \begin{lemma}\label{NonEmptyLemma} 
 Fix an $r$-regular hypergraph $\mathcal{H} \subseteq 2^{[m]}$ satisfying the SIP. If the map $\pi: \mathcal{H} \to 2^{[\overline m]}$ has $\sum_{S \in \mathcal{H}} |\pi(S)| \geq \sum_{S \in \mathcal{H}} |S|$ and:
@@ -598,10 +598,10 @@ We begin by showing that $\dim(\bm{\mathcal{B}}_{\pi(S)}) = \dim(\bm{\mathcal{A}
 We next show that \eqref{cond} holds.  Fix $\mathcal{G} \subseteq {\mathcal{H} \choose r} \cup {\mathcal{H} \choose r+1}$. Since $\bm{\mathcal{B}}_{\cap \pi(\mathcal{G})} \subseteq \cap_{S \in \mathcal{G}} \bm{\mathcal{B}}_{\pi(S)}$, if $\cap_{S \in \mathcal{G}} \bm{\mathcal{B}}_{\pi(S)} = \{\textbf{0}\}$, then we must have $|\cap \pi(\mathcal{G})| = 0$ (as the columns of $\mathbf{B}_{\pi(S)}$ are linearly independent) and \eqref{cond} is trivially true. Suppose then that the intersection is not zero. Keeping in mind that $d(U',V) \leq d(U,V)$ whenever $U' \subseteq U$ and applying (in order) Lem.~\ref{spanIntersectionLemma}, Lem.~\ref{DistanceToIntersectionLemma}, \eqref{eqdim}, \eqref{GapUpperBound}, and \eqref{Cdef2} gives:
 \begin{align}\label{randoml}
 d(\bm{\mathcal{B}}_{\cap \pi(\mathcal{G})}&, \bm{\mathcal{A}}_{\cap \mathcal{G}}  ) 
-\leq d\left( \cap_{S \in \mathcal{G}} \bm{\mathcal{B}}_{\pi(S)}, \cap_{S \in \mathcal{G}} \bm{\mathcal{A}}_S \right) \nonumber \\
-&\leq \sum_{T \in \mathcal{G}} \frac{ d\left( \cap_{S \in \mathcal{G}} \bm{\mathcal{B}}_{\pi(S)},\bm{\mathcal{A}_{T}} \right) }{ \xi(  \{\bm{\mathcal{A}}_S\}_{S \in \mathcal{G}}) }
-\leq \sum_{T \in \mathcal{G}} \frac{ d\left( \bm{\mathcal{B}}_{\pi(T)},\bm{\mathbf{A}}_{T} \right) }{ \xi( \{\bm{\mathcal{A}}_S\}_{S \in \mathcal{G}}) }\nonumber \\
-&\leq \frac{|\mathcal{G}| \varepsilon}{\xi( \{\bm{\mathcal{A}}_S\}_{S \in \mathcal{G}})} 
+\leq d\left( \cap \bm{\mathcal{B}}_{\pi(\mathcal{G})}, \cap \bm{\mathcal{A}}_\mathcal{G} \right)
+\leq \sum_{T \in \mathcal{G}} \frac{ d\left( \cap \bm{\mathcal{B}}_{\pi(\mathcal{G})},\bm{\mathcal{A}_{T}} \right) }{ \xi( \bm{\mathcal{A}}_\mathcal{G} ) } \nonumber \\
+&\leq \sum_{T \in \mathcal{G}} \frac{ d\left( \bm{\mathcal{B}}_{\pi(T)},\bm{\mathbf{A}}_{T} \right) }{ \xi( \bm{\mathcal{A}}_\mathcal{G} ) }
+\leq \frac{|\mathcal{G}| \varepsilon}{\xi( \bm{\mathcal{A}}_\mathcal{G} )} 
 \leq \frac{C_2 \varepsilon}{\max_j\|\mathbf{A}_j\|_2}. 
 \end{align}
 
