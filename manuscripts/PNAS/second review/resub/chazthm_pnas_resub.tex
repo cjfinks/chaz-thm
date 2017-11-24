@@ -593,19 +593,35 @@ If $\overline m < mr / (r-1)$, then $p := \overline m - r( \overline m - m)$ is 
 
 \begin{proof}[Proof of Lem.~\ref{MainLemma}]
 %We will show that the bound \eqref{GapUpperBound} trickles through the intersection semi-lattices of $\{\bm{\mathcal{A}}_S\}_{S \in \mathcal{H}}$ and $\{\bm{\mathcal{B}}_{\overline S}\}_{\overline S \in \pi(\mathcal{H})}$ to yield \eqref{MainLemmaBPD} by virtue of the SIP.  
-We begin by showing that $\dim(\bm{\mathcal{B}}_{\pi(S)}) = \dim(\bm{\mathcal{A}}_S)$ for all $S \in \mathcal{H}$. Note that since $\|\mathbf{A}\mathbf{x}\|_2 \leq \max_j\|\mathbf{A}_j\|_2\|\mathbf{x}\|_1$ and $\|\mathbf{x}\|_1 \leq \sqrt{2} \|\mathbf{x}\|_2$ for all $2$-sparse $\mathbf{x}$, by \eqref{Ldef} we have $L_2(\mathbf{A}) \leq \max_j\|\mathbf{A}_j\|_2$ and therefore (as $\xi \leq 1$), the right-hand side of \eqref{GapUpperBound} is less than one. It follows from \eqref{dimLem} that $|\pi(S)| \geq \dim(\bm{\mathcal{B}}_{\pi(S)}) \geq \dim(\bm{\mathcal{A}}_S) = |S|$, with the equality by injectivity of $\mathbf{A}$. Since $|S| = |\pi(S)|$, the required fact follows. Note that $\mathbf{B}_{\pi(S)}$ therefore has full column-rank for all $S \in \mathcal{H}$.
+We begin by showing that $\dim(\bm{\mathcal{B}}_{\pi(S)}) = \dim(\bm{\mathcal{A}}_S)$ for all $S \in \mathcal{H}$. Note that since $\|\mathbf{A}\mathbf{x}\|_2 \leq \max_j\|\mathbf{A}_j\|_2\|\mathbf{x}\|_1$ and $\|\mathbf{x}\|_1 \leq \sqrt{2} \|\mathbf{x}\|_2$ for all $2$-sparse $\mathbf{x}$, by \eqref{Ldef} we have $L_2(\mathbf{A}) \leq \max_j\|\mathbf{A}_j\|_2$ and therefore (as $\xi > 0$), the right-hand side of \eqref{GapUpperBound} is less than one. It follows from \eqref{dimLem} that $|\pi(S)| \geq \dim(\bm{\mathcal{B}}_{\pi(S)}) \geq \dim(\bm{\mathcal{A}}_S) = |S|$, with the equality by injectivity of $\mathbf{A}_S$. Since $|S| = |\pi(S)|$, the required fact follows. Note therefore that $\mathbf{B}_{\pi(S)}$ has full-column rank for all $S \in \mathcal{H}$.
 
-We next show that \eqref{cond} holds.  Fix $\mathcal{G} \subseteq {\mathcal{H} \choose r} \cup {\mathcal{H} \choose r+1}$. Since $\bm{\mathcal{B}}_{\cap \pi(\mathcal{G})} \subseteq \cap_{S \in \mathcal{G}} \bm{\mathcal{B}}_{\pi(S)}$, if $\cap_{S \in \mathcal{G}} \bm{\mathcal{B}}_{\pi(S)} = \{\textbf{0}\}$, then we must have $|\cap \pi(\mathcal{G})| = 0$ (as the columns of $\mathbf{B}_{\pi(S)}$ are linearly independent) and \eqref{cond} is trivially true. Suppose then that the intersection is not zero. Keeping in mind that $d(U',V) \leq d(U,V)$ whenever $U' \subseteq U$ and applying (in order) Lem.~\ref{spanIntersectionLemma}, Lem.~\ref{DistanceToIntersectionLemma}, \eqref{eqdim}, \eqref{GapUpperBound}, and \eqref{Cdef2} gives:
-\begin{align}\label{randoml}
-d(&\bm{\mathcal{B}}_{\cap \pi(\mathcal{G})}, \bm{\mathcal{A}}_{\cap \mathcal{G}}  ) 
-\leq d\left( \cap \bm{\mathcal{B}}_{\pi(\mathcal{G})}, \cap \bm{\mathcal{A}}_\mathcal{G} \right)
-\leq \sum_{T \in \mathcal{G}} \frac{ d\left( \cap \bm{\mathcal{B}}_{\pi(\mathcal{G})},\bm{\mathcal{A}_{T}} \right) }{ 1 - \xi( \bm{\mathcal{A}}_\mathcal{G} ) } \nonumber \\
-&\leq \sum_{T \in \mathcal{G}} \frac{ d\left( \bm{\mathcal{B}}_{\pi(T)},\bm{\mathbf{A}}_{T} \right) }{ 1 - \xi( \bm{\mathcal{A}}_\mathcal{G} ) }
-\leq \frac{|\mathcal{G}| \varepsilon}{1 - \xi( \bm{\mathcal{A}}_\mathcal{G} )} 
-\leq \frac{C_2 \varepsilon}{\max_j\|\mathbf{A}_j\|_2}. 
+We next show that \eqref{cond} holds. Fixing $\mathcal{G} \subseteq {\mathcal{H} \choose r} \cup {\mathcal{H} \choose r+1}$, it suffices to show that $d(\bm{\mathcal{B}}_{\cap \pi(\mathcal{G})}, \bm{\mathcal{A}}_{\cap \mathcal{G}} ) < 1$, since by \eqref{dimLem} we then have $|\cap \pi(\mathcal{G})| = \dim(\bm{\mathcal{B}}_{\cap \pi(\mathcal{G})}) \leq \dim(\bm{\mathcal{A}}_{\cap \mathcal{G}}) = |\cap \mathcal{G}|$, with equalities by injectivity of $\mathbf{A}_{S}$ and $\mathbf{B}_{\pi(S)}$ for all $S \in \mathcal{G}$.\footnote{Note that this assumes $\cap \bm{\mathcal{B}}_{\pi(\mathcal{G})} = \bf 0$ if $\cap \mathcal{G} = \emptyset$, since otherwise $d(\bm{\mathcal{B}}_{\cap \pi(\mathcal{G})}, \bm{\mathcal{A}}_{\cap \mathcal{G}} ) = 1$; but this must be the case, since otherwise the deduction that follows would lead to a contradiction.}
+
+First, observe that $d(\bm{\mathcal{B}}_{\cap \pi(\mathcal{G})}, \bm{\mathcal{A}}_{\cap \mathcal{G}}  ) 
+\leq d\left( \cap \bm{\mathcal{B}}_{\pi(\mathcal{G})}, \cap \bm{\mathcal{A}}_\mathcal{G} \right)$, since $\bm{\mathcal{A}}_{\cap \mathcal{G}} = \cap \bm{\mathcal{A}}_\mathcal{G}$ by Lem.~\ref{spanIntersectionLemma} and $d(U',V) \leq d(U,V)$ whenever $U' \subseteq U$. We then have, by Lem.~\ref{DistanceToIntersectionLemma}, \eqref{eqdim}, \eqref{GapUpperBound}, and \eqref{Cdef2} (applied in order):
+\begin{align}
+d\left( \cap \bm{\mathcal{B}}_{\pi(\mathcal{G})}, \cap \bm{\mathcal{A}}_\mathcal{G} \right)
+&= \sup_{\mathbf{u} \in \cap \bm{\mathcal{B}}_{\pi(\mathcal{G})}, \ \|\mathbf{u}\|_2 \leq 1} \text{\rm dist}\left( \mathbf{u}, \cap \bm{\mathcal{A}}_\mathcal{G} \right) \nonumber \\
+&\leq \sup_{\mathbf{u} \in \cap \bm{\mathcal{B}}_{\pi(\mathcal{G})}, \ \|\mathbf{u}\|_2 \leq 1} \sum_{S \in \mathcal{G}} \frac{ \text{\rm dist}\left( \mathbf{u},\bm{\mathcal{A}}_{S} \right) }{ 1 - \xi( \bm{\mathcal{A}}_\mathcal{G} ) } \nonumber \\
+&= \sum_{S \in \mathcal{G}} \frac{ d\left( \cap \bm{\mathcal{B}}_{\pi(\mathcal{G})},\bm{\mathcal{A}}_{S} \right) }{ 1 - \xi( \bm{\mathcal{A}}_\mathcal{G} ) } 
+\leq \sum_{S \in \mathcal{G}} \frac{ d\left( \bm{\mathcal{B}}_{\pi(S)},\bm{\mathcal{A}}_{S} \right) }{ 1 - \xi( \bm{\mathcal{A}}_\mathcal{G} ) } \nonumber \\
+&\leq \frac{|\mathcal{G}| \varepsilon}{1 - \xi( \bm{\mathcal{A}}_\mathcal{G} )} \nonumber \\
+&\leq \frac{C_2 \varepsilon}{\max_j\|\mathbf{A}_j\|_2},
 \end{align}
+%
+which is less than one, since $C_2 \varepsilon < L_2(\mathbf{A}) \leq \max_j\|\mathbf{A}_j\|_2$.
 
-Since $C_2 \varepsilon < L_2(\mathbf{A}) \leq \max_j\|\mathbf{A}_j\|_2$, we have by \eqref{dimLem} that $\dim(\bm{\mathcal{B}}_{\cap \pi(\mathcal{G})}) \leq \dim(\bm{\mathcal{A}}_{\cap \mathcal{G}})$, and \eqref{cond} follows from the full column-rank of $\mathbf{A}_{S}$ and $\mathbf{B}_{\pi(S)}$ for all $S \in \mathcal{G}$.
+%Keeping in mind that $d(U',V) \leq d(U,V)$ whenever $U' \subseteq U$ and applying (in order) Lem.~\ref{spanIntersectionLemma}, Lem.~\ref{DistanceToIntersectionLemma}, \eqref{eqdim}, \eqref{GapUpperBound}, and \eqref{Cdef2} gives:
+%\begin{align}\label{randoml}
+%d(&\bm{\mathcal{B}}_{\cap \pi(\mathcal{G})}, \bm{\mathcal{A}}_{\cap \mathcal{G}}  ) 
+%\leq d\left( \cap \bm{\mathcal{B}}_{\pi(\mathcal{G})}, \cap \bm{\mathcal{A}}_\mathcal{G} \right)
+%\leq \sum_{T \in \mathcal{G}} \frac{ d\left( \cap \bm{\mathcal{B}}_{\pi(\mathcal{G})},\bm{\mathcal{A}}_{T} \right) }{ 1 - \xi( \bm{\mathcal{A}}_\mathcal{G} ) } \nonumber \\
+%&\leq \sum_{T \in \mathcal{G}} \frac{ d\left( \bm{\mathcal{B}}_{\pi(T)},\bm{\mathbf{A}}_{T} \right) }{ 1 - \xi( \bm{\mathcal{A}}_\mathcal{G} ) }
+%\leq \frac{|\mathcal{G}| \varepsilon}{1 - \xi( \bm{\mathcal{A}}_\mathcal{G} )} 
+%\leq \frac{C_2 \varepsilon}{\max_j\|\mathbf{A}_j\|_2},
+%\end{align}
+%
+%which is less than one, since $C_2 \varepsilon < L_2(\mathbf{A}) \leq \max_j\|\mathbf{A}_j\|_2$.
 
 By Lem.~\ref{NonEmptyLemma}, the association $i \mapsto \cap \pi(\sigma(i))$ is an injective map $\overline \pi: J \to [\overline m]$ for some $J \subseteq [m]$ of size $\overline m - r(\overline m - m)$, and $\mathbf{B}_{\overline \pi(i)} \neq \mathbf{0}$ for all $i \in J$ since the columns of $\mathbf{B}_{\pi(S)}$ are linearly independent for all $S \in \mathcal{H}$. It then follows from \eqref{eqdim} and \eqref{randoml} that $d\left( \bm{\mathcal{A}}_i, \bm{\mathcal{B}}_{\overline \pi(i)} \right) \leq C_2 \varepsilon / \max_i \|\mathbf{A}_i\|_2$ for all $i \in J$. Fixing $\overline \varepsilon = C_2\varepsilon$ and letting $c_i = \|\mathbf{A}_i\|_2^{-1}$, we thus have that for each $\mathbf{e}_i \in \mathbb{R}^m$ with $i \in J$ there exists some $\overline{c}_i \in \mathbb{R}$ such that $\|c_i\mathbf{A}\mathbf{e}_i - \overline{c}_i \mathbf{B}\mathbf{e}_{\overline \pi(i)}\|_2 \leq \overline \varepsilon < L_2(\mathbf{A}) \min_{i\in J} |c_i|$.  But this is exactly the supposition in \eqref{1D}, and the result follows from the case $k=1$ in Sec.~\ref{DUT} applied to the submatrix $\mathbf{A}_J$.
 \end{proof}
