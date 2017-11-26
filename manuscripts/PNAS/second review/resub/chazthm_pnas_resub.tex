@@ -405,7 +405,7 @@ where, given vectors $\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$, we d
 The constant $C_2 = C_2(\mathbf{A}, \mathcal{H})$, in turn, will be presented relative to a quantity from \cite{Deutsch12} used to analyze the convergence of the alternating projections algorithm. 
 Specifically, in Lem.~\ref{DistanceToIntersectionLemma} below, the following definition is used to bound the distance between a point and the intersection of subspaces given an upper bound on its distance from each individual subspace.
 
-\begin{definition}\label{SpecialSupportSet}\label{FriedrichsDefinition}
+\begin{definition}\label{FriedrichsDefinition}
 For a collection of real subspaces $\mathcal{V} = \{V_i\}_{i=1}^\ell$, define $\xi^2 := 1$ when $|\mathcal{V}| = 1$, and otherwise:
 \begin{align}\label{xi}
 \xi^2(\mathcal{V}) := 1 -  \max \prod_{i=1}^{\ell-1} \sin^2  \theta \left(V_i, \cap_{j>i} V_j \right) ,
@@ -552,14 +552,14 @@ By induction, it is enough to prove the trivial case $\ell = 2$. %Clearly, for a
 % \vspace{-.4 cm}
 
 \begin{lemma}\label{DistanceToIntersectionLemma}
-Fix $k \geq 2$. Let $\mathcal{V} = \{V_i\}_{i=1}^k$ be a collection of subspaces of $\mathbb{R}^m$ and set $V = \cap_{i = 1}^k V_i$. For  $\mathbf{x} \in \mathbb{R}^m$, we have (recalling \eqref{xi}):
+Let $\mathcal{V} = \{V_i\}_{i=1}^k$ be a set of two or more subspaces of $\mathbb{R}^m$ and let $V = \cap_{i = 1}^k V_i$. For  $\mathbf{x} \in \mathbb{R}^m$, we have (recall Defs.~\ref{dDef}~\&~\ref{FriedrichsDefinition}):
 \begin{align}\label{DTILeq}
 \text{\rm dist}(\mathbf{x}, V) \leq \frac{1}{1 - \xi(\mathcal{V})} \sum_{i=1}^k \text{\rm dist}(\mathbf{x}, V_i).
 \end{align}
 \end{lemma}
 \vspace{-.3 cm}
 \begin{proof} 
-Recall the orthogonal projection onto a subspace $V \subseteq \mathbb{R}^m$ is the mapping $\Pi_V: \mathbb{R}^m \to V$ that associates with each $\mathbf{x}$ its unique nearest point in $V$; i.e., $\|\mathbf{x} - \Pi_V\mathbf{x}\|_2 = \text{\rm dist}(\mathbf{x}, V)$.
+Recall the orthogonal projection onto the subspace $V \subseteq \mathbb{R}^m$ is the mapping $\Pi_V: \mathbb{R}^m \to V$ that associates with each $\mathbf{x}$ its unique nearest point in $V$; i.e., $\|\mathbf{x} - \Pi_V\mathbf{x}\|_2 = \text{\rm dist}(\mathbf{x}, V)$.
 Next, observe:
 \begin{align}\label{f}
 \|\mathbf{x} - \Pi_V\mathbf{x}\|_2 &\leq \|\mathbf{x} - \Pi_{V_k} \mathbf{x}\|_2 + \|\Pi_{V_k}  \mathbf{x} - \Pi_{V_k}\Pi_{V_{k-1}}\mathbf{x}\|_2 \nonumber \\
@@ -593,22 +593,21 @@ If $\overline m < mr / (r-1)$, then $p := \overline m - r( \overline m - m)$ is 
 
 \begin{proof}[Proof of Lem.~\ref{MainLemma}]
 %We will show that the bound \eqref{GapUpperBound} trickles through the intersection semi-lattices of $\{\bm{\mathcal{A}}_S\}_{S \in \mathcal{H}}$ and $\{\bm{\mathcal{B}}_{\overline S}\}_{\overline S \in \pi(\mathcal{H})}$ to yield \eqref{MainLemmaBPD} by virtue of the SIP.  
-We begin by showing that $\dim(\bm{\mathcal{B}}_{\pi(S)}) = \dim(\bm{\mathcal{A}}_S)$ for all $S \in \mathcal{H}$. Note that since $\|\mathbf{A}\mathbf{x}\|_2 \leq \max_j\|\mathbf{A}_j\|_2\|\mathbf{x}\|_1$ and $\|\mathbf{x}\|_1 \leq \sqrt{2} \|\mathbf{x}\|_2$ for all $2$-sparse $\mathbf{x}$, by \eqref{Ldef} we have $L_2(\mathbf{A}) \leq \max_j\|\mathbf{A}_j\|_2$ and therefore (as $\xi > 0$), the right-hand side of \eqref{GapUpperBound} is less than one. It follows from \eqref{dimLem} that $|\pi(S)| \geq \dim(\bm{\mathcal{B}}_{\pi(S)}) \geq \dim(\bm{\mathcal{A}}_S) = |S|$, with the equality by injectivity of $\mathbf{A}_S$. Since $|S| = |\pi(S)|$, the required fact follows. Note therefore that $\mathbf{B}_{\pi(S)}$ has full-column rank for all $S \in \mathcal{H}$.
+We begin by showing that $\dim(\bm{\mathcal{B}}_{\pi(S)}) = \dim(\bm{\mathcal{A}}_S)$ for all $S \in \mathcal{H}$. Note that since $\|\mathbf{A}\mathbf{x}\|_2 \leq \max_j\|\mathbf{A}_j\|_2\|\mathbf{x}\|_1$ and $\|\mathbf{x}\|_1 \leq \sqrt{k} \|\mathbf{x}\|_2$ for all $k$-sparse $\mathbf{x}$, by \eqref{Ldef} we have $L_2(\mathbf{A}) \leq \max_j\|\mathbf{A}_j\|_2$ and therefore (as $\xi > 0$), the right-hand side of \eqref{GapUpperBound} is less than one. It follows from \eqref{dimLem} that $|\pi(S)| \geq \dim(\bm{\mathcal{B}}_{\pi(S)}) \geq \dim(\bm{\mathcal{A}}_S) = |S|$, with the equality by injectivity of $\mathbf{A}_S$. Given that $|S| = |\pi(S)|$, the required fact then follows. Note therefore that $\mathbf{B}_{\pi(S)}$ has full-column rank for all $S \in \mathcal{H}$.
 
-We next show that \eqref{cond} holds. Fixing $\mathcal{G} \subseteq {\mathcal{H} \choose r} \cup {\mathcal{H} \choose r+1}$, it suffices to show that $d(\bm{\mathcal{B}}_{\cap \pi(\mathcal{G})}, \bm{\mathcal{A}}_{\cap \mathcal{G}} ) < 1$, since by \eqref{dimLem} we then have $|\cap \pi(\mathcal{G})| = \dim(\bm{\mathcal{B}}_{\cap \pi(\mathcal{G})}) \leq \dim(\bm{\mathcal{A}}_{\cap \mathcal{G}}) = |\cap \mathcal{G}|$, with equalities by injectivity of $\mathbf{A}_{S}$ and $\mathbf{B}_{\pi(S)}$ for all $S \in \mathcal{G}$.\footnote{Note that this assumes $\cap \bm{\mathcal{B}}_{\pi(\mathcal{G})} = \bf 0$ if $\cap \mathcal{G} = \emptyset$, since otherwise $d(\bm{\mathcal{B}}_{\cap \pi(\mathcal{G})}, \bm{\mathcal{A}}_{\cap \mathcal{G}} ) = 1$; but this must be the case, since otherwise the deduction that follows would lead to a contradiction.}
-
-First, observe that $d(\bm{\mathcal{B}}_{\cap \pi(\mathcal{G})}, \bm{\mathcal{A}}_{\cap \mathcal{G}}  ) 
-\leq d\left( \cap \bm{\mathcal{B}}_{\pi(\mathcal{G})}, \cap \bm{\mathcal{A}}_\mathcal{G} \right)$, since $\bm{\mathcal{A}}_{\cap \mathcal{G}} = \cap \bm{\mathcal{A}}_\mathcal{G}$ by Lem.~\ref{spanIntersectionLemma} and $d(U',V) \leq d(U,V)$ whenever $U' \subseteq U$. We then have, by Lem.~\ref{DistanceToIntersectionLemma}, \eqref{eqdim}, \eqref{GapUpperBound}, and \eqref{Cdef2} (applied in order):
+We next show that \eqref{cond} holds. Fixing $\mathcal{G} \subseteq {\mathcal{H} \choose r} \cup {\mathcal{H} \choose r+1}$, it suffices to show that $d(\bm{\mathcal{B}}_{\cap \pi(\mathcal{G})}, \bm{\mathcal{A}}_{\cap \mathcal{G}} ) < 1$, since by \eqref{dimLem} we then have $|\cap \pi(\mathcal{G})| = \dim(\bm{\mathcal{B}}_{\cap \pi(\mathcal{G})}) \leq \dim(\bm{\mathcal{A}}_{\cap \mathcal{G}}) = |\cap \mathcal{G}|$, with equalities by the full column-ranks of $\mathbf{A}_{S}$ and $\mathbf{B}_{\pi(S)}$ for all $S \in \mathcal{H}$.\footnote{Note that if ever $\bm{\mathcal{B}}_{\cap \pi(\mathcal{G})} \neq \bf 0$ while $\cap \mathcal{G} = \emptyset$, then we would have $d(\bm{\mathcal{B}}_{\cap \pi(\mathcal{G})}, \bm 0 ) = 1$. This cannot be the case, however, since the deduction that follows would then lead to a contradiction.} Observe that $d(\bm{\mathcal{B}}_{\cap \pi(\mathcal{G})}, \bm{\mathcal{A}}_{\cap \mathcal{G}}  ) 
+\leq d\left( \cap \bm{\mathcal{B}}_{\pi(\mathcal{G})}, \cap \bm{\mathcal{A}}_\mathcal{G} \right)$, since $\bm{\mathcal{A}}_{\cap \mathcal{G}} = \cap \bm{\mathcal{A}}_\mathcal{G}$ by Lem.~\ref{spanIntersectionLemma} and $d(U',V) \leq d(U,V)$ whenever $U' \subseteq U$. Recalling Def.~\ref{dDef}, we may apply Lem.~\ref{DistanceToIntersectionLemma} and carry the supremum through the sum:
 \begin{align}
 d\left( \cap \bm{\mathcal{B}}_{\pi(\mathcal{G})}, \cap \bm{\mathcal{A}}_\mathcal{G} \right)
-&= \sup_{\mathbf{u} \in \cap \bm{\mathcal{B}}_{\pi(\mathcal{G})}, \ \|\mathbf{u}\|_2 \leq 1} \text{\rm dist}\left( \mathbf{u}, \cap \bm{\mathcal{A}}_\mathcal{G} \right) \nonumber \\
-&\leq \sup_{\mathbf{u} \in \cap \bm{\mathcal{B}}_{\pi(\mathcal{G})}, \ \|\mathbf{u}\|_2 \leq 1} \sum_{S \in \mathcal{G}} \frac{ \text{\rm dist}\left( \mathbf{u},\bm{\mathcal{A}}_{S} \right) }{ 1 - \xi( \bm{\mathcal{A}}_\mathcal{G} ) } \nonumber \\
-&= \sum_{S \in \mathcal{G}} \frac{ d\left( \cap \bm{\mathcal{B}}_{\pi(\mathcal{G})},\bm{\mathcal{A}}_{S} \right) }{ 1 - \xi( \bm{\mathcal{A}}_\mathcal{G} ) } 
-\leq \sum_{S \in \mathcal{G}} \frac{ d\left( \bm{\mathcal{B}}_{\pi(S)},\bm{\mathcal{A}}_{S} \right) }{ 1 - \xi( \bm{\mathcal{A}}_\mathcal{G} ) } \nonumber \\
-&\leq \frac{|\mathcal{G}| \varepsilon}{1 - \xi( \bm{\mathcal{A}}_\mathcal{G} )} \nonumber \\
-&\leq \frac{C_2 \varepsilon}{\max_j\|\mathbf{A}_j\|_2},
+%&\leq \sup_{\mathbf{u} \in \cap \bm{\mathcal{B}}_{\pi(\mathcal{G})}, \ \|\mathbf{u}\|_2 \leq 1} \sum_{S \in \mathcal{G}} \frac{ \text{\rm dist}\left( \mathbf{u},\bm{\mathcal{A}}_{S} \right) }{ 1 - \xi( \bm{\mathcal{A}}_\mathcal{G} ) }
+\leq \sum_{S \in \mathcal{G}} \frac{ d\left( \cap \bm{\mathcal{B}}_{\pi(\mathcal{G})},\bm{\mathcal{A}}_{S} \right) }{ 1 - \xi( \bm{\mathcal{A}}_\mathcal{G} ) }.
 \end{align}
-%
+Since $\cap \bm{\mathcal{B}}_{\pi(\mathcal{G})} \subseteq \bm{\mathcal{B}}_{\pi(S)}$ for all $S \in \mathcal{G}$, the numerator of each term above is bounded by $d\left( \bm{\mathcal{B}}_{\pi(S)},\bm{\mathcal{A}}_{S} \right)$ and, recalling \eqref{eqdim} (since $\dim(\bm{\mathcal{B}}_{\pi(S)}) = \dim(\bm{\mathcal{A}}_S)$), by $d\left(\bm{\mathcal{A}}_{S}, \bm{\mathcal{B}}_{\pi(S)} \right) \leq \varepsilon$, in turn. Thus,
+\begin{align}
+d(\bm{\mathcal{B}}_{\cap \pi(\mathcal{G})}, \bm{\mathcal{A}}_{\cap \mathcal{G}} )
+\leq \frac{|\mathcal{G}| \varepsilon}{1 - \xi( \bm{\mathcal{A}}_\mathcal{G} )}
+\leq \frac{C_2 \varepsilon}{\max_j\|\mathbf{A}_j\|_2},
+\end{align}
 which is less than one, since $C_2 \varepsilon < L_2(\mathbf{A}) \leq \max_j\|\mathbf{A}_j\|_2$.
 
 %Keeping in mind that $d(U',V) \leq d(U,V)$ whenever $U' \subseteq U$ and applying (in order) Lem.~\ref{spanIntersectionLemma}, Lem.~\ref{DistanceToIntersectionLemma}, \eqref{eqdim}, \eqref{GapUpperBound}, and \eqref{Cdef2} gives:
