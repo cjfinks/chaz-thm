@@ -119,7 +119,7 @@ which would be, in any case, necessary for uniqueness of the $\mathbf{x}_i$. Her
 Fix $Y = \{ \mathbf{y}_1, \ldots, \mathbf{y}_N\} \subset \mathbb{R}^n$. We say $Y$ has a \textbf{$k$-sparse representation in $\mathbb{R}^m$} if there exists a matrix $\mathbf{A}$ and $k$-sparse $\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$ such that $\mathbf{y}_i = \mathbf{A}\mathbf{x}_i$ for all $i$. 
 This representation is \textbf{stable} if for every $\delta_1, \delta_2 \geq 0$, there exists some $\varepsilon = \varepsilon(\delta_1, \delta_2)$ that is strictly positive for positive $\delta_1$ and $\delta_2$ such that if $\mathbf{B}$ and $k$-sparse $\mathbf{\overline x}_1, \ldots, \mathbf{\overline x}_N \in \mathbb{R}^m$ satisfy:
 \begin{align*}
-	\|\mathbf{A}\mathbf{x}_i - \mathbf{B}\mathbf{\overline x}_i\|_2 \leq \varepsilon(\delta_1, \delta_2),\ \ \   \text{for all $i$},
+	\|\mathbf{A}\mathbf{x}_i - \mathbf{B}\mathbf{\overline x}_i\|_2 \leq \varepsilon(\delta_1, \delta_2),\ \ \   \text{for all $i=1,\ldots,N$},
 \end{align*}
 then there is some permutation matrix $\mathbf{P}$ and invertible diagonal matrix $\mathbf{D}$ such that for all $i, j$:
 \begin{align}\label{def1}
@@ -127,7 +127,7 @@ then there is some permutation matrix $\mathbf{P}$ and invertible diagonal matri
 \end{align}
 \end{definition}
 
-To see how Def. \ref{maindef} directly relates to Prob. \ref{InverseProblem}, suppose that $Y$ has a stable $k$-sparse representation in $\mathbb{R}^m$ and fix $\delta_1, \delta_2$ to be the desired recovery accuracy in \eqref{def1}. Consider now any dataset $Z$ generated as in \eqref{LinearModel} with $\eta \leq \frac{1}{2} \varepsilon(\delta_1, \delta_2)$. Then from the triangle inequality, it follows that any matrix $\mathbf{B}$ and $k$-sparse $\mathbf{\overline x}_1, \ldots, \mathbf{\overline x}_N \in \mathbb{R}^m$ solving Prob.~\ref{InverseProblem} are necessarily within $\delta_1, \delta_2$ of the original dictionary $\mathbf{A}$ and codes $\mathbf{x}_i$, respectively.
+To see how Def. \ref{maindef} directly relates to Prob. \ref{InverseProblem}, suppose that $Y$ has a stable $k$-sparse representation in $\mathbb{R}^m$ and fix $\delta_1, \delta_2$ to be the desired recovery accuracy in \eqref{def1}. Consider any dataset $Z$ generated as in \eqref{LinearModel} with $\eta \leq \frac{1}{2} \varepsilon(\delta_1, \delta_2)$. Then from the triangle inequality, it follows that any matrix $\mathbf{B}$ and $k$-sparse $\mathbf{\overline x}_1, \ldots, \mathbf{\overline x}_N \in \mathbb{R}^m$ solving Prob.~\ref{InverseProblem} are necessarily within $\delta_1, \delta_2$ of the original dictionary $\mathbf{A}$ and codes $\mathbf{x}_i$, respectively.
 
 In the next section, we give precise statements of our main results, which include an explicit form for $\varepsilon(\delta_1, \delta_2)$. We then prove our main theorem (Thm.~\ref{DeterministicUniquenessTheorem}) in Sec.~\ref{DUT} after stating some additional definitions and lemmas required for the proof, including a useful result in combinatorial matrix analysis (Lem.~\ref{MainLemma}, proven in Appendix). We also provide an argument that extends our guarantees to the following more common optimization formulation of the dictionary learning problem (Thm.~\ref{SLCopt}).
 
@@ -138,7 +138,7 @@ Find $\mathbf{B}$ and \mbox{$\mathbf{\overline x}_1, \ldots, \mathbf{\overline x
 \text{subject to} \ \ \|\mathbf{z}_i - \mathbf{B}\mathbf{\overline x}_i\|_2 \leq \eta, \ \text{for all $i$}.
 \end{align}
 \end{problem}
-We then sketch the proof of a probabilistic extension of Thm.~\ref{DeterministicUniquenessTheorem} to random data and dictionaries (Thm.~\ref{robustPolythm} and Cor.~\ref{ProbabilisticCor}). Finally, in Sec.~\ref{Discussion}, we discuss both theoretical and practical applications of our main mathematical findings.
+We then sketch proofs of probabilistic extensions of Thm.~\ref{DeterministicUniquenessTheorem} to random data and dictionaries (Thm.~\ref{robustPolythm} and Cor.~\ref{ProbabilisticCor}). Finally, in Sec.~\ref{Discussion}, we discuss both theoretical and practical applications of our main mathematical findings.
 
 \section{Results}\label{Results}
 
@@ -148,7 +148,7 @@ Before stating our results precisely, we identify criteria on the support sets o
 Given $\mathcal{H} \subseteq 2^{[m]}$, the \textbf{star} $\sigma(i)$ is the collection of sets in $\mathcal{H}$ containing $i$. We say $\mathcal{H}$ has the \textbf{singleton intersection property} (\textbf{SIP}) when $\cap \sigma(i) = \{i\}$ for all $i \in [m]$.
 \end{definition}
 
-Next, we describe a quantitative version of the spark condition. The \emph{lower bound} of a matrix $\mathbf{M} \in \mathbb R^{n \times m}$ is the largest $\alpha$ such that \mbox{$\|\mathbf{M}\mathbf{x}\|_2 \geq \alpha\|\mathbf{x}\|_2$} for all $\mathbf{x} \in \mathbb{R}^m$ \cite{Grcar10}. By compactness of the unit sphere, every injective linear map has nonzero lower bound; hence, if $\mathbf{M}$ satisfies \eqref{SparkCondition}, then each submatrix formed from $2k$ of its columns or less has a strictly positive lower bound. 
+Next, we describe a quantitative spark condition. The \emph{lower bound} of a matrix $\mathbf{M} \in \mathbb R^{n \times m}$ is the largest $\alpha$ with \mbox{$\|\mathbf{M}\mathbf{x}\|_2 \geq \alpha\|\mathbf{x}\|_2$} for all $\mathbf{x} \in \mathbb{R}^m$ \cite{Grcar10}. By compactness of the unit sphere, injective linear maps have nonzero lower bound; hence, if $\mathbf{M}$ satisfies \eqref{SparkCondition}, then each submatrix formed from $2k$ of its columns or less has a strictly positive lower bound. 
 
 We generalize the  lower bound to a domain-restricted \emph{union of subspaces} model \cite{vidal2005generalized} derived from a hypergraph $\mathcal{H} \subseteq {[m] \choose k}$. Letting $\mathbf{M}_S$ denote the submatrix formed by the columns of $\mathbf{M}$ indexed by $S \subseteq [m]$ (with $\mathbf{M}_\emptyset := \mathbf{0}$), we define: 
 %\begin{align*} 
@@ -179,12 +179,12 @@ A set of $k$-sparse vectors is said to be in \emph{general linear position} when
 Fix an $n \times m$ matrix $\mathbf{A}$ with $L_{2\mathcal{H}}(\mathbf{A}) > 0$ for an $r$-regular $\mathcal{H} \subseteq {[m] \choose k}$ with the SIP. If \mbox{$\{\mathbf{x}_1, \ldots, \mathbf{x}_N\} \subset \mathbb{R}^m$} contains, for each $S \in \mathcal{H}$, more than $(k-1){m \choose k}$ $k$-sparse vectors in general linear position supported in $S$, then there is $C_1 > 0$ with the following holding for all%\footnote{The condition $\varepsilon < L_2(\mathbf{A}) /C_1$ is necessary; otherwise,  with \mbox{$\mathbf{A}$ = $\mathbf{I}$} and $\mathbf{x}_i = \mathbf{e}_i$, there is a matrix $\mathbf{B}$ and $1$-sparse $\mathbf{\overline{x}}_i$ with $\|\mathbf{A}\mathbf{x}_i - \mathbf{B}\mathbf{\overline{x}}_i \|_2 \leq \varepsilon$ that nonetheless violates \eqref{Cstable}.} $\varepsilon < L_{2}(\mathbf{A}) / C_1$:
 \footnote{The condition $\varepsilon < L_2(\mathbf{A}) /C_1$ is necessary; otherwise, with \mbox{$\mathbf{A}$ = $\mathbf{I}$} and $\mathbf{x}_i = \mathbf{e}_i$, the matrix $\mathbf{B} = \left[\mathbf{0}, \frac{1}{2}(\mathbf{e}_1 + \mathbf{e}_2), \mathbf{e}_3, \ldots, \mathbf{e}_{m} \right]$ and 1-sparse codes $\mathbf{\overline x}_i = \mathbf{e}_2$ for $i = 1, 2$ and $\mathbf{\overline x}_i = \mathbf{e}_i$ for $i \geq 3$ satisfy $\|\mathbf{A}\mathbf{x}_i - \mathbf{B}\mathbf{\overline{x}}_i \|_2 \leq \varepsilon$ but nonetheless violate \eqref{Cstable}.} $\varepsilon < L_{2}(\mathbf{A}) / C_1$:
 
-Every $n \times \overline m$ matrix $\mathbf{B}$ for which there are $k$-sparse $\mathbf{\overline x}_1, \ldots, \mathbf{\overline x}_N$ satisfying \mbox{$\|\mathbf{A}\mathbf{x}_i - \mathbf{B}\mathbf{\overline x}_i\|_2 \leq \varepsilon$} for all $i$ has $\overline m \geq m$ and, provided $\overline m < mr/(r-1)$,
+Every $n \times \overline m$ matrix $\mathbf{B}$ for which there are $k$-sparse $\mathbf{\overline x}_1, \ldots, \mathbf{\overline x}_N$ satisfying \mbox{$\|\mathbf{A}\mathbf{x}_i - \mathbf{B}\mathbf{\overline x}_i\|_2 \leq \varepsilon$} for all $i$ has $\overline m \geq m$ and, provided $(r-1) \overline m < mr$,
 \begin{align}\label{Cstable}
 \|\mathbf{A}_j- \mathbf{B}_{\overline J} \mathbf{PD}_j\|_2 \leq C_1 \varepsilon, \ \ \text{for all } j \in J,
 \end{align}
 %
-for some nonempty $\overline J \subseteq [\overline m]$ and $J \subseteq [m]$ of size $\overline m - r(\overline m - m)$, permutation matrix $\mathbf{P}$, and and invertible diagonal matrix $\mathbf{D}$. 
+for some nonempty $\overline J \subseteq [\overline m]$ and $J \subseteq [m]$ of size $\overline m - r(\overline m - m)$, permutation matrix $\mathbf{P}$, and invertible diagonal matrix $\mathbf{D}$. 
 
 Moreover, if $A$ satisfies \eqref{SparkCondition} and $\varepsilon < L_{2k}(\mathbf{A}) / C_1$, then $L_{2k}(\mathbf{B}\mathbf{PD}) \geq L_{2k}(\mathbf{A}) - C_1 \varepsilon$ and:
 \begin{align}\label{b-PDa}
@@ -218,7 +218,7 @@ Given a regular hypergraph $\mathcal{H} \subseteq {[m] \choose k}$ with the SIP,
 \end{corollary}
 % Needs to be L_{2k}(A) > 0 to guarantee sparse vector recovery	
 
-One can also easily verify that for every $k < m$, there are regular $k$-uniform hypergraphs with the SIP besides the obvious $\mathcal{H} = {[m] \choose k}$; for instance, take $\mathcal{H}$ to be the consecutive intervals of length $k$ in some cyclic order on $[m]$. In this case, a direct consequence of Cor.~\ref{DeterministicUniquenessCorollary} is rigorous verification of the lower bound \mbox{$N = m(k-1){m \choose k} + m$} for sufficient sample size from the introduction. In many cases, however, the SIP is achievable with far fewer supports. For example, when $k = \sqrt{m}$, simply take $\mathcal{H}$ to be the $2k$ rows and columns formed by arranging $[m]$ in a square grid.
+One can also easily verify that for every $k < m$, there are regular $k$-uniform hypergraphs with the SIP besides the obvious $\mathcal{H} = {[m] \choose k}$; for instance, take $\mathcal{H}$ to be the consecutive intervals of length $k$ in some cyclic order on $[m]$. In this case, a direct consequence of Cor.~\ref{DeterministicUniquenessCorollary} is rigorous verification of the lower bound \mbox{$N = m(k-1){m \choose k} + m$} for sufficient sample size from the introduction. Often, the SIP is achievable with fewer supports. For example, when $k = \sqrt{m}$, take $\mathcal{H}$ to be the $2k$ rows and columns formed by arranging $[m]$ into a square grid.
 
 Another practical implication of Thm.~\ref{DeterministicUniquenessTheorem} is the following: there is an effective procedure sufficient to affirm if a proposed solution to Prob.~\ref{InverseProblem} is indeed unique (up to noise and inherent ambiguities). Simply check that the matrix and codes satisfy the (computable) assumptions of Thm.~\ref{DeterministicUniquenessTheorem} on $\mathbf{A}$ and the $\mathbf{x}_i$.  
 %Another practical implication of Thm.\ref{DeterministicUniquenessTheorem} is the following: there is an effective procedure sufficient to affirm if a proposed solution $(\mathbf{B}, \mathbf{\overline x}_1, \ldots, \mathbf{x}_N)$ to Prob.~\ref{InverseProblem} is indeed unique (up to noise and inherent ambiguities). One simply checks that $\mathbf{B}$ and the $\mathbf{\overline x}_i$ satisfy the respective assumptions of Thm.~\ref{DeterministicUniquenessTheorem}.  
@@ -234,7 +234,8 @@ Another practical implication of Thm.~\ref{DeterministicUniquenessTheorem} is th
 
 %As mentioned above, there exist $k$-uniform regular hypergraphs $\mathcal{H}$ with the SIP having cardinality $|\mathcal{H}| = m$, 
 
-We furthermore note that unlike in previous works \cite{li2004analysis, Georgiev05, Aharon06, Hillar15}, the matrix $\mathbf{A}$ need not satisfy the spark condition to be recoverable from data. As a simple example for $k=2$, let $\mathbf{A} = [ \mathbf{e}_1, \ldots, \mathbf{e}_5, \mathbf{v}]$ where $\mathbf{v} = \mathbf{e}_1 + \mathbf{e}_3 + \mathbf{e}_5$, and take $\mathcal{H}$ to be all consecutive pairs of $[m]$ arranged in cyclic order. Then, dictionary $\mathbf{A}$ satisfies the assumptions of Thm.~\ref{DeterministicUniquenessTheorem} underlying \eqref{Cstable} without satisfying \eqref{SparkCondition}. %(since $\{ \mathbf{A}_1, \mathbf{A}_3, \mathbf{A}_5, \mathbf{A}_6\}$ is not a linearly independent set).
+%\cite{li2004analysis, Georgiev05, Aharon06, Hillar15}
+We furthermore note that unlike in previous works, the matrix $\mathbf{A}$ need not satisfy the spark condition to be recoverable from data. As a simple example for $k=2$, let $\mathbf{A} = [ \mathbf{e}_1, \ldots, \mathbf{e}_5, \mathbf{v}]$ where $\mathbf{v} = \mathbf{e}_1 + \mathbf{e}_3 + \mathbf{e}_5$, and take $\mathcal{H}$ to be all consecutive pairs of $[m]$ arranged in cyclic order. Then, dictionary $\mathbf{A}$ satisfies the assumptions of Thm.~\ref{DeterministicUniquenessTheorem} underlying \eqref{Cstable} without satisfying \eqref{SparkCondition}. %(since $\{ \mathbf{A}_1, \mathbf{A}_3, \mathbf{A}_5, \mathbf{A}_6\}$ is not a linearly independent set).
 %This weakening allows for a practical (polynomial) amount of data to still guarantee a stable dictionary in the case where the set of sparse supports for the $\mathbf{\overline x}_i$ is known to have a size that grows polynomially in $m$ and $k$.
 
 There are other less direct consequences of Thm.~\ref{DeterministicUniquenessTheorem}.  For instance, we use it to prove uniqueness for the optimization formulation of sparse linear coding, Prob.~\ref{SLCopt}, the main object of interest for those applying dictionary learning to their data.
@@ -276,7 +277,7 @@ Thus, choosing the dictionary and codes ``randomly'' almost certainly generates 
 We remark that these results have an important application to theoretical neuroscience by mathematically justifying one of the few hypothesized theories of bottleneck communication between sparsely active neural populations \cite{Isely10}. 
 
 \begin{proposition}\label{neuroprop}
-Sparse neural population activity is recoverable from noisy random linear compression by any method that solves Prob.~\ref{DeterministicUniquenessTheorem} or \ref{SLCopt}; in particular, via biophysically plausible unsupervised sparse linear coding (e.g., \cite{rehnsommer2007, rozell2007neurally}).
+Sparse neural population activity is recoverable from noisy random linear compression by any method that solves Prob.~\ref{DeterministicUniquenessTheorem} or \ref{SLCopt}; in particular, via biophysically plausible unsupervised sparse linear coding (e.g., \cite{rehnsommer2007, rozell2007neurally, pehlevan2015normative}).
 \end{proposition}
 %\cite{rehnsommer2007, rozell2007neurally, ganguli2012compressed, hu2014hebbian}
 
@@ -406,7 +407,7 @@ The constant $C_2 = C_2(\mathbf{A}, \mathcal{H})$, in turn, will be presented re
 Specifically, in Lem.~\ref{DistanceToIntersectionLemma} below, the following definition is used to bound the distance between a point and the intersection of subspaces given an upper bound on its distance from each individual subspace.
 
 \begin{definition}\label{FriedrichsDefinition}
-For a collection of real subspaces $\mathcal{V} = \{V_i\}_{i=1}^\ell$, define $\xi^2 := 1$ when $|\mathcal{V}| = 1$, and otherwise:
+For a collection of real subspaces $\mathcal{V} = \{V_i\}_{i=1}^\ell$, define $\xi^2 := 0$ when $|\mathcal{V}| = 1$, and otherwise:
 \begin{align}\label{xi}
 \xi^2(\mathcal{V}) := 1 -  \max \prod_{i=1}^{\ell-1} \sin^2  \theta \left(V_i, \cap_{j>i} V_j \right) ,
 \end{align} 
@@ -418,10 +419,10 @@ of the $V_i$ and the angle $\theta \in (0,\frac{\pi}{2}]$ is defined implicitly 
 \cos{\theta(U,W)} := \max\left\{ |\langle \mathbf{u}, \mathbf{w} \rangle|: \substack{ \mathbf{u} \in U \cap (U \cap W)^\perp, \ \|\mathbf{u}\|_2 \leq 1 \\ \mathbf{w} \in W \cap (U \cap W)^\perp, \  \|\mathbf{w}\|_2 \leq 1 } \right\}.
 \end{align*}
 \end{definition}
-Note that $\theta \in (0,\frac{\pi}{2}]$ implies $0 < \xi \leq 1$, and that $\xi(\mathcal{V}') \leq \xi(\mathcal{V})$ when $\mathcal{V}' \subseteq \mathcal{V}$.\footnote{We acknowledge the counter-intuitive property that $\theta =  \pi/2$ when $U \subseteq W$.}  
+Note that $\theta \in (0,\frac{\pi}{2}]$ implies $0 \leq \xi < 1$, and that $\xi(\mathcal{V}') \leq \xi(\mathcal{V})$ when $\mathcal{V}' \subseteq \mathcal{V}$.\footnote{We acknowledge the counter-intuitive property that $\theta =  \pi/2$ when $U \subseteq W$.}  
 The constant $C_2$ in Lem.~\ref{MainLemma} is then:  
 \begin{align}\label{Cdef2}
-	C_2(\mathbf{A}, \mathcal{H}) := \frac{ (r+1) \max_{j \in [m]} \|\mathbf{A}_j\|_2}{ 1- \max_{\mathcal{G} \in {\mathcal{H} \choose r+1}} \xi( \bm{\mathcal{A}}_\mathcal{G} ) },
+	C_2(\mathbf{A}, \mathcal{H}) := \frac{ r \max_{j \in [m]} \|\mathbf{A}_j\|_2}{ 1- \max_{\mathcal{G} \in {\mathcal{H} \choose r}} \xi( \bm{\mathcal{A}}_\mathcal{G} ) },
 \end{align}
 % C_2(\mathbf{A}, \mathcal{H}) := \frac{ (r+1) \max_{j \in [m]} \|\mathbf{A}_j\|_2}{ \min_{\mathcal{G} \in {\mathcal{H} \choose r} \cup {\mathcal{H} \choose r+1}} \xi( \{ \bm{\mathcal{A}}_S \}
 which we remark is consistent with the assumption on $C_1$ in the proof of the case $k=1$ at the beginning of this section.  
@@ -433,7 +434,7 @@ We demonstrate the existence of a map $\pi: \mathcal{H} \to 2^{[\overline m]}$ f
 
 %We shall show that for every $S \in \mathcal{H}$ there is some $\overline S \in {[\overline m] \choose k}$ for which the distance $d(\bm{\mathcal{A}}_S, \bm{\mathcal{B}}_{\overline S})$ is controlled by $\varepsilon$. Applying Lem.~\ref{MainLemma} with the map $\pi$ defined by $S \mapsto \overline S$ then completes the proof.
 
-Since there are more than $(k-1){\overline m \choose k}$ vectors $\mathbf{x}_i$ supported in $S$, the pigeonhole principle gives $\overline S \in {[\overline m] \choose k}$ and a set of $k$ indices $K \subseteq I(S)$ with all $\mathbf{\overline x}_i$, $i \in K$, supported in $\overline S$.
+Since there are more than $(k-1){\overline m \choose k}$ vectors $\mathbf{x}_i$ supported in each $S \in \mathcal{H}$, the pigeonhole principle gives $\overline S \in {[\overline m] \choose k}$ and a set of $k$ indices $K \subseteq I(S)$ with all $\mathbf{\overline x}_i$, $i \in K$, supported in $\pi(S) := \overline S$.
 
 It follows from $L_{2\mathcal{H}}(\mathbf{A}) > 0$ and the general linear position of the $\mathbf{x}_i$ that $L_k(\mathbf{AX}_{K}) > 0$; that is, the columns of the $n \times k$ matrix $\mathbf{AX}_K$ form a basis for $\bm{\mathcal{A}}_S$. Fixing $\mathbf{0} \neq \mathbf{y} \in \bm{\mathcal{A}}_S$, there then exists $\mathbf{0} \neq \mathbf{c} = (c_1, \ldots, c_k) \in \mathbb{R}^k$ such that $\mathbf{y} = \mathbf{AX}_K\mathbf{c}$. Setting \mbox{$\mathbf{\overline{y}} = \mathbf{B\overline{X}}_K\mathbf{c} \in \bm{\mathcal{B}}_{\overline S}$}, we have:
 \begin{align*}
@@ -543,7 +544,7 @@ In this section, we prove Lem.~\ref{MainLemma} and some auxiliary lemmas.  % sta
 %\end{proof}
 
 \begin{lemma}\label{spanIntersectionLemma}
-If $f: U \to V$ is an injective function, then $f\left(\cap_{i=1}^\ell U_i \right) =  \cap_{i=1}^\ell f\left(U_i\right)$ for any $U_1, \ldots, U_\ell \subseteq U$.
+If $f: U \to V$ is an injective function, then $f\left(\cap_{i=1}^\ell U_i \right) =  \cap_{i=1}^\ell f\left(U_i\right)$ for any $U_1, \ldots, U_\ell \subseteq U$. ($f(\emptyset):=\emptyset$.)
 %In particular, if for some $E \in 2^{[m]}$ the map $M \in \mathbb{R}^{n \times m}$ is injective on $\cup_{S \in \mathcal{H}} \text{span}\{e_i\}_{i \in S}$ then $\text{span}\{ M_{\cap_{S \in \mathcal{H}} S} \} = \cap_{S \in \mathcal{H}} \text{span}\{M_S\}$.
 \end{lemma}
 \begin{proof}
@@ -559,7 +560,8 @@ Let $\mathcal{V} = \{V_i\}_{i=1}^k$ be a set of two or more subspaces of $\mathb
 \end{lemma}
 \vspace{-.3 cm}
 \begin{proof} 
-Recall the orthogonal projection onto the subspace $V \subseteq \mathbb{R}^m$ is the mapping $\Pi_V: \mathbb{R}^m \to V$ that associates with each $\mathbf{x}$ its unique nearest point in $V$; i.e., $\|\mathbf{x} - \Pi_V\mathbf{x}\|_2 = \text{\rm dist}(\mathbf{x}, V)$.
+% When $V = \{\mathbf{0}\}$, the result is trivial, so suppose otherwise.  
+Recall the projection onto the subspace $V \subseteq \mathbb{R}^m$ is the mapping $\Pi_V: \mathbb{R}^m \to V$ that associates with each $\mathbf{x}$ its unique nearest point in $V$; i.e., $\|\mathbf{x} - \Pi_V\mathbf{x}\|_2 = \text{\rm dist}(\mathbf{x}, V)$.
 Next, observe:
 \begin{align}\label{f}
 \|\mathbf{x} - \Pi_V\mathbf{x}\|_2 &\leq \|\mathbf{x} - \Pi_{V_k} \mathbf{x}\|_2 + \|\Pi_{V_k}  \mathbf{x} - \Pi_{V_k}\Pi_{V_{k-1}}\mathbf{x}\|_2 \nonumber \\
@@ -583,7 +585,7 @@ Fix an $r$-regular hypergraph $\mathcal{H} \subseteq 2^{[m]}$ satisfying the SIP
 	|\cap \pi(\mathcal{G})| \leq |\cap \mathcal{G} |,\ \ \   \text{for } \mathcal{G} \in {\mathcal{H} \choose r} \cup {\mathcal{H} \choose r+1},
 \end{align}
 %
-then $\overline m \geq m$, and if $\overline m < mr / (r-1)$ then the map $i \mapsto \cap \pi(\sigma(i))$ is an injective map to $[\overline m]$ from some $J \subseteq [m]$ of size $\overline m - r(\overline m - m)$. %In particular, if $\overline m = m$ then $\pi$ is induced by a permutation on $[m]$.
+then $\overline m \geq m$, and if $(r-1) \overline m < mr$ then the map $i \mapsto \cap \pi(\sigma(i))$ is an injective map to $[\overline m]$ from some $J \subseteq [m]$ of size $\overline m - r(\overline m - m)$. %In particular, if $\overline m = m$ then $\pi$ is induced by a permutation on $[m]$.
 \end{lemma}
 \begin{proof}
 Consider the set: $T_1 := \{(i, S): i \in \pi(S), S \in \mathcal{H}\}$, which numbers $|T_1| = \sum_{S \in \mathcal{H}} |\pi(S)| \geq \sum_{S \in \mathcal{H}} |S| = \sum_{i \in [m]} \deg_\mathcal{H}(i) = mr$. Note that $|T_1| \leq \overline m r$ by \eqref{cond}, since otherwise pigeonholing the elements of $T_1$ with respect to their possible first indices $[\overline m]$ would imply $\deg_\mathcal{H}(i) \geq r$ for some $i \in [m]$. Thus, $\overline m \geq m$.
@@ -593,9 +595,9 @@ Suppose $\overline m (r-1) < mr$, so that $|T_1| \geq mr = \overline m (r - 1) +
 
 \begin{proof}[Proof of Lem.~\ref{MainLemma}]
 %We will show that the bound \eqref{GapUpperBound} trickles through the intersection semi-lattices of $\{\bm{\mathcal{A}}_S\}_{S \in \mathcal{H}}$ and $\{\bm{\mathcal{B}}_{\overline S}\}_{\overline S \in \pi(\mathcal{H})}$ to yield \eqref{MainLemmaBPD} by virtue of the SIP.  
-We begin by showing that $\dim(\bm{\mathcal{B}}_{\pi(S)}) = \dim(\bm{\mathcal{A}}_S)$ for all $S \in \mathcal{H}$. Note that since $\|\mathbf{A}\mathbf{x}\|_2 \leq \max_j\|\mathbf{A}_j\|_2\|\mathbf{x}\|_1$ and $\|\mathbf{x}\|_1 \leq \sqrt{k} \|\mathbf{x}\|_2$ for all $k$-sparse $\mathbf{x}$, by \eqref{Ldef} we have $L_2(\mathbf{A}) \leq \max_j\|\mathbf{A}_j\|_2$ and therefore (as $\xi > 0$), the right-hand side of \eqref{GapUpperBound} is less than one. It follows from \eqref{dimLem} that $|\pi(S)| \geq \dim(\bm{\mathcal{B}}_{\pi(S)}) \geq \dim(\bm{\mathcal{A}}_S) = |S|$, with the equality by injectivity of $\mathbf{A}_S$. Given that $|S| = |\pi(S)|$, the required fact then follows. Note therefore that $\mathbf{B}_{\pi(S)}$ has full-column rank for all $S \in \mathcal{H}$.
+We begin by showing that $\dim(\bm{\mathcal{B}}_{\pi(S)}) = \dim(\bm{\mathcal{A}}_S)$ for all $S \in \mathcal{H}$. Note that since $\|\mathbf{A}\mathbf{x}\|_2 \leq \max_j\|\mathbf{A}_j\|_2\|\mathbf{x}\|_1$ and $\|\mathbf{x}\|_1 \leq \sqrt{k} \|\mathbf{x}\|_2$ for all $k$-sparse $\mathbf{x}$, by \eqref{Ldef} we have $L_2(\mathbf{A}) \leq \max_j\|\mathbf{A}_j\|_2$ and therefore (as $\xi > 0$), the right-hand side of \eqref{GapUpperBound} is less than one. From \eqref{dimLem}, we have $|\pi(S)| \geq \dim(\bm{\mathcal{B}}_{\pi(S)}) \geq \dim(\bm{\mathcal{A}}_S) = |S|$, with the equality by injectivity of $\mathbf{A}_S$. As $|\pi(S)| = |S|$, the claim follows. Note, therefore, that $\mathbf{B}_{\pi(S)}$ has full-column rank for all $S \in \mathcal{H}$.
 
-We next show that \eqref{cond} holds. Fixing $\mathcal{G} \subseteq {\mathcal{H} \choose r} \cup {\mathcal{H} \choose r+1}$, it suffices to show that $d(\bm{\mathcal{B}}_{\cap \pi(\mathcal{G})}, \bm{\mathcal{A}}_{\cap \mathcal{G}} ) < 1$, since by \eqref{dimLem} we then have $|\cap \pi(\mathcal{G})| = \dim(\bm{\mathcal{B}}_{\cap \pi(\mathcal{G})}) \leq \dim(\bm{\mathcal{A}}_{\cap \mathcal{G}}) = |\cap \mathcal{G}|$, with equalities by the full column-ranks of $\mathbf{A}_{S}$ and $\mathbf{B}_{\pi(S)}$ for all $S \in \mathcal{H}$.\footnote{Note that if ever $\bm{\mathcal{B}}_{\cap \pi(\mathcal{G})} \neq \bf 0$ while $\cap \mathcal{G} = \emptyset$, then we would have $d(\bm{\mathcal{B}}_{\cap \pi(\mathcal{G})}, \bm 0 ) = 1$. This cannot be the case, however, since the deduction that follows would then lead to a contradiction.} Observe that $d(\bm{\mathcal{B}}_{\cap \pi(\mathcal{G})}, \bm{\mathcal{A}}_{\cap \mathcal{G}}  ) 
+We next verify that \eqref{cond} holds. Fixing $\mathcal{G} \in {\mathcal{H} \choose r}$, it suffices to show that $d(\bm{\mathcal{B}}_{\cap \pi(\mathcal{G})}, \bm{\mathcal{A}}_{\cap \mathcal{G}} ) < 1$, since by \eqref{dimLem} we then have $|\cap \pi(\mathcal{G})| = \dim(\bm{\mathcal{B}}_{\cap \pi(\mathcal{G})}) \leq \dim(\bm{\mathcal{A}}_{\cap \mathcal{G}}) = |\cap \mathcal{G}|$, with equalities by the full column-ranks of $\mathbf{A}_{S}$ and $\mathbf{B}_{\pi(S)}$ for all $S \in \mathcal{H}$.\footnote{Note that if ever $\bm{\mathcal{B}}_{\cap \pi(\mathcal{G})} \neq \bf 0$ while $\cap \mathcal{G} = \emptyset$, we would have $d(\bm{\mathcal{B}}_{\cap \pi(\mathcal{G})}, \bm 0 ) = 1$. This cannot be the case, however, since the deduction that follows would then lead to a contradiction.} Observe that $d(\bm{\mathcal{B}}_{\cap \pi(\mathcal{G})}, \bm{\mathcal{A}}_{\cap \mathcal{G}}  ) 
 \leq d\left( \cap \bm{\mathcal{B}}_{\pi(\mathcal{G})}, \cap \bm{\mathcal{A}}_\mathcal{G} \right)$, since $\bm{\mathcal{A}}_{\cap \mathcal{G}} = \cap \bm{\mathcal{A}}_\mathcal{G}$ by Lem.~\ref{spanIntersectionLemma} and $d(U',V) \leq d(U,V)$ whenever $U' \subseteq U$. Recalling Def.~\ref{dDef}, we may apply Lem.~\ref{DistanceToIntersectionLemma} and carry the supremum through the sum:
 \begin{align}
 d\left( \cap \bm{\mathcal{B}}_{\pi(\mathcal{G})}, \cap \bm{\mathcal{A}}_\mathcal{G} \right)
