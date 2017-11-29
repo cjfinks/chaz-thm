@@ -325,7 +325,7 @@ since $\varepsilon < L_{2k}(\mathbf{A}) / C_1$. Hence, $L_{2k}(\mathbf{BPD}) \ge
 The heart of the matter is therefore \eqref{Cstable}, which we now establish, first in the important special case of $k = 1$. 
 
 \begin{proof}[Proof of Thm.~\ref{DeterministicUniquenessCorollary} for $k=1$]
-Since the only 1-uniform hypergraph with the SIP is $[m]$, we have $\mathbf{x}_i = c_i \mathbf{e}_i$ for $c_i \in \mathbb{R} \setminus \{\mathbf{0}\}$, $i \in [m]$. In this case, we may take any $C_1 \geq 1/ \min_{\ell \in [m]} |c_{\ell}|$. 
+Since the only 1-uniform hypergraph with the SIP is $[m]$, we have $\mathbf{x}_i = c_i \mathbf{e}_i$ for $c_i \in \mathbb{R} \setminus \{\mathbf{0}\}$, $i \in [m]$. In this case, we may take $C_1 = 1/ \min_{\ell \in [m]} |c_{\ell}|$. 
 
 Fix $\mathbf{A} \in \mathbb{R}^{n \times m}$ satisfying \eqref{SparkCondition} and suppose that for some $\mathbf{B}$ and $1$-sparse $\mathbf{\overline x}_i \in \mathbb{R}^{\overline m}$ we have  $\|\mathbf{A}\mathbf{x}_i - \mathbf{B}\mathbf{\overline x}_i\|_2 \leq \varepsilon < L_2(\mathbf{A}) / C_1$ for all $i$. Then, there exist $\overline{c}_1, \ldots, \overline{c}_m \in \mathbb{R}$ and a map $\pi: [m] \to [\overline m]$ such that:
 \begin{align}\label{1D}
@@ -603,7 +603,7 @@ d\left( \cap \bm{\mathcal{B}}_{\pi(\mathcal{G})}, \cap \bm{\mathcal{A}}_\mathcal
 \leq \sum_{S \in \mathcal{G}} \frac{ d\left( \cap \bm{\mathcal{B}}_{\pi(\mathcal{G})},\bm{\mathcal{A}}_{S} \right) }{ 1 - \xi( \bm{\mathcal{A}}_\mathcal{G} ) }.
 \end{align}
 Since $\cap \bm{\mathcal{B}}_{\pi(\mathcal{G})} \subseteq \bm{\mathcal{B}}_{\pi(S)}$ for all $S \in \mathcal{G}$, the numerator of each term above is bounded by $d\left( \bm{\mathcal{B}}_{\pi(S)},\bm{\mathcal{A}}_{S} \right)$ and, recalling \eqref{eqdim} (since $\dim(\bm{\mathcal{B}}_{\pi(S)}) = \dim(\bm{\mathcal{A}}_S)$), by $d\left(\bm{\mathcal{A}}_{S}, \bm{\mathcal{B}}_{\pi(S)} \right) \leq \varepsilon$, in turn. Thus,
-\begin{align}
+\begin{align}\label{last}
 d(\bm{\mathcal{B}}_{\cap \pi(\mathcal{G})}, \bm{\mathcal{A}}_{\cap \mathcal{G}} )
 \leq \frac{|\mathcal{G}| \varepsilon}{1 - \xi( \bm{\mathcal{A}}_\mathcal{G} )}
 \leq \frac{C_2 \varepsilon}{\max_j\|\mathbf{A}_j\|_2},
@@ -622,7 +622,16 @@ which is less than one, since $C_2 \varepsilon < L_2(\mathbf{A}) \leq \max_j\|\m
 %
 %which is less than one, since $C_2 \varepsilon < L_2(\mathbf{A}) \leq \max_j\|\mathbf{A}_j\|_2$.
 
-By Lem.~\ref{NonEmptyLemma}, the association $i \mapsto \cap \pi(\sigma(i))$ is an injective map $\overline \pi: J \to [\overline m]$ for some $J \subseteq [m]$ of size $\overline m - r(\overline m - m)$, and $\mathbf{B}_{\overline \pi(i)} \neq \mathbf{0}$ for all $i \in J$ since the columns of $\mathbf{B}_{\pi(S)}$ are linearly independent for all $S \in \mathcal{H}$. It then follows from \eqref{eqdim} and \eqref{randoml} that $d\left( \bm{\mathcal{A}}_i, \bm{\mathcal{B}}_{\overline \pi(i)} \right) \leq C_2 \varepsilon / \max_i \|\mathbf{A}_i\|_2$ for all $i \in J$. Fixing $\overline \varepsilon = C_2\varepsilon$ and letting $c_i = \|\mathbf{A}_i\|_2^{-1}$, we thus have that for each $\mathbf{e}_i \in \mathbb{R}^m$ with $i \in J$ there exists some $\overline{c}_i \in \mathbb{R}$ such that $\|c_i\mathbf{A}\mathbf{e}_i - \overline{c}_i \mathbf{B}\mathbf{e}_{\overline \pi(i)}\|_2 \leq \overline \varepsilon < L_2(\mathbf{A}) \min_{i\in J} |c_i|$.  But this is exactly the supposition in \eqref{1D}, and the result follows from the case $k=1$ in Sec.~\ref{DUT} applied to the submatrix $\mathbf{A}_J$.
+By Lem.~\ref{NonEmptyLemma}, the association $i \mapsto \cap \pi(\sigma(i))$ is an injective map $\overline \pi: J \to [\overline m]$ for some $J \subseteq [m]$ of size $\overline m - r(\overline m - m)$, and $\mathbf{B}_{\overline \pi(i)} \neq \mathbf{0}$ for all $i \in J$ since the columns of $\mathbf{B}_{\pi(S)}$ are linearly independent for all $S \in \mathcal{H}$. It then follows from \eqref{eqdim} and \eqref{last} that $d\left( \bm{\mathcal{A}}_i, \bm{\mathcal{B}}_{\overline \pi(i)} \right) \leq \overline \varepsilon$ for all $i \in J$, with $\overline \varepsilon := C_2 \varepsilon / \max_i \|\mathbf{A}_i\|_2$. %Fixing $\overline \varepsilon = C_2\varepsilon$ and letting $c_i = \|\mathbf{A}_i\|_2^{-1}$, we thus have that for each $\mathbf{e}_i \in \mathbb{R}^m$ with $i \in J$ there exists some $\overline{c}_i \in \mathbb{R}$ such that $\|c_i\mathbf{A}\mathbf{e}_i - \overline{c}_i \mathbf{B}\mathbf{e}_{\overline \pi(i)}\|_2 \leq \overline \varepsilon < L_2(\mathbf{A}) \min_{i\in J} |c_i|$. But this is exactly the supposition in \eqref{1D}, and the result follows from the case $k=1$ in Sec.~\ref{DUT} applied to the submatrix $\mathbf{A}_J$. 
+Letting $c_i := \|\mathbf{A}_i\|_2^{-1}$, we have by Def.~\ref{dDef}:
+\begin{align*}
+d\left( \bm{\mathcal{A}}_i, \bm{\mathcal{B}}_{\overline \pi(i)} \right)
+&= \sup_{\bm{u} \in \bm{\mathcal{A}}_i, \|\bm{u}\|_2 \leq 1} \text{dist}\left(\bm{u}, \bm{\mathcal{B}}_{\overline \pi(i)} \right) \\
+&\geq  \text{dist}\left(c_i\bm{Ae}_i, \mathbf{Be}_{\overline \pi(i)} \right) \\
+&= \inf_{\overline x_i \in \mathbb{R}} \|c_i\bm{Ae}_i - \overline c_i \mathbf{Be}_{\overline \pi(i)} \|_2
+\end{align*}
+%
+and there must then exist some $\overline c_i$ such that $\|c_i\bm{Ae}_i - \overline c_i \mathbf{Be}_{\overline \pi(i)} \|_2 \leq \overline \varepsilon$ for $\overline \varepsilon < L_2(\mathbf{A}) \min_{i\in J} |c_i|$ (since $\varepsilon < L_2(\mathbf{A})/C_2$). But this is exactly the supposition in \eqref{1D}, and the result follows from the case $k=1$ in Sec.~\ref{DUT} applied to the submatrix $\mathbf{A}_J$. 
 \end{proof}
 
 %\section{Proofs of Thm.~\ref{robustPolythm} and Cor.~\ref{ProbabilisticCor}}
