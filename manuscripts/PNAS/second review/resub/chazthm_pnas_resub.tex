@@ -105,10 +105,10 @@ for $k$-\emph{sparse} $\mathbf{x}_i \in \mathbb{R}^m$ having at most $k<m$ nonze
 The first mathematical problem we address is the following.
 
 \begin{problem}[Sparse linear coding]\label{InverseProblem}
-Find a matrix $\mathbf{B}$ and $k$-sparse $\mathbf{\overline x}_1, \ldots, \mathbf{\overline x}_N \in \mathbb{R}^m$ so that $\|\mathbf{z}_i - \mathbf{B}\mathbf{\overline x}_i\|_2 \leq \eta$ for all $i$.
+Find a matrix $\mathbf{B}$ and $k$-sparse $\mathbf{\overline x}_1, \ldots, \mathbf{\overline x}_N \in \mathbb{R}^{\overline m}$ so that $\|\mathbf{z}_i - \mathbf{B}\mathbf{\overline x}_i\|_2 \leq \eta$ for all $i$.
 \end{problem}
 
-Note that any particular solution $(\mathbf{B}, \mathbf{\overline x}_1 \ldots, \mathbf{\overline x}_N)$ to this problem gives rise to an orbit of equivalent solutions $(\mathbf{BPD}, \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\overline x}_1, \ldots, \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\overline x}_N)$, where $\mathbf{P}$ is any permutation matrix and $\mathbf{D}$ any invertible diagonal. Previous theoretical work addressing the noiseless case $\eta =0$ (e.g., \cite{li2004analysis, Georgiev05, Aharon06, Hillar15}) has shown that a solution to Prob.~\ref{InverseProblem} (when it exists) is unique up to this  ambiguity provided the $\mathbf{x}_i$ are sufficiently diverse and the generating matrix $\mathbf{A}$ satisfies the \textit{spark condition}:
+Note that any particular solution $(\mathbf{B}, \mathbf{\overline x}_1 \ldots, \mathbf{\overline x}_N)$ to this problem gives rise to an orbit of equivalent solutions $(\mathbf{BPD}, \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\overline x}_1, \ldots, \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\overline x}_N)$, where $\mathbf{P}$ is any permutation matrix and $\mathbf{D}$ any invertible diagonal. Previous theoretical work addressing the noiseless case $\eta =0$ (e.g., \cite{li2004analysis, Georgiev05, Aharon06, Hillar15}) with $\overline m = m$ has shown that a solution to Prob.~\ref{InverseProblem} (when it exists) is unique up to this  ambiguity provided the $\mathbf{x}_i$ are sufficiently diverse and the matrix $\mathbf{A}$ satisfies the \textit{spark condition}:
 \begin{align}\label{SparkCondition}
 \mathbf{A}\mathbf{x}_1 = \mathbf{A}\mathbf{x}_2 \implies \mathbf{x}_1 = \mathbf{x}_2, \ \ \ \text{for all $k$-sparse } \mathbf{x}_1, \mathbf{x}_2,
 \end{align}
@@ -150,7 +150,7 @@ Given $\mathcal{H} \subseteq 2^{[m]}$, the \textbf{star} $\sigma(i)$ is the coll
 
 Next, we describe a quantitative spark condition. The \emph{lower bound} of a matrix $\mathbf{M} \in \mathbb R^{n \times m}$ is the largest $\alpha$ with \mbox{$\|\mathbf{M}\mathbf{x}\|_2 \geq \alpha\|\mathbf{x}\|_2$} for all $\mathbf{x} \in \mathbb{R}^m$ \cite{Grcar10}. By compactness of the unit sphere, injective linear maps have nonzero lower bound; hence, if $\mathbf{M}$ satisfies \eqref{SparkCondition}, then each submatrix formed from $2k$ of its columns or less has a strictly positive lower bound. 
 
-We generalize the  lower bound to a domain-restricted \emph{union of subspaces} model \cite{vidal2005generalized} derived from a hypergraph $\mathcal{H} \subseteq {[m] \choose k}$. Letting $\mathbf{M}_S$ denote the submatrix formed by the columns of $\mathbf{M}$ indexed by $S \subseteq [m]$ (with $\mathbf{M}_\emptyset := \mathbf{0}$), we define: 
+We generalize the  lower bound to a domain-restricted \emph{union of subspaces} model \cite{vidal2005generalized} derived from a hypergraph $\mathcal{H} \subseteq {[m] \choose k}$. Let $\mathbf{M}_S$ denote the submatrix formed by the columns of $\mathbf{M}$ indexed by $S \subseteq [m]$, with $\mathbf{M}_\emptyset := \mathbf{0}$. (In the sections that follow, we will write $\bm{\mathcal{M}}_S$ to denote the column-span of a submatrix $\mathbf{M}_S$, and $\bm{\mathcal{M}}_\mathcal{G}$ to denote $\{\bm{\mathcal{M}}_S\}_{S \in \mathcal{G}}$.) Define: 
 %\begin{align*} 
 %L_\mathcal{H}(\mathbf{M}) := \min \left\{ \frac{ \|\mathbf{M}(\mathbf{x}_1-\mathbf{x}_2)\|_2 }{ \sqrt{2k} \|\mathbf{x}_1-\mathbf{x}_2\|_2} : \mathbf{x}_1, \mathbf{x}_2 \in \cup_{S \in \mathcal{H}} \bm{\mathcal{M}}_S \right\},
 %\end{align*} 
@@ -166,11 +166,11 @@ We generalize the  lower bound to a domain-restricted \emph{union of subspaces} 
 L_\mathcal{H}(\mathbf{M}) := \frac{1}{\sqrt{k}} \min \left\{ \frac{\|\mathbf{M}_S\mathbf{x}\|_2}{ \|\mathbf{x}\|_2} : S \in \mathcal{H}, \ \ \mathbf{x} \in \mathbb{R}^{|S|} \right\},
 \end{align} 
 %
-where we write $L_{k}$ when $\mathcal{H} = {[m] \choose k}$.\footnote{We note that $1 - \sqrt{k} L_k(\mathbf{M})$ is known as the asymmetric lower restricted isometry constant for matrices $\mathbf{M}$ with unit $\ell_2$-norm columns \cite{Blanchard2011}.} Clearly, $L_{2k}(\mathbf{M}) > 0$ for $\mathbf{M}$ satisfying \eqref{SparkCondition} and $L_{k'}(\mathbf{M}) \geq L_k(\mathbf{M})$ whenever $k' \leq k$. Note also that $L_2 \geq L_{2\mathcal{H}} \geq L_{2k}$ if $\mathcal{H} \subseteq {[m] \choose k}$ has $\cup \mathcal{H} = [m]$. In the sections that follow, we will write $\bm{\mathcal{M}}_S$ to denote the column-span of a submatrix $\mathbf{M}_S$, and $\bm{\mathcal{M}}_\mathcal{G}$ to denote $\{\bm{\mathcal{M}}_S\}_{S \in \mathcal{G}}$.
+where we write $L_{k}$ when $\mathcal{H} = {[m] \choose k}$.\footnote{We note that $1 - \sqrt{k} L_k(\mathbf{M})$ is known as the asymmetric lower restricted isometry constant for matrices $\mathbf{M}$ with unit $\ell_2$-norm columns \cite{Blanchard2011}.} Clearly, $L_{2k}(\mathbf{M}) > 0$ for $\mathbf{M}$ satisfying \eqref{SparkCondition} and $L_{k'}(\mathbf{M}) \geq L_k(\mathbf{M})$ whenever $k' \leq k$. Note also that $L_2 \geq L_{2\mathcal{H}} \geq L_{2k}$ if $\mathcal{H} \subseteq {[m] \choose k}$ has $\cup \mathcal{H} = [m]$.
  
 A vector $\mathbf{x}$ is said to be \emph{supported} in $S \subseteq [m]$ when $\mathbf{x} \in \text{\rm span}\{\mathbf{e}_j: j\in S\}$, where $\mathbf{e}_j$ form the standard column basis in $\mathbb R^m$. 
 %Denote by $\mathbf{x}^J$ the subvector formed from the entries of $\mathbf{x}$ indexed by $J$. 
-A set of $k$-sparse vectors is said to be in \emph{general linear position} when any $k$ of them are linearly independent. The following is a precise statement of our main result.  We leave the quantity $C_1 = C_1(\mathbf{A}, \{\mathbf{x}_i\}_{i=1}^N, \mathcal{H})$ undefined until Eq.~\eqref{Cdef1}.
+A set of $k$-sparse vectors is said to be in \emph{general linear position} when any $k$ of them are linearly independent. The following is a precise statement of our main result.  We leave the quantity $C_1 = C_1(\mathbf{A}, \{\mathbf{x}_i\}_{i=1}^N, \mathcal{H})$ undefined until Eq.~\eqref{Cdef1}. All of our theorems assume matrices consist of real numbers.
 
 %eps-tightness COUNTER-EXAMPLE:
 %Consider the alternate dictionary $B = \left(\mathbf{0}, \frac{1}{2}(\mathbf{e}_1 + \mathbf{e}_2), \mathbf{e}_3, \ldots, \mathbf{e}_{m} \right)$ and sparse codes $\mathbf{b}_i = \mathbf{e}_2$ for $i = 1, 2$ and $\mathbf{b}_i = \mathbf{e}_i$ for $i = 3, \ldots, m$. Then $|A\mathbf{a}_i - B\mathbf{b}_i| = 1/\sqrt{2}$ for $i = 1, 2$ (and $0$ otherwise). If there were permutation and invertible diagonal matrices $P \in \mathbb{R}^{m \times m}$ and $D \in \mathbb{R}^{m \times m}$ such that $|(A-BPD)\mathbf{e}_i| \leq C\varepsilon$ for all $i \in [m]$, then we would reach the contradiction $1 = |P^{-1}\mathbf{e}_1|_2 = |(A-BPD)P^{-1}\mathbf{e}_1|_2 \leq 1/\sqrt{2}$. 
@@ -265,7 +265,7 @@ Since $f$ is analytic, having a single substitution of a real matrix $\mathbf{A}
 A similar phenomenon applies to datasets of vectors with a stable sparse representation. As in \cite[Sec.~IV]{Hillar15}, consider the ``symbolic'' dataset $Y = \{\mathbf{A}\mathbf{x}_1,\ldots,\mathbf{A} \mathbf{x}_N\}$ generated by indeterminate $\mathbf{A}$ and indeterminate $k$-sparse $\mathbf{x}_1, \ldots, \mathbf{x}_N$.  
 
 \begin{theorem}\label{robustPolythm}
-There is a polynomial $g$ in the entries of $\mathbf{A}$ and $\mathbf{x}_i$ with the following property:  if $g$ evaluates to a nonzero number and more than \mbox{$(k-1){m \choose k}$} of the resulting $\mathbf{x}_i$ are supported in each $S \in \mathcal{H}$ for some regular $\mathcal{H} \subseteq {[m] \choose k}$ with the SIP, then $Y$ has a stable $k$-sparse representation in $\mathbb{R}^m$ (Def.~\ref{maindef}). In particular, all -- except for a Borel set of measure zero -- substitutions impart to $Y$ this property.
+There is a polynomial $g$ in the entries of $\mathbf{A} \in \mathbb{R}^{n \times m}$ and $\mathbf{x}_i \in \mathbb{R}^m$ with the following property:  if $g$ evaluates to a nonzero number and more than \mbox{$(k-1){m \choose k}$} of the resulting $\mathbf{x}_i$ are supported in each $S \in \mathcal{H}$ for some regular $\mathcal{H} \subseteq {[m] \choose k}$ with the SIP, then $Y$ has a stable $k$-sparse representation in $\mathbb{R}^m$ (Def.~\ref{maindef}). In particular, all -- except for a Borel set of measure zero -- substitutions impart to $Y$ this property.
 \end{theorem}
 
 \begin{corollary}\label{ProbabilisticCor}
@@ -381,7 +381,7 @@ then $\overline m \geq m$, and, provided $\overline m < mr /(r-1)$, there is a p
 \begin{align}\label{MainLemmaBPD}
 \|\mathbf{A}_j - \mathbf{B}_{\overline J} \mathbf{PD}_j\|_2 \leq C_2 \varepsilon, \ \  \text{for } j \in J,
 \end{align}
-for some nonempty $J \subseteq [m]$ and $\overline J \subseteq[\overline{m}]$ of size $\overline m - r(\overline m - m)$.
+for some nonempty $\overline J \subseteq[\overline{m}]$ and $J \subseteq [m]$ of size $\overline m - r(\overline m - m)$.
 \end{lemma}
 
 %\begin{lemma}\label{MainLemma}
@@ -472,10 +472,8 @@ The total number of $(k-1)$-sparse vectors $\mathbf{\overline x}_i$ thus can not
 \end{proof}
 
 \begin{proof}[Proof (sketch) of Thm.~\ref{robustPolythm}]
-Let $\textbf{M}$ be the matrix with columns $\mathbf{A}\mathbf{x}_i$, $i \in [N]$.  Consider the polynomial in the entries of $\mathbf{A}$ and $\mathbf{x}_i$:
-$g(\mathbf{A}, \{\mathbf{x}_i\}_{i=1}^N) := \prod_{S \in {[N] \choose 2k}} \sum_{S' \in {[n] \choose 2k}} (\det \textbf{M}_{S',S})^2$,
-with notation as in Sec.~\ref{Results}.  
-It can be checked that when $g$ is nonzero for a substitution of real numbers for the indeterminates, all of the genericity requirements on $\mathbf{A}$ and $\mathbf{x}_i$ in our proofs of stability in Thm.~\ref{DeterministicUniquenessTheorem} are satisfied (in particular, the spark condition on $\mathbf{A}$).
+Let $\textbf{M}$ be the matrix with columns $\mathbf{A}\mathbf{x}_i$, $i \in [N]$.  Consider the polynomial $\prod_{S \in {[N] \choose 2k}} \sum_{S' \in {[n] \choose 2k}} (\det \textbf{M}_{S',S})^2$ in the indeterminate entries of $\mathbf{A}$ and $\mathbf{x}_i$, with notation as in Sec.~\ref{Results}.  
+It can be checked that when this polynomial is nonzero for a substitution of real numbers for the indeterminates, all of the genericity requirements on $\mathbf{A}$ and $\mathbf{x}_i$ in our proofs of stability in Thm.~\ref{DeterministicUniquenessTheorem} are satisfied (in particular, the spark condition \eqref{SparkCondition} on $\mathbf{A}$).
 \end{proof}
 
 \begin{proof}[Proof (sketch) of Cor.~\ref{ProbabilisticCor}]
@@ -599,7 +597,7 @@ Suppose $\overline m (r-1) < mr$, so that $|T_1| \geq mr = \overline m (r - 1) +
 We begin by showing that $\dim(\bm{\mathcal{B}}_{\pi(S)}) = \dim(\bm{\mathcal{A}}_S)$ for all $S \in \mathcal{H}$. Note that since $\|\mathbf{A}\mathbf{x}\|_2 \leq \max_j\|\mathbf{A}_j\|_2\|\mathbf{x}\|_1$ and $\|\mathbf{x}\|_1 \leq \sqrt{k} \|\mathbf{x}\|_2$ for all $k$-sparse $\mathbf{x}$, by \eqref{Ldef} we have $L_2(\mathbf{A}) \leq \max_j\|\mathbf{A}_j\|_2$ and therefore (as $\xi > 0$), the right-hand side of \eqref{GapUpperBound} is less than one. From \eqref{dimLem}, we have $|\pi(S)| \geq \dim(\bm{\mathcal{B}}_{\pi(S)}) \geq \dim(\bm{\mathcal{A}}_S) = |S|$, with the equality by injectivity of $\mathbf{A}_S$. As $|\pi(S)| = |S|$, the claim follows. Note, therefore, that $\mathbf{B}_{\pi(S)}$ has full-column rank for all $S \in \mathcal{H}$.
 
 We next verify that \eqref{cond} holds. Fixing $\mathcal{G} \in {\mathcal{H} \choose r} \cup {\mathcal{H} \choose r+1}$, it suffices to show that $d(\bm{\mathcal{B}}_{\cap \pi(\mathcal{G})}, \bm{\mathcal{A}}_{\cap \mathcal{G}} ) < 1$, since by \eqref{dimLem} we then have $|\cap \pi(\mathcal{G})| = \dim(\bm{\mathcal{B}}_{\cap \pi(\mathcal{G})}) \leq \dim(\bm{\mathcal{A}}_{\cap \mathcal{G}}) = |\cap \mathcal{G}|$, with equalities by the full column-ranks of $\mathbf{A}_{S}$ and $\mathbf{B}_{\pi(S)}$ for all $S \in \mathcal{H}$.\footnote{Note that if ever $\bm{\mathcal{B}}_{\cap \pi(\mathcal{G})} \neq \bf 0$ while $\cap \mathcal{G} = \emptyset$, we would have $d(\bm{\mathcal{B}}_{\cap \pi(\mathcal{G})}, \bm 0 ) = 1$. This cannot be the case, however, since the deduction that follows would then lead to a contradiction.} Observe that $d(\bm{\mathcal{B}}_{\cap \pi(\mathcal{G})}, \bm{\mathcal{A}}_{\cap \mathcal{G}}  ) 
-\leq d\left( \cap \bm{\mathcal{B}}_{\pi(\mathcal{G})}, \cap \bm{\mathcal{A}}_\mathcal{G} \right)$, since $d(U',V) \leq d(U,V)$ whenever $U' \subseteq U$ and $\bm{\mathcal{A}}_{\cap \mathcal{G}} = \cap \bm{\mathcal{A}}_\mathcal{G}$ by Lem.~\ref{spanIntersectionLemma}. Recalling Def.~\ref{dDef}, we may apply Lem.~\ref{DistanceToIntersectionLemma} and carry the supremum through the sum:
+\leq d\left( \cap \bm{\mathcal{B}}_{\pi(\mathcal{G})}, \cap \bm{\mathcal{A}}_\mathcal{G} \right)$, since $d(U',V) \leq d(U,V)$ whenever $U' \subseteq U$ and $\bm{\mathcal{A}}_{\cap \mathcal{G}} = \cap \bm{\mathcal{A}}_\mathcal{G}$ by Lem.~\ref{spanIntersectionLemma}. Recalling Def.~\ref{dDef}, we applying Lem.~\ref{DistanceToIntersectionLemma} and carrying the supremum through the sum yields:
 \begin{align}
 d\left( \cap \bm{\mathcal{B}}_{\pi(\mathcal{G})}, \cap \bm{\mathcal{A}}_\mathcal{G} \right)
 %&\leq \max_{\mathbf{u} \in \cap \bm{\mathcal{B}}_{\pi(\mathcal{G})}, \ \|\mathbf{u}\|_2 \leq 1} \sum_{S \in \mathcal{G}} \frac{ \text{\rm dist}\left( \mathbf{u},\bm{\mathcal{A}}_{S} \right) }{ 1 - \xi( \bm{\mathcal{A}}_\mathcal{G} ) }
