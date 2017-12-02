@@ -326,7 +326,7 @@ since $\varepsilon < L_{2k}(\mathbf{A}) / C_1$. Hence, $L_{2k}(\mathbf{BPD}) \ge
 The heart of the matter is therefore \eqref{Cstable}, which we now establish, first in the important special case of $k = 1$. 
 
 \begin{proof}[Proof of Thm.~\ref{DeterministicUniquenessCorollary} for $k=1$]
-Since the only 1-uniform hypergraph with the SIP is $[m]$, we have $\mathbf{x}_i = c_i \mathbf{e}_i$ for $c_i \in \mathbb{R} \setminus \{\mathbf{0}\}$, $i \in [m]$. In this case, we may use any $C_1 \geq 1/ \min_{\ell \in [m]} |c_{\ell}|$. 
+Since the only 1-uniform hypergraph with the SIP is $[m]$, we have $\mathbf{x}_i = c_i \mathbf{e}_i$ for $c_i \in \mathbb{R} \setminus \{\mathbf{0}\}$, $i \in [m]$. In this case, we require that $C_1 \geq 1/ \min_{\ell \in [m]} |c_{\ell}|$. 
 
 Fix $\mathbf{A} \in \mathbb{R}^{n \times m}$ satisfying \eqref{SparkCondition} and suppose that for some $\mathbf{B}$ and $1$-sparse $\mathbf{\overline x}_i \in \mathbb{R}^{\overline m}$ we have  $\|\mathbf{A}\mathbf{x}_i - \mathbf{B}\mathbf{\overline x}_i\|_2 \leq \varepsilon < L_2(\mathbf{A}) / C_1$ for all $i$. Then, there exist $\overline{c}_1, \ldots, \overline{c}_m \in \mathbb{R}$ and a map $\pi: [m] \to [\overline m]$ such that:
 \begin{align}\label{1D}
@@ -334,7 +334,7 @@ Fix $\mathbf{A} \in \mathbb{R}^{n \times m}$ satisfying \eqref{SparkCondition} a
 \end{align} 
 Note that $\overline{c}_j \neq 0$, since otherwise we have the contradiction $\|\mathbf{A}_j \|_2 \leq C_1 |c_j| \|\mathbf{A}_j \|_2  < L_2(\mathbf{A}) \leq L_1(\mathbf{A}) = \min_{j \in [m]} \|\mathbf{A}_{j}\|_2$. %implies by \eqref{delrho} the contradiction $|c_j| < \min_{\ell \in [m]} | c_\ell |$.
 
-We  now show that $\pi$ is injective (in particular, a permutation if $\overline m = m$). Suppose that $\pi(i) = \pi(j) = \ell$ for some $i \neq j$ and $\ell$. Then, $\|c_{j}\mathbf{A}_{j} - \overline{c}_{j}\mathbf{B}_{\ell}\|_2 \leq \varepsilon$ and $\|c_{i}\mathbf{A}_{i} - \overline{c}_{i} \mathbf{B}_{\ell}\|_2  \leq \varepsilon$. Scaling and summing these inequalities by $|\overline{c}_{i}|$ and $|\overline{c}_{j}|$, respectively, and applying the triangle inequality, we obtain:
+We now show that $\pi$ is injective (in particular, a permutation if $\overline m = m$). Suppose that $\pi(i) = \pi(j) = \ell$ for some $i \neq j$ and $\ell$. Then, $\|c_{j}\mathbf{A}_{j} - \overline{c}_{j}\mathbf{B}_{\ell}\|_2 \leq \varepsilon$ and $\|c_{i}\mathbf{A}_{i} - \overline{c}_{i} \mathbf{B}_{\ell}\|_2  \leq \varepsilon$. Scaling and summing these inequalities by $|\overline{c}_{i}|$ and $|\overline{c}_{j}|$, respectively, and applying the triangle inequality, we obtain:
 \begin{align*}
 (|\overline{c}_{i}| + |\overline{c}_{j}|) \varepsilon
 &\geq\|\mathbf{A}(\overline{c}_{i}c_{j} \mathbf{e}_{j} - \overline{c}_{j}c_{i}\mathbf{e}_{i})\|_2 \nonumber \\ 
@@ -425,7 +425,7 @@ The constant $C_2$ in Lem.~\ref{MainLemma} is then:
 	C_2(\mathbf{A}, \mathcal{H}) := \frac{ (r+1) \max_{j \in [m]} \|\mathbf{A}_j\|_2}{ 1- \max_{\mathcal{G} \in {\mathcal{H} \choose r+1}} \xi( \bm{\mathcal{A}}_\mathcal{G} ) },
 \end{align}
 % C_2(\mathbf{A}, \mathcal{H}) := \frac{ (r+1) \max_{j \in [m]} \|\mathbf{A}_j\|_2}{ \min_{\mathcal{G} \in {\mathcal{H} \choose r} \cup {\mathcal{H} \choose r+1}} \xi( \{ \bm{\mathcal{A}}_S \}
-which we remark yields a constant $C_1$ consistent with the case $k=1$ considered at the beginning of this section.\footnote{For $\mathbf{x}_i = c_i\mathbf{e}_i$, the denominator in \eqref{Cdef1} becomes $\min_{i \in [m]} |c_i| \|\mathbf{A}_i\|_2$, hence with $r=1$ we have $C_1 \geq 2 / \min_{i \in [m]} |c_i|$.}
+which we remark yields a constant $C_1$ consistent with what is required for the case $k=1$ considered at the beginning of this section.\footnote{For $\mathbf{x}_i = c_i\mathbf{e}_i$, the denominator in \eqref{Cdef1} becomes $\min_{i \in [m]} |c_i| \|\mathbf{A}_i\|_2$, hence with $r=1$ we have $C_1 \geq 2 / \min_{i \in [m]} |c_i|$.}
 
 The pragmatic reader should note that the explicit constants $C_1$ and $C_2$ are effectively computable: the quantity $L_k$ may be calculated as the smallest singular value of a certain matrix, while the quantity $\xi$ involves computing ``canonical angles'' between subspaces, which reduce again to an efficient singular value decomposition. There is no known fast computation of $L_k$ in general, however, since even $L_{k} > 0$ is NP-hard \cite{tillmann2014computational}; although fixing $k$ yields polynomial complexity. Moreover, calculating $C_2$ requires an exponential number of queries to $\xi$ unless $r$ is held fixed, too (e.g., the ``cyclic order'' hypergraphs described above have $r=k$).  Thus, as presented, $C_1$ and $C_2$ are not efficiently computable.
 
@@ -624,9 +624,9 @@ which is less than one, since $C_2 \varepsilon < L_2(\mathbf{A}) \leq \max_j\|\m
 %which is less than one, since $C_2 \varepsilon < L_2(\mathbf{A}) \leq \max_j\|\mathbf{A}_j\|_2$.
 
 By Lem.~\ref{NonEmptyLemma}, the association $i \mapsto \cap \pi(\sigma(i))$ is an injective map $\overline \pi: J \to [\overline m]$ for some $J \subseteq [m]$ of size $\overline m - r(\overline m - m)$, and $\mathbf{B}_{\overline \pi(i)} \neq \mathbf{0}$ for all $i \in J$ since the columns of $\mathbf{B}_{\pi(S)}$ are linearly independent for all $S \in \mathcal{H}$. Letting $\overline \varepsilon := C_2 \varepsilon / \max_i \|\mathbf{A}_i\|_2$, it follows from \eqref{eqdim} and \eqref{last} that $d\left( \bm{\mathcal{A}}_i, \bm{\mathcal{B}}_{\overline \pi(i)} \right) \leq \overline \varepsilon$ for all $i \in J$. %Fixing $\overline \varepsilon = C_2\varepsilon$ and letting $c_i = \|\mathbf{A}_i\|_2^{-1}$, we thus have that for each $\mathbf{e}_i \in \mathbb{R}^m$ with $i \in J$ there exists some $\overline{c}_i \in \mathbb{R}$ such that $\|c_i\mathbf{A}\mathbf{e}_i - \overline{c}_i \mathbf{B}\mathbf{e}_{\overline \pi(i)}\|_2 \leq \overline \varepsilon < L_2(\mathbf{A}) \min_{i\in J} |c_i|$. But this is exactly the supposition in \eqref{1D}, and the result follows from the case $k=1$ in Sec.~\ref{DUT} applied to the submatrix $\mathbf{A}_J$. 
-Setting $c_i := \|\mathbf{A}_i\|_2^{-1}$, by Def.~\ref{dDef} we have for all $i \in J$:
+Setting $c_i := \|\mathbf{A}_i\|_2^{-1}$ so that $\|c_i\mathbf{Ae}_i\|_2 = 1$, by Def.~\ref{dDef} we have for all $i \in J$:
 \begin{align*}
-\min_{\overline c_i \in \mathbb{R}} \|c_i\bm{Ae}_i - \overline c_i \mathbf{Be}_{\overline \pi(i)} \|_2
+\min_{\overline c_i \in \mathbb{R}} \|c_i\mathbf{Ae}_i - \overline c_i \mathbf{Be}_{\overline \pi(i)} \|_2
 \leq d\left( \bm{\mathcal{A}}_i, \bm{\mathcal{B}}_{\overline \pi(i)} \right)
 \leq \overline \varepsilon
 %&= \max_{\bm{u} \in \bm{\mathcal{A}}_i, \|\bm{u}\|_2 \leq 1} \text{dist}\left(\bm{u}, \bm{\mathcal{B}}_{\overline \pi(i)} \right) \\
@@ -634,7 +634,7 @@ Setting $c_i := \|\mathbf{A}_i\|_2^{-1}$, by Def.~\ref{dDef} we have for all $i 
 %&= \min_{\overline c_i \in \mathbb{R}} \|c_i\bm{Ae}_i - \overline c_i \mathbf{Be}_{\overline \pi(i)} \|_2
 \end{align*}
 %
-for $\overline \varepsilon < L_2(\mathbf{A})\min_{i \in [m]}|c_i|$. But this is exactly the supposition in \eqref{1D} (with $J$ in place of $[m]$), and the result thus follows from the case $k=1$ in Sec.~\ref{DUT} applied to the submatrix $\mathbf{A}_J$. 
+for $\overline \varepsilon < L_2(\mathbf{A})\min_{i \in [m]}|c_i|$. But this is exactly the supposition in \eqref{1D}, with $J$ and $\overline \varepsilon$ in place of $[m]$ and $\varepsilon$, respectively. Thus, applying the arguments of the case $k=1$ in Sec.~\ref{DUT} to the submatrix $\mathbf{A}_J$, we have $\|\mathbf{A}_j - \mathbf{B}_{\overline J}\mathbf{PD}_j\|_2 \leq \overline  \varepsilon / |c_j|  \leq C_2 \varepsilon$ for $j \in J$.
 \end{proof}
 
 %\section{Proofs of Thm.~\ref{robustPolythm} and Cor.~\ref{ProbabilisticCor}}
