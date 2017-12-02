@@ -11,7 +11,7 @@ def friedrichs(U,V):
     Alternatively, it is the (s+1)th principal angle when dim(U \cap V) = s.
     """
     angles = subspace_angles(U,V)
-    nz_angles = angles > np.finfo(float).eps
+    nz_angles = angles > 0  # np.finfo(float).eps
     if np.any(nz_angles):
         min_nz_angle = np.sort(angles[nz_angles])[0]
         return min_nz_angle
@@ -45,7 +45,7 @@ def C2(A, H, r):
     H: hypergraph (list of lists in range(m))
     r: regularity of H
 
-    Loops over subsets of H of size r+1
+    Loops over subsets of H of size r
     """
     xi_Gs = [] # xi is in (0,1]
     for G in itertools.combinations(H, r + 1): # loop over subsets of H of size r
@@ -64,12 +64,12 @@ def cyclic_hypergraph(m, k):
 
 if __name__ == '__main__':
     # SQUARE GRID
-    num_trials = 100
+    num_trials = 200
     r = 2
-    Ks = [4, 8, 16]
+    Ks = [8]
     for k in Ks:
         m = k**2
-        n = m;
+        n = m // 2;
         square_grid = np.reshape(range(m),(k,k))
         H = [row.tolist() for row in square_grid] + [col.tolist() for col in square_grid.T]
         N_per_support = int((k - 1) * choose(m, k))
@@ -87,5 +87,40 @@ if __name__ == '__main__':
         pp.figure()
         pp.hist(C2s, bins=40)
         pp.show()
-        pp.title('Grid C2s (m=%d, trials=%d)' % (m, num_trials))
-        pp.savefig('Grid_C2_m%d_nt%d.pdf' % (m, num_trials))
+        pp.title('Grid C2s (m=%d, n=%d, k=%d, r=%d, trials=%d)' % (m, n, k, r, num_trials))
+        pp.savefig('C2_Grid_m%d_n%d_k%d_ r%d_nt%d_r.pdf' % (m, n, k, r, num_trials))
+
+    # CYLIC
+    Ks = [4] # , 16, 32]
+    for k in Ks:
+        r = k
+        m = 16
+        n = 8
+        H = cyclic_hypergraph(m, k)
+        N_per_support = int((k - 1) * choose(m, k))
+        N = len(H) * N_per_support
+        num_trials = 5
+        Cs = np.zeros((num_trials, 2))  # 0:C1, 1:C2
+        #pcntiles = np.zeros((num_trials, 2))  # 0:C1, 1:C2
+        for i in range(num_trials):
+            print("Trial %d" % i)
+            A = np.random.randn(n, m)
+            A = np.dot( A, np.diag(1./np.linalg.norm(A, axis=0)) ) # normalize
+            # Xs = [np.random.randn(k, N_per_support) for S in H]
+            # Xs = [np.dot(X, np.diag(1. / np.linalg.norm(X, axis=0))) for X in Xs] # normalize
+            Cs[i, 1] = C2(A, H, r)
+            # Cs[i, 0] = Cs[i,1] / C1_denom(A, Xs, H, num_rand_ksets = 10)
+            #Cs[i,0] = Cs[i,1] / L_k( np.dot(A[:,H[0]], Xs[0]), k, n_samples = 10 )
+           # print('%1.3f' % c2)
+           # if (i > 1000) & (i % 100 == 0):
+           #     print(i)
+           #     pcntiles[i, 1] = np.percentile(Cs[:i, 1], 95)
+
+        import matplotlib.pyplot as pp
+        pp.ion()
+        pp.figure()
+        C2s = Cs[:, 1]
+        pp.hist(C2s, bins=40)
+        pp.show()
+        pp.title('Cyclic C2s (m=%d)' % m)
+        plt.savefig('C2_Cyclic_m%d.pdf' % m)
