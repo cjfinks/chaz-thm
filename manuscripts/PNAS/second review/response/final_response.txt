@@ -1,4 +1,4 @@
--------------------------------------
+	-------------------------------------
 
 Editor Comments:
 
@@ -31,7 +31,7 @@ RESPONSE:
 
 [Files included: updated pdf manuscript, compute_C2.py, decomp_svd.py, final_response.txt, Grid_C2_m16_nt100.pdf, Grid_C2_m64_nt100.pdf, Grid_C2_m256_nt100.pdf]
 
-We are somewhat confused by this statement as we understand even the tightest possible noise bound to be necessarily "local" and approaching zero as the domain-restricted matrix lower-bound vanishes, e.g. as the number of dictionary elements grows. One need only consider the case k=1, where every dictionary element spans a ray through the origin, and each identifiable datum generated from the model (1) lies within a cylinder of radius \eta around one (and only one) of these rays. Clearly, for bounded data in a finite dimensional space, this radius cannot remain finite in the limit of infinitely many distinct rays.
+We are somewhat confused by this statement as we understand even the tightest possible noise bound to be necessarily "local" and approaching zero as the domain-restricted matrix lower-bound vanishes, e.g. as the number of dictionary elements grows. One need only consider the case k=1, where every dictionary element spans a ray through the origin, and each identifiable datum generated from the model [1] lies within a cylinder of radius \eta around one (and only one) of these rays. Clearly, for bounded data in a finite dimensional space, this radius cannot remain finite in the limit of infinitely many distinct rays.
 
 The issue seems to rather be that the bound (defined using our constants C1 and C2) is, in general, so small that it is "practically infinitesimal". As is the case for any deterministic guarantee, we must entertain the "worst-case" scenario, where noise is isotropic and "what can go wrong, will go wrong”. Consequently, some degree of pessimism is forced upon us here, whereas calculations specific to the data at hand would consider the probability distribution of confounding noise to yield more forgiving probabilistic bounds. To respond to this valid concern, we have investigated our deterministic constants more thoroughly.
 
@@ -39,7 +39,7 @@ The first one, C1, involves a denominator that is a relatively standard quantity
 
 Upon re-examination of our proof, we have determined that our expression for C2 was egregiously sub-optimal. The minimum in the denominator of C2 need only be computed over subsets of H of size r+1 (where r is the regularity of the hypergraph) -- not over all subsets of H. Moreover, the 2^|H| in the numerator -- which, as it turns out, need only have been |H| -- can actually be set to r+1 (e.g. for the SIP hypergraph consisting of consecutive intervals of length k in [m], we have |H| = m and r=k).
 
-To determine the practical utility of this adjusted constant, we have performed computer experiments (Python code "compute_C2.py" included) calculating it for some generic matrices with example hypergraphs from our paper's introduction ("grids"). The results suggest that the bound is reasonable; certainly, it is not “practically infinitesimal" (Figures "Grid_C2_m*_nt100.pdf" included over different latent dimensions m=16,64,256).
+To determine the practical utility of this adjusted constant, we have performed computer experiments (Python code "compute_C2.py" included) calculating it for some generic matrices with example hypergraphs from our paper's introduction ("grids"). The results suggest that the bound is reasonable much of the time; certainly, it is not “practically infinitesimal" (Figures "Grid_C2_m*_nt100.pdf" included over different latent dimensions m=16,64,256).
 
 -------------------------------------
 
@@ -54,9 +54,9 @@ referees had the same problem.
 
 RESPONSE:
 
-Our response to point (a) aside, and though we are not inclined to assume that neural circuits are incapable of extreme precision when necessary, we actually share your skepticism here regarding the modern theory of "sparse coding" [O04] for efficient representation of sensory input in brains (vision: [O96], [H96], [B97], [vH98]; audio: [B96], [S06], [C12]), as well as corresponding models of bottleneck communication between neurons that utilize ideas from compressed sensing ([C10], [I10], [G12]). Nonetheless, our paper confirms the well-posedness of the central noisy sensory coding problem that specialists in these fields have suggested neural circuits might be solving. Moreover, our uniqueness guarantees verify (for the first time) that the bottleneck communication model represents a neurally plausible way of faithfully transmitting noisy sparse sensory representations.
+Our response to point (a) aside, and though we are not inclined to assume that neural circuits are incapable of extreme precision when necessary, we actually share your skepticism here regarding the modern theory of "sparse coding" (O04) for efficient representation of sensory input in brains (vision: (O96), (H96), (B97), (vH98); audio: (B96), (S06), (C12)), as well as corresponding models of bottleneck communication between neurons that utilize ideas from compressed sensing ((C10), (I10), (G12)). Nonetheless, our paper confirms the well-posedness of the central noisy sensory coding problem that specialists in these fields have suggested neural circuits might be solving. Moreover, our uniqueness guarantees verify (for the first time) that the bottleneck communication model represents a neurally plausible way of faithfully transmitting sparse sensory representations through a noisy bandwidth-limited channel.
 
-If the editors are still reluctant to become complicit in propagating unproven hypotheses of neural computation, we have no qualms downplaying this application in the manuscript. Perhaps instead, we could elaborate more on implications for the repeatability of discoveries in experimental science that use machine learning, which includes an explanation for the universality of the above results (e.g. "Gabors") in sensory representation (independent of any particular theory of brain computation). For example, over the years there have been many appeals to dictionary learning with sparseness constraint for uncovering latent structure in data (e.g. forgery detection [H10], [O10]; brain recordings [J01], [A14], [L16]; gene expression [Wu16]), several of which appear in PNAS. Each such work presupposes the reproducibility of their findings.
+If the editors are still reluctant to become complicit in propagating unproven hypotheses of neural computation, we have no qualms downplaying this application in the manuscript. Perhaps instead, we could elaborate more on implications for the repeatability of discoveries in experimental science that use machine learning, which includes an explanation for the universality of the above results (e.g. "Gabors") in sensory representation (independent of any particular theory of brain computation). For example, over the years there have been many appeals to dictionary learning with sparseness constraint for uncovering latent structure in data (e.g. forgery detection (H10), (O10); brain recordings (J01), (A14), (L16); gene expression (Wu16)), several of which appear in PNAS. Each such work presupposes the reproducibility of their findings.
 
 -------------------------------------
 
@@ -77,7 +77,7 @@ Suppose some quantities of interest are encoded in the sparse activity of neuron
 
 The hypothesis is that the brain, up-to date on the latest fad, solves this problem by applying a (noisy) "random" projection into the lower-dimensional space spanned by these axons. The neurons in the receiving region are then tasked with decoding the quantities of interest from this compressed signal. Suppose, however, that they cannot read out this information directly from the compressed signal. Rather, the neurons in the receiving region must first reproduce to some extent the original sparse pattern of activity before they can decode from it the quantities of interest (perhaps a sparse representation is necessary or advantageous in the receiving region, just as in the sending region). Moreover - and this is central to the hypothesis - they must accomplish this feat without knowledge of the random projection applied by the sender, i.e. via dictionary learning with a sparseness constraint. 
 
-In this way, the persistence of a “qualitative similarity”, modeled mathematically as the formal similarity between the decodable quantities of interest in the two regions, is contingent on the uniqueness and stability of sparse representations. We have proven that any dictionary learning procedure implemented in the receiving region (biologically plausible algorithms are an active area of research [P15]) that does "well enough" will indeed yield a sparse activity pattern that is similar (at least, up to inherent relabelling ambiguity) to the original pattern in the sending region, as required. 
+In this way, the persistence of a "qualitative similarity", modeled mathematically as the formal similarity between the decodable quantities of interest in the two regions, is contingent on the uniqueness and stability of sparse representations. We have proven that any dictionary learning procedure implemented in the receiving region (biologically plausible algorithms are an active area of research (P15)) that does "well enough" will indeed yield a sparse activity pattern that is similar (at least, up to inherent relabelling ambiguity) to the original pattern in the sending region, as required. 
 
 It is entirely possible, and in our opinion very likely, that the encoding and decoding procedures utilized by actual neural networks are far more sophisticated. The science is just not there yet. At the very least, we have demonstrated that the only published hypothesis regarding how this could be done is well-founded, mathematically.
 
@@ -114,9 +114,9 @@ no, a dramatically smaller number is required.
 
 RESPONSE:
 
-If there is any one "gadget" to which we may credit our results, it is the pigeon-hole principle, which we have applied in a way (see Lem. 4) that demonstrates that only a polynomial number of sparse supports are necessary in general for stable identification of the generating dictionary. In our view, this lends much more legitimacy to the use of the model in practice, where data in general are unlikely (if ever) to exhibit the exponentially many possible k-wise combinations of dictionary elements, as all previous results have required.
+If there is any one "gadget" to which we may credit our results, it is the pigeonhole principle, which we have applied in a way (see Lem. 4) that demonstrates that only a polynomial number of sparse supports are necessary in general for stable identification of the generating dictionary. In our view, this lends much more legitimacy to the use of the model in practice, where data in general are unlikely (if ever) to exhibit the exponentially many possible k-wise combinations of dictionary elements, as all previous results have required.
 
-It may very well be impossible to to exorcise exponentiality from the number of required samples in the deterministic or almost-certain case. However, our guarantees can easily be extended to hold with some probability for any number of samples by substituting a probabilistic pigeonholing argument for the deterministic one at the point in our proof of Thm. 1, where it is demonstrated that for every S in H, there exist k vectors x_i supported on S whose corresponding \bar x_i all share the same support. (A famous example of such an argument is the counter-intuitive "birthday paradox", which demonstrates that the probability of two people having the same birthday in a room of twenty-three is in fact greater than 50%.) In this spirit, we have computed for all sample sizes up to our deterministic sample complexity the probability with which our guarantees still hold for the same case as was considered in Figure S1 (see Figure S2, included). We have also computed the number of required samples which yield a guarantee with probability 99.9% for fixed k as m increases. The ratio of this number with respect to the number of samples required by the 100% guarantee of Thm. 1 tends to zero, and we are happy to add this point to the manuscript if so desired.
+It may very well be impossible to to exorcise exponentiality from the number of required samples in the deterministic or almost-certain case. However, our guarantees can easily be extended to hold with some probability for any number of samples by way of a probabilistic pigeonholing instead of a deterministic one at the point in our proof of Thm. 1, where it is demonstrated that for every S in H, there exist k vectors x_i supported on S whose corresponding \bar x_i all share the same support. (A famous example of such an argument is the counter-intuitive "birthday paradox", which demonstrates that the probability of two people having the same birthday in a room of twenty-three is in fact greater than 50%.) In this spirit, we have computed for all sample sizes up to our deterministic sample complexity the probability with which our guarantees still hold for the same case as was considered in Figure S1 (see Figure S2, included). We have also computed the number of required samples which yield a guarantee with probability 99.9% for fixed k as m increases. The ratio of this number with respect to the number of samples required by the 100% guarantee of Thm. 1 tends to zero, and we are happy to add this point to the manuscript if so desired.
 
 -------------------------------------
 
@@ -131,7 +131,7 @@ computer on a specific example doesn't help.
 
 RESPONSE:
 
-It seems to us that assessing a solution as "obvious" after-the-fact, when it has already informed one's intuition, is unfair. It's always easy to guess, easier to guess wrong, and hardest to prove. Still, if unintuitive results are what sell these days, we offer a nice surprise for everyone who reads our paper and realizes how strange it is that they have never come across a definition of the problem akin to Def. 1 anywhere in the literature on dictionary learning before.
+It seems to us that assessing a solution as "obvious" after-the-fact -- when it has already informed one's intuition -- is a bit unfair. It is always easy to guess, easier to guess wrong, and hardest to prove. Still, if unintuitive results are what sell these days, we offer a nice surprise for everyone who reads our paper and realizes how strange it is that they have never come across a definition of the problem akin to Def. 1 anywhere in the literature on dictionary learning before.
 
 Problems 1 and 2 have been studied for two decades now, and no one has pointed out the relation between them, nor the existence of the underlying hypergraph structure. Our solution to Prob. 2, that of most interest to practitioners of dictionary learning methods, is the first of its kind in both the noise-free and noisy domains. If these solutions are the "easy-to-guess", "obvious" solutions, then so be it; we cannot change geometry. Actually, we prefer results for which intuition can play its role in lending credence to the truth.
 
@@ -166,46 +166,46 @@ RESPONSE:
 
 What sets our work apart from the vast majority of results in the field is that they are deterministic, and do not depend on any kind of assumption about the particular random distribution from which the sparse supports, coefficients, or dictionary entries are drawn. Consequently, our paper directly justifies only "in principle" the inferences of those who apply dictionary learning methods to inverse problems in their research. But this is unavoidably the case for NP-hard problems.
 
-We have spelled-out the problem (i.e. estimate C1) for statisticians, who will derive from our deterministic guarantees the statistical criteria for inference in more domain-specific probabilistic models, and we have cut in half the work it takes a computer scientist to prove the consistency of any dictionary learning algorithm (i.e. prove that the algorithm converges to any solution encoding the data to within the epsilon in Eq. 8). Our work is the assist to these many impactful results to come, and (just as in hockey) we feel this deserves as much acknowledgement as the goal.
+We have spelled-out the problem (i.e. estimate C2) for statisticians, who will derive from our deterministic guarantees the statistical criteria for inference in more domain-specific probabilistic models, and we have cut in half the work it takes a computer scientist to prove the consistency of any dictionary learning algorithm (i.e. prove that the algorithm converges to any solution encoding the data to within the epsilon in Eq. 8). Our work is the assist to these many impactful results to come, and (just as in hockey) we feel this deserves as much acknowledgement as the goal.
 
 -------------------------------------
 
 Bibliography:
 
-[B96] Bell, et al. (1996), Learning the higher-order structure of a natural sound, Network: Computation in Neural Systems.
+(B96) Bell, et al. (1996), Learning the higher-order structure of a natural sound, Network: Computation in Neural Systems.
 
-[O96] Olshausen, et al. (1996), Emergence of simple-cell receptive field properties by learning a sparse code for natural images, Nature.
+(O96) Olshausen, et al. (1996), Emergence of simple-cell receptive field properties by learning a sparse code for natural images, Nature.
 
-[H96] Hurri, et al. (1996), Image feature extraction using independent component analysis, Proceedings IEEE Nordic Signal Processing Symposium (NORSIG '96).
+(H96) Hurri, et al. (1996), Image feature extraction using independent component analysis, Proceedings IEEE Nordic Signal Processing Symposium (NORSIG '96).
 
-[B97] Bell, et al. (1997), The "independent components" of natural scenes are edge filters, Vision Research.
+(B97) Bell, et al. (1997), The "independent components" of natural scenes are edge filters, Vision Research.
 
-[vH98] van Hateren, et al. (1998), Independent component filters of natural images compared with simple cells in primary visual cortex, Proceedings of the Royal Society of London B: Biological Sciences
+(vH98) van Hateren, et al. (1998), Independent component filters of natural images compared with simple cells in primary visual cortex, Proceedings of the Royal Society of London B: Biological Sciences
 
-[J01] Jung, et al. (2001), Imaging brain dynamics using independent component analysis, Proceedings of the IEEE.
+(J01) Jung, et al. (2001), Imaging brain dynamics using independent component analysis, Proceedings of the IEEE.
 
-[O04] Olshausen, et al. (2004), Sparse coding of sensory inputs, Current Opinion in Neurobiology.
+(O04) Olshausen, et al. (2004), Sparse coding of sensory inputs, Current Opinion in Neurobiology.
 
-[S06] Smith, et al. (2006), Efficient auditory coding, Nature.
+(S06) Smith, et al. (2006), Efficient auditory coding, Nature.
 
-[D09] Daubechies et al. (2009), Independent component analysis for brain fMRI does not select for independence, PNAS.
+(D09) Daubechies et al. (2009), Independent component analysis for brain fMRI does not select for independence, PNAS.
 
-[H10] Hughes, et al. (2010), Quantification of artistic style through sparse coding analysis in the drawings of Pieter Bruegel the Elder, PNAS.
+(H10) Hughes, et al. (2010), Quantification of artistic style through sparse coding analysis in the drawings of Pieter Bruegel the Elder, PNAS.
 
-[O10] Olshausen, et al. (2010), Applied mathematics: The statistics of style, Nature.
+(O10) Olshausen, et al. (2010), Applied mathematics: The statistics of style, Nature.
 
-[C10] Coulter, et al. (2010), Adaptive compressed sensing - a new class of self-organizing coding models for neuroscience, IEEE International Conference on Acoustics Speech and Signal Processing (ICASSP '10).
+(C10) Coulter, et al. (2010), Adaptive compressed sensing - a new class of self-organizing coding models for neuroscience, IEEE International Conference on Acoustics Speech and Signal Processing (ICASSP '10).
 
-[I10] Isely, et al. (2010), Deciphering subsampled data: adaptive compressive sampling as a principle of brain communication, Advances in Neural Information Processing Systems (NIPS).
+(I10) Isely, et al. (2010), Deciphering subsampled data: adaptive compressive sampling as a principle of brain communication, Advances in Neural Information Processing Systems (NIPS).
 
-[C12] Carlson, et al. (2012), Sparse codes for speech predict spectrotemporal receptive fields in the inferior colliculus, PLoS Computational Biology.
+(C12) Carlson, et al. (2012), Sparse codes for speech predict spectrotemporal receptive fields in the inferior colliculus, PLoS Computational Biology.
 
-[G12] Ganguli, et al. (2012), Compressed sensing, sparsity, and dimensionality in neuronal information processing and data analysis, Annual Review of Neuroscience.
+(G12) Ganguli, et al. (2012), Compressed sensing, sparsity, and dimensionality in neuronal information processing and data analysis, Annual Review of Neuroscience.
 
-[A14] Agarwal, et al. (2014), Spatially distributed local fields in the hippocampus encode rat position, Science.
+(A14) Agarwal, et al. (2014), Spatially distributed local fields in the hippocampus encode rat position, Science.
 
-[P15] Pehlevan, et al. (2015), A normative theory of adaptive dimensionality reduction in neural networks, In Advances in Neural Information Processing Systems (NIPS).
+(P15) Pehlevan, et al. (2015), A normative theory of adaptive dimensionality reduction in neural networks, In Advances in Neural Information Processing Systems (NIPS).
 
-[Wu16] Wu, et al. (2016), Stability-driven nonnegative matrix factorization to interpret spatial gene expression and build local gene networks, PNAS.
+(Wu16) Wu, et al. (2016), Stability-driven nonnegative matrix factorization to interpret spatial gene expression and build local gene networks, PNAS.
 
-[L16] Lee, et al. (2016), Sparse SPM: Group Sparse-dictionary learning in SPM framework for resting-state functional connectivity MRI analysis, NeuroImage.
+(L16) Lee, et al. (2016), Sparse SPM: Group Sparse-dictionary learning in SPM framework for resting-state functional connectivity MRI analysis, NeuroImage.
