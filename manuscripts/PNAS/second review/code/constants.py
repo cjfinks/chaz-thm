@@ -13,7 +13,7 @@ def friedrichs(U,V):
     Alternatively, it is the (s+1)th principal angle when dim(U \cap V) = s.
     """
     angles = subspace_angles(U,V)
-    nz_angles = angles > np.finfo(float).eps
+    nz_angles = angles > 0  # np.finfo(float).eps
     if np.any(nz_angles):
         min_nz_angle = np.sort(angles[nz_angles])[0]
         return min_nz_angle
@@ -148,52 +148,52 @@ if __name__ == '__main__':
         pp.hist(C2s, bins=40)
         pp.show()
         pp.title('Grid C2s (m=%d, trials=%d)' % (m, num_trials))
-        plt.savefig('Grid_C2_m%d_nt%d.pdf' % (m, num_trials))
+        # plt.savefig('Grid_C2_m%d_nt%d.pdf' % (m, num_trials))
 
-    # CYLIC
-    Ks = [4, 8] # , 16, 32]
-    for k in Ks:
-        r = k
-        m = k ** 2
-        n = m
-        H = cyclic_hypergraph(m, k)
-        N_per_support = int((k - 1) * choose(m, k))
-        N = len(H) * N_per_support
-        num_trials = 5
-        Cs = np.zeros((num_trials, 2))  # 0:C1, 1:C2
-        #pcntiles = np.zeros((num_trials, 2))  # 0:C1, 1:C2
-        for i in range(num_trials):
-            print("Trial %d" % i)
-            A = np.random.randn(n, m)
-            A = np.dot( A, np.diag(1./np.linalg.norm(A, axis=0)) ) # normalize
-            # Xs = [np.random.randn(k, N_per_support) for S in H]
-            # Xs = [np.dot(X, np.diag(1. / np.linalg.norm(X, axis=0))) for X in Xs] # normalize
-            Cs[i, 1] = C2(A, H, r)
-            # Cs[i, 0] = Cs[i,1] / C1_denom(A, Xs, H, num_rand_ksets = 10)
-            #Cs[i,0] = Cs[i,1] / L_k( np.dot(A[:,H[0]], Xs[0]), k, n_samples = 10 )
-           # print('%1.3f' % c2)
-           # if (i > 1000) & (i % 100 == 0):
-           #     print(i)
-           #     pcntiles[i, 1] = np.percentile(Cs[:i, 1], 95)
-
-        import matplotlib.pyplot as pp
-        pp.ion()
-        pp.figure()
-        C2s = Cs[:, 1]
-        pp.hist(C2s, bins=40)
-        pp.show()
-        pp.title('Cyclic C2s (m=%d)' % m)
-        plt.savefig('Cyclic_C2_m%d.pdf' % m)
-
-    # pp.figure()
-    # C1s = Cs[:, 0]
-    # pp.hist(C1s, bins=100)
-    # pp.show()
-    # pp.title('C1s')
-
-    # pp.figure();
-    # pp.plot(pcntiles[:, 1])
-    # pp.title('C2s 95 Percentiles over trials')  # looks funny for some reason
-
-### NOTE $$$
-# What is RIP of n by (k-1)* mCk matrix?
+#     # CYLIC
+#     Ks = [4, 8] # , 16, 32]
+#     for k in Ks:
+#         r = k
+#         m = k ** 2
+#         n = m
+#         H = cyclic_hypergraph(m, k)
+#         N_per_support = int((k - 1) * choose(m, k))
+#         N = len(H) * N_per_support
+#         num_trials = 5
+#         Cs = np.zeros((num_trials, 2))  # 0:C1, 1:C2
+#         #pcntiles = np.zeros((num_trials, 2))  # 0:C1, 1:C2
+#         for i in range(num_trials):
+#             print("Trial %d" % i)
+#             A = np.random.randn(n, m)
+#             A = np.dot( A, np.diag(1./np.linalg.norm(A, axis=0)) ) # normalize
+#             # Xs = [np.random.randn(k, N_per_support) for S in H]
+#             # Xs = [np.dot(X, np.diag(1. / np.linalg.norm(X, axis=0))) for X in Xs] # normalize
+#             Cs[i, 1] = C2(A, H, r)
+#             # Cs[i, 0] = Cs[i,1] / C1_denom(A, Xs, H, num_rand_ksets = 10)
+#             #Cs[i,0] = Cs[i,1] / L_k( np.dot(A[:,H[0]], Xs[0]), k, n_samples = 10 )
+#            # print('%1.3f' % c2)
+#            # if (i > 1000) & (i % 100 == 0):
+#            #     print(i)
+#            #     pcntiles[i, 1] = np.percentile(Cs[:i, 1], 95)
+#
+#         import matplotlib.pyplot as pp
+#         pp.ion()
+#         pp.figure()
+#         C2s = Cs[:, 1]
+#         pp.hist(C2s, bins=40)
+#         pp.show()
+#         pp.title('Cyclic C2s (m=%d)' % m)
+#         # plt.savefig('Cyclic_C2_m%d.pdf' % m)
+#
+#     # pp.figure()
+#     # C1s = Cs[:, 0]
+#     # pp.hist(C1s, bins=100)
+#     # pp.show()
+#     # pp.title('C1s')
+#
+#     # pp.figure();
+#     # pp.plot(pcntiles[:, 1])
+#     # pp.title('C2s 95 Percentiles over trials')  # looks funny for some reason
+#
+# ### NOTE $$$
+# # What is RIP of n by (k-1)* mCk matrix?
