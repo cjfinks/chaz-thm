@@ -1,5 +1,5 @@
-""" 
-Compute the probability that for every S in H, there are at least k vectors x_i supported there which share a support in B 
+"""
+Compute the probability that for every S in H, there are at least k vectors x_i supported there which share a support in B
 """
 # TODO: Try alternative formula for bounded pigeonhole
 
@@ -11,7 +11,7 @@ def pigeonhole_bounded_alt(num_balls, num_bins, max_balls_per_bin):
     pass
 
 def pigeonhole_bounded(num_balls, num_bins, max_balls_per_bin):
-    """ 
+    """
     Returns the number of ways to allocate num_balls to num_bins without exceeding max_balls_per_bin in any bin
 
     Source URL:
@@ -27,7 +27,7 @@ def pigeonhole_bounded(num_balls, num_bins, max_balls_per_bin):
     return val
 
 def pigeonhole(num_balls, num_bins):
-    """ 
+    """
     Returns the number of ways to allocate num_balls to num_bins.
     """
     return comb(num_balls + num_bins - 1, num_bins - 1)
@@ -40,51 +40,66 @@ def prob_atleast_k(num_balls, num_bins, k):
     tot = pigeonhole( num_balls, num_bins )
     return 1 - bnded / tot
 
-"""
-There are N_supp vectors supported on each S in H. These are the balls.
-There are mCk k-sparse supports wrt. the n x m matrix B. These are the bins.
-For what N_supp does the proof hold with a given probability?
+if __name__ == '__main__':
+    import matplotlib.pyplot as pp
+    pp.ion()
 
-We plot this as a function of m for fixed k.
-Assume H is the set of contiguous length-k intervals of [m] arranged in cyclic order, so that |H| = m.
-"""
-k = 3 # Fixed sparsity, i.e. H is k-uniform
-m_min = k+1 # since k < m required for H to satisfy SIP
-m_max = 20 # Max dictionary size
-prob = 0.999 # With what probability do we want the proof to work
-N_probabilistic = [] # Number of samples for proof to work with probability prob
-N_deterministic = [] # Number of samples for deterministic proof, i.e. with absolute certainty
-for m in range(m_min, m_max+1):
-    print(m)
-    prob_each_supp_req = np.exp(np.log(prob) / m) # with what probability do we need the pigeonholing for each S in H to succeed so that pigeonholing for all S in H succeeds with probability prob (recall |H| = m)?
-    N_supp_min = k # need at least k
-    N_supp_max = int((k-1) * comb(m,k) + 1) # with N_supp_max per support or more, probability is 1
-    N_deterministic.append( N_supp_max * m )
-    for N_supp in range(N_supp_min, N_supp_max+1): 
-        prob_supp = prob_atleast_k(num_balls = N_supp, num_bins = comb(m,k), k = k)
-        if prob_supp >= prob_each_supp_req:
-            N_probabilistic.append( N_supp * m ) # total number of data points required is N_supp * |H|
-            break
-    #N_supp_pcntile = next(i for i, prob in enumerate(probs) if prob > supp_pcntile) 
+    """
+    Given N_supp samples per support, what is the probability that for every S in H,
+    at least k out of N_supp vectors supported there have the same support wrt. B?
+    """
+    m = 16
+    k = 2
+    num_supps = m # cyclic order hypergraph
+    samples_per_supp_deterministic = int((k-1) * comb(m,k)) + 1 # with N_deterministic per support or more, probability is 1 (deterministic case)
+    probs = []
+    for samples_per_supp in range(samples_per_supp_deterministic):
+        prob_supp = prob_atleast_k(num_balls = samples_per_supp, num_bins = comb(m,k), k = k) # probability of success
+        probs.append( prob_supp ** num_supps ) # must succeed for every S in H
 
-import matplotlib.pyplot as pp
-#pp.plot(range(k+1,m_max), [Np / Nd for Np, Nd in zip(N_prob, N_det)])
-fix, axes = pp.subplots(1,2)
-axes[0].plot(range(m_min,m_max+1), N_probabilistic)
-axes[0].plot(range(m_min,m_max+1), N_deterministic)
-axes[1].plot(range(m_min,m_max+1), [Np / Nd for Np, Nd in zip(N_probabilistic, N_deterministic)])
+    Ns = range(0, num_supps * samples_per_supp_deterministic, m) # N_supp per support in H, and there are m supports in H
+    fig, ax = pp.subplots(1,1)
+    ax.plot(Ns, probs)
+    ax.set_title('Probability that proof works vs. sample size (m=16, k=3)')
+    ax.set_xlabel('Sample size (up to deterministic sufficient number of samples)')
+    ax.set_ylabel('Prob( proof works )')
+    pp.show()
 
-"""
-What is the probability that for every S in H, at least k out of N_supp vectors supported there have the same support wrt. B? 
-"""
-m = 16
-k = 2
-N_supp_min = 0
-N_supp_max = int((k-1) * comb(m,k)) # with N_supp_max + 1 per support or more, probability is 1
-probs = []
-for N_supp in range(N_supp_min, N_supp_max+1):
-    prob_supp = prob_atleast_k(num_balls = N_supp, num_bins = comb(m,k), k = k)
-    probs.append( prob_supp ** m )
+    """
+    There are N_supp vectors supported on each S in H. These are the balls.
+    There are mCk k-sparse supports wrt. the n x m matrix B. These are the bins.
+    For what N_supp does the proof hold with a given probability?
 
-Ns = range(N_supp_min*m, m * (N_supp_max+1), m) # N_supp per support in H, and there are m supports in H
-pp.figure(); pp.plot(Ns, probs)
+    We plot this as a function of m for fixed k.
+    Assume H is the set of contiguous length-k intervals of [m] arranged in cyclic order, so that |H| = m.
+    """
+    k = 3 # Fixed sparsity, i.e. H is k-uniform
+    num_supps = m # cyclic order hypergraph
+    m_min = k+1 # since k < m required for H to satisfy SIP
+    m_max = 20 # Max dictionary size
+    prob = 0.999 # With what probability do we want the proof to work
+    samples_probabilistic = [] # Number of samples for proof to work with probability prob
+    samples_deterministic = [] # Number of samples for deterministic proof, i.e. with absolute certainty
+    for m in range(m_min, m_max+1):
+        print(m)
+        prob_each_supp_req = np.exp(np.log(prob) / m) # with what probability do we need the pigeonholing for each S in H to succeed so that pigeonholing for all S in H succeeds with probability prob (recall |H| = m)?
+        samples_per_supp_min = k # need at least k
+        samples_per_supp_deterministic = int((k-1) * comb(m,k) + 1) # with N_supp_max per support or more, probability is 1
+        samples_deterministic.append( samples_per_supp_deterministic * num_supps )
+        for samples_per_supp in range(samples_per_supp_min, samples_per_supp_deterministic + 1):
+            prob_supp = prob_atleast_k(num_balls = samples_per_supp, num_bins = comb(m,k), k = k)
+            if prob_supp >= prob_each_supp_req:
+                samples_probabilistic.append( samples_per_supp * num_supps ) # total number of data points required is N_supp * |H|
+                break
+        #N_supp_pcntile = next(i for i, prob in enumerate(probs) if prob > supp_pcntile)
+
+    #pp.plot(range(k+1,m_max), [Np / Nd for Np, Nd in zip(N_prob, N_det)])
+    fig, ax = pp.subplots(1,1)
+    ax.plot(range(m_min,m_max+1), samples_deterministic)
+    ax.plot(range(m_min,m_max+1), samples_probabilistic)
+    ax.legend(['100% guarantee', '99.9% guarantee'])
+    ax.set_title('Sufficient sample size for probabilistic and deterministic guarantees')
+    ax.set_xlabel('Number of dictionary elements m (k=3)')
+    ax.set_ylabel('Sufficient sample size')
+
+    #axes[1].plot(range(m_min,m_max+1), [Np / Nd for Np, Nd in zip(N_probabilistic, N_deterministic)])
