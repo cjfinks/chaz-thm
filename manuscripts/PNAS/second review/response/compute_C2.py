@@ -64,9 +64,9 @@ def cyclic_hypergraph(m, k):
 
 if __name__ == '__main__':
     # SQUARE GRID
-    num_trials = 50
+    num_trials = 200
     r = 2
-    Ks = [32]
+    Ks = [8]
     for k in Ks:
         m = k**2
         n = m // 2;
@@ -87,8 +87,8 @@ if __name__ == '__main__':
         pp.figure()
         pp.hist(C2s, bins=40)
         pp.show()
-        pp.title('Grid C2s (m=%d, n=%d, trials=%d)' % (m, n, num_trials))
-        pp.savefig('Grid_C2_m%d_n%d_r%d_ k%d_nt%d_r.pdf' % (m, n, r, k, num_trials))
+        pp.title('Grid C2s (m=%d, n=%d, k=%d, r=%d, trials=%d)' % (m, n, k, r, num_trials))
+        pp.savefig('C2_Grid_m%d_n%d_k%d_ r%d_nt%d_r.pdf' % (m, n, k, r, num_trials))
 
     # CYLIC
     Ks = [4] # , 16, 32]
@@ -123,4 +123,4 @@ if __name__ == '__main__':
         pp.hist(C2s, bins=40)
         pp.show()
         pp.title('Cyclic C2s (m=%d)' % m)
-        # plt.savefig('Cyclic_C2_m%d.pdf' % m)
+        plt.savefig('C2_Cyclic_m%d.pdf' % m)
