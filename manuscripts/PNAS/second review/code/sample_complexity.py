@@ -42,6 +42,11 @@ def prob_atleast_k(num_balls, num_bins, k):
 
 if __name__ == '__main__':
     import matplotlib.pyplot as pp
+    import os
+    try:
+        os.mkdir('./figures')
+    except:
+        pass
     pp.ion()
 
     """
@@ -60,10 +65,10 @@ if __name__ == '__main__':
     Ns = range(0, num_supps * samples_per_supp_deterministic, m) # N_supp per support in H, and there are m supports in H
     fig, ax = pp.subplots(1,1)
     ax.plot(Ns, probs)
-    ax.set_title('Probability that proof works vs. sample size (m=16, k=3)')
+    ax.set_title('Probability that proof works vs. sample size (m=16, k=%d)' % k)
     ax.set_xlabel('Sample size (up to deterministic sufficient number of samples)')
     ax.set_ylabel('Prob( proof works )')
-    pp.show()
+    pp.savefig('./figures/prob_vs_samples.png')
 
     """
     There are N_supp vectors supported on each S in H. These are the balls.
@@ -74,7 +79,6 @@ if __name__ == '__main__':
     Assume H is the set of contiguous length-k intervals of [m] arranged in cyclic order, so that |H| = m.
     """
     k = 3 # Fixed sparsity, i.e. H is k-uniform
-    num_supps = m # cyclic order hypergraph
     m_min = k+1 # since k < m required for H to satisfy SIP
     m_max = 20 # Max dictionary size
     prob = 0.999 # With what probability do we want the proof to work
@@ -82,6 +86,7 @@ if __name__ == '__main__':
     samples_deterministic = [] # Number of samples for deterministic proof, i.e. with absolute certainty
     for m in range(m_min, m_max+1):
         print(m)
+        num_supps = m # cyclic order hypergraph
         prob_each_supp_req = np.exp(np.log(prob) / m) # with what probability do we need the pigeonholing for each S in H to succeed so that pigeonholing for all S in H succeeds with probability prob (recall |H| = m)?
         samples_per_supp_min = k # need at least k
         samples_per_supp_deterministic = int((k-1) * comb(m,k) + 1) # with N_supp_max per support or more, probability is 1
@@ -91,7 +96,6 @@ if __name__ == '__main__':
             if prob_supp >= prob_each_supp_req:
                 samples_probabilistic.append( samples_per_supp * num_supps ) # total number of data points required is N_supp * |H|
                 break
-        #N_supp_pcntile = next(i for i, prob in enumerate(probs) if prob > supp_pcntile)
 
     #pp.plot(range(k+1,m_max), [Np / Nd for Np, Nd in zip(N_prob, N_det)])
     fig, ax = pp.subplots(1,1)
@@ -99,7 +103,8 @@ if __name__ == '__main__':
     ax.plot(range(m_min,m_max+1), samples_probabilistic)
     ax.legend(['100% guarantee', '99.9% guarantee'])
     ax.set_title('Sufficient sample size for probabilistic and deterministic guarantees')
-    ax.set_xlabel('Number of dictionary elements m (k=3)')
+    ax.set_xlabel('Number of dictionary elements m (k=%d)' % k)
     ax.set_ylabel('Sufficient sample size')
+    pp.savefig('./figures/samples_vs_m.png')
 
     #axes[1].plot(range(m_min,m_max+1), [Np / Nd for Np, Nd in zip(N_probabilistic, N_deterministic)])
