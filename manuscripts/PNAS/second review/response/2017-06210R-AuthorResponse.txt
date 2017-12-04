@@ -1,3 +1,7 @@
+Title: "On the uniqueness and stability of dictionaries for sparse representation of noisy signals" 
+Tracking #: 2017-06210R 
+Authors: Garfinkle and Hillar 
+
 -------------------------------------
 
 Editor Comments:
@@ -29,7 +33,7 @@ might withdraw from this position.
 
 RESPONSE:
 
-[Files included: updated pdf manuscript, compute_C2.py, decomp_svd.py, final_response.txt, ...TODO...]
+[Files included: , compute_C2.py, decomp_svd.py, sample_complexity.py, final_response.txt, C2_Grid_m64_n32_k8_ r2_nt500_r.pdf, C2_Grid_m256_n128_k16_ r2_nt500_r.pdf, prob_vs_samples.png, samples_vs_m.png]
 
 We are somewhat confused by this statement as we understand even the tightest possible noise bound to be necessarily "local" and approaching zero as the domain-restricted matrix lower-bound vanishes, e.g. as the number of dictionary elements grows. One need only consider the case k=1, where every dictionary element spans a ray through the origin, and each identifiable datum generated from the model [1] lies within a cylinder of radius \eta around one (and only one) of these rays. Clearly, for bounded data in a finite dimensional space, this radius cannot remain finite in the limit of infinitely many distinct rays.
 
@@ -39,7 +43,7 @@ The denominator of C1 involves a relatively standard quantity in the field of co
 
 Upon re-examination of our proof, we have determined that our expression for C2 was egregiously sub-optimal. As it turns out, the minimum in the denominator of C2 need only be computed over subsets of H of size r+1 (where r is the regularity of the hypergraph) -- not over all subsets of H. Moreover, the 2^|H| in the numerator -- which in fact need only have been |H| in our previous submission -- can actually be set to r+1 (e.g. for the SIP hypergraph consisting of consecutive intervals of length k in [m] we have |H| = m, whereas r=k).
 
-To determine the practical utility of this adjusted constant, we have performed computer experiments (Python code "compute_C2.py" included) calculating it for some generic matrices with example hypergraphs from our paper's introduction (i.e. consecutive intervals of length k in some cyclic order on [m] and the rows and columns formed by arranging [m] in a square grid). The results suggest that the bound is actually quite reasonable; certainly, it is not “practically infinitesimal" (Figures "Grid_C2_m*_nt100.pdf" included over different latent dimensions m=16,64,256).
+To determine the practical utility of this adjusted constant, we have performed computer experiments (Python code "compute_C2.py", "decomp_svd.py" included) calculating it for some generic matrices with example hypergraphs from our paper's introduction (i.e. the rows and columns formed by arranging [m] into a square grid). The results suggest that the bound is actually quite reasonable; certainly, it is not “practically infinitesimal" (Figures "C2_Grid_m64_n32_k8_ r2_nt500_r.pdf", "C2_Grid_m256_n128_k16_ r2_nt500_r.pdf" included over different latent dimensions m=64,256).
 
 -------------------------------------
 
@@ -118,7 +122,7 @@ If there is any one "gadget" to which we may credit our results, it is the pigeo
 
 It may very well be impossible to to exorcise exponentiality from the number of required samples in the deterministic or almost-certain case. However, our guarantees can easily be extended to hold with some probability for any number of samples by appealing instead to a probabilistic pigeonholing at the point in our proof of Thm. 1 where the deterministic pigeonhole principle is applied to demonstrate that for every S in H, there exist k vectors x_i supported on S whose corresponding \bar x_i all share the same support. (A famous example of such an argument is the counter-intuitive "birthday paradox", which demonstrates that the probability of two people having the same birthday in a room of twenty-three is in fact greater than 50%.) This point in the proof then has some probability of success, which must occur for all S in H in order for the proof as a whole to be valid.
 
-In this spirit, we have computed for all sample sizes up to our deterministic sample complexity the probability with which our guarantees still hold when H is the set of consecutive intervals of length k in a cyclic order on [m], one of the two example hypergraphs from our paper's introduction (Figure "prob_vs_samples.png"). The probability of our guarantees holding saturates when the number of samples reaches only a fraction of the deterministic sample complexity. 
+In this spirit, we have computed for all sample sizes up to our deterministic sample complexity the probability with which our guarantees still hold when H is the set of consecutive intervals of length k in a cyclic order on [m], one of the two example hypergraphs from our paper's introduction (Figure "prob_vs_samples.png", Python code "sample_complexity.py"). The probability of our guarantees holding saturates when the number of samples reaches only a fraction of the deterministic sample complexity. 
 
 We have also computed the number of samples required for our guarantees to hold with probability 99.9% for fixed k as m increases (Figure "samples_vs_m.png"). The ratio of the number of samples required for this 99.9% guarantee with respect to the number of samples required by the deterministic 100% guarantee of Thm. 1 tends to zero as m increases.
 

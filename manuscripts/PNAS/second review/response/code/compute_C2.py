@@ -11,12 +11,13 @@ def friedrichs(U,V):
     Alternatively, it is the (s+1)th principal angle when dim(U \cap V) = s.
     """
     angles = subspace_angles(U,V)
-    nz_angles = angles > 0  # np.finfo(float).eps
-    if np.any(nz_angles):
-        min_nz_angle = np.sort(angles[nz_angles])[0]
-        return min_nz_angle
-    else:
-        return 0.
+    return np.sort(angles)[0]
+    # nz_angles = angles > 0  # np.finfo(float).eps
+    # if np.any(nz_angles):
+    #     min_nz_angle = np.sort(angles[nz_angles])[0]
+    #     return min_nz_angle
+    # else:
+    #     return 0.
 
 def xi(A, G):
     """
@@ -64,7 +65,7 @@ def cyclic_hypergraph(m, k):
 
 if __name__ == '__main__':
     # SQUARE GRID
-    num_trials = 200
+    num_trials = 100
     r = 2
     Ks = [8]
     for k in Ks:
