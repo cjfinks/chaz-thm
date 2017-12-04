@@ -33,7 +33,7 @@ might withdraw from this position.
 
 RESPONSE:
 
-[Files included: 2017-06210R-RevisedManuscript.pdf, compute_C2.py, decomp_svd.py, sample_complexity.py, final_response.txt, C2_Grid_m64_n32_k8_r2_nt500.pdf, C2_Grid_m256_n128_k16_r2_nt500.pdf, Grid_C2_m1024_n512_k32_r2_nt50.pdf, prob_vs_samples.png, samples_vs_m.png]
+[Files included: 2017-06210R-RevisedManuscript.pdf, compute_C2.py, decomp_svd.py, sample_complexity.py, final_response.txt, C2_Grid_m64_n32_k8_r2_nt500.pdf, C2_Grid_m256_n128_k16_r2_nt500.pdf, C2_Grid_m1024_n512_k32_r2_nt50.pdf, prob_vs_samples.png, samples_vs_m.png]
 
 We are somewhat confused by this statement as we understand even the tightest possible noise bound to be necessarily "local" and approaching zero as the domain-restricted matrix lower-bound vanishes, e.g. as the number of dictionary elements grows. One need only consider the case k=1, where every dictionary element spans a ray through the origin, and each identifiable datum generated from the model [1] lies within a cylinder of radius \eta around one (and only one) of these rays. Clearly, for bounded data in a finite dimensional space, this radius cannot remain finite in the limit of infinitely many distinct rays.
 
@@ -43,7 +43,7 @@ The denominator of C1 involves a relatively standard quantity in the field of co
 
 Upon re-examination of our proof, we have determined that our expression for C2 was egregiously sub-optimal. As it turns out, the minimum in the denominator of C2 need only be computed over subsets of H of size r+1 (where r is the regularity of the hypergraph) -- not over all subsets of H. Moreover, the 2^|H| in the numerator -- which in fact need only have been |H| in our previous submission -- can actually be set to r+1 (e.g. for the SIP hypergraph consisting of consecutive intervals of length k in [m] we have |H| = m, whereas r=k).
 
-To determine the practical utility of this adjusted constant, we have performed computer experiments (Python code "compute_C2.py", "decomp_svd.py" included) calculating it for some generic matrices with example hypergraphs from our paper's introduction (i.e. the rows and columns formed by arranging [m] into a square grid). The results suggest that the bound is actually quite reasonable; certainly, it is not “practically infinitesimal" (Figures "C2_Grid_m64_n32_k8_r2_nt500.pdf", "C2_Grid_m256_n128_k16_r2_nt500.pdf", "Grid_C2_m1024_n512_k32_r2_nt50.pdf", included over different latent dimensions m=64,256,1024).
+To determine the practical utility of this adjusted constant, we have performed computer experiments (Python code "compute_C2.py", "decomp_svd.py" included) calculating it for some generic matrices with example hypergraphs from our paper's introduction (i.e. the rows and columns formed by arranging [m] into a square grid). The results suggest that the bound is actually quite reasonable; certainly, it is not “practically infinitesimal" (Figures "C2_Grid_m64_n32_k8_r2_nt500.pdf", "C2_Grid_m256_n128_k16_r2_nt500.pdf", "C2_Grid_m1024_n512_k32_r2_nt50.pdf", included over different latent dimensions m=64,256,1024).
 
 -------------------------------------
 
