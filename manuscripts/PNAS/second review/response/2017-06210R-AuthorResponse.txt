@@ -33,7 +33,7 @@ might withdraw from this position.
 
 RESPONSE:
 
-[Files included: 2017-06210R-AuthorResponseManuscript.pdf, compute_C2.py, decomp_svd.py, sample_complexity.py, final_response.txt, C2_Grid_m64_n32_k8_r2_nt500.pdf, C2_Grid_m256_n128_k16_r2_nt500.pdf, C2_Grid_m1024_n512_k32_r2_nt50.pdf, prob_vs_samples.png, samples_vs_m.png]
+[Files included: 2017-06210R-AuthorResponseManuscript.pdf, compute_C2.py, decomp_svd.py, sample_complexity.py, C2_Grid_m64_n32_k8_r2_nt500.pdf, C2_Grid_m256_n128_k16_r2_nt500.pdf, C2_Grid_m1024_n512_k32_r2_nt50.pdf, prob_vs_samples.png, samples_vs_m.png]
 
 We are somewhat confused by this statement as we understand even the tightest possible noise bound to be necessarily "local" and approaching zero as the domain-restricted matrix lower-bound vanishes, e.g. as the number of dictionary elements grows. One need only consider the case k=1, where every dictionary element spans a ray through the origin, and each identifiable datum generated from the model of Eq. 1 lies within a cylinder of radius \eta around one (and only one) of these rays. Clearly, for bounded data in a finite dimensional space, this radius cannot remain finite in the limit of infinitely many distinct rays.
 
