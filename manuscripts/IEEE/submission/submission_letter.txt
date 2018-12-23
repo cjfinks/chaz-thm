@@ -1,0 +1,13 @@
+Dear Editors at Transactions on Signal Processing,
+
+We are submitting the manuscript:
+
+"On the uniqueness and stability of dictionaries for sparse representation of noisy signals"
+
+for your consideration.  We note that editor Prof. Marco Duarte at Signal Processing Letters liked the publication but suggested Transactions instead so as to allow for a full explication of the material and proofs.  In the meantime, we have added additional results that strengthen the paper; in particular, Theorem 2, which did not appear in our submission to Letters.
+
+Thank you for your time.
+
+Best regards,
+Chris Hillar
+Charles Garfinkle
