@@ -110,7 +110,7 @@ Find $\mathbf{B}$ and \mbox{$\mathbf{\overline x}_1, \ldots, \mathbf{\overline x
 \text{subject to} \ \ \|\mathbf{z}_i - \mathbf{B}\mathbf{\overline x}_i\|_2 \leq \eta, \ \text{for all $i$}.
 \end{align}
 \end{problem}
-We then sketch proofs of probabilistic extensions of Thm.~\ref{DeterministicUniquenessTheorem} to random data and dictionaries (Thm.~\ref{robustPolythm} and Cor.~\ref{ProbabilisticCor}). Finally, in Sec.~\ref{Discussion}, we discuss both theoretical and practical applications of our main mathematical findings.
+We then sketch proofs of probabilistic extensions of Thm.~\ref{DeterministicUniquenessTheorem} to  data and dictionaries drawn from probability distributions (Thm.~\ref{robustPolythm} and Cor.~\ref{ProbabilisticCor}). Finally, in Sec.~\ref{Discussion}, we discuss both theoretical and practical applications of our main mathematical findings.
 
 \section{Results}\label{Results}
 
@@ -142,7 +142,7 @@ where we write $L_{k}$ when $\mathcal{H} = {[m] \choose k}$.\footnote{We note th
  
 A vector $\mathbf{x}$ is said to be \emph{supported} in $S \subseteq [m]$ when $\mathbf{x} \in \text{\rm span}\{\mathbf{e}_j: j\in S\}$, where $\mathbf{e}_j$ form the standard column basis in $\mathbb R^m$. 
 %Denote by $\mathbf{x}^J$ the subvector formed from the entries of $\mathbf{x}$ indexed by $J$. 
-A set of $k$-sparse vectors is said to be in \emph{general linear position} when any $k$ of them are linearly independent. The following is a precise statement of our main result.  We leave the quantity $C_1 = C_1(\mathbf{A}, \{\mathbf{x}_i\}_{i=1}^N, \mathcal{H})$ undefined until Eq.~\eqref{Cdef1}. All of our theorems assume matrices consist of real numbers.
+A set of $k$-sparse vectors is said to be in \emph{general linear position} when any $k$ of them are linearly independent. The following is a precise statement of our main result, though we will leave the quantity $C_1 = C_1(\mathbf{A}, \{\mathbf{x}_i\}_{i=1}^N, \mathcal{H})$ undefined until Eq.~\eqref{Cdef1}. All of our theorems assume matrices consist of real numbers.
 
 %eps-tightness COUNTER-EXAMPLE:
 %Consider the alternate dictionary $B = \left(\mathbf{0}, \frac{1}{2}(\mathbf{e}_1 + \mathbf{e}_2), \mathbf{e}_3, \ldots, \mathbf{e}_{m} \right)$ and sparse codes $\mathbf{b}_i = \mathbf{e}_2$ for $i = 1, 2$ and $\mathbf{b}_i = \mathbf{e}_i$ for $i = 3, \ldots, m$. Then $|A\mathbf{a}_i - B\mathbf{b}_i| = 1/\sqrt{2}$ for $i = 1, 2$ (and $0$ otherwise). If there were permutation and invertible diagonal matrices $P \in \mathbb{R}^{m \times m}$ and $D \in \mathbb{R}^{m \times m}$ such that $|(A-BPD)\mathbf{e}_i| \leq C\varepsilon$ for all $i \in [m]$, then we would reach the contradiction $1 = |P^{-1}\mathbf{e}_1|_2 = |(A-BPD)P^{-1}\mathbf{e}_1|_2 \leq 1/\sqrt{2}$. 
@@ -207,7 +207,7 @@ Another practical implication of Thm.~\ref{DeterministicUniquenessTheorem} is th
 %As mentioned above, there exist $k$-uniform regular hypergraphs $\mathcal{H}$ with the SIP having cardinality $|\mathcal{H}| = m$, 
 
 %\cite{li2004analysis, Georgiev05, Aharon06, Hillar15}
-We furthermore note that unlike in previous works, the matrix $\mathbf{A}$ need not satisfy \eqref{SparkCondition} to be recoverable from data. As an example for $k=2$, let $\mathbf{A} = [ \mathbf{e}_1, \ldots, \mathbf{e}_5, \mathbf{v}]$ where $\mathbf{v} = \mathbf{e}_1 + \mathbf{e}_3 + \mathbf{e}_5$, and take $\mathcal{H}$ to be all consecutive pairs of $[m]$ arranged in cyclic order. Then, dictionary $\mathbf{A}$ satisfies the assumptions of Thm.~\ref{DeterministicUniquenessTheorem} underlying \eqref{Cstable} without satisfying \eqref{SparkCondition}. %(since $\{ \mathbf{A}_1, \mathbf{A}_3, \mathbf{A}_5, \mathbf{A}_6\}$ is not a linearly independent set).
+We furthermore note that unlike in previous works, the matrix $\mathbf{A}$ need not satisfy \eqref{SparkCondition} to be recoverable from data. As an example for $k=2$, let $\mathbf{A} = [ \mathbf{e}_1, \ldots, \mathbf{e}_5, \mathbf{v}]$ where $\mathbf{v} = \mathbf{e}_1 + \mathbf{e}_3 + \mathbf{e}_5$, and take $\mathcal{H}$ to be all consecutive pairs of $[m]$ arranged in cyclic order. Then, dictionary $\mathbf{A}$ satisfies the assumptions of Thm.~\ref{DeterministicUniquenessTheorem} guaranteeing \eqref{Cstable} without satisfying \eqref{SparkCondition}. %(since $\{ \mathbf{A}_1, \mathbf{A}_3, \mathbf{A}_5, \mathbf{A}_6\}$ is not a linearly independent set).
 %This weakening allows for a practical (polynomial) amount of data to still guarantee a stable dictionary in the case where the set of sparse supports for the $\mathbf{\overline x}_i$ is known to have a size that grows polynomially in $m$ and $k$.
 
 There are other less direct consequences of Thm.~\ref{DeterministicUniquenessTheorem}.  For instance, we apply it to prove uniqueness and stability of solutions to Prob.~\ref{SLCopt}, the usual optimization problem of interest for those applying dictionary learning to their data.
@@ -246,7 +246,7 @@ Fix $m > k$, $n \geq \min(2k, m)$, and let the entries of $\mathbf{A} \in \mathb
 
 Thus, choosing the dictionary and codes ``randomly'' almost certainly generates data with a stable sparse representation.
 
-We remark that these results have an important application to theoretical neuroscience by mathematically justifying one of the few hypothesized theories of bottleneck communication between sparsely active neural populations \cite{Isely10}. 
+We remark that these results have a potential application to theoretical neuroscience by mathematically justifying one of the few hypothesized theories of bottleneck communication between sparsely active neural populations \cite{Isely10}. 
 
 \begin{proposition}\label{neuroprop}
 Sparse neural population activity is recoverable from noisy random linear compression by any method that solves Prob.~\ref{DeterministicUniquenessTheorem} or \ref{SLCopt}; in particular, via biophysically plausible unsupervised sparse coding (e.g., \cite{rehnsommer2007, rozell2007neurally, pehlevan2015normative}).
@@ -455,11 +455,11 @@ By Thm.~\ref{robustPolythm}, there is a polynomial that is nonzero when $Y$ has 
 
 \section{Discussion}\label{Discussion}
 
-The goal of this work was to explain the emergence of characteristic representations from sparse coding models fit to natural data, despite the varied assumptions underlying the many algorithms in current use. To this end, we have taken an important step toward unifying the great number of publications on the topic by demonstrating very general, deterministic conditions under which identification of parameters in this parsimonious model is not only possible but also robust to the inevitable uncertainty permeating measurement and model choice.
+A goal of this work was to explain the emergence of characteristic representations from sparse coding models fit to natural data, despite the varied assumptions underlying the many algorithms in current use. To this end, we have taken an important step toward unifying the great number of publications on the topic by demonstrating very general, deterministic conditions under which identification of parameters in this model is not only possible but also robust to the inevitable uncertainty permeating measurement and model choice.
 
-Specifically, we have shown that, given sufficient data, the problem of seeking a dictionary and sparse codes with minimal average support size (Prob.~\ref{OptimizationProblem}) reduces to an instance of Prob.~\ref{InverseProblem}, to which our main result (Thm.~\ref{DeterministicUniquenessTheorem}) applies: every dictionary and sparse codes consistent with the data are equivalent up to inherent relabeling/scaling ambiguities and a discrepancy (error) that scales linearly with the measurement noise or modeling inaccuracy. The constants we provide are explicit and computable; as such, there is an effective procedure that sufficiently affirms if a proposed solution to Probs.~\ref{DeterministicUniquenessTheorem} or \ref{OptimizationProblem} is indeed unique up to noise and inherent ambiguities.
+We have shown that, given sufficient data, the problem of seeking a dictionary and sparse codes with minimal average support size (Prob.~\ref{OptimizationProblem}) reduces to an instance of Prob.~\ref{InverseProblem}, to which our main result (Thm.~\ref{DeterministicUniquenessTheorem}) applies: every dictionary and sequence of sparse codes consistent with the data are equivalent up to inherent relabeling/scaling ambiguities and a discrepancy (error) that scales linearly with the measurement noise or modeling inaccuracy. The constants we provide are explicit and computable; as such, there is an effective procedure that sufficiently affirms if a proposed solution to Probs.~\ref{DeterministicUniquenessTheorem} or \ref{OptimizationProblem} is indeed unique up to noise and inherent ambiguities.
 
-An immediate application of our theoretical work is Prop.~\ref{neuroprop}, which certifies the validity of a theory of neurally-plausible bottleneck communication in the brain: that sparse coding in a compressed space of neural activity can recover sparse codes sent through a randomly-constructed (but unknown) noisy wiring bottleneck \cite{Isely10}.\footnote{We refer the reader to \cite{ganguli2012compressed} for more on interactions between dictionary learning and neuroscience.}
+An immediate application of our theoretical work is Prop.~\ref{neuroprop}, which certifies the validity of a theory of biologically-plausible bottleneck communication in the brain: that sparse coding in a compressed space of neural activity can recover sparse codes sent through a randomly-constructed (but unknown) noisy wiring bottleneck \cite{Isely10}.\footnote{We refer the reader to \cite{ganguli2012compressed} for more on interactions between dictionary learning and neuroscience.}
 
 %A compelling feature of this model is its simple instantiation of the principle of Occam's razor: a natural video, for instance, is modeled as a linear combination of a small number of spatiotemporal building blocks, each representing an archetypical feature latent in the data. 
 
