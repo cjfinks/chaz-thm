@@ -117,7 +117,7 @@ To see how Prob. \ref{InverseProblem} motivates Def. \ref{maindef}, suppose that
 The main result of this work is a very general uniqueness theorem for sparse coding (Thm.~\ref{DeterministicUniquenessTheorem}) directly 
 implying (Cor.~\ref{DeterministicUniquenessCorollary}) that stable representations of a dataset $Z$ are guaranteed whenever generating dictionaries $A$ satisfy a spark condition on supports and the original sparse codes $\mathbf{x}_i$ are sufficiently diverse.  Moreover, we provide an explicit, computable formula for $\varepsilon(\delta_1, \delta_2)$ in (\ref{epsdel}) that is linear in desired accuracy $\delta_1, \delta_2$.
 
-In the next section, we give precise statements of these results.  We then extend the same guarantees to the following alternate formulation of the dictionary learning problem, which attempts to minimize the mean number of nonzero entries in the sparse codes (Thm.~\ref{SLCopt}).
+In the next section, we give precise statements of these results.  We then extend the same guarantees (Thm.~\ref{SLCopt}) to the following alternate formulation of dictionary learning, which minimizes the number of nonzero entries in sparse codes.
 
 \begin{problem}\label{OptimizationProblem}
 Find real $\mathbf{B}$ and \mbox{$\mathbf{\overline x}_1, \ldots, \mathbf{\overline x}_N$} that solve:
@@ -126,7 +126,8 @@ Find real $\mathbf{B}$ and \mbox{$\mathbf{\overline x}_1, \ldots, \mathbf{\overl
 \text{subject to} \ \ \|\mathbf{z}_i - \mathbf{B}\mathbf{\overline x}_i\|_2 \leq \eta, \ \text{for all $i$}.
 \end{align}
 \end{problem}
-We also give brief arguments adapting our results to data and dictionaries drawn from probability distributions (Cor.~\ref{ProbabilisticCor}). We defer to Sec.~\ref{DUT} the more technically involved proofs of Thms.~\ref{DeterministicUniquenessTheorem} and ~\ref{SLCopt}, following some necessary definitions and a useful result in combinatorial matrix analysis (Lem.~\ref{MainLemma}). Finally, we discuss in Sec.~\ref{Discussion} some theoretical and practical applications of our main mathematical findings. The Appendix contains a proof of Lem.~\ref{MainLemma}.
+We also give brief arguments adapting our results to dictionaries and codes drawn from probability distributions (Cor.~\ref{ProbabilisticCor}). We defer to Sec.~\ref{DUT} the technical proofs of Thms.~\ref{DeterministicUniquenessTheorem} and ~\ref{SLCopt}, following some necessary definitions and a useful fact in combinatorial matrix analysis (Lem.~\ref{MainLemma}, proved in the Appendix). Finally, we discuss in Sec.~\ref{Discussion} theoretical and practical applications of our main mathematical findings. 
+%The Appendix contains a proof of Lem.~\ref{MainLemma}.
 
 \section{Results}\label{Results}
 
