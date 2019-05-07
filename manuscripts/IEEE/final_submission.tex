@@ -114,7 +114,10 @@ then there is some permutation matrix $\mathbf{P}$ and invertible diagonal matri
 
 To see how Prob. \ref{InverseProblem} motivates Def. \ref{maindef}, suppose that $Y$ has a stable $k$-sparse representation in $\mathbb{R}^m$ and fix $\delta_1, \delta_2$ to be the desired accuracies of recovery in \eqref{def1}. Consider any dataset $Z$ generated as in \eqref{LinearModel} with $\eta \leq \frac{1}{2} \varepsilon(\delta_1, \delta_2)$. Using the triangle inequality, it follows that any $n \times m$ matrix $\mathbf{B}$ and $k$-sparse $\mathbf{\overline x}_1, \ldots, \mathbf{\overline x}_N$ solving Prob.~\ref{InverseProblem} are necessarily within $\delta_1$ and $\delta_2$ of the original dictionary $\mathbf{A}$ and codes $\mathbf{x}_1, \ldots, \mathbf{x}_N$, respectively.\footnote{We mention that the different norms in \eqref{def1} reflect the distinct meanings typically ascribed to the dictionary and sparse codes in modeling data.}
 
-In the next section, we give precise statements of our main result (Thm.~\ref{DeterministicUniquenessTheorem}), from which we have derived an explicit form for $\varepsilon(\delta_1, \delta_2)$. We then extend the same guarantees to the following alternate formulation of the dictionary learning problem as one of minimizing the total (or equivalently, the mean) number of non-zero entries in the sparse codes (Thm.~\ref{SLCopt}):
+The main result of this work is a very general uniqueness theorem for sparse coding (Thm.~\ref{DeterministicUniquenessTheorem}) directly 
+implying (Cor.~\ref{DeterministicUniquenessCorollary}) that stable representations of a dataset $Z$ are guaranteed whenever generating dictionaries $A$ satisfy a spark condition on supports and the original sparse codes $\mathbf{x}_i$ are sufficiently diverse.  Moreover, we provide an explicit, computable formula for $\varepsilon(\delta_1, \delta_2)$ in (\ref{epsdel}) that is linear in desired accuracy $\delta_1, \delta_2$.
+
+In the next section, we give precise statements of these results.  We then extend the same guarantees to the following alternate formulation of the dictionary learning problem, which attempts to minimize the mean number of nonzero entries in the sparse codes (Thm.~\ref{SLCopt}).
 
 \begin{problem}\label{OptimizationProblem}
 Find real $\mathbf{B}$ and \mbox{$\mathbf{\overline x}_1, \ldots, \mathbf{\overline x}_N$} that solve:
