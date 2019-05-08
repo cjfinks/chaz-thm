@@ -310,10 +310,10 @@ We close this section with some comments on the optimality of our results.  The 
 
 We begin our proof of Thm.~\ref{DeterministicUniquenessTheorem} by showing how dictionary recovery \eqref{Cstable} already implies sparse code recovery \eqref{b-PDa} when $\mathbf{A}$ satisfies \eqref{SparkCondition} and \mbox{$\varepsilon < L_{2k}(\mathbf{A}) / C_1$}, assuming that $\overline m = m$ without loss of generality. Consider any $2k$-sparse $\mathbf{x} \in \mathbb{R}^m$ and note that $\|\mathbf{x}\|_1 \leq \sqrt{2k}  \|\mathbf{x}\|_2$. By definition of $L_{2k}$ in \eqref{Ldef}, we have:
 \begin{align}\label{stuff}
-\|\mathbf{x}_i - \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\overline x}_i \|_1 \nonumber
-&\leq \frac{\|\mathbf{BPD}(\mathbf{x}_i - \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\overline x}_i)\|_2}{L_{2k}(\mathbf{BPD})} \\ \nonumber
-&\leq \frac{\|(\mathbf{BPD} - \mathbf{A})\mathbf{x}_i\|_2 + \|\mathbf{A}\mathbf{x}_i - \mathbf{B}\mathbf{\overline x}_i\|_2}{L_{2k}(\mathbf{BPD})} \\
-&\leq \frac{C_1\varepsilon \|\mathbf{x}_i\|_1 + \varepsilon}{L_{2k}(\mathbf{BPD})},
+\|\mathbf{x} - \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\overline x} \|_1 \nonumber
+&\leq \frac{\|\mathbf{BPD}(\mathbf{x} - \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\overline x})\|_2}{L_{2k}(\mathbf{BPD})} \\ \nonumber
+&\leq \frac{\|(\mathbf{BPD} - \mathbf{A})\mathbf{x}\|_2 + \|\mathbf{A}\mathbf{x} - \mathbf{B}\mathbf{\overline x}\|_2}{L_{2k}(\mathbf{BPD})} \\
+&\leq \frac{C_1\varepsilon \|\mathbf{x}\|_1 + \varepsilon}{L_{2k}(\mathbf{BPD})},
 \end{align}
 where the term $C_1\varepsilon \|\mathbf{x}\|_1$ in the numerator above is a consequence of the triangle inequality applied to \eqref{Cstable}.
 
