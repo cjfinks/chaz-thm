@@ -42,7 +42,7 @@
 
 %\title{When can a generating dictionary and sparse codes be recovered from noisy data?}
 %\title{When is the dictionary learning problem well-posed?}
-\title{On the uniqueness and stability of dictionaries for sparse representation of noisy signals}
+\title{On the uniqueness and stability of dictionaries \\ for sparse representation of noisy signals}
 %\title{When is the dictionary learning problem for sparse coding well-posed?}
 %\title{When is the sparsest representation unique?}
 %\title{When are sparse codes identifiable from their unknown noisy compressive measurements?}
@@ -127,7 +127,7 @@ Find real $\mathbf{B}$ and \mbox{$\mathbf{\overline x}_1, \ldots, \mathbf{\overl
 \end{align}
 \end{problem}
 
-Our development of Thm.~\ref{DeterministicUniquenessTheorem} is general enough to provide some uniqueness stability even when generating $A$ do not fully satisfy (\ref{SparkCondition}) and recovery dictionaries $B$ have more columns than $A$.  Moreover, the approach incorporates a combinatorial theory for designing generating codes that should be of independent interest. We also give brief arguments adapting our results to dictionaries and codes drawn from probability distributions (Cor.~\ref{ProbabilisticCor}). We defer to Sec.~\ref{DUT} the technical proofs of Thms.~\ref{DeterministicUniquenessTheorem} and ~\ref{SLCopt}, following some necessary definitions and a useful fact in combinatorial matrix analysis (Lem.~\ref{MainLemma}; proved in the Appendix). Finally, we discuss in Sec.~\ref{Discussion} theoretical and practical applications of our mathematical observations. 
+Our development of Thm.~\ref{DeterministicUniquenessTheorem} is general enough to provide some uniqueness stability even when generating $A$ do not fully satisfy (\ref{SparkCondition}) and recovery dictionaries $B$ have more columns than $A$.  Moreover, the approach incorporates a combinatorial theory for designing generating codes that should be of independent interest. We also give brief arguments adapting our results to dictionaries and codes drawn from probability distributions (Cor.~\ref{ProbabilisticCor}). We defer to Sec.~\ref{DUT} the technical proofs of Thms.~\ref{DeterministicUniquenessTheorem} and ~\ref{SLCopt}, following some necessary definitions and a useful fact in combinatorial matrix analysis (Lem.~\ref{MainLemma}; proved in the Appendix). Finally, we discuss in Sec.~\ref{Discussion} applications of our mathematical observations as well as open problems. 
 %The Appendix contains a proof of Lem.~\ref{MainLemma}.
 
 \section{Results}\label{Results}
@@ -457,7 +457,7 @@ Fixing $\mathbf{y} \in \bm{\mathcal{A}}_S \setminus \{\mathbf{0}\}$, there then 
 \leq \varepsilon \sqrt{k}  \|\mathbf{c}\|_2  \\
 &\leq \frac{\varepsilon}{L_k(\mathbf{AX}_K)} \|\mathbf{y}\|_2,
 \end{align*}
-where the last inequality follows directly from \eqref{Ldef}. From Def.~\ref{dDef}:
+where the last inequality uses \eqref{Ldef}. From Def.~\ref{dDef}:
 \begin{align}\label{rhs222}
 d(\bm{\mathcal{A}}_S, \bm{\mathcal{B}}_{\overline S}) 
 \leq \frac{\varepsilon}{  L_k(\mathbf{AX}_{K}) } 
