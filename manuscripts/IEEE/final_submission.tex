@@ -275,8 +275,6 @@ To extend this observation to arbitrary probability distributions, note that if 
 If indeterminate entries of $\mathbf{A}$ and $\mathbf{x}_i$ are drawn independently from probability measures absolutely continuous with respect to the standard Borel measure, then $Y$ has a stable $k$-sparse representation in $\mathbb{R}^m$ with probability one.
 \end{corollary}
 
-
-
 Thus, drawing the dictionary and supported sparse coefficients from any continuous probability distribution almost always generates data with a stable sparse representation.
 
 %\cite{rehnsommer2007, rozell2007neurally, ganguli2012compressed, hu2014hebbian}
@@ -531,7 +529,15 @@ In fact, uniqueness guarantees with minimal assumptions apply to all areas of da
 Assurances such as those offered by our theorems certify that different devices and algorithms (with different initialization, etc.) will learn equivalent representations given enough data from statistically identical systems.\footnote{To contrast with the current hot topic of ``Deep Learning'', there are few such uniqueness guarantees for these models of data; moreover, even small noise can dramatically alter their output \cite{goodfellow2014explaining}.} Indeed, a main reason for the sustained interest in dictionary learning as an unsupervised method for data analysis seems to be the assumed well-posedness of parameter identification in the sparse coding model, confirmation of which forms the core of our theoretical findings.
 
 \section{EXTRA}
-An additional implication of Thm.~\ref{DeterministicUniquenessTheorem} of potential relevance to Prob.~\ref{OptimizationProblem} is the implied lower bound on $L_{2k}(\mathbf{B})$ in the case where $\mathbf{A}$ satisfies \eqref{SparkCondition}. Due to complexity issues, Prob.~\ref{SLCopt} is often solved by first replacing the $\|\cdot\|_0$-norm with the $\|\cdot\|_1$-norm. The compressed sensing literature informs us that sparse codes are in fact stably recoverable via minimization of the $\|\cdot\|_1$-norm provided $L_{2k}(\mathbf{A})$ is large enough. Thm.~\ref{DeterministicUniquenessTheorem} guarantees that for large enough $L_{2k}(\mathbf{A})$, all valid solutions also have the property that their sparse codes can be inferred by minimization of the $\|\cdot\|_1$ norm. Does this matter..?
+An additional consequence of Thm.~\ref{DeterministicUniquenessTheorem} of potential practical relevance to is the implied lower bound $L_{2k}(\mathbf{BPD}) \geq L_{2k}(\mathbf{A}) - C_1\varepsilon$ in the case where $\mathbf{A}$ satisfies \eqref{SparkCondition}. Since solving Prob.~\ref{SLCopt} directly requires a combinatorial search over sparse supports for the $\mathbf{\overline x}_i$ for each proposed dictionary $\mathbf{B}$, rendering it intractable in general, a common strategy is to replace the $\ell_0$-norm in \eqref{minsum} with the $\ell_1$-norm, thereby transforming the inference of sparse $\mathbf{\overline x}_i$ for a fixed dictionary $\mathbf{B}$ into a convex optimization solvable by a linear program. A major advance in compressive sensing was the discovery that, for fixed $\mathbf{B}$, solutions to \eqref{minsum} using either norm yield the same sparse vectors $\mathbf{\overline x}_i$ (up to noise) provided $L_{2k}(\mathbf{B})$ is large enough \cite{?}. What our results hint at are conditions on the generating dictionary $\mathbf{A}$ and $k$-sparse codes $\mathbf{x}_i$ under which \emph{all} matrices $\mathbf{B}$ (of bounded column-norm) that solve Prob.~\ref{OptimizationProblem} also share this property by virtue of uniqueness and stability; that is, conditions which guarantee that the sparse codes $\mathbf{\overline x}_i$ solving Prob.~\ref{OptimizationProblem} also solve the convexified problem when the corresponding dictionary $\mathbf{B}$ is held fixed. It remains to determine, however, what practical conditions preclude matrices that don't solve Prob.~\ref{OptimizationProblem} from nonetheless solving the convexified problem.
+
+Regardless, an implication of the above observation is that the following algorithm solves Prob.~\ref{OptimizationProblem} without appeal to combinatorial search:
+\begin{enumerate}
+\item List all matrices $\mathbf{B}$.
+\item For each matrix $\mathbf{B}$, solve $\mathbf{\overline x}_i = \arg \min \|\mathbf{v}\|_1$ s.t. $\|\mathbf{Bv} - \mathbf{z}_i\| \leq \eta$ for $i = 1, \ldots, N$.
+\item Quantify the proposed solution $\mathbf{B}$ and $\mathbf{\overline x}_1, \ldots, \mathbf{\overline x}_N$ as $\rho(\mathbf{B}, \mathbf{\overline x}_1, \ldots, \mathbf{\overline x}_N) = \sum_{i=1}^{N} \|\mathbf{\overline x}_i\|_0$.
+\item Output $\arg \min_{\mathbf{B}, \mathbf{\overline x}_1, \ldots, \mathbf{\overline x}_N} \left( \rho \right)$.
+ \end{enumerate}
 
 \textbf{Acknowledgement.} We thank F. Sommer and D. Rhea for early thoughts, and I. Morris for posting \eqref{eqdim} online.
 
