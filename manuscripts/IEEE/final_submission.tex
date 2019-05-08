@@ -1,10 +1,8 @@
-% TODO: cite Fritz l0 paper in introduction for seemingly characteristic structure? Use those mentioned in PNAS response?
+% TODO: 
+% cite Fritz l0 paper in introduction for seemingly characteristic structure? 
 % Make L_H a definition..? Change def of L to be 1-norm so we don't need these sqrt k's?
-% When do we have polynomial complexity? Is it worth saying something about this for cyclic order (e.g. convolutions?)
-% mention regularity is probably not necessary
-% have i talked about making deterministic A? (see reviewer comment, and comment about easily meeting thm 1 conditions w deterministic construction). also after f(A). we make L_2k(a) with vandermonde, clarify this is way more than necessary...but it is necessary if we care about sparse coefficient recovery too, which is part of df of stable sparse representation.
-% IS THEOREM 3 AND ITS COROLLARY CORRECTLY STATED??
-% mention use of coherence instead of L_k? for practical criteria?
+% C_1 depends on J in Thm 1
+% also in proof of (7) x need not be *any* 2k-sparse vector...can instead restrict to some H...then 2k is restricted to half being on H.
 
 % Notes:
 %
@@ -108,7 +106,7 @@ This representation is \textbf{stable} if for every $\delta_1, \delta_2 \geq 0$,
 \end{align*}
 then there is some permutation matrix $\mathbf{P}$ and invertible diagonal matrix $\mathbf{D}$ such that for all $i, j$:
 \begin{align}\label{def1}
-\|\mathbf{A}_j - \mathbf{BPD}_j\|_2 \leq \delta_1 \ \ \text{and} \ \ \|\mathbf{x}_i - \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\overline x}_i\|_1 \leq \delta_2.
+\|\mathbf{A}_j - (\mathbf{BPD})_j\|_2 \leq \delta_1 \ \ \text{and} \ \ \|\mathbf{x}_i - \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\overline x}_i\|_1 \leq \delta_2.
 \end{align}
 \end{definition}
 
@@ -180,10 +178,10 @@ Every $n \times \overline m$ matrix $\mathbf{B}$ for which there are $k$-sparse 
 for some $J \subseteq [m]$ of size \mbox{$m - (r-1)(\overline m - m)$}. 
 % $\overline m - r(\overline m - m)$
 
-Moreover, if $\mathbf{A}$ satisfies \eqref{SparkCondition} and $\varepsilon < L_{2k}(\mathbf{A}) / C_1$, then $\mathbf{B}$ also satisfies \eqref{SparkCondition} with $L_{2k}(\mathbf{B}\mathbf{PD}) \geq L_{2k}(\mathbf{A}) - C_1 \varepsilon$, and for all $i \in [N]$:
+Moreover, if $\mathbf{A}_J$ satisfies \eqref{SparkCondition} and $\varepsilon < L_{2k}(\mathbf{A}_J) / C_1$, then $(\mathbf{BPD})_J$ also satisfies \eqref{SparkCondition} with $L_{2k}((\mathbf{B}\mathbf{PD})_J) \geq L_{2k}(\mathbf{A}_J) - C_1 \varepsilon$, and for all $i \in [N]$:
 \begin{align}\label{b-PDa}
 %\|\mathbf{x}^J_i - \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\overline x}^{\overline J}_i\|_1 &\leq  \left( \frac{ 1+C_1 \|\mathbf{x}^{J}_i\|_1 }{ L_{2k}(\mathbf{A}) -  C_1\varepsilon } \right) \varepsilon \ \  \text{for $i \in [N]$}.
-\|(\mathbf{x}_i)_J - (\mathbf{D}^{-1}\mathbf{P}^{\top} \mathbf{\overline x}_i)_J\|_1 &\leq  \left( \frac{ 1+C_1 \|\mathbf{x}_i\|_1 }{ L_{2k}(\mathbf{A}) -  C_1\varepsilon } \right) \varepsilon,
+\|(\mathbf{x}_i)_J - (\mathbf{D}^{-1}\mathbf{P}^{\top} \mathbf{\overline x}_i)_J\|_1 &\leq  \left( \frac{ 1+C_1 \|(\mathbf{x}_i)_J\|_1 }{ L_{2k}(\mathbf{A}_J) -  C_1\varepsilon } \right) \varepsilon,
 \end{align}
 %
 where $(\mathbf{x}_i)_J$ represents the subvector formed from restricting to coordinates indexed by $J$. 
@@ -306,23 +304,24 @@ We close this section with some comments on the optimality of our results.  The 
 
 % ======== b - PDa =========
 
-We begin our proof of Thm.~\ref{DeterministicUniquenessTheorem} by showing how dictionary recovery \eqref{Cstable} already implies sparse code recovery \eqref{b-PDa} when $\mathbf{A}$ satisfies \eqref{SparkCondition} and \mbox{$\varepsilon < L_{2k}(\mathbf{A}) / C_1$}, assuming that $\overline m = m$ without loss of generality. Consider any $2k$-sparse $\mathbf{x} \in \mathbb{R}^m$ and note that $\|\mathbf{x}\|_1 \leq \sqrt{2k}  \|\mathbf{x}\|_2$. By definition of $L_{2k}$ in \eqref{Ldef}, we have:
+We begin our proof of Thm.~\ref{DeterministicUniquenessTheorem} by showing how dictionary recovery \eqref{Cstable} already implies sparse code recovery \eqref{b-PDa} when $\mathbf{A}_J$ satisfies \eqref{SparkCondition} and \mbox{$\varepsilon < L_{2k}(\mathbf{A}_J) / C_1$}. %, assuming that $\overline m = m$ without loss of generality. 
+Consider any $2k$-sparse $\mathbf{x} \in \mathbb{R}^m$ and note that $\|\mathbf{x}\|_1 \leq \sqrt{2k}  \|\mathbf{x}\|_2$. By definition of $L_{2k}$ in \eqref{Ldef}, we have:
 \begin{align}\label{stuff}
-\|\mathbf{x}_i - \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\overline x}_i \|_1 \nonumber
-&\leq \frac{\|\mathbf{BPD}(\mathbf{x}_i - \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\overline x}_i)\|_2}{L_{2k}(\mathbf{BPD})} \\ \nonumber
-&\leq \frac{\|(\mathbf{BPD} - \mathbf{A})\mathbf{x}_i\|_2 + \|\mathbf{A}\mathbf{x}_i - \mathbf{B}\mathbf{\overline x}_i\|_2}{L_{2k}(\mathbf{BPD})} \\
-&\leq \frac{C_1\varepsilon \|\mathbf{x}_i\|_1 + \varepsilon}{L_{2k}(\mathbf{BPD})},
+\|\mathbf{x}_J - &( \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\overline x} )_J\|_1 \nonumber
+\leq \frac{\|(\mathbf{BPD})_J(\mathbf{x}_J - (\mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\overline x})_J)\|_2}{L_{2k}((\mathbf{BPD})_J)} \\ \nonumber
+&\leq \frac{\|( (\mathbf{BPD})_J - \mathbf{A}_J) \mathbf{x}_J\|_2 + \|\mathbf{A}_J\mathbf{x}_J - \mathbf{B}_J\mathbf{\overline x}_J\|_2}{L_{2k}((\mathbf{BPD})_J)} \\
+&\leq \frac{C_1\varepsilon \|\mathbf{x}_J\|_1 + \varepsilon}{L_{2k}((\mathbf{BPD})_J)},
 \end{align}
-where the term $C_1\varepsilon \|\mathbf{x}\|_1$ in the numerator above is a consequence of the triangle inequality applied to \eqref{Cstable}.
+where the term $C_1\varepsilon \|\mathbf{x}_J\|_1$ in the numerator above is a consequence of the triangle inequality applied to \eqref{Cstable}.
 
 It remains for us to bound the denominator.  By the reverse triangle inequality:
 \begin{align*}
-\|\mathbf{BPD}\mathbf{x}\|_2 
-&\geq | \|\mathbf{A}\mathbf{x}\|_2 - \|(\mathbf{A}-\mathbf{BPD})\mathbf{x}\|_2 | \\
-&\geq \sqrt{2k} (L_{2k}(\mathbf{A}) -  C_1\varepsilon) \|\mathbf{x}\|_2,
+\|(\mathbf{BPD})_J\mathbf{x}_J\|_2 
+&\geq | \|\mathbf{A}_J\mathbf{x}_J\|_2 - \|(\mathbf{A}_J - (\mathbf{BPD})_J)\mathbf{x}_J\|_2 | \\
+&\geq \sqrt{2k} (L_{2k}(\mathbf{A}_J) -  C_1\varepsilon) \|\mathbf{x}_J\|_2,
 \end{align*}
 %
-wherein removal of the absolute value is justified since $C_1\varepsilon < L_{2k}(\mathbf{A})$. We therefore have that $L_{2k}(\mathbf{BPD}) \geq L_{2k}(\mathbf{A}) - C_1\varepsilon  > 0$, and \eqref{b-PDa} then follows from \eqref{stuff}.
+wherein removal of the absolute value is justified since $C_1\varepsilon < L_{2k}(\mathbf{A}_J)$. We therefore have that $L_{2k}((\mathbf{BPD})_J) \geq L_{2k}(\mathbf{A}_J) - C_1\varepsilon  > 0$, and \eqref{b-PDa} then follows from \eqref{stuff}.
 
 
 The heart of the matter is therefore \eqref{Cstable}, which we now establish beginning with the important special case of $k = 1$. 
