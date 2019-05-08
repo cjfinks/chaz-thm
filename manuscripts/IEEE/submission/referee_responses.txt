@@ -13,8 +13,12 @@ The paper provides conditions under which dictionary learning is stable (in part
 Comments 
 The paper is quite well-written. I am not an expert in dictionary learning per se, but if these are truly the first perturbation bounds for dictionary learning, then they are worth publishing in TSP.
 
+-------------------------------------
+Response: Thanks for your comments.  As far as we understand, our work is the first to prove stability of unique representations in sparse coding under deterministic noise.
+-------------------------------------
+
 Other comments
-1. “then each submatrix formed from 2k of its columns or less has a strictly positive lower bound.” What is k here?
+1. "then each submatrix formed from 2k of its columns or less has a strictly positive lower bound." What is k here?
 
 -------------------------------------
 Response: The full sentence is: "By compactness of the unit sphere, injective linear maps have nonzero lower bound; hence, if M satisfies (2), then each submatrix formed from 2k of its columns or less has a strictly positive lower bound." Here, k is the sparsity referred to in (2), which states that a matrix M satisfies the spark condition if Mx1 = Mx2 implies x1 = x2, for all k-sparse x1, x2.
@@ -27,7 +31,7 @@ Response: The requirement becomes clearer recalling the definition L_k := L_(m c
 
 L_(m choose 2) \geq L_2H \geq L_(m choose 2k)
 
-The second inequality follows from the fact that 2H is a subset of (m choose 2k). The first inequality follows from the fact that (m choose 2) is a subset of 2H, provided ∪H = [m], since only then can every pair of columns be captured by the union of two supports in H.
+The second inequality follows from the fact that 2H is a subset of (m choose 2k). The first inequality follows from the fact that (m choose 2) is a subset of 2H, provided ∪H = [m], since only then can every pair of columns be captured by the union of two supports in H. We have updated the text to explain this.
 -------------------------------------
 
 3. Are J and Jbar in Theorem 1 of same size?
@@ -39,40 +43,38 @@ Response: Yes. We have clarified this ambiguity.
 4. About Theorem 1. I am a little worried about C1 depending on A and the xi’s. It could make some of parts of the statement void. Presumably, one sees these as fixed, and looks at the possible B’s and possible \bar{x}_i’s satisfying |Ax_i − B\bar{x}_i|_2 \leq \epsilon?
 
 -------------------------------------
-Response: That is correct. We see no need to worry. Fixing A and the x_i's fixes the numbers L_2k(A) and C_1(A,x_i). Theorem 1 then states that, provided \epsilon < L_2k/C_1, all such B's and \bar{x}_i's are close to A and the x_i's, respectively (see (6) and (7)). To rephrase via the triangle inequality, all good enough B’s and \bar{x}_i’s are similar to one another, or identical when \epsilon = 0.
+Response: That is correct. We see no need to worry. Fixing A and the x_i's fixes the numbers L_2k(A) and C_1(A,x_i). Theorem 1 then states that, provided \epsilon < L_2k/C_1, all such B's and \bar{x}_i's are close (up to labelling/scaling) to A and the x_i's, respectively (see (6) and (7)). To rephrase via the triangle inequality, all good enough B’s and \bar{x}_i’s are nearly equivalent to one another, or equivalent when \epsilon = 0.
 -------------------------------------
 
 5. Also, in (7), using xi to denote the restriction of xi to J, and similarly for xi, could lead to confusion, in particular if the reader glances at the result without reading the last sentence.
 
 -------------------------------------
-Response: We have altered the notation to abate this potential confusion.
+Response: We have altered the notation to remove this potential confusion.
 -------------------------------------
 
-6. “A practical implication of Thm. 1 is the following: there is an effective procedure sufficient to affirm if a proposed solution to Prob. 1 is indeed unique (up to noise and inherent ambiguities). One need simply to check that the matrix and codes satisfy the (computable) assumptions of Thm. 1 on A and the xi.” I question whether the assumptions of Theorem 1 are indeed computable. Could the authors elaborate on that?
+6. "A practical implication of Thm. 1 is the following: there is an effective procedure sufficient to affirm if a proposed solution to Prob. 1 is indeed unique (up to noise and inherent ambiguities). One need simply to check that the matrix and codes satisfy the (computable) assumptions of Thm. 1 on A and the xi." I question whether the assumptions of Theorem 1 are indeed computable. Could the authors elaborate on that?
 
 -------------------------------------
-Response: The assumptions of Theorem 1 are:
+Response: Thanks, we have updated the manuscript to make computability more clear.  The assumptions of Theorem 1 are:
 i) L_2H(A) > 0 for an r-regular H with the SIP.
 ii) For each S in H, there are more than (k-1)(mCk) k-sparse vectors x_i supported on S.
 iii) \epsilon < L_2(A)/C_1 to guarantee (6) and \epsilon < L_2k(A)/C_1 to guarantee (7)
 
 Conditions (i) and (ii) are obviously computable, though it is another question, and what we assume to be the reviewer's concern, whether or not there exists an efficient algorithm to do so. Condition (iii) relies on the definition of C1, which appears in Section III. Some comments on this appear in section III:
 
-"The pragmatic reader should note that the explicit constants C1 and C2 are effectively computable: the quantity Lk may be calculated as the smallest singular value of a certain matrix, while the quantity ξ involves computing “canonical angles” between subspaces, which reduce again to an efficient singular value decomposition. There is no known fast computation of L in general, however, since even L > 0 is NP-hard [19]; although fixing k yields polynomial complexity. Moreover, calculating C2 requires an exponential number of queries to ξ unless r is held fixed, too (e.g., the “cyclic order” hypergraphs described above have r = k). Thus, as presented, C1 and C2 are not efficiently computable."
+"The pragmatic reader should note that the explicit constants C1 and C2 are effectively computable: the quantity Lk may be calculated as the smallest singular value of a certain matrix, while the quantity \xi involves computing "canonical angles" between subspaces, which reduce again to an efficient singular value decomposition. There is no known fast computation of L in general, however, since even L > 0 is NP-hard [19]; although fixing k yields polynomial complexity. Moreover, calculating C2 requires an exponential number of queries to \xi unless r is held fixed, too (e.g., the "cyclic order" hypergraphs described above have r = k). Thus, as presented, C1 and C2 are not efficiently computable."
 -------------------------------------
 
-7. I am not sure what “substitutions” means in Theorem 3. Does that mean “choices” of A and x1, . . . , xN such that Axi = yi? Isn’t Theorem 3 a simple corollary of Theorem 1, together with the remark in the couple of paragraph above it? If so, I suggest making it a corollary. In the same vein, I am not sure that Proposition 1 is rigorous enough to make it a proposition. It could be stated as an informal claim instead.
+7. I am not sure what "substitutions" means in Theorem 3. Does that mean "choices" of A and x1, . . . , xN such that Axi = yi? Isn’t Theorem 3 a simple corollary of Theorem 1, together with the remark in the couple of paragraph above it? If so, I suggest making it a corollary. In the same vein, I am not sure that Proposition 1 is rigorous enough to make it a proposition. It could be stated as an informal claim instead.
 
 -------------------------------------
-Response: "Substitution" here mean such assignments or choices of real numbers to the indeterminate variables, yes. We frame it as a theorem and not a corollary because we draw the important Corollary 2 directly from it. We have no qualms downgrading Proposition 1 to an informal claim, however.
-
-[NOTE: should we just make everything a corollary of Thm 1..? Even Thm 2?]
+Response: Here for us, "Substitution" means such assignments or choices of real numbers to the indeterminate variables (i.e., the map from a direct product of R's to the corresponding matrix and vector spaces). We frame it as a theorem and not a corollary because we draw the important Corollary 2 directly from it. We have downgraded Proposition 1 to an informal claim in the revised discussion.
 -------------------------------------
 
-8. The perturbation bound is used by the authors to provide some explanation for why, in practice, different methods lead to similar dictionaries. Can that also be used to explain the second (bold) part of their observation that “[these waveforms] appear in dictionaries learned by a variety of algorithms trained with respect to different natural image datasets.”? Just curious.
+8. The perturbation bound is used by the authors to provide some explanation for why, in practice, different methods lead to similar dictionaries. Can that also be used to explain the second (bold) part of their observation that "[these waveforms] appear in dictionaries learned by a variety of algorithms trained with respect to different natural image datasets."? Just curious.
 
 -------------------------------------
-Response: To be clear, this (bold) observation is just an observation which motivates the work. Imagining natural image patches to form a population which satisfies (1) with respect to some ground truth dictionary A, we have shown that there exists a sufficient number of samples to uniquely identify it or something close to it via approximate solutions. Given this fundamental stability and uniqueness of the problem solutions, the fact that a variety of methods geared to approximately solve Problems 1 and 2 all seem to capture similar structure is much less surprising. 
+Response: We are curious as well, and this observation is a main motivation for our work. Imagining that natural image patches form a population which satisfies (1) with respect to some ground truth dictionary A, we have shown that there exists a sufficient number of samples to uniquely identify it or something close to it via approximate solutions. Given this fundamental stability and uniqueness of the problem solutions, the fact that a variety of methods geared to approximately solve Problems 1 and 2 all seem to capture similar structure is much less surprising.
 -------------------------------------
 
 REVIEWER 2
@@ -81,6 +83,9 @@ Comments
 This paper studies the conditions under which the dictionary learning problem is well-posed, under the assumption of additive noise. Overall I think it is nicely written.
 I have some doubts about (1) efficiency of checking the assumption stated in theorem 1; (2) numerically solving the optimization problem as stated in eqn (4) in practice. I personally think rephrasing some of the graph theoretic terms will make the paper easier to follow, but that might just be personal preference.
 
+-------------------------------------
+Response: Thanks for your comments. (1) Although computable, indeed, checking the conditions of assumptions in our theorems is often NP-hard as we explain in the manuscript; we have updated the revision for more clarity on this. (2) We also believe that this numerical optimization is NP-hard and include this question in the revised discussion; we also pose there whether the more tractable l1 norm version implies the same uniqueness results.
+-------------------------------------
 
 REVIEWER 3
 
@@ -90,16 +95,20 @@ This paper considers the uniqueness and stability of sparse dictionary learning 
 1. This work considers the uniqueness and stability of SIP condition of the dictionary A. One of the fundamental questions is can the Problem 2 be solved to global optimality under these conditions? Because dictionary learning is a bilinear and hence nonconvex problems, solving Problem 2 with l0 norm could still be intractable even though uniqueness condition exists. Can the author comment on this issue of achieving global optimality for solving Problem 2? 
 
 -------------------------------------
-Response: Theorem 2 guarantees that all globally optimal solutions to Problem 2 are identical up to noise and inherent permutation/scaling ambiguities. This doesn't change the fact that computing any one such global solution given data is still NP-hard. 
+Response: Theorem 2 guarantees that all globally optimal solutions to Problem 2 are identical up to noise and inherent permutation/scaling ambiguities. Unfortunately, this does not change the fact that computing any one such global solution given data can be NP-hard. 
+-------------------------------------
 
 As l0 norm is intractable, does all the properties still hold for l1 norm minimization? Can we solve it efficiently (polynomial time) to global optimality? Similar issue for other works, such as
 https://arxiv.org/pdf/1807.05595.pdf
 
-We make no claims in this paper about l1-norm minimization, though we are hopeful a clever reader may find some way to build off our results and derive related guarantees for this continuous relaxation of the sparse coding problem.
+-------------------------------------
+Response: We make no claims in this paper about l1-norm minimization, though we are hopeful a clever reader may find some way to build off our results and derive related guarantees for this continuous relaxation of the sparse coding problem (we pose this problem in the discussion).  
+-------------------------------------
 
 But heuristic methods are proposed there to check global optimality. A discussion and elaboration on this could be very helpful here.
 
-Yes, we only claim that our general uniqueness criterion provide a (not necessarily efficient) means of checking the globality of a proposed solution. It could be that in certain restricted cases these conditions are efficiently computable, but this is not the case in general.
+-------------------------------------
+Response: We only claim that our general uniqueness criteria provide a (not necessarily efficient) means of checking the globality of a proposed solution. It could be that in certain restricted cases these conditions are efficiently computable, but this is not the case in general.
 -------------------------------------
 
 2. The number of samples N >= (k-1) ( m choose k) for the uniqueness condition grows exponentially with respect to k. Is this condition optimal w.r.t. SIP property, or can be reduced? On the other hand, is there any relationship between SIP and RIP conditions? The lower bound of (5) looks similar to RIP conditions.
@@ -107,9 +116,9 @@ Yes, we only claim that our general uniqueness criterion provide a (not necessar
 -------------------------------------
 Response: We comment on sample complexity in the last paragraph of Section II: 
 
-"We close this section with comments on optimality. Our linear scaling for ε in (8) is essentially optimal (e.g., see [23]), but a basic open problem remains: how many samples are necessary to determine the sparse coding model? If k is held fixed or if the size of the support set of reconstructing codes is known to be polynomial in m and k, then a practical (polynomial) amount of data suffices. [footnote: In the latter case, a reexamination of the pigeonholing argument in the proof of Thm. 1 requires a polynomial number of samples distributed over a polynomial number of supports.] Reasons to be skeptical that this holds in general, however, can be found in [19], [24]"
+"We close this section with comments on optimality. Our linear scaling for \epsilon in (8) is essentially optimal (e.g., see [23]), but a basic open problem remains: how many samples are necessary to determine the sparse coding model? If k is held fixed or if the size of the support set of reconstructing codes is known to be polynomial in m and k, then a practical (polynomial) amount of data suffices. [footnote: In the latter case, a reexamination of the pigeonholing argument in the proof of Thm. 1 requires a polynomial number of samples distributed over a polynomial number of supports.] Reasons to be skeptical that this holds in general, however, can be found in [19], [24]"
 
-In general, our conditions are sufficient but not proven necessary, and we doubt we have achieved the tightest possible bounds all around. 
+In general, our conditions are sufficient but not proven necessary, and we doubt we have achieved the tightest possible bounds all around (which we pose now in the revised discussion). 
 
 As for the SIP and RIP, a footnote points out the relation between our matrix lower bound L_H(M) and the RIP:
 
@@ -119,7 +128,5 @@ As for the SIP and RIP, a footnote points out the relation between our matrix lo
 3. Corollary 2 suggests that A and x satisfying SIP can be generated by drawing the entries independently from a continuous distribution. This is often unrealizable in practice. Is there any deterministic way of generating A and x with SIP condition?
 
 -------------------------------------
-Response: In the prose surrounding Corollary 1 we give a deterministic construction of sparse vectors x_i satisfying the constraints of Theorem 1. 
-
-TODO : can we deterministically generate matrices injective on SIP hyper graphs? The (mCk)-hypergraph is one such possibility, so maybe not in general? But for special cases (convolution matrices..?)
+Response: In the prose surrounding Corollary 1, we give a deterministic construction of sparse vectors x_i satisfying the constraints of Theorem 1. 
 -------------------------------------
