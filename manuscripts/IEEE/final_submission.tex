@@ -205,6 +205,18 @@ We claim that the assumptions of Thm.~\ref{DeterministicUniquenessTheorem} are e
 %Regarding the assumptions of Thm.~\ref{DeterministicUniquenessTheorem}, it so happens that sparse codes $\mathbf{x}_i$ in general linear position are straightforward to produce with a ``Vandermonde'' matrix construction \cite{Hillar15}, leading to the following.
 %>>>>>>> d1407a275dc391dabad7bb62d3e659f9a4ac4624
 
+\begin{figure}
+\begin{center}
+\includegraphics[width=.24 \linewidth]{figs/basis.png}
+% \includegraphics[width=.25 \linewidth]{figs/Ahat_FastICA_M640_K8_noise0_2042}
+\includegraphics[width=.24 \linewidth]{figs/Ahat_FastICA_M640_K8_noise0_4083.png}
+\includegraphics[width=.24 \linewidth]{figs/Ahat_FastICA_M640_K8_noise1_0205.png}
+\includegraphics[width=.24 \linewidth]{figs/Ahat_FastICA_M640_K8_noise2_0409.png}
+\caption{\textbf{Noisy dictionary learning}. Recovery of the $8 \times 8$ discrete cosine transform (DCT) basis (the 64 columns of first matrix above) from $8$-sparse samples with linearly increasing noise (using the FastICA algorithm \cite{hyvarinen2000independent}).}
+\label{projdata}
+\end{center}
+\end{figure}
+
 \begin{corollary}\label{DeterministicUniquenessCorollary}
 Given any regular hypergraph $\mathcal{H} \subseteq {[m] \choose k}$ with the SIP, there are $N =  |\mathcal{H}| \left[ (k-1){m \choose k} + 1  \right]$ vectors \mbox{$\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$} such that every matrix $\mathbf{A}$ with $L_{2\mathcal{H}}(\mathbf{A}) > 0$ generates a dataset $Y = \{\mathbf{A}\mathbf{x}_1, \ldots, \mathbf{A}\mathbf{x}_N\}$ with a stable $k$-sparse representation in $\mathbb{R}^m$ for $\varepsilon(\delta_1,\delta_2)$ as in \eqref{epsdel}.
 \end{corollary}
