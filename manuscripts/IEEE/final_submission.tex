@@ -192,7 +192,7 @@ where $(\mathbf{x}_i)_J$ represents the subvector formed from restricting to coo
 %To be clear, the implication of Thm.~\ref{DeterministicUniquenessTheorem} is that $Y = \{\mathbf{Ax}_1, \ldots, \mathbf{Ax}_N\}$ has a stable $k$-sparse representation in $\mathbb{R}^m$, with \eqref{def1} guaranteed provided $\varepsilon$ in Def.~\ref{maindef} does not exceed: 
 In words, Thm.~\ref{DeterministicUniquenessTheorem} says that the smaller the regularity $r$ of original support hypergraph $\mathcal{H}$ or the difference $\overline m - m$ between assumed and actual number of elements in the latent dictionary, the more columns and coefficients of the original dictionary $\mathbf{A}$ and sparse codes $\mathbf{x}_i$ are guaranteed to be contained (up to noise) in the appropriately labelled and scaled recovered dictionary $\mathbf{B}$ and codes $\mathbf{\overline x}_i$, respectively. 
 
-In the important special case when $\overline m = m$, the theorem directly implies that  $Y = \{\mathbf{Ax}_1, \ldots, \mathbf{Ax}_N\}$ has a stable $k$-sparse representation in $\mathbb{R}^m$, with inequalities \eqref{def1} guaranteed in Def.~\ref{maindef} for the following worst-case error $\varepsilon$: 
+In the important special case when $\overline m = m$, the theorem directly implies (e.g., Fig.~\ref{noisyrecovery}) that  $Y = \{\mathbf{Ax}_1, \ldots, \mathbf{Ax}_N\}$ has a stable $k$-sparse representation in $\mathbb{R}^m$, with inequalities \eqref{def1} guaranteed in Def.~\ref{maindef} for the following worst-case error $\varepsilon$: 
 \begin{align}\label{epsdel}
 \varepsilon(\delta_1, \delta_2) := \min \left\{ \frac{\delta_1}{ C_1 }, \frac{ \delta_2 L_{2k}(\mathbf{A})}{ 1 + C_1 \left( \delta_2 + \max_{i \in [N]} \|\mathbf{x}_i\|_1  \right) } \right\}.
 \end{align}
@@ -256,7 +256,8 @@ A practical implication of Thm.~\ref{DeterministicUniquenessTheorem} is the foll
 \includegraphics[width=.24 \linewidth]{figs/Ahat_FastICA_M640_K8_noise1_0205.png}
 \includegraphics[width=.24 \linewidth]{figs/Ahat_FastICA_M640_K8_noise2_0409.png}
 \caption{\textbf{Noisy dictionary learning}. Recovery of the $8 \times 8$ discrete cosine transform (DCT) basis (the 64 columns of first matrix above) from $8$-sparse samples with linearly increasing noise (using the FastICA algorithm \cite{hyvarinen2000independent}).}
-\label{projdata}
+\vspace{-.6 cm}
+\label{noisyrecovery}
 \end{center}
 \end{figure}
 
@@ -268,14 +269,14 @@ A less direct consequence of Thm.~\ref{DeterministicUniquenessTheorem} is the fo
 Fix a matrix $\mathbf{A}$ and vectors $\mathbf{x}_i$ satisfying the assumptions of Thm.~\ref{DeterministicUniquenessTheorem}, only now with over \mbox{$(k-1)\left[ {\overline m \choose k} + |\mathcal{H}|k{\overline m \choose k-1}\right]$} vectors supported in general linear position in each $S \in \mathcal{H}$. Every solution to Prob.~\ref{OptimizationProblem} (with $\eta = \varepsilon/2$) satisfies recovery guarantees \eqref{Cstable} and \eqref{b-PDa} when the corresponding bounds on $\eta$ are met.
 \end{theorem}
 
-Another extension of Thm.~\ref{DeterministicUniquenessTheorem} can be derived from the following analytic characterization of the spark condition.  Letting $\mathbf{A}$ be the $n \times m$ matrix of $nm$ indeterminates $A_{ij}$, the reader may work out why substituting real numbers for the $A_{ij}$ yields a matrix satisfying \eqref{SparkCondition} if and only if the following polynomial also evaluates to a nonzero number:
+Another extension of Thm.~\ref{DeterministicUniquenessTheorem} can be derived from the following analytic characterization of the spark condition.  Letting $\mathbf{A}$ be the $n \times m$ matrix of $nm$ indeterminates $A_{ij}$, the reader may work out why substituting real numbers for the $A_{ij}$ yields a matrix satisfying \eqref{SparkCondition} if and only if the following polynomial evaluates to a nonzero number:
 \begin{align*}
 f(\mathbf{A}) := \prod_{S \in {[m] \choose 2k}} \sum_{S' \in {[n] \choose 2k}} (\det \mathbf{A}_{S',S})^2,
 \end{align*}
 %
 where for any $S' \in {[n] \choose 2k}$ and $S \in {[m] \choose 2k}$, the symbol $\mathbf{A}_{S',S}$ denotes the submatrix of entries $A_{ij}$ with $(i,j) \in S' \times S$.\footnote{The large number of terms in this product is likely necessary given that deciding whether or not a matrix satisfies the spark condition is NP-hard \cite{tillmann2014computational}.}
 
-Since $f$ is analytic, having a single substitution of a real matrix $\mathbf{A}$ satisfy $f(\mathbf{A}) \neq 0$ implies that the zeroes of $f$ form a set of (Borel) measure zero. Such a matrix is easily constructed by adding rows of zeroes to any $\min(2k,m) \times m$ Vandermonde matrix as described previously, so that every sum in the product defining $f$ above is strictly positive. Almost every $n \times m$ matrix with $n \geq \min(2k,m)$ thus satisfies \eqref{SparkCondition}.
+Since $f$ is analytic, having a single substitution of a real matrix $\mathbf{A}$ satisfying $f(\mathbf{A}) \neq 0$ implies that the zeroes of $f$ form a set of (Borel) measure zero. Such a matrix is easily constructed by adding rows of zeroes to a $\min(2k,m) \times m$ Vandermonde matrix as described previously, so that every sum in the product defining $f$ above is strictly positive. Thus, almost every $n \times m$ matrix with $n \geq \min(2k,m)$ satisfies \eqref{SparkCondition}.
 
 %Another extension of Thm.~\ref{DeterministicUniquenessTheorem} arises from the following analytic characterization of the spark condition.  Let $\mathbf{A}$  be the $n \times m$ matrix of $nm$ indeterminates $A_{ij}$. When real numbers are substituted for $A_{ij}$, the resulting matrix satisfies \eqref{SparkCondition} if and only if the following polynomial is nonzero:
 %\begin{align*}
@@ -286,7 +287,7 @@ Since $f$ is analytic, having a single substitution of a real matrix $\mathbf{A}
 
 %Since $f$ is analytic, having a single substitution of a real matrix $\mathbf{A}$ with $f(\mathbf{A}) \neq 0$ necessarily implies that the zeroes of $f$ form a set of measure zero. Fortunately, such a matrix $\mathbf{A}$ is easily constructed by adding rows of zeroes to any $\min(2k,m) \times m$ Vandermonde matrix as described above (so that each term in the product above for $f$ is nonzero). Hence, almost every $n \times m$ matrix with $n \geq \min(2k,m)$ satisfies \eqref{SparkCondition}.
 
-We claim that a similar phenomenon applies to datasets of vectors with a stable sparse representation. Briefly, following the same procedure as in \cite[Sec.~IV]{Hillar15}, for $k < m$ and $n \geq \min(2k, m)$ we may consider the ``symbolic'' dataset $Y = \{\mathbf{A}\mathbf{x}_1,\ldots,\mathbf{A} \mathbf{x}_N\}$ generated by an indeterminate $n \times m$ matrix $\mathbf{A}$ and $m$-dimensional $k$-sparse vectors $\mathbf{x}_1, \ldots, \mathbf{x}_N$ indeterminate within their supports, which form a regular hypergraph $\mathcal{H} \subseteq {[m] \choose k}$ satisfying the SIP. Restricting \mbox{$(k-1){m \choose k} + 1$} indeterminate $\mathbf{x}_i$ to each support in $\mathcal{H}$, and letting $\textbf{M}$ be the $n \times N$ matrix with columns $\mathbf{A}\mathbf{x}_i$, it can be checked that when $f(\mathbf{M}) \neq 0$ for a substitution of real numbers for the indeterminates, all of the assumptions on $\mathbf{A}$ and $\mathbf{x}_i$ in Thm.~\ref{DeterministicUniquenessTheorem} are satisfied. We therefore have the following result.  % ; in particular, $\mathbf{A}$ satisfies \eqref{SparkCondition}
+We claim that a similar phenomenon applies to datasets of vectors with a stable sparse representation. Briefly, following the same procedure as in \cite[Sec.~IV]{Hillar15}, for $k < m$ and $n \geq \min(2k, m)$, we may consider the ``symbolic'' dataset $Y = \{\mathbf{A}\mathbf{x}_1,\ldots,\mathbf{A} \mathbf{x}_N\}$ generated by an indeterminate $n \times m$ matrix $\mathbf{A}$ and $m$-dimensional $k$-sparse vectors $\mathbf{x}_1, \ldots, \mathbf{x}_N$ indeterminate within their supports, which form a regular hypergraph $\mathcal{H} \subseteq {[m] \choose k}$ satisfying the SIP. Restricting \mbox{$(k-1){m \choose k} + 1$} indeterminate $\mathbf{x}_i$ to each support in $\mathcal{H}$, and letting $\textbf{M}$ be the $n \times N$ matrix with columns $\mathbf{A}\mathbf{x}_i$, it can be checked that when $f(\mathbf{M}) \neq 0$ for a substitution of real numbers for the indeterminates, all of the assumptions on $\mathbf{A}$ and $\mathbf{x}_i$ in Thm.~\ref{DeterministicUniquenessTheorem} are satisfied. We therefore have the following result.  % ; in particular, $\mathbf{A}$ satisfies \eqref{SparkCondition}
 
 \begin{theorem}\label{robustPolythm}
 %Let $\mathbf{A}$ and $\mathbf{x}_1, \ldots, \mathbf{x}_N$ be an indeterminate $n \times m$ matrix and sequence of $m$-dimensional vectors, respectively. 
