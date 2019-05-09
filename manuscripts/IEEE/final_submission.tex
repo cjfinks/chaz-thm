@@ -354,19 +354,34 @@ We close this section with some comments on the optimality of our results.  The 
 % WITHOUT J SUBSCRIPT
 We begin our proof of Thm.~\ref{DeterministicUniquenessTheorem} by showing how dictionary recovery \eqref{Cstable} already implies sparse code recovery \eqref{b-PDa} when $\mathbf{A}$ satisfies \eqref{SparkCondition} and \mbox{$\varepsilon < L_{2k}\mathbf{A} / C_1$}, assuming that $\overline m = m$ (without loss of generality) so as to omit an otherwise requisite subscript $(\cdot)_J$ around certain matrices and vectors.
 Consider any $2k$-sparse $\mathbf{x} \in \mathbb{R}^m$ and note that $\|\mathbf{x}\|_1 \leq \sqrt{2k}  \|\mathbf{x}\|_2$. By definition of $L_{2k}$ in \eqref{Ldef}, we have:
+%\begin{align}\label{stuff}
+%\|\mathbf{x} - \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\overline x} \|_1 \nonumber
+%&\leq \frac{\|\mathbf{BPD}(\mathbf{x} - \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\overline x})\|_2}{L_{2k}(\mathbf{BPD})} \\ \nonumber
+%&\leq \frac{\|( \mathbf{BPD} - \mathbf{A}) \mathbf{x}\|_2 + \|\mathbf{A}\mathbf{x} - \mathbf{B}\mathbf{\overline x}\|_2}{L_{2k}(\mathbf{BPD})} \\
+%&\leq \frac{C_1\varepsilon \|\mathbf{x}\|_1 + \varepsilon}{L_{2k}(\mathbf{BPD})},
+%\end{align}
+
 \begin{align}\label{stuff}
-\|\mathbf{x} - \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\overline x} \|_1 \nonumber
-&\leq \frac{\|\mathbf{BPD}(\mathbf{x} - \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\overline x})\|_2}{L_{2k}(\mathbf{BPD})} \\ \nonumber
-&\leq \frac{\|( \mathbf{BPD} - \mathbf{A}) \mathbf{x}\|_2 + \|\mathbf{A}\mathbf{x} - \mathbf{B}\mathbf{\overline x}\|_2}{L_{2k}(\mathbf{BPD})} \\
-&\leq \frac{C_1\varepsilon \|\mathbf{x}\|_1 + \varepsilon}{L_{2k}(\mathbf{BPD})},
+\frac{ \|\mathbf{x} - \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\overline x} \|_1 } { \|\mathbf{D}^{-1}\|_1 }  \
+&\leq \|\mathbf{Dx} - \mathbf{P}^{\top}\mathbf{\overline x} \|_1 \\ \nonumber
+&\leq \frac{\|\mathbf{BP}(\mathbf{D}\mathbf{x} - \mathbf{P}^{\top}\mathbf{\overline x})\|_2}{L_{2k}(\mathbf{BP})} \\ \nonumber
+&\leq \frac{\|( \mathbf{BPD} - \mathbf{A}) \mathbf{x}\|_2 + \|\mathbf{A}\mathbf{x} - \mathbf{B}\mathbf{\overline x}\|_2}{L_{2k}(\mathbf{BP})} \\
+&\leq \frac{C_1\varepsilon \|\mathbf{x}\|_1 + \varepsilon}{L_{2k}(\mathbf{BP})},
 \end{align}
 where the term $C_1\varepsilon \|\mathbf{x}\|_1$ in the numerator above follows from the triangle inequality and \eqref{Cstable}.
 
 It remains for us to bound the denominator.  By the triangle inequality:
+%\begin{align*}
+%\|\mathbf{BPD}\mathbf{x}\|_2 
+%&\geq \|\mathbf{A}\mathbf{x}\|_2 - \|(\mathbf{A} - \mathbf{BPD})\mathbf{x}\|_2 \\
+%&\geq \sqrt{2k} (L_{2k}(\mathbf{A}) -  C_1\varepsilon) \|\mathbf{x}\|_2,
+%\end{align*}
+
 \begin{align*}
-\|\mathbf{BPD}\mathbf{x}\|_2 
-&\geq \|\mathbf{A}\mathbf{x}\|_2 - \|(\mathbf{A} - \mathbf{BPD})\mathbf{x}\|_2 \\
-&\geq \sqrt{2k} (L_{2k}(\mathbf{A}) -  C_1\varepsilon) \|\mathbf{x}\|_2,
+\|\mathbf{BP}\mathbf{x}\|_2 
+&\geq \|\mathbf{A}\mathbf{D}^{-1}\mathbf{x}\|_2 - \|(\mathbf{A} - \mathbf{BPD})\mathbf{D}^{-1}\mathbf{x}\|_2 \\
+&\geq \sqrt{2k} (L_{2k}(\mathbf{A}) -  C_1\varepsilon) \|\mathbf{D}^{-1}\mathbf{x}\|_2, \\ 
+&\geq \sqrt{2k} (L_{2k}(\mathbf{A}) -  C_1\varepsilon) \|\mathbf{D}^{-1}\|_{?} \| \mathbf{x}\|_2,
 \end{align*}
 %
 We therefore have that $L_{2k}(\mathbf{BPD}) \geq L_{2k}(\mathbf{A}) - C_1\varepsilon  > 0$, and \eqref{b-PDa} then follows from \eqref{stuff}.
