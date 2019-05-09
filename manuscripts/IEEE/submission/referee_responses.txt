@@ -31,7 +31,7 @@ Response: The requirement becomes clearer recalling the definition L_k := L_(m c
 
 L_(m choose 2) \geq L_2H \geq L_(m choose 2k)
 
-The second inequality follows from the fact that 2H is a subset of (m choose 2k). The first inequality follows from the fact that (m choose 2) is a subset of 2H, provided ∪H = [m], since only then can every pair of columns be captured by the union of two supports in H. We have updated the text to explain this.
+The second inequality follows from the fact that 2H is a subset of (m choose 2k). The first inequality follows from the fact that (m choose 2) is a subset of 2H, provided ∪H = [m], since only then can every pair of columns be captured by the union of two supports in H.
 -------------------------------------
 
 3. Are J and Jbar in Theorem 1 of same size?
@@ -84,7 +84,7 @@ This paper studies the conditions under which the dictionary learning problem is
 I have some doubts about (1) efficiency of checking the assumption stated in theorem 1; (2) numerically solving the optimization problem as stated in eqn (4) in practice. I personally think rephrasing some of the graph theoretic terms will make the paper easier to follow, but that might just be personal preference.
 
 -------------------------------------
-Response: Thanks for your comments. (1) Although computable, indeed, checking the conditions of assumptions in our theorems is often NP-hard as we explain in the manuscript; we have updated the revision for more clarity on this. (2) We also believe that this numerical optimization is NP-hard and include this question in the revised discussion; we also pose there whether the more tractable l1 norm version implies the same uniqueness results.
+Response: Thanks for your comments. (1) Although computable, indeed, checking the conditions of assumptions in our theorems is often NP-hard as we explain in the manuscript; we have updated the revision for more clarity on this. (2) We also believe that this numerical optimization is NP-hard and include this question in the revised discussion; further, we now pose the problem of whether the more tractable l1 norm version implies the same uniqueness results.
 -------------------------------------
 
 REVIEWER 3
@@ -100,15 +100,10 @@ Response: Theorem 2 guarantees that all globally optimal solutions to Problem 2 
 
 As l0 norm is intractable, does all the properties still hold for l1 norm minimization? Can we solve it efficiently (polynomial time) to global optimality? Similar issue for other works, such as
 https://arxiv.org/pdf/1807.05595.pdf
-
--------------------------------------
-Response: We make no claims in this paper about l1-norm minimization, though we are hopeful a clever reader may find some way to build off our results and derive related guarantees for this continuous relaxation of the sparse coding problem (we pose this problem in the discussion).  
--------------------------------------
-
 But heuristic methods are proposed there to check global optimality. A discussion and elaboration on this could be very helpful here.
 
 -------------------------------------
-Response: We only claim that our general uniqueness criteria provide a (not necessarily efficient) means of checking the globality of a proposed solution. It could be that in certain restricted cases these conditions are efficiently computable, but this is not the case in general.
+Response: We make no claims in this paper about l1-norm minimization, though we are hopeful a clever reader may find some way to build off our results and derive related guarantees for this continuous relaxation of the sparse coding problem. We elaborate more on this in the revised discussion, including adding open challenges for researchers.
 -------------------------------------
 
 2. The number of samples N >= (k-1) ( m choose k) for the uniqueness condition grows exponentially with respect to k. Is this condition optimal w.r.t. SIP property, or can be reduced? On the other hand, is there any relationship between SIP and RIP conditions? The lower bound of (5) looks similar to RIP conditions.
