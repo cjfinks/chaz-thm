@@ -172,10 +172,10 @@ undefined until Sec.~\ref{DUT}. All results  below assume real matrices and vect
 %Consider the alternate dictionary $B = \left(\mathbf{0}, \frac{1}{2}(\mathbf{e}_1 + \mathbf{e}_2), \mathbf{e}_3, \ldots, \mathbf{e}_{m} \right)$ and sparse codes $\mathbf{b}_i = \mathbf{e}_2$ for $i = 1, 2$ and $\mathbf{b}_i = \mathbf{e}_i$ for $i = 3, \ldots, m$. Then $|A\mathbf{a}_i - B\mathbf{b}_i| = 1/\sqrt{2}$ for $i = 1, 2$ (and $0$ otherwise). If there were permutation and invertible diagonal matrices $P \in \mathbb{R}^{m \times m}$ and $D \in \mathbb{R}^{m \times m}$ such that $|(A-BPD)\mathbf{e}_i| \leq C\varepsilon$ for all $i \in [m]$, then we would reach the contradiction $1 = |P^{-1}\mathbf{e}_1|_2 = |(A-BPD)P^{-1}\mathbf{e}_1|_2 \leq 1/\sqrt{2}$. 
 
 \begin{theorem}\label{DeterministicUniquenessTheorem}
-Fix integers $n, k, m$ and $\overline m$. Suppose that the $n \times m$ matrix $\mathbf{A}$ satisfies $L_{2\mathcal{H}}(\mathbf{A}) > 0$ for some $r$-regular $\mathcal{H} \subseteq {[m] \choose k}$ with the SIP from Def.~\ref{sip}. If $k$-sparse \mbox{$\mathbf{x}_1, \ldots, \mathbf{x}_N$} include more than $(k-1){\overline m \choose k}$ vectors in general linear position\footnote{Recall that a set of vectors sharing support $S$ are in \emph{general linear position} when any $|S|$ of them are linearly independent.} supported in each $S \in \mathcal{H}$, then there is a positive $C_1$ (given by \eqref{Cdef1}) for which the following recovery guarantees hold for all%\footnote{The condition $\varepsilon < L_2(\mathbf{A}) /C_1$ is necessary; otherwise,  with \mbox{$\mathbf{A}$ = $\mathbf{I}$} and $\mathbf{x}_i = \mathbf{e}_i$, there is a matrix $\mathbf{B}$ and $1$-sparse $\mathbf{\overline{x}}_i$ with $\|\mathbf{A}\mathbf{x}_i - \mathbf{B}\mathbf{\overline{x}}_i \|_2 \leq \varepsilon$ that nonetheless violates \eqref{Cstable}.} $\varepsilon < L_{2}(\mathbf{A}) / C_1$:
-\footnote{Note that the condition $\varepsilon < L_2(\mathbf{A}) /C_1$ is necessary; otherwise, with \mbox{$\mathbf{A}$ = $\mathbf{I}$} (the identity matrix) and $\mathbf{x}_i = \mathbf{e}_i$, the matrix $\mathbf{B} = \left[\mathbf{0}, \frac{1}{2}(\mathbf{e}_1 + \mathbf{e}_2), \mathbf{e}_3, \ldots, \mathbf{e}_{m} \right]$ and sparse codes $\mathbf{\overline x}_i = \mathbf{e}_2$ for $i = 1, 2$ and $\mathbf{\overline x}_i = \mathbf{e}_i$ for $i \geq 3$ satisfy $\|\mathbf{A}\mathbf{x}_i - \mathbf{B}\mathbf{\overline{x}}_i \|_2 \leq \varepsilon$ but nonetheless violate \eqref{Cstable}.} $\varepsilon < L_{2}(\mathbf{A}) / C_1$.
+%Fix integers $n, k, m$ and $\overline m$. 
+If an $n \times m$ matrix $\mathbf{A}$ satisfies $L_{2\mathcal{H}}(\mathbf{A}) > 0$ for some $r$-regular $\mathcal{H} \subseteq {[m] \choose k}$ with the SIP, and $k$-sparse \mbox{$\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$} include more than $(k-1){\overline m \choose k}$ vectors in general linear position\footnote{Recall that a set of vectors sharing support $S$ are in \emph{general linear position} when any $|S|$ of them are linearly independent.} supported in each $S \in \mathcal{H}$, then the following recovery guarantees hold for $C_1 > 0$ given by \eqref{Cdef1}.
 
-\textbf{Dictionary Recovery:} Every $n \times \overline m$ matrix $\mathbf{B}$ for which there are $k$-sparse $\mathbf{\overline x}_1, \ldots, \mathbf{\overline x}_N$ satisfying \mbox{$\|\mathbf{A}\mathbf{x}_i - \mathbf{B}\mathbf{\overline x}_i\|_2 \leq \varepsilon$} for all $i \in [N]$ has $\overline m \geq m$, and provided $\overline m (r-1) < mr$, there is a permutation matrix $\mathbf{P}$ and an invertible diagonal matrix $\mathbf{D}$ such that:
+\textbf{Dictionary Recovery:} Fix $\varepsilon < L_{2}(\mathbf{A}) / C_1$.\footnote{Note that the condition $\varepsilon < L_2(\mathbf{A}) /C_1$ is necessary; otherwise, with \mbox{$\mathbf{A}$ = $\mathbf{I}$} (the identity matrix) and $\mathbf{x}_i = \mathbf{e}_i$, the matrix $\mathbf{B} = \left[\mathbf{0}, \frac{1}{2}(\mathbf{e}_1 + \mathbf{e}_2), \mathbf{e}_3, \ldots, \mathbf{e}_{m} \right]$ and sparse codes $\mathbf{\overline x}_i = \mathbf{e}_2$ for $i = 1, 2$ and $\mathbf{\overline x}_i = \mathbf{e}_i$ for $i \geq 3$ satisfy $\|\mathbf{A}\mathbf{x}_i - \mathbf{B}\mathbf{\overline{x}}_i \|_2 \leq \varepsilon$ but nonetheless violate \eqref{Cstable}.} The only $n \times \overline m$ matrices $\mathbf{B}$ that have, for every $i \in [N]$, an associated $k$-sparse $\mathbf{\overline x}_i$ satisfying \mbox{$\|\mathbf{A}\mathbf{x}_i - \mathbf{B}\mathbf{\overline x}_i\|_2 \leq \varepsilon$} have $\overline m \geq m$, and provided that $\overline m (r-1) < mr$, there is a permutation matrix $\mathbf{P}$ and an invertible diagonal matrix $\mathbf{D}$ such that:
 \begin{align}\label{Cstable}
 \|\mathbf{A}_j- (\mathbf{BPD})_j\|_2 \leq C_1 \varepsilon, \ \ \text{for all } j \in J,
 \end{align}
@@ -183,7 +183,7 @@ Fix integers $n, k, m$ and $\overline m$. Suppose that the $n \times m$ matrix $
 for some $J \subseteq [m]$ of size \mbox{$m - (r-1)(\overline m - m)$}. 
 % $\overline m - r(\overline m - m)$
 
-\textbf{Code Recovery:} If $\mathbf{A}_J$ satisfies \eqref{SparkCondition} and $\varepsilon < L_{2k}(\mathbf{A}_J) / C_1$ then $(\mathbf{BP})_J$ also satisfies \eqref{SparkCondition} with $L_{2k}(\mathbf{BPD}_J) \geq L_{2k}(\mathbf{A}_J) - C_1 \varepsilon$, and for all $i \in [N]$:
+\textbf{Code Recovery:} If, moreover, $\mathbf{A}_J$ satisfies \eqref{SparkCondition} and $\varepsilon < L_{2k}(\mathbf{A}_J) / C_1$, then $(\mathbf{BP})_J$ also satisfies \eqref{SparkCondition} with $L_{2k}(\mathbf{BP}_J) \geq (L_{2k}(\mathbf{A}_J) - C_1 \varepsilon) / \|\mathbf{D}_J\|_1$, and for all $i \in [N]$:
 \begin{align}\label{b-PDa}
 %\|\mathbf{x}^J_i - \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\overline x}^{\overline J}_i\|_1 &\leq  \left( \frac{ 1+C_1 \|\mathbf{x}^{J}_i\|_1 }{ L_{2k}(\mathbf{A}) -  C_1\varepsilon } \right) \varepsilon \ \  \text{for $i \in [N]$}.
 \|(\mathbf{x}_i)_J - (\mathbf{D}^{-1}\mathbf{P}^{\top} \mathbf{\overline x}_i)_J\|_1 &\leq  \left( \frac{ 1+C_1 \|(\mathbf{x}_i)_J\|_1 }{ L_{2k}(\mathbf{A}_J) -  C_1\varepsilon } \right) \varepsilon,
@@ -201,7 +201,7 @@ In the important special case when $\overline m = m$, the theorem directly impli
 \varepsilon(\delta_1, \delta_2) := \min \left\{ \frac{\delta_1}{ C_1 }, \frac{ \delta_2 L_{2k}(\mathbf{A})}{ 1 + C_1 \left( \delta_2 + \max_{i \in [N]} \|\mathbf{x}_i\|_1  \right) } \right\}.
 \end{align}
 
-Note that sparse codes in general linear position are straightforward to produce deterministically with a ``Vandermonde''  construction (i.e., by choosing columns of the matrix $[\gamma_{i}^j]_{i,j=1}^{k,N}$, for distinct nonzero $\gamma_i$). We therefore have the following direct consequence of Thm.~\ref{DeterministicUniquenessTheorem}.
+Since sparse codes in general linear position are straightforward to produce deterministically with a ``Vandermonde''  construction (i.e., by choosing columns of the matrix $[\gamma_{i}^j]_{i,j=1}^{k,N}$, for distinct nonzero $\gamma_i$), we have the following direct consequence of Thm.~\ref{DeterministicUniquenessTheorem}.
 
 \begin{corollary}\label{DeterministicUniquenessCorollary}
 Given any regular hypergraph $\mathcal{H} \subseteq {[m] \choose k}$ with the SIP, there are $N =  |\mathcal{H}| \left[ (k-1){m \choose k} + 1  \right]$ vectors \mbox{$\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$} such that every matrix $\mathbf{A}$ satisfying spark condition \eqref{SparkCondition} generates $Y = \{\mathbf{A}\mathbf{x}_1, \ldots, \mathbf{A}\mathbf{x}_N\}$ with a stable $k$-sparse representation in $\mathbb{R}^m$ for $\varepsilon(\delta_1,\delta_2)$ given by \eqref{epsdel}.
@@ -361,37 +361,36 @@ This lends some legitimacy to the use of the model in practice, where data in ge
 % WITHOUT J SUBSCRIPT
 We begin our proof of Thm.~\ref{DeterministicUniquenessTheorem} by showing how dictionary recovery \eqref{Cstable} already implies sparse code recovery \eqref{b-PDa} when $\mathbf{A}$ satisfies \eqref{SparkCondition} and \mbox{$\varepsilon < L_{2k}\mathbf{A} / C_1$}, assuming that $\overline m = m$ (without loss of generality) so as to omit an otherwise requisite subscript $(\cdot)_J$ around certain matrices and vectors.
 Consider any $2k$-sparse $\mathbf{x} \in \mathbb{R}^m$ and note that $\|\mathbf{x}\|_1 \leq \sqrt{2k}  \|\mathbf{x}\|_2$. By definition of $L_{2k}$ in \eqref{Ldef}, we have:
-%\begin{align}\label{stuff}
-%\|\mathbf{x} - \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\overline x} \|_1 \nonumber
-%&\leq \frac{\|\mathbf{BPD}(\mathbf{x} - \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\overline x})\|_2}{L_{2k}(\mathbf{BPD})} \\ \nonumber
-%&\leq \frac{\|( \mathbf{BPD} - \mathbf{A}) \mathbf{x}\|_2 + \|\mathbf{A}\mathbf{x} - \mathbf{B}\mathbf{\overline x}\|_2}{L_{2k}(\mathbf{BPD})} \\
-%&\leq \frac{C_1\varepsilon \|\mathbf{x}\|_1 + \varepsilon}{L_{2k}(\mathbf{BPD})},
-%\end{align}
-
 \begin{align}\label{stuff}
-\frac{ \|\mathbf{x} - \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\overline x} \|_1 } { \|\mathbf{D}^{-1}\|_1 }  \
-&\leq \|\mathbf{Dx} - \mathbf{P}^{\top}\mathbf{\overline x} \|_1 \\ \nonumber
-&\leq \frac{\|\mathbf{BP}(\mathbf{D}\mathbf{x} - \mathbf{P}^{\top}\mathbf{\overline x})\|_2}{L_{2k}(\mathbf{BP})} \\ \nonumber
-&\leq \frac{\|( \mathbf{BPD} - \mathbf{A}) \mathbf{x}\|_2 + \|\mathbf{A}\mathbf{x} - \mathbf{B}\mathbf{\overline x}\|_2}{L_{2k}(\mathbf{BP})} \\
-&\leq \frac{C_1\varepsilon \|\mathbf{x}\|_1 + \varepsilon}{L_{2k}(\mathbf{BP})},
+\|\mathbf{x} - \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\overline x} \|_1 \nonumber
+&\leq \frac{\|\mathbf{BPD}(\mathbf{x} - \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\overline x})\|_2}{L_{2k}(\mathbf{BPD})} \\ \nonumber
+&\leq \frac{\|( \mathbf{BPD} - \mathbf{A}) \mathbf{x}\|_2 + \|\mathbf{A}\mathbf{x} - \mathbf{B}\mathbf{\overline x}\|_2}{L_{2k}(\mathbf{BPD})} \\
+&\leq \frac{C_1\varepsilon \|\mathbf{x}\|_1 + \varepsilon}{L_{2k}(\mathbf{BPD})},
 \end{align}
+%\begin{align}\label{stuff}
+%\frac{ \|\mathbf{x} - \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\overline x} \|_1 } { \|\mathbf{D}^{-1}\|_1 }  \
+%&\leq \|\mathbf{Dx} - \mathbf{P}^{\top}\mathbf{\overline x} \|_1 \\ \nonumber
+%&\leq \frac{\|\mathbf{BP}(\mathbf{D}\mathbf{x} - \mathbf{P}^{\top}\mathbf{\overline x})\|_2}{L_{2k}(\mathbf{BP})} \\ \nonumber
+%&\leq \frac{\|( \mathbf{BPD} - \mathbf{A}) \mathbf{x}\|_2 + \|\mathbf{A}\mathbf{x} - \mathbf{B}\mathbf{\overline x}\|_2}{L_{2k}(\mathbf{BP})} \\
+%&\leq \frac{C_1\varepsilon \|\mathbf{x}\|_1 + \varepsilon}{L_{2k}(\mathbf{BP})},
+%\end{align}
 where the term $C_1\varepsilon \|\mathbf{x}\|_1$ in the numerator above follows from the triangle inequality and \eqref{Cstable}.
 
 It remains for us to bound the denominator.  By the triangle inequality:
-%\begin{align*}
-%\|\mathbf{BPD}\mathbf{x}\|_2 
-%&\geq \|\mathbf{A}\mathbf{x}\|_2 - \|(\mathbf{A} - \mathbf{BPD})\mathbf{x}\|_2 \\
-%&\geq \sqrt{2k} (L_{2k}(\mathbf{A}) -  C_1\varepsilon) \|\mathbf{x}\|_2,
-%\end{align*}
-
 \begin{align*}
-\|\mathbf{BP}\mathbf{x}\|_2 
-&\geq \|\mathbf{A}\mathbf{D}^{-1}\mathbf{x}\|_2 - \|(\mathbf{A} - \mathbf{BPD})\mathbf{D}^{-1}\mathbf{x}\|_2 \\
-&\geq \sqrt{2k} (L_{2k}(\mathbf{A}) -  C_1\varepsilon) \|\mathbf{D}^{-1}\mathbf{x}\|_2, \\ 
-&\geq \sqrt{2k} (L_{2k}(\mathbf{A}) -  C_1\varepsilon) \|\mathbf{D}^{-1}\|_{?} \| \mathbf{x}\|_2,
+\|\mathbf{BPD}\mathbf{x}\|_2 
+&\geq \|\mathbf{A}\mathbf{x}\|_2 - \|(\mathbf{A} - \mathbf{BPD})\mathbf{x}\|_2 \\
+&\geq \sqrt{2k} (L_{2k}(\mathbf{A}) -  C_1\varepsilon) \|\mathbf{x}\|_2,
 \end{align*}
+
+%\begin{align*}
+%\|\mathbf{BP}\mathbf{x}\|_2 
+%&\geq \|\mathbf{A}\mathbf{D}^{-1}\mathbf{x}\|_2 - \|(\mathbf{A} - \mathbf{BPD})\mathbf{D}^{-1}\mathbf{x}\|_2 \\
+%&\geq \sqrt{2k} (L_{2k}(\mathbf{A}) -  C_1\varepsilon) \|\mathbf{D}^{-1}\mathbf{x}\|_2, \\ 
+%&\geq \sqrt{2k} (L_{2k}(\mathbf{A}) -  C_1\varepsilon) \|\mathbf{D}^{-1}\|_{?} \| \mathbf{x}\|_2,
+%\end{align*}
 %
-We therefore have that $L_{2k}(\mathbf{BPD}) \geq L_{2k}(\mathbf{A}) - C_1\varepsilon  > 0$, and \eqref{b-PDa} then follows from \eqref{stuff}.
+We therefore have that $L_{2k}(\mathbf{BPD}) \geq L_{2k}(\mathbf{A}) - C_1\varepsilon  > 0$, and \eqref{b-PDa} then follows from \eqref{stuff}. The reader may verify that $L_{2k}(\mathbf{BP}) \geq L_{2k}(\mathbf{BPD}) / \|\mathbf{D}\|_1$.
 
 The heart of the matter is therefore \eqref{Cstable}, which we now establish beginning with the important special case of $k = 1$. 
 
