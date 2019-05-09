@@ -142,19 +142,6 @@ Precise statements of our results require that we first identify some combinator
 Given $\mathcal{H} \subseteq 2^{[m]}$, the \textbf{star} $\sigma(j)$ is the collection of sets in $\mathcal{H}$ containing $j$. We say $\mathcal{H}$ has the \textbf{singleton intersection property} (\textbf{SIP}) when $\cap \sigma(j) = \{j\}$ for all $j \in [m]$. 
 \end{definition}
 
-\begin{figure}[t!]
-\begin{center}
-\includegraphics[width=.24 \linewidth]{figs/basis.png}
-% \includegraphics[width=.25 \linewidth]{figs/Ahat_FastICA_M640_K8_noise0_2042}
-\includegraphics[width=.24 \linewidth]{figs/Ahat_FastICA_M640_K8_noise0_4083.png}
-\includegraphics[width=.24 \linewidth]{figs/Ahat_FastICA_M640_K8_noise1_0205.png}
-\includegraphics[width=.24 \linewidth]{figs/Ahat_FastICA_M640_K8_noise2_0409.png}
-\caption{\textbf{Learning a dictionary from increasingly noisy data}. The (unraveled) basis elements of the $8 \times 8$ discrete cosine transform (DCT) form the 64 columns of the left-most matrix above. Three increasingly imprecise dictionaries (columns relabelled to best match original) are recovered by FastICA \cite{hyvarinen2000independent} with data generated from $8$-sparse linear combinations of DCT elements corrupted with additive noise increasing from left to right.}
-\vspace{-.6 cm}
-\label{noisyrecovery}
-\end{center}
-\end{figure}
-
 We next give a quantitative generalization of the spark condition (\ref{SparkCondition}) to combinatorial subsets of supports. The \emph{lower bound} of an $n \times m$ matrix $\mathbf{M}$ is the largest $\alpha$ with \mbox{$\|\mathbf{M}\mathbf{x}\|_2 \geq \alpha\|\mathbf{x}\|_2$} for all $\mathbf{x} \in \mathbb{R}^m$ \cite{Grcar10}. By compactness of the unit sphere, every injective linear map has a positive lower bound; hence, if $\mathbf{M}$ satisfies \eqref{SparkCondition}, then submatrices formed from $2k$ of its columns or less have strictly positive lower bounds. 
 
 We generalize the matrix lower bound for our purposes by restricting it to the spans of certain submatrices\footnote{See \cite{vidal2005generalized} for an overview of the related ``union of subspaces" model.} associated with a hypergraph $\mathcal{H} \subseteq {[m] \choose k}$ of column indices. Let $\mathbf{M}_S$ denote the submatrix formed by the columns of a matrix $\mathbf{M}$ indexed by $S \subseteq [m]$ (setting $\mathbf{M}_\emptyset := \mathbf{0}$).  In the sections that follow, we shall also let $\bm{\mathcal{M}}_S$ denote the column-span of a submatrix $\mathbf{M}_S$, and $\bm{\mathcal{M}}_\mathcal{G}$ to denote $\{\bm{\mathcal{M}}_S\}_{S \in \mathcal{G}}$.  We define:  % Define $L_\mathcal{H}(\mathbf{M})$ as follows:
@@ -268,6 +255,20 @@ A less direct consequence of Thm.~\ref{DeterministicUniquenessTheorem} is the fo
 \begin{theorem}\label{SLCopt}
 Fix a matrix $\mathbf{A}$ and vectors $\mathbf{x}_i$ satisfying the assumptions of Thm.~\ref{DeterministicUniquenessTheorem}, only now with over \mbox{$(k-1)\left[ {\overline m \choose k} + |\mathcal{H}|k{\overline m \choose k-1}\right]$} vectors supported in general linear position in each $S \in \mathcal{H}$. Every solution to Prob.~\ref{OptimizationProblem} (with $\eta = \varepsilon/2$) satisfies recovery guarantees \eqref{Cstable} and \eqref{b-PDa} when the corresponding bounds on $\eta$ are met.
 \end{theorem}
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=.24 \linewidth]{figs/basis.png}
+% \includegraphics[width=.25 \linewidth]{figs/Ahat_FastICA_M640_K8_noise0_2042}
+\includegraphics[width=.24 \linewidth]{figs/Ahat_FastICA_M640_K8_noise0_4083.png}
+\includegraphics[width=.24 \linewidth]{figs/Ahat_FastICA_M640_K8_noise1_0205.png}
+\includegraphics[width=.24 \linewidth]{figs/Ahat_FastICA_M640_K8_noise2_0409.png}
+\caption{\textbf{Learning a dictionary from increasingly noisy data}. The (unraveled) basis elements of the $8 \times 8$ discrete cosine transform (DCT) form the 64 columns of the left-most matrix above. Three increasingly imprecise dictionaries (columns relabelled to best match original) are recovered by FastICA \cite{hyvarinen2000independent} trained on data generated from $8$-sparse linear combinations of DCT elements corrupted with additive noise (increasing from left to right).}
+\vspace{-.6 cm}
+\label{noisyrecovery}
+\end{center}
+\end{figure}
+
 
 Another extension of Thm.~\ref{DeterministicUniquenessTheorem} can be derived from the following algebraic characterization of the spark condition.  Letting $\mathbf{A}$ be the $n \times m$ matrix of $nm$ indeterminates $A_{ij}$, the reader may work out why substituting real numbers for the $A_{ij}$ yields a matrix satisfying \eqref{SparkCondition} if and only if the following polynomial evaluates to a nonzero number:
 \begin{align*}
@@ -588,7 +589,7 @@ The absence of any assumptions about dictionaries solving Prob.~\ref{InverseProb
 In fact, uniqueness guarantees with minimal assumptions apply to all areas of data science and engineering that utilize learned sparse structure. For example, several groups have applied compressed sensing to signal processing tasks; for instance, in MRI analysis \cite{lustig2008compressed}, image compression \cite{Duarte08}, and even the design of an ultrafast camera \cite{Gao14}. It is only a matter of time before these systems incorporate dictionary learning to encode and decode signals (e.g., in a device that learns structure from motion \cite{kong2016prior}), just as scientists have used sparse coding to make sense of their data \cite{jung2001imaging, agarwal2014spatially, lee2016sparse, wu2016stability}. 
 Assurances offered by our theorems certify that different devices and algorithms will learn equivalent representations given enough data from statistically identical systems.\footnote{To contrast with the current hot topic of ``Deep Learning'', there are few such uniqueness guarantees for these models of data; moreover, even small noise can dramatically alter their output \cite{goodfellow2014explaining}.} Indeed, a main reason for the sustained interest in dictionary learning as an unsupervised method for data analysis seems to be the assumed well-posedness of parameter identification in the model, confirmation of which forms the core of our findings.
 
-We close with some remaining open challenges.  First, there is the basic problem of proving optimal lower bounds on sufficient sample size for uniqueness and stability in sparse coding.  Additionally, given the NP-hardness of verifying the spark condition for matrices, is approximating a solution to Prob.~\ref{InverseProblem} or \ref{OptimizationProblem} also computationally hard?  Finally, as $\ell_1$ relaxations for inferring sparse vectors have, in many cases \cite{eldar2012compressed}, the same solutions as for $\ell_0$, is there an $\ell_1$ version of Thm.~\ref{SLCopt}? In what special cases is it efficient to check that a solution to the problems is optimal? % [*** Incorporate this open problem with more words ***]
+We close with some remaining open challenges.  First, there is the basic problem of proving optimal lower bounds on sufficient sample size for uniqueness and stability in sparse coding.  Additionally, given the NP-hardness of verifying the spark condition for matrices, are the corresponding approximation Probs.~\ref{InverseProblem} and \ref{OptimizationProblem} also computationally hard?  In what special cases is it efficient to check that a solution is stably unique for these problems?  Finally, as $\ell_1$ relaxations for inferring sparse vectors have, in many cases \cite{eldar2012compressed}, the same solutions as for $\ell_0$, is there an $\ell_1$ version of Thm.~\ref{SLCopt}?  % [*** Incorporate this open problem with more words ***]
 
 \textbf{Acknowledgement.} We thank F. Sommer and D. Rhea for early thoughts, and I. Morris for posting \eqref{eqdim} online.
 
