@@ -80,7 +80,7 @@ While several algorithms have been recently proposed to provably recover unique 
 
 Here, we prove very generally that uniqueness and stability is a typical property of sparse dictionary learning. More specifically,  we show that dictionaries injective on a sparse domain are identifiable from \mbox{$N = m(k-1){m \choose k} + m$} noisy sparse linear combinations of their columns up to an error that is linear in the noise (Thm.~\ref{DeterministicUniquenessTheorem}). In fact, provided $n \geq \min(2k,m)$, in almost all cases the problem is well-posed, as per Hadamard \cite{Hadamard1902}, given a sufficient amount of data (Thm.~\ref{robustPolythm} and Cor.~\ref{ProbabilisticCor}). 
 
-Our guarantees also hold for a related (and perhaps more commonly posed) optimization problem that seeks a dictionary minimizing the average number of elementary waveforms required to reconstruct each sample of the dataset (Thm.~\ref{SLCopt}). Importantly, we never make assumptions on learned dictionaries (e.g., that they, too, be injective over some domain) beyond an upper bound on dictionary size, which is necessary to avoid trivial solutions (e.g., allowing for $m = N$ waveforms). %That is, every pair of solutions of comparable size has some number of dictionary elements in common (up to noise), and similarly so for the coefficients of sparse codes they induce.
+Our guarantees also hold for a related (and perhaps more commonly posed, e.g. \cite{rehnsommer2007}) optimization problem seeking a dictionary minimizing the average number of elementary waveforms required to reconstruct each sample of the dataset (Thm.~\ref{SLCopt}). Importantly, we never make assumptions on learned dictionaries (e.g., that they, too, be injective over some domain) beyond an upper bound on dictionary size, which is necessary to avoid trivial solutions (e.g., allowing $m = N$). %That is, every pair of solutions of comparable size has some number of dictionary elements in common (up to noise), and similarly so for the coefficients of sparse codes they induce.
 
 More precisely, let $\mathbf{A} \in \mathbb R^{n \times m}$ be a matrix with columns $\mathbf{A}_j$ ($j = 1,\ldots,m$) and let dataset $Z$ consist of measurements:
 \begin{align}\label{LinearModel}
@@ -88,10 +88,8 @@ More precisely, let $\mathbf{A} \in \mathbb R^{n \times m}$ be a matrix with col
 \end{align}
 for $k$-\emph{sparse} $\mathbf{x}_i \in \mathbb{R}^m$ having at most $k<m$ nonzero entries and \emph{noise} $\mathbf{n}_i \in \mathbb{R}^n$, with bounded norm $\| \mathbf{n}_i \|_2 \leq  \eta$ representing our worst-case uncertainty in measuring the product $\mathbf{A}\mathbf{x}_i$. The first mathematical problem we consider is the following.
 
-%
- 
 \begin{problem}\label{InverseProblem}
-Find a real matrix $\mathbf{B}$ and $k$-sparse $\mathbf{\overline x}_1, \ldots, \mathbf{\overline x}_N$ that satisfy $\|\mathbf{z}_i - \mathbf{B}\mathbf{\overline x}_i\|_2 \leq \eta$ for all $i$.
+Find a real matrix $\mathbf{B}$ and $k$-sparse $\mathbf{\overline x}_1, \ldots, \mathbf{\overline x}_N$ that satisfy $\|\mathbf{z}_i - \mathbf{B}\mathbf{\overline x}_i\|_2 \leq \eta$ for all $i = 1,\ldots,N$.
 \end{problem}
 
 Note that every solution to Prob.~\ref{InverseProblem} represents infinitely many equivalent alternatives $\mathbf{BPD}$ and $\mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\overline x}_1, \ldots, \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\overline x}_N$ parametrized by a choice of permutation matrix $\mathbf{P}$ and invertible diagonal matrix $\mathbf{D}$. Identifying these ambiguities (labelling and scale) yields a set of elementary waveforms (the columns of $\mathbf{B}$) and their associated sparse coefficients (the entries of $\mathbf{\overline x}_i$) for reconstructing each data point $\mathbf{z}_i$. 
@@ -147,7 +145,7 @@ Given $\mathcal{H} \subseteq 2^{[m]}$, the \textbf{star} $\sigma(j)$ is the coll
 
 We next give a quantitative generalization of the spark condition (\ref{SparkCondition}) to combinatorial subsets of supports. The \emph{lower bound} of an $n \times m$ matrix $\mathbf{M}$ is the largest $\alpha$ with \mbox{$\|\mathbf{M}\mathbf{x}\|_2 \geq \alpha\|\mathbf{x}\|_2$} for all $\mathbf{x} \in \mathbb{R}^m$ \cite{Grcar10}. By compactness of the unit sphere, every injective linear map has a positive lower bound; hence, if $\mathbf{M}$ satisfies \eqref{SparkCondition}, then submatrices formed from $2k$ of its columns or less have strictly positive lower bounds. 
 
-We generalize the matrix lower bound for our purposes by restricting it to the spans of certain submatrices\footnote{See \cite{vidal2005generalized} for an overview of the related ``union of subspaces" model.} associated with a hypergraph $\mathcal{H} \subseteq {[m] \choose k}$ of column indices. Let $\mathbf{M}_S$ denote the submatrix formed by the columns of a matrix $\mathbf{M}$ indexed by $S \subseteq [m]$ (setting $\mathbf{M}_\emptyset := \mathbf{0}$).  In the sections that follow, we shall also let $\bm{\mathcal{M}}_S$ denote the column-span of a submatrix $\mathbf{M}_S$, and $\bm{\mathcal{M}}_\mathcal{G}$ to denote $\{\bm{\mathcal{M}}_S\}_{S \in \mathcal{G}}$.  We define:  % Define $L_\mathcal{H}(\mathbf{M})$ as follows:
+The lower bound of a matrix is generalized below in (\ref{Ldef}) by restricting it to the spans of certain submatrices\footnote{See \cite{vidal2005generalized} for an overview of the related ``union of subspaces" model.} associated with a hypergraph $\mathcal{H} \subseteq {[m] \choose k}$ of column indices. Let $\mathbf{M}_S$ denote the submatrix formed by the columns of a matrix $\mathbf{M}$ indexed by $S \subseteq [m]$ (setting $\mathbf{M}_\emptyset := \mathbf{0}$).  In the sections that follow, we shall also let $\bm{\mathcal{M}}_S$ denote the column-span of a submatrix $\mathbf{M}_S$, and $\bm{\mathcal{M}}_\mathcal{G}$ to denote $\{\bm{\mathcal{M}}_S\}_{S \in \mathcal{G}}$.  We define:  % Define $L_\mathcal{H}(\mathbf{M})$ as follows:
 %\begin{align*} 
 %L_\mathcal{H}(\mathbf{M}) := \min \left\{ \frac{ \|\mathbf{M}(\mathbf{x}_1-\mathbf{x}_2)\|_2 }{ \sqrt{2k} \|\mathbf{x}_1-\mathbf{x}_2\|_2} : \mathbf{x}_1, \mathbf{x}_2 \in \cup_{S \in \mathcal{H}} \bm{\mathcal{M}}_S \right\},
 %\end{align*} 
@@ -201,7 +199,7 @@ In the important special case when $\overline m = m$, the theorem directly impli
 \varepsilon(\delta_1, \delta_2) := \min \left\{ \frac{\delta_1}{ C_1 }, \frac{ \delta_2 L_{2k}(\mathbf{A})}{ 1 + C_1 \left( \delta_2 + \max_{i \in [N]} \|\mathbf{x}_i\|_1  \right) } \right\}.
 \end{align}
 
-Since sparse codes in general linear position are straightforward to produce deterministically with a ``Vandermonde''  construction (i.e., by choosing columns of the matrix $[\gamma_{i}^j]_{i,j=1}^{k,N}$, for distinct nonzero $\gamma_i$), we have the following direct consequence of Thm.~\ref{DeterministicUniquenessTheorem}.
+Since sparse codes in general linear position are straightforward to produce with a ``Vandermonde''  construction (i.e., by choosing columns of the matrix $[\gamma_{i}^j]_{i,j=1}^{k,N}$, for distinct nonzero $\gamma_i$), we have the following direct consequence of Thm.~\ref{DeterministicUniquenessTheorem}.
 
 \begin{corollary}\label{DeterministicUniquenessCorollary}
 Given any regular hypergraph $\mathcal{H} \subseteq {[m] \choose k}$ with the SIP, there are $N =  |\mathcal{H}| \left[ (k-1){m \choose k} + 1  \right]$ vectors \mbox{$\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$} such that every matrix $\mathbf{A}$ satisfying spark condition \eqref{SparkCondition} generates $Y = \{\mathbf{A}\mathbf{x}_1, \ldots, \mathbf{A}\mathbf{x}_N\}$ with a stable $k$-sparse representation in $\mathbb{R}^m$ for $\varepsilon(\delta_1,\delta_2)$ given by \eqref{epsdel}.
@@ -445,7 +443,7 @@ and from \cite[Lem.~3.2]{Morris10}:
 \dim(U) = \dim(V) \implies d(U,V) = d(V,U).
 \end{align}
 
-We now state our result in combinatorial matrix analysis, which contains most of the complexity in the proof of Thm.~\ref{DeterministicUniquenessTheorem}. 
+The following is our result in combinatorial matrix analysis; it contains most of the complexity in the proof of Thm.~\ref{DeterministicUniquenessTheorem}. 
 
 \begin{lemma}\label{MainLemma}
 Suppose the $n \times m$ matrix $\mathbf{A}$ has $L_{2\mathcal{H}}(\mathbf{A}) > 0$ for some $r$-regular $\mathcal{H} \subseteq {[m] \choose k}$ with the SIP. There exists $C_2 > 0$ for which the following holds for all $\varepsilon < L_2(\mathbf{A}) / C_2$:
@@ -491,16 +489,16 @@ the $V_i$ and the angle $\theta \in (0,\frac{\pi}{2}]$ is defined implicitly as 
 \end{definition}
 Note that $\theta \in (0,\frac{\pi}{2}]$ implies $0 \leq \xi < 1$, and that $\xi(\mathcal{V}') \leq \xi(\mathcal{V})$ when $\mathcal{V}' \subseteq \mathcal{V}$.\footnote{We acknowledge the counter-intuitive property: $\theta =  \pi/2$ when $U \subseteq W$.}  
 
-The constant $C_2 > 0$ of Lem.~\ref{MainLemma} is then given by:  
+The constant $C_2 > 0$ of Lem.~\ref{MainLemma} can now be expressed as:  
 \begin{align}\label{Cdef2}
 	C_2(\mathbf{A}, \mathcal{H}) := \frac{ (r+1) \max_{j \in [m]} \|\mathbf{A}_j\|_2}{ 1- \max_{\mathcal{G} \in {\mathcal{H} \choose r+1}} \xi( \bm{\mathcal{A}}_\mathcal{G} ) }.
 \end{align}
 
-We now define the constant $C_1 > 0$ of Thm.~\ref{DeterministicUniquenessTheorem} in terms of $C_2$. Given vectors $\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$, let $\mathbf{X}$ denote the $m \times N$ matrix with columns $\mathbf{x}_i$ and let $I(S)$ denote the set of indices $i$ for which $\mathbf{x}_i$ is supported in $S$.  We define:
+We next define the constant $C_1 > 0$ of Thm.~\ref{DeterministicUniquenessTheorem} in terms of $C_2$. Given vectors $\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$, let $\mathbf{X}$ denote the $m \times N$ matrix with columns $\mathbf{x}_i$ and let $I(S)$ denote the set of indices $i$ for which $\mathbf{x}_i$ is supported in $S$.  We define:
 \begin{align}\label{Cdef1}
 C_1(\mathbf{A}, \mathcal{H}, \{\mathbf{x}_i\}_{i=1}^N) := \frac{ C_2(\mathbf{A}, \mathcal{H}) } { \min_{S \in \mathcal{H}} L_k(\mathbf{AX}_{I(S)}) }.
 \end{align}
-Given the assumptions of Thm.~\ref{DeterministicUniquenessTheorem} on $\mathbf{A}$ and the $\mathbf{x}_i$, this expression for $C_1$ is well-defined\footnote{\label{note1}To see this, fix $S \in \mathcal{H}$ and $k$-sparse $\mathbf{c}$. Using the definitions, we have $\|\mathbf{AX}_{I(S)}\mathbf{c}\|_2 \geq \sqrt{k} L_\mathcal{H}(\mathbf{A})\|\mathbf{X}_{I(S)}\mathbf{c}\|_2 \geq k L_\mathcal{H}(\mathbf{A}) L_k(\mathbf{X}_{I(S)})\|\mathbf{c}\|_2$. Thus, $L_k(\mathbf{AX}_{I(S)}) \geq \sqrt{k} L_\mathcal{H}(\mathbf{A}) L_k(\mathbf{X}_{I(S)}) > 0$, since $L_{\mathcal{H}}(\mathbf{A}) \geq L_{2\mathcal{H}}(\mathbf{A})> 0$ and $L_k(\mathbf{X}_{I(S)}) > 0$ by general linear position of the $\mathbf{x}_i$.} and yields an upper bound on $\varepsilon$ consistent with that proven sufficient in the case $k=1$ considered at the beginning of this section.\footnote{When $\mathbf{x}_i = c_i\mathbf{e}_i$ we have $C_2 \geq 2\|\mathbf{A}_i\|_2$ and the denominator in \eqref{Cdef1} becomes $\min_{i \in [m]} |c_i| \|\mathbf{A}_i\|_2$, hence $C_1 \geq 2 / \min_{i \in [m]} |c_i|$.}
+Given the assumptions of Thm.~\ref{DeterministicUniquenessTheorem} on $\mathbf{A}$ and the $\mathbf{x}_i$, this expression for $C_1$ is well-defined\footnote{\label{note1}To see this, fix $S \in \mathcal{H}$ and $k$-sparse $\mathbf{c}$. Using the definitions, we have $\|\mathbf{AX}_{I(S)}\mathbf{c}\|_2 \geq \sqrt{k} L_\mathcal{H}(\mathbf{A})\|\mathbf{X}_{I(S)}\mathbf{c}\|_2 \geq k L_\mathcal{H}(\mathbf{A}) L_k(\mathbf{X}_{I(S)})\|\mathbf{c}\|_2$. Thus, $L_k(\mathbf{AX}_{I(S)}) \geq \sqrt{k} L_\mathcal{H}(\mathbf{A}) L_k(\mathbf{X}_{I(S)}) > 0$, since $L_{\mathcal{H}}(\mathbf{A}) \geq L_{2\mathcal{H}}(\mathbf{A})> 0$ and $L_k(\mathbf{X}_{I(S)}) > 0$ by general linear position of the $\mathbf{x}_i$.} and yields an upper bound on $\varepsilon$ consistent with that proven sufficient in the case $k=1$ considered at the beginning of this section.\footnote{When $\mathbf{x}_i = c_i\mathbf{e}_i$, we have $C_2 \geq 2\|\mathbf{A}_i\|_2$ and the denominator in \eqref{Cdef1} becomes $\min_{i \in [m]} |c_i| \|\mathbf{A}_i\|_2$; hence, $C_1 \geq 2 / \min_{i \in [m]} |c_i|$.}
 % C_2(\mathbf{A}, \mathcal{H}) := \frac{ (r+1) \max_{j \in [m]} \|\mathbf{A}_j\|_2}{ \min_{\mathcal{G} \in {\mathcal{H} \choose r} \cup {\mathcal{H} \choose r+1}} \xi( \{ \bm{\mathcal{A}}_S \}
 
 The practically-minded reader should note that the explicit constants $C_1$ and $C_2$ are effectively computable: the quantity $L_k$ may be calculated as the smallest singular value of a certain matrix, while the quantity $\xi$ involves computing ``canonical angles'' between subspaces, which reduces again to an efficient singular value decomposition. There is no known fast computation of $L_k$ in general, however, since even $L_{k} > 0$ is NP-hard \cite{tillmann2014computational}, although 
