@@ -89,7 +89,9 @@ for $k$-\emph{sparse} $\mathbf{x}_i \in \mathbb{R}^m$ having at most $k<m$ nonze
 Find a dictionary matrix $\mathbf{B}$ and $k$-sparse codes $\mathbf{\overline x}_1, \ldots, \mathbf{\overline x}_N$ that satisfy $\|\mathbf{z}_i - \mathbf{B}\mathbf{\overline x}_i\|_2 \leq \eta$ for all $i = 1,\ldots,N$.
 \end{problem}
 
-Note that every solution to Prob.~\ref{InverseProblem} represents infinitely many equivalent alternatives $\mathbf{BPD}$ and $\mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\overline x}_1, \ldots, \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\overline x}_N$ parametrized by a choice of permutation matrix $\mathbf{P}$ and invertible diagonal matrix $\mathbf{D}$. Identifying these ambiguities (labelling and scale) yields a set of elementary waveforms (the columns of $\mathbf{B}$) and their associated sparse coefficients (the entries of $\mathbf{\overline x}_i$) for reconstructing each data point $\mathbf{z}_i$. 
+Note that every solution to Prob.~\ref{InverseProblem} represents infinitely many equivalent alternatives $\mathbf{BPD}$ and $\mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\overline x}_1, \ldots, \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\overline x}_N$ parametrized by a choice of permutation matrix $\mathbf{P}$ and invertible diagonal matrix $\mathbf{D}$. 
+Identifying these ambiguities (labelling and scale) yields an orbit 
+represented by a particular set of elementary waveforms (the columns of $\mathbf{B}$) and their associated sparse coefficients (the entries of $\mathbf{\overline x}_i$) for reconstructing each data point $\mathbf{z}_i$. 
 
 Previous theoretical work addressing the noiseless case $\eta =0$ (e.g., \cite{li2004analysis, Georgiev05, Aharon06, Hillar15}) for matrices $\mathbf{B}$ having exactly $m$ columns has shown that a solution to Prob.~\ref{InverseProblem}, when it exists, is unique up to such relabeling and rescaling provided the $\mathbf{x}_i$ are sufficiently diverse and $\mathbf{A}$ satisfies the \textit{spark condition}:
 \begin{align}\label{SparkCondition}
