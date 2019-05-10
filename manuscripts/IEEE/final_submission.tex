@@ -137,7 +137,7 @@ Our development of Thm.~\ref{DeterministicUniquenessTheorem} is general enough t
 Precise statements of our results require that we first identify some combinatorial criteria on the supports\footnote{Recall that a vector $\mathbf{x}$ is said to be \emph{supported} in $S$ when $\mathbf{x} \in \text{\rm span}\{\mathbf{e}_j: j\in S\}$, with $\mathbf{e}_j$ forming the standard column basis.} of sparse vectors. Let $\{1, \ldots, m\}$ be denoted $[m]$, its power set $2^{[m]}$, and ${[m] \choose k}$ the set of subsets of $[m]$ of size $k$.  A \emph{hypergraph} on vertices $[m]$  is simply any subset $\mathcal{H} \subseteq 2^{[m]}$. We say that $\mathcal{H}$ is \textit{$k$-uniform} when $\mathcal{H} \subseteq {[m] \choose k}$. The \emph{degree} $\deg_\mathcal{H}(i)$ of a node $i \in [m]$ is the number of sets in $\mathcal{H}$ that contain $i$, and we say $\mathcal{H}$ is \emph{regular} when for some $r$ we have $\deg_\mathcal{H}(i) = r$ for all $i$ (given such an $r$, we say $\mathcal{H}$ is \textit{$r$-regular}). We also write $2\mathcal{H} := \{ S \cup S': S, S' \in \mathcal{H}\}$.  The following class of structured hypergraphs is a key ingredient in this work.
 
 \begin{definition}\label{sip}
-Given $\mathcal{H} \subseteq 2^{[m]}$, the \textbf{star} $\sigma(i)$ is the collection of sets in $\mathcal{H}$ containing $i$. We say $\mathcal{H}$ has the \textbf{singleton intersection property} (\textbf{SIP}) when $\cap \sigma(j) = \{i\}$ for all $i \in [m]$. 
+Given $\mathcal{H} \subseteq 2^{[m]}$, the \textbf{star} $\sigma(i)$ is the collection of sets in $\mathcal{H}$ containing $i$. We say $\mathcal{H}$ has the \textbf{singleton intersection property} (\textbf{SIP}) when $\cap \sigma(i) = \{i\}$ for all $i \in [m]$. 
 \end{definition}
 
 We next give a quantitative generalization of the spark condition (\ref{SparkCondition}) to combinatorial subsets of supports. The \emph{lower bound} of an $n \times m$ matrix $\mathbf{M}$ is the largest $\alpha$ with \mbox{$\|\mathbf{M}\mathbf{x}\|_2 \geq \alpha\|\mathbf{x}\|_2$} for all $\mathbf{x} \in \mathbb{R}^m$ \cite{Grcar10}. By compactness of the unit sphere, every injective linear map has a positive lower bound; hence, if $\mathbf{M}$ satisfies \eqref{SparkCondition}, then submatrices formed from $2k$ of its columns or less have strictly positive lower bounds. 
@@ -394,25 +394,25 @@ Since the only 1-uniform hypergraph with the SIP is $[m]$, which is obviously re
 
 Fix $\mathbf{A} \in \mathbb{R}^{n \times m}$ satisfying $L_2(\mathbf{A}) > 0$, since here we have $2\mathcal{H} = {[m] \choose 2}$, and suppose some $\mathbf{B}$ and $1$-sparse $\mathbf{\overline x}_i \in \mathbb{R}^{\overline m}$ have  $\|\mathbf{A}\mathbf{x}_i - \mathbf{B}\mathbf{\overline x}_i\|_2 \leq \varepsilon < L_2(\mathbf{A}) / C_1$ for all $i$. Then, there exist $\overline{c}_1, \ldots, \overline{c}_m \in \mathbb{R}$ and a map $\pi: [m] \to [\overline m]$ such that:
 \begin{align}\label{1D}
-\|c_j\mathbf{A}_j - \overline{c}_j\mathbf{B}_{\pi(j)}\|_2 \leq \varepsilon,\ \ \text{for $j \in [m]$}.
+\|c_i\mathbf{A}_i - \overline{c}_i\mathbf{B}_{\pi(i)}\|_2 \leq \varepsilon,\ \ \text{for $i \in [m]$}.
 \end{align} 
-Note that $\overline{c}_j \neq 0$, since otherwise we would reach the following contradiction: $\|\mathbf{A}_j \|_2 \leq C_1 |c_j| \|\mathbf{A}_j \|_2  \leq C_1\varepsilon < L_2(\mathbf{A}) \leq L_1(\mathbf{A}) = \min_{j \in [m]} \|\mathbf{A}_{j}\|_2$. %implies by \eqref{delrho} the contradiction $|c_j| < \min_{\ell \in [m]} | c_\ell |$.
+Note that $\overline{c}_i \neq 0$, since otherwise we would reach the following contradiction: $\|\mathbf{A}_i \|_2 \leq C_1 |c_i| \|\mathbf{A}_i \|_2  \leq C_1\varepsilon < L_2(\mathbf{A}) \leq L_1(\mathbf{A}) = \min_{i \in [m]} \|\mathbf{A}_{i}\|_2$. %implies by \eqref{delrho} the contradiction $|c_i| < \min_{\ell \in [m]} | c_\ell |$.
 
-We now show that $\pi$ is injective (in particular, a permutation if $\overline m = m$). Suppose that $\pi(i) = \pi(j) = \ell$ for some $i \neq j$ and $\ell$. Then, $\|c_{j}\mathbf{A}_{j} - \overline{c}_{j}\mathbf{B}_{\ell}\|_2 \leq \varepsilon$ and $\|c_{i}\mathbf{A}_{i} - \overline{c}_{i} \mathbf{B}_{\ell}\|_2  \leq \varepsilon$, and we have: %Scaling and summing these inequalities by $|\overline{c}_{i}|$ and $|\overline{c}_{j}|$, respectively, and applying the triangle inequality to annihilate the terms in $\mathbf{B}_\ell$, we obtain:
+We now show that $\pi$ is injective (in particular, a permutation if $\overline m = m$). Suppose that $\pi(i) = \pi(j) = \ell$ for some $i \neq j$ and $\ell$. Then, $\|c_{i}\mathbf{A}_{i} - \overline{c}_{i} \mathbf{B}_{\ell}\|_2  \leq \varepsilon$ and $\|c_{j}\mathbf{A}_{j} - \overline{c}_{j}\mathbf{B}_{\ell}\|_2 \leq \varepsilon$, and we have: %Scaling and summing these inequalities by $|\overline{c}_{i}|$ and $|\overline{c}_{j}|$, respectively, and applying the triangle inequality to annihilate the terms in $\mathbf{B}_\ell$, we obtain:
 \begin{align*}
 (|\overline{c}_{i}| + |\overline{c}_{j}|) \varepsilon
 &\geq |\overline{c}_{i}| \|c_{j}\mathbf{A}_{j} - \overline{c}_{j}\mathbf{B}_{\ell}\|_2  + |\overline{c}_{j}| \|c_{i}\mathbf{A}_{i} - \overline{c}_{i} \mathbf{B}_{\ell}\|_2 \nonumber \\
 &\geq \|\mathbf{A}(\overline{c}_{i}c_{j} \mathbf{e}_{j} - \overline{c}_{j}c_{i}\mathbf{e}_{i})\|_2 \nonumber \\ 
-&\geq  L_2(\mathbf{A}) \|\overline{c}_{i}c_{j} \mathbf{e}_{j} - \overline{c}_{j}c_{i}\mathbf{e}_{i}\|_2 \nonumber \\
+&\geq \sqrt{2}  L_2(\mathbf{A}) \|\overline{c}_{i}c_{j} \mathbf{e}_{j} - \overline{c}_{j}c_{i}\mathbf{e}_{i}\|_2 \nonumber \\
 &\geq  L_2(\mathbf{A}) \left( |\overline{c}_{i}| + |\overline{c}_{j}| \right) \min_{\ell \in [m]} |c_\ell |,
 \end{align*}
 contradicting our assumed upper bound on $\varepsilon$. Hence, the map $\pi$ is injective and so $\overline m \geq m$. %Setting $\overline J = \pi([m])$ and 
 
-Letting $\mathbf{P}$ and $\mathbf{D}$ be the $\overline m \times \overline m$ permutation and invertible diagonal matrices with, respectively, columns $\mathbf{e}_{\pi(j)}$ and $\frac{\overline{c}_j}{c_j}\mathbf{e}_j$ for $j \in [m]$ (otherwise, $\mathbf{e}_{j}$ for $j \in [\overline{m}] \setminus [m]$), we may rewrite \eqref{1D} to see that for all $j \in [m]$:
+Letting $\mathbf{P}$ and $\mathbf{D}$ be the $\overline m \times \overline m$ permutation and invertible diagonal matrices with, respectively, columns $\mathbf{e}_{\pi(i)}$ and $\frac{\overline{c}_i}{c_i}\mathbf{e}_i$ for $i \in [m]$ (otherwise, $\mathbf{e}_{i}$ for $i \in [\overline{m}] \setminus [m]$), we may rewrite \eqref{1D} to see that for all $i \in [m]$:
 \begin{align*}
-\|\mathbf{A}_j - (\mathbf{BPD})_j\|_2 
-= \|\mathbf{A}_j - \frac{\overline{c}_j}{c_j}\mathbf{B}_{\pi(j)}\|_2 
-\leq \frac{\varepsilon}{|c_j|} 
+\|\mathbf{A}_i - (\mathbf{BPD})_i\|_2 
+= \|\mathbf{A}_i - \frac{\overline{c}_i}{c_i}\mathbf{B}_{\pi(i)}\|_2 
+\leq \frac{\varepsilon}{|c_i|} 
 \leq C_1\varepsilon.
 \end{align*}
 %\vspace{-.2 cm}
@@ -451,7 +451,7 @@ d(\bm{\mathcal{A}}_S, \bm{\mathcal{B}}_{\pi(S)}) \leq \varepsilon, \ \  \text{fo
 \end{align}
 then $\overline m \geq m$, and provided $\overline m (r-1) < mr$, there is a permutation matrix $\mathbf{P}$ and invertible diagonal $\mathbf{D}$ such that:
 \begin{align}\label{MainLemmaBPD}
-\|\mathbf{A}_j - (\mathbf{B}\mathbf{PD})_j\|_2 \leq C_2 \varepsilon, \ \  \text{for } j \in J,
+\|\mathbf{A}_i - (\mathbf{B}\mathbf{PD})_i\|_2 \leq C_2 \varepsilon, \ \  \text{for } i \in J,
 \end{align}
 for some $J \subseteq [m]$ of size \mbox{$m - (r-1)(\overline m - m)$}.
 \end{lemma}
