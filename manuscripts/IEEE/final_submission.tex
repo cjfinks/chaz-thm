@@ -1,5 +1,4 @@
 % TODO: 
-% cite Fritz l0 paper in introduction for seemingly characteristic structure? 
 % Make L_H a definition..? Change def of L to be 1-norm so we don't need these sqrt k's?
 % C_1 depends on J in Thm 1
 % also in proof of (7) x need not be *any* 2k-sparse vector...can instead restrict to some H...then 2k is restricted to half being on H.
@@ -64,21 +63,18 @@ Learning optimal dictionaries for sparse coding has exposed characteristic spars
 % Optional adjustment to line up main text (after abstract) of first page with line numbers, when using both lineno and twocolumn options.
 % You should only change this length when you've finalised the article contents.
 
-
 \section{Introduction}\label{Intro}
-%\IEEEPARstart{L}{earning} sparse representations of data has become an important step in modern solutions to problems in signal processing and pattern analysis. 
-% \cite{sato1975method}
 \IEEEPARstart{A}{}common modern approach to pattern analysis in signal processing is to view each of $N$ observed $n$-dimensional signal samples as a (noisy) linear combination of at most $k$ elementary waveforms drawn from some unknown ``dictionary" of size $m \ll N$ (see \cite{Zhang15} for a comprehensive review). 
 Optimizing dictionaries subject to this and related sparsity constraints has revealed seemingly characteristic sparse structure in several signal classes of current interest (e.g., in vision \cite{wang2015sparse}). 
 
 Of particular note are the seminal works in the field \cite{Olshausen96, hurri1996image, bell1997independent, van1998independent}, which discovered that dictionaries optimized for coding small patches of ``natural" images share qualitative similarities with linear filters estimated from response properties of simple-cell neurons in mammalian visual cortex. Curiously, these waveforms (e.g., ``Gabor'' wavelets) appear in dictionaries learned by a variety of algorithms trained over different natural image datasets; in particular, sparse coding of  latent features in natural signals may, in some sense, be canonical \cite{donoho2001can}.
 
-Motivated by these discoveries and more recent work relating compressed sensing \cite{eldar2012compressed} to a theory of information transmission through random wiring bottlenecks in the brain \cite{Isely10}, we address when optimal dictionaries for sparse representation are indeed identifiable from data. Answers to this question may also have implications in practice wherever an appeal is made to latent sparse structure of data (e.g., forgery detection \cite{hughes2010, olshausen2010applied}; brain recordings \cite{jung2001imaging, agarwal2014spatially, lee2016sparse}; and gene expression \cite{wu2016stability}). 
+Motivated by these discoveries and more recent work relating compressed sensing \cite{eldar2012compressed} to a theory of information transmission through random wiring bottlenecks in the brain \cite{Isely10}, we address when dictionaries for sparse representation are indeed identifiable from data. Answers to this question may also have implications in practice wherever an appeal is made to latent sparse structure of data (e.g., forgery detection \cite{hughes2010, olshausen2010applied}; brain recordings \cite{jung2001imaging, agarwal2014spatially, lee2016sparse}; and gene expression \cite{wu2016stability}). 
 
 While several algorithms have been recently proposed to provably recover unique dictionaries under specific conditions (see \cite[Sec.~I-E]{Sun16} for a summary of the state-of-the-art), few theorems can be invoked to justify the consistency of inference under this model of data more broadly. To our knowledge, a universal guarantee of the uniqueness and stability of learned dictionaries and the sparse representations they induce when data has deterministic noise has yet to appear in the literature.
 % in justifying the identification of forged paintings by their anomalous sparse representations \cite{hughes2010},
 
-Here, we prove very generally that uniqueness and stability is a typical property of sparse dictionary learning. More specifically,  we show that dictionaries injective on a sparse domain are identifiable from \mbox{$N = m(k-1){m \choose k} + m$} noisy sparse linear combinations of their columns up to an error that is linear in the noise (Thm.~\ref{DeterministicUniquenessTheorem}). In fact, provided $n \geq \min(2k,m)$, in almost all cases the problem is well-posed, as per Hadamard \cite{Hadamard1902}, given a sufficient amount of data (Thm.~\ref{robustPolythm} and Cor.~\ref{ProbabilisticCor}). 
+Here, we prove very generally that uniqueness and stability is a typical property of sparse dictionary learning. More specifically,  we show that dictionaries injective on a sparse domain are identifiable from \mbox{$N = m(k-1){m \choose k} + m$} noisy k-sparse linear combinations of their $m$ columns up to an error that is linear in the noise (Thm.~\ref{DeterministicUniquenessTheorem}). In fact, provided $n \geq \min(2k,m)$, in almost all cases the problem is well-posed, as per Hadamard \cite{Hadamard1902}, given a sufficient amount of data (Thm.~\ref{robustPolythm} and Cor.~\ref{ProbabilisticCor}). 
 
 Our guarantees also hold for a related (and perhaps more commonly posed, e.g. \cite{rehnsommer2007}) optimization problem seeking a dictionary minimizing the average number of elementary waveforms required to reconstruct each sample of the dataset (Thm.~\ref{SLCopt}). Importantly, we never make assumptions on learned dictionaries (e.g., that they, too, be injective over some domain) beyond an upper bound on dictionary size, which is necessary to avoid trivial solutions (e.g., allowing $m = N$). %That is, every pair of solutions of comparable size has some number of dictionary elements in common (up to noise), and similarly so for the coefficients of sparse codes they induce.
 
