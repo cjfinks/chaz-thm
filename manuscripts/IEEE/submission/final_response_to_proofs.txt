@@ -1,0 +1,43 @@
+-----------------------
+Final IEEE response: On the uniqueness and stability of dictionaries for sparse representation of noisy signals
+-----------------------
+Corrections in list format
+-----------------------
+Line 16: Delete the word "also"
+Line 33: Replace "discovered" with "demonstrated"
+Line 39: Replace "learned features in natural signals" with "these learned features"
+Line 62: Replace "(Theorem 1)" with "(Theorem 1 and Corollary 1)"
+Line 65: Replace "hold for" with "extend to"
+Line 73: Replace "More precisely," with "To state things more precisely," and make this sentence begin a new paragraph.
+Line 79: Replace "sparse coding." with "the sparse coding problem."
+Eq. (2) after line 95: The dash in "$k$-sparse" should be spaced closer, which happens with latex "\text{for all $k$-sparse}"
+Line 116: Delete "directly implying Corollary 1"
+Line 157: Delete "to combinatorial subsets of supports"
+Line 192: Replace "here" with "applied to vectors"
+Line 225: Make this paragraph ("We should stress here [...]") and its following paragraph ("A practical implication of [...]") come immediately after equation (8), right before Line 205.
+Line 306: Replace "is polynomial" with "is known to be polynomial"
+Line 479: Replace "and a discrepancy (error) that scales linearly" with "within an error that scales linearly (or essentially so)"
+Line 483: Replace "that sufficiently affirms" with "sufficient to affirm"
+Line 489: Replace "identification of dictionaries" with "dictionary identification"
+Line 493: Replace the sentence "The new insight offered by [...]" with "The new insight offered by this combinatorial approach allows for guaranteed recovery of some or all dictionary elements even if they are overestimated in number, data cover only a polynomial number of distinct sparse supports, or the dictionary does not fully satisfy the spark condition."
+-----------------------
+Response to queries
+-----------------------
+Keywords using https://www.ieee.org/content/dam/ieee-org/ieee/web/org/pubs/taxonomy_v101.pdf
+
+Systems engineering and theory: Modeling: Inverse problems
+
+Systems engineering and theory: Modeling: Brain modeling
+
+Mathematics: Statistics: Statistical analysis: Parameter estimation
+
+Mathematics: Numerical analysis: Sparse matrices
+
+Computational and artificial intelligence: Artificial intelligence: Learning systems: Unsupervised learning
+
+Information theory: Communication channels: Channel models
+-----------------------
+Q2: 94720
+-----------------------
+Q3: CG and CH supported, in part, by NSF grant IIS-1219212.
+-----------------------
