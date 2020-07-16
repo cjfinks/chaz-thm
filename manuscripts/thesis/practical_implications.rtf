@@ -1,0 +1,20 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1671\cocoasubrtf600
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww33400\viewh19580\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 PRACTICAL IMPLICATIONS:\
+\
+REVIEWER: When is it possible to determine (numerically) if enough data has been gathered to obtain an accurate estimate of the underlying sparsity dictionary?\
+-----------------\
+\
+RESPONSE: A statement of this very general nature requires that we calculate the probability that all of the conditions of Thm. 1 are satisfied by random data. We have provided an "almost certain" guarantee of this flavor in Cor 2, wherein the sparse vector supports are constrained to form a hypergraph satisfying the SIP. It would be useful and interesting to calculate furthermore the probability that random supports form a hypergraph satisfying the SIP. We have opted not to include these calculations due in part to space constraints, but also because we believe that what sets our work apart from the vast majority of results in the field is their deterministic nature, e.g. they do not depend on any kind of assumption about the particular random distribution from which the sparse supports, coefficients, or dictionary entries are drawn.\
+\
+-----------------\
+Is there any new intuition to be had regarding the necessary sampling of the union of subspaces from this analysis (with respect to the intuition obtained from existing uniqueness results)?\
+-----------------\
+\
+RESPONSE: Yes, there is indeed. While all existing uniqueness results require a sufficient number of samples be drawn from each of \{m \\choose k\} possible supports, we have shown that it is enough that a sufficient number of samples be drawn from every support in a subset of drastically smaller size, provided this subset forms a regular hypergraph satisfying the SIP. As was pointed out in our manuscript, a support set of size m satisfying these criteria can always be constructed for any k < m (e.g. take the consecutive intervals of length k in some cyclic order on [m]), and in certain cases such a set can be constructed from as few as 2\\sqrt(m) supports (e.g. when m = k^2, take the supports to be the rows and columns of [m] arranged in a square grid).\
+}

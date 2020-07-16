@@ -1,0 +1,66 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1671\cocoasubrtf600
+{\fonttbl\f0\fswiss\fcharset0 Helvetica-Oblique;\f1\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww33400\viewh19580\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\i\fs24 \cf0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f1\i0 \cf0 HOW DO WE IMPROVE ON HS15?\
+\
+\'97\'97\'97\'97\'97\'97\
+\
+REVIEWER: Specifically, the authors could address why going from the noise-free case to the noisy case is not incremental. PNAS specifically targets submissions that go beyond what could be published in a more specialized journal. Could the authors, for example, contrast the proof technique between the noisy and noise-free cases? Or, perhaps, the practical implications?\
+\
+RESPONSE: With all due respect to the reviewer, we believe the most compelling practical implication of a noisy result over a noiseless result is plainly evident: never has there been an experiment without noise and an unstable model is therefore useless in practice. We assume the reviewer must instead be concerned with what additional practical "take-away" message our manuscript contains.  One significant one is the outline of a procedure that can (sufficiently) affirm if one\'92s proposed solution to Prob. 1 or Prob. 2 is indeed unique. We have updated the manuscript with an explicit statement of this fact, and we outline one such procedure here:\
+\
+Given a dictionary A and codes x_i that solve Problem 1 (e.g., learned by any algorithm), check that that they satisfy the assumptions of Thm. 1:\
+   - List the support sets of the x_i.\
+   - Discard those for which there are (k-1)\{m \\choose k\} or fewer x_i with that support.\
+   - Discard those for which the supported x_i are not in general linear position. (This should also exclude any supports less than k in size.)\
+   - From the support sets that remain, list all SIP-satisfying hypergraphs that are subsets of this set.\
+   - Discard those for which L_\{2H\}(A) = 0.\
+   - For each of the remaining hypergraphs, determine the constant C_1 from A and the x_i (or for every subset of the x_i of size (k-1)\{m \\choose k\}).\
+   - Check that the derived upper bound on \\varepsilon exceeds that of the original problem. If yes, the solution is "unique".\
+\
+There are other practical (polynomial time) implications of our discovery of sufficient combinatorial designs for support sets of generating codes x_i. Moreover, we have shown that a subset of dictionary elements are recoverable even if the number of dictionary elements in total is unknown; these observations are discussed in more detail below. \
+\
+The reviewer also raises the concern that, regardless of practical implications, our results may amount to an incremental advance over those of (HS15) by way of similar techniques. We disagree with this assessment on both counts: our main result (Thm. 1) goes far beyond a straightforward extension of that in (HS15) to the noisy case and this required a significant deviation from their approach.\
+\
+It is understandable that the reviewer may have thought otherwise, considering how the proof of Thm. 1 is presented in the manuscript. As observed by our second reviewer, however, the extension to the noisy case did indeed require a novel combination of several results in the literature. Specifically, the main difficulty was to generalize Lemma 1 to the case where the k-dimensional subspaces spanned by corresponding (through the map \\pi) submatrices of A and B are assumed only to be proximal (small \'91d\'92), and not identical as in (HS15). In contrast to the noiseless case, here it must be explicitly demonstrated that this proximity relation is propagated through the repeated intersections of these submatrix spans all the way down to the spans of dictionary elements themselves. We designed and proved Lemma 3 to address this issue, which draws its bound from the convergence guarantees of an alternating projections algorithm first proposed by von Neumann. This result, combined with a little known fact about the distance \'91d\'92 requiring proof in (M10), constitute the more obscure components of the deduction in Eq. (26). To reiterate, this step is completely trivial in the noiseless case and required no mention for the inductive steps taken in (HS15).  \
+\
+Our proof of Lemma 1 diverges perhaps even more significantly from the approach taken in (HS15) by way of Lemma 4. Key to our reduction of the sample complexity given in (HS15) by an exponential factor is the introduction of a combinatorial design (the "singleton intersection property") for support sets. Since in this case the map \\pi from supports in the hypergraph to \{[m] \\choose k\} is not surjective, one can not apply the same inductive method as in (HS15), which freely chooses supports in the codomain to intersect at (k-1) nodes and map back to some corresponding (k-1)-sized intersection of supports in the domain. Instead, we demonstrate the surprising fact that by pigeonholing the images of supports in the (SIP-satisfying) hypergraph H, one can still guarantee a bijection between the nodes and therefore the subspaces spanned by individual dictionary elements. We note that it was necessary to forgo inductive methods altogether in order to prove this fact for all hypergraphs satisfying the SIP; otherwise, we would require that the supports in the hypergraph have intersections of size k\'92 for every k\'92 < k (e.g., this is not the case for the small SIP example we give consisting of the rows and columns of nodes arranged in a square grid). Again, to our surprise, it so happens that this new induction-less argument easily generalizes to the case where B has an arbitrary number of columns, in which case we find that a one-to-one correspondence exists between a subset of columns of A and B of a size that has a nice closed-form expression for regular SIP hypergraphs.\
+\
+To be clear, the new perspective we take on the problem yields the following powerful conclusions beyond those of a straightforward extension of (HS15) to the noisy case:\
+\
+1) An extension to the case where the number of dictionary elements is unknown: The results of (HS15) only apply to the case where the matrix B has the same number of columns as A. We forgo this assumption and show that B must have at least as many columns as A and contains (up to noise) a subset of the columns of A. The size of this subset depends on a simple relation between the number of columns of B and the regularity of the support-set hypergraph.\
+\
+2) A significant reduction in sample complexity: To identify the n x m generating dictionary A, (HS15) require that data be sampled from every k-dimensional subspace spanned by the m columns of A (that is, \{m \\choose k\} subspaces in total). We show that the data need only be sampled from m subspaces in total (e.g. those supported by consecutive intervals of length k in some cyclic order on [m]) and in some cases as few as 2\\sqrt\{m\} (e.g. when m = k^2, take the supports to be the rows and columns of [m] arranged in a square grid). Moreover, if the size of the support set of reconstructing codes is known to be polynomial in m and k, then the pigeonholing argument in the proof of Thm. 1 requires only a polynomial number of samples distributed over a polynomial number of supports; thus, N is then polynomial in \\bar m, k. This point was only hinted at in the Discussion section of our original submission, but we have included it in the updated manuscript to make clear the power of our approach over that taken in (HS15). \
+\
+3) No spark condition requirement for the generating matrix A: One of the mathematically significant contributions made by (HS15) was to forgo the constraint that the recovery matrix B also satisfy the spark condition, in contrast to all previously known uniqueness results which (either explicitly or implicitly) made this assumption.  Our proof is powerful enough to show that, in fact, even the matrix A need not satisfy the spark condition to be identifiable! Rather, it need only be injective on the union of subspaces with supports that form sets in a hypergraph satisfying the singleton intersection property (SIP). (For example, consider the matrix A = [e_1,.., e_5, v] where v = e_1 + e_3 + e_5, and take H to be the set of all consecutive pairs of [m] arranged in cyclic order. Then A satisfies the assumptions of Thm. 1 for dictionary recovery without satisfying the spark condition.) We had omitted this point in our original submission of the manuscript to keep things simple, but we have decided to include this fact in our revision. This also required us to redefine the restricted matrix lower bound L_k to be in terms of a hypergraph H (L_H in the revised manuscript), which is an interesting object for further study in its own right. \
+\
+We must also reiterate here that our solution to Prob. 2, that of most interest to practitioners of dictionary learning methods, is to our knowledge the first of its kind in both the noise-free and noisy domains. We recognize that this was not clearly communicated in the Discussion section of our submitted manuscript.\
+\
+Finally, we should mention that our main mathematical results justify the neurally plausible model of bottleneck communication between brain regions, first explained in depth in this NIPS paper (IHS10) and then in a review of sparse linear coding applications to neuroscience (GS12).\
+\
+-----------------\
+\
+REVIEWER:The paper could also compare the sample complexity results on N with those given in the noise-free case. For example, Table I in reference (18) gives a comparison of sample complexity requirements for different conditions in the noise-free case. Where would the results of this paper stand in that table?\
+\
+\
+RESPONSE: In brief, since all of the theorems and corollaries in (HS15) are corollaries of our theorems, all sample complexities improve by our work. The main point of difference between our statements about sample complexity and those of (HS15) is the assumed constraint on the underlying support set of sparse codes x_i. Our theory of combinatorial designs (the \'93singleton intersection property\'94) requires only that there be a sufficient number of x_i drawn from each support in a hypergraph satisfying the SIP, whereas the theory in (HS15) requires that a sufficient number of x_i be drawn from every support of size k in [m]. Below, we make an explicit comparison with Table I in (HS15) row by row, assuming for our results that sufficient data have been sampled from all supports in a hypergraph H satisfying the SIP:\
+\
+ROW I. Our result here is |H|(k-1)\{m \\choose k\} + 1. We improve on the result in (HS15) by an exponential factor since our theory does not require that data be sampled with every possible support of size k in [m]; as noted in our manuscript, for every k < m there exists a hypergraph H with |H| = m that satisfies the SIP. \
+\
+ROW 2. Our result here is again |H|(k-1)\{m \\choose k\} + 1 with certainty, not with almost certainty (i.e. probability 1) as in (HS15). Here, the authors in (HS15) have applied probabilistic arguments to achieve an almost certain result with a sample complexity on the same order as that for which we have achieved a certain result by means of our theory of combinatorial designs.    \
+\
+ROW 3. We cannot make a direct comparison here because we have not calculated the probability that a random set of supports satisfy the SIP (see our response to a similar question by the second reviewer). We think this is an interesting problem for the community to solve; regardless, the result of (HS15) here is still implied by our more general theory.\
+\
+ROW 4. Our result here is |H|(k-1)\{m \\choose k\} + 1 with probability 1. Here is the only case where the sample complexity stated in (HS15) is technically better than ours, but it differs in flavor: their x_i are assumed to be distributed as (k+1) samples per support for every support of size k in [m], whereas ours supposes that (k-1)\{m \\choose k\} codes x_i are distributed over each support in some hypergraph H satisfying the SIP. Regardless, the (technically) better result of (HS15) is still implied by our more general theory in the case \\varepsilon = 0 with the addition of their probabilistic argument.\
+\
+ROW 5: Again, we cannot make a direct comparison here for the reason stated in ROW 3.\
+\
+To sum up, while we appreciate this question, we feel that since our results improve in every case except for one noise-free technicality (ROW 4), and since the results of (HS15) are all entailed anyway by our more general theory, an explicit comparison such as that which we provided above would not be the best use of our limited space in the manuscript; although we are willing to add a discussion about this if necessary. Many thanks for your careful review of the mathematics. We have tried and continue to try to be as clear, concise, and correct as we possibly can to elevate this work into the top echelon of applied mathematical theory papers.\
+}

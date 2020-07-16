@@ -1,0 +1,138 @@
+%% thesis.tex 2014/04/11
+%
+% Based on sample files of unknown authorship.
+%
+% The Current Maintainer of this work is Paul Vojta.
+%
+% To compile this file, run "latex thesis", then "biber thesis"
+% (or "bibtex thesis", if the output from latex asks for that instead),
+% and then "latex thesis" (without the quotes in each case).
+
+\documentclass{ucbthesis}
+
+% *** CITATION STUFF ***
+%\usepackage{biblatex} 
+%\bibliography{references} 
+% the above doesn't work, using this instead:
+\usepackage[backend=bibtex,style=numeric]{biblatex}
+\addbibresource{references}
+
+% *** MATH STUFF ***
+\usepackage{amsmath, amssymb, amsthm} 
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{problem}{Problem}
+\newtheorem{question}{Question}
+\newtheorem{proposition}{Proposition}
+\newtheorem{definition}{Definition}
+\newtheorem{corollary}{Corollary}
+\newtheorem{remark}{Remark}
+\newtheorem{example}{Example}
+
+% *** ALIGNMENT STUFF***
+\usepackage{array}
+\usepackage{bm}
+\usepackage{rotating} % provides sidewaystable and sidewaysfigure
+
+% Double spacing, if you want it.  Do not use for the final copy.
+% \def\dsp{\def\baselinestretch{2.0}\large\normalsize}
+% \dsp
+
+% If the Grad. Division insists that the first paragraph of a section
+% be indented (like the others), then include this line:
+% \usepackage{indentfirst}
+
+\addtolength{\abovecaptionskip}{\baselineskip}
+
+%\hyphenation{mar-gin-al-ia}
+%\hyphenation{bra-va-do}
+
+\begin{document}
+
+% Declarations for Front Matter
+
+\title{On the uniqueness and stability of dictionaries for sparse representation of noisy signals}
+\author{Charles Garfinkle}
+\degreesemester{Summer}
+\degreeyear{2020}
+\degree{Doctor of Philosophy}
+\chair{Friedrich Sommer}
+\othermembers{Bruno Olshausen \\
+  Mike Deweese \\
+  Bin Yu}
+% For a co-chair who is subordinate to the \chair listed above
+% \cochair{Professor Benedict Francis Pope}
+% For two co-chairs of equal standing (do not use \chair with this one)
+% \cochairs{Professor Richard Francis Sony}{Professor Benedict Francis Pope}
+\numberofmembers{4}
+% Previous degrees are no longer to be listed on the title page.
+% \prevdegrees{B.A. (University of Northern South Dakota at Hoople) 1978 \\
+%   M.S. (Ed's School of Quantum Mechanics and Muffler Repair) 1989}
+\field{Neuroscience}
+% Designated Emphasis -- this is optional, and rare
+% \emphasis{Colloidal Telemetry}
+% This is optional, and rare
+% \jointinstitution{University of Western Maryland}
+% This is optional (default is Berkeley)
+% \campus{Berkeley}
+
+% For a masters thesis, replace the above \documentclass line with
+% \documentclass[masters]{ucbthesis}
+% This affects the title and approval pages, which by default calls this
+% document a "dissertation", not a "thesis".
+
+\maketitle
+% Delete (or comment out) the \approvalpage line for the final version.
+\approvalpage
+\copyrightpage
+
+\include{abstract}
+
+\begin{frontmatter}
+
+\begin{dedication}
+\null\vfil
+%\begin{center}
+Dedication
+%I want to dedicate this to my dad. At the same time, I don't want to, because the results on display here can't be matched to the time with him I traded to produce them, and it feels as though dedicating this work to him would be measuring his life up against the theorems contained here-in. I knew very well this work wasn't so important; these theorems, while fundamental, are just something people might cite to feel better about whatever sketchy sparse coding analysis they were already going to do, anyway. And yet, despite total freedom offered by the Helen Wills Neuroscience Institute, I worried the brain was so dauntingly complex that I should feel lucky to have at last been offered a well-defined relevant problem to work on, particularly one I felt even remotely equipped to solve myself, so as to feel deserving of a Ph.D. from UC Berkeley. The fact is that whatever the eventual effect of this work on the scientific ecosystem, these truths could have waited, arrived at their own pace, via myself or another, and I could have been more present with my dad as he waited for death. I couldn't really fathom what it actually meant for him to die, to never see or talk to or hug him again, while the idea of putting original work out there, of crafting my own piece of the overwhelming puzzle that is neuroscience, was tantalizing. Let's say, then, that this dedication is the first bit of a life's work, real work void of any prestigious position or degree and the associated self-doubt and pressure, put toward passionate id	eas, solving problems I care about and that actually matter, loving and caring for others or, as my dad would say, ``being a mensch". May this dedication serve to hold myself publicly accountable to that. Also I love you, mom. I dedicate and don't dedicate this and everything to come to you, too.
+\vspace{12pt}
+%\end{center}
+\vfil\null
+\end{dedication}
+
+% You can delete the \clearpage lines if you don't want these to start on
+% separate pages.
+
+\tableofcontents
+\clearpage
+\listoffigures
+\clearpage
+%\listoftables
+
+\begin{acknowledgements}
+I would like to thank Chris Hillar for laying down the groundwork and vetting all my proofs. He gave me a lot of his time for little if anything in return. Fritz Sommer for taking on the role of my advisor. The Berkeley Student Cooperative for a really awesome and transformative time. CZ or Die. 
+We thank Darren Rhea for early thoughts, and Ian Morris for posting \eqref{eqdim} online.
+
+\end{acknowledgements}
+
+\end{frontmatter}
+
+\pagestyle{headings}
+
+% (Optional)
+ \part{Main Text}
+
+\include{introduction}
+\include{results}
+\include{proofs}
+\include{discussion}
+\include{conclusions}
+
+\include{appendix} 
+%\include{conclusions}
+
+\printbibliography
+
+
+\end{document}
