@@ -67,54 +67,57 @@ if __name__ == '__main__':
         pass
     pp.ion()
 
+    #H = 'cyclic'
+    H = 'square'
+
     """
     Given N_supp samples per support, what is the probability that for every S in H,
     at least k out of N_supp vectors supported there have the same support wrt. B?
     """
 
-    ms = [m for m in range(3, 12)]
-    fig, ax = pp.subplots(len(ms),len(ms))
+    if H == 'cyclic':
+        ms = [m for m in range(3, 10+1)]
+    elif H == 'square':
+        ms = [k**2 for k in range(2, 4+1)] # square
+    
+    fig, ax = pp.subplots(len(ms), 1, sharex=True, sharey=True, figsize=(11,8.5))
+    fig.add_subplot(111, frameon=False)
+    # hide tick and tick label of the big axis
+    pp.tick_params(labelcolor='none', top=False, bottom=False, left=False, right=False)
+    pp.ylabel("Probability of successful recovery")
+    #pp.ylabel("common Y")
     fig.tight_layout()
-    for i, m in enumerate(ms):
-        for j, k in enumerate(ms):
-            ax[i][j].xaxis.set_visible(False)
-            ax[i][j].yaxis.set_visible(False)
-            ax[i][j].set_visible(False)
 
     for i, m in enumerate(ms):
-        ks = [k for k in range(2, m)]
-        for j, k in enumerate(ks):
+        if H == 'cyclic':
+            ks = [k for k in range(2, m)]
+        elif H == 'square':
+            ks = [int(np.sqrt(m))]
+        for k in ks:
             print("%d" % k)
             samples_per_supp_deterministic = int((k-1) * comb(m,k)) + 1 # with N_deterministic per support or more, probability is 1 (deterministic case)
             probs = []
             for samples_per_supp in range(0, samples_per_supp_deterministic+1):
                 prob_supp = prob_atleast_k_balls_in_some_bin(num_balls = samples_per_supp, num_bins = comb(m,k), k = k) # probability of success
-                num_supps = m # assume H is cyclic order hypergraph, i.e. |H| = m
+                if H == 'cyclic':
+                    num_supps = m # assume H is cyclic order hypergraph, i.e. |H| = m
+                elif H == 'square':
+                    num_supps = 2 * k
                 probs.append( prob_supp ** num_supps ) # must succeed for every S in H
 
             #Ns = range(0, num_supps * samples_per_supp_deterministic, num_supps) # deterministic N is samples_per_supp_deterministic * n_supps, and there are m supports
             Ns = np.arange(0, samples_per_supp_deterministic+1) / samples_per_supp_deterministic  # relative to deterministic sample complexity
-            ax[i][j].plot(Ns, probs)
-            ax[i][j].plot(Ns, probs)
-            ax[i][j].set_visible(True)
-            ax[i][j].xaxis.set_visible(False)
-            ax[i][j].yaxis.set_visible(False)
-            ax[i][j].spines['right'].set_visible(False)
-            ax[i][j].spines['top'].set_visible(False)
+            ax[i].plot(Ns, probs, color=str(np.linspace(0,1,m+1)[k]))
+        ax[i].spines['right'].set_visible(False)
+        ax[i].spines['top'].set_visible(False)
+        #ax[i].set_ylabel('$m$=%d' % m)
+        ax[i].legend(["$m=%d$" % m], loc='upper left', handlelength=0, handletextpad=0)
+        ax[i].set_xlim([0,1])
+        ax[i].set_ylim([0,1])
+        ax[i].set_yticks([0,1])
+        ax[i].set_xticks(np.linspace(0,1,6))
 
-    ax[-1][0].xaxis.set_visible(True)
-    for i, m in enumerate(ms):
-        ax[i][0].yaxis.set_visible(True)
-        ax[i][0].set_ylabel('$m$=%d' % m)
-        
-
-    ax[-1][0].yaxis.set_visible(True)
-    for j, k in enumerate(ks):
-        ax[-1][j].xaxis.set_visible(True)
-        ax[j][j].set_title('$k$=%d' % k)
-    
-    #pp.title('Probability of successful recovery for sample // sizes below deterministic sample complexity')
-    #pp.set_xlabel('Fraction of deterministic sample size')
-    #pp.set_ylabel('Pr(success)')
-    #ax.legend(["m=%d" % m for m in ms])
+    ax[-1].set_xlabel('Number of samples relative to the deterministic sample complexity')
     pp.savefig('./figures/prob_vs_samples.png')
+
+

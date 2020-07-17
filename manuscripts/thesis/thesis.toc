@@ -12,12 +12,16 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {0.3}Proofs}{10}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {0.4}Discussion}{16}
+\contentsline {section}{\numberline {0.4}Discussion}{15}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {0.5}Future Directions}{17}
+\contentsline {section}{\numberline {0.5}Future Directions}{16}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {0.6}Conclusions}{20}
+\contentsline {subsection}{Tolerable Error Bounds}{16}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {0.7}Appendix}{30}
+\contentsline {subsection}{Sample Complexity and Support Set Hypergraphs}{17}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{Bibliography}{33}
+\contentsline {subsection}{Guarantees for Convex Optimization}{17}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {0.6}Appendix}{21}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Bibliography}{24}

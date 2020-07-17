@@ -124,12 +124,16 @@ if __name__ == '__main__':
     """
     """ rows and cols of square grid """
 
-    ks = range(2,7)
-    fig, ax = pp.subplots(len(ks), 1, figsize=(20,10))
+    ks = range(4,9)
+    fig, ax = pp.subplots(len(ks), 1, figsize=(20,10), sharex=True)
+    fig.add_subplot(111, frameon=False)
+    pp.tick_params(labelcolor='none', top=False, bottom=False, left=False, right=False)
+    pp.ylabel("Histogram of $C_2(\mathbf{A}, \mathcal{H})$")
     for i, k in enumerate(ks):
+        print("k=%d" % k)
         # SQUARE
         m = k**2
-        n = m
+        n = (3*m)//4
         H = square_hypergraph(m, k)
         r = 2 # since SIP satisfied by (row,col) pair
 
@@ -149,8 +153,9 @@ if __name__ == '__main__':
             c2s[t] = C2(A, H, r)
 
         c2s = np.sort(c2s[c2s < np.inf])
-        imax = int(0.9*len(c2s))
-        ax[i].hist(c2s[:imax], bins=100)
-        ax[i].set_title('$C_2$ ($m$=%d)' % m)
-        pp.savefig('C2_m%d_nt%d.pdf' % (m, num_trials))
+        c2max = 1000 #c2s[int(0.95*len(c2s))]
+        ax[i].hist(c2s[c2s<c2max], bins=100)
+        ax[i].legend(["$m=%d$" % m], loc='upper right', handlelength=0, handletextpad=0)
+        pp.savefig('C2.pdf')
         pp.show()
+        # TODO: do relative histogram so as to share y axis
