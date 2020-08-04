@@ -52,7 +52,11 @@ J.~van Hateren and A.~van~der Schaaf, ``Independent component filters of
 
 \bibitem{donoho2001can}
 D.~Donoho and A.~Flesia, ``Can recent innovations in harmonic analysis
+<<<<<<< HEAD
   'explain' key findings in natural image statistics?'' \emph{Network Comp.
+=======
+  `explain' key findings in natural image statistics?'' \emph{Network Comp.
+>>>>>>> 2f0b5f6f79208df0364322ea273492c7090d06ed
   Neural}, vol.~12, no.~3, pp. 371--393, 2001.
 
 \bibitem{Isely10}
@@ -67,8 +71,13 @@ J.~Hughes, D.~Graham, and D.~Rockmore, ``Quantification of artistic style
   2010.
 
 \bibitem{olshausen2010applied}
+<<<<<<< HEAD
 B.~A. Olshausen and M.~R. DeWeese, ``Applied mathematics: The statistics of
   style,'' \emph{Nature}, vol. 463, no. 7284, p. 1027, 2010.
+=======
+B.~Olshausen and M.~DeWeese, ``Applied mathematics: The statistics of style,''
+  \emph{Nature}, vol. 463, no. 7284, p. 1027, 2010.
+>>>>>>> 2f0b5f6f79208df0364322ea273492c7090d06ed
 
 \bibitem{jung2001imaging}
 T.-P. Jung, S.~Makeig, M.~McKeown, A.~Bell, T.-W. Lee, and T.~Sejnowski,
@@ -82,9 +91,15 @@ G.~Agarwal, I.~Stevenson, A.~Ber{\'e}nyi, K.~Mizuseki, G.~Buzs{\'a}ki, and
 
 \bibitem{lee2016sparse}
 Y.-B. Lee, J.~Lee, S.~Tak, K.~Lee, D.~Na, S.~Seo, Y.~Jeong, J.~Ye, and A.~D.~N.
+<<<<<<< HEAD
   Initiative, ``Sparse spm: Group sparse-dictionary learning in spm framework
   for resting-state functional connectivity mri analysis,'' \emph{Neuroimage},
   vol. 125, pp. 1032--1045, 2016.
+=======
+  Initiative, ``Sparse {SPM}: Group sparse-dictionary learning in {SPM}
+  framework for resting-state functional connectivity mri analysis,''
+  \emph{Neuroimage}, vol. 125, pp. 1032--1045, 2016.
+>>>>>>> 2f0b5f6f79208df0364322ea273492c7090d06ed
 
 \bibitem{wu2016stability}
 S.~Wu, A.~Joseph, A.~Hammonds, S.~Celniker, B.~Yu, and E.~Frise,
@@ -142,6 +157,14 @@ A.~Tillmann and M.~Pfetsch, ``The computational complexity of the restricted
   sensing,'' \emph{IEEE Trans. Inf. Theory}, vol.~60, no.~2, pp. 1248--1259,
   2014.
 
+<<<<<<< HEAD
+=======
+\bibitem{folland2013real}
+G.~Folland, \emph{Real analysis: modern techniques and their
+  applications}.\hskip 1em plus 0.5em minus 0.4em\relax John Wiley \& Sons,
+  2013.
+
+>>>>>>> 2f0b5f6f79208df0364322ea273492c7090d06ed
 \bibitem{arias2013fundamental}
 E.~Arias-Castro, E.~Candes, and M.~Davenport, ``On the fundamental limits of
   adaptive sensing,'' \emph{IEEE Trans. Inf. Theory}, vol.~59, no.~1, pp.
@@ -165,11 +188,14 @@ I.~Morris, ``A rapidly-converging lower bound for the joint spectral radius via
 F.~Deutsch, \emph{Best approximation in inner product spaces}.\hskip 1em plus
   0.5em minus 0.4em\relax Springer Science \& Business Media, 2012.
 
+<<<<<<< HEAD
 \bibitem{donoho2003optimally}
 D.~L. Donoho and M.~Elad, ``Optimally sparse representation in general
   (nonorthogonal) dictionaries via ℓ1 minimization,'' \emph{Proceedings of
   the National Academy of Sciences}, vol. 100, no.~5, pp. 2197--2202, 2003.
 
+=======
+>>>>>>> 2f0b5f6f79208df0364322ea273492c7090d06ed
 \bibitem{rehnsommer2007}
 M.~Rehn and F.~Sommer, ``{A network that uses few active neurones to code
   visual input predicts the diverse shapes of cortical receptive fields},''

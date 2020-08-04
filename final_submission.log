@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  7 MAY 2019 17:21
-=======
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  8 MAY 2019 02:53
->>>>>>> 2f0b5f6f79208df0364322ea273492c7090d06ed
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  8 MAY 2019 01:33
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -11,7 +7,7 @@ entering extended mode
 (./final_submission.tex
 LaTeX2e <2017-04-15>
 Babel <3.10> and hyphenation patterns for 84 language(s) loaded.
-(./IEEEtran.cls
+(/usr/local/texlive/2017/texmf-dist/tex/latex/IEEEtran/IEEEtran.cls
 Document Class: IEEEtran 2015/08/26 V1.8b by Michael Shell
 -- See the "IEEEtran_HOWTO" manual for usage information.
 -- http://www.michaelshell.org/tex/ieeetran/
@@ -265,7 +261,6 @@ LaTeX Info: Redefining \bm on input line 207.
 (./final_submission.aux)
 \openout1 = `final_submission.aux'.
 
-<<<<<<< HEAD
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 41.
 LaTeX Font Info:    ... okay on input line 41.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 41.
@@ -278,20 +273,6 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 41.
 LaTeX Font Info:    ... okay on input line 41.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 41.
 LaTeX Font Info:    ... okay on input line 41.
-=======
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
->>>>>>> 2f0b5f6f79208df0364322ea273492c7090d06ed
 
 -- Lines per column: 58 (exact).
 (/usr/local/texlive/2017/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
@@ -356,61 +337,153 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-<<<<<<< HEAD
 LaTeX Font Info:    Try loading font information for U+msa on input line 73.
-=======
-LaTeX Font Info:    Try loading font information for U+msa on input line 71.
->>>>>>> 2f0b5f6f79208df0364322ea273492c7090d06ed
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-<<<<<<< HEAD
 LaTeX Font Info:    Try loading font information for U+msb on input line 73.
-=======
-LaTeX Font Info:    Try loading font information for U+msb on input line 71.
->>>>>>> 2f0b5f6f79208df0364322ea273492c7090d06ed
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 
+LaTeX Warning: Citation `Zhang15' on page 1 undefined on input line 73.
+
+
+LaTeX Warning: Citation `wang2015sparse' on page 1 undefined on input line 74.
+
+
+LaTeX Warning: Citation `Olshausen96' on page 1 undefined on input line 75.
+
+
+LaTeX Warning: Citation `hurri1996image' on page 1 undefined on input line 75.
+
+
+LaTeX Warning: Citation `bell1997independent' on page 1 undefined on input line
+ 75.
+
+
+LaTeX Warning: Citation `van1998independent' on page 1 undefined on input line 
+75.
+
+
+LaTeX Warning: Citation `donoho2001can' on page 1 undefined on input line 75.
+
+
+LaTeX Warning: Citation `Isely10' on page 1 undefined on input line 77.
+
+
+LaTeX Warning: Citation `hughes2010' on page 1 undefined on input line 77.
+
+
+LaTeX Warning: Citation `olshausen2010applied' on page 1 undefined on input lin
+e 77.
+
+
+LaTeX Warning: Citation `jung2001imaging' on page 1 undefined on input line 77.
+
+
+
+LaTeX Warning: Citation `agarwal2014spatially' on page 1 undefined on input lin
+e 77.
+
+
+LaTeX Warning: Citation `lee2016sparse' on page 1 undefined on input line 77.
+
+
+LaTeX Warning: Citation `wu2016stability' on page 1 undefined on input line 77.
+
+
+
+LaTeX Warning: Citation `Sun16' on page 1 undefined on input line 77.
+
+
 Package amsmath Warning: Foreign command \atopwithdelims;
 (amsmath)                \frac or \genfrac should be used instead
-<<<<<<< HEAD
 (amsmath)                 on input line 80.
-=======
-(amsmath)                 on input line 78.
->>>>>>> 2f0b5f6f79208df0364322ea273492c7090d06ed
+
+
+LaTeX Warning: Citation `Hadamard1902' on page 1 undefined on input line 80.
+
+
+LaTeX Warning: Citation `li2004analysis' on page 1 undefined on input line 94.
+
+
+LaTeX Warning: Citation `Georgiev05' on page 1 undefined on input line 94.
+
+
+LaTeX Warning: Citation `Aharon06' on page 1 undefined on input line 94.
+
+
+LaTeX Warning: Citation `Hillar15' on page 1 undefined on input line 94.
 
 [1{/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 
 ]
-<<<<<<< HEAD
+
+LaTeX Warning: Citation `Grcar10' on page 2 undefined on input line 137.
+
+
+LaTeX Warning: Citation `vidal2005generalized' on page 2 undefined on input lin
+e 139.
+
+
+LaTeX Warning: Citation `Blanchard2011' on page 2 undefined on input line 155.
+
+
 Underfull \hbox (badness 1436) in paragraph at lines 166--166
-=======
-Underfull \hbox (badness 1436) in paragraph at lines 171--171
->>>>>>> 2f0b5f6f79208df0364322ea273492c7090d06ed
 \OT1/ptm/m/n/8 with [] (the iden-tity ma-trix) and $\OT1/cmr/bx/n/8 x[] \OT1/cm
 r/m/n/8 = \OT1/cmr/bx/n/8 e[]$\OT1/ptm/m/n/8 , the ma-trix $\OT1/cmr/bx/n/8 B \
 OT1/cmr/m/n/8 =
  []
 
 [2]
-<<<<<<< HEAD
-Underfull \hbox (badness 1377) in paragraph at lines 237--238
+Underfull \hbox (badness 1377) in paragraph at lines 236--237
 \OT1/ptm/m/it/10 the as-sump-tions of Thm. 1[], only now with over $\OT1/cmr/m/
 n/10 (\OML/cmm/m/it/10 k \OMS/cmsy/m/n/10 ^^@
  []
 
 
-Underfull \hbox (badness 8189) in paragraph at lines 265--267
+LaTeX Warning: Citation `tillmann2014computational' on page 3 undefined on inpu
+t line 244.
+
+
+LaTeX Warning: Citation `Hillar15' on page 3 undefined on input line 257.
+
+
+Underfull \hbox (badness 8189) in paragraph at lines 264--266
 []\OT1/ptm/m/n/10 Note more-over that if a set of mea-sure spaces
  []
 
-[3] [4]
-Underfull \hbox (badness 3724) in paragraph at lines 431--431
+[3]
+
+LaTeX Warning: Citation `arias2013fundamental' on page 4 undefined on input lin
+e 277.
+
+
+LaTeX Warning: Citation `tillmann2014computational' on page 4 undefined on inpu
+t line 277.
+
+
+LaTeX Warning: Citation `Tillmann15' on page 4 undefined on input line 277.
+
+
+LaTeX Warning: Citation `Kato2013' on page 4 undefined on input line 366.
+
+
+LaTeX Warning: Citation `Morris10' on page 4 undefined on input line 370.
+
+[4]
+
+LaTeX Warning: Citation `Deutsch12' on page 5 undefined on input line 404.
+
+
+LaTeX Warning: Citation `Deutsch12' on page 5 undefined on input line 414.
+
+
+Underfull \hbox (badness 3724) in paragraph at lines 430--430
 [][][][]\OT1/ptm/m/n/8 Fixing $\OML/cmm/m/it/8 S \OMS/cmsy/m/n/8 2 H$ \OT1/ptm/
 m/n/8 and $\OML/cmm/m/it/8 k$\OT1/ptm/m/n/8 -sparse $\OT1/cmr/bx/n/8 c$\OT1/ptm
 /m/n/8 , we have $\OMS/cmsy/m/n/8 k[][]\OT1/cmr/bx/n/8 c\OMS/cmsy/m/n/8 k[] ^^U
@@ -418,7 +491,7 @@ m/n/8 and $\OML/cmm/m/it/8 k$\OT1/ptm/m/n/8 -sparse $\OT1/cmr/bx/n/8 c$\OT1/ptm
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 431--431
+Underfull \hbox (badness 10000) in paragraph at lines 430--430
 []\OML/cmm/m/it/8 L[]\OT1/cmr/m/n/8 (\OT1/cmr/bx/n/8 A\OT1/cmr/m/n/8 )\OMS/cmsy
 /m/n/8 k\OT1/cmr/bx/n/8 X[]c\OMS/cmsy/m/n/8 k[] ^^U \OML/cmm/m/it/8 kL[]\OT1/cm
 r/m/n/8 (\OT1/cmr/bx/n/8 A\OT1/cmr/m/n/8 )\OML/cmm/m/it/8 L[]\OT1/cmr/m/n/8 (\O
@@ -427,73 +500,99 @@ n/8 k[]$\OT1/ptm/m/n/8 . Hence,
  []
 
 
+LaTeX Warning: Citation `tillmann2014computational' on page 5 undefined on inpu
+t line 434.
+
+
 Underfull \hbox (badness 3989) in paragraph at lines 445--446
-=======
-Underfull \hbox (badness 2318) in paragraph at lines 242--243
-\OT1/ptm/b/n/10 Theorem 2. \OT1/ptm/m/it/10 Fix a ma-trix $\OT1/cmr/bx/n/10 A$ 
-\OT1/ptm/m/it/10 and vec-tors $\OT1/cmr/bx/n/10 x[]$ \OT1/ptm/m/it/10 sat-is-fy
--
- []
-
-
-Underfull \hbox (badness 2941) in paragraph at lines 242--243
-\OT1/ptm/m/it/10 ing the as-sump-tions of Thm. 1[], only now with over
- []
-
-[3] [4]
-Underfull \hbox (badness 3989) in paragraph at lines 449--450
->>>>>>> 2f0b5f6f79208df0364322ea273492c7090d06ed
 []\OT1/ptm/m/n/10 Fixing $\OT1/cmr/bx/n/10 y \OMS/cmsy/m/n/10 2 [][] n f\OT1/cm
 r/bx/n/10 0\OMS/cmsy/m/n/10 g$\OT1/ptm/m/n/10 , there then ex-ists $\OT1/cmr/bx
 /n/10 c \OT1/cmr/m/n/10 =
  []
 
-<<<<<<< HEAD
-[5] [6]
-
-LaTeX Warning: Citation `?' on page 7 undefined on input line 525.
-
-(./final_submission.bbl
-Missing character: There is no â in font ptmr7t!
-Missing character: There is no „ in font ptmr7t!
-Missing character: There is no “ in font ptmr7t!
- [7]) [8]
-Underfull \hbox (badness 10000) in paragraph at lines 637--640
-=======
 [5]
 
-LaTeX Warning: Citation `?' on page 6 undefined on input line 531.
+LaTeX Warning: Citation `Isely10' on page 6 undefined on input line 507.
 
-[6] (./final_submission.bbl) [7]
-Underfull \hbox (badness 10000) in paragraph at lines 641--644
->>>>>>> 2f0b5f6f79208df0364322ea273492c7090d06ed
+
+LaTeX Warning: Citation `rehnsommer2007' on page 6 undefined on input line 507.
+
+
+
+LaTeX Warning: Citation `rozell2007neurally' on page 6 undefined on input line 
+507.
+
+
+LaTeX Warning: Citation `pehlevan2015normative' on page 6 undefined on input li
+ne 507.
+
+
+LaTeX Warning: Citation `ganguli2012compressed' on page 6 undefined on input li
+ne 507.
+
+
+LaTeX Warning: Citation `Hillar15' on page 6 undefined on input line 518.
+
+
+LaTeX Warning: Citation `Hillar15' on page 6 undefined on input line 520.
+
+
+LaTeX Warning: Citation `tillmann2014computational' on page 6 undefined on inpu
+t line 520.
+
+
+LaTeX Warning: Citation `lustig2008compressed' on page 6 undefined on input lin
+e 522.
+
+
+LaTeX Warning: Citation `Duarte08' on page 6 undefined on input line 522.
+
+
+LaTeX Warning: Citation `Gao14' on page 6 undefined on input line 522.
+
+
+LaTeX Warning: Citation `kong2016prior' on page 6 undefined on input line 522.
+
+
+LaTeX Warning: Citation `jung2001imaging' on page 6 undefined on input line 522
+.
+
+
+LaTeX Warning: Citation `Agarwal14' on page 6 undefined on input line 522.
+
+
+LaTeX Warning: Citation `lee2016sparse' on page 6 undefined on input line 522.
+
+
+LaTeX Warning: Citation `wu2016stability' on page 6 undefined on input line 522
+.
+
+
+LaTeX Warning: Citation `goodfellow2014explaining' on page 6 undefined on input
+ line 522.
+
+[6]
+No file final_submission.bbl.
+
+LaTeX Warning: Citation `Deutsch12' on page 7 undefined on input line 594.
+
+[7]
+Underfull \hbox (badness 10000) in paragraph at lines 627--630
 \OT1/ptm/m/n/10 passing the max-i-mum through the sum. Since
  []
 
 
-<<<<<<< HEAD
-Underfull \hbox (badness 4819) in paragraph at lines 637--640
-=======
-Underfull \hbox (badness 4819) in paragraph at lines 641--644
->>>>>>> 2f0b5f6f79208df0364322ea273492c7090d06ed
+Underfull \hbox (badness 4819) in paragraph at lines 627--630
 \OMS/cmsy/m/n/10 \[][] ^^R [][]$ \OT1/ptm/m/n/10 for all $\OML/cmm/m/it/10 S \O
 MS/cmsy/m/n/10 2 G$\OT1/ptm/m/n/10 , by [] the
  []
 
 
-<<<<<<< HEAD
-Underfull \hbox (badness 1466) in paragraph at lines 637--640
+Underfull \hbox (badness 1466) in paragraph at lines 627--630
 \OT1/ptm/m/n/10 nu-mer-a-tor of each term in the sum above is bounded
  []
 
-[9
-=======
-Underfull \hbox (badness 1466) in paragraph at lines 641--644
-\OT1/ptm/m/n/10 nu-mer-a-tor of each term in the sum above is bounded
- []
-
-[8] [9
->>>>>>> 2f0b5f6f79208df0364322ea273492c7090d06ed
+[8
 
 ] (./final_submission.aux)
 
@@ -501,22 +600,13 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 3673 strings out of 492995
-<<<<<<< HEAD
- 54048 string characters out of 6132704
- 135079 words of memory out of 5000000
- 7155 multiletter control sequences out of 15000+600000
- 50559 words of font info for 106 fonts, out of 8000000 for 9000
+ 3660 strings out of 492995
+ 53994 string characters out of 6132704
+ 133928 words of memory out of 5000000
+ 7142 multiletter control sequences out of 15000+600000
+ 51666 words of font info for 107 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 39i,15n,26p,1731b,267s stack positions out of 5000i,500n,10000p,200000b,80000s
-=======
- 54044 string characters out of 6132704
- 137079 words of memory out of 5000000
- 7155 multiletter control sequences out of 15000+600000
- 50559 words of font info for 106 fonts, out of 8000000 for 9000
- 1141 hyphenation exceptions out of 8191
- 39i,15n,26p,1731b,246s stack positions out of 5000i,500n,10000p,200000b,80000s
->>>>>>> 2f0b5f6f79208df0364322ea273492c7090d06ed
+ 39i,15n,26p,1522b,246s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb></usr/local/t
 exlive/2017/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmbsy7.pfb></usr/loc
@@ -547,14 +637,10 @@ st/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2017/texmf-dist/fonts/t
 ype1/urw/times/utmbi8a.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/urw/
 times/utmr8a.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/urw/times/utmr
 i8a.pfb>
-<<<<<<< HEAD
-Output written on final_submission.pdf (9 pages, 351884 bytes).
-=======
-Output written on final_submission.pdf (9 pages, 351540 bytes).
->>>>>>> 2f0b5f6f79208df0364322ea273492c7090d06ed
+Output written on final_submission.pdf (8 pages, 339794 bytes).
 PDF statistics:
- 152 PDF objects out of 1000 (max. 8388607)
- 110 compressed objects within 2 object streams
+ 149 PDF objects out of 1000 (max. 8388607)
+ 108 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

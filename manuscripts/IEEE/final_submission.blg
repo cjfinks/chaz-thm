@@ -17,13 +17,22 @@ Repeated entry---line 841 of file chazthm_ieee_trans_sig.bib
  :                              ,
 I'm skipping whatever remains of this entry
 Repeated entry---line 852 of file chazthm_ieee_trans_sig.bib
+<<<<<<< HEAD
  : @article{lee2016sparse
  :                       ,
+=======
+ : %@article{lee2016sparse
+ :                        ,
+>>>>>>> 2f0b5f6f79208df0364322ea273492c7090d06ed
 I'm skipping whatever remains of this entry
 Repeated entry---line 862 of file chazthm_ieee_trans_sig.bib
  : @article{wu2016stability
  :                         ,
 I'm skipping whatever remains of this entry
+<<<<<<< HEAD
+=======
+Warning--I didn't find a database entry for "?"
+>>>>>>> 2f0b5f6f79208df0364322ea273492c7090d06ed
 -- IEEEtran.bst version 1.14 (2015/08/26) by Michael Shell.
 -- http://www.michaelshell.org/tex/ieeetran/bibtex/
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
@@ -31,6 +40,7 @@ I'm skipping whatever remains of this entry
 Done.
 You've used 40 entries,
             4087 wiz_defined-function locations,
+<<<<<<< HEAD
             1085 strings with 14013 characters,
 and the built_in function-call counts, 35649 in all, are:
 = -- 3002
@@ -63,11 +73,51 @@ stack$ -- 0
 substring$ -- 2086
 swap$ -- 2209
 text.length$ -- 95
+=======
+            1083 strings with 13894 characters,
+and the built_in function-call counts, 34990 in all, are:
+= -- 2936
+> -- 822
+< -- 373
++ -- 468
+- -- 127
+* -- 1689
+:= -- 5099
+add.period$ -- 80
+call.type$ -- 40
+change.case$ -- 36
+chr.to.int$ -- 843
+cite$ -- 40
+duplicate$ -- 2406
+empty$ -- 2566
+format.name$ -- 160
+if$ -- 8197
+int.to.chr$ -- 0
+int.to.str$ -- 40
+missing$ -- 387
+newline$ -- 143
+num.names$ -- 40
+pop$ -- 794
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 2
+skip$ -- 2746
+stack$ -- 0
+substring$ -- 2015
+swap$ -- 2158
+text.length$ -- 92
+>>>>>>> 2f0b5f6f79208df0364322ea273492c7090d06ed
 text.prefix$ -- 0
 top$ -- 5
 type$ -- 40
 warning$ -- 0
+<<<<<<< HEAD
 while$ -- 177
 width$ -- 42
 write$ -- 434
+=======
+while$ -- 173
+width$ -- 42
+write$ -- 430
+>>>>>>> 2f0b5f6f79208df0364322ea273492c7090d06ed
 (There were 4 error messages)
