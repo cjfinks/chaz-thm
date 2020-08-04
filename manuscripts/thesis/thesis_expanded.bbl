@@ -196,41 +196,6 @@
     \field{year}{2008}
   \endentry
 
-  \entry{basu2006algorithms}{book}{}
-    \name{author}{3}{}{%
-      {{hash=BS}{%
-         family={Basu},
-         familyi={B\bibinitperiod},
-         given={Saugata},
-         giveni={S\bibinitperiod},
-      }}%
-      {{hash=PR}{%
-         family={Pollack},
-         familyi={P\bibinitperiod},
-         given={Richard},
-         giveni={R\bibinitperiod},
-      }}%
-      {{hash=RMF}{%
-         family={Roy},
-         familyi={R\bibinitperiod},
-         given={Marie-Fran{\c{c}}oise},
-         giveni={M\bibinitperiod-F\bibinitperiod},
-      }}%
-    }
-    \list{publisher}{1}{%
-      {Springer}%
-    }
-    \strng{namehash}{BSPRRMF1}
-    \strng{fullhash}{BSPRRMF1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{sortinit}{B}
-    \field{sortinithash}{B}
-    \field{title}{Algorithms in real algebraic geometry}
-    \field{volume}{10}
-    \field{year}{2006}
-  \endentry
-
   \entry{bellsejnowski1996}{article}{}
     \name{author}{2}{}{%
       {{hash=BA}{%
@@ -840,25 +805,6 @@
     \field{year}{2015}
   \endentry
 
-  \entry{chrishillar}{misc}{}
-    \name{author}{1}{}{%
-      {{hash=HC}{%
-         family={Hillar},
-         familyi={H\bibinitperiod},
-         given={Christopher},
-         giveni={C\bibinitperiod},
-      }}%
-    }
-    \strng{namehash}{HC1}
-    \strng{fullhash}{HC1}
-    \field{labelnamesource}{author}
-    \field{sortinit}{H}
-    \field{sortinithash}{H}
-    \field{howpublished}{personal communication}
-    \warn{\item Invalid format of field 'date' \item Invalid format of field
-  'date'}
-  \endentry
-
   \entry{hughes2010}{article}{}
     \name{author}{3}{}{%
       {{hash=HJ}{%
@@ -1213,7 +1159,7 @@
     \field{year}{2016}
   \endentry
 
-  \entry{stackexchangeanswer}{manual}{}
+  \entry{stackexchangeanswer}{article}{}
     \name{author}{1}{}{%
       {{hash=vLM}{%
          prefix={van},
@@ -1230,13 +1176,10 @@
     \field{labeltitlesource}{title}
     \field{sortinit}{L}
     \field{sortinithash}{L}
-    \field{title}{Answer to: extended stars-and-bars problem(where the upper
-  limit of the variable is bounded)}
-    \verb{url}
-    \verb https://math.stackexchange.com/questions/553960/extended-stars-and-ba
-    \verb rs-problemwhere-the-upper-limit-of-the-variable-is-bounded
-    \endverb
-    \field{year}{2013 (accessed July 18, 2020)}
+    \field{title}{extended stars-and-bars problem(where the upper limit of the
+  variable is bounded)}
+  \field{journaltitle}{https://math.stackexchange.com/questions/553960/extended-stars-and-bars-problemwhere-the-upper-limit-of-the-variable-is-bounded}
+    \field{year}{2019}
   \endentry
 
   \entry{li2004analysis}{article}{}
@@ -1614,6 +1557,33 @@
   the geometric picture}}
     \field{journaltitle}{IEEE Trans. Inf. Theory}
     \field{year}{2016}
+  \endentry
+
+  \entry{Tillmann15}{article}{}
+    \name{author}{1}{}{%
+      {{hash=TA}{%
+         family={Tillmann},
+         familyi={T\bibinitperiod},
+         given={A.},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {IEEE}%
+    }
+    \strng{namehash}{TA1}
+    \strng{fullhash}{TA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{T}
+    \field{sortinithash}{T}
+    \field{number}{1}
+    \field{pages}{45\bibrangedash 49}
+    \field{title}{On the Computational Intractability of Exact and Approximate
+  Dictionary Learning}
+    \field{volume}{22}
+    \field{journaltitle}{IEEE Signal Process. Lett.}
+    \field{year}{2015}
   \endentry
 
   \entry{tillmann2015computational}{article}{}

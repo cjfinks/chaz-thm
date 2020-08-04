@@ -1,0 +1,29 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Contents}{ii}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{List of Figures}{iii}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {0.1}Foreword}{v}
+\defcounter {refsection}{0}\relax 
+\contentsline {part}{\partnumberline {I}Main Text}{1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {0.2}Introduction}{2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {0.3}Results}{4}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {0.4}Proofs}{9}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {0.5}Discussion}{13}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {0.6}Future Directions}{17}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Signal-to-Noise Ratio}{17}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Sample Complexity}{18}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Convex Optimization}{19}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {0.7}Appendix}{22}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Bibliography}{25}

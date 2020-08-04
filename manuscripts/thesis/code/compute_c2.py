@@ -124,18 +124,12 @@ if __name__ == '__main__':
     """
     """ rows and cols of square grid """
 
-    ks = range(4,7)
-    fig, ax = pp.subplots(len(ks), 1, figsize=(20,10), sharex=True)
-    if len(ks) == 1:
-        ax = [ax]
-    fig.add_subplot(111, frameon=False)
-    pp.tick_params(labelcolor='none', top=False, bottom=False, left=False, right=False)
-    pp.ylabel("Histogram of $C_2(\mathbf{A}, \mathcal{H})$")
+    ks = range(4,12+1)
     for i, k in enumerate(ks):
         print("k=%d" % k)
         # SQUARE
         m = k**2
-        n = (3*m)//4
+        n = m//2#(3*m)//4
         H = square_hypergraph(m, k)
         r = 2 # since SIP satisfied by (row,col) pair
 
@@ -146,18 +140,14 @@ if __name__ == '__main__':
 
         N_per_support = int((k - 1) * choose(m, k, exact=True)) + 1
         N = len(H) * N_per_support
-        num_trials = 10
+        num_trials = 1000
         c2s = np.zeros(num_trials)
         for t in range(num_trials):
             print("Trial %d" % t, end='\r')
             A = np.random.randn(n, m)
             A = np.dot( A, np.diag(1./np.linalg.norm(A, axis=0)) ) # normalize
             c2s[t] = C2(A, H, r)
+            if t % 100 == 0:
+                np.save("./c2s_k=%d_2x" % k, np.sort(c2s[c2s < np.inf])) 
 
-        c2s = np.sort(c2s[c2s < np.inf])
-        c2max = c2s[int(0.95*len(c2s))]
-        ax[i].hist(c2s[c2s<c2max], bins=100)
-        ax[i].legend(["$m=%d$" % m], loc='upper right', handlelength=0, handletextpad=0)
-        pp.savefig('C2.pdf')
-        pp.show()
-        # TODO: do relative histogram so as to share y axis
+        np.save("./c2s_k=%d_2x" % k, np.sort(c2s[c2s < np.inf])) 

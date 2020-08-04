@@ -1,27 +1,27 @@
 \boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{Contents}{ii}
+\contentsline {chapter}{Contents}{i}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{List of Figures}{iii}
+\contentsline {chapter}{List of Figures}{ii}
 \defcounter {refsection}{0}\relax 
-\contentsline {part}{\partnumberline {I}Main Text}{1}
+\contentsline {section}{\numberline {0.1}Foreword}{1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {0.1}Introduction}{2}
+\contentsline {section}{\numberline {0.2}Introduction}{2}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {0.2}Results}{5}
+\contentsline {section}{\numberline {0.3}Results}{5}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {0.3}Proofs}{10}
+\contentsline {section}{\numberline {0.4}Proofs}{10}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {0.4}Discussion}{15}
+\contentsline {section}{\numberline {0.5}Discussion}{15}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {0.5}Future Directions}{16}
+\contentsline {section}{\numberline {0.6}Future Directions}{18}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{Tolerable Error Bounds}{16}
+\contentsline {subsection}{Signal-to-Noise Ratio}{19}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{Sample Complexity and Support Set Hypergraphs}{17}
+\contentsline {subsection}{Sample Complexity}{19}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{Guarantees for Convex Optimization}{17}
+\contentsline {subsection}{Convex Optimization}{20}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {0.6}Appendix}{21}
+\contentsline {section}{\numberline {0.7}Appendix}{24}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{Bibliography}{24}
+\contentsline {chapter}{Bibliography}{27}
