@@ -1,4 +1,4 @@
-Title: "On the uniqueness and stability of dictionaries for sparse representation of noisy signals" 
+	Title: "On the uniqueness and stability of dictionaries for sparse representation of noisy signals" 
 Tracking #: 2017-06210R 
 Authors: Garfinkle and Hillar 
 

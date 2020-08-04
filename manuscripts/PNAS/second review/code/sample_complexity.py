@@ -77,7 +77,7 @@ if __name__ == '__main__':
 
     We plot this as a function of m for fixed k.
     Assume H is the set of contiguous length-k intervals of [m] arranged in cyclic order, so that |H| = m.
-    """
+
     k = 3 # Fixed sparsity, i.e. H is k-uniform
     m_min = k+1 # since k < m required for H to satisfy SIP
     m_max = 20 # Max dictionary size
@@ -108,3 +108,4 @@ if __name__ == '__main__':
     pp.savefig('./figures/samples_vs_m.png')
 
     #axes[1].plot(range(m_min,m_max+1), [Np / Nd for Np, Nd in zip(N_probabilistic, N_deterministic)])
+    """

@@ -2,9 +2,9 @@
 % Make L_H a definition..? Change def of L to be 1-norm so we don't need these sqrt k's?
 % When do we have polynomial complexity? Is it worth saying something about this for cyclic order (e.g. convolutions?)
 % mention regularity is probably not necessary
-% make theorem 3 a corollary?
 % have i talked about making deterministic A? (see reviewer comment, and comment about easily meeting thm 1 conditions w deterministic construction). also after f(A). we make L_2k(a) with vandermonde, clarify this is way more than necessary...but it is necessary if we care about sparse coefficient recovery too, which is part of df of stable sparse representation.
 % IS THEOREM 3 AND ITS COROLLARY CORRECTLY STATED??
+% mention use of coherence instead of L_k? for practical criteria?
 
 % Notes:
 %
@@ -70,19 +70,20 @@ Learning optimal dictionaries for sparse coding has exposed characteristic spars
 \section{Introduction}\label{Intro}
 %\IEEEPARstart{L}{earning} sparse representations of data has become an important step in modern solutions to problems in signal processing and pattern analysis. 
 % \cite{sato1975method}
-\IEEEPARstart{A}{}common contemporary approach to problems in signal processing and pattern analysis is to view each of $N$ observed $n$-dimensional signal samples as a (noisy) linear combination of at most $k$ elementary waveforms drawn from some unknown ``dictionary" of size $m \ll N$ (see \cite{Zhang15} for a comprehensive review of this and related models). 
+\IEEEPARstart{A}{}common modern approach to problems in signal processing and pattern analysis is to view each of $N$ observed $n$-dimensional signal samples as a (noisy) linear combination of at most $k$ elementary waveforms drawn from some unknown ``dictionary" of size $m \ll N$ (see \cite{Zhang15} for a comprehensive review of this and related models). 
 Optimizing dictionaries subject to this and related sparsity constraints has revealed seemingly characteristic sparse structure in several signal classes of current interest (e.g., in vision \cite{wang2015sparse}). 
 Of particular note are the seminal works in the field \cite{Olshausen96, hurri1996image, bell1997independent, van1998independent}, which demonstrated that such dictionaries optimized with respect to small patches of ``natural" images share qualitative similarities with linear filters fit to the response properties of simple-cell neurons in mammalian visual cortex. Curiously, these waveforms (e.g., ``Gabor'' wavelets) appear in dictionaries learned by a variety of sparse coding algorithms trained over different natural image datasets; as such, it appears these latent features may be in some sense canonical \cite{donoho2001can}.
 
-Motivated by these discoveries and more recent work linked to the young field of ``compressive sensing" which proposed a theory of information transmission through random wiring bottlenecks in the brain \cite{Isely10}, we address when optimal dictionaries for sparse representation are indeed identifiable from data. Answers to this question may also have relevant implications in practice; for example, in justifying the identification of forged paintings by their anomalous sparse representations \cite{hughes2010}, or [more citations? kinda weak imo]. While several algorithms which provably recover unique latent dictionaries under specific conditions have recently been proposed (see \cite[Sec.~I-E]{Sun16} for a summary of the state-of-the-art), few theorems can be invoked to justify the consistency of inference under this model of data more broadly. To our knowledge, a universal guarantee of the uniqueness and stability of learned dictionaries and the sparse representations they induce over noisy data has yet to appear in the literature.
+Motivated by these discoveries and more recent work proposing a theory of information transmission through random wiring bottlenecks in the brain \cite{Isely10}, linked to the young field of ``compressive sensing", we address when optimal dictionaries for sparse representation are indeed identifiable from data. Answers to this question may also have implications in practice wherever an appeal is made to the latent sparse structure of data (e.g. forgery detection \cite{hughes2010, olshausen2010applied}; brain recordings \cite{jung2001imaging, agarwal2014spatially, lee2016sparse}; and gene expression \cite{wu2016stability}). While several algorithms which provably recover unique latent dictionaries under specific conditions have recently been proposed (see \cite[Sec.~I-E]{Sun16} for a summary of the state-of-the-art), few theorems can be invoked to justify the consistency of inference under this model of data more broadly. To our knowledge, a universal guarantee of the uniqueness and stability of learned dictionaries and the sparse representations they induce over noisy data has yet to appear in the literature.
+% in justifying the identification of forged paintings by their anomalous sparse representations \cite{hughes2010},
 
-Here, we prove very generally that uniqueness and stability is a typical property of the dictionary learning problem described above. More specifically,  we show that dictionaries injective on a sparse domain are identifiable from \mbox{$N = m(k-1){m \choose k} + m$} noisy sparse linear combinations of their columns up to an error that is linear in the noise (Thm.~\ref{DeterministicUniquenessTheorem}). In fact, provided $n \geq \min(2k,m)$, in almost all cases the problem is well-posed\footnote{as per Hadamard \cite{Hadamard1902}} given enough data (Cor.~\ref{ProbabilisticCor}). These guarantees also hold for a related (and perhaps more commonly posed) optimization problem which instead seeks a dictionary minimizing the average number of elementary waveforms required to reconstruct each sample of the dataset. Importantly, in both cases our explicit, universal guarantees apply without the imposition of \emph{any} constraints on learned dictionaries  (e.g. that they, too, be injective over some domain) beyond an upper bound on dictionary size, which is necessary in any case to avoid a trivial solution (e.g. allowing for $m = N$ elementary waveforms). %That is, every pair of solutions of comparable size has some number of dictionary elements in common (up to noise), and similarly so for the coefficients of sparse codes they induce.
+Here, we prove very generally that uniqueness and stability is a typical property of the dictionary learning problem described above. More specifically,  we show that dictionaries injective on a sparse domain are identifiable from \mbox{$N = m(k-1){m \choose k} + m$} noisy sparse linear combinations of their columns up to an error that is linear in the noise (Thm.~\ref{DeterministicUniquenessTheorem}). In fact, provided $n \geq \min(2k,m)$, in almost all cases the problem is well-posed (as per Hadamard \cite{Hadamard1902}) given enough data (Cor.~\ref{ProbabilisticCor}). These guarantees also hold for a related (and perhaps more commonly posed) optimization problem which instead seeks a dictionary minimizing the average number of elementary waveforms required to reconstruct each sample of the dataset. Importantly, in both cases our explicit, universal guarantees apply without the imposition of \emph{any} constraints on learned dictionaries  (e.g. that they, too, be injective over some domain) beyond an upper bound on dictionary size, which is necessary in any case to avoid a trivial solution (e.g. allowing for $m = N$ elementary waveforms). %That is, every pair of solutions of comparable size has some number of dictionary elements in common (up to noise), and similarly so for the coefficients of sparse codes they induce.
 
 To state things precisely, let $\mathbf{A} \in \mathbb R^{n \times m}$ be a matrix with columns $\mathbf{A}_j$ ($j = 1,\ldots,m$) and let dataset $Z$ consist of measurements:
 \begin{align}\label{LinearModel}
 \mathbf{z}_i = \mathbf{A}\mathbf{x}_i + \mathbf{n}_i,\ \ \  \text{$i=1,\ldots,N$},
 \end{align}
-for $k$-\emph{sparse} $\mathbf{x}_i \in \mathbb{R}^m$ having at most $k<m$ nonzero entries and \emph{noise} $\mathbf{n}_i \in \mathbb{R}^n$, with bounded norm $\| \mathbf{n}_i \|_2 \leq  \eta$ representing our worst-case uncertainty\footnote{This captures uncertainty in model parameters $\mathbf{A}$ and $\mathbf{x}_i$ in addition to external sources of measurement error.} in measuring the product $\mathbf{A}\mathbf{x}_i$. The first mathematical problem we consider is:
+for $k$-\emph{sparse} $\mathbf{x}_i \in \mathbb{R}^m$ having at most $k<m$ nonzero entries and \emph{noise} $\mathbf{n}_i \in \mathbb{R}^n$, with bounded norm $\| \mathbf{n}_i \|_2 \leq  \eta$ representing our worst-case uncertainty in measuring the product $\mathbf{A}\mathbf{x}_i$. The first mathematical problem we consider is:
 
 %
  
@@ -90,7 +91,7 @@ for $k$-\emph{sparse} $\mathbf{x}_i \in \mathbb{R}^m$ having at most $k<m$ nonze
 Find a real matrix $\mathbf{B}$ and $k$-sparse $\mathbf{\overline x}_1, \ldots, \mathbf{\overline x}_N$ that satisfy $\|\mathbf{z}_i - \mathbf{B}\mathbf{\overline x}_i\|_2 \leq \eta$ for all $i$.
 \end{problem}
 
-Note that, stated as such, every solution to this problem represents infinitely many equivalent alternatives $\mathbf{BPD}$ and $\mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\overline x}_1, \ldots, \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\overline x}_N$ parametrized by a choice of permutation matrix $\mathbf{P}$ and invertible diagonal matrix $\mathbf{D}$. Equating these alternatives amounts to identifying a set of elementary waveforms (the columns of $\mathbf{B}$)  up to some arbitrary scale and their associated sparse coefficients (the entries of $\mathbf{x}_i$) for reconstructing each data point $\mathbf{z}_i$. Previous theoretical work addressing the noiseless case $\eta =0$ (e.g., \cite{li2004analysis, Georgiev05, Aharon06, Hillar15}) for matrices $\mathbf{B}$ having $m$ columns has shown that the solution to Prob.~\ref{InverseProblem}, when it exists, is unique up to these equivalent labeling and scaling ambiguities provided the $\mathbf{x}_i$ are sufficiently diverse and the matrix $\mathbf{A}$ satisfies the \textit{spark condition}:
+Note that, stated as such, every solution to this problem represents infinitely many equivalent alternatives $\mathbf{BPD}$ and $\mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\overline x}_1, \ldots, \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\overline x}_N$ parametrized by a choice of permutation matrix $\mathbf{P}$ and invertible diagonal matrix $\mathbf{D}$. Identifying these alternatives identifies a set of elementary waveforms (the columns of $\mathbf{B}$)  up to some arbitrary scale and their associated sparse coefficients (the entries of $\mathbf{x}_i$) for reconstructing each data point $\mathbf{z}_i$. Previous theoretical work addressing the noiseless case $\eta =0$ (e.g., \cite{li2004analysis, Georgiev05, Aharon06, Hillar15}) for matrices $\mathbf{B}$ having exactly $m$ columns has shown that the solution to Prob.~\ref{InverseProblem}, when it exists, is unique up to these equivalent labeling and scaling ambiguities provided the $\mathbf{x}_i$ are sufficiently diverse and the matrix $\mathbf{A}$ satisfies the \textit{spark condition}:
 \begin{align}\label{SparkCondition}
 \mathbf{A}\mathbf{x}_1 = \mathbf{A}\mathbf{x}_2 \implies \mathbf{x}_1 = \mathbf{x}_2, \ \ \ \text{for all $k$-sparse } \mathbf{x}_1, \mathbf{x}_2,
 \end{align}
@@ -109,7 +110,7 @@ then there is some permutation matrix $\mathbf{P}$ and invertible diagonal matri
 \end{align}
 \end{definition}
 
-To see how Prob. \ref{InverseProblem} motivates this definition, suppose that $Y$ has a stable $k$-sparse representation in $\mathbb{R}^m$ and fix $\delta_1, \delta_2$ to be the desired accuracies of recovery in \eqref{def1}. Now, consider any dataset $Z$ generated as in \eqref{LinearModel} with $\eta \leq \frac{1}{2} \varepsilon(\delta_1, \delta_2)$. It follows from the triangle inequality that any $n \times m$ matrix $\mathbf{B}$ and $k$-sparse $\mathbf{\overline x}_1, \ldots, \mathbf{\overline x}_N$ solving Prob.~\ref{InverseProblem} are necessarily within $\delta_1$ and $\delta_2$ of the original dictionary $\mathbf{A}$ and codes $\mathbf{x}_1, ..., \mathbf{x}_N$, respectively.\footnote{We should mention the different norms measuring recovery in \eqref{def1} are meant only to reflect the typically distinct semantics of the dictionary and sparse codes in modeling data.}
+To see how Prob. \ref{InverseProblem} motivates this definition, suppose that $Y$ has a stable $k$-sparse representation in $\mathbb{R}^m$ and fix $\delta_1, \delta_2$ to be the desired accuracies of recovery in \eqref{def1}. Now, consider any dataset $Z$ generated as in \eqref{LinearModel} with $\eta \leq \frac{1}{2} \varepsilon(\delta_1, \delta_2)$. It follows from the triangle inequality that any $n \times m$ matrix $\mathbf{B}$ and $k$-sparse $\mathbf{\overline x}_1, \ldots, \mathbf{\overline x}_N$ solving Prob.~\ref{InverseProblem} are necessarily within $\delta_1$ and $\delta_2$ of the original dictionary $\mathbf{A}$ and codes $\mathbf{x}_1, ..., \mathbf{x}_N$, respectively.\footnote{We should mention the different norms in \eqref{def1} reflect the distinct meanings typically ascribed to the dictionary and sparse codes in modeling data.}
 
 In the next section, we give precise statements of our main result (Thm.~\ref{DeterministicUniquenessTheorem}), from which we have derived an explicit form for $\varepsilon(\delta_1, \delta_2)$. We then extend the same guarantees to the following alternate formulation of the dictionary learning problem as one of minimizing the total (or equivalently, the mean) number of non-zero entries in the sparse codes (Thm.~\ref{SLCopt}):
 
@@ -164,21 +165,22 @@ We are now in a position to state our main result, though for expository purpose
 Fix integers $n, k, m$ and $\overline m$. Let the $n \times m$ matrix $\mathbf{A}$ satisfy $L_{2\mathcal{H}}(\mathbf{A}) > 0$ for some $r$-regular $\mathcal{H} \subseteq {[m] \choose k}$ with the SIP. If $k$-sparse \mbox{$\mathbf{x}_1, \ldots, \mathbf{x}_N$} include more than $(k-1){\overline m \choose k}$ vectors in general linear position supported in each $S \in \mathcal{H}$, then there is $C_1 > 0$ (given by \eqref{Cdef1}) for which the following holds for all%\footnote{The condition $\varepsilon < L_2(\mathbf{A}) /C_1$ is necessary; otherwise,  with \mbox{$\mathbf{A}$ = $\mathbf{I}$} and $\mathbf{x}_i = \mathbf{e}_i$, there is a matrix $\mathbf{B}$ and $1$-sparse $\mathbf{\overline{x}}_i$ with $\|\mathbf{A}\mathbf{x}_i - \mathbf{B}\mathbf{\overline{x}}_i \|_2 \leq \varepsilon$ that nonetheless violates \eqref{Cstable}.} $\varepsilon < L_{2}(\mathbf{A}) / C_1$:
 \footnote{Note that the condition $\varepsilon < L_2(\mathbf{A}) /C_1$ is necessary; otherwise, with \mbox{$\mathbf{A}$ = $\mathbf{I}$} (the identity matrix) and $\mathbf{x}_i = \mathbf{e}_i$, the matrix $\mathbf{B} = \left[\mathbf{0}, \frac{1}{2}(\mathbf{e}_1 + \mathbf{e}_2), \mathbf{e}_3, \ldots, \mathbf{e}_{m} \right]$ and sparse codes $\mathbf{\overline x}_i = \mathbf{e}_2$ for $i = 1, 2$ and $\mathbf{\overline x}_i = \mathbf{e}_i$ for $i \geq 3$ satisfy $\|\mathbf{A}\mathbf{x}_i - \mathbf{B}\mathbf{\overline{x}}_i \|_2 \leq \varepsilon$ but nonetheless violate \eqref{Cstable}.} $\varepsilon < L_{2}(\mathbf{A}) / C_1$:
 
-Every $n \times \overline m$ matrix $\mathbf{B}$ for which there are $k$-sparse $\mathbf{\overline x}_1, \ldots, \mathbf{\overline x}_N$ satisfying \mbox{$\|\mathbf{A}\mathbf{x}_i - \mathbf{B}\mathbf{\overline x}_i\|_2 \leq \varepsilon$} for $i = 0, \ldots, N$ has $\overline m \geq m$, and provided $\overline m < mr / (r-1)$, there is a permutation matrix $\mathbf{P}$ and an invertible diagonal matrix $\mathbf{D}$ such that:
+Every $n \times \overline m$ matrix $\mathbf{B}$ for which there are $k$-sparse $\mathbf{\overline x}_1, \ldots, \mathbf{\overline x}_N$ satisfying \mbox{$\|\mathbf{A}\mathbf{x}_i - \mathbf{B}\mathbf{\overline x}_i\|_2 \leq \varepsilon$} for $i = 0, \ldots, N$ has $\overline m \geq m$, and provided that $\overline m (r-1) < mr$, we have:
 \begin{align}\label{Cstable}
-\|\mathbf{A}_j- \mathbf{B}_{\overline J} \mathbf{PD}_j\|_2 \leq C_1 \varepsilon \ \ \text{for all } j \in J
+\|\mathbf{A}_j- \mathbf{BPD}_j\|_2 \leq C_1 \varepsilon \ \ \text{for all } j \in J,
 \end{align}
+for a non-empty $J \subseteq [m]$ of size \mbox{$m - (r-1)(\overline m - m)$}, some permutation matrix $\mathbf{P}$ and an invertible diagonal matrix $\mathbf{D}$.
 %
-for some $J$ and $\overline J$ both of size \mbox{$m - (r-1)(\overline m - m)$}. 
 % $\overline m - r(\overline m - m)$
+% , t
 
 Moreover, if $\mathbf{A}$ satisfies \eqref{SparkCondition} and $\varepsilon < L_{2k}(\mathbf{A}) / C_1$, then $\mathbf{B}$ also satisfies \eqref{SparkCondition} with $L_{2k}(\mathbf{B}\mathbf{PD}) \geq L_{2k}(\mathbf{A}) - C_1 \varepsilon$ and for all $i \in [N]$:
 \begin{align}\label{b-PDa}
 %\|\mathbf{x}^J_i - \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\overline x}^{\overline J}_i\|_1 &\leq  \left( \frac{ 1+C_1 \|\mathbf{x}^{J}_i\|_1 }{ L_{2k}(\mathbf{A}) -  C_1\varepsilon } \right) \varepsilon \ \  \text{for $i \in [N]$}.
-\|(\mathbf{x}_i)_J - \left(\mathbf{D}^{-1}\mathbf{P}^{\top}\right)_{\overline J}(\mathbf{\overline x}_i)_{\overline J}\|_1 &\leq  \left( \frac{ 1+C_1 \|\mathbf{x}_i\|_1 }{ L_{2k}(\mathbf{A}) -  C_1\varepsilon } \right) \varepsilon,
+\|(\mathbf{x}_i)_J - (\mathbf{D}^{-1}\mathbf{P}^{\top} \mathbf{\overline x}_i)_J\|_1 &\leq  \left( \frac{ 1+C_1 \|\mathbf{x}_i\|_1 }{ L_{2k}(\mathbf{A}) -  C_1\varepsilon } \right) \varepsilon,
 \end{align}
 %
-where $(\mathbf{x}_i)_J$ and $(\mathbf{\overline x}_i)_{\overline J}$ here represent subvectors formed from restricting to coefficients indexed by $J$ and $\overline J$, respectively. 
+where $(\mathbf{x}_i)_J$ here represents the subvector formed from restricting to coefficients indexed by $J$. 
 \end{theorem}
 
 %We delay defining the explicit constant $C_1$ until Section \ref{DUT} (\eqref{Cdef1}).
@@ -232,10 +234,10 @@ A practical implication of Thm.~\ref{DeterministicUniquenessTheorem} is the foll
 A less direct consequence of Thm.~\ref{DeterministicUniquenessTheorem} is the following uniqueness and stability guarantee for solutions to Prob.~\ref{SLCopt}, the usual optimization problem of interest for those applying dictionary learning to their data.
 
 \begin{theorem}\label{SLCopt}
-Fix a matrix $\mathbf{A}$ and vectors $\mathbf{x}_i$ satisfying the assumptions of Thm.~\ref{DeterministicUniquenessTheorem}, only now with over $(k-1)\left[ {\overline m \choose k} + |\mathcal{H}|k{\overline m \choose k-1}\right]$ vectors supported in general linear position in each $S \in \mathcal{H}$. Every solution to Prob.~\ref{OptimizationProblem} (with $\eta \gets \varepsilon/2$) satisfies recovery guarantees \eqref{Cstable} and \eqref{b-PDa} when the corresponding bounds on $\eta$ are met.
+Fix a matrix $\mathbf{A}$ and vectors $\mathbf{x}_i$ satisfying the assumptions of Thm.~\ref{DeterministicUniquenessTheorem}, only now with over $(k-1)\left[ {\overline m \choose k} + |\mathcal{H}|k{\overline m \choose k-1}\right]$ vectors supported in general linear position in each $S \in \mathcal{H}$. Every solution to Prob.~\ref{OptimizationProblem} (with $\eta = \varepsilon/2$) satisfies recovery guarantees \eqref{Cstable} and \eqref{b-PDa} when the corresponding bounds on $\eta$ are met.
 \end{theorem}
 
-Another extension of Thm.~\ref{DeterministicUniquenessTheorem} can be derived from the following analytic characterization of the spark condition.  Let $\mathbf{A}$  be the $n \times m$ matrix of $nm$ indeterminates $A_{ij}$. The reader may work out for themself why substituting real numbers for the $A_{ij}$ yields a matrix satisfying \eqref{SparkCondition} if and only if the following polynomial also evaluates to a nonzero number:
+Another extension of Thm.~\ref{DeterministicUniquenessTheorem} can be derived from the following analytic characterization of the spark condition.  Letting $\mathbf{A}$ be the $n \times m$ matrix of $nm$ indeterminates $A_{ij}$, the reader may work out for themself why substituting real numbers for the $A_{ij}$ yields a matrix satisfying \eqref{SparkCondition} if and only if the following polynomial also evaluates to a nonzero number:
 \begin{align*}
 f(\mathbf{A}) := \prod_{S \in {[m] \choose 2k}} \sum_{S' \in {[n] \choose 2k}} (\det \mathbf{A}_{S',S})^2,
 \end{align*}
@@ -257,7 +259,7 @@ We claim a similar phenomenon applies to datasets of vectors with a stable spars
 
 \begin{theorem}\label{robustPolythm}
 %Let $\mathbf{A}$ and $\mathbf{x}_1, \ldots, \mathbf{x}_N$ be an indeterminate $n \times m$ matrix and sequence of $m$-dimensional vectors, respectively. 
-There is a polynomial in the entries of $\mathbf{A}$ and the $\mathbf{x}_i$ that evaluates to a nonzero number only when $Y$ has a stable $k$-sparse representation in $\mathbb{R}^m$. In particular, all -- except for a Borel set of measure zero -- substitutions impart to $Y$ this property.
+There is a polynomial in the entries of $\mathbf{A}$ and the $\mathbf{x}_i$ that evaluates to a nonzero number only when $Y$ has a stable $k$-sparse representation in $\mathbb{R}^m$. In particular, almost all substitutions impart to $Y$ this property.
 \end{theorem}
 
 Note moreover that if a set of measure spaces $\{(X_{\ell}, \Sigma_{\ell}, \nu_{\ell})\}_{\ell=1}^p$ has $\nu_{\ell}$ absolutely continuous with respect to $\mu$ for all $\ell \in [p]$, where $\mu$ is the standard Borel measure on $\mathbb{R}$, then the product measure $\prod_{\ell=1}^p \nu_{\ell}$ is absolutely continuous with respect to the standard Borel product measure on $\mathbb{R}^p$. % for space:  (e.g.,  \cite{folland2013real}). 
@@ -269,11 +271,12 @@ If the indeterminate entries of $\mathbf{A}$ and the $\mathbf{x}_i$ are drawn in
 
 
 
-Thus, drawing the dictionary and supported sparse coefficients from any continuous probability distribution almost certainly generates data with a stable sparse representation.
+Thus, drawing the dictionary and supported sparse coefficients from any continuous probability distribution almost always generates data with a stable sparse representation.
 
 %\cite{rehnsommer2007, rozell2007neurally, ganguli2012compressed, hu2014hebbian}
 
-We close this section with some comments on the optimality of our results.  Our linear scaling for $\varepsilon$ in \eqref{epsdel} is essentially optimal (e.g., see \cite{arias2013fundamental}), but a basic open problem remains: how many samples are necessary to determine the sparse coding model? If $k$ is held fixed or if the size of the support set of reconstructing codes is known to be polynomial in $\overline m$ and $k$, then a practical (polynomial) amount of data suffices.\footnote{In the latter case, a reexamination of the pigeonholing argument in the proof of Thm.~\ref{DeterministicUniquenessTheorem} requires a polynomial number of samples distributed over a polynomial number of supports.} Reasons to be skeptical that this holds in general, however, can be found in \cite{tillmann2014computational, Tillmann15}.
+We close this section with some comments on the optimality of our results.  Our linear scaling for $\varepsilon$ in \eqref{epsdel} is essentially optimal (e.g., see \cite{arias2013fundamental}), but a basic open problem remains: how many samples are necessary to determine the sparse coding model? Our results demonstrate that sparse codes $\mathbf{x}_i$ drawn from only a polynomial number of $k$-dimensional subspaces permit stable identification of the generating dictionary $\mathbf{A}$. This lends some legitimacy to the use of the sparse coding model in practice, where data in general are unlikely (if ever) to exhibit the exponentially many possible $k$-wise combinations of dictionary elements required by (to our knowledge) all previously published results. Consequently, if $k$ is held fixed or if the size of the support set of reconstructing codes is known to be polynomial in $\overline m$ and $k$, then a practical (polynomial) amount of data suffices to identify the dictionary.\footnote{In the latter case, a reexamination of the pigeonholing argument in the proof of Thm.~\ref{DeterministicUniquenessTheorem} requires a polynomial number of samples distributed over a polynomial number of supports.} Reasons to be skeptical that this holds in general, however, can be found in \cite{tillmann2014computational, Tillmann15}. Even so, in the next section we discuss how probabilistic guarantees can in fact be made for any number of available samples.
+
 
 \section{Proofs}\label{DUT} % of Theorems~\ref{DeterministicUniquenessTheorem} and ~\ref{SLCopt}}\label{DUT}
 
@@ -337,9 +340,10 @@ We now show that $\pi$ is injective (in particular, a permutation if $\overline 
 &\geq  L_2(\mathbf{A}) \|\overline{c}_{i}c_{j} \mathbf{e}_{j} - \overline{c}_{j}c_{i}\mathbf{e}_{i}\|_2 \nonumber \\
 &\geq  L_2(\mathbf{A}) \left( |\overline{c}_{i}| + |\overline{c}_{j}| \right) \min_{\ell \in [m]} |c_\ell |,
 \end{align*}
-contradicting our assumed upper bound on $\varepsilon$. Hence, the map $\pi$ is injective and it must be the case that $\overline m \geq m$. Setting $\overline J = \pi([m])$ and letting $P = \left( \mathbf{e}_{\pi(1)} \cdots \mathbf{e}_{\pi(m)}\right)$ and $D = \text{diag}(\frac{\overline{c}_1}{c_1},\ldots,\frac{\overline{c}_m}{c_m})$, we may rewrite \eqref{1D} to see that, for all $j \in [m]$:
+contradicting our assumed upper bound on $\varepsilon$. Hence, the map $\pi$ is injective and it must be the case that $\overline m \geq m$. %Setting $\overline J = \pi([m])$ and 
+Letting $\mathbf{P}$ and $\mathbf{D}$ be the $\overline m \times \overline m$ permutation and invertible diagonal matrices with, respectively, columns $\mathbf{e}_{\pi(j)}$ and $\frac{\overline{c}_j}{c_j}\mathbf{e}_j$ for $j \in [m]$ (and, say, $\mathbf{e}_j$ otherwise), we may rewrite \eqref{1D} to see that for all $j \in [m]$:
 \begin{align*}
-\|\mathbf{A}_j - \mathbf{B}_{\overline J}\mathbf{PD}_j\|_2 
+\|\mathbf{A}_j - \mathbf{BPD}_j\|_2 
 = \|\mathbf{A}_j - \frac{\overline{c}_j}{c_j}\mathbf{B}_{\pi(j)}\|_2 
 \leq \frac{\varepsilon}{|c_j|} 
 \leq C_1\varepsilon.
@@ -378,11 +382,11 @@ If for some $n \times \overline m$ matrix $\mathbf{B}$ and map $\pi: \mathcal{H}
 \begin{align}\label{GapUpperBound}
 d(\bm{\mathcal{A}}_S, \bm{\mathcal{B}}_{\pi(S)}) \leq \varepsilon \ \  \text{for $S \in \mathcal{H}$},
 \end{align}
-then $\overline m \geq m$, and provided $\overline m < mr /(r-1)$, there is a permutation matrix $\mathbf{P}$ and invertible diagonal $\mathbf{D}$ such that:
+then $\overline m \geq m$, and provided $\overline m (r-1) < mr$, there is a permutation matrix $\mathbf{P}$ and invertible diagonal $\mathbf{D}$ such that:
 \begin{align}\label{MainLemmaBPD}
-\|\mathbf{A}_j - \mathbf{B}_{\overline J} \mathbf{PD}_j\|_2 \leq C_2 \varepsilon \ \  \text{for } j \in J
+\|\mathbf{A}_j - \mathbf{B}\mathbf{PD}_j\|_2 \leq C_2 \varepsilon \ \  \text{for } j \in J
 \end{align}
-for some $J$ and $\overline J$ both of size \mbox{$m - (r-1)(\overline m - m)$}.
+for some $J$ of size \mbox{$m - (r-1)(\overline m - m)$}.
 \end{lemma}
 
 %\begin{lemma}\label{MainLemma}
@@ -428,7 +432,8 @@ We remark that given the assumptions of Thm.~\ref{DeterministicUniquenessTheorem
 % C_2(\mathbf{A}, \mathcal{H}) := \frac{ (r+1) \max_{j \in [m]} \|\mathbf{A}_j\|_2}{ \min_{\mathcal{G} \in {\mathcal{H} \choose r} \cup {\mathcal{H} \choose r+1}} \xi( \{ \bm{\mathcal{A}}_S \}
 
 
-The practically-minded reader should note that the explicit constants $C_1$ and $C_2$ are effectively computable: the quantity $L_k$ may be calculated as the smallest singular value of a certain matrix, while the quantity $\xi$ involves computing ``canonical angles'' between subspaces, which reduce again to an efficient singular value decomposition. There is no known fast computation of $L_k$ in general, however, since even $L_{k} > 0$ is NP-hard \cite{tillmann2014computational}; although fixing $k$ yields polynomial complexity. Moreover, calculating $C_2$ requires an exponential number of queries to $\xi$ unless $r$ is held fixed, too (e.g., the ``cyclic order'' hypergraphs described above have $r=k$).  Thus, as presented, $C_1$ and $C_2$ are not efficiently computable in general.
+The practically-minded reader should note that the explicit constants $C_1$ and $C_2$ are effectively computable: the quantity $L_k$ may be calculated as the smallest singular value of a certain matrix, while the quantity $\xi$ involves computing ``canonical angles'' between subspaces, which reduce again to an efficient singular value decomposition. There is no known fast computation of $L_k$ in general, however, since even $L_{k} > 0$ is NP-hard \cite{tillmann2014computational}, although efficiently computable bounds have been proposed (e.g. via the ``mutual coherence" of a matrix \cite{donoho2003optimally}); alternatively, 
+fixing $k$ yields polynomial complexity. Moreover, calculating $C_2$ requires an exponential number of queries to $\xi$ unless $r$ is held fixed, too (e.g., the ``cyclic order'' hypergraphs described above have $r=k$).  Thus, as presented, $C_1$ and $C_2$ are not efficiently computable in general, but efficient sub-cases do exist and may be of practical relevance.
 
 \begin{proof}[Proof of Thm.~\ref{DeterministicUniquenessCorollary} for $k < m$] 
 We find a map $\pi: \mathcal{H} \to {[m] \choose k}$ for which the distance $d(\bm{\mathcal{A}}_S, \bm{\mathcal{B}}_{\pi(S)})$ is controlled by $\varepsilon$ for all $S \in \mathcal{H}$. Applying Lem.~\ref{MainLemma} then completes the proof.
@@ -457,6 +462,8 @@ d(\bm{\mathcal{A}}_S, \bm{\mathcal{B}}_{\overline S})
 %
 Now, apply Lem.~\ref{MainLemma} with $\varepsilon < L_2(\mathbf{A})/C_1$ and $\pi(S) := \overline S$. % L_2(A) > 0 by def of L, since L_2H(A) > 0 and H covers [m]
 \end{proof}
+
+Before moving on to our proof of Thm.~\ref{SLCopt}, we briefly revisit here our discussion on sample complexity from the end of the previous section. While an exponential number of samples may very well prove to be necessary in the deterministic or almost-certain case, our proof of Thm.~\ref{DeterministicUniquenessTheorem} can be extended to hold with some probability for \emph{any} number of samples by alternative appeal to a probabilistic pigeonholing at the point early in the proof where the (deterministic) pigeonhole principle is applied to show that for every $S \in \mathcal{H}$, there exist $k$ vectors $\mathbf{x}_i$ supported on $S$ whose corresponding $\mathbf{\overline x}_i$ all share the same support.\footnote{A famous example of such an argument is the counter-intuitive "birthday paradox", which demonstrates that the probability of two people having the same birthday in a room of twenty-three is in fact greater than 50\%.} Given insufficient samples, this argument has some less-than-certain probability of being valid for each $S \in \mathcal{H}$. Nonetheless, cursory simulations with small hypergraphs confirm that the probability of success very quickly approaches one once the number of samples $N$ surpasses a small fraction of the deterministic sample complexity. 
 
 \begin{proof}[Proof of Thm.~\ref{SLCopt}]
 We bound the number of $k$-sparse $\mathbf{\overline x}_i$ from below and then apply Thm.~\ref{DeterministicUniquenessCorollary}. 
@@ -513,6 +520,19 @@ Beyond an original extension of existing noiseless guarantees \cite{Hillar15} to
 The absence of any assumption at all about dictionaries that solve Prob.~\ref{InverseProblem} was a major technical difficulty in proving Thm.~\ref{DeterministicUniquenessTheorem}. We sought such a general guarantee because of the practical difficulty of ensuring that an algorithm maintain a dictionary satisfying the spark condition \eqref{SparkCondition} at each iteration, an implicit requirement of all previous works except \cite{Hillar15}; indeed, even certifying a dictionary has this property is NP-hard \cite{tillmann2014computational}.
 
 In fact, uniqueness guarantees with minimal assumptions apply to all areas of data science and engineering that utilize learned sparse structure. For example, several groups have applied compressed sensing to signal processing tasks: MRI analysis \cite{lustig2008compressed}, image compression \cite{Duarte08}, and, more recently, the design of an ultrafast camera \cite{Gao14}. Given such effective uses of compressed sensing, it is only a matter of time before these systems incorporate dictionary learning to encode and decode signals (e.g., in a device that learns structure from motion \cite{kong2016prior}), just as scientists have used it to make sense of their data \cite{jung2001imaging, Agarwal14, lee2016sparse, wu2016stability}. Assurances such as those offered by our theorems certify that different devices (with different initialization, etc.) will learn equivalent representations given enough data from statistically identical systems.\footnote{To contrast with the current hot topic of ``Deep Learning'', there are few such uniqueness guarantees for these models of data; moreover, even small noise can dramatically alter their output \cite{goodfellow2014explaining}.} Indeed, it seems a main reason for the sustained interest in dictionary learning as an unsupervised method for data analysis is the assumed well-posedness of parameter identification in the sparse coding model, confirmation of which forms the core of our theoretical findings.
+
+\section{EXTRA}
+An additional consequence of Thm.~\ref{DeterministicUniquenessTheorem} of potential practical relevance to is the implied lower bound $L_{2k}(\mathbf{BPD}) \geq L_{2k}(\mathbf{A}) - C_1\varepsilon$ in the case where $\mathbf{A}$ satisfies \eqref{SparkCondition}. Since solving Prob.~\ref{SLCopt} directly requires a combinatorial search over sparse supports for the $\mathbf{\overline x}_i$ for each proposed dictionary $\mathbf{B}$, rendering it intractable in general, a common strategy is to replace the $\ell_0$-norm in \eqref{minsum} with the $\ell_1$-norm, thereby transforming the inference of sparse $\mathbf{\overline x}_i$ for a fixed dictionary $\mathbf{B}$ into a convex optimization solvable by a linear program. A major advance in compressive sensing was the discovery that, for fixed $\mathbf{B}$, solutions to \eqref{minsum} using either norm yield the same sparse vectors $\mathbf{\overline x}_i$ (up to noise) provided $L_{2k}(\mathbf{B})$ is large enough \cite{?}. What our results hint at are conditions on the generating dictionary $\mathbf{A}$ and $k$-sparse codes $\mathbf{x}_i$ under which \emph{all} matrices $\mathbf{B}$ (of bounded column-norm) that solve Prob.~\ref{OptimizationProblem} also share this property by virtue of uniqueness and stability; that is, conditions which guarantee that the sparse codes $\mathbf{\overline x}_i$ solving Prob.~\ref{OptimizationProblem} also solve the convexified problem when the corresponding dictionary $\mathbf{B}$ is held fixed. It remains to determine, however, what practical conditions preclude matrices that don't solve Prob.~\ref{OptimizationProblem} from nonetheless solving the convexified problem.
+
+Regardless, an implication of the above observation is that the following algorithm solves Prob.~\ref{OptimizationProblem} without appeal to combinatorial search:
+\begin{enumerate}
+\item List all matrices $\mathbf{B}$.
+\item For each matrix $\mathbf{B}$, solve $\mathbf{\overline x}_i = \arg \min \|\mathbf{v}\|_1$ s.t. $\|\mathbf{Bv} - \mathbf{z}_i\| \leq \eta$ for $i = 1, \ldots, N$.
+\item Quantify the proposed solution $\mathbf{B}$ and $\mathbf{\overline x}_1, \ldots, \mathbf{\overline x}_N$ as $\rho(\mathbf{B}, \mathbf{\overline x}_1, \ldots, \mathbf{\overline x}_N) = \sum_{i=1}^{N} \|\mathbf{\overline x}_i\|_0$.
+\item Output $\arg \min_{\mathbf{B}, \mathbf{\overline x}_1, \ldots, \mathbf{\overline x}_N} \left( \rho \right)$.
+ \end{enumerate}
+
+%
 
 \textbf{Acknowledgement.} We thank F. Sommer and D. Rhea for early thoughts, and I. Morris for posting \eqref{eqdim} online.
 
@@ -593,7 +613,7 @@ Fix an $r$-regular hypergraph $\mathcal{H} \subseteq 2^{[m]}$ satisfying the SIP
 	|\cap \pi(\mathcal{G})| \leq |\cap \mathcal{G} |,\ \ \   \text{for } \mathcal{G} \in {\mathcal{H} \choose r} \cup {\mathcal{H} \choose r+1},
 \end{align}
 %
-then $\overline m \geq m$, and if $\overline m < mr / (r-1)$ then the map $i \mapsto \cap \pi(\sigma(i))$ is an injective map to $[\overline m]$ from some $J \subseteq [m]$ of size $m - (r-1)(\overline m - m)$.\footnote{Recall $\sigma$ from Def.~\ref{sip}.}  %In particular, if $\overline m = m$ then $\pi$ is induced by a permutation on $[m]$.
+then $\overline m \geq m$, and if $\overline m  (r-1) < mr$ then the map $i \mapsto \cap \pi(\sigma(i))$ is an injective map to $[\overline m]$ from some $J \subseteq [m]$ of size $m - (r-1)(\overline m - m)$.\footnote{Recall $\sigma$ from Def.~\ref{sip}.}  %In particular, if $\overline m = m$ then $\pi$ is induced by a permutation on $[m]$.
 \end{lemma}
 
 \begin{proof}
@@ -647,7 +667,7 @@ Setting $c_i := \|\mathbf{A}_i\|_2^{-1}$ so that $\|c_i\mathbf{Ae}_i\|_2 = 1$, b
 %&= \min_{\overline c_i \in \mathbb{R}} \|c_i\bm{Ae}_i - \overline c_i \mathbf{Be}_{\overline \pi(i)} \|_2
 \end{align*}
 %
-for $\overline \varepsilon < L_2(\mathbf{A})\min_{i \in [m]}|c_i|$. But this is exactly the supposition in \eqref{1D}, with $J$ and $\overline \varepsilon$ in place of $[m]$ and $\varepsilon$, respectively. The same arguments of the case $k=1$ in Sec.~\ref{DUT} can then be made to show that $\|\mathbf{A}_j - \mathbf{B}_{\overline \pi(J)}\mathbf{PD}_j\|_2 \leq \overline  \varepsilon / |c_j|  \leq C_2 \varepsilon$ for $j \in J$.
+for $\overline \varepsilon < L_2(\mathbf{A})\min_{i \in [m]}|c_i|$. But this is exactly the supposition in \eqref{1D}, with $J$ and $\overline \varepsilon$ in place of $[m]$ and $\varepsilon$, respectively. The same arguments of the case $k=1$ in Sec.~\ref{DUT} can then be made to show that for any $\overline m \times \overline m$ permutation and invertible diagonal matrices $\mathbf{P}$ and $\mathbf{D}$ with, respectively, columns $\mathbf{e}_{\pi(i)}$ and $\frac{\overline{c}_i}{c_i}\mathbf{e}_i$ for $i \in J$ (and, say, $\mathbf{e}_i$ otherwise) we have $\|\mathbf{A}_i - \mathbf{B}\mathbf{PD}_i \|_2 \leq \overline  \varepsilon / |c_i|  \leq C_2 \varepsilon$ for all $i \in J$.
 \end{proof}
 
 %\section{Proofs of Thm.~\ref{robustPolythm} and Cor.~\ref{ProbabilisticCor}}

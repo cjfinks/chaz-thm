@@ -119,7 +119,7 @@ if __name__ == '__main__':
     Ks = [4, 8, 16]
     for k in Ks:
         m = k**2
-        n = m;
+        n = m
         square_grid = np.reshape(range(m),(k,k))
         H = [row.tolist() for row in square_grid] + [col.tolist() for col in square_grid.T]
         N_per_support = int((k - 1) * choose(m, k))
