@@ -1,0 +1,631 @@
+ % ----------------------------------------------------------------
+% AMS-LaTeX Paper ************************************************
+% **** -----------------------------------------------------------
+
+
+\documentclass{amsart}
+\usepackage{amssymb}
+
+%\documentclass{amsart}
+
+%\documentclass[10pt]{article}
+%\documentstyle[11pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+%\usepackage[dvips]{graphicx,color}
+
+
+% ----------------------------------------------------------------
+\vfuzz2pt % Don't report over-full v-boxes if over-edge is small
+\hfuzz2pt % Don't report over-full h-boxes if over-edge is small
+% THEOREMS -------------------------------------------------------
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{ex}[thm]{Example}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem{prob}[thm]{Problem}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+\numberwithin{equation}{section}
+% MATH -----------------------------------------------------------
+\newcommand{\norm}[1]{\left\Vert#1\right\Vert}
+\newcommand{\abs}[1]{\left\vert#1\right\vert}
+\newcommand{\set}[1]{\left\{#1\right\}}
+\newcommand{\Real}{\mathbb R}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\To}{\longrightarrow}
+\newcommand{\BX}{\mathbf{B}(X)}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\bbold}{\mathbb}
+\newcommand{\cal}{\mathcal}
+\newcommand{\Cal}{\mathcal}
+\newcommand{\rom}{\textup}
+\newcommand{\<}{\langle}
+\renewcommand{\>}{\rangle}
+\def \N { {\bbold N} }
+\def \C { {\bbold C} }
+\def \Q { {\bbold Q} }
+\def \Z { {\bbold Z} }
+\def \k { {\bbold R} }
+% ----------------------------------------------------------------
+\begin{document}
+\title[Symmetric Word Equations]{Unique Solvability of Symmetric Word \\ Equations in Positive Definite Letters}%
+
+\author[S. N. Armstrong]{Scott N. Armstrong}
+\address{Department of Mathematics, University of California, Berkeley, CA 94720}
+\email{sarm@math.berkeley.edu}
+
+\author[C.J. Hillar]{Christopher J. Hillar}
+\address{Department of Mathematics, University of California, Berkeley, CA 94720}
+\email{chillar@math.berkeley.edu}
+
+%\thanks{}%
+%\subjclass{}%
+%\keywords{}%
+%\date{}
+%\dedicatory{}%
+%\commby{}%
+
+\begin{abstract}
+Let $S(X,B)$ be a symmetric (``palindromic'') word in two letters  $X$ and $B$. We are interested in the matrices that result when the letters
+are positive semidefinite (complex Hermitian) $n$-by-$n$
+matrices.  For each pair of real positive semidefinite matrices $P$ and $B$, we prove that there is a unique real positive semidefinite solution $X$ to the word equation $S(X,B) = P$.  This settles the real version of a conjecture of C. Hillar and C. R. Johnson.  A more general situation involving arbitrary numbers of letters is also considered and solved.  As an application, we discuss how the result relates to a trace conjecture involving products of positive definite matrices.
+\end{abstract}
+% ----------------------------------------------------------------
+\maketitle
+% ----------------------------------------------------------------
+
+\section{Introduction}
+
+This paper considers a natural matrix generalization to the elementary scalar equation \[bx^m = p,\] in which $b > 0$, $p \geq 0$, $m \in \Z_+$ and $x$ is a nonnegative real indeterminate.  One difficulty with an extension is dealing with matrix noncommutativity, while another is in determining what should be meant by the words ``real'' and ``nonnegative.''  Fortunately for us, the latter concerns have already long been addressed:  the natural matrix interpretation of the reals are the Hermitian matrices, while nonnegative (positive) numbers correspond to those complex Hermitian matrices with all nonnegative (positive) eigenvalues, the so-called (\textit{positive semidefinite}) \textit{positive definite} matrices.  The issue of noncommutativity, however, is of a more subtle nature, and we first introduce some notation before addressing it.  
+
+Let $W = W(X,B_1,\ldots,B_k)$ be a word in
+the letters $X$ and $B_1,\ldots,B_k$.  The {\it reversal} of $W$ is the word written in reverse order, and it is denoted by $W^{*}$.  A word is {\it symmetric} if it is identical to its reversal
+(in other contexts, the name ``palindromic'' is also used).   As we shall soon see, formulating our generalization requires restriction to a special class of words.  For the purposes of this work, an {\it interlaced} word $W = W(X,B_1,\ldots,B_k)$ in the \textit{interlacing} letter $X$ is a juxtaposition of powers of letters that alternate in $X$.  More precisely, an interlaced word is an expression of the form 
+\begin{equation}\label{interlacedef}
+W = B_{i_1}^{q_1}\prod_{j=1}^{m} {X^{p_j}B_{i_{j+1}}^{q_{j+1}}},
+\end{equation}
+in which the exponents $p_{j} > 0, q_j \geq 0$ are nonnegative integers and $\{i_1,\ldots,i_{m+1} \} \subseteq \{1,\ldots,k\}$.   (Here, of course, we consider the zeroth power of a letter to be the empty word, the identity element of the monoid).
+
+The interlacing letter $X$ is distinguished, and is to be viewed as an indeterminate $n$-by-$n$ positive semidefinite matrix, whereas the letters $B_i$ correspond to fixed $n$-by-$n$ positive definite matrices.   For convenience, the letters $X$ and $B_i$ will also represent the substituted matrices (the context will make the distinction clear).  Notice that when $k = 1$, the set of interlaced words is simply the set of all words in two letters.
+
+Returning to our motivating example, notice that there is a unique nonnegative solution to the equation $bx^m = p$ for every pair of positive $b$ and nonnegative $p$;  we would like to generalize this observation.  Our introductory remarks prepare us to make the following definition.
+
+\begin{defn}\label{symmwordeqdef}
+A {\it symmetric word equation} is an equation, $S(X,B_i) = P$, in
+which $S(X,B_i)$ is an interlaced symmetric word. If the $B_i$ are positive definite and $P$ is positive semidefinite, then any positive semidefinite matrix $X$ for which the equation holds is called a {\it solution} to the
+symmetric word equation.
+\end{defn}
+
+A symmetric word equation will be called {\it solvable} if there
+exists a solution for every positive definite $n$-by-$n$ matrices $B_i$ and $n$-by-$n$ positive semidefinite $P$. Moreover, if each such $B_i$ and $P$ give rise to a unique solution, the equation will be called {\it uniquely solvable}.  Utilizing fixed point methods, the authors of \cite{JH2} give a proof of the following \cite[Theorem 7.1]{JH2} in the case when $P$ (and therefore necessarily $X$) is positive definite.
+
+\begin{thm}\label{HJexistencethm}
+Every symmetric word equation with a positive definite $P$ is solvable.  Moreover, if the parameters $P$ and $B_i$ are real, then there is a real solution. 
+\end{thm}
+
+The stipulation that $P$ is positive definite can be removed without too much difficulty, and this is the content of Theorem \ref{mainthmpsd} below.
+
+\begin{ex}
+Let $P$ be any positive definite matrix and let $S(X) = X^m$, for a positive integer $m$.  Then, there is a unique positive semidefinite solution $X$.  In fact, writing $P = UDU^*$ for a unitary matrix $U$, and a nonnegative
+diagonal matrix $D$, we have $X = UD^{1/m}U^{*}$.
+\end{ex}
+
+
+One may view the solvability of a symmetric word equation as a generalization of the (well-known) fact that PD matrices have unique $m$-th roots for positive integers $m$.  
+
+Recall that two $n$-by-$n$ matrices $X$ and $Y$ are said to be
+{\it congruent} if there is an invertible $n$-by-$n$ matrix $Z$
+such that $Y = Z^{*}XZ$; and that congruence on Hermitian matrices
+preserves inertia (the ordered triple consisting of the number of
+positive, negative, and zero eigenvalues) and, thus, positive
+definiteness \cite[p. 223]{HJ1}. A symmetric word evaluated at positive definite matrices is inductively congruent to the ``center,'' positive definite matrix. We conclude that
+
+\begin{lem}\label{symwordpdlem}
+A symmetric word evaluated at positive definite matrices is positive
+definite.
+\end{lem}
+
+One might also wonder if it is necessary to focus attention on equations involving symmetric words.  In Section \ref{wordrelationssection}, we show that symmetric words are the only words that are positive definite for all positive definite substitutions.  Therefore, in light of Definition \ref{symmwordeqdef}, our restriction seems appropriate.
+
+\section{An Application}
+
+
+Symmetric word equations were first encountered while studying a trace conjecture \cite{JH} involving words in two letters $A$ and $B$ (see also \cite{JHcplx,HJS}).  The conjecture is
+
+\begin{conj}\label{traceconjecture}
+A word in two letters $A$ and $B$ has positive trace for every pair of real positive definite $A$ and $B$ if and only if the word is symmetric or a product (juxtaposition) of 2 symmetric words.
+\end{conj}
+
+It turns out that for each solvable symmetric word equation, one
+can identify an infinite class of words that admit real PD
+matrices $A$ and $B$ giving those words a negative trace.  
+The following is a brief description of this application.  Consider the word $W = BABAAB$, which is not symmetric nor a product of two symmetric words. In light of Conjecture \ref{traceconjecture}, we would like to verify that there exist real positive definite matrices $A$ and $B$ giving $W$ a negative trace.  This is surprisingly difficult, as the methods in \cite{JH} show.  Resulting
+$A$ and $B$ that exhibit a negative trace are, for example,
+\[A_1=\left[\begin{array}{@{}ccc@{}}
+1&20&210\\
+20&402&4240\\
+210&4240&44903
+\end{array}\right]\quad \mbox{and}\quad B_1=\left[\begin{array}{@{}ccc@{}}
+36501&-3820&190\\
+-3820&401&-20\\
+190&-20&1
+\end{array}\right].\]
+
+Consider now the following extension.  Let $T$ be the word given by $T=S_1S_2$, in which $S_1$ and $S_2$ are symmetric words in the letters $A$ and $B$.  If the simultaneous word equations
+\[\begin{array}{c}
+S_1(A,B)=B_1,\\[3pt]
+S_2(A,B)=A_1
+\end{array}\]
+may be solved for positive definite $A$ and $B$ given positive
+definite $A_1$ and $B_1$, then the word $TTT^{*}$ can have negative
+trace.  Specializing to the case that $S_2$ is simply the word $A$, we have the following.
+
+\begin{cor}
+Let $S = S(A,B)$ be any symmetric word.  Then the word $SASAAS$ admits real positive definite matrices $A$ and $B$ giving it negative trace.
+\end{cor}
+
+\begin{proof}
+The matrix $B_1A_1B_1A_1A_1B_1$ has negative trace.   Using Theorem \ref{HJexistencethm}, the  equation $S(A_1,X) = B_1$ has a real PD solution $X = B_2$.  The two matrices $B_2$ and $A_1$ are the desired witnesses.  
+\end{proof}
+
+In this paper, we study a conjecture \cite{JH2} of Hillar and Johnson that generalizes Theorem \ref{HJexistencethm}.
+
+\begin{conj}\label{mainuniqueconj}
+Every symmetric word equation is uniquely solvable.
+\end{conj}
+
+Of course, when the matrices $B_i$ and $P$ are real, this conjecture and Theorem \ref{HJexistencethm} imply that the unique solution $X$ is always real.  Our main theorem, while weaker than Conjecture \ref{mainuniqueconj}, verifies this last implication (see also Theorem \ref{mainthmpsd} below for the real positive semidefinite case).
+
+\begin{thm}\label{ourmainthm}
+Every symmetric word equation with real positive definite $B_i$ and $P$ has a unique real positive definite solution.
+\end{thm}
+
+We prove this result first by bounding solutions to symmetric word equations and then appealing to the general theory of Brouwer mapping degree.  The technique, unfortunately, does not readily generalize to the complex Hermitian positive definite case, and more is needed to verify the complete Conjecture \ref{mainuniqueconj}.  In the final two sections of this article, we examine the uniqueness of positive definite word representations and algorithms for finding solutions to symmetric word equations.
+
+\section{Symmetric words}
+
+Recall that two $n$-by-$n$ matrices $X$ and $Y$ are said to be
+{\it congruent} if there is an invertible $n$-by-$n$ matrix $Z$
+such that $Y = Z^{*}XZ$; and that congruence on Hermitian matrices
+preserves inertia (the ordered triple consisting of the number of
+positive, negative, and zero eigenvalues) and, thus, positive
+definiteness \cite[p. 223]{HJ1}. A symmetric word evaluated at positive definite matrices is inductively congruent to the ``center,'' positive definite matrix. We conclude that
+
+\begin{lem}\label{symwordpdlem}
+A symmetric word evaluated at positive definite matrices is positive
+definite.
+\end{lem}
+
+Fixing positive definite matrices $B_i$ ($i = 1,\ldots,k$), it is natural to ask if the map from the set of PD matrices to itself given by $S: X \mapsto S(X,B_i)$ is (injective) surjective.  In the complex case, Theorem \ref{HJexistencethm} implies that the map is surjective, while our main result verifies that in the real case, it is bijective.  Although not obvious, it is possible to extend this last assertion to positive semidefinite matrices.  First, we establish a useful lemma.
+
+\begin{lem}\label{kerlemma}
+Let $p_1,\ldots,p_k > 0$ and $B_1,\ldots,B_k$ be positive definite
+matrices. Then, for any positive semidefinite matrix $X$, we have
+\[ \ker X = \ker X^{p_{k}}B_{k-1}  \cdots B_2 X^{p_2}B_1 X^{p_1}.\]
+\end{lem}
+
+\begin{proof}
+Set $X = UDU^*$ for a unitary matrix $U$ and $D = \text{diag}(\lambda_1,\ldots,\lambda_n)$, in which $\lambda_1 \geq \ldots \geq \lambda_n \geq 0$.  Let $Y=X^{p_{k}}B_{k-1} \cdots B_2 X^{p_2}B_1 X^{p_1}$, and notice that $\ker U^*XU = \ker U^*YU$ if and only if $\ker X = \ker Y$.  Thus, it suffices to argue that \[ \ker D = \ker D^{p_{k}}B_{k-1} \cdots B_2 D^{p_2} B_1 D^{p_1}, \] whenever the $B_i$ are positive definite matrices.
+
+Let $m$ be the largest integer such that $\lambda_m  \neq 0$, and for each $i$, let $\widetilde B_i$ denote the $m$-by-$m$ leading principal submatrix of $B_i$, which will be positive definite (see, for instance, \cite[p.472]{HJ1}).  Additionally, set $\widetilde D = \text{diag}(\lambda_1,\ldots,\lambda_m)$.  A straightforward block matrix multiplication then gives us that \[D^{p_{k}} B_{k-1} \cdots B_2 D^{p_2} B_1 D^{p_1} = \left[\begin{array}{cc} \widetilde D^{p_{k}} \widetilde B_{k-1} \cdots \widetilde B_2 \widetilde D^{p_2} \widetilde B_1 \widetilde D^{p_1} 
+ & 0 \\0 & 0\end{array}\right]. \]  Since the leading principal $m$-by-$m$ matrix in this direct sum is invertible, the claim follows.
+\end{proof}
+
+Using this lemma and assuming our main theorem (Theorem \ref{ourmainthm}), we can prove the following extensions.
+
+\begin{thm} \label{mainthmpsd}
+Every symmetric word equation with real positive definite $B_i$ and positive semidefinite $P$ has a unique real positive semidefinite solution.
+\end{thm}
+
+\begin{proof}
+Performing a uniform unitary similarity, we may prove the theorem with the supposition that $P$ is of the form \[\left[\begin{array}{cc} \widetilde P & 0 \\0 & 0\end{array}\right]\] for a positive diagonal matrix $\widetilde P$ of rank $m$.  Lemma \ref{kerlemma} implies that any positive semidefinite solution $X$ to the symmetric word equation $S(X,B_i) = P$ has the same block form as $P$.  As in the lemma, let $\widetilde B_i$ denote the $m$-by-$m$ leading principal (positive definite) submatrix of $B_i$.  
+
+From these observations, it follows that positive semidefinite solutions $X$ to the equation $S(X,B_i) = P$ correspond in a one-to-one manner with positive definite solutions $\widetilde X$ to the equation $S(\widetilde X,\widetilde B_i) = \widetilde P$.  An application of Theorem \ref{ourmainthm} completes the proof.
+\end{proof}
+
+\begin{thm}\label{unitballhomeo}
+Fix real positive definite matrices $B_i$ in the unit ball and a
+symmetric word $S(X,B_i)$.  Then, the mapping $S(X,B_i)$ from the
+set of (real) positive semidefinite matrices in the unit ball to
+itself is a homeomorphism.
+\end{thm}
+
+\begin{proof}
+Theorem \ref{mainthmpsd} shows that our map is bijective.  Since the set of positive semidefinite matrices in the unit ball is compact, it follows that it is also a homeomorphism.
+\end{proof}
+
+Let us remark at this point that Theorem \ref{mainthmpsd} (and thus Theorem \ref{unitballhomeo}) is false if we allow for arbitrary symmetric words in the letters $B_i$ and $X$.  For example, suppose that \[ B_1 = \left[\begin{array}{cc}4 & -1 \\-1 & 1\end{array}\right] \ \text{and}  \ \ B_2 = \left[\begin{array}{cc}2 & 1 \\1 & 1\end{array}\right].\]  Then, as is easily verified, the equation $XB_1B_2XB_2B_1X =  0$ has at least two positive semidefinite solutions: $X = 0$ and $X = \text{diag}(0,1)$.  The difficulty here is that the multiple $B_i$ can cause an inversion of the block structure of a solution $X$.  In this case, we had $B_1B_2XB_2B_1 =  \text{diag}(9,0)$.
+
+One might also wonder if it is necessary to focus attention on equations involving symmetric words.  In Section \ref{wordrelationssection}, we show that symmetric words are the only words that are positive definite for all positive definite substitutions.  Therefore, in light of Definition \ref{symmwordeqdef}, our restriction seems appropriate.
+
+\section{Explicit Solutions}
+
+In this section, we describe a class of words that are uniquely solvable with explicit solutions.
+
+\begin{defn}
+A symmetric word is called \textit{totally symmetric} if it can be expressed as a composition of maps of the form
+\begin{itemize}
+\item  $\pi_{m,B_i}(W) = (WB_i)^mW$, $m$ a positive integer
+\item $\varphi_m (W) = W^m$, $m$ a positive integer
+\item $s_{B_i}(W) = B_iWB_i$
+\end{itemize}
+applied to the letter $X$.
+\end{defn}
+
+For example, the word $W = B_1X^2B_2X^2B_2X^2B_1$ may be expressed as the composition, $s_{B_1} \circ \pi_{2,B_2} \circ \varphi_2 (X)$.  The utility of this definition becomes clear from the following
+
+\begin{prop}
+For every totally symmetric word $S(X,B_i)$ and each pair of positive definite $P,B_i$, the equation $S(X,B_i) = P$ has a unique positive definite solution $X$.  Moreover, the solution $X$ can be expressed in terms of radicals.
+\end{prop}
+
+\begin{proof}
+We induct on the number of compositions involved in the word $W$; the base case $W = X$ being trivial.  If $W = \varphi_m(V)$ for some word $V$, then $V = P^{1/m}$ is a smaller totally symmetric word equation and any solution $X$ to $W(X,B_i) = P$ satisfies it.  A similar statement holds for $W = s_{B_i}(V)$, leaving us to deal with $\pi_{m,B_i}$. 
+
+Without loss of generality, we prove the result for the equation $(XB)^mX = P$.  Assume that $B$ and $P$ are given PD matrices and that $X$ is a solution to $(XB)^mX = P$.  Set $Y = B^{1/2}XB^{1/2}$, so that $X = B^{-1/2}YB^{-1/2}$. Then, \[B = (B^{-1/2}YB^{1/2})^mB^{-1/2}YB^{-1/2} = B^{-1/2}Y^{m+1}B^{-1/2}.\] Therefore, $Y^{m+1} = B^{1/2}PB^{1/2}$, from which it follows that $Y$ is uniquely determined as $(B^{1/2}PB^{1/2})^{1/(m+1)}$. Hence, $X$ must be $B^{-1/2}(B^{1/2}PB^{1/2})^{1/(m+1)}B^{-1/2}$. Finally, substituting this $X$ into the original equation does verify that it is a solution.  This completes the proof
+\end{proof}
+
+The smallest symmetric word equation without a known explicit solution is $XBX^3BX = P$.  An exploration of which equations give rise to explicit solutions is the focus of a future work.
+
+\section{Bounding Solutions}
+
+We will be using the spectral matrix norm throughout (see \cite[p.
+295]{HJ1}).  This norm is useful because for positive semidefinite
+$A$, it is just the largest eigenvalue of $A$.
+
+Let $X_k$ be a sequence of PD solutions to a fixed symmetric word
+equation $S(X,B_i) = P$.  We prove that the $X_k$ are bounded.  More
+generally, consider the collection of word equations
+$S(X,tB_i+(1-t)I) = P$ in which $I$ is the $n$-by-$n$ identity matrix and each $B_i$ is replaced by $B_i(t) := tB_i+(1-t)I$ for a real parameter $0 \leq t \leq
+1$.  We show that solutions $X$ are bounded uniformly in $t$.
+
+\begin{prop}\label{boundprop}
+Let $B_i$ and $P$ be fixed positive definite matrices, and let $S(A,B_i)$ be a symmetric word.  Then, there exists a positive number $M$ such that any solution $X$ to an
+equation $S(X,B_it+(1-t)I) = P$ with $0 \leq t \leq 1$
+necessarily has $\|X\| < M$.
+\end{prop}
+
+\begin{proof}
+Suppose, by way of contradiction, that $X_{k}$ ($k= 1,2,\ldots$)
+is an unbounded sequence of positive definite matrices and $t_k$ a
+sequence of real numbers in $[0,1]$ such that
+\[S\left(X_{k},t_kB_i+(1-t_k)I \right) = P\] for all $k$. By taking a subsequence, if necessary, we may assume that $\{t_k\}$
+converges to a real number $t \in [0,1]$.  Set $X_{k} =
+U_{k}D_{k}U_{k}^{*}$ for unitary $U_{k}$ and $D_{k} =$
+diag$(\lambda_{1k}, \lambda_{2k} , \ldots, \lambda_{nk})$ in which
+$0 < \lambda_{1k} \leq \lambda_{2k} \leq \ldots \leq \lambda_{nk}$
+are the eigenvalues of $X_{k}$. To simplify matters later, we assume that $\{U_{k}\}$ converges to a unitary $U$ by
+passing to a subsequence (the set of unitary matrices is compact).
+
+We first arrange for a subsequence of $X_{k}/\|X_k\|$ to have a
+special form.  Observe that \[\frac{X_{k}}{\|X_k\|} = U_{k}\left[
+{\begin{array}{*{20}c}
+   {\frac{{\lambda _{1k} }}
+{{\lambda _{nk} }}} & {} & {} & {}  \\
+   {} & {\frac{{\lambda _{2k} }}
+{{\lambda _{nk} }}} & {} & {}  \\
+   {} & {} &  \ddots  & {}  \\
+   {} & {} & {} & 1  \\
+ \end{array} } \right]U_{k}^{*},\] in which each of the diagonal entries satisfies
+the inequality $0 < \lambda_{ik}/\lambda_{nk} \leq 1$ ($i =
+1,\ldots,n$). It follows easily that there is a subsequence
+$\{k_j\}$ such that $\mathop {\lim }\limits_{j \to \infty }
+\;\;\frac{{X_{k_j }}}{{\left\| X_{k_j} \right\|}}$ exists and is
+of the form
+\[L = U\left[
+ {\begin{matrix}
+   h_1 &  \ldots  & 0  \\
+    \vdots  &  \ddots  &  \vdots   \\
+   0 &  \cdots  & {1 }  \\
+ \end{matrix}} \right]U^*,\] in which $0 \leq h_1 \leq
+ \cdots \leq h_{n-1} \leq 1$.  In what follows, we
+replace our original sequence $X_k$ with the subsequence
+constructed above.
+
+Returning to the proof, consider the equations, \[S \left(\frac{X_{k}}{\|X_k\|},t_kB_i+(1-t_k)I \right) =
+\|X_k\|^{-s}P,\] in which $s$ is the sum of all the powers of $X$
+in $S(X,B_i) = P$.  By assumption $\|X_k\| = \lambda_{nk}$ goes to
+infinity, and consequently, the limit of these expressions is
+\begin{equation}\label{wordeqzero}
+S(L,tB_i+(1-t)I) = 0.
+\end{equation}
+Let $m$ be the largest element of $\{1,\ldots,n-1\}$ such that
+$h_m = 0$.  Notice that by construction, $h_i = 0$ for $i \leq m$.  Applying Lemma \ref{kerlemma} to equation (\ref{wordeqzero}), it follows that $\ker L$ is all of $\mathbb C^n$.  In particular, $L$ is the zero matrix, a contradiction that finishes the proof.
+\end{proof}
+
+In light of Proposition \ref{boundprop}, a natural question is
+whether one can obtain explicit bounds for solutions $X$
+(necessarily depending on $B_i$ and $P$).  As a partial answer, we
+offer the following sequence of results.
+
+\begin{lem} \label{b1}
+If $A$ and $B$ are positive definite matrices, then
+\begin{eqnarray}
+\| B \|& \leq & \| A^{-1}\|^2 \| A B A \| \label{bn1} \\
+\| B^{-1}\| & \leq & \| A \|^2 \| (A B A)^{-1}\| \label{bn2}\\
+\| A \| &\ \leq & \| B^{-1} \|^{1/2} \| A B A \|^{1/2} \label{bn3}\\
+\| A^{-1} \| & \leq & \| B \|^{1/2} \| (A B A)^{-1} \|^{1/2}
+\label{bn4}
+\end{eqnarray}
+\end{lem}
+
+\begin{proof}
+Let $P=ABA$. Writing $B = A^{-1} P A^{-1}$, we estimate
+\[ \| B \| = \| A^{-1} P A^{-1} \| \leq \| A^{-1}\|^2 \| P\|, \]
+which is (\ref{bn1}).
+
+Recall that for any positive definite matrix $A$ and any vector
+$\eta$
+\[ (A\eta)\cdot \eta \geq \| A^{-1}\|^{-1} |\eta|^2.\]
+Let $\xi$ be a unit vector such that $|\xi |=1$ and $\| A \| =
+|A\xi|$. Then
+\[ \| P \| \geq \xi \cdot (P\xi) = \xi \cdot (ABA\xi) =
+(A\xi)\cdot (BA\xi) \geq \| B^{-1} \|^{-1} |A\xi|^2 = \| B^{-1}
+\|^{-1} \| A \|^2, \] and rearranging we get (\ref{bn3}). We get
+(\ref{bn2}) and (\ref{bn4}) by noticing that $A^{-1}B^{-1}A^{-1} =
+P^{-1}$ and applying (\ref{bn1}) and (\ref{bn3}), respectively.
+\end{proof}
+
+\begin{thm}
+Let $p$, $q > 0$ and suppose that $B_1$, $B_2$, $P$ and $X$ are
+positive definite matrices satisfying
+\[ X^p B_1 X^q B_2 X^q B_1 X^p = P. \]
+If $q\geq p$ then
+\begin{equation} \label{be3}
+\| X \| \leq \| B_1^{-1}\|^{1/(p+q)} \| B_2^{-1} \|^{1/2(p+q)} \|
+P \|^{1/2(p+q)}.
+\end{equation}
+If $q<p$ then
+\begin{equation} \label{be4}
+\| X \| \leq \|B_1 \|^{q\delta} \|B_1^{-1}\|^{p\delta}
+\|B_2\|^{q\delta/2} \|B_2^{-1}\|^{p\delta/2} \| P \|^{p\delta/2}
+\| P^{-1}\|^{q\delta/2}
+\end{equation}
+where $\delta = (p^2 - q^2)^{-1}$.
+\end{thm}
+
+\begin{proof}
+If $q\geq p$ then
+\[ X^q B_1 X^q B_2 X^q B_1 X^q = X^{q-p} P X^{q-p}.\]
+Using Lemma \ref{b1} we estimate
+\begin{eqnarray*}
+\| X \|^q & \leq & \| B_1^{-1} \|^{1/2} \|X^q B_1 X^q \|^{1/2}\\
+& \leq & \| B_1^{-1} \|^{1/2} \left( \| B_2^{-1} \|^{1/2} \|
+X^{q-p} P X^{q-p} \|^{1/2} \right)^{1/2}\\
+& = & \| B_1^{-1} \|^{1/2} \| B_2^{-1} \|^{1/4} \| X^{q-p} P
+X^{q-p} \|^{1/4}\\
+& \leq & \| B_1^{-1} \|^{1/2} \| B_2^{-1} \|^{1/4} \| P \|^{1/4}
+\| X^{q-p} \|^{1/2}\\
+& = & \| B_1^{-1} \|^{1/2} \| B_2^{-1} \|^{1/4} \| P \|^{1/4} \| X
+\|^{(q-p)/2}.\\
+\end{eqnarray*}
+Therefore
+\begin{equation*}
+\| X \|^{(q+p)/2} \leq \| B_1^{-1} \|^{1/2} \| B_2^{-1} \|^{1/4}
+\| P \|^{1/4}
+\end{equation*}
+from which we obtain (\ref{be3}).
+
+Now suppose $q < p$. Using Lemma \ref{b1} we estimate
+\begin{eqnarray*}
+\| X \|^p & \leq & \|(B_1 X^q B_2 X^q B_1)^{-1}\|^{1/2} \| P
+\|^{1/2}\\
+& \leq & \| B_1^{-1} \| \|B_2^{-1} \|^{1/2} \|X^{-1}\|^q
+\|P\|^{1/2}.
+\end{eqnarray*}
+In a similar way we obtain
+\[ \| X^{-1} \|^p \leq \| B_1 \| \|B_2 \|^{1/2} \|X \|^q
+\|P^{-1} \|^{1/2}.\] Therefore
+\begin{equation*}
+\| X \|^p \leq \| B_1^{-1} \| \|B_2^{-1} \|^{1/2} \left( \| B_1 \|
+\|B_2 \|^{1/2} \|X \|^q \|P^{-1} \|^{1/2} \right)^{q/p}
+\|P\|^{1/2}.
+\end{equation*}
+Rearranging we obtain
+\begin{equation*}
+\| X \|^{(p^2-q^2)/p} \leq \| B_1 \|^{q/p} \| B_1^{-1} \| \|B_2
+\|^{q/2p} \|B_2^{-1} \|^{1/2} \|P\|^{1/2} \|P^{-1} \|^{q/2p}
+\end{equation*}
+which is equivalent to (\ref{be4}).
+\end{proof}
+
+\begin{cor}
+Let $p$, $q > 0$ and suppose that $B$, $P$ and $X$ are positive
+definite matrices satisfying
+\[ X^p B X^q B X^p = P.\]
+If $q\geq 2p$, then
+\[ \| X \| \leq \| B^{-1} \|^{2/(2p+q)} \| P \|^{1/(2p+q)}.\]
+If $q < 2p$, then
+\[ \| X \| \leq \|B \|^{2q\delta} \|B^{-1}\|^{4p\delta}
+\| P \|^{2p\delta} \| P^{-1}\|^{q\delta} \] where $\delta =
+(4p^2-q^2)^{-1}$.
+\end{cor}
+
+\begin{proof}
+Notice that $X$ satisfies
+\[ X^p B X^{q/2} I X^{q/2} B X^p = P \]
+and apply the previous theorem.
+\end{proof}
+
+It is possible to use the techniques above to obtain explicit
+bounds for solutions of longer and more complex word equations, but
+the proofs are likewise more difficult.
+
+
+\section{Brouwer Mapping Degree}
+
+In this section, we give a brief overview of degree theory, and
+some of its main implications.  The bulk of this discussion is material taken from \cite{degthy, teschl}.  First we introduce some notation.  Let $U$ be a bounded open subset of $\mathbb R^m$.  We denote the set of $r$-times differentiable functions from $U$ ($\overline{U}$) to $\mathbb R^m$ by $C^r(U,\mathbb R^m)$ ($C^r(\overline{U},\mathbb R^m)$) (when $r = 0$, $C^r(U,\mathbb R^m)$ is the set of continuous functions).  The \textit{identity function} id satisfies id$(\mathbf x) = \mathbf x$.  If $f \in C^1(U,\mathbb R^m)$, then the \textit{Jacobi matrix} of $f$ at a point $\mathbf {x} \in U$ is \[f'(\mathbf {x}) = \left(  \frac{\partial f_j}{\partial x_i}(\mathbf{x}) \right)_{1\leq i,j \leq m}\] and the \textit{Jacobi determinant} (or simply \textit{Jacobian}) of $f$ at $\mathbf{x}$ is \[ J_f(\mathbf{x}) = \det f'(\mathbf{x}).\]  The set of \textit{regular values} of $f$ is \[\text{RV}(f) = \left\{\mathbf{y}\in \mathbb R^m : \forall \mathbf{x} \in f^{-1}(\mathbf{y}), \ J_f(\mathbf{x}) \neq 0\right\}\] and for $\mathbf{y} \in \mathbb R^m$, we set \[D^r_{\mathbf{y}}(\overline{U},\mathbb R^m) = \left\{ f \in C^r( \overline{U},\mathbb R^m) : \mathbf{y} \notin f(\partial U) \right\} .\]  
+
+A function $\text{deg}: D^{0}_{\mathbf{y}}(\overline{U},\mathbb R^m) \to \mathbb R$ which assigns to each $f \in D^{0}_{\mathbf{y}}(\overline{U},\mathbb R^m)$ and $\mathbf{y} \in R^m$ a real number deg$(f,U,\mathbf{y})$ will be called a \textit{degree} if it satisfies the following conditions.
+
+%\renewcommand{\enumi}{$D$}
+
+\begin{enumerate}
+\item $\deg(f,U,\mathbf{y}) = \deg(f-\mathbf y, U, 0)$ (\textit{translation invariance}).
+\item $\deg(\mathrm{id}, U, \mathbf y) = 1$ if $\mathbf y \in U$ (\textit{normalization}).
+\item If $U_1$ and $U_2$ are open, disjoint subsets of $U$ such that $\mathbf  y \notin f(\overline{U} \setminus (U_1 \cup U_2))$, then $\deg(f,U,\mathbf y) = \deg(f,U_1,\mathbf y) +\deg(f,U_2,\mathbf y)$ (\textit{additivity}). 
+\item If $H(t) = tf + (1-t)g \in D^{0}_{\mathbf{y}}(\overline{U},\mathbb R^m)$ for all $t \in [0,1]$, then $\deg(f,U,\mathbf y) = \deg(g,U,\mathbf y)$ (\textit{homotopy invariance}).
+\end{enumerate}
+
+Motivationally, one should think of a degree map as somehow ``counting'' the number of solutions to $f(\mathbf x) = \mathbf y$.  Condition $(1)$ reflects that the solutions to $f(\mathbf x) = \mathbf y$ are the same as those of $f(\mathbf x)- \mathbf y = 0$, and since any multiple of a degree will satisfy $(1)$, $(3)$, and $(4)$, the condition $(2)$ is a normalization.  Additionally, $(3)$ is natural since it requires $\deg$ to be additive with respect to components.  
+
+Of course, we need a theorem guaranteeing that a degree even exists.
+
+\begin{thm}
+There is a unique degree $\deg$.  Moreover, $\deg(\cdot, U, \mathbf y):  D^0_{\mathbf{y}}(\overline{U},\mathbb R^m) \to \mathbb Z$.
+\end{thm}
+
+When functions are differentiable, a degree can be calculated explicitly in terms of Jacobians at solutions to the equation $f(\mathbf x) = \mathbf y$.
+
+\begin{thm}\label{sumjacob}
+Suppose that $f \in D^1_{\mathbf y}(\overline{U},\mathbb R^m)$ and $\mathbf y \in \text{\rm{RV}}$.  Then a degree satisfies \[\deg(f,U,\mathbf y) = \sum_{\mathbf x \in f^{-1}(\mathbf y)} {\text{\rm{sgn}} \  J_f(\mathbf x)},\] where this sum is finite and we adopt the convention that $\sum_{\mathbf x \subseteq  \emptyset} = 0$.
+\end{thm}
+
+As the above theorem shows, understanding Jacobians is essential when calculating the degree of a function $f$.  Therefore, the remainder of this section is devoted to computing them for the map $f(X) = S(X,B_i) - P$.  View the space of symmetric $n$-by-$n$ matrices as $\mathbb R^{m}$, in which $m = {n+1 \choose 2}$ .  With this identification in hand, we are interested in computing the determinant of the Jacobian of the map $X \mapsto S(X,B_i)$ from an open set $U$ of bounded positive definite matrices into the space of symmetric matrices over $\mathbb R$.
+
+\begin{lem}
+The Jacobian of the map $f(X) = BXB$ is given by [insert here].
+\end{lem}
+\begin{proof}
+
+\end{proof}
+
+\begin{lem}
+For a positive integer $n$, the Jacobian of the map $f(X) = X^n$ is given by [insert here].
+\end{lem}
+\begin{proof}
+
+\end{proof}
+
+These two lemmas allow us to compute the Jacobian for our general situation.
+
+\begin{cor}\label{signjacobian}
+The determinant of the Jacobian for the map $f(X) =
+S(X,B_i) - P$ is positive.
+\end{cor}
+\begin{proof}
+
+\end{proof}
+
+In light of these computations, a natural question is whether one can extend these ideas to deal with the complex case.  We present a simple example that exhibits some of the difficulty in pursuing such a generalization.
+
+\begin{ex}
+Show example where determinant of Jacobian can be zero.
+\end{ex}
+
+
+
+
+\section{Unique Solvability of Word Equations}
+
+Before proving our main theorem, we first describe an important fact.  As in the previous section, we view the space of real symmetric $n$-by-$n$ matrices as $\text{Sym}_n(\mathbb R)  = \mathbb R^{n+1 \choose 2}$.  For positive $M$, we also set $U_M$ to be the open set of positive definite matrices with norm less than $M$.  Additionally, the value of $\mathbf y$ that we take will always be $\mathbf y = 0$.
+
+\begin{prop}\label{degcountprop}
+Let $B_i$ and $P$ be $n$-by-$n$ positive definite matrices and let $S(X,B_i)$ be a symmetric word.  For sufficiently large $M$, the degree of the map $f(X) = S(X,B_i) - P$ on $U_M$ is equal to the number of solutions to $f(X) = 0$ in $U_M$.
+\end{prop}
+
+\begin{proof}
+Using Corollary \ref{signjacobian}, it follows that $0$ is a regular value for the differentiable map $f(X) = S(X,B_i) -P$.  The properties of Brouwer degree (Theorem \ref{sumjacob}) therefore imply that the degree of $f$ is a sum of Jacobian signs over the set of solutions to $f(X) = 0$.  Again by Corollary \ref{signjacobian}, each sign value is $1$, and the claim now follows.
+\end{proof}
+
+We are now ready to prove our main theorem.
+
+\begin{proof}[Proof of Theorem \ref{ourmainthm}]
+Let $B_i$, $P$ be $n$-by-$n$ PD matrices and let $S(X,B_i)$ be a symmetric word.  Using Proposition \ref{boundprop}, there exists an $M$ such that any solution $X$ to an
+equation $S(X,B_it+(1-t)I) = P$ with $0 \leq t \leq 1$ has $\|X\| < M$.  
+
+Let $U_M$ be the open set of positive definite matrices with norm less than $M$.  Consider the mapping $f: \text{Sym}_n(\mathbb R) \to \text{Sym}_n(\mathbb R)$ given by $f(X) =  S(X,B_i)-P$.  We are interested in the fiber $f^{-1}(0)$, restricted to the open set $U_M$.  
+
+We first verify that the degree of the mapping $f$ with respect to $U_M$ is $1$.  From our choice of $M$, it follows that $f(X) \neq 0$ when $X$ is positive definite with norm $M$.  Moreover, if $X$ is singular, then taking a determinant shows that $f(X) \neq 0$.  It follows that $f(X)$ is never $0$ for $X$ on the boundary of $U_M$.  
+
+Consider the homotopy $f_t(X) = S(X,tB_i + (1-t)I)-P$ for $t \in [0,1]$.  Again, from our choice of $M$, we have $f_t \neq 0$ on the boundary of $U_M$.  The properties of Brouwer degree now imply that the degree of $f = f_1$ is the same as the degree of $f_{0}$.  It remains, therefore, to compute the Brouwer degree of the mapping $f_0(X) = X^s-P$, in which $s$ is the sum of the powers of the variable $X$ in $S(X,B_i)$.  The proposition above computes this integer to be $1$ and, therefore, equals the degree of $f$.  
+
+The proof is now finished with another application of Proposition \ref{degcountprop}.
+\end{proof}
+
+
+
+
+\section{Relations between positive definite
+words}\label{wordrelationssection}
+
+The purpose of this section is to explain the significance of the
+symmetric restriction in the definition of ``symmetric word
+equation.''  Specifically, we prove that a generalized word is
+positive definite for all positive definite $A$ and $B$ if and
+only if the word is symmetric.
+
+
+
+
+
+\section{Approximate solutions}
+
+We now make some remarks about finding approximate solutions to
+symmetric word equations.  We detail a method that has been quite
+effective in practice at finding solutions (in the case of
+positive integral powers).
+
+Given a symmetric word $S(A,B)$ with positive integral exponents,
+start with an initial PD matrix, $A_{0}$, (usually $I$), and
+expand the expression, $S(A_{0}+D,B)$.  Consider the formal sum,
+$S'(A_{0}+D,B)$, of the terms in this expansion with at most a
+single $D$. Now, solve the linear system \[S'(A_{0}+D,B) = P\] for
+the matrix $D$ and set $A_{1}$ $ \leftarrow$ $A_{0} + D$.
+Repeating this process gives our algorithm.  As a simple example,
+the repeated equations for $ABA = P$ are given by
+\[A_{i-1}BD + DBA_{i-1} = P - A_{i-1}BA_{i-1}\] \[A_{i} = A_{i-1}
++ D.\]  Curiously enough, there seems to be no guarantee in
+general that these $A_{i}$ will be positive definite, nor is it
+clear that the linear system for $D$ above will always have a
+solution.  Nonetheless, experimentation has shown that these
+iterations always converge to the same PD solution regardless of
+initial starting point.
+
+Of course, this scheme is just a version of Newton's method.
+General theory, therefore, tells us that if $A_0$ is near the
+unique solution $A$, iteration will converge to $A$.
+
+
+
+\begin{thebibliography}{1}
+\bibitem{JHcplx}
+C. Hillar and C. R. Johnson, \textit{Positive Eigenvalues of Generalized Words in Two Hermitian Positive Definite Matrices}. Novel approaches to hard discrete optimization (Waterloo, ON, 2001), 111-122, Fields Inst. Commun., 37, Amer. Math. Soc., Providence, RI, 2003
+
+\bibitem{JH2}
+C. Hillar and C. R. Johnson, \emph{Symmetric Word Equations in Two
+Positive Definite Letters}, Proc. Amer. Math. Soc., \textbf{132}
+(2004), 945-953.
+
+\bibitem{HJS}
+C. Hillar, C. R. Johnson, and I. M. Spitkovsky, \textit{Positive  Eigenvalues and Two-letter Generalized Words}, Electron. J. Linear Algebra,  \textbf{9} (2002), 21-26. 
+
+\bibitem{HJ1}
+R. Horn and C. R. Johnson, \emph{Matrix Analysis}, Cambridge
+University Press, New York, 1985.
+
+\bibitem{HJ2}
+R. Horn and C. R. Johnson, \emph{Topics in Matrix Analysis},
+Cambridge University Press, New York, 1991.
+
+\bibitem{JH}
+C. R. Johnson and C. Hillar, \emph{Eigenvalues of Words in Two
+Positive Definite Letters}, SIAM J. Matrix Anal. Appl.,
+\textbf{23} (2002), 916--928.
+
+\bibitem{degthy}
+N. Lloyd, \emph{Degree Theory}, Cambridge University Press, London, 1978.
+
+\bibitem{teschl}
+G. Teschl, \emph{Nonlinear Functional Analysis}, www.mat.univie.ac.at/~gerald/ftp/book-nlfa/.
+
+\end{thebibliography}
+
+\end{document}
+% ----------------------------------------------------------------

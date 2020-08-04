@@ -1,0 +1,136 @@
+\documentclass[journal, onecolumn]{IEEEtran}
+
+% *** MATH PACKAGES ***
+\usepackage{amsmath, amssymb, amsthm} 
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{problem}{Problem}
+\newtheorem{question}{Question}
+\newtheorem{proposition}{Proposition}
+\newtheorem{definition}{Definition}
+\newtheorem{corollary}{Corollary}
+\newtheorem{remark}{Remark}
+\newtheorem{example}{Example}
+
+
+\usepackage[pdftex]{graphicx}
+
+% *** ALIGNMENT PACKAGES ***
+\usepackage{array}
+\usepackage{cite}
+\usepackage{bm}
+
+% correct bad hyphenation here
+%\hyphenation{op-tical net-works semi-conduc-tor}
+
+\begin{document}
+
+\title{$\ell_1$-norm minimization}
+\author{Charles~J.~Garfinkle}
+
+\maketitle
+
+\begin{problem}\label{OptimizationProblem}
+Find matrices $\mathbf{B}$ and vectors \mbox{$\mathbf{\overline x}^{(1)}, \ldots, \mathbf{\overline x}^{(N)}$} solving:
+\begin{align}\label{minsum}
+\min \sum_{i = 1}^N \|\mathbf{\overline x}^{(i)}\|_0 \ \
+\text{subject to} \ \ \|\mathbf{z}^{(i)} - \mathbf{B}\mathbf{\overline x}^{(i)}\|_2 \leq \eta_0, \ \text{for all $i$}
+\end{align}
+by solving:
+\begin{align}\label{minsum}
+\min \sum_{i = 1}^N \|\mathbf{\overline x}^{(i)}\|_1 \ \
+\text{subject to} \ \ \|\mathbf{z}^{(i)} - \mathbf{B}\mathbf{\overline x}^{(i)}\|_2 \leq \eta_1, \ \text{for all $i$}.
+\end{align}
+\end{problem}
+
+
+\begin{proof}[Proof for $k=1$]
+Since the only 1-uniform hypergraph with the SIP is $[m]$, which is obviously regular, we require only $\mathbf{x}^{(i)} = c_i \mathbf{e}_i$ for $i \in [m]$, with $c_i \neq 0$ to guarantee  linear independence. While we have yet to define $C_1$ generally, in this case we may set $C_1 = 1/ \min_{\ell \in [m]} |c_{\ell}|$. % L_2(\mathbf{A})  \min_{\ell \in [m]} |c_{\ell}| - \max_{\ell \in [m]} |c_\ell|$. 
+
+Fix $\mathbf{A} \in \mathbb{R}^{n \times m}$ satisfying $L_2(\mathbf{A}) > 0$, since here we have $2\mathcal{H} = {[m] \choose 2}$, and suppose some matrix $\mathbf{B}$ and vectors $\mathbf{\overline x}^{(i)} \in \mathbb{R}^{\overline m}$ have  $\|\mathbf{A}\mathbf{x}^{(i)} - \mathbf{B}\mathbf{\overline x}^{(i)}\|_2 \leq \varepsilon$ for all $i$. Note that $\mathbf{\overline x}^{(i)} \neq 0$, since otherwise we would reach the following contradiction: $\|\mathbf{A}_i \|_2 \leq C_1 |c_i| \|\mathbf{A}_i \|_2  \leq \|\mathbf{Ax}_i\|_2 \leq C_1\varepsilon \leq  (?) < \min_{\ell \in [m]} \|\mathbf{A}_\ell\|_2$. %< L_2(\mathbf{A}) \leq L_1(\mathbf{A}) = \min_{i \in [m]} \|\mathbf{A}_{i}\|_2$.  
+
+Let $\mathbf{\overline x}^{(i)} = \sum_{j=1}^m \overline c^{(i)}_j \mathbf{e}_j$ and let $\pi: [m] \to [\overline m]$ be the map $\pi(i) = \arg \max_j \overline c^{(i)}_j$. By the triangle inequality,
+\begin{align}\label{1D}
+\|c_i\mathbf{A}_i - \overline{c}^{(i)}_{\pi(i)}\mathbf{B}_{\pi(i)}\|_2  -  \|\sum_{k \neq \pi(i)} \mathbf{B}_k \overline c^{(i)}_k \|_2
+\leq \|\mathbf{A}\mathbf{x}^{(i)} - \mathbf{B}\mathbf{\overline x}^{(i)}\|_2 
+\leq \varepsilon
+\end{align} 
+
+Hence, %assuming $\|\mathbf{B}\|_2 \leq \|\mathbf{A}\|_2$ for all $i \in [m]$,
+\begin{align}\label{1D}
+%(|c_i| - |\overline{c}^{(i)}_{\pi(i)}|) \|\mathbf{A}_i\|_2 
+%= \|\mathbf{A}_i (c_i - \overline{c}^{(i)}_{\pi(i)})\|_2 
+%\leq 
+\|c_i\mathbf{A}_i - \overline{c}^{(i)}_{\pi(i)}\mathbf{B}_{\pi(i)}\|_2 
+&\leq \varepsilon + \|\sum_{k \neq \pi(i)} \mathbf{B}_k \overline c^{(i)}_k \|_2 \\
+%&= \varepsilon + \|\mathbf{B}_{\pi(j)} \overline c^{(i)}_{\pi(j)} + \sum_{k \neq \pi(i) \neq \pi(j)} \mathbf{B}_k \overline c^{(i)}_k\|_2 \\
+%&\leq \varepsilon + \|\mathbf{B}_{\pi(j)} \overline c^{(i)}_{\pi(j)} - c_j\mathbf{A}_j\|_2 + \|c_j\mathbf{A}_j - \sum_{k \neq \pi(i) \neq \pi(j)} \mathbf{B}_k \overline c^{(i)}_k\|_2 \\
+&\leq \varepsilon + \|\mathbf{B}\|_2 \| \mathbf{\overline x}^{(i)}_{\pi(i)=0} \|_1 \\
+&= \varepsilon + \|\mathbf{A}\|_2 \| \mathbf{\overline x}^{(i)}_{\pi(i)=0} \|_1 \\
+%&\leq \varepsilon + \|\mathbf{A}\|_2 (|c_i| - |\overline c_{\pi(i)}^{(i)}|)
+%\leq \varepsilon +  \|\mathbf{\overline x}^{(i)} \|_1
+%\leq \varepsilon + |c_i|
+\end{align} 
+
+%Split x's in two, scale them, use A and B?
+
+%Or for $m=2$, 
+%\begin{align}\label{1D}
+%\|c_1\mathbf{A}_1 - \overline{c}^{(1)}_{\pi(1)}\mathbf{B}_{\pi(1)}\|_2 
+%&\leq \varepsilon + \| \mathbf{B}_k \overline c^{(1)}_{k \neq \pi(1)} \|_2 \\
+%\|c_2\mathbf{A}_2 - \overline{c}^{(2)}_{\pi(2)}\mathbf{B}_{\pi(2)}\|_2 
+%&\leq \varepsilon + \| \mathbf{B}_k \overline c^{(2)}_{k \neq \pi(2)} \|_2 
+%\end{align} 
+
+
+%We now show that the second term is also controlled by $\varepsilon$ (due to the fact that the other columns of the dictionary must also be coded for?).
+
+%\begin{align}\label{1D}
+%|\overline{c}^{(j)}_\ell| \|c_{i}\mathbf{A}_{i} - \overline{c}^{(i)}_\ell \mathbf{B}_{\ell}\|_2 
+%-
+%|\overline{c}^{(i)}_\ell| \|c_{j}\mathbf{A}_{j} - \overline{c}^{(j)}_\ell\mathbf{B}_{\ell}\|_2 
+%&\leq \varepsilon + \|\mathbf{A}\|_2 \| \mathbf{\overline x}^{(i)}_{\pi(i)=0} \|_1 \\
+%&\leq \varepsilon + \|\mathbf{A}\|_2 (|c_i| - |\overline c_{\pi(i)}^{(i)}|)
+%\leq \varepsilon +  \|\mathbf{\overline x}^{(i)} \|_1
+%\leq \varepsilon + |c_i|
+%\end{align} 
+
+%\begin{align}\label{1D}
+%|\overline{c}^{(i)}_\ell| \|c_{j}\mathbf{A}_{j} - \overline{c}^{(j)}_\ell\mathbf{B}_{\ell}\|_2  + |\overline{c}^{(j)}_\ell| \|c_{i}\mathbf{A}_{i} - \overline{c}^{(i)}_\ell \mathbf{B}_{\ell}\|_2 
+%&\leq (|\overline{c}^{(i)}_\ell|  +  |\overline{c}^{(j)}_\ell|) \varepsilon 
+%+ |\overline{c}^{(j)}_\ell| \|\sum_{k \neq \ell} \mathbf{B}_k \overline c^{(i)}_k \|_2
+%+ |\overline{c}^{(i)}_\ell| \|\sum_{k \neq \ell} \mathbf{B}_k \overline c^{(j)}_k \|_2 \\
+%&\leq \varepsilon + \|\mathbf{A}\|_2 \| \mathbf{\overline x}^{(i)}_{\pi(i)=0} \|_1 \\
+%&\leq \varepsilon + \|\mathbf{A}\|_2 (|c_i| - |\overline c_{\pi(i)}^{(i)}|)
+%\leq \varepsilon +  \|\mathbf{\overline x}^{(i)} \|_1
+%\leq \varepsilon + |c_i|
+%\end{align} 
+
+We now show that $\pi$ is injective (in particular, a permutation if $\overline m = m$). Suppose that $\pi(i) = \pi(j) = \ell$ for some $i \neq j$ and $\ell$. Then we have: %Scaling and summing these inequalities by $|\overline{c}_{i}|$ and $|\overline{c}_{j}|$, respectively, and applying the triangle inequality to annihilate the terms in $\mathbf{B}_\ell$, we obtain:
+\begin{align*}
+(|\overline{c}^{(i)}_\ell| + |\overline{c}^{(j)}_\ell|) \left(\varepsilon + \|\mathbf{A}\|_2 \| \mathbf{\overline x}^{(i)}_{\pi(i)=0} \|_1 \right) 
+%+ \|\mathbf{A}\|_2 \left( |\overline{c}^{(j)}_\ell| (|c_i| - |\overline{c}^{(i)}_\ell| ) + |\overline{c}^{(i)}_\ell| (|c_j| - |\overline{c}^{(j)}_\ell| ) \right)
+&\geq |\overline{c}^{(i)}_\ell| \|c_{j}\mathbf{A}_{j} - \overline{c}^{(j)}_\ell\mathbf{B}_{\ell}\|_2  + |\overline{c}^{(j)}_\ell| \|c_{i}\mathbf{A}_{i} - \overline{c}^{(i)}_\ell \mathbf{B}_{\ell}\|_2 \nonumber \\
+&\geq \|\mathbf{A}(\overline{c}^{(i)}_\ell c_{j} \mathbf{e}_{j} - \overline{c}^{(j)}_\ell c_{i}\mathbf{e}_{i})\|_2 \nonumber \\ 
+&\geq \sqrt{2}  L_2(\mathbf{A}) \|\overline{c}^{(i)}_\ell c_{j} \mathbf{e}_{j} - \overline{c}^{(j)}_\ell c_{i}\mathbf{e}_{i}\|_2 \nonumber \\
+&\geq  L_2(\mathbf{A}) (|\overline{c}^{(i)}_\ell| + |\overline{c}^{(j)}_\ell|) \min_{\ell \in [m]} |c_\ell |,
+\end{align*}
+hence, assuming $\|\mathbf{A}\|_2 = 1$,
+\begin{align*}
+\varepsilon  &\geq  L_2(\mathbf{A})  \min_{\ell \in [m]} |c_\ell | - \| \mathbf{\overline x}^{(i)}_{\pi(i)=0} \|_1 \\
+&=
+\end{align*}
+contradicting our assumed upper bound on $\varepsilon$. Hence, the map $\pi$ is injective and so $\overline m \geq m$. %Setting $\overline J = \pi([m])$ and 
+
+Letting $\mathbf{P}$ and $\mathbf{D}$ be the $\overline m \times \overline m$ permutation and invertible diagonal matrices with, respectively, columns $\mathbf{e}_{\pi(i)}$ and $\frac{\overline{c}_i}{c_i}\mathbf{e}_i$ for $i \in [m]$ (otherwise, $\mathbf{e}_{i}$ for $i \in [\overline{m}] \setminus [m]$), we may rewrite \eqref{1D} to see that for all $i \in [m]$:
+\begin{align*}
+\|\mathbf{A}_i - (\mathbf{BPD})_i\|_2 
+= \|\mathbf{A}_i - \frac{\overline{c}_i}{c_i}\mathbf{B}_{\pi(i)}\|_2 
+\leq \frac{\varepsilon + |c_i|}{|c_i|} 
+\leq C_1\varepsilon + 1.
+\end{align*}
+%\vspace{-.2 cm}
+\end{proof}
+
+\end{document}

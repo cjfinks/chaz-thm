@@ -1,0 +1,137 @@
+ \chapter{Outline of Techniques}
+
+Before embarking on our thesis journey, we present here the collection of techniques, tools, and definitions that underlie the proofs of our main results.  They are listed here primarily because readers might find them useful for other applications.
+
+\section{Gr\"obner Bases}
+
+
+
+\section{Brouwer Mapping Degree and Fixed-Point Theory}
+
+In this section, we give a brief overview of degree theory, and
+some of its main implications.  The bulk of this discussion is material taken from \cite{degthy, teschl}.  First we introduce some notation.  Let $U$ be a bounded open subset of $\mathbb R^m$.  We denote the set of $r$-times differentiable functions from $U$ ($\overline{U}$) to $\mathbb R^m$ by $C^r(U,\mathbb R^m)$ ($C^r(\overline{U},\mathbb R^m)$) (when $r = 0$, $C^r(U,\mathbb R^m)$ is the set of continuous functions).  The \textit{identity function} id satisfies id$(\mathbf x) = \mathbf x$.  If $f \in C^1(U,\mathbb R^m)$, then the \textit{Jacobi matrix} of $f$ at a point $\mathbf {x} \in U$ is \[f'(\mathbf {x}) = \left(  \frac{\partial f_j}{\partial x_i}(\mathbf{x}) \right)_{1\leq i,j \leq m}\] and the \textit{Jacobi determinant} (or simply \textit{Jacobian}) of $f$ at $\mathbf{x}$ is \[ J_f(\mathbf{x}) = \det f'(\mathbf{x}).\]  The set of \textit{regular values} of $f$ is \[\text{RV}(f) = \left\{\mathbf{y}\in \mathbb R^m : \forall \mathbf{x} \in f^{-1}(\mathbf{y}), \ J_f(\mathbf{x}) \neq 0\right\}\] and for $\mathbf{y} \in \mathbb R^m$, we set \[D^r_{\mathbf{y}}(\overline{U},\mathbb R^m) = \left\{ f \in C^r( \overline{U},\mathbb R^m) : \mathbf{y} \notin f(\partial U) \right\} .\]  
+
+A function $\text{deg}: D^{0}_{\mathbf{y}}(\overline{U},\mathbb R^m) \to \mathbb R$ which assigns to each $f \in D^{0}_{\mathbf{y}}(\overline{U},\mathbb R^m)$ and $\mathbf{y} \in R^m$ a real number deg$(f,U,\mathbf{y})$ will be called a \textit{degree} if it satisfies the following conditions.
+
+%\renewcommand{\enumi}{$D$}
+
+\begin{enumerate}
+\item $\deg(f,U,\mathbf{y}) = \deg(f-\mathbf y, U, 0)$ (\textit{translation invariance}).
+\item $\deg(\mathrm{id}, U, \mathbf y) = 1$ if $\mathbf y \in U$ (\textit{normalization}).
+\item If $U_1$ and $U_2$ are open, disjoint subsets of $U$ such that $\mathbf  y \notin f(\overline{U} \setminus (U_1 \cup U_2))$, then $\deg(f,U,\mathbf y) = \deg(f,U_1,\mathbf y) +\deg(f,U_2,\mathbf y)$ (\textit{additivity}). 
+\item If $H(t) = tf + (1-t)g \in D^{0}_{\mathbf{y}}(\overline{U},\mathbb R^m)$ for all $t \in [0,1]$, then $\deg(f,U,\mathbf y) = \deg(g,U,\mathbf y)$ (\textit{homotopy invariance}).
+\end{enumerate}
+
+Motivationally, one should think of a degree map as somehow ``counting'' the number of solutions to $f(\mathbf x) = \mathbf y$.  Condition $(1)$ reflects that the solutions to $f(\mathbf x) = \mathbf y$ are the same as those of $f(\mathbf x)- \mathbf y = 0$, and since any multiple of a degree will satisfy $(1)$, $(3)$, and $(4)$, the condition $(2)$ is a normalization.  Additionally, $(3)$ is natural since it requires $\deg$ to be additive with respect to components.  
+
+Of course, we need a theorem guaranteeing that a degree even exists.
+
+\begin{theorem}
+There is a unique degree $\deg$.  Moreover, $\deg(\cdot, U, \mathbf y):  D^0_{\mathbf{y}}(\overline{U},\mathbb R^m) \to \mathbb Z$.
+\end{theorem}
+
+When functions are differentiable, a degree can be calculated explicitly in terms of Jacobians at solutions to the equation $f(\mathbf x) = \mathbf y$.
+
+\begin{theorem}\label{sumjacob}
+Suppose that $f \in D^1_{\mathbf y}(\overline{U},\mathbb R^m)$ and $\mathbf y \in \text{\rm{RV}}$.  Then a degree satisfies \[\deg(f,U,\mathbf y) = \sum_{\mathbf x \in f^{-1}(\mathbf y)} {\text{\rm{sgn}} \  J_f(\mathbf x)},\] where this sum is finite and we adopt the convention that $\sum_{\mathbf x \subseteq  \emptyset} = 0$.
+\end{theorem}
+
+
+\section{Algebraic Combinatorics and Generating Functions}
+
+
+
+
+\section{Well-Quasi-Orderings}
+
+
+A {\bf quasi-ordering} on a set
+$S$ is a binary relation $\leq$ on $S$ which is reflexive and
+transitive. 
+A {\bf quasi-ordered
+set} is a pair $(S,\leq)$ consisting of a set $S$ and a quasi-ordering $\leq$
+on $S$. (If no confusion is possible, we will omit $\leq$ from the notation,
+and just call $S$ a quasi-ordered set.)
+If in addition the relation $\leq$ is anti-symmetric,
+then $\leq$ is called an {\bf ordering} on the set $S$, and
+$(S,\leq)$ (or $S$) is called an {\bf ordered set.}
+A quasi-ordering $\leq$ on a set $S$ induces an
+ordering on the set $S/{\sim}=\{a/{\sim}:a\in S\}$ 
+of equivalence classes of the equivalence
+relation $x\sim y 
+\Longleftrightarrow x\leq y \ \&\ y\leq x$ on 
+$S$ in a natural way. 
+If $x$ and $y$ are elements of a  quasi-ordered set $(S,\leq)$, 
+we write as usual $x\leq y$ also as $y\geq x$, and 
+we write $x<y$ if $x\leq y$ and $y\not\leq x$.
+
+
+Suppose that $(S,{\leq}_S)$ is a quasi-ordered set.
+The restriction ${\leq_U}:={{\leq_S}\cap (U\times U)}$ 
+of the quasi-ordering $\leq_S$ makes $U\subseteq S$
+into a quasi-ordered set. If $\leq_S$ is an ordering, then
+so is  $\leq_U$.  
+Let $(T,{\leq}_T)$ be another quasi-ordered set.
+The cartesian product $S\times T$ of $S$ and $T$ can be
+made into a quasi-ordered set by means of the {\bf product quasi-ordering}
+$(x,y) \leq_{S\times T} (x',y') \Longleftrightarrow x\leq_S x' \text{ and }
+y\leq_T y'$.
+If $\leq_S$ and $\leq_T$ are orderings, then so is $\leq_{S\times T}$.
+Taking $S=T$ and repeating this construction yields 
+the product quasi-ordering on $S^n$.
+
+\begin{example}\label{example-Nn}
+We consider $\N=\{0,1,2,\dots\}$ as an ordered set with its usual ordering, and we equip
+$\N^n$ with 
+the product ordering. 
+\end{example}
+
+\subsection*{Final segments and antichains}
+A {\bf final segment} of a  quasi-ordered set $(S,\leq)$ is a
+subset $F \subseteq S$ which is closed upwards:
+$x\leq y \wedge x\in F \Rightarrow y\in F$, for all $x,y\in S$.
+We construe the set ${\cal F}(S)$ of final segments of $S$ as
+an ordered set, with the ordering given by {\sl reverse}\/ inclusion.
+Given a subset $M$ of $S$, the set 
+$\bigl\{y \in S : \exists x \in M\ ( x \leq y ) \bigr\}$
+is a final segment of $S$,  the final segment {\bf generated by $M$.}
+An {\bf antichain} of $S$ is a subset $A \subseteq S$
+such that $x \not\leq y$ and $y\not\leq x$ for all  $x\not\sim y$ in $A$. 
+
+
+\subsection*{Well-quasi-orderings}
+A quasi-ordered set $S$ is {\bf well-founded} if 
+there is no
+infinite strictly decreasing sequence $x_0 > x_1 > \cdots $ in $S$. 
+A quasi-ordered set $S$ is {\bf well-quasi-ordered}
+if it is well-founded, and every antichain of $S$ is finite.
+The following characterization of well-quasi-orderings is classical.
+(See, e.g., \cite{Kruskal}.) An infinite sequence 
+$s_0,s_1,\dots$
+in $S$ such that $s_i\leq s_j$ for some indices $i<j$
+is called {\bf good}, and {\bf bad} otherwise.
+
+\begin{prop}
+The following are equivalent, for a quasi-ordered set $S$:
+\begin{enumerate}
+\item $S$ is a well-quasi-ordering.
+\item Every infinite sequence in $S$ is good. 
+\item Every infinite sequence in $S$ contains an infinite increasing
+subsequence.
+\item Any final segment of $S$ is finitely generated.
+\item $\bigl(\mathcal{F} ( S ),\supseteq\bigr)$ is well-founded \textup{(}i.e., the ascending chain
+condition with respect to inclusion holds for final segments of $S$\textup{).} \qed
+\end{enumerate}
+\end{prop}
+
+Suppose $(S,{\leq}_S)$ and
+$(T,{\leq}_T)$ are well-quasi-ordered sets. Then
+the induced quasi-ordering on a subset of $S$ is a
+well-quasi-ordering, and 
+the cartesian product $S\times T$ of $S$ and $T$ is well-quasi-ordered.
+(Easily seen, e.g., using the equivalence of (1) and (3) above.)
+Inductively, it follows that the product quasi-ordering on
+$S^n$ is a well-quasi-ordering, for
+every $n>0$. (With $S=\N$ this is known as ``Dickson's Lemma''.)
+
+ 

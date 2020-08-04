@@ -1,0 +1,13 @@
+\contentsline {chapter}{\numberline {1}Outline of Techniques}{1}
+\contentsline {section}{\numberline {1.1}Gr\"obner Bases}{1}
+\contentsline {section}{\numberline {1.2}Brouwer Mapping Degree and Fixed-Point Theory}{1}
+\contentsline {section}{\numberline {1.3}Algebraic Combinatorics and Generating Functions}{3}
+\contentsline {section}{\numberline {1.4}Well-Quasi-Orderings}{3}
+\contentsline {chapter}{\numberline {2}Infinite Permutation Ideals in Countable Polynomial Rings are Noetherian}{5}
+\contentsline {section}{\numberline {2.1}Finiteness result}{5}
+\contentsline {chapter}{\numberline {3}Logarithmic Derivatives}{10}
+\contentsline {section}{\numberline {3.1}Statement of Results}{10}
+\contentsline {chapter}{\numberline {4}Cyclic Resultants}{11}
+\contentsline {section}{\numberline {4.1}Statement of Results}{11}
+\contentsline {chapter}{\numberline {5}Symmetric Word Equations in Positive Definite Letters}{12}
+\contentsline {section}{\numberline {5.1}Statement of Results}{12}

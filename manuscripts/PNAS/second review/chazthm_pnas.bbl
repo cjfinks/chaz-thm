@@ -1,0 +1,220 @@
+\begin{thebibliography}{34}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Sato(1975)]{sato1975method}
+Y.~Sato.
+\newblock A method of self-recovering equalization for multilevel
+  amplitude-modulation systems.
+\newblock \emph{IEEE Trans. Commun.}, 23\penalty0 (6):\penalty0 679--682, 1975.
+
+\bibitem[Zhang et~al.(2015)Zhang, Xu, Yang, Li, and Zhang]{Zhang15}
+Zheng Zhang, Yong Xu, Jian Yang, Xuelong Li, and David Zhang.
+\newblock A survey of sparse representation: algorithms and applications.
+\newblock \emph{Access, IEEE}, 3:\penalty0 490--530, 2015.
+
+\bibitem[Wang et~al.(2015)Wang, Yang, Zhang, Wang, Yang, Liu, and
+  Huang]{wang2015sparse}
+Z.~Wang, J.~Yang, H.~Zhang, Z.~Wang, Y.~Yang, D.~Liu, and T.~Huang.
+\newblock \emph{Sparse coding and its applications in computer vision}.
+\newblock World Scientific, 2015.
+
+\bibitem[Olshausen and Field(1996)]{Olshausen96}
+B.~Olshausen and D.~Field.
+\newblock {Emergence of simple-cell receptive field properties by learning a
+  sparse code for natural images}.
+\newblock \emph{Nature}, 381\penalty0 (6583):\penalty0 607--609, 1996.
+
+\bibitem[Hurri et~al.(1996)Hurri, Hyv{\"a}rinen, Karhunen, and
+  Oja]{hurri1996image}
+J.~Hurri, A.~Hyv{\"a}rinen, J.~Karhunen, and E.~Oja.
+\newblock Image feature extraction using independent component analysis.
+\newblock In \emph{Proc. NORSIG '96 (Nordic Signal Proc. Symposium)}, pages
+  475--478, 1996.
+
+\bibitem[Bell and Sejnowski(1997)]{bell1997independent}
+A.~Bell and T.~Sejnowski.
+\newblock The ``independent components" of natural scenes are edge filters.
+\newblock \emph{Vision Res.}, 37\penalty0 (23):\penalty0 3327--3338, 1997.
+
+\bibitem[van Hateren and van~der Schaaf(1998)]{van1998independent}
+J.~van Hateren and A.~van~der Schaaf.
+\newblock Independent component filters of natural images compared with simple
+  cells in primary visual cortex.
+\newblock \emph{Proc. R Soc. Lond. [Biol.]}, 265\penalty0 (1394):\penalty0
+  359--366, 1998.
+
+\bibitem[Donoho and Flesia(2001)]{donoho2001can}
+D.~Donoho and A.~Flesia.
+\newblock Can recent innovations in harmonic analysis 'explain' key findings in
+  natural image statistics?
+\newblock \emph{Network Comp. Neural}, 12\penalty0 (3):\penalty0 371--393,
+  2001.
+
+\bibitem[Isely et~al.(2010)Isely, Hillar, and Sommer]{Isely10}
+Guy Isely, Christopher Hillar, and Fritz Sommer.
+\newblock Deciphering subsampled data: adaptive compressive sampling as a
+  principle of brain communication.
+\newblock In \emph{Adv. Neural Inf. Process. Syst.}, pages 910--918, 2010.
+
+\bibitem[Hughes et~al.(2010)Hughes, Graham, and Rockmore]{hughes2010}
+J.~Hughes, D.~Graham, and D.~Rockmore.
+\newblock Quantification of artistic style through sparse coding analysis in
+  the drawings of {P}ieter {B}ruegel the {E}lder.
+\newblock \emph{Proc. Natl. Acad. Sci.}, 107\penalty0 (4):\penalty0 1279--1283,
+  2010.
+
+\bibitem[Olshausen and DeWeese(2010)]{Olshausen10}
+B.~Olshausen and M.~DeWeese.
+\newblock Applied mathematics: The statistics of style.
+\newblock \emph{Nature}, 463\penalty0 (7284):\penalty0 1027--1028, 2010.
+
+\bibitem[Sun et~al.(2016)Sun, Qu, and Wright]{Sun16}
+J~Sun, Q~Qu, and J~Wright.
+\newblock {Complete dictionary recovery over the sphere I: Overview and the
+  geometric picture}.
+\newblock \emph{IEEE Trans. Inf. Theory}, pages 853 -- 884, 2016.
+
+\bibitem[Hadamard(1902)]{Hadamard1902}
+Jacques Hadamard.
+\newblock Sur les probl{\`e}mes aux d{\'e}riv{\'e}es partielles et leur
+  signification physique.
+\newblock \emph{Princeton University Bulletin}, 13\penalty0 (49-52):\penalty0
+  28, 1902.
+
+\bibitem[Li et~al.(2004)Li, Cichocki, and Amari]{li2004analysis}
+Y.~Li, A.~Cichocki, and S.-I. Amari.
+\newblock Analysis of sparse representation and blind source separation.
+\newblock \emph{Neural Comput.}, 16\penalty0 (6):\penalty0 1193--1234, 2004.
+
+\bibitem[Georgiev et~al.(2005)Georgiev, Theis, and Cichocki]{Georgiev05}
+P.~Georgiev, F.~Theis, and A.~Cichocki.
+\newblock Sparse component analysis and blind source separation of
+  underdetermined mixtures.
+\newblock \emph{IEEE Trans. Neural Netw.}, 16:\penalty0 992--996, 2005.
+
+\bibitem[Aharon et~al.(2006)Aharon, Elad, and Bruckstein]{Aharon06}
+M.~Aharon, M.~Elad, and A.~Bruckstein.
+\newblock On the uniqueness of overcomplete dictionaries, and a practical way
+  to retrieve them.
+\newblock \emph{Linear Algebra Appl.}, 416\penalty0 (1):\penalty0 48--67, 2006.
+
+\bibitem[Hillar and Sommer(2015)]{Hillar15}
+C~Hillar and F~Sommer.
+\newblock When can dictionary learning uniquely recover sparse data from
+  subsamples?
+\newblock \emph{IEEE Trans. Inf. Theory}, 61\penalty0 (11):\penalty0
+  6290--6297, 2015.
+
+\bibitem[Grcar(2010)]{Grcar10}
+J.~Grcar.
+\newblock A matrix lower bound.
+\newblock \emph{Linear Algebra Appl.}, 433\penalty0 (1):\penalty0 203--220,
+  2010.
+
+\bibitem[Vidal et~al.(2005)Vidal, Ma, and Sastry]{vidal2005generalized}
+Rene Vidal, Yi~Ma, and Shankar Sastry.
+\newblock Generalized principal component analysis ({GPCA}).
+\newblock \emph{IEEE Trans. Pattern Anal. Mach. Intell.}, 27\penalty0
+  (12):\penalty0 1945--1959, 2005.
+
+\bibitem[Blanchard et~al.(2011)Blanchard, Cartis, and Tanner]{Blanchard2011}
+J.~Blanchard, C.~Cartis, and J.~Tanner.
+\newblock Compressed sensing: How sharp is the restricted isometry property?
+\newblock \emph{SIAM Rev.}, 53\penalty0 (1):\penalty0 105--125, 2011.
+
+\bibitem[Tillmann and Pfetsch(2014)]{tillmann2014computational}
+A.~Tillmann and M.~Pfetsch.
+\newblock The computational complexity of the restricted isometry property, the
+  nullspace property, and related concepts in compressed sensing.
+\newblock \emph{IEEE Trans. Inf. Theory}, 60\penalty0 (2):\penalty0 1248--1259,
+  2014.
+
+\bibitem[Rehn and Sommer(2007)]{rehnsommer2007}
+M.~Rehn and F.~Sommer.
+\newblock {A network that uses few active neurones to code visual input
+  predicts the diverse shapes of cortical receptive fields}.
+\newblock \emph{J. Comput. Neurosci.}, 22\penalty0 (2):\penalty0 135--146,
+  2007.
+
+\bibitem[Rozell et~al.(2008)Rozell, Johnson, Baraniuk, and
+  Olshausen]{rozell2007neurally}
+C.~Rozell, D.~Johnson, R.~Baraniuk, and B.~Olshausen.
+\newblock Neurally plausible sparse coding via thresholding and local
+  competition.
+\newblock \emph{Neural Comput.}, 20\penalty0 (10):\penalty0 2526--2563, 2008.
+
+\bibitem[Arias-Castro et~al.(2013)Arias-Castro, Candes, and
+  Davenport]{arias2013fundamental}
+E.~Arias-Castro, E.~Candes, and M.~Davenport.
+\newblock On the fundamental limits of adaptive sensing.
+\newblock \emph{IEEE Trans. Inf. Theory}, 59\penalty0 (1):\penalty0 472--481,
+  2013.
+
+\bibitem[Tillmann(2015)]{Tillmann15}
+A.~Tillmann.
+\newblock On the computational intractability of exact and approximate
+  dictionary learning.
+\newblock \emph{IEEE Signal Process. Lett.}, 22\penalty0 (1):\penalty0 45--49,
+  2015.
+
+\bibitem[Kato(2013)]{Kato2013}
+Tosio Kato.
+\newblock \emph{Perturbation theory for linear operators}, volume 132.
+\newblock Springer Science \& Business Media, 2013.
+
+\bibitem[Morris(2010)]{Morris10}
+I.~Morris.
+\newblock A rapidly-converging lower bound for the joint spectral radius via
+  multiplicative ergodic theory.
+\newblock \emph{Adv. Math.}, 225\penalty0 (6):\penalty0 3425--3445, 2010.
+
+\bibitem[Deutsch(2012)]{Deutsch12}
+F.~Deutsch.
+\newblock \emph{Best approximation in inner product spaces}.
+\newblock Springer Science \& Business Media, 2012.
+
+\bibitem[Ganguli and Sompolinsky(2012)]{ganguli2012compressed}
+Surya Ganguli and Haim Sompolinsky.
+\newblock Compressed sensing, sparsity, and dimensionality in neuronal
+  information processing and data analysis.
+\newblock \emph{Annu. Rev. Neurosci.}, 35:\penalty0 485--508, 2012.
+
+\bibitem[Lustig et~al.(2008)Lustig, Donoho, Santos, and
+  Pauly]{lustig2008compressed}
+M.~Lustig, D.~Donoho, J.~Santos, and J.~Pauly.
+\newblock Compressed sensing {MRI}.
+\newblock \emph{IEEE Signal Process. Mag.}, 25\penalty0 (2):\penalty0 72--82,
+  2008.
+
+\bibitem[Duarte et~al.(2008)Duarte, Davenport, Takbar, Laska, Sun, Kelly, and
+  Baraniuk]{Duarte08}
+M.~Duarte, M.~Davenport, D.~Takbar, J.~Laska, T.~Sun, K.~Kelly, and
+  R.~Baraniuk.
+\newblock Single-pixel imaging via compressive sampling.
+\newblock \emph{IEEE Signal Process. Mag.}, 25\penalty0 (2):\penalty0 83--91,
+  March 2008.
+
+\bibitem[Gao et~al.(2014)Gao, Liang, Li, and Wang]{Gao14}
+L.~Gao, J.~Liang, C.~Li, and L.~Wang.
+\newblock Single-shot compressed ultrafast photography at one hundred billion
+  frames per second.
+\newblock \emph{Nature}, 516\penalty0 (7529):\penalty0 74--77, 2014.
+
+\bibitem[Kong and Lucey(2016)]{kong2016prior}
+Chen Kong and Simon Lucey.
+\newblock Prior-less compressible structure from motion.
+\newblock In \emph{Proc. IEEE Comput. Soc. Conf. Comput. Vis. Pattern
+  Recognit.}, pages 4123--4131, 2016.
+
+\bibitem[Goodfellow et~al.(2014)Goodfellow, Shlens, and
+  Szegedy]{goodfellow2014explaining}
+I~Goodfellow, J~Shlens, and C~Szegedy.
+\newblock Explaining and harnessing adversarial examples.
+\newblock \emph{Proc. International Conference on Learning Representations, 11
+  pp.}, 2014.
+
+\end{thebibliography}

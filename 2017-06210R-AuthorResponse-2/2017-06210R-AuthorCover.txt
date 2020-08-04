@@ -1,0 +1,8 @@
+Dear Tom and Editor,
+
+We have responded to the questions and commentary below in "2017-06210R-AuthorResponse.txt" included in our ZIP file "2017-06210R-AuthorResponse.zip".  We also include an updated manuscript ("2017-06210R-AuthorResponseManuscript.pdf") and corresponding code and figures for our response ("compute_C2.py", "decomp_svd.py", "sample_complexity.py"; "C2_Grid_m64_n32_k8_r2_nt500.pdf", "C2_Grid_m256_n128_k16_r2_nt500.pdf", "C2_Grid_m1024_n512_k32_r2_nt50.pdf", "prob_vs_samples.png", "samples_vs_m.png").  
+
+We are happy to revise the paper to address better your misgivings and those of the referees, as well as add additional material (in e.g. a Supplementary Section).  Please let us know what you think.  
+
+Best regards,
+Charles and Chris
