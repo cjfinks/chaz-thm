@@ -1,8 +1,9 @@
-%\chapter{Results}
-\section{Results}\label{Results}
+\chapter{Results}\label{Results}
 
 %Denote by $\mathbf{x}^J$ the subvector formed from the entries of $\mathbf{x}$ indexed by $J$. 
 %A set of $k$-sparse vectors is said to be in \emph{general linear position} when any $k$ of them are linearly independent. 
+
+\section{Combinatorial designs for sparse supports}
 
 Precise statements of our results require that we first identify some combinatorial criteria on the supports\footnote{Recall that a vector $\mathbf{x}$ is said to be \emph{supported} in $S$ when $\mathbf{x} \in \text{\rmfamily span}\{\mathbf{e}_j: j\in S\}$, with $\mathbf{e}_j$ forming the standard column basis.} of sparse vectors. Let $\{1, \ldots, m\}$ be denoted $[m]$, its power set $2^{[m]}$, and ${[m] \choose k}$ the set of subsets of $[m]$ of size $k$.  A \emph{hypergraph} on vertices $[m]$  is simply any subset $\mathcal{H} \subseteq 2^{[m]}$. We say that $\mathcal{H}$ is \textit{$k$-uniform} when $\mathcal{H} \subseteq {[m] \choose k}$. The \emph{degree} $\deg_\mathcal{H}(i)$ of a node $i \in [m]$ is the number of sets in $\mathcal{H}$ that contain $i$, and we say $\mathcal{H}$ is \emph{regular} when for some $r$ we have $\deg_\mathcal{H}(i) = r$ for all $i$ (given such an $r$, we say $\mathcal{H}$ is \textit{$r$-regular}). We also write $2\mathcal{H} := \{ S \cup S': S, S' \in \mathcal{H}\}$.  The following class of structured hypergraphs is a key ingredient in this work.
 
@@ -29,6 +30,8 @@ L_\mathcal{H}(\mathbf{M}) := \min \left\{ \frac{\|\mathbf{M}_S\mathbf{x}\|_2}{ \
 \end{align} 
 %
 writing also $L_{k}$ in place of $L_\mathcal{H}$ when $\mathcal{H} = {[m] \choose k}$.\footnote{In compressed sensing literature, \mbox{$1 - \sqrt{k} L_k(\mathbf{M})$}  is the asymmetric lower restricted isometry constant for $\mathbf{M}$ with unit $\ell_2$-norm columns \cite{Blanchard2011}.\label{ripfootnote}}  As explained above, compactness implies that $L_{2k}(\mathbf{M}) > 0$ for all $\mathbf{M}$ satisfying \eqref{SparkCondition}. Clearly, $L_{\mathcal{H}'}(\mathbf{M}) \geq L_\mathcal{H}(\mathbf{M})$ whenever $\mathcal{H}' \subseteq \mathcal{H}$, and similarly any $k$-uniform $\mathcal{H}$ satisfying $\cup \mathcal{H} = [m]$ has $L_2 \geq L_{2\mathcal{H}} \geq L_{2k}$ (letting $L_{2k}$ := $L_m$ whenever $2k > m$).
+
+\section{Deterministic uniqueness theorems}
 
 We are now in a position to state our main result, though for expository purposes we leave the quantity $C_1$ %(a function of $\mathbf{A}$, $\mathbf{x}_1, \ldots, \mathbf{x}_N$, and $\mathcal{H}$) 
 undefined until Sec.~\ref{DUT}. All results  below assume real matrices and vectors. 
@@ -137,6 +140,7 @@ Fix a matrix $\mathbf{A}$ and vectors $\mathbf{x}_i$ satisfying the assumptions 
 \end{center}
 \end{figure}
 
+\section{Probabilistic uniqueness theorems}
 
 Another extension of Thm.~\ref{DeterministicUniquenessTheorem} can be derived from the following algebraic characterization of the spark condition.  Letting $\mathbf{A}$ be the $n \times m$ matrix of $nm$ indeterminates $A_{ij}$, the reader may work out why substituting real numbers for the $A_{ij}$ yields a matrix satisfying \eqref{SparkCondition} if and only if the following polynomial evaluates to a nonzero number:
 \begin{align*}
@@ -174,7 +178,9 @@ Thus, drawing the dictionary and supported sparse coefficients from any continuo
 
 %\cite{rehnsommer2007, rozell2007neurally, ganguli2012compressed, hu2014hebbian}
 
-We close this section with some comments on the optimality of our results.  The linear scaling for $\varepsilon$ in \eqref{epsdel} is essentially optimal (e.g., see \cite{arias2013fundamental}), but a basic open problem remains: how many samples are necessary to determine the sparse coding model? 
+\section{Discussion}
+
+We conclude this chapter with some comments on the optimality of our results.  The linear scaling for $\varepsilon$ in \eqref{epsdel} is essentially optimal (e.g., see \cite{arias2013fundamental}), but a basic open problem remains: how many samples are necessary to determine the sparse coding model? 
 Our results demonstrate that sparse codes $\mathbf{x}_i$ drawn from only a polynomial number of $k$-dimensional subspaces permit stable identification of the generating dictionary $\mathbf{A}$. 
 This lends some legitimacy to the use of the model in practice, where data in general are unlikely (if ever) to exhibit the exponentially many possible $k$-wise combinations of dictionary elements required by (to our knowledge) all previously published results. 
 

@@ -1,4 +1,4 @@
-\section{Introduction}\label{Intro}
+\chapter{Introduction}\label{Intro}
 
 %\begin{itemize}
 %\item Background to the topic.
@@ -19,11 +19,13 @@ Motivated by these discoveries and more recent work relating compressed sensing 
 
 While several algorithms have recently been proposed to provably recover unique dictionaries under specific conditions (see \cite[Sec.~I-E]{Sun16} for a summary of the state-of-the-art), few theorems can be invoked to justify the consistency of inference under this model of data more broadly. To our knowledge, a universal guarantee of the uniqueness and stability of learned dictionaries and the sparse representations they induce over noisy data has yet to appear in the literature.
 
-Here, we prove very generally that uniqueness and stability is a typical property of sparse dictionary learning. More specifically, we show that matrices injective on a sparse domain are identifiable from \mbox{$N = m(k-1){m \choose k} + m$} noisy linear combinations of $k$ of their $m$ columns up to an error that is linear in the noise (Thm.~\ref{DeterministicUniquenessTheorem}). In fact, provided $n \geq \min(2k,m)$, in almost all cases the problem is well-posed, as per Hadamard \cite{Hadamard1902}, given a sufficient amount of data (Thm.~\ref{robustPolythm} and Cor.~\ref{ProbabilisticCor}). 
+In this work, it is proven very generally that uniqueness and stability is a typical property of sparse dictionary learning. More specifically, it is demonstrated that matrices injective on a sparse domain are identifiable from \mbox{$N = m(k-1){m \choose k} + m$} noisy linear combinations of $k$ of their $m$ columns up to an error that is linear in the noise (Thm.~\ref{DeterministicUniquenessTheorem}). In fact, provided $n \geq \min(2k,m)$, in almost all cases the problem is well-posed, as per Hadamard \cite{Hadamard1902}, given a sufficient amount of data (Thm.~\ref{robustPolythm} and Cor.~\ref{ProbabilisticCor}). 
 
-Our guarantees also hold for a related (and perhaps more commonly posed, e.g. \cite{rehnsommer2007}) optimization problem seeking a dictionary minimizing the average number of elementary waveforms required to reconstruct each sample of the dataset (Thm.~\ref{SLCopt}). To practical benefit, our results impose no restrictions on learned dictionaries (e.g., that they, too, be injective over some sparse domain) beyond an upper bound on dictionary size, which is necessary in any case to avoid trivial solutions (e.g., allowing $m = N$). %That is, every pair of solutions of comparable size has some number of dictionary elements in common (up to noise), and similarly so for the coefficients of sparse codes they induce.
+These guarantees also hold for a related (and perhaps more commonly posed, e.g. \cite{rehnsommer2007}) optimization problem seeking a dictionary minimizing the average number of elementary waveforms required to reconstruct each sample of the dataset (Thm.~\ref{SLCopt}). To practical benefit, the derivations impose no restrictions on learned dictionaries (e.g., that they, too, be injective over some sparse domain) beyond an upper bound on dictionary size, which is necessary in any case to avoid trivial solutions (e.g., allowing $m = N$). %That is, every pair of solutions of comparable size has some number of dictionary elements in common (up to noise), and similarly so for the coefficients of sparse codes they induce.
 
-More precisely, let $\mathbf{A} \in \mathbb R^{n \times m}$ be a matrix with columns $\mathbf{A}_j$ ($j = 1,\ldots,m$) and let dataset $Z$ consist of measurements:
+\section{The dictionary learning problem(s)}
+
+Let $\mathbf{A} \in \mathbb R^{n \times m}$ be a matrix with columns $\mathbf{A}_j$ ($j = 1,\ldots,m$) and let dataset $Z$ consist of measurements:
 \begin{align}\label{LinearModel}
 \mathbf{z}_i = \mathbf{A}\mathbf{x}_i + \mathbf{n}_i,\ \ \  \text{$i=1,\ldots,N$},
 \end{align}

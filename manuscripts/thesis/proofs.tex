@@ -1,14 +1,6 @@
+\chapter{Definitions and Proofs}\label{DUT} % of Theorems~\ref{DeterministicUniquenessTheorem} and ~\ref{SLCopt}}\label{DUT}
 
-\section{Proofs}\label{DUT} % of Theorems~\ref{DeterministicUniquenessTheorem} and ~\ref{SLCopt}}\label{DUT}
-
-%%%%%%%%%%%%%%
-% need to cut maybe: 
-%As mentioned in the previous section, Thm.~\ref{DeterministicUniquenessTheorem} is a particular case of a more general result that forgoes the assumption that $\mathcal{H} \subseteq {[m] \choose k}$ is regular and satisfies the SIP. If instead we require only that the stars $\cap \sigma(i)$ intersect at singletons for all $i \leq q$ (assuming that the nodes of $\mathcal{H}$ are labeled in some order of non-increasing degree), we have that $\overline m \geq k|\mathcal{H}| / \deg(1)$ and, provided $\overline m < k|\mathcal{H}| / (\deg(1) - 1)$, the nonempty submatrix $J$ is of size equal to the largest number $p$ satisfying:
-%\begin{align}\label{pcond}
-%\sum_{i=\ell}^{m} \deg(i) > (\overline m + 1 - \ell) (\deg(\ell) - 1) \ \ \text{for all } \ell \leq p \leq q.
-%\end{align}
-%Specifically, $J$ contains all nodes of degree exceeding $\deg(p)$ and some subset of those with degreee equal to $\deg(p)$. For the benefit of the reader, we do not prove explicitly this more general result below; it can be discerned from how exactly Lemma \ref{NonEmptyLemma} is incorporated into the proof of Lem.~\ref{MainLemma}.
-%%%%%%%%%%%%%%%%
+%It has been shown here that, given sufficient data, this problem reduces to an instance of Prob.~\ref{InverseProblem} to which the main result (Thm.~\ref{DeterministicUniquenessTheorem}) then applies.
 
 
 %As mentioned in the previous section, Thm.~\ref{DeterministicUniquenessTheorem} is a particular case of a more general result, which requires a looser set of constraints on the hypergraph $\mathcal{H}$ and which applies to $n \times \overline m$ matrices $\mathbf{B}$ (and $\overline m$-dimensional codes $\mathbf{\overline x}_i$) with $\overline m \neq m$:
@@ -43,8 +35,10 @@
 %
 %wherein removal of the absolute value is justified since $C_1\varepsilon < L_{2k}(\mathbf{A}_J)$. We therefore have that $L_{2k}((\mathbf{BPD})_J) \geq L_{2k}(\mathbf{A}_J) - C_1\varepsilon  > 0$, and \eqref{b-PDa} then follows from \eqref{stuff}.
 
-
 % WITHOUT J SUBSCRIPT
+
+\section{Proving the case $k=1$}
+
 We begin our proof of Thm.~\ref{DeterministicUniquenessTheorem} by showing how dictionary recovery \eqref{Cstable} already implies sparse code recovery \eqref{b-PDa} when $\mathbf{A}$ satisfies \eqref{SparkCondition} and \mbox{$\varepsilon < L_{2k}(\mathbf{A}) / C_1$}. We temporarily assume (without loss of generality) that $\overline m = m$, so as to omit an otherwise requisite subscript $(\cdot)_J$ around certain matrices and vectors. By definition of $L_{2k}$ in \eqref{Ldef}, and noting that $\sqrt{k} \|\mathbf{v}\|_2 \geq \|\mathbf{v}\|_1$ for $k$-sparse $\mathbf{v}$, we have for all $i \in [N[$:
 \begin{align}\label{stuff}
 \|\mathbf{x}_i - \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\overline x}_i \|_1 \nonumber
@@ -107,6 +101,8 @@ Letting $\mathbf{P}$ and $\mathbf{D}$ be the $\overline m \times \overline m$ pe
 \end{align*}
 %\vspace{-.2 cm}
 \end{proof}
+
+\section{The main lemma}
 
 An extension of the proof to the general case $k < m$ requires some additional tools to derive the general expression \eqref{Cdef1} for $C_1$. These include a generalized notion of distance (Def.~\ref{dDef}) and angle (Def.~\ref{FriedrichsDefinition}) between subspaces as well as a stability result in combinatorial matrix analysis (Lem.~\ref{MainLemma}). 
 
@@ -181,11 +177,13 @@ The constant $C_2 > 0$ of Lem.~\ref{MainLemma} can now be expressed as:
 	C_2(\mathbf{A}, \mathcal{H}) := \frac{ (r+1) \max_{j \in [m]} \|\mathbf{A}_j\|_2}{ 1- \max_{\mathcal{G} \in {\mathcal{H} \choose r+1}} \xi( \bm{\mathcal{A}}_\mathcal{G} ) }.
 \end{align}
 
+\section{Proving the general case $k<m$}
+
 We next define the constant $C_1 > 0$ of Thm.~\ref{DeterministicUniquenessTheorem} in terms of $C_2$. Given vectors $\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$, let $\mathbf{X}$ denote the $m \times N$ matrix with columns $\mathbf{x}_i$ and let $I(S)$ denote the set of indices $i$ for which $\mathbf{x}_i$ is supported in $S$.  We define:
 \begin{align}\label{Cdef1}
 C_1(\mathbf{A}, \mathcal{H}, \{\mathbf{x}_i\}_{i=1}^N) := \frac{ C_2(\mathbf{A}, \mathcal{H}) } { \min_{S \in \mathcal{H}} L_k(\mathbf{AX}_{I(S)}) }.
 \end{align}
-Given the assumptions of Thm.~\ref{DeterministicUniquenessTheorem} on $\mathbf{A}$ and the $\mathbf{x}_i$, this expression for $C_1$ is well-defined\footnote{\label{note1}To see this, fix $S \in \mathcal{H}$ and $k$-sparse $\mathbf{c}$. Using the definitions, we have $\|\mathbf{AX}_{I(S)}\mathbf{c}\|_2 \geq \sqrt{k} L_\mathcal{H}(\mathbf{A})\|\mathbf{X}_{I(S)}\mathbf{c}\|_2 \geq k L_\mathcal{H}(\mathbf{A}) L_k(\mathbf{X}_{I(S)})\|\mathbf{c}\|_2$. Thus, $L_k(\mathbf{AX}_{I(S)}) \geq \sqrt{k} L_\mathcal{H}(\mathbf{A}) L_k(\mathbf{X}_{I(S)}) > 0$, since $L_{\mathcal{H}}(\mathbf{A}) \geq L_{2\mathcal{H}}(\mathbf{A})> 0$ and $L_k(\mathbf{X}_{I(S)}) > 0$ by general linear position of the $\mathbf{x}_i$.} and yields an upper bound on $\varepsilon$ consistent with that proven sufficient in the case $k=1$ considered at the beginning of this section.\footnote{When $\mathbf{x}_i = c_i\mathbf{e}_i$, we have $C_2 \geq 2\|\mathbf{A}_i\|_2$ and the denominator in \eqref{Cdef1} becomes $\min_{i \in [m]} |c_i| \|\mathbf{A}_i\|_2$; hence, $C_1 \geq 2 / \min_{i \in [m]} |c_i|$.}
+Given the assumptions of Thm.~\ref{DeterministicUniquenessTheorem} on $\mathbf{A}$ and the $\mathbf{x}_i$, this expression for $C_1$ is well-defined\footnote{\label{note1}To see this, fix $S \in \mathcal{H}$ and $k$-sparse $\mathbf{c}$. Using the definitions, we have $\|\mathbf{AX}_{I(S)}\mathbf{c}\|_2 \geq \sqrt{k} L_\mathcal{H}(\mathbf{A})\|\mathbf{X}_{I(S)}\mathbf{c}\|_2 \geq k L_\mathcal{H}(\mathbf{A}) L_k(\mathbf{X}_{I(S)})\|\mathbf{c}\|_2$. Thus, $L_k(\mathbf{AX}_{I(S)}) \geq \sqrt{k} L_\mathcal{H}(\mathbf{A}) L_k(\mathbf{X}_{I(S)}) > 0$, since $L_{\mathcal{H}}(\mathbf{A}) \geq L_{2\mathcal{H}}(\mathbf{A})> 0$ and $L_k(\mathbf{X}_{I(S)}) > 0$ by general linear position of the $\mathbf{x}_i$.} and yields an upper bound on $\varepsilon$ consistent with that proven sufficient in the case $k=1$ considered at the beginning of this chapter.\footnote{When $\mathbf{x}_i = c_i\mathbf{e}_i$, we have $C_2 \geq 2\|\mathbf{A}_i\|_2$ and the denominator in \eqref{Cdef1} becomes $\min_{i \in [m]} |c_i| \|\mathbf{A}_i\|_2$; hence, $C_1 \geq 2 / \min_{i \in [m]} |c_i|$.}
 % C_2(\mathbf{A}, \mathcal{H}) := \frac{ (r+1) \max_{j \in [m]} \|\mathbf{A}_j\|_2}{ \min_{\mathcal{G} \in {\mathcal{H} \choose r} \cup {\mathcal{H} \choose r+1}} \xi( \{ \bm{\mathcal{A}}_S \}
 
 The practically-minded reader should note that the explicit constants $C_1$ and $C_2$ are effectively computable: the denominator of $C_1$ involves a quantity $L_k$ that may be calculated as the smallest singular value of a certain matrix, while computing the quantity $\xi$ in the denominator of $C_2$ involves computing ``canonical angles'' between subspaces, which reduces again to an efficient singular value decomposition.
@@ -256,3 +254,33 @@ The total number of $(k-1)$-sparse vectors $\mathbf{\overline x}_i$ thus cannot 
 %First, note that if a set of measure spaces $\{(X_{\ell}, \Sigma_{\ell}, \nu_{\ell})\}_{\ell=1}^p$ has that $\nu_{\ell}$ is absolutely continuous with respect to $\mu$ for all $\ell \in [p]$, where $\mu$ is the standard Borel measure on $\mathbb{R}$, then the product measure $\prod_{\ell=1}^p \nu_{\ell}$ is absolutely continuous with respect to the standard Borel product measure on $\mathbb{R}^p$. % for space:  (e.g.,  \cite{folland2013real}). 
 %By Thm.~\ref{robustPolythm}, there is a polynomial that is nonzero when $Y$ has a stable $k$-sparse representation in $\mathbb{R}^m$; in particular, stability holds almost surely.
 %\end{proof}
+
+\section{Discussion}
+
+The absence of any assumptions at all about dictionaries that solve Prob.~\ref{InverseProblem} was a major technical hurdle in proving Thm.~\ref{DeterministicUniquenessTheorem}. 
+This very general guarantee was sought because of the practical difficulty of ensuring that an algorithm maintain a dictionary satisfying the spark condition \eqref{SparkCondition} at each iteration, which (to my knowledge) has been an explicit or implicit assumption of all previous works except \cite{Hillar15}; indeed, even certifying a dictionary has this property is NP-hard \cite{tillmann2014computational}.
+
+Several results in the literature had to be combined to extend the guarantees derived in \cite{Hillar15} into the noisy regime. The main challenge was to generalize Lem.~\ref{MainLemma} to the case where the $k$-dimensional subspaces spanned by corresponding submatrices $\mathbf{A}_S$ and $\mathbf{B}_{\pi(S)}$ are assumed to be``close" but not identical. Unlike in \cite{Hillar15} where an inductive argument could be applied to the noiseless case, here it had to be explicitly demonstrated that this proximity relation is propagated through iterated intersections right down to the spans of the dictionary elements themselves. Lem.~\ref{DistanceToIntersectionLemma} was designed to encapsulate this fact, proven by appeal to a convergence guarantee for an alternating projections algorithm first proposed by von Neumann. This result, combined with a little known fact \eqref{eqdim} about the distance metric between subspaces, make up the more obscure components of the deduction.
+
+The proof of Lem.~\ref{MainLemma} diverges most significantly from the approach taken in \cite{Hillar15} by way of Lem.~\ref{NonEmptyLemma}, which utilizes a combinatorial design for support sets (the ``singleton intersection property") to reduce the deterministic sample complexity by an exponential factor. This constitutes a significant advance toward legitimizing dictionary learning in practice, since data must otherwise exhibit the exponentially many possible $k$-wise combinations of dictionary elements required by (to my knowledge) all previously published results; although an exponential number of samples per support is still required (unless $k$ is held fixed). The issue is that the map $\pi:\mathcal{H} \to {[m] \choose k}$ is surjective only when $\mathcal{H}$ is taken to be ${[m] \choose k}$, in which case one may proceed by induction as in \cite{Hillar15}, freely choosing supports in the codomain of $\pi$ to intersect over $(k-1)$ indices to then map back to some corresponding set of $(k-1)$ indices at the intersection of supports in the domain. Here, for $\mathcal{H} \subset {[m] \choose k}$, a bijection between indices had to instead be established by pigeonholing the image of $\pi$ under constraints imposed by the SIP, which was formulated specifically for this purpose. It just so happened that this more general argument for a non-surjective $\pi$ constrained by the SIP applied just as well to the situation where the number of dictionary elements $m$ is over-estimated (i.e. $\overline m > m$), in which case a one-to-one correspondence can be guaranteed between a subset of columns of $\mathbf{A}$ and $\mathbf{B}$ of a size simply expressed in terms of the width of each matrix and the regularity of $\mathcal{H}$. 
+
+One of the mathematically significant achievements in \cite{Hillar15} was to break free from the constraint that the recovery matrix $\mathbf{B}$ satisfy the spark condition in addition to the generating dictionary $\mathbf{A}$. %, in contrast to all previously known uniqueness results which (to my knowledge) have all either explicitly or implicitly made this assumption. 
+Here, it has been demonstrated that, in fact, even $\mathbf{A}$ need not satisfy the spark condition! Rather, $\mathbf{A}$ need only be injective on the union of subspaces with supports forming a regular $k$-uniform hypergraph satisfying the SIP (a distinguishing example is given in Sec.~\ref{Results}). This relaxation of constraints inspired the definition of the restricted matrix lower bound $L_{\mathcal{H}}$ in \eqref{Ldef}, which generalizes the well-known (see footnote \ref{ripfootnote}) restricted matrix lower bound $L_k$ to be in terms of a hypergraph $\mathcal{H}$, and an interesting object for further study in its own right. %(For instance, how hard is it to check that $L_\mathcal{H}(\mathbf{A}) > 0$?) 
+%The absence of any restrictions on dictionaries solving Prob.~\ref{InverseProblem} is a major technical obstruction, but highly desirable because of the practical difficulty in ensuring that an algorithm maintain a dictionary satisfying the spark condition \eqref{SparkCondition} at each iteration; indeed, even certifying a dictionary has this property is NP-hard \cite{tillmann2014computational}. 
+
+To reiterate, the methods applied here to prove Thm.~\ref{DeterministicUniquenessTheorem} yield the following results beyond a straightforward extension of those in \cite{Hillar15} to the noisy case:
+
+\begin{enumerate}
+\item A reduction in deterministic sample complexity: To identify the $n \times m$ generating dictionary $\mathbf{A}$, it is required in \cite{Hillar15} that $k{m \choose k}$ data points be sampled from each of the ${m \choose k}$ subspaces spanned by subsets of $k$ columns of $\mathbf{A}$. It is shown here that in fact it suffices to sample from at most $m$ such subspaces (see Cor.~\ref{DeterministicUniquenessCorollary}). %; thus, for fixed $k$, the deterministic sample complexity is polynomial in $m$.  %HS15 was already poly for fixed k
+\item An extension of guarantees to the case where the number of dictionary elements is unknown: The results of \cite{Hillar15} only apply to the case where the matrix $\mathbf{B}$ has the same number of columns as $\mathbf{A}$. It is shown here that if $\mathbf{B}$ has at least as many columns as $\mathbf{A}$ then it contains (up to noise) a subset of the columns of $\mathbf{A}$.
+\item Relaxed requirements (no spark condition) on the generating matrix $\mathbf{A}$: Rather, $\mathbf{A}$ need only be injective on the union of subspaces with supports that form a regular uniform hypergraph satisfying the SIP. 
+\end{enumerate}
+
+As it seemed to benefit a reviewer of this work, a brief discussion on how the deterministic sample complexity $N = |\mathcal{H}\left[|(k-1){m \choose k} + 1\right]$ derived here compares to those listed in the the top two rows listed in Table I of \cite{Hillar15} may be in order. To be clear, the theory developed here is strictly more general, since $\mathcal{H}$ can always be taken to be ${[m] \choose k}$. The point of difference in this comparison is the assumed set of supports for sparse codes, which is always ${[m] \choose k}$ in \cite{Hillar15}, whereas here it can be assumed to be any regular $k$-uniform hypergraph that satisfies the SIP. By row, %, assuming for our results that sufficient data have been sampled from all supports in a hypergraph H satisfying the SIP:
+\begin{enumerate}
+\item[I.] The result here improves upon the listed $k{m \choose k}^2$ by an exponential factor, since for every $k < m$ there exists a regular $k$-uniform hypergraph $\mathcal{H}$ with $|\mathcal{H}| = m$ satisfying the SIP. 
+\item[II.] The authors in \cite{Hillar15} have applied measure-theoretic arguments to achieve $(k+1){m \choose k}$ with almost-certainty (i.e. with probability one), a factor of $m$ reduction over that for which certainty can alternatively be guaranteed here.    
+%\item[III.] A direct comparison cannot be made because it is an open question as to the probability that a random set of supports satisfies the SIP. This would be an interesting problem for the community to solve; regardless, the result of \cite{Hillar15} is still implied by the more general theory given here.
+%\item[IV.] The result here is $|\mathcal{H}\left[|(k-1){m \choose k} + 1\right]$ with probability one compared to $(k+1){m \choose k}$ with probability one. In this case the sample complexity stated in \cite{Hillar15} is marginally better, but it relies on a noise-free technicality unique to their assumption $\mathcal{H} = {m \choose k}$. %differs in flavor: their $\mathbf{x_i}$ are assumed to be distributed as $(k+1)$ samples per support for every support of size $k \in [m]$, whereas here it is assumed that $(k-1){m \choose k}$ codes $\mathbf{x_i}$ are distributed over each support in some hypergraph $\mathcal{H}$ satisfying the SIP. 
+%\item[V.] Again, a direct comparison cannot be made for the reason stated for row III.
+\end{enumerate}

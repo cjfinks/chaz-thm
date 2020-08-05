@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  4 AUG 2020 11:06
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  4 AUG 2020 20:00
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -834,7 +834,7 @@ e
 {/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 
 Class ucbthesis Warning: The final submitted version should not have an approva
-l page on input line 88.
+l page on input line 89.
 
 [2] [3]
 \openout2 = `abstract.aux'.
@@ -858,102 +858,104 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 Package amsmath Warning: Foreign command \atopwithdelims;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 5.
+(amsmath)                 on input line 13.
 
 ) [2
-
-] [1
 
 ]
 \openout2 = `introduction.aux'.
 
- (./introduction.tex [2
+ (./introduction.tex [1
 
-] [3]) [4]
+
+
+] [2]) [3]
 \openout2 = `results.aux'.
 
- (./results.tex [5
+ (./results.tex [4
 
 
-]
-Overfull \hbox (51.19945pt too wide) in paragraph at lines 72--73
+
+] [5]
+Overfull \hbox (51.19945pt too wide) in paragraph at lines 75--76
 \OT1/cmr/bx/n/12 Corollary 1. \OT1/cmr/m/it/12 Given any reg-u-lar hy-per-graph
  $\OMS/cmsy/m/n/12 H ^^R []$ \OT1/cmr/m/it/12 with the SIP, there are $\OML/cmm
 /m/it/12 N \OT1/cmr/m/n/12 = \OMS/cmsy/m/n/12 jHj []$
  []
 
-[6] <figures/Basis.png, id=60, 336.0555pt x 336.0555pt>
+<figures/Basis.png, id=57, 336.0555pt x 336.0555pt>
 File: figures/Basis.png Graphic file (type png)
-
-<use figures/Basis.png>
-Package pdftex.def Info: figures/Basis.png used on input line 130.
+ <use figures/Basis.png>
+Package pdftex.def Info: figures/Basis.png used on input line 133.
 (pdftex.def)             Requested size: 112.74377pt x 112.74466pt.
 
-<figures/Ahat_FastICA_M640_K8_noise1_0205.png, id=62, 336.0555pt x 335.3328pt>
+<figures/Ahat_FastICA_M640_K8_noise1_0205.png, id=59, 336.0555pt x 335.3328pt>
 File: figures/Ahat_FastICA_M640_K8_noise1_0205.png Graphic file (type png)
 
 <use figures/Ahat_FastICA_M640_K8_noise1_0205.png>
 Package pdftex.def Info: figures/Ahat_FastICA_M640_K8_noise1_0205.png used on i
-nput line 131.
+nput line 134.
 (pdftex.def)             Requested size: 112.74377pt x 112.5022pt.
 
-<figures/Ahat_FastICA_M640_K8_noise2_0409.png, id=63, 336.0555pt x 335.3328pt>
+<figures/Ahat_FastICA_M640_K8_noise2_0409.png, id=60, 336.0555pt x 335.3328pt>
 File: figures/Ahat_FastICA_M640_K8_noise2_0409.png Graphic file (type png)
 
 <use figures/Ahat_FastICA_M640_K8_noise2_0409.png>
 Package pdftex.def Info: figures/Ahat_FastICA_M640_K8_noise2_0409.png used on i
-nput line 132.
+nput line 135.
 (pdftex.def)             Requested size: 112.74377pt x 112.5022pt.
 
-<figures/Ahat_FastICA_M640_K8_noise5_1021.png, id=64, 336.0555pt x 336.0555pt>
+<figures/Ahat_FastICA_M640_K8_noise5_1021.png, id=61, 336.0555pt x 336.0555pt>
 File: figures/Ahat_FastICA_M640_K8_noise5_1021.png Graphic file (type png)
 
 <use figures/Ahat_FastICA_M640_K8_noise5_1021.png>
 Package pdftex.def Info: figures/Ahat_FastICA_M640_K8_noise5_1021.png used on i
-nput line 133.
+nput line 136.
 (pdftex.def)             Requested size: 112.74377pt x 112.74466pt.
- [7] [8 <./figures/Basis.png> <./figures/Ahat_FastICA_M640_K8_noise1_0205.png> 
+ [6] [7 <./figures/Basis.png> <./figures/Ahat_FastICA_M640_K8_noise1_0205.png> 
 <./figures/Ahat_FastICA_M640_K8_noise2_0409.png> <./figures/Ahat_FastICA_M640_K
-8_noise5_1021.png>]) [9]
+8_noise5_1021.png>]) [8]
 \openout2 = `proofs.aux'.
 
 
-(./proofs.tex [10
+(./proofs.tex [9
 
 
-] [11]
-Underfull \hbox (badness 1365) in paragraph at lines 188--188
+
+] [10] [11]
+Underfull \hbox (badness 1365) in paragraph at lines 186--186
 [][] [][][]\OT1/cmr/m/n/10 To see this, fix $\OML/cmm/m/it/10 S \OMS/cmsy/m/n/1
 0 2 H$ \OT1/cmr/m/n/10 and $\OML/cmm/m/it/10 k$\OT1/cmr/m/n/10 -sparse $\OT1/cm
 r/bx/n/10 c$\OT1/cmr/m/n/10 . Us-ing the def-i-ni-tions, we have $\OMS/cmsy/m/n
 /10 k[][]\OT1/cmr/bx/n/10 c\OMS/cmsy/m/n/10 k[] ^^U
  []
 
-[12]
-Overfull \hbox (1.74121pt too wide) in paragraph at lines 197--199
+
+Overfull \hbox (1.74121pt too wide) in paragraph at lines 195--197
 []\OT1/cmr/m/n/12 We find a map $\OML/cmm/m/it/12 ^^Y \OT1/cmr/m/n/12 : \OMS/cm
 sy/m/n/12 H ! []$ \OT1/cmr/m/n/12 for which the dis-tance $\OML/cmm/m/it/12 d\O
 T1/cmr/m/n/12 ([][]\OML/cmm/m/it/12 ; [][]\OT1/cmr/m/n/12 )$
  []
 
-[13]) [14]
+[12] [13] [14] [15]) [16]
 \openout2 = `discussion.aux'.
 
- (./discussion.tex [15
+ (./discussion.tex [17
 
 
-] [16] [17] [18] [19] [20]
-<figures/prob_vs_samples.png, id=118, 555.7563pt x 540.5796pt>
+
+] [18] [19] [20]
+<figures/prob_vs_samples.png, id=119, 555.7563pt x 540.5796pt>
 File: figures/prob_vs_samples.png Graphic file (type png)
 
 <use figures/prob_vs_samples.png>
-Package pdftex.def Info: figures/prob_vs_samples.png used on input line 144.
+Package pdftex.def Info: figures/prob_vs_samples.png used on input line 125.
 (pdftex.def)             Requested size: 469.75502pt x 456.92952pt.
 
-<figures/C2.pdf, id=119, 462.52798pt x 346.89601pt>
+<figures/C2.pdf, id=120, 462.52798pt x 346.89601pt>
 File: figures/C2.pdf Graphic file (type pdf)
  <use figures/C2.pdf>
-Package pdftex.def Info: figures/C2.pdf used on input line 153.
+Package pdftex.def Info: figures/C2.pdf used on input line 134.
 (pdftex.def)             Requested size: 469.75502pt x 352.33656pt.
 )
 [21] [22 <./figures/prob_vs_samples.png>] [23 <./figures/C2.pdf>]
@@ -961,6 +963,7 @@ Package pdftex.def Info: figures/C2.pdf used on input line 153.
 
 
 (./appendix.tex [24
+
 
 
 ] [25]) [26]
@@ -996,13 +999,13 @@ Package logreq Info: Writing requests to 'thesis.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 12795 strings out of 492995
- 205677 string characters out of 6132704
- 504816 words of memory out of 5000000
- 16151 multiletter control sequences out of 15000+600000
- 20202 words of font info for 73 fonts, out of 8000000 for 9000
+ 12803 strings out of 492995
+ 205829 string characters out of 6132704
+ 506652 words of memory out of 5000000
+ 16159 multiletter control sequences out of 15000+600000
+ 22062 words of font info for 80 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 45i,15n,45p,1825b,1316s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 45i,15n,45p,1821b,1316s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pf
 b></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmbsy
 8.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10
@@ -1018,22 +1021,23 @@ usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></us
 r/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/
 local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/lo
 cal/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/loca
-l/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/t
-exlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texl
-ive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive
-/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl12.pfb></usr/local/texlive/
-2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2
-017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/201
-7/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2017/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2017/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2017/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2017/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/local/texlive/2017/texmf
--dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on thesis.pdf (36 pages, 597685 bytes).
+l/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/
+texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/tex
+live/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texliv
+e/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2
+017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl12.pfb></usr/local/texlive/20
+17/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/201
+7/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2017/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2017/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2017/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2017/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2017/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/local/texlive/2017/texmf-d
+ist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on thesis.pdf (36 pages, 608020 bytes).
 PDF statistics:
- 281 PDF objects out of 1000 (max. 8388607)
- 180 compressed objects within 2 object streams
+ 285 PDF objects out of 1000 (max. 8388607)
+ 183 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  31 words of extra memory for PDF output out of 10000 (max. 10000000)
 
