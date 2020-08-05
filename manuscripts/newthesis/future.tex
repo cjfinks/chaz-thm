@@ -1,0 +1,83 @@
+\section{Future Directions}\label{FutureDirections}
+
+There are many challenges left open by this work. First and foremost, it should be stressed that all conditions stated here which guarantee the uniqueness and stability of sparse representations have only been shown sufficient; it remains open to work out a set of necessary conditions on all fronts, be it on the number of required samples per support, the structure of support set hypergraphs, or the tolerable signal-to-noise ratio for a bounded recovery error. It is also worth stressing that the deterministic conditions derived here must accommodate always the worst possible cases. It would be of great practical benefit to see how drastically all conditions can be relaxed by requiring less-than-certain guarantees, as (for instance) exhibited in the discussion on probabilistic pigeonholing following the proof of Thm.~\ref{DeterministicUniquenessTheorem}. In a similar vein, the tolerable signal-to-noise ratio can be reduced by considering the probability that noise sampled from a concentrated isotropic distribution will point in a harmful direction, which may be especially low in high-dimensional spaces or for certain support set hypergraphs.
+
+Another interesting remaining challenge is to work out for which special cases it is efficient to check that a solution to Prob.~\ref{InverseProblem} or \ref{OptimizationProblem} is unique up to noise and inherent ambiguities. Considering that the sufficient conditions detailed here are in general NP-hard to compute, are the necessary conditions also hard to compute? Are Probs.~\ref{InverseProblem} and \ref{OptimizationProblem} then also hard (e.g., see \cite{tillmann2015computational})? Since Prob.~\ref{SLCopt} is intractable in general (i.e. including the noiseless case), but efficiently solvable by convex relaxation when the matrix $\mathbf{A}$ is known and has a large enough lower bound over sparse domains \cite{eldar2012compressed}, is there a version of Thm.~\ref{SLCopt} that lays down general conditions under which Prob.~\ref{OptimizationProblem} can be solved efficiently in full by similar means?  % [*** Incorporate this open problem with more words ***]
+
+%Finally, it was noted that the combinatorial approach applied here allows for guaranteed recovery of some or all dictionary elements even if the dictionary is overestimated (i.e. $\overline m > m$). What if it is underestimated?  How then would the recovered dictionary elements relate to the original columns of $\mathbf{A}$?
+
+%Our results suggest that this correspondence could be due to the ``universality'' of sparse representations in natural data, an early idea in neural theory \cite{pitts1947}. 
+
+I briefly expand on some of these directions below. It is my hope that these remaining challenges pique the interest of the community, and that practical guidelines can be established using the theoretical tools showcased here to support researchers applying sparse coding techniques. 
+
+% THIS SECTION ADDRESSES REVIEWER COMPLAINTS:
+
+\subsection{Increasing Signal-to-Noise Ratio}
+
+A concern raised in peer review of this work was the typical size of the constant $C_1$, which sets the tolerable signal-to-noise ratio for dictionary and code recovery up to an acceptable error. Referring to the definition of this constant in \eqref{Cdef1}, the reader should note that the denominator involves $L_k$, a standard quantity in the field of compressed sensing (the ``restricted isometry constant", see footnote \ref{ripfootnote}), which is known to be reasonable for many random distributions generating dictionaries $\mathbf{A}$ and sparse codes $\mathbf{x}_i$ \cite{baraniuk2008simple}. The numerator $C_2$, on the other hand, incorporates the more obscure quantity $\xi$ defined in \eqref{FriedrichsDefinition}, which is computed from the ``Friedrichs angle" between certain spans of subsets of the columns of $\mathbf{A}$. Simulations for small (pseudo-)randomly generated dictionaries $\mathbf{A}$ suggest nonetheless that the constant $C_2$ is likely reasonable in general as well (at least, for the case where $m=k^2$ and $\mathcal{H}$ is taken to be the set of rows and columns formed by arranging the elements of $[m]$ into a square grid; see Fig. \ref{reasonableC2}). These observations motivate the following conjecture:
+
+\begin{conjecture}
+For all $t > 0$,
+\begin{equation*}
+Pr[ \left| C_2- \mathbb{E}[C_2 ] \right| > t] \to 0 \ \ \text{as $k \to \infty$ and $k/m \to 0$} 
+\end{equation*}
+provided the assumptions of Thm. \ref{DeterministicUniquenessTheorem} are satisfied.
+\end{conjecture}
+%Finally, the error bounds can be improved by tightening the constant $C_1$, e.g. via an improvement in Lemma ?.
+%$C_1 = C_1(\mathbf{A}, \mathcal{H}, \{ \mathbf{x_i} \}_{i=0}^N)$
+
+\subsection{Reducing Sample Complexity}
+
+It is possible to tighten the pigeonholing argument in the proof of Thm.~\ref{DeterministicUniquenessTheorem} and thereby reduce the deterministic sample complexity without recourse to uncertainty (as previously suggested). The argument as presented iterates over supports $S \in \mathcal{H}$, in each case determining a corresponding support $\overline S \in {[\overline m] \choose k}$ without consideration of previously matched support pairs; and yet the assumption $L_{2\mathcal{H}}(\mathbf{A}) > 0$ implies that no two supports in $\mathcal{H}$ can map to the same $\overline S$. The number of bins to pigeonhole into thus decreases every iteration, though this is a drop in a bucket of exponential size. It would be interesting to see how much the deterministic sample complexity can be reduced by imposing these constraints holistically, given the specific structure of the hypergraph $\mathcal{H}$.
+
+Incidentally, there is also room to breathe in the restrictions on $\mathcal{H}$. Already, the results of this work motivate the following question, which is only one among many combinatorial problems brought to mind by the SIP (Def.~\ref{sip}):
+\begin{question}
+Fix integers $m$ and $k < m$. What is the smallest regular hypergraph $\mathcal{H} \subseteq {[m] \choose k}$ satisfying the SIP?
+\end{question}
+
+A close examination of the proof of Lemma \ref{NonEmptyLemma} (see the Appendix) reveals, however, that $\mathcal{H}$ need not be regular so long as it satisfies a constraint on the sequence of node degrees compatible with the iterative argument. It is then natural to wonder: what are the necessary constraints on $\mathcal{H}$, and what is the smallest hypergraph satisfying these constraints for given $m$ and $k$?
+
+Opening ourselves up to uncertainty, we can furthermore ask:
+\begin{question}\label{probofsip}
+Fix $k < m$. What is the probability that a random subset of ${[m] \choose k}$ is regular and satisfies the SIP?
+\end{question}
+
+Within the realm of uncertain guarantees, we can also elaborate on the probabilistic pigeonholing strategy outlined in the discussion following the proof of Thm.~\ref{DeterministicUniquenessTheorem}. The problem is to count the number of ways in which vectors supported in $S \in \mathcal{H}$ can be partitioned among supports in ${\overline m \choose k}$ without allocating $k$ or more to any individual one (in which case the logic of the proof fails to imply the result; we are interested in the probability that it doesn't). These are integer solutions to the problem $\sum_i n_i = N$ subject to $n_i < k$ for all $i$, where $i = 1, \ldots, {\overline m \choose k}$. Following closely the exposition in \cite{stackexchangeanswer}, it appears there is no closed formula for this problem, but the number of solutions can be computed in a number of operations independent of $N$. Writing $p = {\overline m \choose k}$, the number is the coefficient of $X^N$ in the polynomial $(1 + X + \ldots + X^{k-1})^p$. Written as a rational function of $X$, 
+
+\begin{equation*}
+(1 + X + \ldots + X^{k-1})^p = \left(\frac{1 - X^k}{1 - X} \right)^p = \frac{\left(1 - X^k \right)^p}{\left(1 - X\right)^p}
+\end{equation*}
+the coeffiecient of $X^i$ in the numerator is zero unless $i$ is a multiple $qk$ of $k$, in which case it is $(-1)^q{p \choose q}$, and the coefficient of $X^j$ in the inverse of the denominator is $(-1)^j {-p \choose j} = {j + p-1 \choose j}$, which is zero unless $j \geq 0$ and otherwise equal to ${j + p-1 \choose p-1}$. It remains to sum over all $i + j = N$, which gives:
+
+\begin{equation*}
+n_\text{fails} = \sum_{q=0}^{\text{min}(p, N/k)} (-1)^q {p \choose q} {N - qk + p - 1 \choose p - 1}
+\end{equation*}
+where the summation is truncated to ensure that $N - qk \geq 0$ (the condition $j \geq 0$) and has at most $p+1 = {\overline m \choose k} + 1$ terms.
+
+The total number of ways to pigeonhole is $n_\text{total} = {N +p- 1 \choose p - 1}$, and so the probability of full recovery is $\left(1 - n_\text{fails} / n_\text{total} \right)^{|\mathcal{H}|}$. 
+The curves computed in this way in Fig. \ref{probpigeon} suggest that, while it may very well be impossible to exorcise exponentiality from the number of required samples in the deterministic or almost-certain case, perhaps it is possible with high-probability by one way or another. Informally,
+
+\begin{question}
+While fixing $k$ yields polynomial deterministic sample complexity in $m$ (see Cor.~\ref{DeterministicUniquenessCorollary}), is there some more general probablistic sense (perhaps for some restricted class of hypergraphs) by which sample complexity is polynomial in both $m$ and $k$?
+\end{question}
+%Referring to Fig. \ref{probpigeon}, which computes these probabilities for some small hypergraphs, one is led to wonder if it may be possible to exorcise exponentiality from the sample complexity asymptotically in this way or another. 
+
+
+%\begin{question}
+%Is there a class of hypergraphs $\mathcal{H} = \mathcal{H}(m,k)$ and a polynomial $p(m,k)$ such that $N \geq p(m,k)$ implies successful dictionary and code recovery with a probability approaching one for generic $\mathbf{A}$ and $\mathbf{x}_i$ supported in $\mathcal{H}$ as $m \to \infty$?
+%Is there a class of hypergraphs $\mathcal{H}$ for which a number of samples $N$ polynomial in both $m$ and $k$ suffices to guarantee stable recovery of $\mathbf{A}$ and sparse codes $\mathbf{x}_i$ as $k/m \to 0$?
+%\end{question}
+
+\subsection{Dictionary Learning via $\ell_1$-norm minimization}
+
+A commonly applied workaround to the intractability of Prob.~\ref{SLCopt} (see \cite{tillmann2015computational}) is to swap out the norm $\|\cdot\|_0$ in \eqref{minsum} for $\|\cdot\|_1$, thereby transforming the inference of sparse $\mathbf{\overline x}_i$ for a given $\mathbf{B}$ into a convex optimization solvable by a linear program. A major advance in compressive sensing was the discovery that \eqref{minsum} can in fact be solved in this way for fixed $\mathbf{B}$ provided $L_{2k}(\mathbf{B})$ is large enough \cite{eldar2012compressed}. The current work provides conditions on the generating dictionary $\mathbf{A}$ and $k$-sparse codes $\mathbf{x}_i$ under which \emph{all} matrices $\mathbf{B}$ (of bounded column-norm) that solve Prob.~\ref{OptimizationProblem} have $L_{2k}(\mathbf{B})$ bounded from below; specifically, $L_{2k}(\mathbf{B}) \geq \left(L_{2k}(\mathbf{A}) - C_1\varepsilon \right) / \|\mathbf{D}\|_1$ in the case where $\mathbf{A}$ satisfies \eqref{SparkCondition}. Thus, there is some noise bound inside of which all solutions to Prob.~\ref{OptimizationProblem} are solutions to the convexified problem as well. It remains to determine practical constraints that would exclude alternative dictionaries which may solve the convefixied problem without solving Prob.~\ref{OptimizationProblem}. 
+
+% SOLUTION CHECKING ALGORITHM:
+%\begin{enumerate}
+ %  \item For each $\mathbf{x_i}$, determine its support $S$ and increment a counter corresponding to that support.
+  % \item For each support $S$ with count greater than $(k-1){m \choose k}$, check the $\mathbf{x_i}$ supported there are in general linear position (i.e. the determinant of the matrix having $\mathbf{x}_i$ as its columns is nonzero) and discard $S$ if not.
+ %  \item Check the remaining set of supports satisfies the SIP. 
+  % \item If so, list all of its regular $k$-uniform sub-hypergraphs and discard those for which $L_{2\mathcal{H}}(\mathbf{A}) = 0$. 
+  % \item For each of the remaining hypergraphs, compute the constant $C_1$ from $\mathbf{A}$ and the $\mathbf{x_i}$.% (or for every subset of the  $\mathbf{x_i}$ of size $(k-1){m \choose k}$).
+ %  \item Check that $\varepsilon < L_2(\mathbf{A})$. If yes, the solution is "unique".
+%\end{enumerate}

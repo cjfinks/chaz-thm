@@ -1,0 +1,24 @@
+\chapter{Introduction}\label{Intro}
+
+Sparse coding is a common modern signal processing technique that views each of $N$ observed $n$-dimensional signal samples as a (noisy) linear combination of at most $k$ elementary waveforms drawn from some unknown ``dictionary" of size $m \ll N$ (see \cite{Zhang15} for a comprehensive review). 
+%\IEEEPARstart{A}{}common modern approach to pattern analysis in signal processing is to view each of $N$ observed $n$-dimensional signal samples as a (noisy) linear combination of at most $k$ elementary waveforms drawn from some unknown ``dictionary" of size $m \ll N$ (see \cite{Zhang15} for a comprehensive review). 
+Optimizing dictionaries subject to this and related sparsity constraints has revealed seemingly characteristic sparse structure in several signal classes of current interest (e.g., in vision \cite{wang2015sparse}). 
+
+Of particular note are the seminal works in the field \cite{Olshausen96, hurri1996image, bell1997independent, van1998independent}, which discovered that dictionaries optimized for coding small patches of ``natural" images share qualitative similarities with linear filters estimated from response properties of simple-cell neurons in mammalian visual cortex. Curiously, these waveforms (e.g., ``Gabor'' wavelets) appear in dictionaries learned by a variety of algorithms trained over different natural image datasets, suggesting that learned features in natural signals may, in some sense, be canonical \cite{donoho2001can}.
+
+Motivated by these discoveries and more recent work relating compressed sensing \cite{eldar2012compressed} to a theory of information transmission through random wiring bottlenecks in the brain \cite{Isely10}, we address when dictionaries for sparse representation are indeed identifiable from data. Answers to this question may also have implications in practice wherever an appeal is made to latent sparse structure of data (e.g., forgery detection \cite{hughes2010, olshausen2010applied}; brain recordings \cite{jung2001imaging, agarwal2014spatially, lee2016sparse}; and gene expression \cite{wu2016stability}). 
+
+While several algorithms have recently been proposed to provably recover unique dictionaries under specific conditions (see \cite[Sec.~I-E]{Sun16} for a summary of the state-of-the-art), few theorems can be invoked to justify the consistency of inference under this model of data more broadly. To our knowledge, a universal guarantee of the uniqueness and stability of learned dictionaries and the sparse representations they induce over noisy data has yet to appear in the literature.
+
+\section{Transform Coding}
+
+\section{Sparse Representations}
+
+\section{Analytic vs. Learned Dictionaries for Sparse Representation}
+
+\section{Thesis Outline}
+
+\begin{itemize}
+\item Indicate the gap in knowledge. State the aim of the research and how it fits into the gap.
+\item Outline what follows.
+\end{itemize}

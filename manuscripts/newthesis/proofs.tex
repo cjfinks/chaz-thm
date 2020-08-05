@@ -1,0 +1,259 @@
+\chapter{Proofs}
+
+\section{Introduction}
+
+For pedagogical reasons we separate the proofs from the statements of results.
+
+\section{Proof of Theorem~\ref{DeterministicUniquenessTheorem} }\label{DUT} % of Theorems~\ref{DeterministicUniquenessTheorem} and ~\ref{SLCopt}}\label{DUT}
+
+%%%%%%%%%%%%%%
+% need to cut maybe: 
+%As mentioned in the previous section, Thm.~\ref{DeterministicUniquenessTheorem} is a particular case of a more general result that forgoes the assumption that $\mathcal{H} \subseteq {[m] \choose k}$ is regular and satisfies the SIP. If instead we require only that the stars $\cap \sigma(i)$ intersect at singletons for all $i \leq q$ (assuming that the nodes of $\mathcal{H}$ are labeled in some order of non-increasing degree), we have that $\overline m \geq k|\mathcal{H}| / \deg(1)$ and, provided $\overline m < k|\mathcal{H}| / (\deg(1) - 1)$, the nonempty submatrix $J$ is of size equal to the largest number $p$ satisfying:
+%\begin{align}\label{pcond}
+%\sum_{i=\ell}^{m} \deg(i) > (\overline m + 1 - \ell) (\deg(\ell) - 1) \ \ \text{for all } \ell \leq p \leq q.
+%\end{align}
+%Specifically, $J$ contains all nodes of degree exceeding $\deg(p)$ and some subset of those with degreee equal to $\deg(p)$. For the benefit of the reader, we do not prove explicitly this more general result below; it can be discerned from how exactly Lemma \ref{NonEmptyLemma} is incorporated into the proof of Lem.~\ref{MainLemma}.
+%%%%%%%%%%%%%%%%
+
+
+%As mentioned in the previous section, Thm.~\ref{DeterministicUniquenessTheorem} is a particular case of a more general result, which requires a looser set of constraints on the hypergraph $\mathcal{H}$ and which applies to $n \times \overline m$ matrices $\mathbf{B}$ (and $\overline m$-dimensional codes $\mathbf{\overline x}_i$) with $\overline m \neq m$:
+
+%Fix $\overline m$ and suppose the assumptions of Thm.~\ref{DeterministicUniquenessTheorem} hold, only now with the constraints on $\mathcal{H} \subseteq {[m] \choose k}$ being just that $|\cap H(i)| = 1$ for all $i \leq q$ (assuming w.l.o.g. that the nodes of $\mathcal{H}$ are labeled in some order of non-increasing degree), and with more than $(k-1){\overline m \choose k}$ vectors $\mathbf{x}_i$ supported in g.l.p. on each $S \in \mathcal{H}$. Then we must have $\overline m \geq k|\mathcal{H}| / \deg(1)$ and, provided $\overline m < k|\mathcal{H}| / (\deg(1) - 1)$, the guarantee \eqref{Cstable} holds for a submatrix $\mathbf{A}_J$, where $J \subseteq[m]$ is nonempty and of a size equal to the largest number $p$ satisfying:
+%\begin{align}\label{pcond}
+%\sum_{i=\ell}^{m} \deg(i) > (\overline m + 1 - \ell) (\deg(\ell) - 1) \ \ \text{for all } \ell \leq p \leq q.
+%\end{align}
+%Specifically, $J$ consists of the union of the set of all nodes of degree exceeding $\deg(p)$ and some subset of those nodes with degrees equal to $\deg(p)$. 
+
+%For the benefit of the reader, we prove below the case where we forgo only the constraint that $\overline m = m$. This yields the implication $\overline m \geq m$ and \eqref{pcond} reduces to $|J| = \overline m - r(\overline m - m)$. The extension to the general result above can be seen by examining how exactly Lemma \ref{NonEmptyLemma} is incorporated into the overall proof. 
+
+% ======== b - PDa =========
+
+% WITH EXPLICIT J SUBSCRIPT
+%We begin our proof of Thm.~\ref{DeterministicUniquenessTheorem} by showing how dictionary recovery \eqref{Cstable} already implies sparse code recovery \eqref{b-PDa} when $\mathbf{A}_J$ satisfies \eqref{SparkCondition} and \mbox{$\varepsilon < L_{2k}(\mathbf{A}_J) / C_1$}. %, assuming that $\overline m = m$ without loss of generality. 
+%Consider any $2k$-sparse $\mathbf{x} \in \mathbb{R}^m$ and note that $\|\mathbf{x}\|_1 \leq \sqrt{2k}  \|\mathbf{x}\|_2$. By definition of $L_{2k}$ in \eqref{Ldef}, we have:
+%\begin{align}\label{stuff}
+%\|\mathbf{x}_J - &( \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\overline x} )_J\|_1 \nonumber
+%\leq \frac{\|(\mathbf{BPD})_J(\mathbf{x}_J - (\mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\overline x})_J)\|_2}{L_{2k}((\mathbf{BPD})_J)} \\ \nonumber
+%&\leq \frac{\|( (\mathbf{BPD})_J - \mathbf{A}_J) \mathbf{x}_J\|_2 + \|\mathbf{A}_J\mathbf{x}_J - \mathbf{B}_J\mathbf{\overline x}_J\|_2}{L_{2k}((\mathbf{BPD})_J)} \\
+%&\leq \frac{C_1\varepsilon \|\mathbf{x}_J\|_1 + \varepsilon}{L_{2k}((\mathbf{BPD})_J)},
+%\end{align}
+%where the term $C_1\varepsilon \|\mathbf{x}_J\|_1$ in the numerator above is a consequence of the triangle inequality applied to \eqref{Cstable}.
+
+%It remains for us to bound the denominator.  By the reverse triangle inequality:
+%\begin{align*}
+%\|(\mathbf{BPD})_J\mathbf{x}_J\|_2 
+%&\geq | \|\mathbf{A}_J\mathbf{x}_J\|_2 - \|(\mathbf{A}_J - (\mathbf{BPD})_J)\mathbf{x}_J\|_2 | \\
+%&\geq \sqrt{2k} (L_{2k}(\mathbf{A}_J) -  C_1\varepsilon) \|\mathbf{x}_J\|_2,
+%\end{align*}
+%
+%wherein removal of the absolute value is justified since $C_1\varepsilon < L_{2k}(\mathbf{A}_J)$. We therefore have that $L_{2k}((\mathbf{BPD})_J) \geq L_{2k}(\mathbf{A}_J) - C_1\varepsilon  > 0$, and \eqref{b-PDa} then follows from \eqref{stuff}.
+
+
+% WITHOUT J SUBSCRIPT
+We begin our proof of Thm.~\ref{DeterministicUniquenessTheorem} by showing how dictionary recovery \eqref{Cstable} already implies sparse code recovery \eqref{b-PDa} when $\mathbf{A}$ satisfies \eqref{SparkCondition} and \mbox{$\varepsilon < L_{2k}(\mathbf{A}) / C_1$}. We temporarily assume (without loss of generality) that $\overline m = m$, so as to omit an otherwise requisite subscript $(\cdot)_J$ around certain matrices and vectors. By definition of $L_{2k}$ in \eqref{Ldef}, and noting that $\sqrt{k} \|\mathbf{v}\|_2 \geq \|\mathbf{v}\|_1$ for $k$-sparse $\mathbf{v}$, we have for all $i \in [N[$:
+\begin{align}\label{stuff}
+\|\mathbf{x}_i - \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\overline x}_i \|_1 \nonumber
+&\leq \frac{\|\mathbf{BPD}(\mathbf{x}_i - \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\overline x}_i)\|_2}{L_{2k}(\mathbf{BPD})} \\ \nonumber
+&\leq \frac{\|( \mathbf{BPD} - \mathbf{A}) \mathbf{x}_i\|_2 + \|\mathbf{A}\mathbf{x}_i - \mathbf{B}\mathbf{\overline x}_i\|_2}{L_{2k}(\mathbf{BPD})} \\
+&\leq \frac{C_1\varepsilon \|\mathbf{x}_i\|_1 + \varepsilon}{L_{2k}(\mathbf{BPD})},
+\end{align}
+%\begin{align}\label{stuff}
+%\frac{ \|\mathbf{x} - \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\overline x} \|_1 } { \|\mathbf{D}^{-1}\|_1 }  \
+%&\leq \|\mathbf{Dx} - \mathbf{P}^{\top}\mathbf{\overline x} \|_1 \\ \nonumber
+%&\leq \frac{\|\mathbf{BP}(\mathbf{D}\mathbf{x} - \mathbf{P}^{\top}\mathbf{\overline x})\|_2}{L_{2k}(\mathbf{BP})} \\ \nonumber
+%&\leq \frac{\|( \mathbf{BPD} - \mathbf{A}) \mathbf{x}\|_2 + \|\mathbf{A}\mathbf{x} - \mathbf{B}\mathbf{\overline x}\|_2}{L_{2k}(\mathbf{BP})} \\
+%&\leq \frac{C_1\varepsilon \|\mathbf{x}\|_1 + \varepsilon}{L_{2k}(\mathbf{BP})},
+%\end{align}
+where the first term in the numerator above follows from the triangle inequality and \eqref{Cstable}.
+
+It remains for us to bound the denominator. For any $2k$-sparse $\mathbf{x}$, we have by the triangle inequality:
+\begin{align*}
+\|\mathbf{BPD}\mathbf{x}\|_2 
+&\geq \|\mathbf{A}\mathbf{x}\|_2 - \|(\mathbf{A} - \mathbf{BPD})\mathbf{x}\|_2 \\
+&\geq \sqrt{2k} (L_{2k}(\mathbf{A}) -  C_1\varepsilon) \|\mathbf{x}\|_2,
+\end{align*}
+
+%\begin{align*}
+%\|\mathbf{BP}\mathbf{x}\|_2 
+%&\geq \|\mathbf{A}\mathbf{D}^{-1}\mathbf{x}\|_2 - \|(\mathbf{A} - \mathbf{BPD})\mathbf{D}^{-1}\mathbf{x}\|_2 \\
+%&\geq \sqrt{2k} (L_{2k}(\mathbf{A}) -  C_1\varepsilon) \|\mathbf{D}^{-1}\mathbf{x}\|_2, \\ 
+%&\geq \sqrt{2k} (L_{2k}(\mathbf{A}) -  C_1\varepsilon) \|\mathbf{D}^{-1}\|_{?} \| \mathbf{x}\|_2,
+%\end{align*}
+%
+We therefore have that $L_{2k}(\mathbf{BPD}) \geq L_{2k}(\mathbf{A}) - C_1\varepsilon  > 0$, and \eqref{b-PDa} then follows from \eqref{stuff}. The reader may also verify that $L_{2k}(\mathbf{BP}) \geq L_{2k}(\mathbf{BPD}) / \|\mathbf{D}\|_1$.
+
+The heart of the matter is therefore \eqref{Cstable}, which we now establish beginning with the important special case of $k = 1$. 
+
+\begin{proof}[Proof of Thm.~\ref{DeterministicUniquenessCorollary} for $k=1$]
+Since the only 1-uniform hypergraph with the SIP is $[m]$, which is obviously regular, we require only $\mathbf{x}_i = c_i \mathbf{e}_i$ for $i \in [m]$, with $c_i \neq 0$ to guarantee  linear independence. While we have yet to define $C_1$ generally, in this case we may set $C_1 = 1/ \min_{\ell \in [m]} |c_{\ell}|$ so that $\varepsilon < L_2(\mathbf{A})  \min_{\ell \in [m]} |c_{\ell}|$. 
+
+Fix $\mathbf{A} \in \mathbb{R}^{n \times m}$ satisfying $L_2(\mathbf{A}) > 0$, since here we have $2\mathcal{H} = {[m] \choose 2}$, and suppose some $\mathbf{B}$ and $1$-sparse $\mathbf{\overline x}_i \in \mathbb{R}^{\overline m}$ have  $\|\mathbf{A}\mathbf{x}_i - \mathbf{B}\mathbf{\overline x}_i\|_2 \leq \varepsilon < L_2(\mathbf{A}) / C_1$ for all $i$. Then, there exist $\overline{c}_1, \ldots, \overline{c}_m \in \mathbb{R}$ and a map $\pi: [m] \to [\overline m]$ such that:
+\begin{align}\label{1D}
+\|c_i\mathbf{A}_i - \overline{c}_i\mathbf{B}_{\pi(i)}\|_2 \leq \varepsilon,\ \ \text{for $i \in [m]$}.
+\end{align} 
+Note that $\overline{c}_i \neq 0$, since otherwise we would reach the following contradiction: $\|\mathbf{A}_i \|_2 \leq C_1 |c_i| \|\mathbf{A}_i \|_2  \leq C_1\varepsilon < L_2(\mathbf{A}) \leq L_1(\mathbf{A}) = \min_{i \in [m]} \|\mathbf{A}_{i}\|_2$. %implies by \eqref{delrho} the contradiction $|c_i| < \min_{\ell \in [m]} | c_\ell |$.
+
+We now show that $\pi$ is injective (in particular, a permutation if $\overline m = m$). Suppose that $\pi(i) = \pi(j) = \ell$ for some $i \neq j$ and $\ell$. Then, $\|c_{i}\mathbf{A}_{i} - \overline{c}_{i} \mathbf{B}_{\ell}\|_2  \leq \varepsilon$ and $\|c_{j}\mathbf{A}_{j} - \overline{c}_{j}\mathbf{B}_{\ell}\|_2 \leq \varepsilon$, and we have: %Scaling and summing these inequalities by $|\overline{c}_{i}|$ and $|\overline{c}_{j}|$, respectively, and applying the triangle inequality to annihilate the terms in $\mathbf{B}_\ell$, we obtain:
+\begin{align*}
+(|\overline{c}_{i}| + |\overline{c}_{j}|) \varepsilon
+&\geq |\overline{c}_{i}| \|c_{j}\mathbf{A}_{j} - \overline{c}_{j}\mathbf{B}_{\ell}\|_2  + |\overline{c}_{j}| \|c_{i}\mathbf{A}_{i} - \overline{c}_{i} \mathbf{B}_{\ell}\|_2 \nonumber \\
+&\geq \|\mathbf{A}(\overline{c}_{i}c_{j} \mathbf{e}_{j} - \overline{c}_{j}c_{i}\mathbf{e}_{i})\|_2 \nonumber \\ 
+&\geq \sqrt{2}  L_2(\mathbf{A}) \|\overline{c}_{i}c_{j} \mathbf{e}_{j} - \overline{c}_{j}c_{i}\mathbf{e}_{i}\|_2 \nonumber \\
+&\geq  L_2(\mathbf{A}) \left( |\overline{c}_{i}| + |\overline{c}_{j}| \right) \min_{\ell \in [m]} |c_\ell |,
+\end{align*}
+contradicting our assumed upper bound on $\varepsilon$. Hence, the map $\pi$ is injective and so $\overline m \geq m$. %Setting $\overline J = \pi([m])$ and 
+
+Letting $\mathbf{P}$ and $\mathbf{D}$ be the $\overline m \times \overline m$ permutation and invertible diagonal matrices with, respectively, columns $\mathbf{e}_{\pi(i)}$ and $\frac{\overline{c}_i}{c_i}\mathbf{e}_i$ for $i \in [m]$ (otherwise, $\mathbf{e}_{i}$ for $i \in [\overline{m}] \setminus [m]$), we may rewrite \eqref{1D} to see that for all $i \in [m]$:
+\begin{align*}
+\|\mathbf{A}_i - (\mathbf{BPD})_i\|_2 
+= \|\mathbf{A}_i - \frac{\overline{c}_i}{c_i}\mathbf{B}_{\pi(i)}\|_2 
+\leq \frac{\varepsilon}{|c_i|} 
+\leq C_1\varepsilon.
+\end{align*}
+%\vspace{-.2 cm}
+\end{proof}
+
+An extension of the proof to the general case $k < m$ requires some additional tools to derive the general expression \eqref{Cdef1} for $C_1$. These include a generalized notion of distance (Def.~\ref{dDef}) and angle (Def.~\ref{FriedrichsDefinition}) between subspaces as well as a stability result in combinatorial matrix analysis (Lem.~\ref{MainLemma}). 
+
+\begin{definition}\label{dDef}
+For $\mathbf{u} \in \mathbb R^m$ and vector spaces $U,V \subseteq \mathbb{R}^m$, let $\text{\rmfamily dist}(\mathbf{u}, V) := \min \{\| \mathbf{u}-\mathbf{v} \|_2: \mathbf{v} \in V\}$ and define:
+\begin{align}
+d(U,V) := \max_{\mathbf{u} \in U, \ \|\mathbf{u}\|_2 \leq 1} \text{\rmfamily dist}(\mathbf{u},V).
+\end{align}
+\end{definition}
+
+We note the following facts about $d$. Clearly, 
+\begin{align}\label{UsubU}
+U' \subseteq U \implies d(U',V) \leq d(U,V).
+\end{align}
+From \cite[Ch.~4 Cor.~2.6]{Kato2013}, we also have: %Kato p.223
+\begin{align}\label{dimLem}
+d(U,V) < 1 \implies \dim(U) \leq \dim(V),
+\end{align}
+and from \cite[Lem.~3.2]{Morris10}:
+\begin{align}\label{eqdim}
+\dim(U) = \dim(V) \implies d(U,V) = d(V,U).
+\end{align}
+
+The following is our result in combinatorial matrix analysis; it contains most of the complexity in the proof of Thm.~\ref{DeterministicUniquenessTheorem}. 
+
+\begin{lemma}\label{MainLemma}
+If an $n \times m$ matrix $\mathbf{A}$ has $L_{2\mathcal{H}}(\mathbf{A}) > 0$ for some $r$-regular $\mathcal{H} \subseteq {[m] \choose k}$ with the SIP, then the following holds for $C_2 > 0$ given by \eqref{Cdef2}:
+
+Fix $\varepsilon < L_2(\mathbf{A}) / C_2$. If for some $n \times \overline m$ matrix $\mathbf{B}$ and map $\pi: \mathcal{H} \mapsto {[\overline m] \choose k}$,
+\begin{align}\label{GapUpperBound}
+d(\bm{\mathcal{A}}_S, \bm{\mathcal{B}}_{\pi(S)}) \leq \varepsilon, \ \  \text{for $S \in \mathcal{H}$},
+\end{align}
+then $\overline m \geq m$, and provided $\overline m (r-1) < mr$, there is a permutation matrix $\mathbf{P}$ and invertible diagonal $\mathbf{D}$ such that:
+\begin{align}\label{MainLemmaBPD}
+\|\mathbf{A}_i - (\mathbf{B}\mathbf{PD})_i\|_2 \leq C_2 \varepsilon, \ \  \text{for } i \in J,
+\end{align}
+for some $J \subseteq [m]$ of size \mbox{$m - (r-1)(\overline m - m)$}.
+\end{lemma}
+
+%\begin{lemma}\label{MainLemma}
+%Fix $\mathbf{A} \in \mathbb{R}^{n \times m}$ with $L_\mathcal{H}(\mathbf{A}) > 0$ for some regular $\mathcal{H} \subseteq {[m] \choose k}$ with the SIP. There exists a constant $C_2 > 0$ for which the following holds for all $\varepsilon < L_2(\mathbf{A}) / C_2$:
+
+%If a matrix $\mathbf{B} \in \mathbb{R}^{n \times m}$ and map $\pi: E \mapsto {m \choose k}$ satisfy:
+%\begin{align}\label{GapUpperBound}
+%d(\text{\rmfamily span}\{\mathbf{A}_{S}\}, \bm{\mathcal{B}}_{\pi(S)}) \leq \varepsilon, \ \ \text{for $S \in \mathcal{H}$},
+%\end{align}
+%then there exist a permutation matrix $\mathbf{P}$ and invertible diagonal matrix $\mathbf{D}$ such that:
+%\begin{align}\label{MainLemmaBPD}
+%\|\mathbf{A}_j - \mathbf{BPD}_j\|_2 \leq C_2 \varepsilon, \ \  \text{for } j \in [m],
+%\end{align}
+%\end{lemma}
+
+We present the constant $C_2$ (a function of $\mathbf{A}$ and $\mathcal{H}$) relative to a quantity used in \cite{Deutsch12} to analyze the convergence of the ``alternating projections" algorithm for projecting a point onto the intersection of subspaces. We incorporate this quantity into the following definition, which we refer to in our proof of Lem.~\ref{DistanceToIntersectionLemma} in the Appendix; specifically, we use it to bound the distance between a point and the intersection of subspaces given an upper bound on its distance from each subspace.
+
+\begin{definition}\label{FriedrichsDefinition}
+For a collection of real subspaces $\mathcal{V} = \{V_i\}_{i=1}^\ell$, define $\xi(\mathcal{V}) := 0$ when $|\mathcal{V}| = 1$, and otherwise:
+\begin{align}\label{xi}
+\xi^2(\mathcal{V}) := 1 -  \max \prod_{i=1}^{\ell-1} \sin^2  \theta \left(V_i, \cap_{j>i} V_j \right) ,
+\end{align} 
+%
+where the maximum is taken over all ways of ordering 
+%\footnote{We modify the quantity in \cite{Deutsch12} in this way since the subspace ordering is irrelevant to our purpose.} 
+the $V_i$ and the angle $\theta \in (0,\frac{\pi}{2}]$ is defined implicitly as \cite[Def.~9.4]{Deutsch12}:
+\begin{align*}
+\cos{\theta(U,W)} := \max\left\{ |\langle \mathbf{u}, \mathbf{w} \rangle|: \substack{ \mathbf{u} \in U \cap (U \cap W)^\perp, \ \|\mathbf{u}\|_2 \leq 1 \\ \mathbf{w} \in W \cap (U \cap W)^\perp, \  \|\mathbf{w}\|_2 \leq 1 } \right\}.
+\end{align*}
+\end{definition}
+Note that $\theta \in (0,\frac{\pi}{2}]$ implies $0 \leq \xi < 1$, and that $\xi(\mathcal{V}') \leq \xi(\mathcal{V})$ when $\mathcal{V}' \subseteq \mathcal{V}$.\footnote{We acknowledge the counter-intuitive property: $\theta =  \pi/2$ when $U \subseteq W$.}  
+
+The constant $C_2 > 0$ of Lem.~\ref{MainLemma} can now be expressed as:  
+\begin{align}\label{Cdef2}
+	C_2(\mathbf{A}, \mathcal{H}) := \frac{ (r+1) \max_{j \in [m]} \|\mathbf{A}_j\|_2}{ 1- \max_{\mathcal{G} \in {\mathcal{H} \choose r+1}} \xi( \bm{\mathcal{A}}_\mathcal{G} ) }.
+\end{align}
+
+We next define the constant $C_1 > 0$ of Thm.~\ref{DeterministicUniquenessTheorem} in terms of $C_2$. Given vectors $\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$, let $\mathbf{X}$ denote the $m \times N$ matrix with columns $\mathbf{x}_i$ and let $I(S)$ denote the set of indices $i$ for which $\mathbf{x}_i$ is supported in $S$.  We define:
+\begin{align}\label{Cdef1}
+C_1(\mathbf{A}, \mathcal{H}, \{\mathbf{x}_i\}_{i=1}^N) := \frac{ C_2(\mathbf{A}, \mathcal{H}) } { \min_{S \in \mathcal{H}} L_k(\mathbf{AX}_{I(S)}) }.
+\end{align}
+Given the assumptions of Thm.~\ref{DeterministicUniquenessTheorem} on $\mathbf{A}$ and the $\mathbf{x}_i$, this expression for $C_1$ is well-defined\footnote{\label{note1}To see this, fix $S \in \mathcal{H}$ and $k$-sparse $\mathbf{c}$. Using the definitions, we have $\|\mathbf{AX}_{I(S)}\mathbf{c}\|_2 \geq \sqrt{k} L_\mathcal{H}(\mathbf{A})\|\mathbf{X}_{I(S)}\mathbf{c}\|_2 \geq k L_\mathcal{H}(\mathbf{A}) L_k(\mathbf{X}_{I(S)})\|\mathbf{c}\|_2$. Thus, $L_k(\mathbf{AX}_{I(S)}) \geq \sqrt{k} L_\mathcal{H}(\mathbf{A}) L_k(\mathbf{X}_{I(S)}) > 0$, since $L_{\mathcal{H}}(\mathbf{A}) \geq L_{2\mathcal{H}}(\mathbf{A})> 0$ and $L_k(\mathbf{X}_{I(S)}) > 0$ by general linear position of the $\mathbf{x}_i$.} and yields an upper bound on $\varepsilon$ consistent with that proven sufficient in the case $k=1$ considered at the beginning of this section.\footnote{When $\mathbf{x}_i = c_i\mathbf{e}_i$, we have $C_2 \geq 2\|\mathbf{A}_i\|_2$ and the denominator in \eqref{Cdef1} becomes $\min_{i \in [m]} |c_i| \|\mathbf{A}_i\|_2$; hence, $C_1 \geq 2 / \min_{i \in [m]} |c_i|$.}
+% C_2(\mathbf{A}, \mathcal{H}) := \frac{ (r+1) \max_{j \in [m]} \|\mathbf{A}_j\|_2}{ \min_{\mathcal{G} \in {\mathcal{H} \choose r} \cup {\mathcal{H} \choose r+1}} \xi( \{ \bm{\mathcal{A}}_S \}
+
+The practically-minded reader should note that the explicit constants $C_1$ and $C_2$ are effectively computable: the denominator of $C_1$ involves a quantity $L_k$ that may be calculated as the smallest singular value of a certain matrix, while computing the quantity $\xi$ in the denominator of $C_2$ involves computing ``canonical angles'' between subspaces, which reduces again to an efficient singular value decomposition.
+There is no known fast computation of $L_k$ in general, however, since even $L_{k} > 0$ is NP-hard \cite{tillmann2014computational}, although 
+efficiently computable bounds have been proposed (e.g., via the ``mutual coherence" of a matrix \cite{donoho2003optimally}); alternatively, 
+fixing $k$ yields polynomial complexity. Moreover, calculating $C_2$ requires an exponential number of queries to $\xi$ unless $r$ is held fixed, too (e.g., the ``cyclic order'' hypergraphs described above have $r=k$).  Thus, as presented, $C_1$ and $C_2$ are not efficiently computable in general. % , but efficient subcases do exist and may be of practical relevance.
+
+\begin{proof}[Proof of Thm.~\ref{DeterministicUniquenessCorollary} for $k < m$] 
+We find a map $\pi: \mathcal{H} \to {[m] \choose k}$ for which the distance $d(\bm{\mathcal{A}}_S, \bm{\mathcal{B}}_{\pi(S)})$ is controlled by $\varepsilon$ for all $S \in \mathcal{H}$. Applying Lem.~\ref{MainLemma} then completes the proof.
+%We shall show that for every $S \in \mathcal{H}$ there is some $\overline S \in {[\overline m] \choose k}$ for which the distance $d(\bm{\mathcal{A}}_S, \bm{\mathcal{B}}_{\overline S})$ is controlled by $\varepsilon$. Applying Lem.~\ref{MainLemma} with the map $\pi$ defined by $S \mapsto \overline S$ then completes the proof.
+
+Fix $S \in \mathcal{H}$. Since there are more than $(k-1){\overline m \choose k}$ vectors $\mathbf{x}_i$ supported in $S$, by the pigeonhole principle there must be some $\overline S \in {[\overline m] \choose k}$ and a set of $k$ indices $K \subseteq I(S)$ for which all $\mathbf{\overline x}_i$ with $i \in K$ are supported in $\overline S$.
+It also follows\footnote{See footnote \ref{note1}.} from $L_{2\mathcal{H}}(\mathbf{A}) > 0$ and the general linear position of the $\mathbf{x}_i$ that $L_k(\mathbf{AX}_{K}) > 0$; that is, the columns of the $n \times k$ matrix $\mathbf{AX}_K$ form a basis for $\bm{\mathcal{A}}_S$. 
+
+Fixing $\mathbf{y} \in \bm{\mathcal{A}}_S \setminus \{\mathbf{0}\}$, there then exists $\mathbf{c} = (c_1, \ldots, c_k) \in \mathbb{R}^k \setminus \{\mathbf{0}\}$ such that $\mathbf{y} = \mathbf{AX}_K\mathbf{c}$. Setting \mbox{$\mathbf{\overline{y}} = \mathbf{B\overline{X}}_K\mathbf{c}$, which is in $\bm{\mathcal{B}}_{\overline S}$}, we have by triangle inequality:
+\begin{align*}
+\|\mathbf{y} - \mathbf{\overline{y}}\|_2 
+%&= \|\sum_{i=1}^k c_i(\mathbf{AX}_K - \mathbf{B\overline{X}}_K)_i\|_2
+&= \|(\mathbf{AX}_K - \mathbf{B\overline{X}}_K)\mathbf{c}\|_2
+%\leq \varepsilon \sum_{i=1}^k |c_i| \\
+\leq \varepsilon \|\mathbf{c}\|_1
+\leq \varepsilon \sqrt{k}  \|\mathbf{c}\|_2  \\
+&\leq \frac{\varepsilon}{L_k(\mathbf{AX}_K)} \|\mathbf{y}\|_2,
+\end{align*}
+where the last inequality uses \eqref{Ldef}. From Def.~\ref{dDef}:
+\begin{align}\label{rhs222}
+d(\bm{\mathcal{A}}_S, \bm{\mathcal{B}}_{\overline S}) 
+\leq \frac{\varepsilon}{  L_k(\mathbf{AX}_{K}) } 
+\leq \frac{\varepsilon}{  L_k(\mathbf{AX}_{I(S)}) } 
+\leq \varepsilon \frac{C_1}{C_2}.
+\end{align}
+%
+Finally, apply Lem.~\ref{MainLemma} with $\varepsilon < L_2(\mathbf{A})/C_1$ and $\pi(S) := \overline S$. % L_2(A) > 0 by def of L, since L_2H(A) > 0 and H covers [m]
+\end{proof}
+
+Before moving on to the proof of Thm.~\ref{SLCopt}, we briefly revisit our discussion on sample complexity from the end of the previous section. While an exponential number of samples may very well prove to be necessary in the deterministic or almost-certain case, our proof of Thm.~\ref{DeterministicUniquenessTheorem} can be extended to hold with some probability for \emph{any} number of samples by alternative appeal to a probabilistic pigeonholing at the point early in the proof where the (deterministic) pigeonhole principle is applied to show that for every $S \in \mathcal{H}$, there exist $k$ vectors $\mathbf{x}_i$ supported on $S$ whose corresponding $\mathbf{\overline x}_i$ all share the same support.\footnote{A famous example of such an argument is the counter-intuitive ``birthday paradox", which demonstrates that the probability of two people having the same birthday in a room of twenty-three is greater than 50\%.} 
+Given insufficient samples, this argument has some less-than-certain probability of being valid for each $S \in \mathcal{H}$. Nonetheless, simulations with small hypergraphs demonstrate that successful recovery is nearly certainly even when $N$ is only a fraction of the deterministic sample complexity (see Fig. \ref{probpigeon}). 
+
+\section{Proof of Theorem~\ref{SLCopt}}
+
+\begin{proof}[Proof of Thm.~\ref{SLCopt}]
+We bound the number of $k$-sparse $\mathbf{\overline x}_i$ from below and then apply Thm.~\ref{DeterministicUniquenessCorollary}. 
+%We now apply this fact to bound the number of $k$-sparse $\mathbf{\overline x}_i$. 
+Let $n_p$ be the number of $\mathbf{\overline x}_i$ with $\|\mathbf{\overline x}_i\|_0 = p$.
+Since the $\mathbf{x}_i$ are all $k$-sparse, by \eqref{minsum} we have:
+\begin{align*}
+%\mbox{$k \sum_{p = 0}^{\overline m} n_p \geq \sum_{i=0}^N \|\mathbf{x}_i\|_0 \geq \sum_{i=0}^N \|\mathbf{\overline x}_i\|_0 = \sum_{p=0}^{\overline m} p n_p.$}
+\sum_{p=0}^{\overline m} p n_p =  \sum_{i=0}^N \|\mathbf{\overline x}_i\|_0
+\leq \sum_{i=0}^N \|\mathbf{x}_i\|_0 
+\leq kN
+\end{align*}
+Since $N = \sum_{p = 0}^{\overline m} n_p$, we then have $\sum_{p = 0}^{\overline m} (p-k) n_p \leq 0$. Splitting the sum yields:
+\begin{align}\label{eqn}
+\sum_{p = k+1}^{\overline m} n_p \leq \sum_{p = k+1}^{\overline m} (p-k) n_p \leq \sum_{p = 0}^k (k-p)n_p \leq k \sum_{p = 0}^{k-1} n_p,
+\end{align}
+%
+demonstrating that the number of vectors $\mathbf{\overline x}_i$ that are \emph{not} $k$-sparse is bounded above by how many are $(k-1)$-sparse. 
+
+Next, observe that no more than $(k-1)|\mathcal{H}|$ of the $\mathbf{\overline x}_i$ share a support $\overline S$ of size less than $k$. Otherwise, by the pigeonhole principle, there is some $S \in \mathcal{H}$ and a set of $k$ indices $K \subseteq I(S)$ for which all $\mathbf{x}_i$ with $i \in K$ are supported in $S$; as argued previously, \eqref{rhs222} follows. It is simple to show that $L_2(\mathbf{A}) \leq \max_j\|\mathbf{A}_j\|_2$, and since $0 \leq \xi < 1$, the right-hand side of \eqref{rhs222} is less than one for $\varepsilon < L_2(\mathbf{A})/C_1$. Thus, by \eqref{dimLem} we would have the contradiction $k = \dim(\bm{\mathcal{A}}_S) \leq \dim(\bm{\mathcal{B}}_{\overline S}) \leq |\overline S| < k.$ 
+
+The total number of $(k-1)$-sparse vectors $\mathbf{\overline x}_i$ thus cannot exceed $|\mathcal{H}|(k-1){ \overline m \choose k-1}$. By \eqref{eqn}, no more than $|\mathcal{H}|k(k-1){ \overline m \choose k-1}$ vectors $\mathbf{\overline x}_i$ are not $k$-sparse. Since for every $S \in \mathcal{H}$ there are over $(k-1)\left[ {\overline m \choose k} + |\mathcal{H}|k{ \overline m \choose k-1} \right]$ vectors $\mathbf{x}_i$ supported there, it must be that more than $(k-1){\overline m \choose k}$ of them have corresponding $\mathbf{\overline x}_i$ that are $k$-sparse. The result now follows from Thm.~\ref{DeterministicUniquenessCorollary}, noting by the triangle inequality that $\|\mathbf{A}\mathbf{x}_i - \mathbf{B}\mathbf{\overline x}_i\| \leq 2\eta$ for $i = 1, \ldots, N$.
+\end{proof}
+
+\section{Discussion}
+
+TODO
