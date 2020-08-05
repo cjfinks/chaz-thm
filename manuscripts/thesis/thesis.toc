@@ -8,25 +8,31 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {1.1}The dictionary learning problem(s)}{2}
 \defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1.2}Outline of the thesis}{3}
+\defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\chapternumberline {2}Results}{4}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.1}Combinatorial designs for sparse supports}{4}
+\contentsline {section}{\numberline {2.1}Introduction}{4}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.2}Deterministic uniqueness theorems}{5}
+\contentsline {section}{\numberline {2.2}Combinatorial designs for sparse supports}{4}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.3}Probabilistic uniqueness theorems}{7}
+\contentsline {section}{\numberline {2.3}Deterministic uniqueness theorems}{5}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.4}Discussion}{8}
+\contentsline {section}{\numberline {2.4}Probabilistic uniqueness theorems}{7}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.5}Discussion}{8}
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\chapternumberline {3}Definitions and Proofs}{9}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.1}Proving the case $k=1$}{9}
+\contentsline {section}{\numberline {3.1}Introduction}{9}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.2}The main lemma}{10}
+\contentsline {section}{\numberline {3.2}Proving the case $k=1$}{10}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.3}Proving the general case $k<m$}{12}
+\contentsline {section}{\numberline {3.3}The main lemma}{10}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.4}Discussion}{14}
+\contentsline {section}{\numberline {3.4}Proving the general case $k<m$}{12}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.5}Discussion}{14}
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\chapternumberline {4}Discussion}{17}
 \defcounter {refsection}{0}\relax 
@@ -38,7 +44,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{Sample Complexity}{20}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{Convex Optimization}{21}
+\contentsline {subsection}{Dictionary learning via $\ell _1$-norm minimization}{21}
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\chapternumberline {5}Appendix: Proving the main lemma}{24}
 \defcounter {refsection}{0}\relax 

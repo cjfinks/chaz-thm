@@ -1,5 +1,7 @@
 \chapter{Definitions and Proofs}\label{DUT} % of Theorems~\ref{DeterministicUniquenessTheorem} and ~\ref{SLCopt}}\label{DUT}
 
+\section{Introduction}
+
 %It has been shown here that, given sufficient data, this problem reduces to an instance of Prob.~\ref{InverseProblem} to which the main result (Thm.~\ref{DeterministicUniquenessTheorem}) then applies.
 
 
@@ -37,9 +39,7 @@
 
 % WITHOUT J SUBSCRIPT
 
-\section{Proving the case $k=1$}
-
-We begin our proof of Thm.~\ref{DeterministicUniquenessTheorem} by showing how dictionary recovery \eqref{Cstable} already implies sparse code recovery \eqref{b-PDa} when $\mathbf{A}$ satisfies \eqref{SparkCondition} and \mbox{$\varepsilon < L_{2k}(\mathbf{A}) / C_1$}. We temporarily assume (without loss of generality) that $\overline m = m$, so as to omit an otherwise requisite subscript $(\cdot)_J$ around certain matrices and vectors. By definition of $L_{2k}$ in \eqref{Ldef}, and noting that $\sqrt{k} \|\mathbf{v}\|_2 \geq \|\mathbf{v}\|_1$ for $k$-sparse $\mathbf{v}$, we have for all $i \in [N[$:
+It is instructive to begin the proof of Thm.~\ref{DeterministicUniquenessTheorem} by showing how dictionary recovery \eqref{Cstable} already implies sparse code recovery \eqref{b-PDa} when $\mathbf{A}$ satisfies \eqref{SparkCondition} and \mbox{$\varepsilon < L_{2k}(\mathbf{A}) / C_1$}. We shall temporarily assume (without loss of generality) that $\overline m = m$, so as to omit an otherwise requisite subscript $(\cdot)_J$ around certain matrices and vectors. By definition of $L_{2k}$ in \eqref{Ldef}, and noting that $\sqrt{k} \|\mathbf{v}\|_2 \geq \|\mathbf{v}\|_1$ for $k$-sparse $\mathbf{v}$, we have for all $i \in [N[$:
 \begin{align}\label{stuff}
 \|\mathbf{x}_i - \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\overline x}_i \|_1 \nonumber
 &\leq \frac{\|\mathbf{BPD}(\mathbf{x}_i - \mathbf{D}^{-1}\mathbf{P}^{\top}\mathbf{\overline x}_i)\|_2}{L_{2k}(\mathbf{BPD})} \\ \nonumber
@@ -71,10 +71,13 @@ It remains for us to bound the denominator. For any $2k$-sparse $\mathbf{x}$, we
 %
 We therefore have that $L_{2k}(\mathbf{BPD}) \geq L_{2k}(\mathbf{A}) - C_1\varepsilon  > 0$, and \eqref{b-PDa} then follows from \eqref{stuff}. The reader may also verify that $L_{2k}(\mathbf{BP}) \geq L_{2k}(\mathbf{BPD}) / \|\mathbf{D}\|_1$.
 
-The heart of the matter is therefore \eqref{Cstable}, which we now establish beginning with the important special case of $k = 1$. 
+The heart of the matter is therefore \eqref{Cstable}, which we shall now establish beginning with the important special case of $k = 1$. 
+
+\section{Proving the case $k=1$}
+
+Since the only 1-uniform hypergraph with the SIP is $[m]$, which is obviously regular, we require only $\mathbf{x}_i = c_i \mathbf{e}_i$ for $i \in [m]$, with $c_i \neq 0$ to guarantee  linear independence. While we have yet to define $C_1$ generally, in this case we may set $C_1 = 1/ \min_{\ell \in [m]} |c_{\ell}|$ so that $\varepsilon < L_2(\mathbf{A})  \min_{\ell \in [m]} |c_{\ell}|$. 
 
 \begin{proof}[Proof of Thm.~\ref{DeterministicUniquenessCorollary} for $k=1$]
-Since the only 1-uniform hypergraph with the SIP is $[m]$, which is obviously regular, we require only $\mathbf{x}_i = c_i \mathbf{e}_i$ for $i \in [m]$, with $c_i \neq 0$ to guarantee  linear independence. While we have yet to define $C_1$ generally, in this case we may set $C_1 = 1/ \min_{\ell \in [m]} |c_{\ell}|$ so that $\varepsilon < L_2(\mathbf{A})  \min_{\ell \in [m]} |c_{\ell}|$. 
 
 Fix $\mathbf{A} \in \mathbb{R}^{n \times m}$ satisfying $L_2(\mathbf{A}) > 0$, since here we have $2\mathcal{H} = {[m] \choose 2}$, and suppose some $\mathbf{B}$ and $1$-sparse $\mathbf{\overline x}_i \in \mathbb{R}^{\overline m}$ have  $\|\mathbf{A}\mathbf{x}_i - \mathbf{B}\mathbf{\overline x}_i\|_2 \leq \varepsilon < L_2(\mathbf{A}) / C_1$ for all $i$. Then, there exist $\overline{c}_1, \ldots, \overline{c}_m \in \mathbb{R}$ and a map $\pi: [m] \to [\overline m]$ such that:
 \begin{align}\label{1D}
@@ -82,7 +85,7 @@ Fix $\mathbf{A} \in \mathbb{R}^{n \times m}$ satisfying $L_2(\mathbf{A}) > 0$, s
 \end{align} 
 Note that $\overline{c}_i \neq 0$, since otherwise we would reach the following contradiction: $\|\mathbf{A}_i \|_2 \leq C_1 |c_i| \|\mathbf{A}_i \|_2  \leq C_1\varepsilon < L_2(\mathbf{A}) \leq L_1(\mathbf{A}) = \min_{i \in [m]} \|\mathbf{A}_{i}\|_2$. %implies by \eqref{delrho} the contradiction $|c_i| < \min_{\ell \in [m]} | c_\ell |$.
 
-We now show that $\pi$ is injective (in particular, a permutation if $\overline m = m$). Suppose that $\pi(i) = \pi(j) = \ell$ for some $i \neq j$ and $\ell$. Then, $\|c_{i}\mathbf{A}_{i} - \overline{c}_{i} \mathbf{B}_{\ell}\|_2  \leq \varepsilon$ and $\|c_{j}\mathbf{A}_{j} - \overline{c}_{j}\mathbf{B}_{\ell}\|_2 \leq \varepsilon$, and we have: %Scaling and summing these inequalities by $|\overline{c}_{i}|$ and $|\overline{c}_{j}|$, respectively, and applying the triangle inequality to annihilate the terms in $\mathbf{B}_\ell$, we obtain:
+Let us now show that $\pi$ is injective (in particular, a permutation if $\overline m = m$). Suppose that $\pi(i) = \pi(j) = \ell$ for some $i \neq j$ and $\ell$. Then, $\|c_{i}\mathbf{A}_{i} - \overline{c}_{i} \mathbf{B}_{\ell}\|_2  \leq \varepsilon$ and $\|c_{j}\mathbf{A}_{j} - \overline{c}_{j}\mathbf{B}_{\ell}\|_2 \leq \varepsilon$, and we have: %Scaling and summing these inequalities by $|\overline{c}_{i}|$ and $|\overline{c}_{j}|$, respectively, and applying the triangle inequality to annihilate the terms in $\mathbf{B}_\ell$, we obtain:
 \begin{align*}
 (|\overline{c}_{i}| + |\overline{c}_{j}|) \varepsilon
 &\geq |\overline{c}_{i}| \|c_{j}\mathbf{A}_{j} - \overline{c}_{j}\mathbf{B}_{\ell}\|_2  + |\overline{c}_{j}| \|c_{i}\mathbf{A}_{i} - \overline{c}_{i} \mathbf{B}_{\ell}\|_2 \nonumber \\
@@ -104,7 +107,7 @@ Letting $\mathbf{P}$ and $\mathbf{D}$ be the $\overline m \times \overline m$ pe
 
 \section{The main lemma}
 
-An extension of the proof to the general case $k < m$ requires some additional tools to derive the general expression \eqref{Cdef1} for $C_1$. These include a generalized notion of distance (Def.~\ref{dDef}) and angle (Def.~\ref{FriedrichsDefinition}) between subspaces as well as a stability result in combinatorial matrix analysis (Lem.~\ref{MainLemma}). 
+An extension of the proof to the general case $k < m$ requires some additional tools to derive the general expression \eqref{Cdef1} for $C_1$. These include a generalized notion of distance (Def.~\ref{dDef}) and angle (Def.~\ref{FriedrichsDefinition}) between subspaces as well as a stability result in combinatorial matrix analysis (Lem.~\ref{MainLemma}), which is the main lemma doing most of the heavy lifting in the proof of Thm.~\ref{DeterministicUniquenessTheorem}. 
 
 \begin{definition}\label{dDef}
 For $\mathbf{u} \in \mathbb R^m$ and vector spaces $U,V \subseteq \mathbb{R}^m$, let $\text{\rmfamily dist}(\mathbf{u}, V) := \min \{\| \mathbf{u}-\mathbf{v} \|_2: \mathbf{v} \in V\}$ and define:
@@ -113,7 +116,7 @@ d(U,V) := \max_{\mathbf{u} \in U, \ \|\mathbf{u}\|_2 \leq 1} \text{\rmfamily dis
 \end{align}
 \end{definition}
 
-We note the following facts about $d$. Clearly, 
+Note the following facts about $d$. Clearly, 
 \begin{align}\label{UsubU}
 U' \subseteq U \implies d(U',V) \leq d(U,V).
 \end{align}
@@ -126,7 +129,7 @@ and from \cite[Lem.~3.2]{Morris10}:
 \dim(U) = \dim(V) \implies d(U,V) = d(V,U).
 \end{align}
 
-The following is our result in combinatorial matrix analysis; it contains most of the complexity in the proof of Thm.~\ref{DeterministicUniquenessTheorem}. 
+The required stability result in combinatorial matrix analysis is the following. 
 
 \begin{lemma}\label{MainLemma}
 If an $n \times m$ matrix $\mathbf{A}$ has $L_{2\mathcal{H}}(\mathbf{A}) > 0$ for some $r$-regular $\mathcal{H} \subseteq {[m] \choose k}$ with the SIP, then the following holds for $C_2 > 0$ given by \eqref{Cdef2}:
@@ -155,7 +158,7 @@ for some $J \subseteq [m]$ of size \mbox{$m - (r-1)(\overline m - m)$}.
 %\end{align}
 %\end{lemma}
 
-We present the constant $C_2$ (a function of $\mathbf{A}$ and $\mathcal{H}$) relative to a quantity used in \cite{Deutsch12} to analyze the convergence of the ``alternating projections" algorithm for projecting a point onto the intersection of subspaces. We incorporate this quantity into the following definition, which we refer to in our proof of Lem.~\ref{DistanceToIntersectionLemma} in the Appendix; specifically, we use it to bound the distance between a point and the intersection of subspaces given an upper bound on its distance from each subspace.
+The constant $C_2$ (a function of $\mathbf{A}$ and $\mathcal{H}$) will be presented relative to a quantity used in \cite{Deutsch12} to analyze the convergence of the ``alternating projections" algorithm for projecting a point onto the intersection of subspaces. This quantity is incorporated into the following definition, which we shall refer to in the proof of Lem.~\ref{DistanceToIntersectionLemma} in the Appendix; specifically, it will be used to bound the distance between a point and the intersection of subspaces given an upper bound on its distance from each subspace.
 
 \begin{definition}\label{FriedrichsDefinition}
 For a collection of real subspaces $\mathcal{V} = \{V_i\}_{i=1}^\ell$, define $\xi(\mathcal{V}) := 0$ when $|\mathcal{V}| = 1$, and otherwise:
@@ -179,7 +182,7 @@ The constant $C_2 > 0$ of Lem.~\ref{MainLemma} can now be expressed as:
 
 \section{Proving the general case $k<m$}
 
-We next define the constant $C_1 > 0$ of Thm.~\ref{DeterministicUniquenessTheorem} in terms of $C_2$. Given vectors $\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$, let $\mathbf{X}$ denote the $m \times N$ matrix with columns $\mathbf{x}_i$ and let $I(S)$ denote the set of indices $i$ for which $\mathbf{x}_i$ is supported in $S$.  We define:
+We may now define the constant $C_1 > 0$ of Thm.~\ref{DeterministicUniquenessTheorem} in terms of $C_2$. Given vectors $\mathbf{x}_1, \ldots, \mathbf{x}_N \in \mathbb{R}^m$, let $\mathbf{X}$ denote the $m \times N$ matrix with columns $\mathbf{x}_i$ and let $I(S)$ denote the set of indices $i$ for which $\mathbf{x}_i$ is supported in $S$. Define:
 \begin{align}\label{Cdef1}
 C_1(\mathbf{A}, \mathcal{H}, \{\mathbf{x}_i\}_{i=1}^N) := \frac{ C_2(\mathbf{A}, \mathcal{H}) } { \min_{S \in \mathcal{H}} L_k(\mathbf{AX}_{I(S)}) }.
 \end{align}
@@ -192,7 +195,7 @@ efficiently computable bounds have been proposed (e.g., via the ``mutual coheren
 fixing $k$ yields polynomial complexity. Moreover, calculating $C_2$ requires an exponential number of queries to $\xi$ unless $r$ is held fixed, too (e.g., the ``cyclic order'' hypergraphs described above have $r=k$).  Thus, as presented, $C_1$ and $C_2$ are not efficiently computable in general. % , but efficient subcases do exist and may be of practical relevance.
 
 \begin{proof}[Proof of Thm.~\ref{DeterministicUniquenessCorollary} for $k < m$] 
-We find a map $\pi: \mathcal{H} \to {[m] \choose k}$ for which the distance $d(\bm{\mathcal{A}}_S, \bm{\mathcal{B}}_{\pi(S)})$ is controlled by $\varepsilon$ for all $S \in \mathcal{H}$. Applying Lem.~\ref{MainLemma} then completes the proof.
+We shall find a map $\pi: \mathcal{H} \to {[m] \choose k}$ for which the distance $d(\bm{\mathcal{A}}_S, \bm{\mathcal{B}}_{\pi(S)})$ is controlled by $\varepsilon$ for all $S \in \mathcal{H}$. Applying Lem.~\ref{MainLemma} then completes the proof.
 %We shall show that for every $S \in \mathcal{H}$ there is some $\overline S \in {[\overline m] \choose k}$ for which the distance $d(\bm{\mathcal{A}}_S, \bm{\mathcal{B}}_{\overline S})$ is controlled by $\varepsilon$. Applying Lem.~\ref{MainLemma} with the map $\pi$ defined by $S \mapsto \overline S$ then completes the proof.
 
 Fix $S \in \mathcal{H}$. Since there are more than $(k-1){\overline m \choose k}$ vectors $\mathbf{x}_i$ supported in $S$, by the pigeonhole principle there must be some $\overline S \in {[\overline m] \choose k}$ and a set of $k$ indices $K \subseteq I(S)$ for which all $\mathbf{\overline x}_i$ with $i \in K$ are supported in $\overline S$.
@@ -219,11 +222,11 @@ d(\bm{\mathcal{A}}_S, \bm{\mathcal{B}}_{\overline S})
 Finally, apply Lem.~\ref{MainLemma} with $\varepsilon < L_2(\mathbf{A})/C_1$ and $\pi(S) := \overline S$. % L_2(A) > 0 by def of L, since L_2H(A) > 0 and H covers [m]
 \end{proof}
 
-Before moving on to the proof of Thm.~\ref{SLCopt}, we briefly revisit our discussion on sample complexity from the end of the previous section. While an exponential number of samples may very well prove to be necessary in the deterministic or almost-certain case, our proof of Thm.~\ref{DeterministicUniquenessTheorem} can be extended to hold with some probability for \emph{any} number of samples by alternative appeal to a probabilistic pigeonholing at the point early in the proof where the (deterministic) pigeonhole principle is applied to show that for every $S \in \mathcal{H}$, there exist $k$ vectors $\mathbf{x}_i$ supported on $S$ whose corresponding $\mathbf{\overline x}_i$ all share the same support.\footnote{A famous example of such an argument is the counter-intuitive ``birthday paradox", which demonstrates that the probability of two people having the same birthday in a room of twenty-three is greater than 50\%.} 
+Before moving on to the proof of Thm.~\ref{SLCopt}, let us briefly revisit the discussion on sample complexity from the end of the previous chapter. While an exponential number of samples may very well prove to be necessary in the deterministic or almost-certain case, our proof of Thm.~\ref{DeterministicUniquenessTheorem} can be extended to hold with some probability for \emph{any} number of samples by alternative appeal to a probabilistic pigeonholing at the point early in the proof where the (deterministic) pigeonhole principle is applied to show that for every $S \in \mathcal{H}$, there exist $k$ vectors $\mathbf{x}_i$ supported on $S$ whose corresponding $\mathbf{\overline x}_i$ all share the same support.\footnote{A famous example of such an argument is the counter-intuitive ``birthday paradox", which demonstrates that the probability of two people having the same birthday in a room of twenty-three is greater than 50\%.} 
 Given insufficient samples, this argument has some less-than-certain probability of being valid for each $S \in \mathcal{H}$. Nonetheless, simulations with small hypergraphs demonstrate that successful recovery is nearly certainly even when $N$ is only a fraction of the deterministic sample complexity (see Fig. \ref{probpigeon}). 
 
 \begin{proof}[Proof of Thm.~\ref{SLCopt}]
-We bound the number of $k$-sparse $\mathbf{\overline x}_i$ from below and then apply Thm.~\ref{DeterministicUniquenessCorollary}. 
+We shall bound the number of $k$-sparse $\mathbf{\overline x}_i$ from below and then apply Thm.~\ref{DeterministicUniquenessCorollary}. 
 %We now apply this fact to bound the number of $k$-sparse $\mathbf{\overline x}_i$. 
 Let $n_p$ be the number of $\mathbf{\overline x}_i$ with $\|\mathbf{\overline x}_i\|_0 = p$.
 Since the $\mathbf{x}_i$ are all $k$-sparse, by \eqref{minsum} we have:
