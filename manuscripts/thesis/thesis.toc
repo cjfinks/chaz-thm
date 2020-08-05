@@ -14,38 +14,40 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {2.1}Introduction}{4}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.2}Combinatorial designs for sparse supports}{4}
+\contentsline {section}{\numberline {2.2}Combinatorial designs}{4}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.3}Deterministic uniqueness theorems}{5}
+\contentsline {section}{\numberline {2.3}Uniqueness Theorems}{5}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.4}Probabilistic uniqueness theorems}{7}
+\contentsline {subsection}{Deterministic Uniqueness Theorems}{5}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.5}Discussion}{8}
+\contentsline {subsection}{Probabilistic uniqueness theorems}{7}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\chapternumberline {3}Definitions and Proofs}{9}
+\contentsline {section}{\numberline {2.4}Discussion}{8}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.1}Introduction}{9}
+\contentsline {chapter}{\chapternumberline {3}Proofs}{10}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.2}Proving the case $k=1$}{10}
+\contentsline {section}{\numberline {3.1}Introduction}{10}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.3}The main lemma}{10}
+\contentsline {section}{\numberline {3.2}Proving the case $k=1$}{11}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.4}Proving the general case $k<m$}{12}
+\contentsline {section}{\numberline {3.3}The main lemma}{11}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.5}Discussion}{14}
+\contentsline {section}{\numberline {3.4}Proving the general case $k<m$}{13}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\chapternumberline {4}Discussion}{17}
+\contentsline {section}{\numberline {3.5}Discussion}{15}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.1}Conclusions}{17}
+\contentsline {chapter}{\chapternumberline {4}Discussion}{18}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.2}Future directions}{18}
+\contentsline {section}{\numberline {4.1}Conclusions}{18}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{Signal-to-Noise Ratio}{19}
+\contentsline {section}{\numberline {4.2}Future directions}{19}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{Sample Complexity}{20}
+\contentsline {subsection}{Signal-to-Noise Ratio}{20}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{Dictionary learning via $\ell _1$-norm minimization}{21}
+\contentsline {subsection}{Sample Complexity}{21}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\chapternumberline {5}Appendix: Proving the main lemma}{24}
+\contentsline {subsection}{Dictionary learning via $\ell _1$-norm minimization}{22}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{Bibliography}{27}
+\contentsline {chapter}{\chapternumberline {5}Appendix: Proving the main lemma}{25}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Bibliography}{28}
