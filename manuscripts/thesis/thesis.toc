@@ -24,7 +24,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\chapternumberline {3}Proofs}{11}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.1}Proving the case $k=1$}{11}
+\contentsline {section}{\numberline {3.1}Proving the case $k=1$}{12}
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {3.2}Stating the main lemma}{12}
 \defcounter {refsection}{0}\relax 
