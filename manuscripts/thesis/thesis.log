@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  6 AUG 2020 12:23
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  6 AUG 2020 12:46
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -978,9 +978,6 @@ Overfull \hbox (7.37267pt too wide) in paragraph at lines 137--137
 
  (./thesis.aux (./abstract.aux) (./introduction.aux) (./results.aux)
 (./proofs.aux) (./discussion.aux))
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
 Package logreq Info: Writing requests to 'thesis.run.xml'.
 \openout1 = `thesis.run.xml'.
 
@@ -988,7 +985,7 @@ Package logreq Info: Writing requests to 'thesis.run.xml'.
 Here is how much of TeX's memory you used:
  12801 strings out of 492995
  205817 string characters out of 6132704
- 503717 words of memory out of 5000000
+ 503715 words of memory out of 5000000
  16163 multiletter control sequences out of 15000+600000
  23922 words of font info for 87 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1021,7 +1018,7 @@ f-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2017/texmf
 -dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2017/texmf-
 dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/local/texlive/2017/texmf-d
 ist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on thesis.pdf (37 pages, 610571 bytes).
+Output written on thesis.pdf (37 pages, 610599 bytes).
 PDF statistics:
  291 PDF objects out of 1000 (max. 8388607)
  188 compressed objects within 2 object streams
