@@ -6,7 +6,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\chapternumberline {1}Introduction}{1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {1.1}The dictionary learning problem(s)}{3}
+\contentsline {section}{\numberline {1.1}The dictionary learning problem(s)}{2}
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {1.2}Outline of the thesis}{4}
 \defcounter {refsection}{0}\relax 
@@ -16,9 +16,9 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {2.2}Uniqueness theorems}{6}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{Deterministic Uniqueness Theorems}{6}
+\contentsline {subsection}{Deterministic guarantees}{6}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{Probabilistic uniqueness theorems}{8}
+\contentsline {subsection}{Probabilistic guarantees}{8}
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {2.3}Discussion}{9}
 \defcounter {refsection}{0}\relax 
