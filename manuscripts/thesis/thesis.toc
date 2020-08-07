@@ -6,7 +6,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\chapternumberline {1}Introduction}{1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {1.1}The dictionary learning problem(s)}{2}
+\contentsline {section}{\numberline {1.1}The dictionary learning problem(s)}{3}
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {1.2}Outline of the thesis}{4}
 \defcounter {refsection}{0}\relax 
@@ -42,6 +42,6 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{Sample Complexity}{24}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{Dictionary learning via $\ell _1$-norm minimization}{25}
+\contentsline {subsection}{Dictionary learning via convex optimization}{25}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{Bibliography}{28}
+\contentsline {chapter}{Bibliography}{29}

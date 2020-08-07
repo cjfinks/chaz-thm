@@ -1,0 +1,95 @@
+%% thesis.tex 2014/04/11
+%
+% Based on sample files of unknown authorship.
+%
+% The Current Maintainer of this work is Paul Vojta.
+%
+% To compile this file, run "latex thesis", then "biber thesis"
+% (or "bibtex thesis", if the output from latex asks for that instead),
+% and then "latex thesis" (without the quotes in each case).
+
+\documentclass{ucbthesis}
+
+% *** CITATION STUFF ***
+%\usepackage{biblatex} 
+%\bibliography{references} 
+% the above doesn't work, using this instead:
+\usepackage[backend=bibtex,style=numeric]{biblatex}
+\addbibresource{references}
+
+% *** MATH STUFF ***
+\usepackage{amsmath, amssymb, amsthm} 
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{problem}{Problem}
+\newtheorem{question}{Question}
+\newtheorem{proposition}{Proposition}
+\newtheorem{definition}{Definition}
+\newtheorem{corollary}{Corollary}
+\newtheorem{remark}{Remark}
+\newtheorem{example}{Example}
+
+% *** ALIGNMENT STUFF***
+\usepackage{array}
+\usepackage{bm}
+\usepackage{rotating} % provides sidewaystable and sidewaysfigure
+\usepackage{url}
+
+% Double spacing, if you want it.  Do not use for the final copy.
+% \def\dsp{\def\baselinestretch{2.0}\large\normalsize}
+% \dsp
+
+% If the Grad. Division insists that the first paragraph of a section
+% be indented (like the others), then include this line:
+% \usepackage{indentfirst}
+
+\addtolength{\abovecaptionskip}{\baselineskip}
+
+%\hyphenation{mar-gin-al-ia}
+%\hyphenation{bra-va-do}
+
+\begin{document}
+
+We can already see this may be possible by examining the case $k=1$. Consider the dataset generated as in \eqref{LinearModel} in the noiseless case $\eta = 0$, i.e.:
+\begin{align}\label{LinearModel}
+\mathbf{z}_i = \mathbf{A}\mathbf{x}_i,\ \ \  \text{$i=1,\ldots,N$},
+\end{align}
+with the additional constraint that $\|\mathbf{Ae}_i\|_2 = 1$ for all $i \in [m]$ and  $\|\mathbf{A}\|_2 \leq 1$. Consider the following ``convexified" version of Prob.~\ref{OptimizationProblem}:
+
+\begin{problem}\label{ConvexifiedOptimizationProblem}
+Find a matrix $\mathbf{B}$ with $\|\mathbf{B}\|_2 \leq 1$ and vectors \mbox{$\mathbf{\overline x}_1, \ldots, \mathbf{\overline x}_N$} solving:
+\begin{equation}\label{l1min}
+\min \sum_{i = 1}^N \|\mathbf{\overline x}_{i}\|_1 \ \
+\text{subject to} \ \ \mathbf{z}_i = \mathbf{B}\mathbf{\overline x}_i, \ \text{for all $i$}.
+\end{equation}
+\end{problem}
+
+%\begin{conjecture}
+%Fix a matrix $\mathbf{A}$ with $\|\mathbf{A}\|_2=1$ and vectors $\mathbf{x}_i$ satisfying also the assumptions of Thm.~\ref{SLCopt}. Every solution to Prob.~\ref{ConvexifiedOptimizationProblem} satisfies BLAH and BLAH.
+%\end{conjecture}
+
+\begin{proposition}
+%Suppose the $\mathbf{x}_i$ are 1-sparse. 
+Fix $c > 1$. If $\mathbf{x}_i = c\mathbf{e}_i$ for $i = 1, \ldots, m$, then every solution to Prob.~\ref{ConvexifiedOptimizationProblem} satisfies $\mathbf{A} = \mathbf{BP}$ and $\mathbf{x}_i = \mathbf{P}^\top \mathbf{\overline x}_i$ for some $m \times m$ permutation matrix $\mathbf{P}$.
+\end{proposition}
+
+\begin{proof}
+For all $i \in [m]$, since $\mathbf{B \overline x}_i = c\mathbf{Ae}_i$, we have:
+\begin{equation}\label{dunnoyo}
+c = c \|\mathbf{Ae}_i\|_2 = \|\mathbf{Bx}_i\|_2 \leq \|\mathbf{B}\|_2 \|\mathbf{\overline x}_i\|_2 \leq \|\mathbf{\overline x}_i\|_2 \leq \|\mathbf{\overline x}_i\|_1.
+%c = c \|\mathbf{Ae}_i\|_1 = \|\mathbf{Bx}_i\|_1 \leq \|\mathbf{B}\|_1 \|\mathbf{\overline x}_i\|_1 \leq \|\mathbf{\overline x}_i\|_1.
+\end{equation}
+Since $\mathbf{A}$ and $c \mathbf{e}_i$ ($i = 1, \ldots, m$) solve \eqref{l1min}, we must have:
+\begin{equation}
+\sum_{i=1}^m \|\mathbf{\overline x}_i\|_1 \leq \sum_{i=1}^m \|c \mathbf{e}_i\|_1 = m c .
+\end{equation}
+thus by \eqref{dunnoyo} it must be the case that $\|\mathbf{\overline x}_i\|_2 = \|\mathbf{\overline x}_i\|_1 = c$.  Now, writing $\mathbf{\overline x}_i = \sum_{j=1}^m \overline c_j\mathbf{e}_j$, we have:
+\begin{align}
+\sum_{j=1}^m \overline c_j^2 =  \left( \sum_{j=1}^m  |\overline c_j| \right)^2 = \sum_{j=1}^m \overline c_j^2 + \sum_{j=1}^m |\overline c_j |\sum_{\ell \neq j} | \overline c_\ell |
+\end{align}
+We therefore have $\overline c_j \sum_{\ell \neq j} | \overline c_\ell | = 0$ for all $j \in [m]$. Since $\mathbf{\overline x}_i \neq 0$, we must have $\overline c_j \neq 0$ for at least some $j \in [m]$, in which case $c_\ell = 0$ for all $\ell \neq j$, and we can be sure $\mathbf{\overline x}_i$ is a $1$-sparse vector. Since this applies for all $i \in [m]$, we may appeal to Thm.~\ref{DeterministicUniquenessTheorem} (with $k=1$).
+\end{proof}
+
+
+\end{document}

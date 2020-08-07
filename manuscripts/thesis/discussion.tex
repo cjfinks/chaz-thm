@@ -103,11 +103,23 @@ While fixing $k$ yields polynomial deterministic sample complexity in $m$ (see C
 %Is there a class of hypergraphs $\mathcal{H}$ for which a number of samples $N$ polynomial in both $m$ and $k$ suffices to guarantee stable recovery of $\mathbf{A}$ and sparse codes $\mathbf{x}_i$ as $k/m \to 0$?
 %\end{question}
 
-\subsection{Dictionary learning via $\ell_1$-norm minimization}
+\subsection{Dictionary learning via convex optimization}
 
-A commonly applied workaround to the intractability of Prob.~\ref{SLCopt} (see \cite{tillmann2015computational}) is to swap out the $\ell_0$-norm in \eqref{minsum} for $\ell_1$-norm, thereby transforming the inference of sparse $\mathbf{\overline x}_i$ for a fixed $\mathbf{B}$ into a convex optimization solvable by a linear program. A major advance in compressive sensing was the discovery that \eqref{minsum} can in fact be solved in this way for fixed $\mathbf{B}$ provided $L_{2k}(\mathbf{B})$ is large enough \cite{eldar2012compressed}. 
+A commonly applied workaround to the intractability of Prob.~\ref{SLCopt} (see \cite{tillmann2015computational}) is to relax the sparsity measuring norm $\|\mathbf{x}\|_0$ to be $\|\mathbf{x}\|_1$, thereby transforming the inference of sparse $\mathbf{\overline x}_i$ for a fixed $\mathbf{B}$ into a convex optimization solvable by a linear program. Recalling the definition of $\mathbf{z}_i$ in \eqref{LinearModel}, the approach is rather:
 
-The current work provides conditions on the generating dictionary $\mathbf{A}$ and $k$-sparse codes $\mathbf{x}_i$ under which \emph{all} matrices $\mathbf{B}$ (of bounded column-norm) that solve Prob.~\ref{OptimizationProblem} have $L_{2k}(\mathbf{B})$ bounded from below; specifically, $L_{2k}(\mathbf{B}) \geq \left(L_{2k}(\mathbf{A}) - C_1\varepsilon \right) / \|\mathbf{D}\|_1$ in the case where $\mathbf{A}$ satisfies \eqref{SparkCondition}. Thus, there is some noise bound inside of which all solutions to Prob.~\ref{OptimizationProblem} are solutions to the convexified problem as well. It is an open question as to whether there exist practical constraints that would exclude any remaining solutions to the convefixied problem that don't also solve Prob.~\ref{OptimizationProblem}. 
+\begin{problem}\label{ConvexifiedOptimizationProblem}
+Find a matrix $\mathbf{B}$ and vectors \mbox{$\mathbf{\overline x}_1, \ldots, \mathbf{\overline x}_N$} solving:
+\begin{equation}\label{l1minsum}
+\min \sum_{i = 1}^N \|\mathbf{\overline x}_{i}\|_1 \ \
+\text{subject to} \ \ \|\mathbf{z}_i - \mathbf{B}\mathbf{\overline x}_i\|_2 \leq \eta, \ \text{for all $i$}.
+\end{equation}
+\end{problem}
+
+A major advance in compressive sensing was the discovery that, when $\mathbf{B}$ is held fixed, solutions to \eqref{l1minsum} are in fact solutions to \eqref{minsum} provided $L_{2k}(\mathbf{B})$ is large enough \cite{eldar2012compressed}. Interestingly, the current work provides conditions on the generating dictionary $\mathbf{A}$ and $k$-sparse codes $\mathbf{x}_i$ under which \emph{all} matrices $\mathbf{B}$ (of bounded column-norm) that solve Prob.~\ref{OptimizationProblem} have $L_{2k}(\mathbf{B})$ bounded from below; specifically, $L_{2k}(\mathbf{B}) \geq \left(L_{2k}(\mathbf{A}) - C_1\varepsilon \right) / \|\mathbf{D}\|_1$ in the case where $\mathbf{A}$ satisfies \eqref{SparkCondition}. Thus, there is some noise bound inside of which all solutions to Prob.~\ref{OptimizationProblem} are solutions to the convexified problem as well. It is an open question as to whether practical constraints would exclude any remaining solutions to the convefixied problem that don't also solve Prob.~\ref{OptimizationProblem}. 
+
+As an intuitive example to kickstart these efforts, consider the simple noiseless ($\eta = 0$) case for $k=1$ where the matrix $\mathbf{A}$ has linearly independent unit-norm columns and $\mathbf{x}_i = c\mathbf{e}_i$ for some $c \geq 1$ for all $i \in [m]$. Suppose that for some $\mathbf{B}$ also having linearly independent unit-norm columns there are vectors $\mathbf{\overline x}_i$ satisfying $\|\mathbf{\overline x}_i\|_1 \leq c$ and $\mathbf{B \overline x}_i = \mathbf{Ax}_i$ for all $i \in [m]$. Intuitively, the only vectors in the convex polygon $\{ \mathbf{B \overline x}: \|\mathbf{\overline x}\|_1 \leq c\}$ for which $\|\mathbf{B \overline x}_i\|_2 = \|\mathbf{Ax}_i\|_2 = \|c\mathbf{Ae}_i\|_2 = c$ are its corners $\mathbf{B}(\pm c\mathbf{e}_j)$ for $j \in [m]$, so the $\mathbf{\overline x}_i$ must also be 1-sparse and we can apply Thm.~\ref{DeterministicUniquenessTheorem}.
+ 
+%Alternatively, it may be the case that $L_{2k}(\mathbf{B}) > 0$ is a necessary constraint to impose to guarantee recovery of $\mathbf{A}$ by solving \eqref{l1minsum}. 
 
 % SOLUTION CHECKING ALGORITHM:
 %\begin{enumerate}
@@ -118,7 +130,6 @@ The current work provides conditions on the generating dictionary $\mathbf{A}$ a
   % \item For each of the remaining hypergraphs, compute the constant $C_1$ from $\mathbf{A}$ and the $\mathbf{x_i}$.% (or for every subset of the  $\mathbf{x_i}$ of size $(k-1){m \choose k}$).
  %  \item Check that $\varepsilon < L_2(\mathbf{A})$. If yes, the solution is "unique".
 %\end{enumerate}
-
 
 \begin{figure}\label{probpigeon}
 \begin{center}
