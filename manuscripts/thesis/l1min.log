@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  7 AUG 2020 12:25
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  10 AUG 2020 13:57
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -825,31 +825,18 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 54.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
+) [1{/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
-LaTeX Warning: Reference `OptimizationProblem' on page 1 undefined on input lin
-e 58.
-
-
-LaTeX Warning: Reference `DeterministicUniquenessTheorem' on page 1 undefined o
-n input line 91.
-
-[1{/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
-
-]
-(./l1min.aux)
-
-LaTeX Warning: There were undefined references.
-
+] (./l1min.aux)
 Package logreq Info: Writing requests to 'l1min.run.xml'.
 \openout1 = `l1min.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 12310 strings out of 492995
- 194908 string characters out of 6132704
+ 12308 strings out of 492995
+ 194851 string characters out of 6132704
  482618 words of memory out of 5000000
- 15732 multiletter control sequences out of 15000+600000
+ 15730 multiletter control sequences out of 15000+600000
  13963 words of font info for 51 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  39i,13n,37p,874b,698s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -862,7 +849,7 @@ sr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr
 cal/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/loc
 al/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local
 /texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on l1min.pdf (1 page, 92905 bytes).
+Output written on l1min.pdf (1 page, 92613 bytes).
 PDF statistics:
  44 PDF objects out of 1000 (max. 8388607)
  31 compressed objects within 1 object stream
