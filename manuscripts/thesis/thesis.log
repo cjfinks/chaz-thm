@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  13 AUG 2020 14:35
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  13 AUG 2020 15:53
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -841,7 +841,9 @@ l page on input line 89.
 
  (./abstract.tex [1
 
-]) (./thesis.toc
+]) [1
+
+] (./thesis.toc
 LaTeX Font Info:    Try loading font information for U+msa on input line 3.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/umsa.fd
@@ -851,22 +853,21 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 3.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)) [1
-
-]
+)) [2]
 (./thesis.lof
 
 Package amsmath Warning: Foreign command \atopwithdelims;
 (amsmath)                \frac or \genfrac should be used instead
 (amsmath)                 on input line 13.
 
-) [2
+) [3
+
+] [4
 
 ]
 \openout2 = `introduction.aux'.
 
  (./introduction.tex [1
-
 
 
 ] [2] [3]) [4]
@@ -882,13 +883,13 @@ Overfull \hbox (51.19945pt too wide) in paragraph at lines 76--77
  $\OMS/cmsy/m/n/12 H ^^R []$ \OT1/cmr/m/it/12 with the SIP, there are []
  []
 
-<figures/Basis.png, id=60, 336.0555pt x 336.0555pt>
+<figures/Basis.png, id=67, 336.0555pt x 336.0555pt>
 File: figures/Basis.png Graphic file (type png)
  <use figures/Basis.png>
 Package pdftex.def Info: figures/Basis.png used on input line 134.
 (pdftex.def)             Requested size: 112.74377pt x 112.74466pt.
 
-<figures/Ahat_FastICA_M640_K8_noise1_0205.png, id=62, 336.0555pt x 335.3328pt>
+<figures/Ahat_FastICA_M640_K8_noise1_0205.png, id=69, 336.0555pt x 335.3328pt>
 File: figures/Ahat_FastICA_M640_K8_noise1_0205.png Graphic file (type png)
 
 <use figures/Ahat_FastICA_M640_K8_noise1_0205.png>
@@ -896,7 +897,7 @@ Package pdftex.def Info: figures/Ahat_FastICA_M640_K8_noise1_0205.png used on i
 nput line 135.
 (pdftex.def)             Requested size: 112.74377pt x 112.5022pt.
 
-<figures/Ahat_FastICA_M640_K8_noise2_0409.png, id=63, 336.0555pt x 335.3328pt>
+<figures/Ahat_FastICA_M640_K8_noise2_0409.png, id=70, 336.0555pt x 335.3328pt>
 File: figures/Ahat_FastICA_M640_K8_noise2_0409.png Graphic file (type png)
 
 <use figures/Ahat_FastICA_M640_K8_noise2_0409.png>
@@ -904,7 +905,7 @@ Package pdftex.def Info: figures/Ahat_FastICA_M640_K8_noise2_0409.png used on i
 nput line 136.
 (pdftex.def)             Requested size: 112.74377pt x 112.5022pt.
 
-<figures/Ahat_FastICA_M640_K8_noise5_1021.png, id=64, 336.0555pt x 336.0555pt>
+<figures/Ahat_FastICA_M640_K8_noise5_1021.png, id=71, 336.0555pt x 336.0555pt>
 File: figures/Ahat_FastICA_M640_K8_noise5_1021.png Graphic file (type png)
 
 <use figures/Ahat_FastICA_M640_K8_noise5_1021.png>
@@ -937,14 +938,14 @@ r/bx/n/10 c$\OT1/cmr/m/n/10 . Us-ing the def-i-ni-tions, we have $\OMS/cmsy/m/n
 
 
 ] [22] [23] [24]
-[25] <figures/prob_vs_samples.png, id=136, 555.7563pt x 540.5796pt>
+[25] <figures/prob_vs_samples.png, id=142, 555.7563pt x 540.5796pt>
 File: figures/prob_vs_samples.png Graphic file (type png)
 
 <use figures/prob_vs_samples.png>
 Package pdftex.def Info: figures/prob_vs_samples.png used on input line 162.
 (pdftex.def)             Requested size: 469.75502pt x 456.92952pt.
 
-<figures/C2.pdf, id=137, 462.52798pt x 346.89601pt>
+<figures/C2.pdf, id=143, 462.52798pt x 346.89601pt>
 File: figures/C2.pdf Graphic file (type pdf)
  <use figures/C2.pdf>
 Package pdftex.def Info: figures/C2.pdf used on input line 171.
@@ -955,7 +956,7 @@ Missing character: There is no â in font cmr12!
 Missing character: There is no „ in font cmr12!
 Missing character: There is no “ in font cmr12!
 
-Overfull \hbox (21.31993pt too wide) in paragraph at lines 137--137
+Overfull \hbox (21.31993pt too wide) in paragraph at lines 144--144
 []\OT1/cmr/m/n/12 David L Donoho and Michael Elad. ``Op-ti-mally sparse rep-re-
 sen-ta-tion in gen-eral (nonorthog-
  []
@@ -964,7 +965,7 @@ sen-ta-tion in gen-eral (nonorthog-
 
 
 ] [30]
-Overfull \hbox (7.37267pt too wide) in paragraph at lines 137--137
+Overfull \hbox (7.37267pt too wide) in paragraph at lines 144--144
 \OT1/cmtt/m/n/12 stackexchange . com / questions / 553960 / extended -[] stars 
 -[] and -[] bars -[] problemwhere -[]
  []
@@ -1018,10 +1019,10 @@ f-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2017/texmf
 -dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2017/texmf-
 dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/local/texlive/2017/texmf-d
 ist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on thesis.pdf (38 pages, 616091 bytes).
+Output written on thesis.pdf (40 pages, 619612 bytes).
 PDF statistics:
- 294 PDF objects out of 1000 (max. 8388607)
- 190 compressed objects within 2 object streams
+ 300 PDF objects out of 1000 (max. 8388607)
+ 194 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  31 words of extra memory for PDF output out of 10000 (max. 10000000)
 
