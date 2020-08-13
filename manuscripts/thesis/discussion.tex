@@ -105,39 +105,41 @@ While fixing $k$ yields polynomial deterministic sample complexity in $m$ (see C
 
 \subsection{Dictionary learning via convex optimization}
 
-A commonly applied workaround to the intractability of Prob.~\ref{SLCopt} (see \cite{tillmann2015computational}) is to relax the sparsity measuring norm $\|\mathbf{x}\|_0$ to be $\|\mathbf{x}\|_1$, thereby transforming the inference of sparse $\mathbf{\overline x}_i$ for a fixed $\mathbf{B}$ into a convex optimization solvable by a linear program. Recalling the definition of $\mathbf{z}_i$ in \eqref{LinearModel}, the approach is rather:
+A commonly applied workaround to the intractability (see \cite{tillmann2015computational}) of Prob.~\ref{SLCopt} is to replace the norm $\|\mathbf{x}\|_0$ in \eqref{minsum} with its best convex approximation, $\|\mathbf{x}\|_1$, thereby transforming the inference of sparsest $\mathbf{\overline x}_i$ for fixed $\mathbf{B}$ into a convex optimization problem solvable by a linear program. Recalling the linear model \eqref{LinearModel} of data $\mathbf{z}_i$, the approach is to solve the following problem instead of attempting to solve Prob~\ref{SLCopt} directly.:
 
 \begin{problem}\label{ConvexifiedOptimizationProblem}
 Find a matrix $\mathbf{B}$ and vectors \mbox{$\mathbf{\overline x}_1, \ldots, \mathbf{\overline x}_N$} solving:
 \begin{equation}\label{l1minsum}
 \min \sum_{i = 1}^N \|\mathbf{\overline x}_{i}\|_1 \ \
-\text{subject to} \ \ \|\mathbf{z}_i - \mathbf{B}\mathbf{\overline x}_i\|_2 \leq \eta, \ \text{for all $i$}.
+\text{subject to} \ \ \|\mathbf{z}_i - \mathbf{B}\mathbf{\overline x}_i\|_2 \leq \eta, \ \text{for all $i$},
 \end{equation}
 \end{problem}
 
-A major advance in compressive sensing was the discovery that, when $\mathbf{B}$ is held fixed, solutions to \eqref{l1minsum} are in fact solutions to \eqref{minsum} provided $L_{2k}(\mathbf{B})$ is large enough \cite{eldar2012compressed}. Interestingly, the current work provides conditions on the generating dictionary $\mathbf{A}$ and $k$-sparse codes $\mathbf{x}_i$ under which \emph{all} matrices $\mathbf{B}$ (of bounded column-norm) that solve Prob.~\ref{OptimizationProblem} have $L_{2k}(\mathbf{B})$ bounded from below; specifically, $L_{2k}(\mathbf{B}) \geq \left(L_{2k}(\mathbf{A}) - C_1\varepsilon \right) / \|\mathbf{D}\|_1$ in the case where $\mathbf{A}$ satisfies \eqref{SparkCondition}. Thus, there is some noise bound inside of which all solutions to Prob.~\ref{OptimizationProblem} are solutions to the convexified problem as well. It is an open question as to whether there exist solutions to the convefixied problem that don't also solve Prob.~\ref{OptimizationProblem}, and if so, what practical constraints may exclude them.
 
-We can already see the guarantees derived in this work may readily extend themselves to Prob.~\ref{ConvexifiedOptimizationProblem} by examining the case $k=1$. Consider the dataset generated as in \eqref{LinearModel} in the noiseless case $\eta = 0$, i.e.:
-\begin{align}\label{LinearModel}
-\mathbf{z}_i = \mathbf{A}\mathbf{x}_i,\ \ \  \text{$i=1,\ldots,N$},
-\end{align}
-with the additional constraint that $\|\mathbf{Ae}_i\|_2 = 1$ for all $i \in [m]$. 
+A major advance in compressive sensing was the discovery that, when the matrix $\mathbf{B}$ is held fixed, the vectors $\mathbf{\overline x}_i$ that solve \eqref{l1minsum} also in fact minimize \eqref{minsum} provided $L_{2k}(\mathbf{B})$ is large enough \cite{eldar2012compressed}. Interestingly, the current work provides conditions on the generating dictionary $\mathbf{A}$ and $k$-sparse codes $\mathbf{x}_i$ under which \emph{all} matrices $\mathbf{B}$ solving Prob.~\ref{OptimizationProblem} have $L_{2k}(\mathbf{B})$ bounded from below; specifically, $L_{2k}(\mathbf{B}) \geq \left(L_{2k}(\mathbf{A}) - 2\eta C_1 \right) / \|\mathbf{D}\|_1$ in the case where $\mathbf{A}$ satisfies the spark condition \eqref{SparkCondition}. Thus, for suitable $\mathbf{A}$ there is some noise bound inside of which all solutions to Prob.~\ref{OptimizationProblem} are solutions to Prob.~\ref{ConvexifiedOptimizationProblem} as well. It is an open question as to whether there exist practical constraints which reject solutions to Prob.~\ref{ConvexifiedOptimizationProblem} that don't also solve Prob.~\ref{OptimizationProblem}.
+
+We can already see this may be possible by examining the simple case $k=1$ without noise, i.e. $\eta = 0$.
+%Consider the dataset generated as in \eqref{LinearModel} in the noiseless case $\eta = 0$, i.e.:
+%\begin{align*}
+%\mathbf{z}_i = \mathbf{A}\mathbf{x}_i,\ \ \  \text{$i=1,\ldots,N$}.
+%\end{align*}
+%with the additional constraint that $\|\mathbf{Ae}_i\|_2 = 1$ for all $i \in [m]$. 
 %\begin{conjecture}
 %Fix a matrix $\mathbf{A}$ with $\|\mathbf{A}\|_2=1$ and vectors $\mathbf{x}_i$ satisfying also the assumptions of Thm.~\ref{SLCopt}. Every solution to Prob.~\ref{ConvexifiedOptimizationProblem} satisfies BLAH and BLAH.
 %\end{conjecture}
 
 \begin{proposition}
-Fix $c > 0$. If $\mathbf{x}_i = c\mathbf{e}_i$ for $i = 1, \ldots, m$, then every solution to Prob.~\ref{ConvexifiedOptimizationProblem} with $\|\mathbf{Be}_i\|_2 = 1$ for all $i \in [m]$ satisfies $\mathbf{A} = \mathbf{BP}$ and $\mathbf{x}_i = \mathbf{P}^\top \mathbf{\overline x}_i$ for some $m \times m$ permutation matrix $\mathbf{P}$.
+If $\mathbf{A}$ has $L_2(\mathbf{A}) > 0$ and unit length-columns, and $\mathbf{x}_i = c_i\mathbf{e}_i$ with $c_i \neq 0$ for $i = 1, \ldots, m$, then every solution to Prob.~\ref{ConvexifiedOptimizationProblem} with matrices $\mathbf{B}$ having $m$ unit-length columns satisfies $\mathbf{A} = \mathbf{BP}$ and $\mathbf{x}_i = \mathbf{P}^\top \mathbf{\overline x}_i$ for some $m \times m$ permutation matrix $\mathbf{P}$.
 \end{proposition}
 
 \begin{proof}
-We will show that the $\mathbf{\overline x}_i$ are $1$-sparse and then apply Thm.~\ref{DeterministicUniquenessTheorem}. Fix $i \in [m]$. Writing $\mathbf{\overline x}_i = \sum_{j=1}^m \overline c^{(i)}_j \mathbf{e}_j$, we have:
+We will show that the $\mathbf{\overline x}_i$ must in fact be $1$-sparse and then apply Thm.~\ref{DeterministicUniquenessTheorem}. Fix $i \in [m]$. Writing $\mathbf{\overline x}_i = \sum_{j=1}^m \overline c_{j} \mathbf{e}_j$, we have:
 \begin{align}\label{gtc}
-c = \|c\mathbf{Ae}_i\|_2 = \|\mathbf{B \overline x}_i\|_2 = \|\sum_{j=1}^m \overline c^{(i)}_j \mathbf{Be}_j\|_2 \leq \sum_{j=1}^m |\overline c^{(i)}_j| \|\mathbf{Be}_j\|_2 = \|\mathbf{\overline x}_i\|_1
+c_i = \|c_i\mathbf{Ae}_i\|_2 = \|\mathbf{B \overline x}_i\|_2 = \|\sum_{j=1}^m \overline c_{j} \mathbf{Be}_j\|_2 \leq \sum_{j=1}^m |\overline c_{j}| \|\mathbf{Be}_j\|_2 = \|\mathbf{\overline x}_i\|_1
 \end{align}
-So $\|\mathbf{\overline x}_i\|_1 \geq c$ for all $i \in [m]$. Therefore $\sum_{i=1}^m \|\mathbf{\overline x}_i\|_1 \geq mc$. But since $\mathbf{B} = \mathbf{A}$ and $\mathbf{\overline x}_i = \mathbf{x}_i$ ($i = 1, \ldots, m$) satisfy the constraints of the minimization problem, we must have $\sum_{i=1}^m \|\mathbf{\overline x}_i\|_1 \leq \sum_{i=1}^m \|\mathbf{x}_i\|_1 = mc$ also. Thus $\sum_{i=1}^m \|\mathbf{\overline x}_i\|_1 = mc$. Since again $\|\mathbf{\overline x}_i\|_1 \geq c$ for all $i \in [m]$, we must have $\| \mathbf{\overline x}_i\|_1 = c$ for all $i \in [m]$.
+So $\|\mathbf{\overline x}_i\|_1 \geq c_i$ for all $i \in [m]$. Therefore $\sum_{i=1}^m \|\mathbf{\overline x}_i\|_1 \geq \sum_i c_i$. But since $\mathbf{A}$ and the $\mathbf{x}_i$ satisfy the constraints of the minimization problem, we must also have $\sum_{i=1}^m \|\mathbf{\overline x}_i\|_1 \leq \sum_{i=1}^m \|\mathbf{x}_i\|_1 = \sum_i c_i$. Thus $\sum_{i=1}^m \|\mathbf{\overline x}_i\|_1 = \sum_i c_i$. Since again $\|\mathbf{\overline x}_i\|_1 \geq c_i$ for all $i \in [m]$, we must have $\| \mathbf{\overline x}_i\|_1 = c_i$ for all $i \in [m]$.
 
-Recalling \eqref{gtc} we therefore have $c = \|\mathbf{B\overline x}_i\|_2 \leq \|\mathbf{\overline x}_i\|_1 = c$, with equality only when $\overline c^{(i)}_j \mathbf{Be}_j$ are colinear. This would be the case either if $\mathbf{\overline x}_i$ is $1$-sparse, in which case we may apply Thm.~\ref{DeterministicUniquenessTheorem} to guarantee both dictionary and code recovery, or $\mathbf{B}$ has colinear columns. In the latter case, the same guarantees hold for a suitable submatrix of $\mathbf{B}$ containing one representative column from every colinear set (note that since $\|\mathbf{Be}_j\| = 1$ for all $j \in [m]$, these columns are identical up to a sign).
+Revisiting \eqref{gtc}, we therefore have $c_i = \|\mathbf{B\overline x}_i\|_2 \leq \|\mathbf{\overline x}_i\|_1 = c_i$ for all $i \in [m]$, with equality holding only when $\overline c^{(i)}_j \mathbf{Be}_j$ are colinear. This would be the case either if the $\mathbf{\overline x}_i$ are $1$-sparse, in which case we may apply Thm.~\ref{DeterministicUniquenessTheorem} to guarantee both dictionary and code recovery, or if $\mathbf{B}$ has colinear columns. We can rule out the latter case because if that were so, we could consolidate all sets of colinear columns to form a dictionary with fewer than $m$ linearly independent columns and yet for which there must exist $1$-sparse $\mathbf{\overline x}_i$ solving Prob.~\ref{ConvexifiedOptimizationProblem}; but this would contradict the fact that $L_2(\mathbf{A}) > 0$. 
 \end{proof}
 
 %\begin{conjecture}\label{l1conjecture}

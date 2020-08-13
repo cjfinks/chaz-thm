@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  10 AUG 2020 14:05
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  12 AUG 2020 23:57
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -734,11 +734,7 @@ File: english.lbx 2016/12/05 v3.7 biblatex localization (PK/JW/AB)
 \@quotereset=\count353
 
 (./thesis.aux (./abstract.aux) (./introduction.aux) (./results.aux)
-(./proofs.aux) (./discussion.aux
-
-LaTeX Warning: Label `LinearModel' multiply defined.
-
-))
+(./proofs.aux) (./discussion.aux))
 \openout1 = `thesis.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 52.
@@ -945,13 +941,13 @@ r/bx/n/10 c$\OT1/cmr/m/n/10 . Us-ing the def-i-ni-tions, we have $\OMS/cmsy/m/n
 File: figures/prob_vs_samples.png Graphic file (type png)
 
 <use figures/prob_vs_samples.png>
-Package pdftex.def Info: figures/prob_vs_samples.png used on input line 161.
+Package pdftex.def Info: figures/prob_vs_samples.png used on input line 163.
 (pdftex.def)             Requested size: 469.75502pt x 456.92952pt.
 
 <figures/C2.pdf, id=137, 462.52798pt x 346.89601pt>
 File: figures/C2.pdf Graphic file (type pdf)
  <use figures/C2.pdf>
-Package pdftex.def Info: figures/C2.pdf used on input line 170.
+Package pdftex.def Info: figures/C2.pdf used on input line 172.
 (pdftex.def)             Requested size: 469.75502pt x 352.33656pt.
 )
 [26] [27 <./figures/prob_vs_samples.png>] [28 <./figures/C2.pdf>]
@@ -982,9 +978,6 @@ Overfull \hbox (7.37267pt too wide) in paragraph at lines 137--137
 
  (./thesis.aux (./abstract.aux) (./introduction.aux) (./results.aux)
 (./proofs.aux) (./discussion.aux))
-
-LaTeX Warning: There were multiply-defined labels.
-
 Package logreq Info: Writing requests to 'thesis.run.xml'.
 \openout1 = `thesis.run.xml'.
 
@@ -992,7 +985,7 @@ Package logreq Info: Writing requests to 'thesis.run.xml'.
 Here is how much of TeX's memory you used:
  12797 strings out of 492995
  205751 string characters out of 6132704
- 503931 words of memory out of 5000000
+ 503882 words of memory out of 5000000
  16159 multiletter control sequences out of 15000+600000
  22062 words of font info for 80 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1025,7 +1018,7 @@ f-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2017/texmf
 -dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2017/texmf-
 dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/local/texlive/2017/texmf-d
 ist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on thesis.pdf (38 pages, 614271 bytes).
+Output written on thesis.pdf (38 pages, 614402 bytes).
 PDF statistics:
  294 PDF objects out of 1000 (max. 8388607)
  190 compressed objects within 2 object streams
