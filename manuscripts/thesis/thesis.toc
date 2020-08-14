@@ -38,10 +38,10 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {4.1}Future directions}{22}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{Signal-to-Noise Ratio}{23}
+\contentsline {subsection}{Reducing the required signal-to-noise ratio}{23}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{Sample Complexity}{24}
+\contentsline {subsection}{Reducing the required number of samples}{24}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{Dictionary learning via convex optimization}{25}
+\contentsline {subsection}{Dictionary learning via $\ell _1$-norm minimization}{25}
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{Bibliography}{29}
