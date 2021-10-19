@@ -12,9 +12,6 @@
 \@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {chapter}{Contents}{ii}}
 \@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {chapter}{List of Figures}{iii}}
 \@input{introduction.aux}
-\citation{Zhang15}
-\abx@aux@cite{Zhang15}
-\abx@aux@segm{0}{0}{Zhang15}
 \citation{wang2015sparse}
 \abx@aux@cite{wang2015sparse}
 \abx@aux@segm{0}{0}{wang2015sparse}
@@ -117,6 +114,7 @@
 \citation{tillmann2015computational}
 \abx@aux@cite{tillmann2015computational}
 \abx@aux@segm{0}{0}{tillmann2015computational}
+\@input{mainlemma.aux}
 \@input{proofs.aux}
 \citation{Kato2013}
 \abx@aux@cite{Kato2013}
@@ -134,7 +132,8 @@
 \citation{donoho2003optimally}
 \abx@aux@cite{donoho2003optimally}
 \abx@aux@segm{0}{0}{donoho2003optimally}
-\@input{discussion.aux}
+\citation{Deutsch12}
+\abx@aux@segm{0}{0}{Deutsch12}
 \citation{Hillar15}
 \abx@aux@segm{0}{0}{Hillar15}
 \citation{tillmann2014computational}
@@ -161,6 +160,7 @@
 \abx@aux@segm{0}{0}{Hillar15}
 \citation{Hillar15}
 \abx@aux@segm{0}{0}{Hillar15}
+\@input{discussion.aux}
 \citation{lustig2008compressed}
 \abx@aux@cite{lustig2008compressed}
 \abx@aux@segm{0}{0}{lustig2008compressed}
@@ -238,28 +238,33 @@
 \citation{eldar2012compressed}
 \abx@aux@segm{0}{0}{eldar2012compressed}
 \@input{appendix.aux}
-\citation{Deutsch12}
-\abx@aux@segm{0}{0}{Deutsch12}
-\newlabel{probpigeon}{{\M@TitleReference {5}{Appendix: Proof of Main Lemma}}{27}}
-\@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {5.1}{\ignorespaces Probability of successful dictionary and code recovery (as per Thm. 1\hbox {}) for a number of samples $N$ given as a fraction of the deterministic sample complexity $N = |\mathcal  {H}|[(k-1){m \atopwithdelims ()k} + 1]$ when the support set hypergraph $\mathcal  {H}$ is the set of $m$ consecutive intervals of length $k$ in a cyclic order on $[m]$. Each plot has $k$ ranging from $2$ to $m-1$ (the case $k=1$ requires $N=m$), with lighter grey lines corresponding to larger $k$. Successful recovery is nearly certain with far fewer samples than the deterministic sample complexity. }}{27}}
-\newlabel{probvsamples}{{\M@TitleReference {5.1}{Probability of successful dictionary and code recovery (as per Thm. 1\hbox {}) for a number of samples $N$ given as a fraction of the deterministic sample complexity $N = |\mathcal  {H}|[(k-1){m \atopwithdelims ()k} + 1]$ when the support set hypergraph $\mathcal  {H}$ is the set of $m$ consecutive intervals of length $k$ in a cyclic order on $[m]$. Each plot has $k$ ranging from $2$ to $m-1$ (the case $k=1$ requires $N=m$), with lighter grey lines corresponding to larger $k$. Successful recovery is nearly certain with far fewer samples than the deterministic sample complexity. }}{27}}
-\newlabel{reasonableC2}{{\M@TitleReference {5}{Appendix: Proof of Main Lemma}}{28}}
-\@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {5.2}{\ignorespaces Distribution of $C_2(\mathbf  {A}, \mathcal  {H})$ computed for 1.33x overcomplete generic unit-norm dictionaries $\mathbf  {A} \in \mathbb  {R}^{n \times m}$ (i.e. with $n = 3m/4$) when the support set hypergraph $\mathcal  {H}$ consists of the rows and columns formed by arranging the elements of $[m]$ into a square grid (i.e. $m = k^2$). The distribution becomes more concentrated as $m$ grows.}}{28}}
-\newlabel{samples_vs_m}{{\M@TitleReference {5.2}{Distribution of $C_2(\mathbf  {A}, \mathcal  {H})$ computed for 1.33x overcomplete generic unit-norm dictionaries $\mathbf  {A} \in \mathbb  {R}^{n \times m}$ (i.e. with $n = 3m/4$) when the support set hypergraph $\mathcal  {H}$ consists of the rows and columns formed by arranging the elements of $[m]$ into a square grid (i.e. $m = k^2$). The distribution becomes more concentrated as $m$ grows.}}{28}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {chapter}{Bibliography}{29}}
+\newlabel{probpigeon}{{\M@TitleReference {4.2}{Dictionary Learning via $\ell _1$-norm minimization}}{26}}
+\@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces Probability of successful dictionary and code recovery (as per Thm. 1\hbox {}) for a number of samples $N$ given as a fraction of the deterministic sample complexity $N = |\mathcal  {H}|[(k-1){m \atopwithdelims ()k} + 1]$ when the support set hypergraph $\mathcal  {H}$ is the set of $m$ consecutive intervals of length $k$ in a cyclic order on $[m]$. Each plot has $k$ ranging from $2$ to $m-1$ (the case $k=1$ requires $N=m$), with lighter grey lines corresponding to larger $k$. Successful recovery is nearly certain with far fewer samples than the deterministic sample complexity. }}{26}}
+\newlabel{probvsamples}{{\M@TitleReference {4.1}{Probability of successful dictionary and code recovery (as per Thm. 1\hbox {}) for a number of samples $N$ given as a fraction of the deterministic sample complexity $N = |\mathcal  {H}|[(k-1){m \atopwithdelims ()k} + 1]$ when the support set hypergraph $\mathcal  {H}$ is the set of $m$ consecutive intervals of length $k$ in a cyclic order on $[m]$. Each plot has $k$ ranging from $2$ to $m-1$ (the case $k=1$ requires $N=m$), with lighter grey lines corresponding to larger $k$. Successful recovery is nearly certain with far fewer samples than the deterministic sample complexity. }}{26}}
+\newlabel{reasonableC2}{{\M@TitleReference {4.2}{Dictionary Learning via $\ell _1$-norm minimization}}{27}}
+\@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {4.2}{\ignorespaces Distribution of $C_2(\mathbf  {A}, \mathcal  {H})$ computed for 1.33x overcomplete generic unit-norm dictionaries $\mathbf  {A} \in \mathbb  {R}^{n \times m}$ (i.e. with $n = 3m/4$) when the support set hypergraph $\mathcal  {H}$ consists of the rows and columns formed by arranging the elements of $[m]$ into a square grid (i.e. $m = k^2$). The distribution becomes more concentrated as $m$ grows.}}{27}}
+\newlabel{samples_vs_m}{{\M@TitleReference {4.2}{Distribution of $C_2(\mathbf  {A}, \mathcal  {H})$ computed for 1.33x overcomplete generic unit-norm dictionaries $\mathbf  {A} \in \mathbb  {R}^{n \times m}$ (i.e. with $n = 3m/4$) when the support set hypergraph $\mathcal  {H}$ consists of the rows and columns formed by arranging the elements of $[m]$ into a square grid (i.e. $m = k^2$). The distribution becomes more concentrated as $m$ grows.}}{27}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {chapter}{Bibliography}{28}}
 \abx@aux@refcontextdefaultsdone
 \abx@aux@defaultrefcontext{0}{agarwal2014spatially}{nty/global/}
 \abx@aux@defaultrefcontext{0}{Aharon06}{nty/global/}
 \abx@aux@defaultrefcontext{0}{arias2013fundamental}{nty/global/}
+\abx@aux@defaultrefcontext{0}{baraniuk2008simple}{nty/global/}
 \abx@aux@defaultrefcontext{0}{basu2006algorithms}{nty/global/}
+\abx@aux@defaultrefcontext{0}{bellsejnowski1996}{nty/global/}
 \abx@aux@defaultrefcontext{0}{bell1997independent}{nty/global/}
 \abx@aux@defaultrefcontext{0}{Blanchard2011}{nty/global/}
+\abx@aux@defaultrefcontext{0}{Carlson12}{nty/global/}
 \abx@aux@defaultrefcontext{0}{Deutsch12}{nty/global/}
 \abx@aux@defaultrefcontext{0}{donoho2001can}{nty/global/}
 \abx@aux@defaultrefcontext{0}{donoho2003optimally}{nty/global/}
+\abx@aux@defaultrefcontext{0}{Duarte08}{nty/global/}
 \abx@aux@defaultrefcontext{0}{eldar2012compressed}{nty/global/}
 \abx@aux@defaultrefcontext{0}{folland2013real}{nty/global/}
+\abx@aux@defaultrefcontext{0}{ganguli2012compressed}{nty/global/}
+\abx@aux@defaultrefcontext{0}{Gao14}{nty/global/}
 \abx@aux@defaultrefcontext{0}{Georgiev05}{nty/global/}
+\abx@aux@defaultrefcontext{0}{goodfellow2014explaining}{nty/global/}
 \abx@aux@defaultrefcontext{0}{Grcar10}{nty/global/}
 \abx@aux@defaultrefcontext{0}{Hadamard1902}{nty/global/}
 \abx@aux@defaultrefcontext{0}{van1998independent}{nty/global/}
@@ -267,16 +272,24 @@
 \abx@aux@defaultrefcontext{0}{Hillar15}{nty/global/}
 \abx@aux@defaultrefcontext{0}{hughes2010}{nty/global/}
 \abx@aux@defaultrefcontext{0}{hurri1996image}{nty/global/}
+\abx@aux@defaultrefcontext{0}{hyvarinen1999fast}{nty/global/}
 \abx@aux@defaultrefcontext{0}{hyvarinen2000independent}{nty/global/}
 \abx@aux@defaultrefcontext{0}{Isely10}{nty/global/}
 \abx@aux@defaultrefcontext{0}{jung2001imaging}{nty/global/}
 \abx@aux@defaultrefcontext{0}{Kato2013}{nty/global/}
+\abx@aux@defaultrefcontext{0}{kong2016prior}{nty/global/}
 \abx@aux@defaultrefcontext{0}{lee2016sparse}{nty/global/}
+\abx@aux@defaultrefcontext{0}{stackexchangeanswer}{nty/global/}
 \abx@aux@defaultrefcontext{0}{li2004analysis}{nty/global/}
+\abx@aux@defaultrefcontext{0}{lustig2008compressed}{nty/global/}
 \abx@aux@defaultrefcontext{0}{Morris10}{nty/global/}
 \abx@aux@defaultrefcontext{0}{Olshausen96}{nty/global/}
 \abx@aux@defaultrefcontext{0}{olshausen2010applied}{nty/global/}
+\abx@aux@defaultrefcontext{0}{pehlevan2015normative}{nty/global/}
+\abx@aux@defaultrefcontext{0}{pitts1947}{nty/global/}
 \abx@aux@defaultrefcontext{0}{rehnsommer2007}{nty/global/}
+\abx@aux@defaultrefcontext{0}{rozell2007neurally}{nty/global/}
+\abx@aux@defaultrefcontext{0}{smithlewicki2006}{nty/global/}
 \abx@aux@defaultrefcontext{0}{Sun16}{nty/global/}
 \abx@aux@defaultrefcontext{0}{tillmann2015computational}{nty/global/}
 \abx@aux@defaultrefcontext{0}{tillmann2014computational}{nty/global/}

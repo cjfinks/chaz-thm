@@ -1,0 +1,167 @@
+\documentclass[journal, onecolumn]{IEEEtran}
+
+% *** MATH PACKAGES ***
+\usepackage{amsmath, amssymb, amsthm} 
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{problem}{Problem}
+\newtheorem{question}{Question}
+\newtheorem{proposition}{Proposition}
+\newtheorem{definition}{Definition}
+\newtheorem{corollary}{Corollary}
+\newtheorem{remark}{Remark}
+\newtheorem{example}{Example}
+
+
+\usepackage[pdftex]{graphicx}
+
+% *** ALIGNMENT PACKAGES ***
+\usepackage{array}
+\usepackage{cite}
+\usepackage{bm}
+
+% correct bad hyphenation here
+%\hyphenation{op-tical net-works semi-conduc-tor}
+
+\begin{document}
+
+\title{$\ell_1$-norm minimization}
+\author{Charles~J.~Garfinkle}
+
+\maketitle
+
+
+\begin{theorem}[Noiseless recovery]
+Suppose the $n \times m$ matrix $\mathbf{A}$ has $\|\mathbf{A}_j\|_2 = 1$ for $j = 1, \ldots, m$ and $L_2(\mathbf{A}) > 0$. Let $\mathbf{x}_i \in \mathbb{R}^m$ be such that $\mathbf{x}_i = c_i \mathbf{e}_i$ ($c_i \neq 0$) for $i = 1, \ldots, m$. Suppose $n \times m'$ matrix $\mathbf{B}$ with $\|\mathbf{B}_j\|_2 = 1$ for $j = 1, \ldots, m'$ and vectors $\mathbf{\overline x}_i, \ldots, \mathbf{\overline x}_m$ together solve:
+\begin{align}\label{minsum}
+\min \sum_{i = 1}^m \|\mathbf{\overline x}_i\|_1 \ \
+\text{subject to} \ \ \mathbf{B}\mathbf{\overline x}_i = \mathbf{Ax}_i \ \ \text{for $i = 1, \ldots, m$}.
+\end{align}
+Then $\mathbf{A} = \mathbf{B}_S \mathbf{P}$ for some $S \subseteq [m']$ of size $m$ and $m \times m$ permutation matrix $\mathbf{P}$. 
+\end{theorem}
+
+
+\begin{proof}
+Fixing $i$, we have
+\begin{equation}
+\|\mathbf{x}_i\|_1 = |c_i| \|\mathbf{Ae}_i\|_2 = \|\mathbf{Ax}_i\|_2 = \|\mathbf{B \overline x}_i\|_2 \leq \sum_j |\bar c_j| \|\mathbf{Be}_j\|_2 = \|\mathbf{\overline x}_i\|_1
+\end{equation}
+so that $\|\mathbf{\overline x}_i\|_1 = \|\mathbf{x}_i\|_1 + \varepsilon_i$ for some $\varepsilon_i \geq 0$. But also,
+\begin{equation}
+\sum_i \|\mathbf{x}_i\|_1 \geq \sum_i \|\mathbf{\overline x}_i\|_1 = \sum_i \left( \|\mathbf{x}_i\|_1 + \varepsilon_i \right)
+\end{equation}
+Hence $\sum_i \varepsilon_i \leq 0$. But since every $\varepsilon_i$ is non-negative, it must but that $\varepsilon_i = 0$ for $i = 1, \ldots, m$. Thus,
+\begin{equation}
+\|\mathbf{\overline x}_i\|_1 = \|\mathbf{x}_i\|_1 =  \|\mathbf{B \overline x}_i\|_2.
+\end{equation}
+
+\begin{lemma}\label{lemma1}
+If $\|\mathbf{Tv}\|_2 = \|\mathbf{v}\|_1$ for $\mathbf{T}$ with $\|\mathbf{T}_j\|_2 = 1$ for all $j$ and $|\mathbf{T}_i \cdot \mathbf{T}_j| < 1$ for all $i, j$ then $\mathbf{v}$ has at most one non-zero entry. 
+\end{lemma}
+
+\begin{proof}
+Let $\mathbf{v} = \sum_j c_j e_j$. Then,
+\begin{equation}
+\mathbf{Tv} 
+= \sum_j c_j \mathbf{T}_j 
+= \sum_j c_j \sum_i \mathbf{T}_{ij} \mathbf{e}_i 
+= \sum_i \sum_j c_j \mathbf{T}_{ij} \mathbf{e}_i 
+= \sum_i d_i \mathbf{e}_i \ \ \text{where } d_i 
+= \sum_j c_j \mathbf{T}_{ij} 
+\end{equation}
+So that 
+\begin{align}
+\|\mathbf{Tv}\|_2^2 
+&= \sum_i d_i^2 
+= \sum_i \left( \sum_j c_j \mathbf{T}_{ij} \right)^2  \\
+&= \sum_i \left( \sum_j \left(c_j \mathbf{T}_{ij} \right)^2 + \sum_j \sum_{k \neq j} \left(c_j \mathbf{T}_{ij} \right) \left( c_k \mathbf{T}_{ik} \right) \right) \\
+&= \sum_j c_j^2 \sum_i \mathbf{T}_{ij}^2 + \sum_j \sum_{k \neq j} c_j c_k \sum_i \mathbf{T}_{ij} \mathbf{T}_{ik} \\
+&= \sum_j c_j^2 + \sum_j \sum_{k \neq j} c_j c_k \left( \mathbf{T}_j \cdot \mathbf{T}_k \right)
+\end{align}
+where we have applied the formula $\left( \sum_i a_i \right)^2 = \sum_i a_i^2 + \sum_i \sum_{j \neq i} a_i a_j$. Next, observe 
+\begin{equation}
+\|\mathbf{v}\|_1^2 = \left( \sum_j |c_j| \right)^2 = \sum_j c_j^2 + \sum_j \sum_{k \neq j} |c_j| |c_k|
+\end{equation}
+so that$\|\mathbf{Tv}\|_2^2 = \|\mathbf{v}\|_1$ implies $\sum_i \sum_{j\neq i} \alpha_{ij} = 0$ for $\alpha_{ij} = |c_i| |c_j| - c_i c_j \left(\mathbf{T}_i \cdot \mathbf{T}_j \right)$. Now,
+\begin{equation}
+\alpha_{ij} 
+\geq |c_i| |c_j| - |c_i c_j \left(\mathbf{T}_i \cdot \mathbf{T}_j \right)|
+= |c_i| |c_j| \left(1 - |\mathbf{T}_i \cdot \mathbf{T}_j | \right)
+\geq 0
+\end{equation}
+since $\|\mathbf{T}_j\|_2 = 1$ for all $j$. Thus $\alpha_{ij} = 0$ for all $i, j$ and we have $|c_i| |c_j| = |c_i| |c_j| |\mathbf{T}_i \cdot \mathbf{T}_j |$, or $ |c_i| |c_j| \left(1 - |\mathbf{T}_i \cdot \mathbf{T}_j | \right) = 0$. Since $|\mathbf{T}_i \cdot \mathbf{T}_j| < 1$, this implies $|c_i| |c_j| = 0$ for all $i, j$. Thus, $\mathbf{v}$ has at most one nonzero entry, since if $c_i \neq 0$ then $c_j = 0$ for all $j \neq i$.
+\end{proof}
+
+By Lemma \ref{lemma1}, either $\mathbf{B}$ has colinear columns or the $\mathbf{\overline x}_i$ are all 1-sparse vectors. 
+
+It is easy to see that if $\mathbf{B}$ has colinear columns, there exists some $S \subset [m']$ such that the submatrix $\mathbf{B}_S$ has no colinear columns and satisfies $\mathbf{B}_S \mathbf{\overline x}_i' = \mathbf{B} \mathbf{\overline x}_i$ for some $\mathbf{\overline x}_i' \in \mathbb{R}^{|S|}$ with $\|\mathbf{\overline x}_i'\|_1 = \|\mathbf{\overline x}_i\|_1$ for all $i$. Simply set $S = [m']$ and $\mathbf{\overline x}_i' = \mathbf{\overline x}_i$ and let $i=1$. Iterating through $j \neq i$, if $| \mathbf{B}_i \cdot \mathbf{B}_j| = 1$, let $S \to S \setminus \{j\}$ and $\overline c_i' \to \overline c_i' + \overline c_j \cdot \text{sgn}(\mathbf{B}_i \cdot \mathbf{B}_j)$. Induct on $i$. 
+
+By the above claim, there is some $S \subseteq [m']$ such that $\mathbf{B}_S$ has no colinear columns (i.e. $L_2(\mathbf{B}) > 0$) and satisfies the assumptions of the theorem for some $\mathbf{\overline x}_i' \in \mathbb{R}^{|S|}$ for which $\|\mathbf{\overline x}_i'\|_1 = \|\mathbf{\overline x}_i\|_1$ for all $i$. By the lemma, then, the $\mathbf{\overline x}_i'$ must all have at most one non-zero entry (i.e. they are 1-sparse) and the result follows by application of the $\ell_0$-norm theorem.
+
+\end{proof}
+
+\begin{theorem}[Noisy recovery]
+Suppose the $n \times m$ matrix $\mathbf{A}$ has $\|\mathbf{A}_j\|_2 = 1$ for $j = 1, \ldots, m$ and $L_2(\mathbf{A}) > 0$. Let $\mathbf{x}_i \in \mathbb{R}^m$ be such that $\mathbf{x}_i = c_i \mathbf{e}_i$ ($c_i \neq 0$) for $i = 1, \ldots, m$. Suppose $n \times m'$ matrix $\mathbf{B}$ with $\|\mathbf{B}_j\|_2 = 1$ for $j = 1, \ldots, m'$ and vectors $\mathbf{\overline x}_i, \ldots, \mathbf{\overline x}_m$ together solve:
+\begin{align}\label{minsum}
+\min \sum_{i = 1}^m \|\mathbf{\overline x}_i\|_1 \ \
+\text{subject to} \ \ \| \mathbf{B}\mathbf{\overline x}_i - \mathbf{Ax}_i \|_2 \leq \varepsilon \ \ \text{for $i = 1, \ldots, m$}.
+\end{align}
+Then $\mathbf{A} = \mathbf{B}_S \mathbf{P}$ for some $S \subseteq [m']$ of size $m$ and $m \times m$ permutation matrix $\mathbf{P}$.
+\end{theorem}
+
+\begin{proof}
+By the reverse triangle inequality, we have for all $i$:
+\begin{equation}
+\varepsilon \geq \|\mathbf{Ax}_i - \mathbf{B \overline x}_i\|_2 \geq \left| \|\mathbf{Ax}_i \| - \|\mathbf{B \overline x}_i\|_2 \right| .
+\end{equation}
+So,
+\begin{equation}\label{geq}
+\|\mathbf{\overline x}_i\|_1 \geq \|\mathbf{B \overline x}_i\|_2 \geq \|\mathbf{Ax}_i \|_2 - \varepsilon = |c_i| - \varepsilon .
+\end{equation}
+
+It is trivial to show that letting $\mathbf{B}=\mathbf{A}$ and $\mathbf{\overline x}_i = \left(1 - \frac{\varepsilon}{ |c_i| }\right) \mathbf{x}_i$ for all $i$ is a particular solution satisfying the constraints, since then $\| \mathbf{B}\mathbf{\overline x}_i - \mathbf{Ax}_i \|_2 = \varepsilon$. Thus, a solution to the minimization problem must satisfy:
+\begin{equation}
+\sum_{i=1}^m \|\mathbf{\overline x}_i\|_1 \leq \sum_i \left( |c_i| - \varepsilon \right).
+\end{equation}
+
+Taken together with Eq. \ref{geq}, this implies that $\|\mathbf{\overline x}_i\|_1 = |c_i| - \varepsilon$ for all $i$, thus $\|\mathbf{\overline x}_i\|_1 = \|\mathbf{B \overline x}_i\|_2$ for all $i$. By Lemma \ref{lemma1}, either $\mathbf{B}$ has colinear columns or the $\mathbf{\overline x}_i$ are all 1-sparse vectors.
+
+It is easy to see that if $\mathbf{B}$ has colinear columns, there exists some $S \subset [m']$ such that the submatrix $\mathbf{B}_S$ has no colinear columns and satisfies $\mathbf{B}_S \mathbf{\overline x}_i' = \mathbf{B} \mathbf{\overline x}_i$ for some $\mathbf{\overline x}_i' \in \mathbb{R}^{|S|}$ with $\|\mathbf{\overline x}_i'\|_1 = \|\mathbf{\overline x}_i\|_1$ for all $i$. Simply set $S = [m']$ and $\mathbf{\overline x}_i' = \mathbf{\overline x}_i$ and let $i=1$. Iterating through $j \neq i$, if $| \mathbf{B}_i \cdot \mathbf{B}_j| = 1$, let $S \to S \setminus \{j\}$ and $\overline c_i' \to \overline c_i' + \overline c_j \cdot \text{sgn}(\mathbf{B}_i \cdot \mathbf{B}_j)$. Induct on $i$. 
+
+By the above claim, there is some $S \subseteq [m']$ such that $\mathbf{B}_S$ has no colinear columns (i.e. $L_2(\mathbf{B}) > 0$) and satisfies the assumptions of the theorem for some $\mathbf{\overline x}_i' \in \mathbb{R}^{|S|}$ for which $\|\mathbf{\overline x}_i'\|_1 = \|\mathbf{\overline x}_i\|_1$ for all $i$. By the lemma, then, these $\mathbf{\overline x}_i'$ must all have at most one non-zero entry (i.e. they are 1-sparse). Therefore, there exist $\overline c_1, \ldots, \overline c_{\overline m}$ and a map $\pi: [m] \to [\overline m]$ such that 
+\begin{equation}
+\|c_i \mathbf{A}_i - \overline c_i \mathbf{B}_{\pi(i)}\|_2 \leq \varepsilon \ \ \text{for all $i$}
+\end{equation}
+We could end here by applying the noisy $\ell_0$-norm theorem; this would imply dictionary recovery up to an error commensurate with $\varepsilon$. Instead, we wil go further by using the fact that in this case we know $|\overline c_i| = |c_i| - \varepsilon$ for all $i$.
+
+\begin{lemma}\label{lemma2}
+$\|\mathbf{u} - \mathbf{v}\|_2 \leq \varepsilon$ for $\|\mathbf{v}\|_2 = \|\mathbf{u}\|_2 - \varepsilon \implies \|\mathbf{v}\|_2 \mathbf{u} = \|\mathbf{u}\|_2 \mathbf{v}$.
+\end{lemma}
+
+\begin{proof}
+Observe that 
+\begin{align}
+\varepsilon^2 &\geq \|\mathbf{u}\|_2^2 +  \|\mathbf{v}\|_2^2 - 2 \left<\mathbf{u}, \mathbf{v}\right> \\
+&=  \|\mathbf{u}\|_2^2 + \left( \|\mathbf{u}\|_2 - \varepsilon \right)^2 - 2 \left<\mathbf{u}, \mathbf{v}\right> \\
+&=  2 \|\mathbf{u}\|_2^2 - 2\|\mathbf{u}\|_2 \varepsilon + \varepsilon^2 - 2 \left<\mathbf{u}, \mathbf{v}\right> \\
+&\implies \left<\mathbf{u}, \mathbf{v}\right> \geq \|\mathbf{u}\|_2 \left( \|\mathbf{u}\|_2 - \varepsilon \right)
+= \|\mathbf{u}\|_2 \|\mathbf{v}\|_2
+\end{align}
+But $\left<\mathbf{u}, \mathbf{v}\right>  \leq \|\mathbf{u}\|_2 \|\mathbf{v}\|_2$ always, thus $\left<\mathbf{u}, \mathbf{v}\right>  = \|\mathbf{u}\|_2 \|\mathbf{v}\|_2$. Therefore, 
+\begin{align}
+\| \|\mathbf{u}\|_2\mathbf{v} - \|\mathbf{v}\|_2\mathbf{u} \|_2^2 
+= \left( \|\mathbf{u}\|_2 \|\mathbf{v}\|_2 \right)^2 +  \left( \|\mathbf{v}\|_2 \|\mathbf{u}\|_2 \right)^2 - 2  \|\mathbf{u}\|_2 \|\mathbf{v}\|_2 \left<\mathbf{u}, \mathbf{v}\right>
+= 0
+\end{align}
+So $\|\mathbf{u}\|_2\mathbf{v} = \|\mathbf{v}\|_2\mathbf{u} $.
+\end{proof}
+By Lemma \ref{lemma2} (i.e. with $c_i\mathbf{A}_i = \mathbf{u}$ and $\overline c_i \mathbf{B}_{\pi(i)} = \mathbf{v}$), we have for all $i$ that $|c_i| \overline c_i \mathbf{B}_{\pi(i)} = |\overline c_i| c_i \mathbf{A}_i$, or 
+\begin{equation}
+\overline c_i' \mathbf{B}_{\pi(i)} = c_i \mathbf{A}_i \ \ \text{for all $i$}
+\end{equation}
+for $\overline c_i' = \text{sign}(\overline c_i) \cdot |c_i|$, and the result follows by application of the noiseless $\ell_0$-norm theorem. (Alternatively, we may directly infer $\mathbf{B}_{\pi(i)} = \text{sign}(c_i \overline c_j) \mathbf{A}_i$) and apply only the argument of the the $\ell_0$-norm proof establishing that $\pi$ is a permutation.)
+\end{proof}
+
+
+\end{document}

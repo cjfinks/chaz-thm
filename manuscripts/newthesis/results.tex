@@ -11,13 +11,14 @@
 
 %Why do neuroscientists care about dictionary learning?
 
-In this chapter, we will develop some necessary language before stating the very general main result of this work: that uniqueness and stability is a typical property of learned dictionaries for sparse coding of noisy signals. More specifically, it is stated that matrices injective on a sparse domain are identifiable from \mbox{$N = m(k-1){m \choose k} + m$} noisy linear combinations of $k$ of their $m$ columns up to an error that is linear in the noise (Thm.~\ref{DeterministicUniquenessTheorem}). In fact, provided $n \geq \min(2k,m)$, in almost all cases the problem is well-posed, as per Hadamard \cite{Hadamard1902}, given a sufficient amount of data (Thm.~\ref{robustPolythm} and Cor.~\ref{ProbabilisticCor}). 
+This chapter presents the main results of this work: that uniqueness and stability is a typical property of learned dictionaries for sparse coding of noisy signals.
+
+More specifically, it is stated that matrices injective on a sparse domain are identifiable from \mbox{$N = m(k-1){m \choose k} + m$} noisy linear combinations of $k$ of their $m$ columns up to an error that is linear in the noise (Thm.~\ref{DeterministicUniquenessTheorem}). 
+In fact, provided $n \geq \min(2k,m)$, in almost all cases the problem is well-posed, as per Hadamard \cite{Hadamard1902}, given a sufficient amount of data (Thm.~\ref{robustPolythm} and Cor.~\ref{ProbabilisticCor}). 
 
 We will find these guarantees also hold for a related (and perhaps more commonly posed, e.g. \cite{rehnsommer2007}) optimization problem seeking a dictionary minimizing the average number of elementary waveforms required to reconstruct each sample of the dataset (Thm.~\ref{SLCopt}). To practical benefit, no restrictions are imposed on learned dictionaries (e.g., that they, too, be injective over some sparse domain) beyond an upper bound on dictionary size, which is necessary in any case to avoid trivial solutions (e.g., allowing $m = N$). %That is, every pair of solutions of comparable size has some number of dictionary elements in common (up to noise), and similarly so for the coefficients of sparse codes they induce.
 
-\section{Definitions and Problem Statements}
-
-More precisely, let $\mathbf{A} \in \mathbb R^{n \times m}$ be a matrix with columns $\mathbf{A}_j$ ($j = 1,\ldots,m$) and let dataset $Z$ consist of measurements:
+Let $\mathbf{A} \in \mathbb R^{n \times m}$ be a matrix with columns $\mathbf{A}_j$ ($j = 1,\ldots,m$) and let dataset $Z$ consist of measurements:
 \begin{align}\label{LinearModel}
 \mathbf{z}_i = \mathbf{A}\mathbf{x}_i + \mathbf{n}_i,\ \ \  \text{$i=1,\ldots,N$},
 \end{align}
@@ -71,6 +72,8 @@ Surprisingly, the development of Thm.~\ref{DeterministicUniquenessTheorem} is ge
 
 %Denote by $\mathbf{x}^J$ the subvector formed from the entries of $\mathbf{x}$ indexed by $J$. 
 %A set of $k$-sparse vectors is said to be in \emph{general linear position} when any $k$ of them are linearly independent. 
+
+\section{Combinatorial Designs}
 
 Precise statements of our results require that we first identify some combinatorial criteria on the supports\footnote{Recall that a vector $\mathbf{x}$ is said to be \emph{supported} in $S$ when $\mathbf{x} \in \text{\rmfamily span}\{\mathbf{e}_j: j\in S\}$, with $\mathbf{e}_j$ forming the standard column basis.} of sparse vectors. Let $\{1, \ldots, m\}$ be denoted $[m]$, its power set $2^{[m]}$, and ${[m] \choose k}$ the set of subsets of $[m]$ of size $k$.  A \emph{hypergraph} on vertices $[m]$  is simply any subset $\mathcal{H} \subseteq 2^{[m]}$. We say that $\mathcal{H}$ is \textit{$k$-uniform} when $\mathcal{H} \subseteq {[m] \choose k}$. The \emph{degree} $\deg_\mathcal{H}(i)$ of a node $i \in [m]$ is the number of sets in $\mathcal{H}$ that contain $i$, and we say $\mathcal{H}$ is \emph{regular} when for some $r$ we have $\deg_\mathcal{H}(i) = r$ for all $i$ (given such an $r$, we say $\mathcal{H}$ is \textit{$r$-regular}). We also write $2\mathcal{H} := \{ S \cup S': S, S' \in \mathcal{H}\}$.  The following class of structured hypergraphs is a key ingredient in this work.
 
@@ -246,12 +249,10 @@ Thus, drawing the dictionary and supported sparse coefficients from any continuo
 
 %\cite{rehnsommer2007, rozell2007neurally, ganguli2012compressed, hu2014hebbian}
 
+\section{Discussion}
+
 We close this section with some comments on the optimality of our results.  The linear scaling for $\varepsilon$ in \eqref{epsdel} is essentially optimal (e.g., see \cite{arias2013fundamental}), but a basic open problem remains: how many samples are necessary to determine the sparse coding model? 
 Our results demonstrate that sparse codes $\mathbf{x}_i$ drawn from only a polynomial number of $k$-dimensional subspaces permit stable identification of the generating dictionary $\mathbf{A}$. 
 This lends some legitimacy to the use of the model in practice, where data in general are unlikely (if ever) to exhibit the exponentially many possible $k$-wise combinations of dictionary elements required by (to our knowledge) all previously published results. 
 
 Consequently, if $k$ is held fixed or if the size of the support set of reconstructing codes is polynomial in $\overline m$ and $k$, then a practical (polynomial) amount of data suffices to identify the dictionary.\footnote{In the latter case, a reexamination of the pigeonholing argument in the proof of Thm.~\ref{DeterministicUniquenessTheorem} requires a polynomial number of samples distributed over a polynomial number of supports.} Reasons to be skeptical that this holds in general, however, can be found in \cite{tillmann2014computational, tillmann2015computational}. Even so, in the next section we discuss how probabilistic guarantees can in fact be made for any number of available samples.
-
-\section{Discussion}
-
-TODO

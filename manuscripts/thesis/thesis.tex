@@ -35,6 +35,7 @@
 \usepackage{bm}
 \usepackage{rotating} % provides sidewaystable and sidewaysfigure
 \usepackage{url}
+\usepackage{indentfirst}
 
 % Double spacing, if you want it.  Do not use for the final copy.
 % \def\dsp{\def\baselinestretch{2.0}\large\normalsize}
@@ -60,7 +61,7 @@
 \degree{Doctor of Philosophy}
 \chair{Adjunct Professor Friedrich Sommer}
 \othermembers{Professor Bruno Olshausen \\
-  Associate Professor Mike Deweese \\
+  Associate Professor Michael DeWeese \\
   Chancellor's Professor Bin Yu}
 % For a co-chair who is subordinate to the \chair listed above
 % \cochair{Professor Benedict Francis Pope}
@@ -88,16 +89,24 @@
 %\approvalpage
 \copyrightpage
 
-\include{abstract}
+
+
+%\include{abstract}
+\begin{abstract}
+Learning optimal dictionaries for sparse representation modeling has led to the discovery of characteristic sparse features in several classes of natural signals. However, universal guarantees of the uniqueness and stability of such features in the presence of noise are lacking. This work presents very general conditions guaranteeing when dictionaries yielding the sparsest encodings of a dataset are unique and stable with respect to noise. The stability constants are explicit and computable; as such, there is an effective procedure sufficient to affirm if a proposed solution to the dictionary learning problem is unique within bounds commensurate with the noise. \\
+Two formulations of the dictionary learning problem are considered. The first seeks a dictionary for which each signal in a dataset is approximated up to some bounded error by a linear superposition of only a limited number of dictionary elements. In this case, existing guarantees are extended to the noisy regime to show that such dictionaries and the sparse representations they induce are almost always identifiable up to an error commensurate with the approximation error. Moreover, a theory of combinatorial designs is introduced to demonstrate that this is so even if the dictionary fails to satisfy the spark condition, the data are distributed over only a polynomial set of subspaces spanned by the dictionary, or (to some extent) even if the dictionary is overestimated in size. \\
+The second formulation of the problem seeks a dictionary which minimizes the average number of dictionary elements required to approximate each signal in the dataset up to some bounded error. The guarantees in this case, the first of their kind in both in the noiseless and noisy regimes, are derived by demonstrating that this second problem actually reduces to an instance of the first. Importantly, in both cases, no constraints whatsoever are imposed on learned dictionaries beyond a natural upper bound on their size. \\
+This work serves to justify, in principle, dictionary learning in general as a means of discovering latent sparse structure in real data. Though much work remains to be done deriving criteria for use in practice, the theoretical tools developed here should be of use to this end.
+\end{abstract}
 
 \begin{frontmatter}
 
 \begin{dedication}
 \null\vfil
 %\begin{center} 
-I want to dedicate this work to my dad. Yet it feels as though that would in some sense be measuring his life up against these results, which can't possibly match the time with him I traded to produce them. The fact is that whatever may be the eventual effect of this work on the scientific ecosystem, these mathematical truths could have waited. They could have arrived at their own pace, via myself or another, and I could have been more present with my dad as he waited patiently to die of cancer. 
+I want to dedicate this work to my dad. Yet it feels as though doing so would in some sense measure his life up against these results, which can't possibly be matched to the time with him I traded to produce them. Whatever the eventual effect of this work on the scientific ecosystem may be, these mathematical truths could have waited. They could have arrived at their own pace, via myself or another, and I could have been more present with my dad as he waited patiently to die of cancer. 
 
-I suppose that I couldn't really fathom what it actually meant for this to happen -- to never see or talk to or hug him again -- while the idea of putting original work out there, of crafting my own theorems to lay down as pieces of the overwhelming puzzle that is neuroscience, was tantalizing. Yet I feel it was very much a sense of desperation, of having to accomplish something and prove myself worthy of the position I had come to find myself in after 25+ years of schooling and a first failed project, that largely drove these efforts. Truth be told, I initially had no particular interest in dictionary learning other than as a means to passing my qualifying exam; and by that time, I worried the brain was so dauntingly complex that I should feel lucky to have at least been offered a well-defined problem of arguable relevance to neuroscience to work on, particularly one I felt even remotely equipped to solve myself.
+I suppose that I couldn't really fathom what it actually meant for this to happen -- to never see or talk to or hug him again -- while the idea of putting original work out there, of crafting my own piece of the overwhelming puzzle that is neuroscience, was tantalizing. Yet I feel that it was very much a sense of desperation, of having to accomplish something and prove myself worthy of the position I had come to find myself in after 25+ years of schooling and a first failed project, that largely drove these efforts. Truth be told, I initially had no particular interest in dictionary learning other than as a means to passing my qualifying exam; and by that time, I worried the brain was so dauntingly complex that I should feel lucky to have at least been offered a well-defined problem of arguable relevance to neuroscience to work on, particularly one I felt even remotely equipped to solve myself.
 
 So let's just say that this is the first bit of a life's work dedicated to my dad. A life of work uninfluenced by position or status and the associated self-doubt, pressure, or delusions of grandeur; one dedicated to passionate ideas, to solving problems I care about and that really matter, to loving and caring for others or, as my dad would say, to ``being a mensch". May this dedication serve to hold me accountable for that. Also, I love you, mom. I dedicate this and everything to come to you, too.
 

@@ -1,4 +1,4 @@
-\chapter{Proofs}
+\chapter{Theory and Methods}
 
 \section{Introduction}
 
@@ -254,6 +254,152 @@ Next, observe that no more than $(k-1)|\mathcal{H}|$ of the $\mathbf{\overline x
 The total number of $(k-1)$-sparse vectors $\mathbf{\overline x}_i$ thus cannot exceed $|\mathcal{H}|(k-1){ \overline m \choose k-1}$. By \eqref{eqn}, no more than $|\mathcal{H}|k(k-1){ \overline m \choose k-1}$ vectors $\mathbf{\overline x}_i$ are not $k$-sparse. Since for every $S \in \mathcal{H}$ there are over $(k-1)\left[ {\overline m \choose k} + |\mathcal{H}|k{ \overline m \choose k-1} \right]$ vectors $\mathbf{x}_i$ supported there, it must be that more than $(k-1){\overline m \choose k}$ of them have corresponding $\mathbf{\overline x}_i$ that are $k$-sparse. The result now follows from Thm.~\ref{DeterministicUniquenessCorollary}, noting by the triangle inequality that $\|\mathbf{A}\mathbf{x}_i - \mathbf{B}\mathbf{\overline x}_i\| \leq 2\eta$ for $i = 1, \ldots, N$.
 \end{proof}
 
+\section{Proof of Main Lemma}\label{proofs}
+
+We prove Lem.~\ref{MainLemma} after the following auxiliary lemmas.  % stating and proving some auxiliary lemmas. 
+%First, note that since $\|\mathbf{A}\mathbf{x}\|_2 \leq \max_j\|\mathbf{A}_j\|_2\|\mathbf{x}\|_1$ and $\|\mathbf{x}\|_1 \leq \sqrt{k} \|\mathbf{x}\|_2$ for $k$-sparse $\mathbf{x}$, by \eqref{Ldef} we have the following frequently applied inequality:
+%\begin{align}\label{delrho}
+%L_{k'}(\mathbf{A}) \leq  \max_j\|\mathbf{A}_j\|_2 \ \ \text{for all $k' \leq 2k$}.
+%\end{align}
+
+% and then sketch the proofs of Thm.~\ref{robustPolythm} and Cor.~\ref{ProbabilisticCor}.
+
+%\begin{lemma}\label{spanIntersectionLemma}
+%Let $\mathbf{M} \in \mathbb{R}^{n \times m}$. If every $2k$ columns of $\mathbf{M}$ are linearly independent, then for any $F \subseteq {[m] \choose k}$:
+%\begin{align*}
+%\text{\rmfamily span}\{\mathbf{M}_{\cap F}\}  = \bigcap_{S \in F} \text{\rmfamily span}\{\mathbf{M}_S\}.
+%\end{align*}
+%\end{lemma}
+%\begin{proof}
+%Using induction on $|F|$, it is enough to prove the lemma when $|F| = 2$; but this case follows directly from the assumption.
+%\end{proof}
+
+\begin{lemma}\label{spanIntersectionLemma}
+If $f: V \to W$ is injective, then $f\left(\cap_{i=1}^\ell V_i \right) =  \cap_{i=1}^\ell f\left(V_i\right)$ for any $V_1, \ldots, V_\ell \subseteq V$. ($f(\emptyset):=\emptyset$.)
+%In particular, if for some $E \in 2^{[m]}$ the map $M \in \mathbb{R}^{n \times m}$ is injective on $\cup_{S \in \mathcal{H}} \text{span}\{e_i\}_{i \in S}$ then $\text{span}\{ M_{\cap_{S \in \mathcal{H}} S} \} = \cap_{S \in \mathcal{H}} \text{span}\{M_S\}$.
+\end{lemma}
+\begin{proof}
+By induction, it is enough to prove the case $\ell = 2$. Clearly, for any map $f$, if $w \in f(U \cap V)$ then $w \in f(U)$ and $w \in f(V)$; hence, $w \in f(U) \cap f(V)$. If $w \in f(U) \cap f(V)$, then $w \in f(U)$ and $w \in f(V)$; thus, $w = f(u) = f(v)$ for some $u \in U$ and $v \in V$, implying $u = v$ by injectivity of $f$. It follows that $u \in U \cap V$ and $w \in f(U \cap V)$.
+\end{proof}
+In particular, if a matrix $\mathbf{A}$ satisfies $L_{2\mathcal{H}}(\mathbf{A}) > 0$, then taking $V$ to be the union of subspaces consisting of vectors with supports in $2\mathcal{H}$, we have $\bm{\mathcal{A}}_{\cap \mathcal{G}} = \cap \bm{\mathcal{A}}_\mathcal{G}$ for all $\mathcal{G} \subseteq \mathcal{H}$.
+% \vspace{-.4 cm}
+
+\begin{lemma}\label{DistanceToIntersectionLemma}
+Let $\mathcal{V} = \{V_i\}_{i=1}^k$ be a set of two or more subspaces of $\mathbb{R}^m$, and set $V = \cap \mathcal{V} $. For  $\mathbf{u} \in \mathbb{R}^m$, we have (recall Defs.~\ref{dDef}~\&~\ref{FriedrichsDefinition}):
+\begin{align}\label{DTILeq}
+\text{\rmfamily dist}(\mathbf{u}, V) \leq \frac{1}{1 - \xi(\mathcal{V})} \sum_{i=1}^k \text{\rmfamily dist}(\mathbf{u}, V_i).
+\end{align}
+\end{lemma}
+\begin{proof} 
+% When $V = \{\mathbf{0}\}$, the result is trivial, so suppose otherwise.  
+Recall the projection onto the subspace $V \subseteq \mathbb{R}^m$ is the mapping $\Pi_V: \mathbb{R}^m \to V$ that associates with each $\mathbf{u}$ its unique nearest point in $V$; i.e., $\|\mathbf{u} - \Pi_V\mathbf{u}\|_2 = \text{\rmfamily dist}(\mathbf{u}, V)$.
+By repeatedly applying the triangle inequality, we have:
+\begin{align}\label{f}
+\|\mathbf{u} - &\Pi_V\mathbf{u}\|_2 
+\leq \|\mathbf{u} - \Pi_{V_k} \mathbf{u}\|_2 + \|\Pi_{V_k}  \mathbf{u} - \Pi_{V_k}\Pi_{V_{k-1}}\mathbf{u}\|_2 \nonumber \\
+&\ \ \ \ \ \ \ \ \ \ \ + \cdots + \|\Pi_{V_k} \Pi_{V_{k-1}}\cdots \Pi_{V_1} \mathbf{u} - \Pi_V \mathbf{u}\|_2 \nonumber \\
+&\leq  \sum_{\ell=1}^k \|\mathbf{u} - \Pi_{V_{\ell}} \mathbf{u}\|_2 
++ \|(\Pi_{V_k}\cdots\Pi_{V_{1}} - \Pi_V) \mathbf{u}\|_2,
+\end{align}
+where we have also used that the spectral norm of the orthogonal projections $\Pi_{V_{\ell}}$ satisfies $\|\Pi_{V_{\ell}}\|_2 \leq 1$ for all $\ell$. 
+
+It remains to bound the second term in \eqref{f} by $\xi(\mathcal{V}) \|\mathbf{u} - \Pi_V\mathbf{u}\|_2$. First, note that $\Pi_{V_\ell} \Pi_V = \Pi_V$ and $\Pi_V^2 = \Pi_V$, so we have $\|(\Pi_{V_k} \cdots \Pi_{V_1} - \Pi_V) \mathbf{u} \|_2 
+= \| ( \Pi_{V_k} \cdots\Pi_{V_1} - \Pi_V ) (\mathbf{u} - \Pi_V\mathbf{u})\|_2$. % \leq z\|\mathbf{u} - \Pi_V\mathbf{u}\|_2$.
+Consequently, inequality \eqref{DTILeq} follows from \cite[Thm.~9.33]{Deutsch12}:
+\begin{align}
+\|\Pi_{V_k}\Pi_{V_{k-1}}\cdots\Pi_{V_1} \mathbf{x} - \Pi_V\mathbf{x}\|_2 \leq z \|\mathbf{x}\|_2, \ \ \text{for all } \mathbf{x},
+\end{align}
+with \mbox{$z^2= 1 - \prod_{\ell =1}^{k-1}(1-z_{\ell}^2)$} and \mbox{$z_{\ell} = \cos\theta\left(V_{\ell}, \cap_{s=\ell+1}^k V_s\right)$} (recall $\theta$ from Def.~\ref{FriedrichsDefinition}), after substituting $\xi(\mathcal{V})$ for $z$ and rearranging terms.
+\end{proof}
+\begin{lemma}\label{NonEmptyLemma} 
+Fix an $r$-regular hypergraph $\mathcal{H} \subseteq 2^{[m]}$ satisfying the SIP. If the map $\pi: \mathcal{H} \to 2^{[\overline m]}$ has $\sum_{S \in \mathcal{H}} |\pi(S)| \geq \sum_{S \in \mathcal{H}} |S|$ and:
+\begin{align}\label{cond}
+	|\cap \pi(\mathcal{G})| \leq |\cap \mathcal{G} |,\ \ \   \text{for } \mathcal{G} \in {\mathcal{H} \choose r} \cup {\mathcal{H} \choose r+1},
+\end{align}
+%
+then $\overline m \geq m$; and if $\overline m  (r-1) < mr$, the map $i \mapsto \cap_{S \in \sigma(i)} \pi(S)$ is an injective function to $[\overline m]$ from some $J \subseteq [m]$ of size $m - (r-1)(\overline m - m)$ (recall $\sigma$ from Def.~\ref{sip}).  %In particular, if $\overline m = m$ then $\pi$ is induced by a permutation on $[m]$.
+\end{lemma}
+
+\begin{proof}
+Consider the following set: $T_1 := \{(i, S): i \in \pi(S), S \in \mathcal{H}\}$, which numbers $|T_1| = \sum_{S \in \mathcal{H}} |\pi(S)| \geq \sum_{S \in \mathcal{H}} |S| = \sum_{i \in [m]} \deg_\mathcal{H}(i) = mr$ by $r$-regularity of $\mathcal{H}$. Note that $|T_1| \leq \overline m r$; otherwise, pigeonholing the tuples of $T_1$ with respect to their $\overline m$ possible first elements would imply that more than $r$ of the tuples in $T_1$ share the same first element. This cannot be the case, however, since then some $\mathcal{G} \in {\mathcal{H} \choose r+1}$ formed from any $r+1$ of their second elements would satisfy $\cap \pi(\mathcal{G}) \neq 0$; hence, $|\cap \mathcal{G}| \neq 0$ by \eqref{cond}, contradicting $r$-regularity of $\mathcal{H}$. It follows that $\overline m \geq m$.
+
+Suppose now that $\overline m (r-1) < mr$, so that $p := mr - \overline m (r-1)$ is positive and $|T_1| \geq \overline m (r - 1) + p$. Pigeonholing $T_1$ into $[\overline m]$ again, there are at least $r$ tuples in $T_1$ sharing some first element; that is, for some $\mathcal{G}_1 \subseteq \mathcal{H}$ of size $|\mathcal{G}_1| \geq r$, we have $|\cap \pi(\mathcal{G}_1)| \geq 1$ and (by \eqref{cond}) $|\cap \mathcal{G}_1| \geq 1$. Since no more than $r$ tuples of $T_1$ can share the same first element, we in fact have $|\mathcal{G}_1| = r$. It follows by $r$-regularity that $\mathcal{G}_1$ is a star of $\mathcal{H}$; hence, $|\cap \mathcal{G}_1| = 1$ by the SIP and $|\cap \pi(\mathcal{G}_1)|  = 1$ by \eqref{cond}.
+
+If $p=1$, then we are done. Otherwise, define $T_2 := T_1 \setminus \{(i,S) \in T_1: i = \cap \pi(\mathcal{G}_1)\}$, which contains $|T_2| = |T_1| - r \geq (\overline m - 1)(r-1) + (p-1)$ ordered pairs having $\overline m - 1$ distinct first indices. Pigeonholing $T_2$ into $[\overline m - 1]$ and repeating the above arguments produces the star $\mathcal{G}_2 \in {\mathcal{H} \choose r}$ with intersection $\cap \mathcal{G}_2$ necessarily distinct (by $r$-regularity) from $\cap \mathcal{G}_1$. Iterating this procedure $p$ times in total yields the stars $\mathcal{G}_i$ for which $\cap\mathcal{G}_i \mapsto \cap \pi(\mathcal{G}_i)$ defines an injective map to $[\overline m]$ from $J = \{\cap \mathcal{G}_1, \ldots, \cap \mathcal{G}_p\} \subseteq [m]$.
+\end{proof}
+
+\begin{proof}[Proof of Lem.~\ref{MainLemma}]
+%We will show that the bound \eqref{GapUpperBound} trickles through the intersection semi-lattices of $\{\bm{\mathcal{A}}_S\}_{S \in \mathcal{H}}$ and $\{\bm{\mathcal{B}}_{\overline S}\}_{\overline S \in \pi(\mathcal{H})}$ to yield \eqref{MainLemmaBPD} by virtue of the SIP.  
+We begin by showing that $\dim(\bm{\mathcal{B}}_{\pi(S)}) = \dim(\bm{\mathcal{A}}_S)$ for all $S \in \mathcal{H}$. Note that since $\|\mathbf{A}\mathbf{x}\|_2 \leq \max_j\|\mathbf{A}_j\|_2\|\mathbf{x}\|_1$ and $\|\mathbf{x}\|_1 \leq \sqrt{k} \|\mathbf{x}\|_2$ for all $k$-sparse $\mathbf{x}$, by \eqref{Ldef} we have $L_2(\mathbf{A}) \leq \max_j\|\mathbf{A}_j\|_2$ and therefore (as $0 \leq \xi < 1$) the right-hand side of \eqref{GapUpperBound} is less than one. From \eqref{dimLem}, we have $|\pi(S)| \geq \dim(\bm{\mathcal{B}}_{\pi(S)}) \geq \dim(\bm{\mathcal{A}}_S) = |S|$, the final equality holding by injectivity of $\mathbf{A}_S$. As $|\pi(S)| = |S|$, the claim follows. Note, therefore, that $\mathbf{B}_{\pi(S)}$ has full-column rank for all $S \in \mathcal{H}$.
+
+We next demonstrate that \eqref{cond} holds. Fixing $\mathcal{G} \in {\mathcal{H} \choose r} \cup {\mathcal{H} \choose r+1}$, it suffices to show that $d(\bm{\mathcal{B}}_{\cap \pi(\mathcal{G})}, \bm{\mathcal{A}}_{\cap \mathcal{G}} ) < 1$, since by \eqref{dimLem} we then have $|\cap \pi(\mathcal{G})| = \dim(\bm{\mathcal{B}}_{\cap \pi(\mathcal{G})}) \leq \dim(\bm{\mathcal{A}}_{\cap \mathcal{G}}) = |\cap \mathcal{G}|$, with equalities from the full column-ranks of $\mathbf{A}_{S}$ and $\mathbf{B}_{\pi(S)}$ for all $S \in \mathcal{H}$.\footnote{Note that if ever $\bm{\mathcal{B}}_{\cap \pi(\mathcal{G})} \neq /bfseries 0$ while $\cap \mathcal{G} = \emptyset$, we would have $d(\bm{\mathcal{B}}_{\cap \pi(\mathcal{G})}, \bm 0 ) = 1$. However, that leads to a contradiction.} Observe that $d(\bm{\mathcal{B}}_{\cap \pi(\mathcal{G})}, \bm{\mathcal{A}}_{\cap \mathcal{G}}  ) 
+\leq d\left( \cap \bm{\mathcal{B}}_{\pi(\mathcal{G})}, \cap \bm{\mathcal{A}}_\mathcal{G} \right)$ by \eqref{UsubU}, since trivially $\bm{\mathcal{B}}_{\cap \pi(\mathcal{G})} \subseteq \cap \bm{\mathcal{B}}_{\pi(\mathcal{G})}$ and also $\bm{\mathcal{A}}_{\cap \mathcal{G}} = \cap \bm{\mathcal{A}}_\mathcal{G}$ by Lem.~\ref{spanIntersectionLemma}. Recalling Def.~\ref{dDef} and applying Lem.~\ref{DistanceToIntersectionLemma} yields:
+\begin{align}
+d\left( \cap \bm{\mathcal{B}}_{\pi(\mathcal{G})}, \cap \bm{\mathcal{A}}_\mathcal{G} \right)
+&\leq \max_{\mathbf{u} \in \cap \bm{\mathcal{B}}_{\pi(\mathcal{G})}, \ \|\mathbf{u}\|_2 \leq 1} \sum_{S \in \mathcal{G}} \frac{ \text{\rmfamily dist}\left( \mathbf{u},\bm{\mathcal{A}}_{S} \right) }{ 1 - \xi( \bm{\mathcal{A}}_\mathcal{G} ) } \nonumber \\
+&= \sum_{S \in \mathcal{G}} \frac{ d\left( \cap \bm{\mathcal{B}}_{\pi(\mathcal{G})},\bm{\mathcal{A}}_{S} \right) }{ 1 - \xi( \bm{\mathcal{A}}_\mathcal{G} ) }, \nonumber
+\end{align}
+passing the maximum through the sum.
+Since $\cap \bm{\mathcal{B}}_{\pi(\mathcal{G})} \subseteq \bm{\mathcal{B}}_{\pi(S)}$ for all $S \in \mathcal{G}$, by \eqref{UsubU} the numerator of each term in the sum above is bounded by \mbox{$d\left( \bm{\mathcal{B}}_{\pi(S)},\bm{\mathcal{A}}_{S} \right) = d\left(\bm{\mathcal{A}}_{S}, \bm{\mathcal{B}}_{\pi(S)} \right) \leq \varepsilon$}, with the equality from \eqref{eqdim} since $\dim(\bm{\mathcal{B}}_{\pi(S)}) = \dim(\bm{\mathcal{A}}_S)$. Thus, altogether:
+\begin{align}\label{last}
+d(\bm{\mathcal{B}}_{\cap \pi(\mathcal{G})}, \bm{\mathcal{A}}_{\cap \mathcal{G}} )
+\leq \frac{|\mathcal{G}| \varepsilon}{1 - \xi( \bm{\mathcal{A}}_\mathcal{G} )}
+\leq \frac{C_2 \varepsilon}{\max_j\|\mathbf{A}_j\|_2},
+\end{align}
+recalling the definition of $C_2$ in \eqref{Cdef2}. Lastly, since $C_2 \varepsilon < L_2(\mathbf{A}) \leq \max_j\|\mathbf{A}_j\|_2$, we have $d(\bm{\mathcal{B}}_{\cap \pi(\mathcal{G})}, \bm{\mathcal{A}}_{\cap \mathcal{G}} ) \leq 1$ and therefore \eqref{cond} holds.
+
+%Keeping in mind that $d(U',V) \leq d(U,V)$ whenever $U' \subseteq U$ and applying (in order) Lem.~\ref{spanIntersectionLemma}, Lem.~\ref{DistanceToIntersectionLemma}, \eqref{eqdim}, \eqref{GapUpperBound}, and \eqref{Cdef2} gives:
+%\begin{align}\label{randoml}
+%d(&\bm{\mathcal{B}}_{\cap \pi(\mathcal{G})}, \bm{\mathcal{A}}_{\cap \mathcal{G}}  ) 
+%\leq d\left( \cap \bm{\mathcal{B}}_{\pi(\mathcal{G})}, \cap \bm{\mathcal{A}}_\mathcal{G} \right)
+%\leq \sum_{T \in \mathcal{G}} \frac{ d\left( \cap \bm{\mathcal{B}}_{\pi(\mathcal{G})},\bm{\mathcal{A}}_{T} \right) }{ 1 - \xi( \bm{\mathcal{A}}_\mathcal{G} ) } \nonumber \\
+%&\leq \sum_{T \in \mathcal{G}} \frac{ d\left( \bm{\mathcal{B}}_{\pi(T)},\bm{\mathbf{A}}_{T} \right) }{ 1 - \xi( \bm{\mathcal{A}}_\mathcal{G} ) }
+%\leq \frac{|\mathcal{G}| \varepsilon}{1 - \xi( \bm{\mathcal{A}}_\mathcal{G} )} 
+%\leq \frac{C_2 \varepsilon}{\max_j\|\mathbf{A}_j\|_2},
+%\end{align}
+%
+%which is less than one, since $C_2 \varepsilon < L_2(\mathbf{A}) \leq \max_j\|\mathbf{A}_j\|_2$.
+
+Applying Lem.~\ref{NonEmptyLemma}, the association $i \mapsto \cap_{S \in \sigma(i)} \pi(S)$ is an injective map $\overline \pi: J \to [\overline m]$ for some $J \subseteq [m]$ of size $m - (r-1)(\overline m - m)$, and $\mathbf{B}_{\overline \pi(i)} \neq \mathbf{0}$ for all $i \in J$ since the columns of $\mathbf{B}_{\pi(S)}$ are linearly independent for all $S \in \mathcal{H}$. Letting $\overline \varepsilon := C_2 \varepsilon / \max_i \|\mathbf{A}_i\|_2$, it follows from \eqref{eqdim} and \eqref{last} that $d\left( \bm{\mathcal{A}}_i, \bm{\mathcal{B}}_{\overline \pi(i)} \right) = d\left(\bm{\mathcal{B}}_{\overline \pi(i)},  \bm{\mathcal{A}}_i \right)  \leq \overline \varepsilon$ for all $i \in J$. %Fixing $\overline \varepsilon = C_2\varepsilon$ and letting $c_i = \|\mathbf{A}_i\|_2^{-1}$, we thus have that for each $\mathbf{e}_i \in \mathbb{R}^m$ with $i \in J$ there exists some $\overline{c}_i \in \mathbb{R}$ such that $\|c_i\mathbf{A}\mathbf{e}_i - \overline{c}_i \mathbf{B}\mathbf{e}_{\overline \pi(i)}\|_2 \leq \overline \varepsilon < L_2(\mathbf{A}) \min_{i\in J} |c_i|$. But this is exactly the supposition in \eqref{1D}, and the result follows from the case $k=1$ in Sec.~\ref{DUT} applied to the submatrix $\mathbf{A}_J$. 
+Setting $c_i := \|\mathbf{A}_i\|_2^{-1}$ so that $\|c_i\mathbf{Ae}_i\|_2 = 1$, by Def.~\ref{dDef} for all $i \in J$:
+\begin{align*}
+\min_{\overline c_i \in \mathbb{R}} \|c_i\mathbf{Ae}_i - \overline c_i \mathbf{Be}_{\overline \pi(i)} \|_2
+\leq d\left( \bm{\mathcal{A}}_i, \bm{\mathcal{B}}_{\overline \pi(i)} \right)
+\leq \overline \varepsilon,
+%&= \max_{\bm{u} \in \bm{\mathcal{A}}_i, \|\bm{u}\|_2 \leq 1} \text{dist}\left(\bm{u}, \bm{\mathcal{B}}_{\overline \pi(i)} \right) \\
+%&\geq  \text{dist}\left(c_i\bm{Ae}_i, \mathbf{Be}_{\overline \pi(i)} \right) \\
+%&= \min_{\overline c_i \in \mathbb{R}} \|c_i\bm{Ae}_i - \overline c_i \mathbf{Be}_{\overline \pi(i)} \|_2
+\end{align*}
+%
+for $\overline \varepsilon < L_2(\mathbf{A})\min_{i \in [m]}|c_i|$. But this is exactly the supposition in \eqref{1D}, with $J$ and $\overline \varepsilon$ in place of $[m]$ and $\varepsilon$, respectively. The same arguments of the case $k=1$ in Sec.~\ref{DUT} can then be made to show that for any $\overline m \times \overline m$ permutation and invertible diagonal matrices $\mathbf{P}$ and $\mathbf{D}$ with, respectively, columns $\mathbf{e}_{\pi(i)}$ and $\frac{\overline{c}_i}{c_i}\mathbf{e}_i$ for $i \in J$ (otherwise, $\mathbf{e}_{i}$ for $i \in [\overline{m}] \setminus J$), we have $\|\mathbf{A}_i - (\mathbf{B}\mathbf{PD})_i \|_2 \leq \overline  \varepsilon / |c_i|  \leq C_2 \varepsilon$ for all $i \in J$.
+\end{proof}
+
 \section{Discussion}
 
-TODO
+The absence of any assumptions at all about dictionaries that solve Prob.~\ref{InverseProblem} was a major technical hurdle in proving Thm.~\ref{DeterministicUniquenessTheorem}. 
+This very general guarantee was sought because of the practical difficulty of ensuring that an algorithm maintain a dictionary satisfying the spark condition \eqref{SparkCondition} at each iteration, which (to my knowledge) has been an explicit or implicit assumption of all previous works except \cite{Hillar15}; indeed, even certifying a dictionary has this property is NP-hard \cite{tillmann2014computational}.
+
+Several results in the literature had to be combined to extend the guarantees derived in \cite{Hillar15} into the noisy regime. The main challenge was to generalize Lem.~\ref{MainLemma} to the case where the $k$-dimensional subspaces spanned by corresponding submatrices $\mathbf{A}_S$ and $\mathbf{B}_{\pi(S)}$ are assumed to be``close" but not identical. Unlike in \cite{Hillar15} where an inductive argument could be applied to the noiseless case, here it had to be explicitly demonstrated that this proximity relation is propagated through iterated intersections right down to the spans of the dictionary elements themselves. Lem.~\ref{DistanceToIntersectionLemma} was designed to encapsulate this fact, proven by appeal to a convergence guarantee for an alternating projections algorithm first proposed by von Neumann. This result, combined with a little known fact \eqref{eqdim} about the distance metric between subspaces, make up the more obscure components of the deduction.
+
+The proof of Lem.~\ref{MainLemma} diverges most significantly from the approach taken in \cite{Hillar15} by way of Lem.~\ref{NonEmptyLemma}, which utilizes a combinatorial design for support sets (the ``singleton intersection property") to reduce the deterministic sample complexity by an exponential factor. This constitutes a significant advance toward legitimizing dictionary learning in practice, since data must otherwise exhibit the exponentially many possible $k$-wise combinations of dictionary elements required by (to my knowledge) all previously published results; although an exponential number of samples per support is still required (unless $k$ is held fixed). The issue is that the map $\pi:\mathcal{H} \to {[m] \choose k}$ is surjective only when $\mathcal{H}$ is taken to be ${[m] \choose k}$, in which case one may proceed by induction as in \cite{Hillar15}, freely choosing supports in the codomain of $\pi$ to intersect over $(k-1)$ indices to then map back to some corresponding set of $(k-1)$ indices at the intersection of supports in the domain. Here, for $\mathcal{H} \subset {[m] \choose k}$, a bijection between indices had to instead be established by pigeonholing the image of $\pi$ under constraints imposed by the SIP, which was formulated specifically for this purpose. It just so happened that this more general argument for a non-surjective $\pi$ constrained by the SIP applied just as well to the situation where the number of dictionary elements $m$ is over-estimated (i.e. $\overline m > m$), in which case a one-to-one correspondence can be guaranteed between a subset of columns of $\mathbf{A}$ and $\mathbf{B}$ of a size simply expressed in terms of the width of each matrix and the regularity of $\mathcal{H}$. 
+
+One of the mathematically significant achievements in \cite{Hillar15} was to break free from the constraint that the recovery matrix $\mathbf{B}$ satisfy the spark condition in addition to the generating dictionary $\mathbf{A}$. %, in contrast to all previously known uniqueness results which (to my knowledge) have all either explicitly or implicitly made this assumption. 
+Here, it has been demonstrated that, in fact, even $\mathbf{A}$ need not satisfy the spark condition! Rather, $\mathbf{A}$ need only be injective on the union of subspaces with supports forming a regular $k$-uniform hypergraph satisfying the SIP (a distinguishing example is given in Sec.~\ref{Results}). This relaxation of constraints inspired the definition of the restricted matrix lower bound $L_{\mathcal{H}}$ in \eqref{Ldef}, which generalizes the well-known (see footnote \ref{ripfootnote}) restricted matrix lower bound $L_k$ to be in terms of a hypergraph $\mathcal{H}$, and an interesting object for further study in its own right. %(For instance, how hard is it to check that $L_\mathcal{H}(\mathbf{A}) > 0$?) 
+%The absence of any restrictions on dictionaries solving Prob.~\ref{InverseProblem} is a major technical obstruction, but highly desirable because of the practical difficulty in ensuring that an algorithm maintain a dictionary satisfying the spark condition \eqref{SparkCondition} at each iteration; indeed, even certifying a dictionary has this property is NP-hard \cite{tillmann2014computational}. 
+
+To reiterate, the methods applied here to prove Thm.~\ref{DeterministicUniquenessTheorem} yield the following results beyond a straightforward extension of those in \cite{Hillar15} to the noisy case:
+
+\begin{enumerate}
+\item A reduction in deterministic sample complexity: To identify the $n \times m$ generating dictionary $\mathbf{A}$, it is required in \cite{Hillar15} that $k{m \choose k}$ data points be sampled from each of the ${m \choose k}$ subspaces spanned by subsets of $k$ columns of $\mathbf{A}$. It is shown here that in fact it suffices to sample from at most $m$ such subspaces (see Cor.~\ref{DeterministicUniquenessCorollary}). %; thus, for fixed $k$, the deterministic sample complexity is polynomial in $m$.  %HS15 was already poly for fixed k
+\item An extension of guarantees to the case where the number of dictionary elements is unknown: The results of \cite{Hillar15} only apply to the case where the matrix $\mathbf{B}$ has the same number of columns as $\mathbf{A}$. It is shown here that if $\mathbf{B}$ has at least as many columns as $\mathbf{A}$ then it contains (up to noise) a subset of the columns of $\mathbf{A}$.
+\item Relaxed requirements (no spark condition) on the generating matrix $\mathbf{A}$: Rather, $\mathbf{A}$ need only be injective on the union of subspaces with supports that form a regular uniform hypergraph satisfying the SIP. 
+\end{enumerate}
+
+As it seemed to benefit a reviewer of this work, a brief discussion on how the deterministic sample complexity $N = |\mathcal{H}\left[|(k-1){m \choose k} + 1\right]$ derived here compares to those listed in the the top two rows listed in Table I of \cite{Hillar15} may be in order. To be clear, the theory developed here is strictly more general, since $\mathcal{H}$ can always be taken to be ${[m] \choose k}$. The point of difference in this comparison is the assumed set of supports for sparse codes, which is always ${[m] \choose k}$ in \cite{Hillar15}, whereas here it can be assumed to be any regular $k$-uniform hypergraph that satisfies the SIP. By row, %, assuming for our results that sufficient data have been sampled from all supports in a hypergraph H satisfying the SIP:
+\begin{enumerate}
+\item[I.] The result here improves upon the listed $k{m \choose k}^2$ by an exponential factor, since for every $k < m$ there exists a regular $k$-uniform hypergraph $\mathcal{H}$ with $|\mathcal{H}| = m$ satisfying the SIP. 
+\item[II.] The authors in \cite{Hillar15} have applied measure-theoretic arguments to achieve $(k+1){m \choose k}$ with almost-certainty (i.e. with probability one), a factor of $m$ reduction over that for which certainty can alternatively be guaranteed here.    
+%\item[III.] A direct comparison cannot be made because it is an open question as to the probability that a random set of supports satisfies the SIP. This would be an interesting problem for the community to solve; regardless, the result of \cite{Hillar15} is still implied by the more general theory given here.
+%\item[IV.] The result here is $|\mathcal{H}\left[|(k-1){m \choose k} + 1\right]$ with probability one compared to $(k+1){m \choose k}$ with probability one. In this case the sample complexity stated in \cite{Hillar15} is marginally better, but it relies on a noise-free technicality unique to their assumption $\mathcal{H} = {m \choose k}$. %differs in flavor: their $\mathbf{x_i}$ are assumed to be distributed as $(k+1)$ samples per support for every support of size $k \in [m]$, whereas here it is assumed that $(k-1){m \choose k}$ codes $\mathbf{x_i}$ are distributed over each support in some hypergraph $\mathcal{H}$ satisfying the SIP. 
+%\item[V.] Again, a direct comparison cannot be made for the reason stated for row III.
+\end{enumerate}

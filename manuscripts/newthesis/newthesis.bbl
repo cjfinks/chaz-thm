@@ -151,6 +151,51 @@
     \field{year}{2013}
   \endentry
 
+  \entry{baraniuk2008simple}{article}{}
+    \name{author}{4}{}{%
+      {{hash=BR}{%
+         family={Baraniuk},
+         familyi={B\bibinitperiod},
+         given={Richard},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=DM}{%
+         family={Davenport},
+         familyi={D\bibinitperiod},
+         given={Mark},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=DR}{%
+         family={DeVore},
+         familyi={D\bibinitperiod},
+         given={Ronald},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=WM}{%
+         family={Wakin},
+         familyi={W\bibinitperiod},
+         given={Michael},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Springer}%
+    }
+    \strng{namehash}{BR+1}
+    \strng{fullhash}{BRDMDRWM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \field{number}{3}
+    \field{pages}{253\bibrangedash 263}
+    \field{title}{A simple proof of the restricted isometry property for random
+  matrices}
+    \field{volume}{28}
+    \field{journaltitle}{Constructive Approximation}
+    \field{year}{2008}
+  \endentry
+
   \entry{basu2006algorithms}{book}{}
     \name{author}{3}{}{%
       {{hash=BS}{%
@@ -184,6 +229,38 @@
     \field{title}{Algorithms in real algebraic geometry}
     \field{volume}{10}
     \field{year}{2006}
+  \endentry
+
+  \entry{bellsejnowski1996}{article}{}
+    \name{author}{2}{}{%
+      {{hash=BA}{%
+         family={Bell},
+         familyi={B\bibinitperiod},
+         given={A.},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=ST}{%
+         family={Sejnowski},
+         familyi={S\bibinitperiod},
+         given={T.},
+         giveni={T\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Informa Healthcare}%
+    }
+    \strng{namehash}{BAST1}
+    \strng{fullhash}{BAST1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \field{number}{2}
+    \field{pages}{261\bibrangedash 266}
+    \field{title}{{Learning the higher-order structure of a natural sound}}
+    \field{volume}{7}
+    \field{journaltitle}{Network Comp. Neural}
+    \field{year}{1996}
   \endentry
 
   \entry{bell1997independent}{article}{}
@@ -256,6 +333,48 @@
     \field{volume}{53}
     \field{journaltitle}{SIAM Rev.}
     \field{year}{2011}
+  \endentry
+
+  \entry{Carlson12}{article}{}
+    \name{author}{3}{}{%
+      {{hash=CN}{%
+         family={Carlson},
+         familyi={C\bibinitperiod},
+         given={N.},
+         giveni={N\bibinitperiod},
+      }}%
+      {{hash=MV}{%
+         family={Ming},
+         familyi={M\bibinitperiod},
+         given={V.},
+         giveni={V\bibinitperiod},
+      }}%
+      {{hash=DM}{%
+         family={DeWeese},
+         familyi={D\bibinitperiod},
+         given={M.},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Public Library of Science}%
+    }
+    \strng{namehash}{CNMVDM1}
+    \strng{fullhash}{CNMVDM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{C}
+    \field{sortinithash}{C}
+    \verb{doi}
+    \verb 10.1371/journal.pcbi.1002594
+    \endverb
+    \field{number}{7}
+    \field{pages}{e1002594}
+    \field{title}{Sparse Codes for Speech Predict Spectrotemporal Receptive
+  Fields in the Inferior Colliculus}
+    \field{volume}{8}
+    \field{journaltitle}{PLOS Comput. Biol.}
+    \field{year}{2012}
   \endentry
 
   \entry{Deutsch12}{book}{}
@@ -346,6 +465,66 @@
     \field{year}{2003}
   \endentry
 
+  \entry{Duarte08}{article}{}
+    \name{author}{7}{}{%
+      {{hash=DM}{%
+         family={Duarte},
+         familyi={D\bibinitperiod},
+         given={M.},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=DM}{%
+         family={Davenport},
+         familyi={D\bibinitperiod},
+         given={M.},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=TD}{%
+         family={Takbar},
+         familyi={T\bibinitperiod},
+         given={D.},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=LJ}{%
+         family={Laska},
+         familyi={L\bibinitperiod},
+         given={J.},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=ST}{%
+         family={Sun},
+         familyi={S\bibinitperiod},
+         given={T.},
+         giveni={T\bibinitperiod},
+      }}%
+      {{hash=KK}{%
+         family={Kelly},
+         familyi={K\bibinitperiod},
+         given={K.},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=BR}{%
+         family={Baraniuk},
+         familyi={B\bibinitperiod},
+         given={R.},
+         giveni={R\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{DM+1}
+    \strng{fullhash}{DMDMTDLJSTKKBR1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{D}
+    \field{sortinithash}{D}
+    \field{number}{2}
+    \field{pages}{83\bibrangedash 91}
+    \field{title}{Single-Pixel Imaging via Compressive Sampling}
+    \field{volume}{25}
+    \field{journaltitle}{IEEE Signal Process. Mag.}
+    \field{year}{2008}
+    \warn{\item Invalid format of field 'month'}
+  \endentry
+
   \entry{eldar2012compressed}{book}{}
     \name{author}{2}{}{%
       {{hash=EYC}{%
@@ -396,6 +575,83 @@
     \field{year}{2013}
   \endentry
 
+  \entry{ganguli2012compressed}{article}{}
+    \name{author}{2}{}{%
+      {{hash=GS}{%
+         family={Ganguli},
+         familyi={G\bibinitperiod},
+         given={Surya},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=SH}{%
+         family={Sompolinsky},
+         familyi={S\bibinitperiod},
+         given={Haim},
+         giveni={H\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Annual Reviews}%
+    }
+    \strng{namehash}{GSSH1}
+    \strng{fullhash}{GSSH1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{G}
+    \field{sortinithash}{G}
+    \field{pages}{485\bibrangedash 508}
+    \field{title}{Compressed sensing, sparsity, and dimensionality in neuronal
+  information processing and data analysis}
+    \field{volume}{35}
+    \field{journaltitle}{Annu. Rev. Neurosci.}
+    \field{year}{2012}
+  \endentry
+
+  \entry{Gao14}{article}{}
+    \name{author}{4}{}{%
+      {{hash=GL}{%
+         family={Gao},
+         familyi={G\bibinitperiod},
+         given={L.},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=LJ}{%
+         family={Liang},
+         familyi={L\bibinitperiod},
+         given={J.},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=LC}{%
+         family={Li},
+         familyi={L\bibinitperiod},
+         given={C.},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=WL}{%
+         family={Wang},
+         familyi={W\bibinitperiod},
+         given={L.},
+         giveni={L\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Nature Publishing Group}%
+    }
+    \strng{namehash}{GL+1}
+    \strng{fullhash}{GLLJLCWL1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{G}
+    \field{sortinithash}{G}
+    \field{number}{7529}
+    \field{pages}{74\bibrangedash 77}
+    \field{title}{Single-shot compressed ultrafast photography at one hundred
+  billion frames per second}
+    \field{volume}{516}
+    \field{journaltitle}{Nature}
+    \field{year}{2014}
+  \endentry
+
   \entry{Georgiev05}{article}{}
     \name{author}{3}{}{%
       {{hash=GP}{%
@@ -429,6 +685,39 @@
     \field{volume}{16}
     \field{journaltitle}{IEEE Trans. Neural Netw.}
     \field{year}{2005}
+  \endentry
+
+  \entry{goodfellow2014explaining}{article}{}
+    \name{author}{3}{}{%
+      {{hash=GI}{%
+         family={Goodfellow},
+         familyi={G\bibinitperiod},
+         given={I},
+         giveni={I},
+      }}%
+      {{hash=SJ}{%
+         family={Shlens},
+         familyi={S\bibinitperiod},
+         given={J},
+         giveni={J},
+      }}%
+      {{hash=SC}{%
+         family={Szegedy},
+         familyi={S\bibinitperiod},
+         given={C},
+         giveni={C},
+      }}%
+    }
+    \strng{namehash}{GISJSC1}
+    \strng{fullhash}{GISJSC1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{G}
+    \field{sortinithash}{G}
+    \field{title}{Explaining and harnessing adversarial examples}
+    \field{journaltitle}{Proc. International Conference on Learning
+  Representations, 11 pp.}
+    \field{year}{2014}
   \endentry
 
   \entry{Grcar10}{article}{}
@@ -649,6 +938,33 @@
     \field{year}{1996}
   \endentry
 
+  \entry{hyvarinen1999fast}{article}{}
+    \name{author}{1}{}{%
+      {{hash=HA}{%
+         family={Hyvarinen},
+         familyi={H\bibinitperiod},
+         given={A.},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {IEEE}%
+    }
+    \strng{namehash}{HA1}
+    \strng{fullhash}{HA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{H}
+    \field{sortinithash}{H}
+    \field{number}{3}
+    \field{pages}{626\bibrangedash 634}
+    \field{title}{Fast and robust fixed-point algorithms for independent
+  component analysis}
+    \field{volume}{10}
+    \field{journaltitle}{IEEE transactions on Neural Networks}
+    \field{year}{1999}
+  \endentry
+
   \entry{hyvarinen2000independent}{article}{}
     \name{author}{2}{}{%
       {{hash=HA}{%
@@ -794,6 +1110,34 @@
     \field{year}{2013}
   \endentry
 
+  \entry{kong2016prior}{inproceedings}{}
+    \name{author}{2}{}{%
+      {{hash=KC}{%
+         family={Kong},
+         familyi={K\bibinitperiod},
+         given={Chen},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=LS}{%
+         family={Lucey},
+         familyi={L\bibinitperiod},
+         given={Simon},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{KCLS1}
+    \strng{fullhash}{KCLS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{K}
+    \field{sortinithash}{K}
+    \field{booktitle}{Proc. IEEE Comput. Soc. Conf. Comput. Vis. Pattern
+  Recognit.}
+    \field{pages}{4123\bibrangedash 4131}
+    \field{title}{Prior-less compressible structure from motion}
+    \field{year}{2016}
+  \endentry
+
   \entry{lee2016sparse}{article}{}
     \name{author}{9}{}{%
       {{hash=LYB}{%
@@ -869,6 +1213,32 @@
     \field{year}{2016}
   \endentry
 
+  \entry{stackexchangeanswer}{manual}{}
+    \name{author}{1}{}{%
+      {{hash=vLM}{%
+         prefix={van},
+         prefixi={v\bibinitperiod},
+         family={Leeuwen},
+         familyi={L\bibinitperiod},
+         given={Marc},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{LMv1}
+    \strng{fullhash}{LMv1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \field{title}{Answer to: extended stars-and-bars problem(where the upper
+  limit of the variable is bounded)}
+    \verb{url}
+    \verb https://math.stackexchange.com/questions/553960/extended-stars-and-ba
+    \verb rs-problemwhere-the-upper-limit-of-the-variable-is-bounded
+    \endverb
+    \field{year}{2013 (accessed July 18, 2020)}
+  \endentry
+
   \entry{li2004analysis}{article}{}
     \name{author}{3}{}{%
       {{hash=LY}{%
@@ -906,6 +1276,50 @@
     \field{volume}{16}
     \field{journaltitle}{Neural Comput.}
     \field{year}{2004}
+  \endentry
+
+  \entry{lustig2008compressed}{article}{}
+    \name{author}{4}{}{%
+      {{hash=LM}{%
+         family={Lustig},
+         familyi={L\bibinitperiod},
+         given={M.},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=DD}{%
+         family={Donoho},
+         familyi={D\bibinitperiod},
+         given={D.},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=SJ}{%
+         family={Santos},
+         familyi={S\bibinitperiod},
+         given={J.},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=PJ}{%
+         family={Pauly},
+         familyi={P\bibinitperiod},
+         given={J.},
+         giveni={J\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {IEEE}%
+    }
+    \strng{namehash}{LM+1}
+    \strng{fullhash}{LMDDSJPJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \field{number}{2}
+    \field{pages}{72\bibrangedash 82}
+    \field{title}{Compressed sensing {MRI}}
+    \field{volume}{25}
+    \field{journaltitle}{IEEE Signal Process. Mag.}
+    \field{year}{2008}
   \endentry
 
   \entry{Morris10}{article}{}
@@ -997,6 +1411,67 @@
     \field{year}{2010}
   \endentry
 
+  \entry{pehlevan2015normative}{inproceedings}{}
+    \name{author}{2}{}{%
+      {{hash=PC}{%
+         family={Pehlevan},
+         familyi={P\bibinitperiod},
+         given={C.},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=CD}{%
+         family={Chklovskii},
+         familyi={C\bibinitperiod},
+         given={D.},
+         giveni={D\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{PCCD1}
+    \strng{fullhash}{PCCD1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{P}
+    \field{sortinithash}{P}
+    \field{booktitle}{Advances in Neural Information Processing Systems}
+    \field{pages}{2269\bibrangedash 2277}
+    \field{title}{A normative theory of adaptive dimensionality reduction in
+  neural networks}
+    \field{year}{2015}
+  \endentry
+
+  \entry{pitts1947}{article}{}
+    \name{author}{2}{}{%
+      {{hash=PW}{%
+         family={Pitts},
+         familyi={P\bibinitperiod},
+         given={W.},
+         giveni={W\bibinitperiod},
+      }}%
+      {{hash=MW}{%
+         family={McCulloch},
+         familyi={M\bibinitperiod},
+         given={W.},
+         giveni={W\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Springer}%
+    }
+    \strng{namehash}{PWMW1}
+    \strng{fullhash}{PWMW1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{P}
+    \field{sortinithash}{P}
+    \field{number}{3}
+    \field{pages}{127\bibrangedash 147}
+    \field{title}{How we know universals: the perception of auditory and visual
+  forms}
+    \field{volume}{9}
+    \field{journaltitle}{Bull. Math. Biophys.}
+    \field{year}{1947}
+  \endentry
+
   \entry{rehnsommer2007}{article}{}
     \name{author}{2}{}{%
       {{hash=RM}{%
@@ -1028,6 +1503,80 @@
     \field{volume}{22}
     \field{journaltitle}{J. Comput. Neurosci.}
     \field{year}{2007}
+  \endentry
+
+  \entry{rozell2007neurally}{article}{}
+    \name{author}{4}{}{%
+      {{hash=RC}{%
+         family={Rozell},
+         familyi={R\bibinitperiod},
+         given={C.},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=JD}{%
+         family={Johnson},
+         familyi={J\bibinitperiod},
+         given={D.},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=BR}{%
+         family={Baraniuk},
+         familyi={B\bibinitperiod},
+         given={R.},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=OB}{%
+         family={Olshausen},
+         familyi={O\bibinitperiod},
+         given={B.},
+         giveni={B\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{RC+1}
+    \strng{fullhash}{RCJDBROB1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{R}
+    \field{sortinithash}{R}
+    \field{number}{10}
+    \field{pages}{2526\bibrangedash 2563}
+    \field{title}{Neurally plausible sparse coding via thresholding and local
+  competition}
+    \field{volume}{20}
+    \field{journaltitle}{Neural Comput.}
+    \field{year}{2008}
+  \endentry
+
+  \entry{smithlewicki2006}{article}{}
+    \name{author}{2}{}{%
+      {{hash=SE}{%
+         family={Smith},
+         familyi={S\bibinitperiod},
+         given={E.C.},
+         giveni={E\bibinitperiod},
+      }}%
+      {{hash=LM}{%
+         family={Lewicki},
+         familyi={L\bibinitperiod},
+         given={M.S.},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Nature Publishing Group}%
+    }
+    \strng{namehash}{SELM1}
+    \strng{fullhash}{SELM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{S}
+    \field{sortinithash}{S}
+    \field{number}{7079}
+    \field{pages}{978\bibrangedash 982}
+    \field{title}{{Efficient auditory coding}}
+    \field{volume}{439}
+    \field{journaltitle}{Nature}
+    \field{year}{2006}
   \endentry
 
   \entry{Sun16}{article}{}
